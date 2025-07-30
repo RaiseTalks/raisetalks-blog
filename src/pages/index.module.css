@@ -7,11 +7,34 @@
   min-height: 500px;
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/img/raisetalks-hero-1.svg') no-repeat center;
+  background-size: cover;
+  opacity: 1;
+  z-index: 1;
+}
+
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
 }
 
 .heroContent {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 3;
 }
 
 .heroTagline {
@@ -46,8 +69,15 @@
 }
 
 .heroButton:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
+  50% { box-shadow: 0 12px 30px rgba(1, 116, 225, 0.4); }
+  100% { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
 }
 
 .heroButtonSecondary {
@@ -67,6 +97,14 @@
 .stats {
   padding: 5rem 0;
   background: #f8f9fa;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.stats.animate {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .statsTitle {
@@ -347,6 +385,265 @@
   border-bottom: none;
 }
 
+/* Roadmap Section */
+.roadmap {
+  padding: 5rem 0;
+  background: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+}
+
+.roadmapHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.roadmapTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.roadmapSubtitle {
+  font-size: 1.125rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.roadmapVisual {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.roadmapDesktop {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display: block;
+}
+
+.roadmapMobile {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: none;
+}
+
+.roadmapGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.roadmapCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.roadmapCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.roadmapCard1 {
+  transform: translateY(0px);
+  animation-delay: 0.1s;
+}
+
+.roadmapCard2 {
+  transform: translateY(50px);
+  animation-delay: 0.2s;
+}
+
+.roadmapCard3 {
+  transform: translateY(100px);
+  animation-delay: 0.3s;
+}
+
+.roadmapCard4 {
+  transform: translateY(150px);
+  animation-delay: 0.4s;
+}
+
+.roadmapCardHeader {
+  background: var(--raisetalks-gradient);
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.roadmapCard2 .roadmapCardHeader {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.roadmapCard3 .roadmapCardHeader {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.roadmapCard4 .roadmapCardHeader {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.quarterInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quarter {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.year {
+  font-size: 1.25rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.roadmapCardBody {
+  padding: 2rem;
+}
+
+.roadmapFeature {
+  margin-bottom: 1.5rem;
+}
+
+.roadmapFeature:last-child {
+  margin-bottom: 0;
+}
+
+.roadmapFeature p {
+  font-size: 0.975rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.roadmapFeature:last-child p {
+  border-bottom: none;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Parallax effect */
+.roadmapCard1:hover {
+  transform: translateY(-8px) translateX(2px);
+}
+
+.roadmapCard2:hover {
+  transform: translateY(42px) translateX(-2px);
+}
+
+.roadmapCard3:hover {
+  transform: translateY(92px) translateX(2px);
+}
+
+.roadmapCard4:hover {
+  transform: translateY(142px) translateX(-2px);
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.modalClose:hover {
+  color: #333;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modalForm input {
+  padding: 1rem;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.modalForm input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /* Why Us Section */
 .whyUs {
   padding: 5rem 0;
@@ -421,6 +718,26 @@
   .pricingGrid {
     grid-template-columns: 1fr;
   }
+  
+  /* Roadmap responsive */
+  .roadmapGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .roadmapCard1,
+  .roadmapCard2,
+  .roadmapCard3,
+  .roadmapCard4 {
+    transform: translateY(0px);
+  }
+  
+  .roadmapCard1:hover,
+  .roadmapCard2:hover,
+  .roadmapCard3:hover,
+  .roadmapCard4:hover {
+    transform: translateY(-8px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -436,7 +753,8 @@
   .statsTitle,
   .pricingTitle,
   .journeyTitle,
-  .whyUsTitle {
+  .whyUsTitle,
+  .roadmapTitle {
     font-size: 2rem;
   }
   
@@ -446,5 +764,26 @@
   
   .quoteMainText {
     font-size: 2rem;
+  }
+  
+  /* Mobile roadmap adjustments */
+  .roadmapDesktop {
+    display: none;
+  }
+  
+  .roadmapMobile {
+    display: block;
+  }
+  
+  .quarter {
+    font-size: 2.5rem;
+  }
+  
+  .roadmapCardHeader {
+    padding: 1.5rem;
+  }
+  
+  .roadmapCardBody {
+    padding: 1.5rem;
   }
 }

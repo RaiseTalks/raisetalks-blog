@@ -1,43 +1,125 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import NavbarScroll from '@site/src/components/NavbarScroll';
 
 import styles from './index.module.css';
 
+// Custom hook for scroll animations
+function useScrollAnimation() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.animate);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return ref;
+}
+
+// Modal Component for Waitlist
+function WaitlistModal({ isOpen, onClose }) {
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically send the data to your backend
+    console.log('Waitlist signup:', { name, email });
+    alert('Thank you for joining our waitlist!');
+    onClose();
+    setEmail('');
+    setName('');
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.modalClose} onClick={onClose}>×</button>
+        <h2>Join the Waitlist</h2>
+        <p>Be the first to know when RaiseTalks.ai launches!</p>
+        <form onSubmit={handleSubmit} className={styles.modalForm}>
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button type="submit" className="button button--primary button--block">
+            Join Waitlist
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 // Hero Section Component
 function HomepageHero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <section className={styles.hero}>
-      <div className="container">
-        <div className={styles.heroContent}>
-          <p className={styles.heroTagline}>STREAMLINING DUE DILIGENCE</p>
-          <Heading as="h1" className={styles.heroTitle}>
-            AI Assistant Providing Personalised Guidance on Data Rooms
-          </Heading>
-          <div className={styles.heroButtons}>
-            <Link
-              className={clsx('button button--primary button--lg', styles.heroButton)}
-              to="https://raisetalks.ai/#join-waitlist">
-              Join Waiting List
-            </Link>
-            <Link
-              className={clsx('button button--secondary button--lg', styles.heroButtonSecondary)}
-              to="https://buy.stripe.com/14k9Dq8HDanK4bCcMN"
-              target="_blank">
-              Contribute to RaiseTalks.ai
-            </Link>
+    <>
+      <section className={styles.hero}>
+        <div className="container">
+          <div className={styles.heroContent}>
+            <p className={styles.heroTagline}>STREAMLINING DUE DILIGENCE</p>
+            <Heading as="h1" className={styles.heroTitle}>
+              AI Assistant Providing Personalised Guidance on Data Rooms
+            </Heading>
+            <div className={styles.heroButtons}>
+              <button
+                className={clsx('button button--primary button--lg', styles.heroButton)}
+                onClick={() => setIsModalOpen(true)}>
+                Join Waiting List
+              </button>
+              <Link
+                className={clsx('button button--secondary button--lg', styles.heroButtonSecondary)}
+                to="https://buy.stripe.com/14k9Dq8HDanK4bCcMN"
+                target="_blank">
+                Contribute to RaiseTalks.ai
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <WaitlistModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
   );
 }
 
 // Statistics Section Component
 function HomepageStats() {
+  const animationRef = useScrollAnimation();
   const stats = [
     {
       number: '80%',
@@ -60,7 +142,7 @@ function HomepageStats() {
   ];
 
   return (
-    <section className={styles.stats}>
+    <section className={styles.stats} ref={animationRef}>
       <div className="container">
         <Heading as="h2" className={styles.statsTitle}>
           Entrepreneurial Challenges: The Hidden Hurdles of Startup Success
@@ -233,6 +315,96 @@ function HomepageJourney() {
   );
 }
 
+// Roadmap Section Component
+function HomepageRoadmap() {
+  const roadmapData = [
+    {
+      quarter: 'Q1',
+      year: '2025',
+      features: [
+        'Personalized AI guidance on Pitch Deck development',
+        'Basic data room templates',
+        'Early-stage fundraising Q&A support'
+      ]
+    },
+    {
+      quarter: 'Q2',
+      year: '2025',
+      features: [
+        'Customizable data room feature tailored for startups across various industries',
+        'Investor Platform to connect investors with startups using RaiseTalks.ai'
+      ]
+    },
+    {
+      quarter: 'Q3',
+      year: '2025',
+      features: [
+        'BI dashboards to track investor interactions and funding readiness',
+        'AI algorithms to match startups with suitable investors based on sector, geography, and stage'
+      ]
+    },
+    {
+      quarter: 'Q4',
+      year: '2025',
+      features: [
+        'Seamless integration of due diligence tools',
+        'Inaugural Raise Talks Global Summit'
+      ]
+    }
+  ];
+
+  return (
+    <section className={styles.roadmap}>
+      <div className="container">
+        <div className={styles.roadmapHeader}>
+          <Heading as="h2" className={styles.roadmapTitle}>ROADMAP</Heading>
+          <p className={styles.roadmapSubtitle}>
+            Our roadmap charts our path to transforming startup growth with AI-powered fundraising and investor connections.
+          </p>
+        </div>
+        
+        <div className={styles.roadmapVisual}>
+          <img 
+            src="/img/Tripple-point.svg" 
+            alt="Roadmap Timeline" 
+            className={styles.roadmapDesktop}
+          />
+          <img 
+            src="/img/3point-mobile.svg" 
+            alt="Roadmap Timeline Mobile" 
+            className={styles.roadmapMobile}
+          />
+        </div>
+
+        <div className={styles.roadmapGrid}>
+          {roadmapData.map((item, idx) => (
+            <div 
+              key={idx} 
+              className={clsx(styles.roadmapCard, styles[`roadmapCard${idx + 1}`])}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+            >
+              <div className={styles.roadmapCardHeader}>
+                <div className={styles.quarterInfo}>
+                  <span className={styles.quarter}>{item.quarter}</span>
+                  <span className={styles.year}>/ {item.year}</span>
+                </div>
+              </div>
+              <div className={styles.roadmapCardBody}>
+                {item.features.map((feature, featureIdx) => (
+                  <div key={featureIdx} className={styles.roadmapFeature}>
+                    <p>{feature}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Why Choose Us Section Component
 function HomepageWhyUs() {
   const features = [
@@ -277,10 +449,12 @@ export default function Home(): JSX.Element {
     <Layout
       title={`Welcome to ${siteConfig.title}`}
       description="RaiseTalks.ai - AI Assistant Providing Personalised Guidance on Data Rooms">
+      <NavbarScroll />
       <HomepageHero />
       <HomepageStats />
       <HomepageQuote />
       <HomepageJourney />
+      <HomepageRoadmap />
       <HomepagePricing />
       <HomepageWhyUs />
     </Layout>
