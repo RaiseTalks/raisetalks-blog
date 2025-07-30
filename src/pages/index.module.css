@@ -1,23 +1,450 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-.heroBanner {
-  padding: 4rem 0;
+/* Hero Section */
+.hero {
+  background: var(--raisetalks-gradient);
+  padding: 6rem 0;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  color: white;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroTagline {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroButton {
+  background: white !important;
+  color: var(--ifm-color-primary) !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 12px 30px;
+  transition: all 0.3s ease;
+}
+
+.heroButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.heroButtonSecondary {
+  background: transparent !important;
+  color: white !important;
+  border: 2px solid white !important;
+  font-weight: 600;
+  padding: 10px 28px;
+}
+
+.heroButtonSecondary:hover {
+  background: white !important;
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Statistics Section */
+.stats {
+  padding: 5rem 0;
+  background: #f8f9fa;
+}
+
+.statsTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #2c3e50;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.statCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.statNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  margin-bottom: 1rem;
+}
+
+.statDescription {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.statTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.statDetails {
+  font-size: 0.875rem;
+  color: #888;
+  line-height: 1.5;
+}
+
+/* Quote Section */
+.quote {
+  padding: 5rem 0;
+  background: white;
+}
+
+.quoteContent {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.quoteImage {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quotePretext {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #666;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.quoteMainText {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  margin: 1rem 0 2rem;
+}
+
+.quoteText {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #555;
+  border-left: 4px solid var(--ifm-color-primary);
+  padding-left: 2rem;
+  margin: 2rem 0;
+}
+
+.quoteAuthor {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333;
+  text-align: right;
+}
+
+/* Journey Section */
+.journey {
+  padding: 5rem 0;
+  background: var(--raisetalks-gradient);
+  color: white;
+  text-align: center;
+}
+
+.journeyContent {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.journeyTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.journeySubtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.journeyButton {
+  background: white !important;
+  color: var(--ifm-color-primary) !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 12px 30px;
+}
+
+.journeyImage {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.journeyImage img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Pricing Section */
+.pricing {
+  padding: 5rem 0;
+  background: #f8f9fa;
+}
+
+.pricingTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.pricingSubtitle {
+  text-align: center;
+  font-size: 1.125rem;
+  color: #666;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricingCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.pricingCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.pricingHeader {
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.pricingHeader h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.starterGradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.enhanceGradient {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.growthGradient {
+  background: var(--raisetalks-gradient);
+}
+
+.pricingBody {
+  padding: 2rem;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.priceDisplay {
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.period {
+  font-size: 1rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.specialNote {
+  background: #f0f0ff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+  color: #666;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.infoIcon {
+  font-size: 1.25rem;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+}
+
+.featureList li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.975rem;
+  color: #555;
+}
+
+.featureList li:last-child {
+  border-bottom: none;
+}
+
+/* Why Us Section */
+.whyUs {
+  padding: 5rem 0;
+  background: var(--raisetalks-gradient);
+  color: white;
+}
+
+.whyUsTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.featureIcon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.featureCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.featureCard p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 996px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .quoteContent {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .quoteText {
+    text-align: left;
+  }
+  
+  .quoteAuthor {
+    text-align: center;
+  }
+  
+  .statsGrid,
+  .pricingGrid {
+    grid-template-columns: 1fr;
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .statsTitle,
+  .pricingTitle,
+  .journeyTitle,
+  .whyUsTitle {
+    font-size: 2rem;
+  }
+  
+  .quotePretext {
+    font-size: 1.5rem;
+  }
+  
+  .quoteMainText {
+    font-size: 2rem;
+  }
 }

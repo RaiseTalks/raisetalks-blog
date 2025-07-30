@@ -1,44 +1,288 @@
-import type {ReactNode} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+// Hero Section Component
+function HomepageHero() {
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <section className={styles.hero}>
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
+        <div className={styles.heroContent}>
+          <p className={styles.heroTagline}>STREAMLINING DUE DILIGENCE</p>
+          <Heading as="h1" className={styles.heroTitle}>
+            AI Assistant Providing Personalised Guidance on Data Rooms
+          </Heading>
+          <div className={styles.heroButtons}>
+            <Link
+              className={clsx('button button--primary button--lg', styles.heroButton)}
+              to="https://raisetalks.ai/#join-waitlist">
+              Join Waiting List
+            </Link>
+            <Link
+              className={clsx('button button--secondary button--lg', styles.heroButtonSecondary)}
+              to="https://buy.stripe.com/14k9Dq8HDanK4bCcMN"
+              target="_blank">
+              Contribute to RaiseTalks.ai
+            </Link>
+          </div>
         </div>
       </div>
-    </header>
+    </section>
   );
 }
 
-export default function Home(): ReactNode {
+// Statistics Section Component
+function HomepageStats() {
+  const stats = [
+    {
+      number: '80%',
+      description: 'of startups are undervalued due to insufficient disclosure of information',
+      title: 'Preparation for Investment Rounds',
+      details: 'Without a well-organized data room tailored to their growth stage, startups struggle to build the trust and transparency necessary for investors to commit.'
+    },
+    {
+      number: '30%',
+      description: 'of promising startups stop operating because they did not have time to raise funds. It\'s the 3rd most common cause startups fail',
+      title: 'Global Access to Capital',
+      details: 'Startups are no longer limited to local investors, driving the need for professional materials to appeal to global audiences.'
+    },
+    {
+      number: '100+',
+      description: 'pitch decks are viewed by investors every week, but only 1-2 of these startups are selected each month to the investment committee',
+      title: 'Weak Communication',
+      details: 'Startups often falter in articulating their unique value proposition, leaving potential investors unconvinced or disengaged.'
+    }
+  ];
+
+  return (
+    <section className={styles.stats}>
+      <div className="container">
+        <Heading as="h2" className={styles.statsTitle}>
+          Entrepreneurial Challenges: The Hidden Hurdles of Startup Success
+        </Heading>
+        <div className={styles.statsGrid}>
+          {stats.map((stat, idx) => (
+            <div key={idx} className={styles.statCard}>
+              <div className={styles.statNumber}>{stat.number}</div>
+              <p className={styles.statDescription}>{stat.description}</p>
+              <h3 className={styles.statTitle}>{stat.title}</h3>
+              <p className={styles.statDetails}>{stat.details}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Quote Section Component
+function HomepageQuote() {
+  return (
+    <section className={styles.quote}>
+      <div className="container">
+        <div className={styles.quoteContent}>
+          <div className={styles.quoteLeft}>
+            <img
+              src="/img/Dasha-quote-1-1024x1024.webp"
+              alt="Dariia Vasylieva"
+              className={styles.quoteImage}
+            />
+          </div>
+          <div className={styles.quoteRight}>
+            <p className={styles.quotePretext}>FUNDRAISING IS</p>
+            <p className={styles.quotePretext}>IS NO LONGER</p>
+            <p className={styles.quotePretext}>A DAUNTING TASK…</p>
+            <p className={styles.quoteMainText}>IT'S A <strong>CONVERSATION</strong>.</p>
+            <blockquote className={styles.quoteText}>
+              "With RaiseTalks.ai, startups gain a personalized fundraising advisor at their fingertips—ready to answer any question, deliver tailored guidance, and streamline every step of the investment journey. From navigating complex challenges to crafting investor-ready materials, RaiseTalks.ai turns fundraising into a seamless, empowering experience."
+            </blockquote>
+            <p className={styles.quoteAuthor}>– Dariia Vasylieva</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Pricing Section Component
+function HomepagePricing() {
+  const plans = [
+    {
+      name: 'STARTER',
+      price: '$1',
+      period: '/ ANNUALLY',
+      description: 'Explore our platform and try out the essentials with minimal commitment!',
+      features: [
+        'First 5 questions answered by RaiseTalks.ai',
+        'Basic fundraising guidance',
+        'Limited access to templates and tools'
+      ],
+      buttonText: 'Select Starter Plan',
+      available: true,
+      gradient: 'starterGradient'
+    },
+    {
+      name: 'ENHANCE',
+      originalPrice: '$999',
+      price: '$499',
+      period: '/ ANNUALLY',
+      description: 'This special price is valid only for the first 500 startups that apply.',
+      features: [
+        'Up to 100 questions',
+        'AI-powered answers tailored to early-stage fundraising',
+        'Basic investor engagement insights.'
+      ],
+      buttonText: 'Not Available',
+      available: false,
+      gradient: 'enhanceGradient'
+    },
+    {
+      name: 'GROWTH',
+      originalPrice: '$1999',
+      price: '$999',
+      period: '/ ANNUALLY',
+      description: 'This special price is valid only for the first 500 startups that apply.',
+      features: [
+        'Unlimited AI Q&A support.',
+        'Advanced Data Room templates.',
+        'Priority support and AI-driven fundraising strategies.'
+      ],
+      buttonText: 'Not Available',
+      available: false,
+      gradient: 'growthGradient'
+    }
+  ];
+
+  return (
+    <section className={styles.pricing}>
+      <div className="container">
+        <Heading as="h2" className={styles.pricingTitle}>Pricing</Heading>
+        <p className={styles.pricingSubtitle}>
+          Whether you're just starting or scaling to the next level, we've got the perfect plan for your journey
+        </p>
+        <div className={styles.pricingGrid}>
+          {plans.map((plan, idx) => (
+            <div key={idx} className={styles.pricingCard}>
+              <div className={clsx(styles.pricingHeader, styles[plan.gradient])}>
+                <h3>{plan.name}</h3>
+              </div>
+              <div className={styles.pricingBody}>
+                {plan.originalPrice && (
+                  <p className={styles.originalPrice}>{plan.originalPrice}</p>
+                )}
+                <div className={styles.priceDisplay}>
+                  <span className={styles.price}>{plan.price}</span>
+                  <span className={styles.period}>{plan.period}</span>
+                </div>
+                {plan.description && (
+                  <p className={styles.specialNote}>
+                    <span className={styles.infoIcon}>ℹ️</span>
+                    {plan.description}
+                  </p>
+                )}
+                <button
+                  className={clsx(
+                    'button button--block',
+                    plan.available ? 'button--primary' : 'button--secondary'
+                  )}
+                  disabled={!plan.available}>
+                  {plan.buttonText}
+                </button>
+                <ul className={styles.featureList}>
+                  {plan.features.map((feature, featureIdx) => (
+                    <li key={featureIdx}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Journey Section Component
+function HomepageJourney() {
+  return (
+    <section className={styles.journey}>
+      <div className="container">
+        <div className={styles.journeyContent}>
+          <Heading as="h2" className={styles.journeyTitle}>
+            The Fundraising Journey: Unlocking Investor Confidence with RaiseTalk.ai
+          </Heading>
+          <p className={styles.journeySubtitle}>
+            RaiseTalks.ai transforms the fundraising process into a seamless, data-driven experience.
+          </p>
+          <Link
+            className={clsx('button button--primary button--lg', styles.journeyButton)}
+            to="https://raisetalks.ai/#join-beta">
+            Join Closed Beta
+          </Link>
+        </div>
+        <div className={styles.journeyImage}>
+          <img src="/img/chat-bg-1024x630.webp" alt="RaiseTalks.ai Chat Interface" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Why Choose Us Section Component
+function HomepageWhyUs() {
+  const features = [
+    {
+      icon: '/img/savings-icon.svg',
+      title: 'Cost-Effective',
+      description: 'Save on traditional advisory fees'
+    },
+    {
+      icon: '/img/aipower-icon.svg',
+      title: 'AI-Powered',
+      description: 'Cutting-edge technology at your service'
+    },
+    {
+      icon: '/img/global-icon.svg',
+      title: 'Global Reach',
+      description: 'Connect with investors worldwide'
+    }
+  ];
+
+  return (
+    <section className={styles.whyUs}>
+      <div className="container">
+        <Heading as="h2" className={styles.whyUsTitle}>Why choose Us?</Heading>
+        <div className={styles.featuresGrid}>
+          {features.map((feature, idx) => (
+            <div key={idx} className={styles.featureCard}>
+              <img src={feature.icon} alt={feature.title} className={styles.featureIcon} />
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
+      title={`Welcome to ${siteConfig.title}`}
+      description="RaiseTalks.ai - AI Assistant Providing Personalised Guidance on Data Rooms">
+      <HomepageHero />
+      <HomepageStats />
+      <HomepageQuote />
+      <HomepageJourney />
+      <HomepagePricing />
+      <HomepageWhyUs />
     </Layout>
   );
 }
