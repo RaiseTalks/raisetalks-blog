@@ -5,7 +5,7 @@
  */
 
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap");
 
 /* RaiseTalks Brand Variables */
 :root {
@@ -17,31 +17,35 @@
   --ifm-color-primary-light: #0182f8;
   --ifm-color-primary-lighter: #1a8df8;
   --ifm-color-primary-lightest: #4aa5fa;
-  
+
   /* Global Colors from Original Website */
-  --e-global-color-primary: #0162D8;
+  --e-global-color-primary: #0162d8;
   --e-global-color-secondary: #010621;
   --e-global-color-text: #000000;
-  --e-global-color-accent: #FF0E12;
-  --e-global-color-33ac118: #FFAB0E;
-  --raisetalks-gradient: linear-gradient(305deg, var(--e-global-color-secondary) 10%, var(--e-global-color-primary) 90%);
-  
+  --e-global-color-accent: #ff0e12;
+  --e-global-color-33ac118: #ffab0e;
+  --raisetalks-gradient: linear-gradient(
+    305deg,
+    var(--e-global-color-secondary) 10%,
+    var(--e-global-color-primary) 90%
+  );
+
   /* Typography */
-  --ifm-font-family-base: 'Poppins', system-ui, -apple-system, sans-serif;
-  --ifm-heading-font-family: 'Raleway', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-base: "Poppins", system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: "Raleway", system-ui, -apple-system, sans-serif;
   --ifm-font-size-base: 16px;
   --ifm-code-font-size: 95%;
-  
+
   /* Spacing and Layout */
   --ifm-navbar-height: 70px;
   --ifm-navbar-padding-horizontal: 2rem;
-  
+
   /* Code Highlighting */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode adjustments */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --ifm-color-primary: #4aa5fa;
   --ifm-color-primary-dark: #2593f9;
   --ifm-color-primary-darker: #1289f8;
@@ -57,7 +61,12 @@ html {
   font-family: var(--ifm-font-family-base);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--ifm-heading-font-family);
   font-weight: 600;
 }
@@ -108,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar__link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -185,11 +194,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Blog-specific Styles */
-.blog-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
 
 article header h1 {
   font-size: 3rem;
@@ -248,11 +252,11 @@ article .avatar__intro {
   .hero__title {
     font-size: 2.5rem;
   }
-  
+
   .hero__subtitle {
     font-size: 1.25rem;
   }
-  
+
   article header h1 {
     font-size: 2rem;
   }
