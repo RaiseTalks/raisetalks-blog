@@ -82,8 +82,18 @@ const config: Config = {
       },
       items: [
         {
-          to: "/",
-          label: "Home",
+          to: "/about-us",
+          label: "About Us",
+          position: "left",
+        },
+        {
+          to: "/features",
+          label: "Features",
+          position: "left",
+        },
+        {
+          to: "/pricing",
+          label: "Pricing",
           position: "left",
         },
         {
@@ -92,19 +102,34 @@ const config: Config = {
           position: "left",
         },
         {
-          to: "/blog/tags",
-          label: "Topics",
-          position: "left",
-        },
-        {
-          to: "/blog/archive",
-          label: "Archive",
-          position: "left",
-        },
-        {
-          href: "https://raisetalks.ai",
-          label: "RaiseTalks.ai",
+          to: "https://calendly.com/iamdariiava/30min",
+          label: "Contact Us",
           position: "right",
+          className: "navbar__link--calendar",
+        },
+        {
+          to: "https://x.com/raisetalks_ai",
+          label: "X",
+          position: "right",
+          className: "navbar__link--x",
+        },
+        {
+          to: "https://www.linkedin.com/company/raisetalks/",
+          label: "LinkedIn",
+          position: "right",
+          className: "navbar__link--linkedin",
+        },
+        {
+          to: "https://dev.raisetalks.ai/sign-in",
+          label: "Log In",
+          position: "right",
+          className: "navbar__link--login",
+        },
+        {
+          to: "https://dev.raisetalks.ai/sign-up",
+          label: "Sign Up",
+          position: "right",
+          className: "navbar__link--signup button button--primary",
         },
       ],
     },
@@ -112,19 +137,23 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Content",
+          title: "Company",
           items: [
             {
-              label: "Recent Posts",
+              label: "About Us",
+              to: "/about-us",
+            },
+            {
+              label: "Features",
+              to: "/features",
+            },
+            {
+              label: "Pricing",
+              to: "/pricing",
+            },
+            {
+              label: "Blog",
               to: "/blog",
-            },
-            {
-              label: "Topics",
-              to: "/blog/tags",
-            },
-            {
-              label: "Archive",
-              to: "/blog/archive",
             },
           ],
         },
@@ -133,11 +162,15 @@ const config: Config = {
           items: [
             {
               label: "LinkedIn",
-              href: "https://linkedin.com/company/raisetalks",
+              href: "https://www.linkedin.com/company/raisetalks/",
             },
             {
-              label: "Twitter",
-              href: "https://twitter.com/raisetalks",
+              label: "X (Twitter)",
+              href: "https://x.com/raisetalks_ai",
+            },
+            {
+              label: "Book a Call",
+              href: "https://calendly.com/iamdariiava/30min",
             },
             {
               label: "Email",
@@ -146,8 +179,16 @@ const config: Config = {
           ],
         },
         {
-          title: "More",
+          title: "Platform",
           items: [
+            {
+              label: "Sign Up",
+              href: "https://dev.raisetalks.ai/sign-up",
+            },
+            {
+              label: "Log In",
+              href: "https://dev.raisetalks.ai/sign-in",
+            },
             {
               label: "RaiseTalks.ai",
               href: "https://raisetalks.ai",

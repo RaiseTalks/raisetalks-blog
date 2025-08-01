@@ -106,7 +106,7 @@ function HomepageHero() {
                 className={clsx('button button--secondary button--lg', styles.heroButtonSecondary)}
                 to="https://buy.stripe.com/14k9Dq8HDanK4bCcMN"
                 target="_blank">
-                Contribute to RaiseTalks.ai
+                Contribute us 💝
               </Link>
             </div>
           </div>
@@ -145,7 +145,9 @@ function HomepageStats() {
     <section className={styles.stats} ref={animationRef}>
       <div className="container">
         <Heading as="h2" className={styles.statsTitle}>
-          Entrepreneurial Challenges: The Hidden Hurdles of Startup Success
+          Entrepreneurial Challenges:
+          <br />
+          The Hidden Hurdles of Startup Success
         </Heading>
         <div className={styles.statsGrid}>
           {stats.map((stat, idx) => (
@@ -362,24 +364,24 @@ function HomepageRoadmap() {
             Our roadmap charts our path to transforming startup growth with AI-powered fundraising and investor connections.
           </p>
         </div>
-        
+
         <div className={styles.roadmapVisual}>
-          <img 
-            src="/img/Tripple-point.svg" 
-            alt="Roadmap Timeline" 
+          <img
+            src="/img/Tripple-point.svg"
+            alt="Roadmap Timeline"
             className={styles.roadmapDesktop}
           />
-          <img 
-            src="/img/3point-mobile.svg" 
-            alt="Roadmap Timeline Mobile" 
+          <img
+            src="/img/3point-mobile.svg"
+            alt="Roadmap Timeline Mobile"
             className={styles.roadmapMobile}
           />
         </div>
 
         <div className={styles.roadmapGrid}>
           {roadmapData.map((item, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className={clsx(styles.roadmapCard, styles[`roadmapCard${idx + 1}`])}
               data-aos="fade-up"
               data-aos-delay={idx * 100}
@@ -443,8 +445,8 @@ function HomepageWhyUs() {
   );
 }
 
-export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+export default function Home(): React.JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Welcome to ${siteConfig.title}`}

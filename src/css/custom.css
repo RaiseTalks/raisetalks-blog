@@ -137,7 +137,7 @@ h6 {
   background: var(--raisetalks-gradient);
   color: white;
   padding: 6rem 0;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .hero__title {
@@ -247,6 +247,85 @@ article .avatar__intro {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Navbar Icon Links */
+.navbar__link--calendar::before,
+.navbar__link--x::before,
+.navbar__link--linkedin::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.navbar__link--calendar:hover::before,
+.navbar__link--x:hover::before,
+.navbar__link--linkedin:hover::before {
+  filter: grayscale(0%);
+}
+
+.navbar__link--calendar::before {
+  background-image: url("/img/calendar-icon.svg");
+}
+
+.navbar__link--x::before {
+  background-image: url("/img/x-icon.svg");
+}
+
+.navbar__link--linkedin::before {
+  background-image: url("/img/linkedin-icon.svg");
+}
+
+/* Hide text for icon-only links on desktop */
+@media (min-width: 997px) {
+  .navbar__link--x,
+  .navbar__link--linkedin {
+    font-size: 0;
+  }
+  
+  .navbar__link--x::before,
+  .navbar__link--linkedin::before {
+    margin-right: 0;
+  }
+}
+
+/* Auth Buttons */
+.navbar__link--login {
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 6px;
+  padding: 0.4rem 1rem !important;
+  margin-left: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.navbar__link--login:hover {
+  background: var(--ifm-color-primary);
+  color: white !important;
+}
+
+.navbar__link--signup {
+  margin-left: 0.5rem;
+  padding: 0.4rem 1rem !important;
+  font-weight: 600;
+}
+
+.navbar__link--signup:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(1, 116, 225, 0.3);
+}
+
+/* Navbar spacing adjustments */
+.navbar__items--right > :not(:last-child) {
+  margin-right: 0.5rem;
+}
+
 /* Responsive Design */
 @media (max-width: 996px) {
   .hero__title {
@@ -259,5 +338,24 @@ article .avatar__intro {
 
   article header h1 {
     font-size: 2rem;
+  }
+  
+  /* Mobile navbar adjustments */
+  .navbar__link--calendar::before,
+  .navbar__link--x::before,
+  .navbar__link--linkedin::before {
+    margin-right: 8px;
+  }
+  
+  .navbar__link--x,
+  .navbar__link--linkedin {
+    font-size: inherit;
+  }
+  
+  .navbar__link--login,
+  .navbar__link--signup {
+    display: block;
+    text-align: center;
+    margin: 0.5rem 1rem;
   }
 }
