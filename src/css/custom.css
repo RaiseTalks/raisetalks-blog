@@ -288,7 +288,7 @@ article .avatar__intro {
   .navbar__link--linkedin {
     font-size: 0;
   }
-  
+
   .navbar__link--x::before,
   .navbar__link--linkedin::before {
     margin-right: 0;
@@ -339,19 +339,19 @@ article .avatar__intro {
   article header h1 {
     font-size: 2rem;
   }
-  
+
   /* Mobile navbar adjustments */
   .navbar__link--calendar::before,
   .navbar__link--x::before,
   .navbar__link--linkedin::before {
     margin-right: 8px;
   }
-  
+
   .navbar__link--x,
   .navbar__link--linkedin {
     font-size: inherit;
   }
-  
+
   .navbar__link--login,
   .navbar__link--signup {
     display: block;

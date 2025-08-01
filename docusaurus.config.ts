@@ -123,7 +123,7 @@ const config: Config = {
           to: "https://dev.raisetalks.ai/sign-in",
           label: "Log In",
           position: "right",
-          className: "navbar__link--login",
+          className: "navbar__link--login button button--secondary",
         },
         {
           to: "https://dev.raisetalks.ai/sign-up",
