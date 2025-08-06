@@ -73,6 +73,11 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: "img/raisetalks-social-card.jpg",
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       title: "RaiseTalks",
       logo: {
@@ -134,7 +139,7 @@ const config: Config = {
       ],
     },
     footer: {
-      style: "dark",
+      style: "light",
       links: [
         {
           title: "Company",
@@ -154,6 +159,23 @@ const config: Config = {
             {
               label: "Blog",
               to: "/blog",
+            },
+          ],
+        },
+        {
+          title: "Platform",
+          items: [
+            {
+              label: "Sign Up",
+              href: "https://dev.raisetalks.ai/sign-up",
+            },
+            {
+              label: "Log In",
+              href: "https://dev.raisetalks.ai/sign-in",
+            },
+            {
+              label: "RaiseTalks.ai",
+              href: "https://raisetalks.ai",
             },
           ],
         },
@@ -179,24 +201,28 @@ const config: Config = {
           ],
         },
         {
-          title: "Platform",
+          title: "Resources",
           items: [
             {
-              label: "Sign Up",
-              href: "https://dev.raisetalks.ai/sign-up",
+              label: "Documentation",
+              href: "https://docs.raisetalks.ai",
             },
             {
-              label: "Log In",
-              href: "https://dev.raisetalks.ai/sign-in",
+              label: "Support",
+              href: "mailto:support@raisetalks.ai",
             },
             {
-              label: "RaiseTalks.ai",
-              href: "https://raisetalks.ai",
+              label: "Help Center",
+              href: "mailto:info@raisetalks.ai",
+            },
+            {
+              label: "Community",
+              href: "https://www.linkedin.com/company/raisetalks/",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} RaiseTalks. All rights reserved.`,
+      copyright: `© ${new Date().getFullYear()} RaiseTalks. All rights reserved.`,
     },
     prism: {
       theme: prismThemes.github,
