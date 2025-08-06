@@ -12,6 +12,9 @@
  * Fonts: Poppins (primary), Nullshock (headlines)
  */
 
+/* Tailwind CSS v4 Configuration and Directives */
+@import "tailwindcss";
+
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
@@ -49,9 +52,9 @@
   --ifm-font-size-base: 16px;
   --ifm-code-font-size: 95%;
 
-  /* Spacing and Layout */
-  --ifm-navbar-height: 60px;
-  --ifm-navbar-padding-horizontal: 2rem;
+  /* Spacing and Layout - Optimized Navigation */
+  --ifm-navbar-height: 56px;
+  --ifm-navbar-padding-horizontal: 1.5rem;
 
   /* Code Highlighting */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
@@ -84,23 +87,27 @@ h6 {
   font-weight: 200;
 }
 
-/* Navbar Customization */
+/* Optimized Navbar Foundation */
 .navbar {
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   padding: 0.5rem var(--ifm-navbar-padding-horizontal);
   height: var(--ifm-navbar-height);
   position: sticky;
   top: 0;
   z-index: 999;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(1, 116, 225, 0.1);
+  display: flex;
+  align-items: center;
 }
 
 .navbar--scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(1, 116, 225, 0.15);
 }
 
 .navbar__brand {
@@ -110,7 +117,23 @@ h6 {
 }
 
 .navbar--scrolled .navbar__brand {
-  transform: scale(0.9);
+  transform: scale(0.95);
+}
+
+/* Optimized Logo and Brand */
+.navbar__logo {
+  height: 28px !important;
+  width: auto;
+  max-width: 200px;
+}
+
+.navbar__brand {
+  margin-right: 1rem;
+}
+
+.navbar__title {
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 /* Hide navbar title when logo is present */
@@ -118,31 +141,31 @@ h6 {
   display: none;
 }
 
+/* Optimized Navigation Links */
 .navbar__link {
   font-weight: 500;
+  font-size: 15px;
   transition: all 0.3s ease;
-  position: relative;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  color: #374151;
+  text-decoration: none;
+  line-height: 1.4;
 }
 
 .navbar__link:hover {
   color: var(--ifm-color-primary);
-  transform: translateY(-2px);
+  background: rgba(1, 116, 225, 0.08);
+  text-decoration: none;
 }
 
-.navbar__link::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 50%;
-  background: var(--ifm-color-primary);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
+/* Optimized navbar items spacing */
+.navbar__items {
+  align-items: center;
 }
 
-.navbar__link:hover::after {
-  width: 100%;
+.navbar__items--right {
+  gap: 0.5rem;
 }
 
 /* Hero Section for Homepage */
@@ -282,27 +305,27 @@ article .avatar__intro {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Navbar Icon Links */
+/* Optimized Icon Links */
 .navbar__link--calendar::before,
 .navbar__link--x::before,
 .navbar__link--linkedin::before {
   content: "";
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 6px;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
   vertical-align: middle;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
 }
 
 .navbar__link--calendar:hover::before,
 .navbar__link--x:hover::before,
 .navbar__link--linkedin:hover::before {
-  filter: grayscale(0%);
+  opacity: 1;
 }
 
 .navbar__link--calendar::before {
@@ -330,381 +353,162 @@ article .avatar__intro {
   }
 }
 
-/* Auth Buttons */
+/* Optimized Auth Buttons */
 .navbar__link--login {
-  border: 2px solid var(--ifm-color-primary);
+  border: 1.5px solid var(--ifm-color-primary);
   border-radius: 6px;
-  padding: 0.4rem 1rem !important;
-  margin-left: 0.5rem;
+  padding: 0.4rem 0.875rem !important;
+  margin-left: 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ifm-color-primary) !important;
   transition: all 0.3s ease;
+  line-height: 1.3;
 }
 
 .navbar__link--login:hover {
   background: var(--ifm-color-primary);
   color: white !important;
+  text-decoration: none;
 }
 
 .navbar__link--signup {
-  margin-left: 0.5rem;
-  padding: 0.4rem 1rem !important;
+  padding: 0.4rem 0.875rem !important;
   font-weight: 600;
-  background: var(--e-global-color-accent);
+  font-size: 14px;
+  background: var(--ifm-color-primary);
   color: white !important;
   border-radius: 6px;
+  border: 1.5px solid var(--ifm-color-primary);
+  transition: all 0.3s ease;
+  line-height: 1.3;
 }
 
 .navbar__link--signup:hover {
+  background: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
   text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(234, 38, 64, 0.3);
-  background: #d1213a;
 }
 
-/* Navbar spacing adjustments */
-.navbar__items--right > :not(:last-child) {
-  margin-right: 0.5rem;
+/* Additional navbar optimizations */
+.navbar__toggle {
+  padding: 0.25rem;
+  margin: 0;
 }
 
-/* Mobile Sidebar Backdrop */
+/* Clean Mobile Sidebar */
 .navbar-sidebar__backdrop {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
-  animation: fadeIn 0.3s ease-out;
+  background: rgba(0, 0, 0, 0.5);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Premium Mobile Sidebar Design */
 .navbar-sidebar {
-  height: 100vh;
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-  animation: slideInRight 0.3s ease-out;
-  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+  background: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Enhanced Header Section */
 .navbar-sidebar__brand {
-  height: 70px;
-  flex-shrink: 0;
-  background: linear-gradient(135deg, var(--e-global-color-secondary) 0%, var(--e-global-color-primary) 100%);
-  display: flex;
-  align-items: center;
-  padding: 0 1.5rem;
-  box-shadow: 0 2px 10px rgba(1, 98, 216, 0.15);
-  position: relative;
+  background: var(--ifm-color-primary);
+  color: white;
+  padding: 1rem 1.5rem;
 }
 
 .navbar-sidebar__brand .navbar__logo {
   filter: brightness(0) invert(1);
-  height: 35px;
 }
 
-.navbar-sidebar__close {
-  position: absolute;
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-}
-
-.navbar-sidebar__close:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-50%) scale(1.1);
-}
-
-/* Menu Items Container */
-.navbar-sidebar__items {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 1.5rem 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-/* Menu List Styling */
+/* Simple Menu Styling */
 .menu__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 1rem 0;
 }
 
 .menu__list-item {
   margin: 0;
-  animation: fadeInUp 0.4s ease-out backwards;
 }
 
-/* Stagger animation for menu items */
-.menu__list-item:nth-child(1) { animation-delay: 0.05s; }
-.menu__list-item:nth-child(2) { animation-delay: 0.1s; }
-.menu__list-item:nth-child(3) { animation-delay: 0.15s; }
-.menu__list-item:nth-child(4) { animation-delay: 0.2s; }
-.menu__list-item:nth-child(5) { animation-delay: 0.25s; }
-.menu__list-item:nth-child(6) { animation-delay: 0.3s; }
-.menu__list-item:nth-child(7) { animation-delay: 0.35s; }
-.menu__list-item:nth-child(8) { animation-delay: 0.4s; }
-.menu__list-item:nth-child(9) { animation-delay: 0.45s; }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Base Menu Link Styling */
 .menu__link {
-  display: flex;
-  align-items: center;
-  padding: 0.875rem 1.5rem;
+  padding: 1rem 1.5rem;
   color: var(--ifm-font-color-base);
   text-decoration: none;
-  font-size: 16px;
   font-weight: 500;
-  transition: all 0.2s ease;
-  position: relative;
+  transition: all 0.3s ease;
+  display: block;
 }
 
 .menu__link:hover {
-  background: rgba(1, 116, 225, 0.05);
+  background: rgba(1, 116, 225, 0.08);
   color: var(--ifm-color-primary);
-  transform: translateX(5px);
+  text-decoration: none;
 }
 
 .menu__link--active {
   color: var(--ifm-color-primary);
-  background: rgba(1, 116, 225, 0.08);
+  background: rgba(1, 116, 225, 0.1);
+  border-left: 3px solid var(--ifm-color-primary);
 }
 
-.menu__link--active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 24px;
-  background: var(--ifm-color-primary);
-  border-radius: 0 2px 2px 0;
-}
-
-/* Responsive Design */
+/* Optimized Mobile Responsive Styles */
 @media (max-width: 996px) {
-  .hero__title {
-    font-size: 2.5rem;
+  /* Adjust navbar padding for mobile */
+  .navbar {
+    padding: 0.4rem var(--ifm-navbar-padding-horizontal);
   }
 
-  .hero__subtitle {
-    font-size: 1.25rem;
-  }
-
-  article header h1 {
-    font-size: 2rem;
-  }
-
-  /* Mobile navbar adjustments */
-  .navbar__link--calendar::before,
-  .navbar__link--x::before,
-  .navbar__link--linkedin::before {
-    margin-right: 8px;
-  }
-
+  /* Show icon text on mobile */
   .navbar__link--x,
   .navbar__link--linkedin {
-    font-size: inherit;
+    font-size: 15px !important;
   }
 
+  .navbar__link--x::before,
+  .navbar__link--linkedin::before {
+    margin-right: 5px !important;
+  }
+
+  /* Mobile auth buttons - properly sized */
   .navbar__link--login,
   .navbar__link--signup {
     display: block;
     text-align: center;
     margin: 0.5rem 1rem;
+    padding: 0.6rem 1rem !important;
+    font-size: 15px;
   }
 
-  /* Mobile Navigation Groups and Premium Styling */
-  
-  /* Main Navigation Items (first 4) */
-  .menu__list-item:nth-child(-n+4) .menu__link {
-    font-size: 18px;
-    font-weight: 600;
-    padding: 1rem 1.5rem;
-    letter-spacing: -0.02em;
-  }
-  
-  /* Elegant separator after Blog (4th item) */
-  .menu__list-item:nth-child(4) {
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-  
-  .menu__list-item:nth-child(4)::after {
-    content: "";
-    position: absolute;
-    bottom: -0.75rem;
-    left: 1.5rem;
-    right: 1.5rem;
-    height: 1px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(1, 116, 225, 0.2) 20%, 
-      rgba(1, 116, 225, 0.2) 80%, 
-      transparent 100%);
-  }
-  
-  /* Connect Section Label */
-  .menu__list-item:nth-child(5)::before {
-    content: "CONNECT";
-    display: block;
-    padding: 0 1.5rem 0.5rem;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: rgba(0, 0, 0, 0.4);
-    text-transform: uppercase;
+  /* Main menu links in mobile */
+  .menu__link {
+    font-size: 16px;
+    padding: 0.875rem 1.5rem;
   }
 
-  /* Social Links (items 5-7) */
+  /* Social links with icons in mobile */
   .navbar__link--calendar,
   .navbar__link--x,
   .navbar__link--linkedin {
-    padding-left: 2.5rem;
-    font-size: 15px;
-    font-weight: 500;
-  }
-  
-  /* Separator after social links */
-  .menu__list-item:nth-child(7) {
+    padding-left: 2.5rem !important;
     position: relative;
-    margin-bottom: 1.5rem;
-  }
-  
-  .menu__list-item:nth-child(7)::after {
-    content: "";
-    position: absolute;
-    bottom: -0.75rem;
-    left: 1.5rem;
-    right: 1.5rem;
-    height: 1px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(1, 116, 225, 0.2) 20%, 
-      rgba(1, 116, 225, 0.2) 80%, 
-      transparent 100%);
   }
 
-  /* Auth Buttons Container */
-  .menu__list-item:nth-child(8),
-  .menu__list-item:nth-child(9) {
-    padding: 0 1.5rem;
-  }
-  
-  /* Premium Auth buttons styling */
-  .navbar__link--login,
-  .navbar__link--signup {
-    display: block;
-    text-align: center;
-    padding: 0.875rem 1.5rem;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    letter-spacing: 0.02em;
-    width: 100%;
-  }
-  
-  .navbar__link--login {
-    background: transparent;
-    border: 2px solid var(--ifm-color-primary);
-    color: var(--ifm-color-primary);
-    margin-bottom: 0.75rem;
-  }
-  
-  .navbar__link--login:hover {
-    background: var(--ifm-color-primary);
-    color: white;
-    transform: scale(1.02);
-    box-shadow: 0 4px 15px rgba(1, 116, 225, 0.25);
-  }
-  
-  .navbar__link--signup {
-    background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%);
-    color: white;
-    border: none;
-    box-shadow: 0 4px 15px rgba(1, 116, 225, 0.2);
-  }
-  
-  .navbar__link--signup:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(1, 116, 225, 0.3);
-  }
-  
-  /* Enhanced Icons in mobile menu */
   .navbar__link--calendar::before,
   .navbar__link--x::before,
   .navbar__link--linkedin::before {
     position: absolute;
-    left: 1.5rem;
-    width: 20px;
-    height: 20px;
-    filter: none;
-    opacity: 0.8;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 0;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 768px) {
+  .navbar__logo {
+    height: 24px !important;
+    max-width: 160px;
   }
   
-  /* Side-by-side buttons on tablets */
-  @media (min-width: 600px) and (max-width: 996px) {
-    .menu__list-item:nth-child(8),
-    .menu__list-item:nth-child(9) {
-      display: inline-block;
-      width: calc(50% - 0.75rem);
-      padding: 0;
-    }
-    
-    .menu__list-item:nth-child(8) {
-      margin-left: 1.5rem;
-      margin-right: 0.375rem;
-    }
-    
-    .menu__list-item:nth-child(9) {
-      margin-left: 0.375rem;
-      margin-right: 1.5rem;
-    }
-    
-    .navbar__link--login {
-      margin-bottom: 0;
-    }
+  .navbar {
+    --ifm-navbar-padding-horizontal: 1rem;
   }
 }
