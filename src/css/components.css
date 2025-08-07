@@ -1,0 +1,123 @@
+/**
+ * Reusable Components
+ * Buttons, Cards, Hero sections, Tags, and other UI elements
+ */
+
+/* Hero Section for Homepage */
+.hero {
+  background: var(--grandguide-main-gradient);
+  color: white;
+  padding: 6rem 0;
+  /* text-align: center; */
+}
+
+/* Alternative gradient utility class */
+.hero--alt {
+  background: var(--grandguide-alt-gradient);
+}
+
+.hero__title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* Blog Post Cards */
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Styling */
+.button {
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.button--primary {
+  background: var(--ifm-color-primary);
+  color: white;
+}
+
+.button--primary:hover {
+  background: var(--ifm-color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Enhanced Tags Design */
+.tag {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  color: #0174e1;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #cbd5e1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tag:hover {
+  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+  color: white;
+  text-decoration: none;
+  border-color: #0174e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(1, 116, 225, 0.3);
+}
+
+/* Focus States for Accessibility */
+.blog-post-preview h2 a:focus,
+.tag:focus,
+article .markdown a:focus {
+  outline: 2px solid #0174e1;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Print Styles for Blog Posts */
+@media print {
+  article header {
+    background: white !important;
+    padding: 1rem 0 !important;
+    border-bottom: 2px solid #000 !important;
+  }
+
+  article .markdown {
+    font-size: 12pt !important;
+    line-height: 1.6 !important;
+    color: #000 !important;
+  }
+
+  article .markdown h1,
+  article .markdown h2,
+  article .markdown h3 {
+    color: #000 !important;
+    page-break-after: avoid;
+  }
+
+  .blog-post-preview {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    margin-bottom: 1rem !important;
+    page-break-inside: avoid;
+  }
+}

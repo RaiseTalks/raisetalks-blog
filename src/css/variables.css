@@ -1,0 +1,96 @@
+/**
+ * Brand Variables and Global Colors
+ * RaiseTalks Brand Variables (formerly Grand Guide Book)
+ */
+
+/* Tailwind CSS v4 Configuration and Directives */
+@import "tailwindcss";
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* RaiseTalks Brand Variables */
+:root {
+  /* Brand Colors - RaiseTalks */
+  --ifm-color-primary: #003687;
+  --ifm-color-primary-dark: #002961;
+  --ifm-color-primary-darker: #002654;
+  --ifm-color-primary-darkest: #001f42;
+  --ifm-color-primary-light: #0077ff;
+  --ifm-color-primary-lighter: #339fff;
+  --ifm-color-primary-lightest: #66b7ff;
+
+  /* Global Colors from RaiseTalks Brand */
+  --e-global-color-primary: #003687;
+  --e-global-color-secondary: #0077ff;
+  --e-global-color-text: #000000;
+  --e-global-color-accent: #ea2640;
+  --e-global-color-secondary-accent: #ffab0e;
+  --grandguide-main-gradient: linear-gradient(
+    75.88deg,
+    #0060aa -3.42%,
+    #00b7ed 99.98%
+  );
+  --grandguide-alt-gradient: linear-gradient(
+    70.99deg,
+    #ff6929 -3.42%,
+    #ea265f 71.08%
+  );
+
+  /* Typography */
+  --ifm-font-family-base: "Poppins", system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: "Poppins", system-ui, -apple-system, sans-serif;
+  --ifm-font-size-base: 16px;
+  --ifm-code-font-size: 95%;
+
+  /* Spacing and Layout - Optimized Navigation */
+  --ifm-navbar-height: 56px;
+  --ifm-navbar-padding-horizontal: 1.5rem;
+
+  /* Code Highlighting */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] {
+  --ifm-color-primary: #0077ff;
+  --ifm-color-primary-dark: #0066e6;
+  --ifm-color-primary-darker: #0060d9;
+  --ifm-color-primary-darkest: #004db3;
+  --ifm-color-primary-light: #339fff;
+  --ifm-color-primary-lighter: #4da6ff;
+  --ifm-color-primary-lightest: #80bfff;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Global Styles */
+html {
+  font-family: var(--ifm-font-family-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 200;
+}
+
+/* Accent color utilities */
+.text-accent {
+  color: var(--e-global-color-accent) !important;
+}
+
+.bg-accent {
+  background-color: var(--e-global-color-accent) !important;
+}
+
+.text-secondary-accent {
+  color: var(--e-global-color-secondary-accent) !important;
+}
+
+.bg-secondary-accent {
+  background-color: var(--e-global-color-secondary-accent) !important;
+}

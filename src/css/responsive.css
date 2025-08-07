@@ -1,0 +1,124 @@
+/**
+ * Responsive Design - Mobile and Tablet Adjustments
+ * Perfect Responsive Design - No More Stairs
+ */
+
+@media (max-width: 768px) {
+  /* Blog Header Mobile */
+  .blog-wrapper .blog-sidebar {
+    padding: 3rem 1.5rem;
+    margin: 0;
+  }
+
+  .blog-sidebar h1,
+  .blog-wrapper h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .blog-sidebar p,
+  .blog-wrapper .blog-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Blog Content Mobile */
+  .blog-wrapper .main-wrapper {
+    padding: 2rem 1rem;
+  }
+
+  .blog-post-preview {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .blog-post-preview h2 {
+    font-size: 1.375rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-post-preview .markdown p {
+    font-size: 1rem;
+    -webkit-line-clamp: 2;
+  }
+
+  /* Article Mobile */
+  article header {
+    padding: 3rem 1rem 2rem 1rem;
+  }
+
+  article header h1 {
+    font-size: 1.875rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  article .markdown {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+  }
+
+  article .markdown h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem 0;
+  }
+
+  article .markdown h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
+  }
+
+  article .markdown h4 {
+    font-size: 1.125rem;
+    margin: 1.25rem 0 0.5rem 0;
+  }
+
+  article .markdown blockquote {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  article .markdown pre {
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-wrapper .blog-sidebar {
+    padding: 2rem 1rem;
+  }
+
+  .blog-sidebar h1,
+  .blog-wrapper h1 {
+    font-size: 1.75rem;
+  }
+
+  .blog-wrapper .main-wrapper {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .blog-post-preview {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .blog-post-preview h2 {
+    font-size: 1.25rem;
+  }
+
+  article header {
+    padding: 2rem 0.75rem 1.5rem 0.75rem;
+  }
+
+  article header h1 {
+    font-size: 1.625rem;
+  }
+
+  article .markdown {
+    padding: 1.5rem 0.75rem;
+  }
+}

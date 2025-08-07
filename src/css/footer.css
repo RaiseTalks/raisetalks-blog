@@ -1,0 +1,142 @@
+/**
+ * Footer Styles
+ * Modern Footer - OpenAI Inspired Design
+ */
+
+.footer {
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 4rem 0 2rem 0;
+  margin-top: 3rem;
+}
+
+/* Footer Container */
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Footer Links Container */
+.footer__links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem 2rem;
+  margin-bottom: 3rem;
+  justify-items: start;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section Titles */
+.footer__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Footer Items */
+.footer__item {
+  margin-bottom: 0.5rem;
+}
+
+.footer__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Footer Links */
+.footer__link-item {
+  color: #374151;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.footer__link-item:hover {
+  color: #0174e1;
+  text-decoration: none;
+}
+
+/* Footer Bottom Section */
+.footer__bottom {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footer__bottom .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Copyright */
+.footer__copyright {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Social Links Container */
+.footer__social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Social Icons */
+.footer__social-link {
+  color: #9ca3af;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.footer__social-link:hover {
+  color: #0174e1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 2rem 0;
+  }
+
+  .footer__links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer__bottom .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .footer__social {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__links {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
