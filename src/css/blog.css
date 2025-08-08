@@ -3,6 +3,12 @@
  * Enhanced Blog Layout - Professional UI/UX
  */
 
+ol,
+ul,
+menu {
+  list-style: disc;
+}
+
 /* Blog Wrapper - Clean Foundation */
 .blog-wrapper {
   background: #ffffff;
@@ -11,7 +17,7 @@
 
 /* Blog Container - Proper Spacing */
 .blog-wrapper .container {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
   padding: 0;
 }
@@ -91,7 +97,7 @@
 /* Blog Content Area - Proper Container */
 .blog-wrapper .main-wrapper {
   background: white;
-  padding: 3rem 2rem;
+  padding: 2rem;
   margin: 0;
 }
 
@@ -104,7 +110,7 @@
 .blog-post-preview {
   background: white;
   border-radius: 16px;
-  border: 1px solid #f1f5f9;
+  border: 1px solid #f1f5f9; /* fixed */
   padding: 2.5rem;
   margin-bottom: 2.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -134,6 +140,104 @@
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border-color: #e2e8f0;
+}
+
+/* Apply card styling to default Docusaurus blog list articles as well */
+.plugin-blog .main-wrapper article {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  padding: 2rem 2rem 1.5rem 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.plugin-blog .main-wrapper article:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08),
+    0 10px 10px -5px rgba(0, 0, 0, 0.03);
+  border-color: #0174e1;
+}
+
+/* Titles & links in list cards */
+.plugin-blog .main-wrapper article h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+.plugin-blog .main-wrapper article h2 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.plugin-blog .main-wrapper article h2 a:hover {
+  color: #0174e1;
+}
+
+/* Meta row */
+.plugin-blog .main-wrapper article time {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+/* Excerpt */
+.plugin-blog .main-wrapper article .markdown p {
+  color: #374151; /* match article page paragraphs */
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+}
+
+/* Links inside list excerpts — match single-article link style */
+.plugin-blog .main-wrapper article .markdown a {
+  color: #0174e1;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.plugin-blog .main-wrapper article .markdown a:hover {
+  color: #0166ca;
+  border-bottom-color: #0174e1;
+}
+
+/* Read more link */
+.plugin-blog .main-wrapper article footer [aria-label^="Read more"] {
+  color: #0174e1;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.875rem;
+  margin-left: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.plugin-blog .main-wrapper article footer [aria-label^="Read more"]:hover {
+  color: #0166ca;
+  transform: translateX(4px);
+}
+
+.docusaurus-mt-lg {
+  margin-left: 1rem;
+}
+
+/* Subtle container spacing alignment */
+.plugin-blog .container.margin-vert--lg {
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
 /* Blog Post Meta - Improved Layout */
@@ -249,25 +353,13 @@
 /* Individual Blog Post Page - Professional Layout */
 article {
   background: white;
-  min-height: 100vh;
 }
 
 article header {
-  padding: 4rem;
+  padding: 1rem 4rem;
   margin: 0;
   text-align: center;
   position: relative;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-article header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #0174e1 0%, #0166ca 100%);
 }
 
 /* Article Title - Perfect Typography */
@@ -279,7 +371,7 @@ article header h1 {
   max-width: 800px;
   line-height: 1.2;
   letter-spacing: -0.025em;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -347,7 +439,7 @@ article header .tags {
 
 /* Article Content Area - Professional Layout */
 article .container {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
   padding: 0;
 }
@@ -355,7 +447,7 @@ article .container {
 article .markdown {
   max-width: 800px;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 2rem 1rem;
   font-size: 1.125rem;
   line-height: 1.8;
   color: #374151;
@@ -669,19 +761,84 @@ article .markdown td {
   margin-bottom: 2rem;
 }
 
-.blog-archive-page .archive-list {
-  background: white;
-  border-radius: 16px;
-  border: 1px solid #e5e7eb;
-  padding: 2rem;
-  margin-bottom: 2rem;
+/* Blog Archive — group by year with clear hierarchy */
+.blog-archive-page h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 2.5rem 0 0.75rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  letter-spacing: -0.01em;
+}
+
+/* Year group list (common structure: an <ul> following each year heading) */
+.blog-archive-page h2 + ul {
+  list-style: none;
+  margin: 0.75rem 0 1rem 0;
+  padding-left: 1rem; /* visual indent under the year */
+  border-left: 2px solid #e5e7eb;
+}
+
+.blog-archive-page h2 + ul li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.blog-archive-page h2 + ul li a {
+  color: #1e293b;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.blog-archive-page h2 + ul li a:hover {
+  color: #0174e1;
+}
+
+.blog-archive-page h2 + ul li time {
+  color: #64748b; /* make dates more subtle */
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* Fallback for other archive DOMs (ensure grouped styling still applies) */
+.blog-archive-page .archive-list ul {
+  list-style: none;
+  margin: 0.5rem 0 1rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid #e5e7eb;
+}
+
+.blog-archive-page .archive-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.blog-archive-page .archive-list a {
+  color: #1e293b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.blog-archive-page .archive-list a:hover {
+  color: #0174e1;
+}
+
+.blog-archive-page .archive-list time {
+  color: #64748b;
+  font-size: 0.875rem;
+  white-space: nowrap;
 }
 
 /* Pagination */
 .pagination-nav {
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding: 2rem 0;
-  border-top: 1px solid #e5e7eb;
 }
 
 .pagination-nav__item {
@@ -771,12 +928,6 @@ article .markdown td {
 }
 
 /* Enhanced Pagination */
-.blog-wrapper .pagination-nav {
-  margin: 3rem 0 0 0;
-  padding: 2rem;
-  background: #f8fafc;
-  border-radius: 12px;
-}
 
 .blog-wrapper .pagination-nav__item {
   background: white;
@@ -815,4 +966,114 @@ article .markdown img,
 article .markdown blockquote,
 article .markdown pre {
   will-change: transform;
+}
+
+/* Author Social Icons spacing */
+.plugin-blog .main-wrapper .avatar [class*="authorSocials"],
+article .avatar [class*="authorSocials"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* horizontal space between icons */
+}
+
+/* Fallback for older browsers without gap support */
+.plugin-blog .main-wrapper .avatar [class*="authorSocials"] a + a,
+article .avatar [class*="authorSocials"] a + a {
+  margin-left: 0.5rem;
+}
+
+/* Blog Recent Posts Sidebar — clear grouping and hierarchy */
+.plugin-blog nav[aria-label="Blog recent posts navigation"] {
+  /* keep native layout; only refine spacing/typography */
+}
+
+/* Sidebar title ("Recent Posts") */
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  [class*="sidebarItemTitle"] {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+}
+
+/* Year headings — subtle label look to distinguish from post titles */
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  [class*="yearGroupHeading"] {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin: 1rem 0 0.5rem 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb; /* visual separation between groups */
+}
+
+/* Remove top border on the first group heading */
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  > div[role="group"]:first-of-type
+  [class*="yearGroupHeading"] {
+  border-top: none;
+  padding-top: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+/* Lists under each year — compact grid with comfortable gaps */
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  [class*="yearGroupHeading"]
+  + ul {
+  list-style: none;
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+  display: grid;
+  gap: 0.375rem; /* vertical spacing between post links */
+}
+
+/* Post items — clear, tappable target */
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  [class*="sidebarItemList"]
+  li {
+  margin: 0;
+}
+
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  [class*="sidebarItemList"]
+  a {
+  display: block;
+  padding: 0.375rem 0.5rem;
+  border-radius: 8px;
+  color: #1e293b; /* titles more prominent than year heading */
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  [class*="sidebarItemList"]
+  a:hover {
+  background: #f8fafc;
+  color: #0174e1;
+}
+
+/* Active item */
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  [class*="sidebarItemLinkActive"] {
+  color: #0174e1;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+/* Extra spacing between groups for improved scanability */
+.plugin-blog
+  nav[aria-label="Blog recent posts navigation"]
+  > div[role="group"] {
+  margin-bottom: 0.5rem;
 }
