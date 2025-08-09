@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 
-export default function Features(): JSX.Element {
+export default function Features() {
   return (
     <Layout
       title="Features"

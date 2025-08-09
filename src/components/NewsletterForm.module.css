@@ -1,0 +1,131 @@
+.newsletterSection {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+  border-radius: 20px;
+  margin-bottom: 3rem;
+}
+
+.newsletterContent {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.newsletterTitle {
+  font-size: 1.75rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.newsletterTitle strong {
+  font-weight: 700;
+  color: #0174e1;
+}
+
+.newsletterDescription {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.newsletterForm {
+  margin-top: 2rem;
+}
+
+.formGroup {
+  display: flex;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.emailInput {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.emailInput:focus {
+  outline: none;
+  border-color: #0174e1;
+  box-shadow: 0 0 0 3px rgba(1, 116, 225, 0.1);
+}
+
+.emailInput:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.subscribeButton {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.subscribeButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(1, 116, 225, 0.3);
+}
+
+.subscribeButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  margin-top: 1rem;
+  color: #28a745;
+  font-size: 0.95rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.errorMessage {
+  margin-top: 1rem;
+  color: #dc3545;
+  font-size: 0.95rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .formGroup {
+    flex-direction: column;
+  }
+  
+  .emailInput,
+  .subscribeButton {
+    width: 100%;
+  }
+  
+  .newsletterTitle {
+    font-size: 1.5rem;
+  }
+  
+  .newsletterDescription {
+    font-size: 0.95rem;
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 
-export default function AboutUs(): JSX.Element {
+export default function AboutUs() {
   return (
     <Layout
       title="About Us"

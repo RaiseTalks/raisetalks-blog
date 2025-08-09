@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 
-export default function Pricing(): JSX.Element {
+export default function Pricing() {
   return (
     <Layout
       title="Pricing"

@@ -1,7 +1,7 @@
 import React from 'react';
 import Heading from '@theme/Heading';
 
-export default function PricingCards(): JSX.Element {
+export default function PricingCards() {
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
