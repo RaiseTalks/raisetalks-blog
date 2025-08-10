@@ -44,12 +44,12 @@ interface FeatureCardProps {
   ctaLink?: string;
 }
 
-function FeatureCard({ 
-  title, 
-  subtitle, 
-  description, 
-  imageComponent, 
-  layout = 'default', 
+function FeatureCard({
+  title,
+  subtitle,
+  description,
+  imageComponent,
+  layout = 'default',
   icon = '⚡',
   category = 'Core Feature',
   benefits = [],
@@ -57,9 +57,9 @@ function FeatureCard({
   ctaLink = 'https://raisetalks.ai/signup'
 }: FeatureCardProps) {
   const animationRef = useScrollAnimation();
-  
+
   return (
-    <div 
+    <div
       ref={animationRef}
       className={`py-20 border-b border-gray-100 last:border-b-0 ${layout === 'reverse' ? 'bg-gradient-to-r from-gray-50 to-blue-50' : 'bg-white'} opacity-0 translate-y-8 transition-all duration-700`}
       id={title.toLowerCase().replace(/\s+/g, '-')}
@@ -72,12 +72,12 @@ function FeatureCard({
               <span className="mr-2">{icon}</span>
               {category}
             </div>
-            
+
             {/* Feature Content */}
             <h3 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">{title}</h3>
             <p className="text-2xl text-[#0174e1] font-semibold mb-6 leading-relaxed">{subtitle}</p>
             <p className="text-xl text-gray-600 leading-relaxed mb-8">{description}</p>
-            
+
             {/* Benefits List */}
             {benefits.length > 0 && (
               <div className="mb-8">
@@ -93,7 +93,7 @@ function FeatureCard({
                 </ul>
               </div>
             )}
-            
+
             {/* Feature CTA */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -108,7 +108,7 @@ function FeatureCard({
               </Link>
             </div>
           </div>
-          
+
           <div className={`${layout === 'reverse' ? 'lg:order-1' : ''}`}>
             <div className="relative group">
               {imageComponent || (
@@ -152,7 +152,7 @@ function MultiImageGallery() {
     { title: "Secure Sharing", desc: "Document Sharing" },
     { title: "Access Controls", desc: "Security Controls" }
   ];
-  
+
   return (
     <div className="grid grid-cols-2 gap-6">
       {images.map((img, index) => (
@@ -169,7 +169,7 @@ function MultiImageGallery() {
 // Feature Navigation Component
 function FeatureNavigation() {
   const [activeSection, setActiveSection] = useState('');
-  
+
   const features = [
     { id: 'basic-data-room', name: 'Data Room', icon: '📁' },
     { id: 'ai-advisor', name: 'AI Advisor', icon: '🤖' },
@@ -208,11 +208,10 @@ function FeatureNavigation() {
           <Link
             key={feature.id}
             to={`#${feature.id}`}
-            className={`flex items-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 ${
-              activeSection === feature.id 
-                ? 'bg-[#0174e1] text-white shadow-md' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
+            className={`flex items-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 ${activeSection === feature.id
+              ? 'bg-[#0174e1] text-white shadow-md'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
           >
             <span className="mr-2">{feature.icon}</span>
             {feature.name}
@@ -248,7 +247,7 @@ export default function Features() {
     <Layout
       title="Features"
       description="AI-powered fundraising workspace features - data rooms, AI advisor, engagement tracking, and more">
-      
+
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -264,12 +263,12 @@ export default function Features() {
           animation: fadeInUp 0.8s ease-out forwards;
         }
       `}</style>
-      
+
       {/* Enhanced Hero Section */}
       <section className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 flex items-center relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[url('/img/raisetalks-hero-1.svg')] bg-center bg-cover opacity-30"></div>
-        
+
         <div className="container mx-auto px-4 py-16 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-16 border border-gray-100">
@@ -278,7 +277,7 @@ export default function Features() {
                 <span className="mr-2">🚀</span>
                 AI-POWERED FUNDRAISING PLATFORM
               </div>
-              
+
               <Heading as="h1" className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 max-w-4xl mx-auto leading-tight">
                 Features That Transform Your Fundraising
               </Heading>
@@ -287,7 +286,7 @@ export default function Features() {
                 <br />
                 Get investor-ready faster—with AI precision and zero guesswork.
               </p>
-              
+
               {/* Enhanced CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                 <Link
@@ -301,7 +300,7 @@ export default function Features() {
                   Explore Features
                 </Link>
               </div>
-              
+
               {/* Quick Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200">
                 <div className="text-center">
@@ -324,11 +323,6 @@ export default function Features() {
 
       {/* Trust Indicators */}
       <TrustIndicators />
-
-      {/* Feature Navigation */}
-      <div className="container mx-auto px-4">
-        <FeatureNavigation />
-      </div>
 
       {/* Features */}
       <main>
