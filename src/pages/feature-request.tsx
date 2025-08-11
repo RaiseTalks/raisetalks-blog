@@ -90,18 +90,9 @@ export default function FeatureRequest() {
     setErrorMessage('');
 
     try {
-      // Debug: Log siteConfig to see what's available
-      // Debug: Log siteConfig to see what's available
-      console.log('siteConfig:', siteConfig);
-      console.log('customFields:', siteConfig.customFields);
-      
       // Get Supabase config from Docusaurus customFields with fallback
       const SUPABASE_URL = (siteConfig.customFields?.SUPABASE_URL as string) || 'https://wzmlpdetrelxzunebnox.supabase.co';
       const SUPABASE_ANON_KEY = (siteConfig.customFields?.SUPABASE_ANON_KEY as string) || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6bWxwZGV0cmVseHp1bmVibm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NjMxNDksImV4cCI6MjA2MDAzOTE0OX0.-9StrWLSgULqZr_tW8vnqVqts8tVtwJKzEDx2gaBzGc';
-      
-      console.log('SUPABASE_URL:', SUPABASE_URL);
-      console.log('SUPABASE_ANON_KEY:', SUPABASE_ANON_KEY ? 'Present' : 'Missing');
-      console.log('Using customFields:', siteConfig.customFields ? 'Yes' : 'No - using fallback');
       
       // Send to Supabase Edge Function
       const response = await fetch(`${SUPABASE_URL}/functions/v1/feature-request`, {
@@ -119,7 +110,6 @@ export default function FeatureRequest() {
       }
 
       const result = await response.json();
-      console.log('Feature request submitted:', result);
 
       setStatus('success');
 

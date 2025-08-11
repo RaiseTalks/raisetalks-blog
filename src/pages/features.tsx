@@ -61,8 +61,8 @@ function FeatureCard({
   return (
     <div
       ref={animationRef}
-      className={`py-20 border-b border-gray-100 last:border-b-0 ${layout === 'reverse' ? 'bg-gradient-to-r from-gray-50 to-blue-50' : 'bg-white'} opacity-0 translate-y-8 transition-all duration-700`}
-      id={title.toLowerCase().replace(/\s+/g, '-')}
+      className={`py-20 border-b border-gray-100 last:border-b-0 ${layout === 'reverse' ? 'bg-gradient-to-r from-gray-50 to-blue-50' : 'bg-white'} opacity-100 translate-y-0 transition-all duration-700`}
+      id={title.toLowerCase().replace(/&/g, '').replace(/\s+/g, '-')}
     >
       <div className="container mx-auto px-4">
         <div className={`grid lg:grid-cols-2 gap-16 items-center ${layout === 'reverse' ? 'lg:flex-row-reverse' : ''}`}>
@@ -103,7 +103,7 @@ function FeatureCard({
               </Link>
               <Link
                 className="border-2 border-[#0174e1] text-[#0174e1] px-6 py-3 rounded-xl font-semibold text-base hover:bg-[#0174e1] hover:text-white transition-all duration-300"
-                to="#learn-more">
+                to="https://calendly.com/iamdariiava/30min">
                 Learn More
               </Link>
             </div>
@@ -166,61 +166,9 @@ function MultiImageGallery() {
   );
 }
 
-// Feature Navigation Component
-function FeatureNavigation() {
-  const [activeSection, setActiveSection] = useState('');
 
-  const features = [
-    { id: 'basic-data-room', name: 'Data Room', icon: '📁' },
-    { id: 'ai-advisor', name: 'AI Advisor', icon: '🤖' },
-    { id: 'ai-self-assessment-&-pre-scoring', name: 'AI Scoring', icon: '📊' },
-    { id: 'real-time-engagement-tracking', name: 'Engagement', icon: '👁️' },
-    { id: 'advanced-data-room-customization', name: 'Customization', icon: '⚙️' },
-    { id: 'collaborative-fundraising', name: 'Collaboration', icon: '👥' }
-  ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
 
-    features.forEach((feature) => {
-      const element = document.getElementById(feature.id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <nav className="sticky top-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 p-4 mb-8">
-      <div className="flex flex-wrap gap-2 justify-center">
-        {features.map((feature) => (
-          <Link
-            key={feature.id}
-            to={`#${feature.id}`}
-            className={`flex items-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 ${activeSection === feature.id
-              ? 'bg-[#0174e1] text-white shadow-md'
-              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-          >
-            <span className="mr-2">{feature.icon}</span>
-            {feature.name}
-          </Link>
-        ))}
-      </div>
-    </nav>
-  );
-}
 
 // Trust Indicators Component
 function TrustIndicators() {
@@ -293,11 +241,6 @@ export default function Features() {
                   className="bg-gradient-to-r from-[#0174e1] to-[#0166ca] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 min-w-[200px]"
                   to="https://raisetalks.ai/signup">
                   Start Free Trial
-                </Link>
-                <Link
-                  className="border-2 border-[#0174e1] text-[#0174e1] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#0174e1] hover:text-white transition-all duration-300 min-w-[200px]"
-                  to="#basic-data-room">
-                  Explore Features
                 </Link>
               </div>
 
