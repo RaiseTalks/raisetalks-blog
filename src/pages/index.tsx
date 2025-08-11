@@ -5,7 +5,6 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import NavbarScroll from '@site/src/components/NavbarScroll';
-import PricingCards from '@site/src/components/PricingCards';
 import LogoCarousel from '@site/src/components/LogoCarousel';
 import FAQSection from '@site/src/components/FAQSection';
 import SolutionSection from '@site/src/components/SolutionSection';
@@ -193,9 +192,154 @@ function HomepageWhyChoose() {
   );
 }
 
-// Pricing Section Component - Using dedicated pricing page component
+// Pricing Section Component
 function HomepagePricing() {
-  return <PricingCards />;
+  const [isAnnual, setIsAnnual] = useState(false);
+  
+  return (
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <Heading as="h2" className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Simple, Transparent Pricing
+          </Heading>
+          <p className="text-xl text-gray-600">
+            Choose the plan that's right for your startup
+          </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#0174e1] to-[#0166ca] mx-auto rounded-full mt-6"></div>
+        </div>
+        
+        {/* Pricing Toggle */}
+        <div className="flex justify-center mb-12">
+          <div className="bg-gray-100 p-1 rounded-xl flex items-center">
+            <button
+              onClick={() => setIsAnnual(false)}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all cursor-pointer ${
+                !isAnnual
+                  ? 'bg-white text-[#0174e1] shadow-md'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setIsAnnual(true)}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 cursor-pointer ${
+                isAnnual
+                  ? 'bg-white text-[#0174e1] shadow-md'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Annually
+              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Save 40%</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Free Tier */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow flex flex-col">
+            <h3 className="text-2xl font-bold mb-2">Free Tier</h3>
+            <p className="text-gray-600 mb-6">Perfect for testing the waters.</p>
+            <div className="mb-6">
+              <span className="text-4xl font-bold text-gray-900">$0</span>
+              <span className="text-gray-600 ml-2">/month</span>
+            </div>
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                <span>AI Advisor answers to 5 fundraising questions</span>
+              </li>
+              <li className="flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                <span>Basic fundraising guidance</span>
+              </li>
+              <li className="flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                <span>Limited access to templates</span>
+              </li>
+              <li className="flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                <span>Starter data room tools</span>
+              </li>
+              <li className="flex items-center">
+                <span className="text-green-500 mr-3">✓</span>
+                <span>Community access</span>
+              </li>
+            </ul>
+            <Link
+              className="w-full py-3 px-6 border-2 border-[#0174e1] text-[#0174e1] rounded-lg font-semibold hover:bg-[#0174e1] hover:text-white transition-colors text-center block mt-auto"
+              to="https://raisetalks.ai/signup"
+            >
+              Start Free
+            </Link>
+          </div>
+
+          {/* Pro Plan */}
+          <div className="bg-gradient-to-b from-[#0174e1] to-[#0166ca] rounded-2xl shadow-xl p-8 text-white transform scale-105 flex flex-col">
+            <div className="bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
+              MOST POPULAR
+            </div>
+            <h3 className="text-2xl font-bold mb-2">Pro Plan</h3>
+            <p className="text-white/90 mb-6">Everything you need to raise capital</p>
+            <div className="mb-6">
+              <span className="text-4xl font-bold">
+                ${isAnnual ? '59' : '99'}
+              </span>
+              <span className="text-white/80 ml-2">/month</span>
+              {isAnnual && (
+                <p className="text-sm text-white/80 mt-1">billed at $699/year • save 40%</p>
+              )}
+            </div>
+            <div className="mb-4">
+              <p className="text-sm text-white/90">All Free Tier features, plus:</p>
+            </div>
+            <ul className="space-y-3 mb-8 flex-grow">
+              <li className="flex items-center">
+                <span className="mr-3">✓</span>
+                <span>Full AI-powered fundraising Advisor</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3">✓</span>
+                <span>Smart data room builder</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3">✓</span>
+                <span>Investor-readiness scoring</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3">✓</span>
+                <span>Engagement tracking</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3">✓</span>
+                <span>Deal room templates</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3">✓</span>
+                <span>Email support</span>
+              </li>
+            </ul>
+            <Link
+              className="w-full py-3 px-6 bg-white text-[#0174e1] rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center block mt-auto"
+              to="https://raisetalks.ai/signup"
+            >
+              Start Free
+            </Link>
+          </div>
+        </div>
+        
+        <div className="mt-16 text-center">
+          <p className="text-gray-600 text-lg mb-4">
+            All plans include 14-day free trial. No credit card required.
+          </p>
+          <p className="text-sm text-gray-500">
+            Questions? <Link to="/pricing" className="text-[#0174e1] hover:underline">View full pricing details</Link>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // CTA Section Component

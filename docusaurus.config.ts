@@ -158,19 +158,19 @@ const config: Config = {
             },
             {
               label: 'Careers',
-              to: '#',
+              to: 'https://www.linkedin.com/company/raisetalks/jobs/',
             },
             {
               label: 'Terms of Service',
-              to: '#',
+              to: '/terms-of-service',
             },
             {
               label: 'Privacy Policy',
-              to: '#',
+              to: '/privacy-policy',
             },
             {
               label: 'Refund Policy',
-              to: '#',
+              to: '/refund-policy',
             },
           ],
         },
@@ -183,23 +183,23 @@ const config: Config = {
             },
             {
               label: 'Inbox',
-              to: 'https://raisetalks.ai/inbox',
+              to: 'https://dev.raisetalks.ai/inbox',
             },
             {
               label: 'Self-Score',
-              to: 'https://raisetalks.ai/self-score',
+              to: 'https://dev.raisetalks.ai/self-score',
             },
             {
               label: 'Guides',
-              to: 'https://raisetalks.ai/guides',
+              to: 'https://dev.raisetalks.ai/guides',
             },
             {
               label: 'Startups',
-              to: 'https://raisetalks.ai/startups',
+              to: 'https://dev.raisetalks.ai/startups',
             },
             {
               label: 'Adviser',
-              to: 'https://raisetalks.ai/adviser',
+              to: 'https://dev.raisetalks.ai/adviser',
             },
           ],
         },
@@ -212,7 +212,7 @@ const config: Config = {
             },
             {
               label: 'Affiliate Program',
-              to: '#',
+              to: '/affiliate-program',
             },
             {
               label: 'Blog',
@@ -220,7 +220,7 @@ const config: Config = {
             },
             {
               label: 'Feature Requests',
-              to: '#',
+              to: '/feature-request',
             },
             {
               label: 'Media ToolKit',
@@ -263,6 +263,11 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    // Custom fields for client-side environment variables
+    customFields: {
+      SUPABASE_URL: 'https://wzmlpdetrelxzunebnox.supabase.co',
+      SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6bWxwZGV0cmVseHp1bmVibm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NjMxNDksImV4cCI6MjA2MDAzOTE0OX0.-9StrWLSgULqZr_tW8vnqVqts8tVtwJKzEDx2gaBzGc',
     },
     metadata: [
       {
