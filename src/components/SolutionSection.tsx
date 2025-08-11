@@ -24,7 +24,7 @@ export default function SolutionSection() {
               Designed for speed, transparency, and precision.
             </p>
           </div>
-          
+
           <div className={styles.featureGrid}>
             {features.map((feature, index) => (
               <div key={index} className={styles.featureItem}>
@@ -33,11 +33,11 @@ export default function SolutionSection() {
               </div>
             ))}
           </div>
-          
+
           <div className={styles.solutionHighlight}>
             💡 One workspace. Zero chaos.
           </div>
-          
+
           <div className={styles.solutionButtons}>
             <Link
               className={styles.primaryButton}
@@ -80,7 +80,7 @@ export default function SolutionSection() {
             </p>
             <Link
               className={styles.exploreButton}
-              to="https://raisetalks.ai/startups">
+              to="https://dev.raisetalks.ai/startups">
               Explore Startups
             </Link>
             <div className={styles.investorImage}>
