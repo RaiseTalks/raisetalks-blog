@@ -15,18 +15,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://raisetalks.github.io',
+  url: 'https://raisetalks.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/raisetalks-blog/',
-  
-  // Enable for better GitHub Pages compatibility
-  trailingSlash: false,
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'RaiseTalks', // Usually your GitHub org/user name.
-  projectName: 'raisetalks-blog', // Usually your repo name.
+  organizationName: 'raisetalks', // Usually your GitHub org/user name.
+  projectName: 'raisetalks', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -270,7 +267,8 @@ const config: Config = {
     // Custom fields for client-side environment variables
     customFields: {
       SUPABASE_URL: 'https://wzmlpdetrelxzunebnox.supabase.co',
-      SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6bWxwZGV0cmVseHp1bmVibm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NjMxNDksImV4cCI6MjA2MDAzOTE0OX0.-9StrWLSgULqZr_tW8vnqVqts8tVtwJKzEDx2gaBzGc',
+      SUPABASE_ANON_KEY:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6bWxwZGV0cmVseHp1bmVibm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NjMxNDksImV4cCI6MjA2MDAzOTE0OX0.-9StrWLSgULqZr_tW8vnqVqts8tVtwJKzEDx2gaBzGc',
     },
     metadata: [
       {
