@@ -18,12 +18,12 @@ const config: Config = {
   url: 'https://raisetalks.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/raisetalks-blog/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'raisetalks', // Usually your GitHub org/user name.
-  projectName: 'raisetalks', // Usually your repo name.
+  organizationName: 'RaiseTalks', // Usually your GitHub org/user name.
+  projectName: 'raisetalks-blog', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
