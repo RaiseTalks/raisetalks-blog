@@ -6,7 +6,6 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import NavbarScroll from '@site/src/components/NavbarScroll';
 import LogoCarousel from '@site/src/components/LogoCarousel';
-import FAQSection from '@site/src/components/FAQSection';
 import SolutionSection from '@site/src/components/SolutionSection';
 
 import styles from './index.module.css';
@@ -420,7 +419,6 @@ export default function Home() {
       <HomepageStats />
       <SolutionSection />
       <HomepageWhyChoose />
-      <FAQSection />
       <HomepageCTA />
       <HomepagePricing />
     </Layout>
