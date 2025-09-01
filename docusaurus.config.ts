@@ -289,7 +289,7 @@ const config: Config = {
     announcementBar: {
       id: 'visit_raisetalks',
       content:
-        '🚀 Discover AI-powered due diligence tools at <a target="_blank" rel="noopener noreferrer" to="https://raisetalks.com">RaiseTalks</a>',
+        'Discover AI-powered due diligence tools at <a target="_blank" rel="noopener noreferrer" to="https://raisetalks.com">RaiseTalks</a>',
       backgroundColor: '#0174e1',
       textColor: '#ffffff',
       isCloseable: true,

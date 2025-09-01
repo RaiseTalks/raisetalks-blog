@@ -14,7 +14,7 @@ export default function PricingCards() {
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-[#0174e1] to-[#0166ca] mx-auto rounded-full mt-6"></div>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Starter Plan */}
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
@@ -46,9 +46,9 @@ export default function PricingCards() {
               Get Started
             </button>
           </div>
-          
+
           {/* Professional Plan */}
-          <div className="bg-gradient-to-b from-[#0174e1] to-[#0166ca] rounded-2xl shadow-xl p-8 text-white transform scale-105">
+          <div className="bg-gradient-to-b from-[#0174e1] to-[#0166ca] rounded-2xl shadow-xl p-8 text-white">
             <div className="bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
               MOST POPULAR
             </div>
@@ -84,7 +84,7 @@ export default function PricingCards() {
               Get Started
             </button>
           </div>
-          
+
           {/* Enterprise Plan */}
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
             <h3 className="text-2xl font-bold mb-2">Enterprise</h3>
@@ -119,7 +119,7 @@ export default function PricingCards() {
             </button>
           </div>
         </div>
-        
+
         <div className="mt-16 text-center">
           <p className="text-gray-600 text-lg mb-4">
             All plans include 14-day free trial. No credit card required.

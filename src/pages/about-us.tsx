@@ -81,7 +81,7 @@ export default function AboutUs() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <span className="text-sm font-semibold text-[#0174e1]">🚀 Our Story</span>
+              <span className="text-sm font-semibold text-[#0174e1]">Our Story</span>
             </div>
 
             {/* Main Title with gradient text */}
@@ -165,7 +165,7 @@ export default function AboutUs() {
 
             <div className="text-center mt-12">
               <p className="text-xl font-semibold text-gray-800">
-                💡 One workspace. Zero chaos.
+                One workspace. Zero chaos.
               </p>
             </div>
           </div>
@@ -177,7 +177,6 @@ export default function AboutUs() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <span className="text-2xl">👋</span>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mt-4">Meet the Founder</h2>
             </div>
 
@@ -240,7 +239,7 @@ export default function AboutUs() {
                 className="bg-white text-[#0174e1] hover:bg-gray-50 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
                 to="#"
               >
-                📬 Contact Us
+                Contact Us
               </Link>
               <Link
                 className="border-2 border-white text-white hover:bg-white hover:text-[#0174e1] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105"
