@@ -4,11 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a RaiseTalks.ai blog built with Docusaurus v3, focused on content about AI-powered fundraising and startup growth. The blog is optimized for SEO and LLM discoverability, with automatic GitHub Pages deployment.
+This is a RaiseTalks blog built with Docusaurus v3, focused on content about AI-powered fundraising and startup growth. The blog is optimized for SEO and LLM discoverability, with automatic GitHub Pages deployment.
 
 ## Development Commands
 
 ### Core Commands
+
 - **Start development server**: `yarn start` (runs on port 3005)
 - **Build site**: `yarn build`
 - **Type checking**: `yarn typecheck`
@@ -16,18 +17,21 @@ This is a RaiseTalks.ai blog built with Docusaurus v3, focused on content about 
 - **Deploy to GitHub Pages**: `yarn deploy` (requires GitHub Pages configuration)
 
 ### Content Management
+
 - **Create new blog post**: Add `.md` or `.mdx` file to `/blog/` directory
 - **Clear cache**: `yarn clear`
 
 ## Architecture & Key Implementation Notes
 
 ### 1. Blog-Focused Structure (Documentation Hidden)
+
 - Main content in `/blog/` directory
 - Documentation sections removed from navigation
-- Homepage redesigned as blog landing with RaiseTalks.ai branding
+- Homepage redesigned as blog landing with RaiseTalks branding
 - No `/docs/` routes exposed in production
 
 ### 2. SEO & LLM Optimization
+
 - Structured data (JSON-LD) for blog posts
 - OpenGraph and Twitter Card meta tags
 - Semantic HTML with proper heading hierarchy
@@ -40,25 +44,29 @@ This is a RaiseTalks.ai blog built with Docusaurus v3, focused on content about 
   - Proper URL structure
 
 ### 3. Design System (Based on landing/index.html)
-- **Colors**: 
+
+- **Colors**:
   - Primary: #0174e1
   - Text: #000000 (primary), #ffffff (on dark backgrounds)
   - Gradients used for hero sections
 - **Typography**: Poppins and Raleway fonts
-- **Components**: 
+- **Components**:
   - Fixed header with hover animations
   - Gradient backgrounds
   - Motion effects on scroll
   - Responsive design with mobile menu
 
 ### 4. GitHub Pages Deployment
+
 - Automated via GitHub Actions workflow
 - Deploys on push to main branch
 - Build artifacts served from gh-pages branch
 - Custom domain configuration supported
 
 ### 5. Blog Post Template
+
 Located at `/blog/_template.md` with:
+
 - Front matter for SEO
 - Author attribution
 - Tags and categories
@@ -68,18 +76,21 @@ Located at `/blog/_template.md` with:
 ## Key Files & Directories
 
 ### Configuration
+
 - `docusaurus.config.ts`: Main site configuration, blog settings, theme options
 - `package.json`: Dependencies and scripts
 - `.github/workflows/deploy.yml`: GitHub Pages deployment automation
 
 ### Content
+
 - `/blog/`: All blog posts and assets
 - `/blog/authors.yml`: Author profiles
 - `/blog/tags.yml`: Tag definitions
 - `/static/img/`: Blog images and assets
 
 ### Theme & Styling
-- `/src/css/custom.css`: Custom styles matching RaiseTalks.ai design
+
+- `/src/css/custom.css`: Custom styles matching RaiseTalks design
 - `/src/components/`: Custom React components
 - `/src/pages/index.tsx`: Custom homepage
 
@@ -106,6 +117,7 @@ Located at `/blog/_template.md` with:
 6. Commit and push to trigger deployment
 
 ### SEO Best Practices
+
 - Use descriptive, keyword-rich titles (50-60 chars)
 - Write compelling meta descriptions
 - Include relevant keywords naturally
@@ -116,18 +128,21 @@ Located at `/blog/_template.md` with:
 ## Technical Considerations
 
 ### Performance
+
 - Images optimized and lazy-loaded
 - CSS and JS bundled and minified
 - Static site generation for fast loading
 - CDN-friendly asset structure
 
 ### Accessibility
+
 - Semantic HTML structure
 - ARIA labels where needed
 - Keyboard navigation support
 - Color contrast compliance
 
 ### Browser Support
+
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - Progressive enhancement approach
 - Fallbacks for older browsers

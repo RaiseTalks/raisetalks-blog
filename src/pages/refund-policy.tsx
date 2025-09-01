@@ -36,8 +36,8 @@ export default function RefundPolicy() {
   return (
     <Layout
       title="Refund Policy"
-      description="Refund Policy for RaiseTalks.ai - Clear terms for subscription refunds, cancellations, and billing disputes. Stripe-powered secure payments.">
-      
+      description="Refund Policy for RaiseTalks - Clear terms for subscription refunds, cancellations, and billing disputes. Stripe-powered secure payments.">
+
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -94,29 +94,29 @@ export default function RefundPolicy() {
             )`
           }}></div>
         </div>
-        
+
         {/* Animated gradient orb - matching homepage */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
               <span className="text-sm font-semibold text-[#0174e1]">💳 Billing</span>
             </div>
-            
+
             {/* Main Title with gradient text */}
             <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
               <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
                 Refund Policy
               </span>
             </h1>
-            
+
             {/* Last updated */}
             <p className="text-lg text-gray-600 font-medium mb-4">
               Last Updated: <span className="text-[#0174e1] font-semibold">August 5, 2025</span>
             </p>
-            
+
             {/* Subtitle */}
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
               Transparent refund terms for our subscription services
@@ -129,10 +129,10 @@ export default function RefundPolicy() {
       <section ref={contentRef} className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto legal-content text-gray-700">
-            
+
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100 mb-8">
               <p className="text-lg leading-relaxed mb-0">
-                At <strong className="text-[#0174e1]">RaiseTalks.ai</strong>, we strive to deliver exceptional value and service 
+                At <strong className="text-[#0174e1]">RaiseTalks</strong>, we strive to deliver exceptional value and service
                 to help founders and investors accelerate fundraising. All payments are processed securely through{' '}
                 <strong>Stripe</strong>. Please review our refund terms carefully before purchasing a subscription or service.
               </p>
@@ -144,7 +144,7 @@ export default function RefundPolicy() {
             </p>
 
             <h2>2. Paid Subscriptions</h2>
-            
+
             <h3>Monthly and Annual Plans</h3>
             <ul>
               <li>Paid subscriptions are billed either monthly or annually based on your selected plan.</li>
@@ -163,7 +163,7 @@ export default function RefundPolicy() {
             <p>Refunds may be granted only in the following cases:</p>
             <ul>
               <li><strong>Duplicate Charges:</strong> If you are accidentally charged multiple times for the same subscription period.</li>
-              <li><strong>Payment Errors:</strong> If Stripe or RaiseTalks.ai processes a payment in error.</li>
+              <li><strong>Payment Errors:</strong> If Stripe or RaiseTalks processes a payment in error.</li>
               <li><strong>Service Outages:</strong> In rare cases of prolonged service unavailability that materially impacts your use.</li>
             </ul>
             <p>
@@ -180,7 +180,7 @@ export default function RefundPolicy() {
                 <div className="ml-3">
                   <h3 className="text-lg font-semibold text-yellow-800 mb-2">Important Timeline</h3>
                   <p className="text-yellow-700 mb-0">
-                    All refund requests must be submitted within <strong>7 calendar days</strong> of the charge date. 
+                    All refund requests must be submitted within <strong>7 calendar days</strong> of the charge date.
                     Requests submitted after this period will not be eligible for refunds.
                   </p>
                 </div>
@@ -223,15 +223,15 @@ export default function RefundPolicy() {
             <p>
               If you believe a charge is incorrect or unauthorized, please contact us first at{' '}
               <a href="mailto:billing@raisetalks.ai" className="text-[#0174e1] font-semibold hover:underline">billing@raisetalks.ai</a>{' '}
-              so we can assist you. Unauthorized charge disputes filed directly with your payment provider without contacting 
+              so we can assist you. Unauthorized charge disputes filed directly with your payment provider without contacting
               us may delay resolution.
             </p>
 
             <h2>7. Contact Us</h2>
             <p>For any billing questions or refund requests, please contact:</p>
-            
+
             <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-              <p className="font-semibold text-gray-900 mb-2">RaiseTalks.ai Billing Support</p>
+              <p className="font-semibold text-gray-900 mb-2">RaiseTalks Billing Support</p>
               <p>Email: <a href="mailto:billing@raisetalks.ai" className="text-[#0174e1] font-semibold hover:underline">billing@raisetalks.ai</a></p>
               <p className="text-sm text-gray-600 mt-4">
                 💡 <strong>Tip:</strong> Before requesting a refund, try our{' '}

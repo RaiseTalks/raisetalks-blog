@@ -230,7 +230,7 @@ export default function Features() {
                 Features That Transform Your Fundraising
               </Heading>
               <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-                <strong>RaiseTalks.ai</strong> replaces hours of prep, endless files, and expensive advisors with one smart, founder-first platform.
+                <strong>RaiseTalks</strong> replaces hours of prep, endless files, and expensive advisors with one smart, founder-first platform.
                 <br />
                 Get investor-ready faster—with AI precision and zero guesswork.
               </p>

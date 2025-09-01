@@ -1,8 +1,8 @@
-# RaiseTalks.ai Design Implementation Plan for Docusaurus
+# RaiseTalks Design Implementation Plan for Docusaurus
 
 ## SOURCE OF CODE
 
-`landing/RaiseTalks.ai – Streamlining due dilligence.html` and depenencies `landing/RaiseTalks.ai – Streamlining due dilligence_files` from the RaiseTalks.ai website has been used as the primary source for the design implementation. The design will be adapted to fit the Docusaurus framework, focusing on a blog-centric layout.
+`landing/RaiseTalks – Streamlining due dilligence.html` and depenencies `landing/RaiseTalks – Streamlining due dilligence_files` from the RaiseTalks website has been used as the primary source for the design implementation. The design will be adapted to fit the Docusaurus framework, focusing on a blog-centric layout.
 
 ## Design System Analysis
 
@@ -188,8 +188,8 @@ src/
   --raise-white: #ffffff;
   --raise-gradient-1: linear-gradient(135deg, #0174e1 0%, #9b51e0 100%);
   --raise-gradient-2: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
-  --font-poppins: "Poppins", sans-serif;
-  --font-raleway: "Raleway", sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-raleway: 'Raleway', sans-serif;
 }
 ```
 

@@ -66,10 +66,10 @@ export default function FAQSection() {
         <div className={styles.faqHeader}>
           <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
           <p className={styles.faqSubtitle}>
-            Everything you need to know about RaiseTalks.ai
+            Everything you need to know about RaiseTalks
           </p>
         </div>
-        
+
         <div className={styles.faqContainer}>
           {faqData.map((item, index) => (
             <div key={index} className={styles.faqItem}>
@@ -82,7 +82,7 @@ export default function FAQSection() {
                   {openIndex === index ? '−' : '+'}
                 </span>
               </button>
-              <div 
+              <div
                 className={`${styles.faqAnswer} ${openIndex === index ? styles.open : ''}`}
               >
                 <div className={styles.faqAnswerContent}>
