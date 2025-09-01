@@ -102,7 +102,7 @@ export default function RefundPolicy() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <span className="text-sm font-semibold text-[#0174e1]">💳 Billing</span>
+              <span className="text-sm font-semibold text-[#0174e1]">Billing</span>
             </div>
 
             {/* Main Title with gradient text */}
@@ -174,9 +174,6 @@ export default function RefundPolicy() {
 
             <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 my-8">
               <div className="flex">
-                <div className="flex-shrink-0">
-                  <span className="text-2xl">⏰</span>
-                </div>
                 <div className="ml-3">
                   <h3 className="text-lg font-semibold text-yellow-800 mb-2">Important Timeline</h3>
                   <p className="text-yellow-700 mb-0">
@@ -204,9 +201,6 @@ export default function RefundPolicy() {
 
             <div className="bg-red-50 border border-red-200 rounded-xl p-6 my-8">
               <div className="flex">
-                <div className="flex-shrink-0">
-                  <span className="text-2xl">❌</span>
-                </div>
                 <div className="ml-3">
                   <h3 className="text-lg font-semibold text-red-800 mb-2">No Refunds For</h3>
                   <ul className="text-red-700 mb-0 space-y-1">
@@ -234,7 +228,7 @@ export default function RefundPolicy() {
               <p className="font-semibold text-gray-900 mb-2">RaiseTalks Billing Support</p>
               <p>Email: <a href="mailto:billing@raisetalks.ai" className="text-[#0174e1] font-semibold hover:underline">billing@raisetalks.ai</a></p>
               <p className="text-sm text-gray-600 mt-4">
-                💡 <strong>Tip:</strong> Before requesting a refund, try our{' '}
+                <strong>Tip:</strong> Before requesting a refund, try our{' '}
                 <Link to="/pricing" className="text-[#0174e1] font-semibold hover:underline">Free Tier</Link>{' '}
                 to explore our features and see if they meet your needs.
               </p>

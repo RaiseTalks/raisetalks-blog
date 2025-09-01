@@ -78,7 +78,7 @@ export default function Pricing() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 mb-6 border border-blue-100 rounded-full bg-blue-50">
-              <span className="text-sm font-semibold text-[#0174e1]">💸 Pricing</span>
+              <span className="text-sm font-semibold text-[#0174e1]">Pricing</span>
             </div>
 
             {/* Main Title with gradient text */}
@@ -102,7 +102,7 @@ export default function Pricing() {
         <div className="container px-4 mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="mb-16 text-center">
-              <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">🚀 For Startups</h2>
+              <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">For Startups</h2>
               <p className="text-2xl font-medium text-gray-600">From pitch to data room—fundraise smarter with AI.</p>
               <div className="w-24 h-1 bg-gradient-to-r from-[#0174e1] to-[#0166ca] mx-auto rounded-full mt-6"></div>
             </div>
@@ -172,7 +172,7 @@ export default function Pricing() {
               </div>
 
               {/* Pro Plan */}
-              <div className="bg-gradient-to-b from-[#0174e1] to-[#0166ca] rounded-2xl shadow-xl p-8 text-white transform scale-105 flex flex-col">
+              <div className="bg-gradient-to-b from-[#0174e1] to-[#0166ca] rounded-2xl shadow-xl p-8 text-white flex flex-col">
                 <div className="inline-block px-3 py-1 mb-4 text-sm font-semibold text-white rounded-full bg-white/20">
                   MOST POPULAR
                 </div>
@@ -233,7 +233,7 @@ export default function Pricing() {
         <div className="container px-4 mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="mb-16 text-center">
-              <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">💼 For Investors</h2>
+              <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">For Investors</h2>
               <p className="text-2xl font-medium text-gray-600">Smarter pipeline access, data rooms on demand.</p>
               <div className="w-24 h-1 bg-gradient-to-r from-[#0174e1] to-[#0166ca] mx-auto rounded-full mt-6"></div>
             </div>
@@ -311,7 +311,7 @@ export default function Pricing() {
                   className="bg-gradient-to-r from-[#0174e1] to-[#0182f8] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
                   to="https://dev.raisetalks.ai/sign-up"
                 >
-                  🚀 Start Free Today
+                  Start Free Today
                 </Link>
                 <Link
                   className="border-2 border-[#0174e1] text-[#0174e1] hover:bg-[#0174e1] hover:text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105"

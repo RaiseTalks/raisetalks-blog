@@ -93,7 +93,7 @@ export default function FeatureRequest() {
       // Get Supabase config from Docusaurus customFields with fallback
       const SUPABASE_URL = (siteConfig.customFields?.SUPABASE_URL as string) || 'https://wzmlpdetrelxzunebnox.supabase.co';
       const SUPABASE_ANON_KEY = (siteConfig.customFields?.SUPABASE_ANON_KEY as string) || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6bWxwZGV0cmVseHp1bmVibm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NjMxNDksImV4cCI6MjA2MDAzOTE0OX0.-9StrWLSgULqZr_tW8vnqVqts8tVtwJKzEDx2gaBzGc';
-      
+
       // Send to Supabase Edge Function
       const response = await fetch(`${SUPABASE_URL}/functions/v1/feature-request`, {
         method: 'POST',
@@ -216,7 +216,7 @@ export default function FeatureRequest() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <span className="text-sm font-semibold text-[#0174e1]">💡 Feature Request</span>
+              <span className="text-sm font-semibold text-[#0174e1]">Feature Request</span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
