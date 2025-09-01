@@ -9,6 +9,7 @@ keywords: [keyword1, keyword2, keyword3] # Add relevant keywords for SEO
 ---
 
 <!-- The first paragraph will be used as the blog post preview/excerpt -->
+
 This is the opening paragraph of your blog post. Make it engaging and informative to draw readers in. This text will appear in blog post previews and search results.
 
 <!-- truncate -->
@@ -24,6 +25,7 @@ Start your blog post with a compelling introduction that clearly states what the
 Add your main content here. Use clear headings and subheadings to structure your content for better readability and SEO.
 
 **Key points to remember:**
+
 - Use bullet points for easy scanning
 - Bold important concepts
 - Keep paragraphs short and focused
@@ -37,6 +39,7 @@ Include relevant examples, case studies, or data to support your points.
 ### Adding Images
 
 When adding images, make sure to:
+
 1. Save them in `/static/img/blog/` directory
 2. Use descriptive file names (e.g., `fundraising-process-diagram.png`)
 3. Add alt text for accessibility and SEO
@@ -63,6 +66,7 @@ function calculateValuation(revenue, multiplier) {
 ## Conclusion
 
 Summarize the key takeaways from your post. End with a call-to-action, such as:
+
 - Encouraging readers to try a specific strategy
 - Inviting them to share their experiences in the comments
 - Directing them to related resources
@@ -71,7 +75,7 @@ Summarize the key takeaways from your post. End with a call-to-action, such as:
 
 - [Link to related blog post](/blog/related-post)
 - [External resource](https://example.com)
-- [RaiseTalks.ai Platform](https://raisetalks.ai)
+- [RaiseTalks Platform](https://raisetalks.ai)
 
 ---
 

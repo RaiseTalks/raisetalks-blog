@@ -35,8 +35,8 @@ export default function PrivacyPolicy() {
   return (
     <Layout
       title="Privacy Policy"
-      description="Privacy Policy for RaiseTalks.ai - How we collect, use, and protect your personal data. GDPR compliant with full transparency.">
-      
+      description="Privacy Policy for RaiseTalks - How we collect, use, and protect your personal data. GDPR compliant with full transparency.">
+
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -115,29 +115,29 @@ export default function PrivacyPolicy() {
             )`
           }}></div>
         </div>
-        
+
         {/* Animated gradient orb - matching homepage */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
               <span className="text-sm font-semibold text-[#0174e1]">🔒 Privacy</span>
             </div>
-            
+
             {/* Main Title with gradient text */}
             <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
               <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
                 Privacy Policy
               </span>
             </h1>
-            
+
             {/* Last updated */}
             <p className="text-lg text-gray-600 font-medium mb-4">
               Last Updated: <span className="text-[#0174e1] font-semibold">August 5, 2025</span>
             </p>
-            
+
             {/* Subtitle */}
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
               Your privacy is important to us. Learn how we protect your data.
@@ -150,12 +150,12 @@ export default function PrivacyPolicy() {
       <section ref={contentRef} className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto legal-content text-gray-700">
-            
+
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100 mb-8">
               <p className="text-lg leading-relaxed mb-0">
-                This Privacy Policy explains how <strong className="text-[#0174e1]">RAISETALKS AI, Inc.</strong>, a Delaware Corporation, 
+                This Privacy Policy explains how <strong className="text-[#0174e1]">RAISETALKS AI, Inc.</strong>, a Delaware Corporation,
                 collects, uses, stores, and protects your personal data when you interact with our platform and services at{' '}
-                <strong className="text-[#0174e1]">RaiseTalks.ai</strong> ("RaiseTalks", "we", "us", or "our"). We are committed to 
+                <strong className="text-[#0174e1]">RaiseTalks</strong> ("RaiseTalks", "we", "us", or "our"). We are committed to
                 safeguarding your privacy and complying with applicable data protection laws, including the{' '}
                 <strong>General Data Protection Regulation (GDPR)</strong> and relevant <strong>U.S. privacy regulations</strong>.
               </p>
@@ -170,7 +170,7 @@ export default function PrivacyPolicy() {
               <li>Your rights and how to exercise them</li>
               <li>Our data retention and international transfer policies</li>
             </ul>
-            <p>This policy does not apply to third-party platforms or services linked through RaiseTalks.ai.</p>
+            <p>This policy does not apply to third-party platforms or services linked through RaiseTalks.</p>
 
             <h2>2. Data We Collect</h2>
             <p>We collect the following categories of personal data:</p>
@@ -272,13 +272,13 @@ export default function PrivacyPolicy() {
 
             <h2>7. Data Retention</h2>
             <p>
-              We retain your data only as long as necessary for the purposes described in this policy, or as required by law. 
+              We retain your data only as long as necessary for the purposes described in this policy, or as required by law.
               When no longer needed, data is securely deleted or anonymized.
             </p>
 
             <h2>8. International Data Transfers</h2>
             <p>
-              If your data is transferred outside the United States or the European Economic Area (EEA), we ensure appropriate 
+              If your data is transferred outside the United States or the European Economic Area (EEA), we ensure appropriate
               safeguards, such as:
             </p>
             <ul>
@@ -288,19 +288,19 @@ export default function PrivacyPolicy() {
 
             <h2>9. Cookies and Analytics</h2>
             <p>
-              We use cookies and tracking technologies to enhance your experience and analyze usage. You can control cookie 
+              We use cookies and tracking technologies to enhance your experience and analyze usage. You can control cookie
               preferences through your browser settings or by adjusting cookie consent settings when visiting our site.
             </p>
 
             <h2>10. Updates to This Policy</h2>
             <p>
-              We may update this Privacy Policy as our services evolve or as required by law. The updated version will always 
+              We may update this Privacy Policy as our services evolve or as required by law. The updated version will always
               be posted on our website with the revised date.
             </p>
 
             <h2>11. Contact Us</h2>
             <p>If you have any questions or requests regarding this Privacy Policy or your personal data:</p>
-            
+
             <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
               <p className="font-semibold text-gray-900 mb-2">RAISETALKS AI, Inc.</p>
               <p>1111B S Governors Ave STE 34329</p>

@@ -41,8 +41,8 @@ export default function AboutUs() {
   return (
     <Layout
       title="About Us"
-      description="Learn about RaiseTalks.ai - AI-powered fundraising workspace for early-stage startups to organize data rooms and close rounds faster.">
-      
+      description="Learn about RaiseTalks - AI-powered fundraising workspace for early-stage startups to organize data rooms and close rounds faster.">
+
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -73,27 +73,27 @@ export default function AboutUs() {
             )`
           }}></div>
         </div>
-        
+
         {/* Animated gradient orb - matching homepage */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
               <span className="text-sm font-semibold text-[#0174e1]">🚀 Our Story</span>
             </div>
-            
+
             {/* Main Title with gradient text */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
               <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-                About RaiseTalks.ai
+                About RaiseTalks
               </span>
             </h1>
-            
+
             {/* Subtitle with enhanced typography */}
             <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-4xl mx-auto mb-8">
-              An <span className="text-[#0174e1] font-semibold">AI-powered SaaS workspace</span> designed to help 
+              An <span className="text-[#0174e1] font-semibold">AI-powered SaaS workspace</span> designed to help
               early-stage startups streamline their fundraising journey and close rounds faster.
             </p>
           </div>
@@ -108,11 +108,11 @@ export default function AboutUs() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Mission</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-[#0174e1] to-[#0182f8] mx-auto mb-8"></div>
             </div>
-            
+
             <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100">
               <p className="text-2xl md:text-3xl text-gray-800 leading-relaxed text-center font-medium">
-                We believe <span className="text-[#0174e1] font-bold">entrepreneurs are the greatest catalysts for positive change.</span> 
-                That's why we're building a world where every founder—regardless of background or geography—has the tools to 
+                We believe <span className="text-[#0174e1] font-bold">entrepreneurs are the greatest catalysts for positive change.</span>
+                That's why we're building a world where every founder—regardless of background or geography—has the tools to
                 <span className="text-[#0174e1] font-bold"> raise capital without friction, overwhelm, or delay.</span>
               </p>
             </div>
@@ -125,12 +125,12 @@ export default function AboutUs() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Why RaiseTalks.ai</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Why RaiseTalks</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 We use AI to help founders raise money faster by transforming raw startup data into investor-ready materials.
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
@@ -141,7 +141,7 @@ export default function AboutUs() {
                   Turn documents and inputs into polished, compliant data rooms automatically with AI assistance.
                 </p>
               </div>
-              
+
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-2xl text-white">👁️</span>
@@ -151,7 +151,7 @@ export default function AboutUs() {
                   Get real-time visibility into investor interest and traction throughout your fundraising process.
                 </p>
               </div>
-              
+
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-2xl text-white">🤖</span>
@@ -162,7 +162,7 @@ export default function AboutUs() {
                 </p>
               </div>
             </div>
-            
+
             <div className="text-center mt-12">
               <p className="text-xl font-semibold text-gray-800">
                 💡 One workspace. Zero chaos.
@@ -180,7 +180,7 @@ export default function AboutUs() {
               <span className="text-2xl">👋</span>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mt-4">Meet the Founder</h2>
             </div>
-            
+
             <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100">
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="md:w-1/3 text-center">
@@ -190,17 +190,17 @@ export default function AboutUs() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Dariia Vasylieva</h3>
                   <p className="text-gray-600 font-medium">Founder & CEO</p>
                 </div>
-                
+
                 <div className="md:w-2/3">
                   <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                    I'm a serial entrepreneur and investor with <span className="font-bold text-[#0174e1]">17+ years in capital markets</span>, 
-                    venture capital, and private equity. This platform is the result of years spent working with over 
+                    I'm a serial entrepreneur and investor with <span className="font-bold text-[#0174e1]">17+ years in capital markets</span>,
+                    venture capital, and private equity. This platform is the result of years spent working with over
                     <span className="font-bold text-[#0174e1]"> 7,000 startups</span>, seeing firsthand the barriers founders face while fundraising.
                   </p>
-                  
+
                   <blockquote className="border-l-4 border-[#0174e1] pl-6 py-4 bg-blue-50 rounded-r-lg">
                     <p className="text-xl italic text-gray-800 mb-2">
-                      "We use AI to help founders raise money fast—by automatically turning their data into investor-ready 
+                      "We use AI to help founders raise money fast—by automatically turning their data into investor-ready
                       documents and surfacing the right investors at the right moment."
                     </p>
                     <cite className="text-[#0174e1] font-semibold">— Dariia Vasylieva</cite>
@@ -230,11 +230,11 @@ export default function AboutUs() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Build With Us</h2>
             <p className="text-xl md:text-2xl leading-relaxed mb-8 opacity-90">
-              Whether you're raising your first round or scaling globally, 
-              <span className="font-bold"> RaiseTalks.ai</span> is your partner in making fundraising 
+              Whether you're raising your first round or scaling globally,
+              <span className="font-bold"> RaiseTalks</span> is your partner in making fundraising
               faster, smarter, and less frustrating.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 className="bg-white text-[#0174e1] hover:bg-gray-50 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"

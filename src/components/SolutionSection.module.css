@@ -30,7 +30,7 @@
 
 .featureGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin: 3rem 0;
 }
@@ -50,14 +50,7 @@
 }
 
 .featureIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: #0174e1;
-  color: white;
-  border-radius: 50%;
+  width: 56px;
   margin-right: 1rem;
   flex-shrink: 0;
 }
@@ -66,16 +59,6 @@
   color: #555;
   font-size: 1rem;
   text-align: left;
-}
-
-.solutionHighlight {
-  font-size: 1.25rem;
-  color: #0174e1;
-  font-weight: 600;
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
-  border-radius: 12px;
 }
 
 .solutionButtons {
@@ -125,7 +108,7 @@
 /* Data Room Block */
 .dataRoomBlock {
   margin: 4rem 0;
-  padding: 3rem;
+  padding: 3rem 3rem 0 3rem;
   background: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 100%);
   border-radius: 20px;
 }
@@ -134,14 +117,10 @@
   text-align: center;
 }
 
-.dataRoomImage {
-  margin-bottom: 2rem;
-}
-
 .imagePlaceholder {
   max-width: 800px;
   margin: 0 auto;
-  padding: 8rem 2rem;
+  padding: 1rem;
   background: white;
   border: 2px solid #e0e0e0;
   border-radius: 12px;
@@ -159,37 +138,24 @@
   font-size: 1rem;
 }
 
-.featuresButton {
-  display: inline-block;
-  padding: 1rem 2.5rem;
-  background: #0174e1;
-  color: white;
+.dataRoomScreenshot {
+  width: 100%;
+  height: auto;
   border-radius: 8px;
-  font-weight: 600;
-  font-size: 1.125rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.featuresButton:hover {
-  background: #0166ca;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(1, 116, 225, 0.3);
-  color: white;
-  text-decoration: none;
+  display: block;
 }
 
 /* Investor Block */
 .investorBlock {
-  margin: 4rem 0;
-  padding: 3rem;
+  margin: 4rem 0 0 0;
+  padding: 3rem 0 0 0;
   background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
   border-radius: 20px;
   color: white;
 }
 
 .investorContent {
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 0 auto;
   text-align: center;
 }
@@ -227,6 +193,14 @@
   text-decoration: none;
 }
 
+.startupsLayoutImage {
+  width: 100%;
+  height: auto;
+  margin: 2rem 0 0 0;
+  border-radius: 0 0 20px 20px;
+  display: block;
+}
+
 .investorImage {
   margin-top: 2rem;
 }
@@ -246,17 +220,31 @@
   .solutionTitle {
     font-size: 2rem;
   }
-  
+
   .featureGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .dataRoomBlock,
   .investorBlock {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 0 1.5rem;
   }
-  
+
   .investorTitle {
     font-size: 1.5rem;
+  }
+
+  .imagePlaceholder {
+    padding: 0.5rem;
+  }
+
+  .dataRoomScreenshot {
+    border-radius: 6px;
+  }
+
+  .startupsLayoutImage {
+    width: 100%;
+    margin: 2rem 0 0 0;
+    border-radius: 0 0 20px 20px;
   }
 }

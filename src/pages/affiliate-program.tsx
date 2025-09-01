@@ -41,8 +41,8 @@ export default function AffiliateProgram() {
   return (
     <Layout
       title="Affiliate Program - Turn Your Network into Capital"
-      description="Join RaiseTalks.ai Affiliate Program. Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators.">
-      
+      description="Join RaiseTalks Affiliate Program. Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators.">
+
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -80,27 +80,27 @@ export default function AffiliateProgram() {
             )`
           }}></div>
         </div>
-        
+
         {/* Animated gradient orb - matching homepage */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
               <span className="text-sm font-semibold text-[#0174e1]">🤝 Affiliate Program</span>
             </div>
-            
+
             {/* Main Title with gradient text */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
               <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
                 Turn your network into capital
               </span>
             </h1>
-            
+
             {/* Subtitle */}
             <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-3xl mx-auto mb-8">
-              Support founders, earn rewards. Whether you're a startup enthusiast, VC scout, accelerator lead, or 
+              Support founders, earn rewards. Whether you're a startup enthusiast, VC scout, accelerator lead, or
               founder community builder—our affiliate program lets you grow with us.
             </p>
           </div>
@@ -149,7 +149,7 @@ export default function AffiliateProgram() {
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-[#0174e1] to-[#0166ca] mx-auto rounded-full mt-6"></div>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Basic: Referral Partner */}
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
@@ -196,7 +196,7 @@ export default function AffiliateProgram() {
                 Join as Referral Partner
               </Link>
             </div>
-            
+
             {/* Pro: Venture Ambassador */}
             <div className="bg-gradient-to-b from-[#0174e1] to-[#0166ca] rounded-2xl shadow-xl p-8 text-white transform scale-105">
               <div className="bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
@@ -250,7 +250,7 @@ export default function AffiliateProgram() {
               </Link>
             </div>
           </div>
-          
+
           <div className="mt-16 text-center">
             <p className="text-gray-600 text-lg mb-4">
               Both tiers include full tracking, monthly payouts, and partner support.
@@ -270,7 +270,7 @@ export default function AffiliateProgram() {
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">Basic: Referral Partner</h2>
                 <p className="text-xl text-gray-600 mb-6">
-                  Perfect for founders, startup mentors, or content creators who want to share RaiseTalks.ai 
+                  Perfect for founders, startup mentors, or content creators who want to share RaiseTalks
                   with their audience and earn rewards along the way.
                 </p>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">You'll get:</h3>
@@ -338,8 +338,8 @@ export default function AffiliateProgram() {
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">Pro: Venture Ambassador</h2>
                 <p className="text-xl text-gray-600 mb-6">
-                  Built for ecosystem leaders actively scouting or supporting startups. Venture Ambassadors earn 
-                  recurring income and unlock exclusive access to the RaiseTalks.ai partner network.
+                  Built for ecosystem leaders actively scouting or supporting startups. Venture Ambassadors earn
+                  recurring income and unlock exclusive access to the RaiseTalks partner network.
                 </p>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">You'll get:</h3>
                 <ul className="space-y-3 mb-8">
@@ -385,7 +385,7 @@ export default function AffiliateProgram() {
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">Pro Toolkit Overview</h2>
             <p className="text-xl text-center text-gray-600 mb-12">Everything you need to succeed as a Venture Ambassador</p>
-            
+
             <div className="grid md:grid-cols-3 gap-6">
               {/* Ambassador Welcome Guide */}
               <div className="bg-white rounded-xl p-6 border border-blue-100 hover:shadow-xl hover:border-[#0174e1] transition-all duration-300">
