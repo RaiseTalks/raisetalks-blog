@@ -154,7 +154,7 @@ function MultiImageGallery() {
           <img
             src={image.src}
             alt={image.title}
-            className="h-64 max-w-full"
+            className="h-60 max-w-full p-2"
           />
         </div>
       ))}
@@ -285,7 +285,7 @@ export default function Features() {
               />
               <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
                 <img
-                  src="/img/icons/ai-self-assesment-icon.png"
+                  src="/img/icons/ai-self-assesment-icon.svg"
                   alt="Assessment Icon"
                   className="w-10 h-7 drop-shadow-sm"
                 />
@@ -307,7 +307,22 @@ export default function Features() {
           title="Real-Time Engagement Tracking"
           subtitle="See interest spark—while it's happening."
           description="Live alerts reveal who opened what, how long they lingered, and which slides win—or lose—them."
-          imageComponent={<EnhancedImagePlaceholder title="Analytics Dashboard">Real-time engagement metrics</EnhancedImagePlaceholder>}
+          imageComponent={
+            <div className="relative group">
+              <img
+                src="/img/icons/real-time-engagement-tracking.png"
+                alt="Analytics Dashboard"
+                className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
+              />
+              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
+                <img
+                  src="/img/icons/real-time-engagement-tracking-icon.svg"
+                  alt="Analytics Icon"
+                  className="w-8 h-8 drop-shadow-sm"
+                />
+              </div>
+            </div>
+          }
           layout="reverse"
           category="Analytics"
           benefits={[
@@ -324,7 +339,22 @@ export default function Features() {
           title="Advanced Data Room Customization"
           subtitle="Control every click. Impress every investor."
           description="Fine-tune permissions, watermark downloads, and track heat-maps of document views—no plug-ins required."
-          imageComponent={<EnhancedImagePlaceholder title="Customization Panel">Advanced permission controls</EnhancedImagePlaceholder>}
+          imageComponent={
+            <div className="relative group">
+              <img
+                src="/img/icons/advanced-data-room-customization.png"
+                alt="Customization Panel"
+                className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
+              />
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
+                <img
+                  src="/img/icons/advanced-data-room-customization.svg"
+                  alt="Customization Icon"
+                  className="w-8 h-8 drop-shadow-sm"
+                />
+              </div>
+            </div>
+          }
           category="Professional"
           benefits={[
             "Granular permission controls per investor",
@@ -340,7 +370,22 @@ export default function Features() {
           title="Collaborative Fundraising"
           subtitle="Teamwork that actually saves time."
           description="Co-edit decks, leave inline comments, and assign tasks in real-time so your raise moves as one."
-          imageComponent={<EnhancedImagePlaceholder title="Collaboration Hub">Team workflow management</EnhancedImagePlaceholder>}
+          imageComponent={
+            <div className="relative group">
+              <img
+                src="/img/icons/collaborative-fundraising.png"
+                alt="Collaboration Hub"
+                className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
+              />
+              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
+                <img
+                  src="/img/icons/collaborative-fundraising-icon.svg"
+                  alt="Collaboration Icon"
+                  className="w-8 h-8 drop-shadow-sm"
+                />
+              </div>
+            </div>
+          }
           layout="reverse"
           category="Team Tools"
           benefits={[
