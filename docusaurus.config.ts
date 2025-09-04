@@ -82,7 +82,7 @@ const config: Config = {
       title: 'RaiseTalks',
       logo: {
         alt: 'RaiseTalks Logo',
-        src: 'img/RaiseTalks-logo-long.svg',
+        src: 'img/logo-color.svg',
         height: 40,
       },
       items: [
