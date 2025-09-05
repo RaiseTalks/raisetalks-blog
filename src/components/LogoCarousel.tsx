@@ -2,13 +2,13 @@ import React from 'react';
 import styles from './LogoCarousel.module.css';
 
 const partners = [
-  { name: 'Microsoft for Startups', logo: '/img/partners/microsoft.svg' },
-  { name: 'Web Summit', logo: '/img/partners/websummit.svg' },
-  { name: 'Founders Institute', logo: '/img/partners/founders-institute.svg' },
-  { name: 'Beyond Enterprizes', logo: '/img/partners/beyond.svg' },
-  { name: 'NLSQL', logo: '/img/partners/nlsql.svg' },
-  { name: 'GETVISION', logo: '/img/partners/getvision.svg' },
-  { name: 'Grechka Media', logo: '/img/partners/grechka.svg' },
+  { name: 'Microsoft for Startups', logo: '/img/logos/logo_microsoft_for_startups.png' },
+  { name: 'Web Summit', logo: '/img/logos/Web_Summit_logo.svg' },
+  { name: 'Founders Institute', logo: '/img/logos/founders-institute.png' },
+  { name: 'Beyond Enterprizes', logo: '/img/logos/Beyond-Enterprizes-logo.png' },
+  { name: 'NLSQL', logo: '/img/logos/nlsql.png' },
+  { name: 'GetVision', logo: '/img/logos/getvision-new-logo.svg' },
+  { name: 'Grechka Media', logo: '/img/logos/grechka-media.svg' },
 ];
 
 export default function LogoCarousel() {
@@ -23,9 +23,12 @@ export default function LogoCarousel() {
             {/* Double the partners for infinite scroll effect */}
             {[...partners, ...partners].map((partner, index) => (
               <div key={index} className={styles.logoItem}>
-                <div className={styles.logoPlaceholder}>
-                  {partner.name}
-                </div>
+                <img 
+                  src={partner.logo} 
+                  alt={partner.name}
+                  className={styles.logoImage}
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>

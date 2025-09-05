@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'RaiseTalks',
   tagline: 'Streamlining Due Diligence with Expert Insights',
-  favicon: 'img/favicon.ico',
+  favicon: 'favicon/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -312,6 +312,40 @@ const config: Config = {
         rel: 'preconnect',
         to: 'https://fonts.gstatic.com',
         crossorigin: 'anonymous',
+      },
+    },
+    // Favicon links for various devices and browsers
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/favicon/apple-touch-icon.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon/favicon-32x32.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon/favicon-16x16.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'manifest',
+        href: '/favicon/site.webmanifest',
       },
     },
   ],
