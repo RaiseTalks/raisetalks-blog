@@ -1,19 +1,44 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+fundraising:
+  label: Fundraising
+  permalink: /fundraising
+  description: Startup fundraising strategies, tips, and best practices for pre-seed, seed, and Series A rounds
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+due-diligence:
+  label: Due Diligence
+  permalink: /due-diligence
+  description: Investor due diligence processes, requirements, and how startups can prepare effectively
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+data-room:
+  label: Data Room
+  permalink: /data-room
+  description: Virtual data room setup, organization, and management for startup fundraising
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+pre-seed:
+  label: Pre-Seed
+  permalink: /pre-seed
+  description: Pre-seed funding strategies, investor expectations, and early-stage startup preparation
+
+seed-funding:
+  label: Seed Funding
+  permalink: /seed-funding
+  description: Seed round fundraising tactics, investor relations, and growth preparation
+
+investor-relations:
+  label: Investor Relations
+  permalink: /investor-relations
+  description: Building and maintaining relationships with investors, VCs, and angel investors
+
+startup-checklist:
+  label: Startup Checklist
+  permalink: /startup-checklist
+  description: Essential checklists and frameworks for startup founders and entrepreneurs
+
+ai:
+  label: AI
+  permalink: /ai
+  description: AI-powered tools and solutions for startup growth and fundraising automation
+
+startups:
+  label: Startups
+  permalink: /startups
+  description: Startup advice, growth strategies, and entrepreneurship insights

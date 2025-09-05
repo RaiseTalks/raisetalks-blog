@@ -138,18 +138,18 @@ export default function FeatureRequest() {
   };
 
   const featureTypeOptions = [
-    { value: 'enhancement', label: '✨ Enhancement' },
-    { value: 'new-feature', label: '🎯 New Feature' },
-    { value: 'bug-fix', label: '🐛 Bug Fix' },
-    { value: 'integration', label: '🔗 Integration' },
-    { value: 'other', label: '📝 Other' },
+    { value: 'enhancement', label: 'Enhancement' },
+    { value: 'new-feature', label: 'New Feature' },
+    { value: 'bug-fix', label: 'Bug Fix' },
+    { value: 'integration', label: 'Integration' },
+    { value: 'other', label: 'Other' },
   ];
 
   const priorityOptions = [
-    { value: 'low', label: '🟢 Low' },
-    { value: 'medium', label: '🟡 Medium' },
-    { value: 'high', label: '🟠 High' },
-    { value: 'critical', label: '🔴 Critical' },
+    { value: 'low', label: 'Low Priority' },
+    { value: 'medium', label: 'Medium Priority' },
+    { value: 'high', label: 'High Priority' },
+    { value: 'critical', label: 'Critical Priority' },
   ];
 
   return (
@@ -363,7 +363,7 @@ export default function FeatureRequest() {
                 {status === 'success' && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
                     <p className="text-green-700 font-medium">
-                      ✅ Thank you! Your feature request has been submitted successfully.
+                      Thank you! Your feature request has been submitted successfully.
                     </p>
                     <p className="text-green-600 text-sm mt-1">
                       We'll review it and get back to you soon.

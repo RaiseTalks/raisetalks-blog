@@ -113,22 +113,30 @@ export default function AffiliateProgram() {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-4 gap-6 mb-16">
               <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300">
-                <span className="text-3xl mb-3 block">🚀</span>
+                <div className="w-12 h-12 bg-[#0174e1] rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-white font-bold">M</span>
+                </div>
                 <h3 className="font-semibold text-gray-900">Startup Mentors</h3>
                 <p className="text-sm text-gray-600 mt-2">Guide founders to better fundraising</p>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300">
-                <span className="text-3xl mb-3 block">🔍</span>
+                <div className="w-12 h-12 bg-[#0174e1] rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-white font-bold">V</span>
+                </div>
                 <h3 className="font-semibold text-gray-900">VC Scouts</h3>
                 <p className="text-sm text-gray-600 mt-2">Connect promising startups</p>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300">
-                <span className="text-3xl mb-3 block">🏢</span>
+                <div className="w-12 h-12 bg-[#0174e1] rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-white font-bold">A</span>
+                </div>
                 <h3 className="font-semibold text-gray-900">Accelerators</h3>
                 <p className="text-sm text-gray-600 mt-2">Empower your portfolio</p>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300">
-                <span className="text-3xl mb-3 block">👥</span>
+                <div className="w-12 h-12 bg-[#0174e1] rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-white font-bold">C</span>
+                </div>
                 <h3 className="font-semibold text-gray-900">Community Builders</h3>
                 <p className="text-sm text-gray-600 mt-2">Add value to your network</p>
               </div>
