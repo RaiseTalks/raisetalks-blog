@@ -125,13 +125,13 @@ const config: Config = {
           className: 'navbar__link--linkedin',
         },
         {
-          to: 'https://dev.raisetalks.ai/sign-in',
+          to: 'https://dev.raisetalks.com/sign-in',
           label: 'Log In',
           position: 'right',
           className: 'navbar__link--login button button--secondary',
         },
         {
-          to: 'https://dev.raisetalks.ai/sign-up',
+          to: 'https://dev.raisetalks.com/sign-up',
           label: 'Sign Up',
           position: 'right',
           className: 'navbar__link--signup button button--primary',
@@ -179,27 +179,27 @@ const config: Config = {
           items: [
             {
               label: 'Data Room',
-              to: 'https://raisetalks.ai/data-room',
+              to: 'https://raisetalks.com/data-room',
             },
             {
               label: 'Inbox',
-              to: 'https://dev.raisetalks.ai/inbox',
+              to: 'https://dev.raisetalks.com/inbox',
             },
             {
               label: 'Self-Score',
-              to: 'https://dev.raisetalks.ai/self-score',
+              to: 'https://dev.raisetalks.com/self-score',
             },
             {
               label: 'Guides',
-              to: 'https://dev.raisetalks.ai/guides',
+              to: 'https://dev.raisetalks.com/guides',
             },
             {
               label: 'Startups',
-              to: 'https://dev.raisetalks.ai/startups',
+              to: 'https://dev.raisetalks.com/startups',
             },
             {
               label: 'Adviser',
-              to: 'https://dev.raisetalks.ai/adviser',
+              to: 'https://dev.raisetalks.com/adviser',
             },
           ],
         },

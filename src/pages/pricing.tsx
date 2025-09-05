@@ -309,7 +309,7 @@ export default function Pricing() {
               <div className="flex flex-col items-center justify-center gap-4 mb-6 sm:flex-row">
                 <Link
                   className="bg-gradient-to-r from-[#0174e1] to-[#0182f8] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
-                  to="https://dev.raisetalks.ai/sign-up"
+                  to="https://dev.raisetalks.com/sign-up"
                 >
                   Start Free Today
                 </Link>

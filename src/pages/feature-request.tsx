@@ -146,10 +146,10 @@ export default function FeatureRequest() {
   ];
 
   const priorityOptions = [
-    { value: 'low', label: 'Low Priority' },
-    { value: 'medium', label: 'Medium Priority' },
-    { value: 'high', label: 'High Priority' },
-    { value: 'critical', label: 'Critical Priority' },
+    { value: 'low', label: 'Low' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'high', label: 'High' },
+    { value: 'critical', label: 'Critical' },
   ];
 
   return (

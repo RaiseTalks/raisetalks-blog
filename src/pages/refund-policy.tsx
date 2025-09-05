@@ -192,7 +192,9 @@ export default function RefundPolicy() {
             </ul>
 
             <h2>5. Non-Refundable Situations</h2>
-            <p>Refunds are <strong>not</strong> provided for:</p>
+            <p>
+              Refunds are <strong>not</strong> provided for:
+            </p>
             <ul>
               <li>Change of mind or dissatisfaction with features or service</li>
               <li>Failure to use the Platform or any portion thereof during the subscription period</li>
@@ -202,12 +204,12 @@ export default function RefundPolicy() {
             <div className="bg-red-50 border border-red-200 rounded-xl p-6 my-8">
               <div className="flex">
                 <div className="ml-3">
-                  <h3 className="text-lg font-semibold text-red-800 mb-2">No Refunds For</h3>
-                  <ul className="text-red-700 mb-0 space-y-1">
-                    <li>• Change of mind about subscription</li>
-                    <li>• Not using the platform during billing period</li>
-                    <li>• Partial month cancellations</li>
-                    <li>• Dissatisfaction with features</li>
+                  <h3 className="text-lg font-semibold mb-2">No Refunds For</h3>
+                  <ul className="mb-0 space-y-1">
+                    <li>Change of mind about subscription</li>
+                    <li>Not using the platform during billing period</li>
+                    <li>Partial month cancellations</li>
+                    <li>Dissatisfaction with features</li>
                   </ul>
                 </div>
               </div>
