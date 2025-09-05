@@ -75,7 +75,7 @@ Summarize the key takeaways from your post. End with a call-to-action, such as:
 
 - [Link to related blog post](/blog/related-post)
 - [External resource](https://example.com)
-- [RaiseTalks Platform](https://raisetalks.ai)
+- [RaiseTalks Platform](https://raisetalks.com)
 
 ---
 

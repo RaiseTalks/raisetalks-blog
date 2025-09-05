@@ -133,9 +133,11 @@ export default function AboutUs() {
 
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
-                  <span className="text-2xl text-white font-bold">DR</span>
-                </div>
+                <img
+                  src="/img/icons/investor-ready-materials .svg"
+                  alt="Investor-Ready Materials"
+                  className=" h-10 pb-1"
+                />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Investor-Ready Materials</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Turn documents and inputs into polished, compliant data rooms automatically with AI assistance.
@@ -143,9 +145,11 @@ export default function AboutUs() {
               </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
-                  <span className="text-2xl text-white font-bold">RT</span>
-                </div>
+                <img
+                  src="/img/icons/real-time-insights.svg"
+                  alt="Real-Time Insights"
+                  className=" h-10 pb-1"
+                />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Real-Time Insights</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Get real-time visibility into investor interest and traction throughout your fundraising process.
@@ -153,9 +157,11 @@ export default function AboutUs() {
               </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
-                  <span className="text-2xl text-white font-bold">AI</span>
-                </div>
+                <img
+                  src="/img/icons/ai-guided-process.svg"
+                  alt="AI-Guided Process"
+                  className=" h-10 pb-1"
+                />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">AI-Guided Process</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Navigate fundraising with guided steps, smart prompts, and automated readiness scoring.
@@ -183,8 +189,12 @@ export default function AboutUs() {
             <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100">
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="md:w-1/3 text-center">
-                  <div className="w-48 h-48 bg-gradient-to-br from-[#0174e1] to-[#0182f8] rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-6xl text-white">👩‍💼</span>
+                  <div className="rounded-full overflow-hidden mx-auto mb-6">
+                    <img
+                      src="/img/icons/dariia.png"
+                      alt="Dariia Vasylieva - Founder & CEO"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Dariia Vasylieva</h3>
                   <p className="text-gray-600 font-medium">Founder & CEO</p>
@@ -212,7 +222,7 @@ export default function AboutUs() {
       </section>
 
       {/* Partners Section */}
-      <section ref={partnersRef} className="py-20 bg-gray-50">
+      <section ref={partnersRef} className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Backers & Partners</h2>
