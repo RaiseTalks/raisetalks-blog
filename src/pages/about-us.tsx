@@ -134,7 +134,7 @@ export default function AboutUs() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
-                  <span className="text-2xl text-white">📊</span>
+                  <span className="text-2xl text-white font-bold">DR</span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Investor-Ready Materials</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -144,7 +144,7 @@ export default function AboutUs() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
-                  <span className="text-2xl text-white">👁️</span>
+                  <span className="text-2xl text-white font-bold">RT</span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Real-Time Insights</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -154,7 +154,7 @@ export default function AboutUs() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <div className="w-16 h-16 bg-gradient-to-r from-[#0174e1] to-[#0182f8] rounded-2xl flex items-center justify-center mb-6">
-                  <span className="text-2xl text-white">🤖</span>
+                  <span className="text-2xl text-white font-bold">AI</span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">AI-Guided Process</h3>
                 <p className="text-gray-600 leading-relaxed">

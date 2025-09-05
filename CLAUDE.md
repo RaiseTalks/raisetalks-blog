@@ -146,3 +146,87 @@ Located at `/blog/_template.md` with:
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - Progressive enhancement approach
 - Fallbacks for older browsers
+
+
+# Important Content Guidelines
+
+## Tone & Style Requirements
+
+- NEVER use emojis in blog posts or any content
+- Maintain professional B2B tone for fundraising audience  
+- Use bullet points (•) or dashes (-) instead of emoji checkmarks
+- Focus on value-driven, conversion-oriented marketing copy
+- Keep paragraphs short (2-3 sentences) for better readability
+
+## Brand Color Consistency
+
+- Primary brand color: #0174e1
+- Secondary brand color: #0166ca
+- Use brand gradient: from-[#0174e1] to-[#0166ca] 
+- Avoid purple gradients - stick to blue brand palette
+- Maintain color consistency across all components
+
+## Color Guidelines for Readability
+
+### Text on Blue Backgrounds
+- Use white (#ffffff) for primary text on blue backgrounds
+- Use rgba(255, 255, 255, 0.95) for body text on blue backgrounds
+- Use rgba(255, 255, 255, 0.85) for disclaimer/small text on blue backgrounds
+- Ensure minimum contrast ratio of 4.5:1 for accessibility
+
+### Button Colors
+- Primary buttons: White background with #0174e1 text
+- Secondary buttons: #0174e1 background with white text
+- Hover states: Use transform effects instead of color changes for better UX
+
+### Form Elements
+- Never use emojis in forms or professional components
+- Use letter abbreviations (DR, AI, RT) instead of emojis for icons
+- Maintain professional appearance across all user interfaces
+
+## Content Best Practices
+
+- Blog posts should be 1,500-2,500 words for optimal SEO
+- Include FAQ sections for long-tail keyword capture
+- Add social proof and specific metrics in marketing copy
+- Use professional subheadings without decorative elements
+- Focus on lead generation with strategic CTA placement
+
+## Reusable Blog Components
+
+### CTA Components
+
+Use the pre-built CTA components for consistent lead generation across all blog posts:
+
+**For Data Room content:**
+```jsx
+import { DataRoomCTA, DataRoomCTAPrimary } from '@site/src/components/BlogCTAMDX';
+
+// Basic CTA (blue background, smaller)
+<DataRoomCTA />
+
+// Primary CTA (blue background, larger)
+<DataRoomCTAPrimary />
+```
+
+**For custom CTAs:**
+```jsx
+import { CustomCTA } from '@site/src/components/BlogCTAMDX';
+
+<CustomCTA 
+  title="Your CTA Title"
+  description="Compelling description text"
+  buttonText="Action Text →"
+  buttonLink="#"
+  disclaimer="Optional disclaimer text"
+  variant="primary" // or "default"
+/>
+```
+
+**Usage Guidelines:**
+- Always add the import statement after the front matter
+- Use DataRoomCTA for mid-article lead capture
+- Use DataRoomCTAPrimary for final conversion at article end
+- Never use raw HTML div elements for CTAs anymore
+- All CTAs automatically use proper white text on blue backgrounds
+- Components ensure consistent branding and accessibility

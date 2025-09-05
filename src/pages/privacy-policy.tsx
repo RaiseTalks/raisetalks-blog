@@ -306,7 +306,7 @@ export default function PrivacyPolicy() {
               <p>1111B S Governors Ave STE 34329</p>
               <p>Dover, DE 19904</p>
               <p>United States</p>
-              <p className="mt-3">📧 Email: <a href="mailto:privacy@raisetalks.ai" className="text-[#0174e1] font-semibold hover:underline">privacy@raisetalks.ai</a></p>
+              <p className="mt-3">Email: <a href="mailto:privacy@raisetalks.ai" className="text-[#0174e1] font-semibold hover:underline">privacy@raisetalks.ai</a></p>
             </div>
 
           </div>
