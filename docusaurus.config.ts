@@ -55,7 +55,7 @@ const config: Config = {
             title: 'RaiseTalks Blog',
             description:
               'Expert insights on due diligence, fundraising, and business growth',
-            copyright: `Copyright © ${new Date().getFullYear()} RaiseTalks.`,
+            copyright: `Copyright © ${new Date().getFullYear()} RaiseTalks AI, INC.`,
             xslt: true,
           },
           // Useful options to enforce blogging best practices
@@ -258,7 +258,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `© ${new Date().getFullYear()} RaiseTalks. All rights reserved.`,
+      copyright: `© ${new Date().getFullYear()} RaiseTalks AI, INC. All rights reserved.`,
     },
     prism: {
       theme: prismThemes.github,
