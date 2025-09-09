@@ -41,6 +41,10 @@ const config: Config = {
       'classic',
       {
         docs: false, // Disable docs completely
+        gtag: {
+          trackingID: 'G-FEVK46NNED',
+          anonymizeIP: true,
+        },
         blog: {
           routeBasePath: '/blog', // Move blog to /blog route
           showReadingTime: true,
