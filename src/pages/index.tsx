@@ -61,7 +61,7 @@ function HomepageHero() {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 className="bg-gradient-to-r from-[#0174e1] to-[#0166ca] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 min-w-[200px] text-center"
-                to="https://dev.dev.raisetalks.com/signup">
+                to="https://dev.raisetalks.com/signup">
                 Try It Free
               </Link>
               <Link
