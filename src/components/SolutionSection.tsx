@@ -58,7 +58,7 @@ export default function SolutionSection() {
             </Link>
             <Link
               className={styles.secondaryButton}
-              to="https://raisetalks.com/signup">
+              to="https://dev.raisetalks.com/signup">
               Try For Free
             </Link>
           </div>
