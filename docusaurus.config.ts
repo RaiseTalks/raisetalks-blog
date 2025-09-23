@@ -101,7 +101,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/pricing',
+          to: 'https://dev.raisetalks.ai/pricing',
           label: 'Pricing',
           position: 'left',
         },
@@ -212,7 +212,7 @@ const config: Config = {
           items: [
             {
               label: 'Pricing',
-              to: '/pricing',
+              to: 'https://dev.raisetalks.ai/pricing',
             },
             {
               label: 'Affiliate Program',
