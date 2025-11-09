@@ -58,7 +58,7 @@ export default function SolutionSection() {
             </Link>
             <Link
               className={styles.secondaryButton}
-              to="https://dev.raisetalks.com/sign-up">
+              to="https://app.raisetalks.com/sign-up">
               Try For Free
             </Link>
           </div>
@@ -87,7 +87,7 @@ export default function SolutionSection() {
             </p>
             <Link
               className={styles.exploreButton}
-              to="https://dev.raisetalks.com/startups">
+              to="https://app.raisetalks.com/startups">
               Explore Startups
             </Link>
           </div>
