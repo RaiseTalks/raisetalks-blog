@@ -53,7 +53,7 @@ function FeatureCard({
   category = 'Core Feature',
   benefits = [],
   ctaText = 'Try This Feature',
-  ctaLink = 'https://dev.raisetalks.com/sign-up'
+  ctaLink = 'https://app.raisetalks.com/sign-up'
 }: FeatureCardProps) {
   const animationRef = useScrollAnimation();
 
@@ -211,7 +211,7 @@ export default function Features() {
               <div className="flex flex-col justify-center gap-4 mb-8 sm:flex-row">
                 <Link
                   className="bg-gradient-to-r from-[#0174e1] to-[#0166ca] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 min-w-[200px]"
-                  to="https://dev.raisetalks.com/sign-up">
+                  to="https://app.raisetalks.com/sign-up">
                   Start Free Trial
                 </Link>
               </div>
@@ -417,7 +417,7 @@ export default function Features() {
             <div className="flex flex-col justify-center gap-4 mb-8 sm:flex-row">
               <Link
                 className="bg-white text-[#0174e1] px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 min-w-[200px]"
-                to="https://dev.raisetalks.com/sign-up">
+                to="https://app.raisetalks.com/sign-up">
                 Start Free Trial
               </Link>
               <Link

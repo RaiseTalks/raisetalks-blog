@@ -101,7 +101,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: 'https://dev.raisetalks.ai/pricing',
+          to: 'https://app.raisetalks.com/pricing',
           label: 'Pricing',
           position: 'left',
         },
@@ -129,13 +129,13 @@ const config: Config = {
           className: 'navbar__link--linkedin',
         },
         {
-          to: 'https://dev.raisetalks.com/sign-in',
+          to: 'https://app.raisetalks.com/sign-in',
           label: 'Log In',
           position: 'right',
           className: 'navbar__link--login button button--secondary',
         },
         {
-          to: 'https://dev.raisetalks.com/sign-up',
+          to: 'https://app.raisetalks.com/sign-up',
           label: 'Sign Up',
           position: 'right',
           className: 'navbar__link--signup button button--primary',
@@ -187,23 +187,23 @@ const config: Config = {
             },
             {
               label: 'Inbox',
-              to: 'https://dev.raisetalks.com/inbox',
+              to: 'https://app.raisetalks.com/inbox',
             },
             {
               label: 'Self-Score',
-              to: 'https://dev.raisetalks.com/self-score',
+              to: 'https://app.raisetalks.com/self-score',
             },
             {
               label: 'Guides',
-              to: 'https://dev.raisetalks.com/guides',
+              to: 'https://app.raisetalks.com/guides',
             },
             {
               label: 'Startups',
-              to: 'https://dev.raisetalks.com/startups',
+              to: 'https://app.raisetalks.com/startups',
             },
             {
               label: 'Adviser',
-              to: 'https://dev.raisetalks.com/adviser',
+              to: 'https://app.raisetalks.com/adviser',
             },
           ],
         },
@@ -212,7 +212,7 @@ const config: Config = {
           items: [
             {
               label: 'Pricing',
-              to: 'https://dev.raisetalks.ai/pricing',
+              to: 'https://app.raisetalks.com/pricing',
             },
             {
               label: 'Affiliate Program',
