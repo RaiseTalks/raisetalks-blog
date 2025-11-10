@@ -1,6 +1,6 @@
-import { themes as prismThemes } from 'prism-react-renderer';
-import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { Config } from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -293,7 +293,7 @@ const config: Config = {
     announcementBar: {
       id: 'visit_raisetalks',
       content:
-        'Discover AI-powered due diligence tools at <a target="_blank" rel="noopener noreferrer" to="https://raisetalks.com">RaiseTalks</a>',
+      'Discover Web Summit 2025 Startups & Start Your Fundraising Journey with <a target="_blank" rel="noopener noreferrer" href="https://app.raisetalks.com/startups">RaiseTalks</a>',
       backgroundColor: '#0174e1',
       textColor: '#ffffff',
       isCloseable: true,
