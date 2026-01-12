@@ -242,7 +242,7 @@ export default function Features() {
         {/* AI Advisor */}
         <FeatureCard
           title="AI Advisor"
-          subtitle="24/7 fundraising brain in your browser."
+          subtitle="24/7 fundraising co-pilot in your team."
           description="Instant answers to investor questions, next-step prompts, and weak-spot flags before VCs notice."
           imageComponent={
             <div className="relative group">
@@ -261,7 +261,7 @@ export default function Features() {
             </div>
           }
           layout="reverse"
-          category="AI-Powered"
+          category="Startups"
           benefits={[
             "Get instant answers to fundraising questions",
             "Receive personalized next-step recommendations",
