@@ -3,6 +3,11 @@
  * Buttons, Cards, Hero sections, Tags, and other UI elements
  */
 
+/* Announcement Bar */
+div[class*="announcementBar"] {
+  background: var(--raisetalks-brand-gradient) !important;
+}
+
 /* Hero Section for Homepage */
 .hero {
   background: var(--grandguide-main-gradient);
@@ -49,19 +54,20 @@
 }
 
 .button--primary {
-  background: var(--ifm-color-primary);
+  background: var(--raisetalks-brand-gradient);
   color: white;
 }
 
 .button--primary:hover {
-  background: var(--ifm-color-primary-dark);
-  transform: translateY(-2px);
+  background: var(--raisetalks-brand-gradient);
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 /* Enhanced Tags Design */
 .tag {
   background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -76,26 +82,26 @@
 }
 
 .tag:hover {
-  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+  background: var(--raisetalks-brand-gradient);
   color: white;
   text-decoration: none;
-  border-color: #0174e1;
+  border-color: var(--raisetalks-blue-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 116, 225, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
 }
 
 /* Focus States for Accessibility */
 .blog-post-preview h2 a:focus,
 .tag:focus,
 article .markdown a:focus {
-  outline: 2px solid #0174e1;
+  outline: 2px solid var(--raisetalks-blue-primary);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 /* CTA Boxes for Lead Generation */
 .cta-box {
-  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+  background: var(--raisetalks-brand-gradient);
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -103,7 +109,7 @@ article .markdown a:focus {
 }
 
 .cta-box--primary {
-  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+  background: var(--raisetalks-brand-gradient);
   padding: 40px;
   border-radius: 15px;
   margin: 40px 0;
@@ -141,7 +147,7 @@ article .markdown a:focus {
 
 .cta-button {
   background: white;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   padding: 15px 30px;
   border-radius: 8px;
   text-decoration: none;
@@ -152,7 +158,7 @@ article .markdown a:focus {
 
 .cta-button--primary {
   background: white;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   padding: 18px 35px;
   border-radius: 10px;
   text-decoration: none;
@@ -188,7 +194,7 @@ article .markdown a:focus {
   .cta-box,
   .cta-box--primary {
     background: #f8f9fa !important;
-    border: 2px solid #0174e1 !important;
+    border: 2px solid var(--raisetalks-blue-primary) !important;
     color: #000 !important;
   }
 
@@ -202,8 +208,8 @@ article .markdown a:focus {
   .cta-button,
   .cta-button--primary {
     background: white !important;
-    color: #0174e1 !important;
-    border: 2px solid #0174e1 !important;
+    color: var(--raisetalks-blue-primary) !important;
+    border: 2px solid var(--raisetalks-blue-primary) !important;
   }
 
   article header {

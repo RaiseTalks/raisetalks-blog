@@ -1,4 +1,151 @@
 /* Hero Section */
+.heroSection {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgb(249 250 251), white, rgb(249 250 251));
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/raisetalks-hero-1.svg');
+  background-position: center;
+  background-size: cover;
+  opacity: 0.3;
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 10;
+  padding: 4rem 1rem;
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.heroContent {
+  max-width: 64rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heroGlassCard {
+  padding: 2rem;
+  border: 1px solid rgb(243 244 246);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .heroGlassCard {
+    padding: 4rem;
+  }
+}
+
+.heroBadge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroTitle {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-content);
+}
+
+.heroTitleAccent {
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDescription {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  color: var(--ifm-color-content-secondary);
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.heroButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .heroButtons {
+    flex-direction: row;
+  }
+}
+
+.heroPrimaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  min-width: 200px;
+  background: var(--raisetalks-brand-gradient);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.heroPrimaryButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: white;
+}
+
+.heroSecondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  min-width: 200px;
+  background: transparent;
+  border: 2px solid rgba(0, 54, 135, 1);
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+.heroSecondaryButton:hover {
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: white;
+  background-clip: unset;
+  text-decoration: none;
+}
+
+/* Legacy hero styles */
 .hero {
   background: var(--grandguide-main-gradient);
   padding: 6rem 0;
@@ -800,4 +947,110 @@
   .roadmapCardBody {
     padding: 1.5rem;
   }
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--raisetalks-brand-gradient);
+}
+
+.ctaBackground {
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/raisetalks-hero-1.svg');
+  background-position: center;
+  background-size: cover;
+  opacity: 0.1;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 10;
+  max-width: 56rem;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  padding: 0 1.5rem;
+}
+
+.ctaTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.ctaDescription {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .ctaButtons {
+    flex-direction: row;
+  }
+}
+
+.ctaButtonPrimary {
+  background: white;
+  color: rgba(0, 54, 135, 1);
+  padding: 1rem 2.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.ctaButtonPrimary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: rgba(0, 54, 135, 1);
+}
+
+.ctaButtonSecondary {
+  background: transparent;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  min-width: 200px;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+}
+
+.ctaButtonSecondary:hover {
+  background: white;
+  color: rgba(0, 54, 135, 1);
+  text-decoration: none;
+}
+
+/* Dark Mode Support */
+[data-theme='dark'] .heroSection {
+  background: linear-gradient(to bottom, var(--ifm-color-emphasis-100), var(--ifm-color-emphasis-0), var(--ifm-color-emphasis-100));
+}
+
+[data-theme='dark'] .heroGlassCard {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: var(--ifm-color-emphasis-400);
 }

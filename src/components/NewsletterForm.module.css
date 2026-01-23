@@ -14,19 +14,22 @@
 
 .newsletterTitle {
   font-size: 1.75rem;
-  color: #2c3e50;
+  color: var(--ifm-color-content);
   margin-bottom: 1rem;
   font-weight: 400;
 }
 
 .newsletterTitle strong {
   font-weight: 700;
-  color: #0174e1;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .newsletterDescription {
   font-size: 1rem;
-  color: #666;
+  color: var(--ifm-color-content-secondary);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
@@ -54,7 +57,7 @@
 
 .emailInput:focus {
   outline: none;
-  border-color: #0174e1;
+  border-color: var(--ifm-color-primary);
   box-shadow: 0 0 0 3px rgba(1, 116, 225, 0.1);
 }
 
@@ -65,7 +68,7 @@
 
 .subscribeButton {
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+  background: var(--raisetalks-brand-gradient);
   color: white;
   border: none;
   border-radius: 8px;

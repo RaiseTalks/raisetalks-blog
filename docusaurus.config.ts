@@ -41,10 +41,10 @@ const config: Config = {
             "classic",
             {
                 docs: false, // Disable docs completely
-                gtag: {
+                gtag: process.env.NODE_ENV === 'production' ? {
                     trackingID: "G-FEVK46NNED",
                     anonymizeIP: true,
-                },
+                } : undefined,
                 blog: {
                     routeBasePath: "/blog", // Move blog to /blog route
                     showReadingTime: true,
@@ -96,8 +96,13 @@ const config: Config = {
                     position: "left",
                 },
                 {
-                    to: "/features",
-                    label: "Features",
+                    to: "/startups",
+                    label: "Startups",
+                    position: "left",
+                },
+                {
+                    to: "/investors",
+                    label: "Investors", 
                     position: "left",
                 },
                 {
@@ -153,8 +158,12 @@ const config: Config = {
                             to: "/about-us",
                         },
                         {
-                            label: "Features",
-                            to: "/features",
+                            label: "Startups",
+                            to: "/startups",
+                        },
+                        {
+                            label: "Investors",
+                            to: "/investors",
                         },
                         {
                             label: "Schedule a Demo",
@@ -294,7 +303,7 @@ const config: Config = {
             id: "visit_raisetalks",
             content:
                 '<a target="_blank" rel="noopener noreferrer" href="https://app.raisetalks.com/startups">Discover Web Summit 2025 Startups & Start Your Fundraising Journey with RaiseTalks</a>',
-            backgroundColor: "#0174e1",
+            backgroundColor: "rgba(0, 119, 255, 1)",
             textColor: "#ffffff",
             isCloseable: true,
         },

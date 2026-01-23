@@ -39,7 +39,7 @@ menu {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #0174e1 0%, #0166ca 100%);
+  background: linear-gradient(90deg, var(--raisetalks-blue-primary) 0%, var(--raisetalks-blue-primary) 100%);
 }
 
 .blog-sidebar h1,
@@ -88,7 +88,7 @@ menu {
 }
 
 .blog-sidebar .navbar__search-input:focus {
-  border-color: #0174e1;
+  border-color: var(--raisetalks-blue-primary);
   box-shadow: 0 0 0 3px rgba(1, 116, 225, 0.1);
   outline: none;
 }
@@ -125,7 +125,7 @@ menu {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #0174e1 0%, #0166ca 100%);
+  background: linear-gradient(90deg, var(--raisetalks-blue-primary) 0%, var(--raisetalks-blue-primary) 100%);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -156,7 +156,7 @@ menu {
 .plugin-blog .main-wrapper article:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08),
     0 10px 10px -5px rgba(0, 0, 0, 0.03);
-  border-color: #0174e1;
+  border-color: var(--raisetalks-blue-primary);
 }
 
 /* Titles & links in list cards */
@@ -175,7 +175,7 @@ menu {
 }
 
 .plugin-blog .main-wrapper article h2 a:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 /* Meta row */
@@ -194,7 +194,7 @@ menu {
 
 /* Links inside list excerpts — match single-article link style */
 .plugin-blog .main-wrapper article .markdown a {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s ease;
@@ -202,13 +202,13 @@ menu {
 }
 
 .plugin-blog .main-wrapper article .markdown a:hover {
-  color: #0166ca;
-  border-bottom-color: #0174e1;
+  color: var(--raisetalks-blue-primary);
+  border-bottom-color: var(--raisetalks-blue-primary);
 }
 
 /* Read more link */
 .plugin-blog .main-wrapper article footer [aria-label^='Read more'] {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   font-weight: 600;
   text-decoration: none;
   font-size: 0.875rem;
@@ -222,7 +222,7 @@ menu {
 }
 
 .plugin-blog .main-wrapper article footer [aria-label^='Read more']:hover {
-  color: #0166ca;
+  color: var(--raisetalks-blue-primary);
   transform: translateX(4px);
 }
 
@@ -272,7 +272,7 @@ menu {
 }
 
 .blog-post-preview .avatar__name a:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 .blog-post-preview .avatar time {
@@ -298,7 +298,7 @@ menu {
 }
 
 .blog-post-preview h2 a:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 /* Blog Post Excerpt - Perfect Typography */
@@ -321,7 +321,7 @@ menu {
 
 /* Read More Link */
 .blog-post-preview .read-more {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   font-weight: 600;
   text-decoration: none;
   font-size: 0.875rem;
@@ -334,7 +334,7 @@ menu {
 }
 
 .blog-post-preview .read-more:hover {
-  color: #0166ca;
+  color: var(--raisetalks-blue-primary);
   transform: translateX(4px);
 }
 
@@ -414,7 +414,7 @@ article header .avatar__name a {
 }
 
 article header .avatar__name a:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 article header time,
@@ -477,7 +477,7 @@ article .markdown h2::before {
   left: 0;
   width: 60px;
   height: 2px;
-  background: linear-gradient(90deg, #0174e1 0%, #0166ca 100%);
+  background: linear-gradient(90deg, var(--raisetalks-blue-primary) 0%, var(--raisetalks-blue-primary) 100%);
 }
 
 article .markdown h3 {
@@ -507,7 +507,7 @@ article .markdown p:first-of-type {
 
 /* Enhanced Content Elements */
 article .markdown blockquote {
-  border-left: 4px solid #0174e1;
+  border-left: 4px solid var(--raisetalks-blue-primary);
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
   padding: 2rem 2.5rem;
   margin: 3rem 0;
@@ -523,7 +523,7 @@ article .markdown blockquote::before {
   top: -10px;
   left: 20px;
   font-size: 4rem;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   font-weight: bold;
   line-height: 1;
   opacity: 0.3;
@@ -566,7 +566,7 @@ article .markdown pre::before {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, #0174e1 0%, #0166ca 100%);
+  background: linear-gradient(90deg, var(--raisetalks-blue-primary) 0%, var(--raisetalks-blue-primary) 100%);
 }
 
 article .markdown pre code {
@@ -591,17 +591,17 @@ article .markdown li {
 }
 
 article .markdown ul li::marker {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 article .markdown ol li::marker {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   font-weight: 600;
 }
 
 /* Links Enhancement */
 article .markdown a {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s ease;
@@ -609,8 +609,8 @@ article .markdown a {
 }
 
 article .markdown a:hover {
-  color: #0166ca;
-  border-bottom-color: #0174e1;
+  color: var(--raisetalks-blue-primary);
+  border-bottom-color: var(--raisetalks-blue-primary);
 }
 
 /* Images Enhancement */
@@ -697,7 +697,7 @@ article .markdown td {
 }
 
 .blog-sidebar .sidebar__item a:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 /* Blog Archive & Tag Pages */
@@ -746,7 +746,7 @@ article .markdown td {
 .blog-authors-list .avatar:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  border-color: #0174e1;
+  border-color: var(--raisetalks-blue-primary);
 }
 
 /* Blog Archive Page */
@@ -791,7 +791,7 @@ article .markdown td {
 }
 
 .blog-archive-page h2 + ul li a:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 .blog-archive-page h2 + ul li time {
@@ -822,7 +822,7 @@ article .markdown td {
 }
 
 .blog-archive-page .archive-list a:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 .blog-archive-page .archive-list time {
@@ -845,7 +845,7 @@ article .markdown td {
 }
 
 .pagination-nav__item:hover {
-  border-color: #0174e1;
+  border-color: var(--raisetalks-blue-primary);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(1, 116, 225, 0.2);
 }
@@ -857,7 +857,7 @@ article .markdown td {
 }
 
 .pagination-nav__link:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   text-decoration: none;
 }
 
@@ -892,7 +892,7 @@ article .markdown td {
 
 .table-of-contents .table-of-contents__link:hover,
 .table-of-contents .table-of-contents__link--active {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 /* Loading Animation for Blog Cards */
@@ -934,7 +934,7 @@ article .markdown td {
 }
 
 .blog-wrapper .pagination-nav__item:hover {
-  border-color: #0174e1;
+  border-color: var(--raisetalks-blue-primary);
   box-shadow: 0 4px 12px rgba(1, 116, 225, 0.15);
   transform: translateY(-2px);
 }
@@ -947,7 +947,7 @@ article .markdown td {
 }
 
 .blog-wrapper .pagination-nav__link:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   text-decoration: none;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
@@ -1050,14 +1050,14 @@ article .avatar [class*='authorSocials'] a + a {
   [class*='sidebarItemList']
   a:hover {
   background: #f8fafc;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 /* Active item */
 .plugin-blog
   nav[aria-label='Blog recent posts navigation']
   [class*='sidebarItemLinkActive'] {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
 

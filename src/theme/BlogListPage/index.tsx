@@ -52,7 +52,7 @@ function BlogListPageContent(props: Props): ReactNode {
                <div className="max-w-4xl mx-auto text-center">
                   {/* Pre-title badge */}
                   <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-                     <span className="text-sm font-semibold text-[#0174e1]">📚 Knowledge Hub</span>
+                     <span className="text-sm font-semibold text-[var(--raisetalks-blue-primary)]">📚 Knowledge Hub</span>
                   </div>
 
                   {/* Main Title with gradient text */}
@@ -64,9 +64,9 @@ function BlogListPageContent(props: Props): ReactNode {
 
                   {/* Subtitle with enhanced typography */}
                   <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-3xl mx-auto mb-8">
-                     Expert insights on <span className="text-[#0174e1] font-semibold">due diligence</span>,
-                     <span className="text-[#0174e1] font-semibold"> fundraising</span>, and
-                     <span className="text-[#0174e1] font-semibold"> business growth</span>
+                     Expert insights on <span className="text-[var(--raisetalks-blue-primary)] font-semibold">due diligence</span>,
+                     <span className="text-[var(--raisetalks-blue-primary)] font-semibold"> fundraising</span>, and
+                     <span className="text-[var(--raisetalks-blue-primary)] font-semibold"> business growth</span>
                   </p>
 
                   {/* Trust indicators */}

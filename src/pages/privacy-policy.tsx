@@ -52,7 +52,7 @@ export default function PrivacyPolicy() {
           animation: fadeInUp 0.8s ease-out forwards;
         }
         .legal-content h2 {
-          color: #0174e1;
+          color: var(--raisetalks-blue-primary);
           font-size: 1.5rem;
           font-weight: 700;
           margin: 2.5rem 0 1rem 0;
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <span className="text-sm font-semibold text-[#0174e1]">🔒 Privacy</span>
+              <span className="text-sm font-semibold text-[var(--raisetalks-blue-primary)]">🔒 Privacy</span>
             </div>
 
             {/* Main Title with gradient text */}
@@ -135,7 +135,7 @@ export default function PrivacyPolicy() {
 
             {/* Last updated */}
             <p className="text-lg text-gray-600 font-medium mb-4">
-              Last Updated: <span className="text-[#0174e1] font-semibold">August 5, 2025</span>
+              Last Updated: <span className="text-[var(--raisetalks-blue-primary)] font-semibold">August 5, 2025</span>
             </p>
 
             {/* Subtitle */}
@@ -153,9 +153,9 @@ export default function PrivacyPolicy() {
 
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100 mb-8">
               <p className="text-lg leading-relaxed mb-0">
-                This Privacy Policy explains how <strong className="text-[#0174e1]">RAISETALKS AI, Inc.</strong>, a Delaware Corporation,
+                This Privacy Policy explains how <strong className="text-[var(--raisetalks-blue-primary)]">RAISETALKS AI, Inc.</strong>, a Delaware Corporation,
                 collects, uses, stores, and protects your personal data when you interact with our platform and services at{' '}
-                <strong className="text-[#0174e1]">RaiseTalks</strong> ("RaiseTalks", "we", "us", or "our"). We are committed to
+                <strong className="text-[var(--raisetalks-blue-primary)]">RaiseTalks</strong> ("RaiseTalks", "we", "us", or "our"). We are committed to
                 safeguarding your privacy and complying with applicable data protection laws, including the{' '}
                 <strong>General Data Protection Regulation (GDPR)</strong> and relevant <strong>U.S. privacy regulations</strong>.
               </p>
@@ -306,7 +306,7 @@ export default function PrivacyPolicy() {
               <p>1111B S Governors Ave STE 34329</p>
               <p>Dover, DE 19904</p>
               <p>United States</p>
-              <p className="mt-3">Email: <a href="mailto:privacy@raisetalks.ai" className="text-[#0174e1] font-semibold hover:underline">privacy@raisetalks.ai</a></p>
+              <p className="mt-3">Email: <a href="mailto:privacy@raisetalks.ai" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">privacy@raisetalks.ai</a></p>
             </div>
 
           </div>

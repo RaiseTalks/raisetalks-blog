@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import FAQSection from '@site/src/components/FAQSection';
+
+import styles from './startups.module.css';
 
 // Custom hook for scroll animations
 function useScrollAnimation() {
@@ -32,6 +35,119 @@ function useScrollAnimation() {
   return ref;
 }
 
+// Icon components - Simple SVG icons for features
+const DataRoomIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    <path d="M16 13H8" />
+    <path d="M16 17H8" />
+    <path d="M10 9H8" />
+  </svg>
+);
+
+const AIAdvisorIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
+    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
+  </svg>
+);
+
+const EngagementIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M22 12h-2.48a2 2 0 0 0-1.93 2.52l-1.35 4.87a1 1 0 0 1-1.93-.01L9.8 9.35a1 1 0 0 0-1.93.01L6.52 14.5A2 2 0 0 1 4.6 16H2" />
+  </svg>
+);
+
+const SecurityIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M20 13c0 5-3.5 7.5-8 12.5C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6-2 1.5.8 4 2 6 2a1 1 0 0 1 1 1z" />
+  </svg>
+);
+
+const ArrowRightIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M5 12h14" />
+    <path d="m12 5 7 7-7 7" />
+  </svg>
+);
+
+const SparklesIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+
+// Badge Component
+function Badge({ 
+  children, 
+  variant = 'default', 
+  className = '' 
+}: { 
+  children: React.ReactNode; 
+  variant?: 'default' | 'secondary' | 'outline';
+  className?: string;
+}) {
+  return (
+    <span className={clsx(styles.badge, styles[`badge--${variant}`], className)}>
+      {children}
+    </span>
+  );
+}
+
+// Card Components
+function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return <div className={clsx(styles.card, className)}>{children}</div>;
+}
+
+function CardHeader({ children }: { children: React.ReactNode }) {
+  return <div className={styles.cardHeader}>{children}</div>;
+}
+
+function CardContent({ children }: { children: React.ReactNode }) {
+  return <div className={styles.cardContent}>{children}</div>;
+}
+
+function CardTitle({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return <h3 className={clsx(styles.cardTitle, className)}>{children}</h3>;
+}
+
+function CardDescription({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return <p className={clsx(styles.cardDescription, className)}>{children}</p>;
+}
+
+// Button Component
+function Button({ 
+  children, 
+  size = 'default', 
+  variant = 'default', 
+  className = '',
+  onClick,
+  href
+}: { 
+  children: React.ReactNode; 
+  size?: 'default' | 'lg';
+  variant?: 'default' | 'outline';
+  className?: string;
+  onClick?: () => void;
+  href?: string;
+}) {
+  const buttonClass = clsx(styles.button, styles[`button--${variant}`], styles[`button--${size}`], className);
+  
+  if (href) {
+    return <Link className={buttonClass} to={href}>{children}</Link>;
+  }
+  
+  return (
+    <button className={buttonClass} onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
+// Original FeatureCard component with 2-column layout
 interface FeatureCardProps {
   title: string;
   subtitle: string;
@@ -60,52 +176,59 @@ function FeatureCard({
   return (
     <div
       ref={animationRef}
-      className={`py-20 border-b border-gray-100 last:border-b-0 ${layout === 'reverse' ? 'bg-gradient-to-r from-gray-50 to-blue-50' : 'bg-white'} opacity-100 translate-y-0 transition-all duration-700`}
+      className={clsx(
+        'py-20 border-b last:border-b-0 transition-all duration-700',
+        layout === 'reverse' ? styles.featureCardReverse : styles.featureCardDefault,
+        styles.animateIn
+      )}
       id={title.toLowerCase().replace(/&/g, '').replace(/\s+/g, '-')}
+      style={{ animationDelay: '0.2s' }}
     >
-      <div className="container px-4 mx-auto">
-        <div className={`grid lg:grid-cols-2 gap-16 items-center ${layout === 'reverse' ? 'lg:flex-row-reverse' : ''}`}>
+      <div className={clsx('container px-4 mx-auto', styles.container)}>
+        <div className={clsx('grid lg:grid-cols-2 gap-16 items-center', layout === 'reverse' ? 'lg:flex-row-reverse' : '')}>
           <div className={layout === 'reverse' ? 'lg:order-2' : ''}>
             {/* Category Badge */}
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#0174e1]/10 text-[#0174e1] text-sm font-semibold mb-4">
+            <Badge variant="outline" className="mb-4">
               {category}
-            </div>
+            </Badge>
 
             {/* Feature Content */}
-            <h3 className="mb-4 text-4xl font-bold leading-tight text-gray-900">{title}</h3>
-            <p className="text-2xl text-[#0174e1] font-semibold mb-6 leading-relaxed">{subtitle}</p>
-            <p className="mb-8 text-xl leading-relaxed text-gray-600">{description}</p>
+            <CardTitle className={clsx(styles.heroTitle, 'mb-4 text-4xl font-bold leading-tight')}>{title}</CardTitle>
+            <p className={clsx(styles.heroTitleAccent, 'text-2xl font-semibold mb-6 leading-relaxed')}>{subtitle}</p>
+            <p className={clsx(styles.cardDescription, 'mb-8 text-xl leading-relaxed')}>{description}</p>
 
             {/* Benefits List */}
             {benefits.length > 0 && (
-              <div className="mb-8">
-                <ul className="space-y-3">
-                  {benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="mr-2 text-green-500">✓</span>
-                      <span className="text-lg text-gray-700">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className={clsx(styles.benefitsList, 'mb-8')}>
+                {benefits.map((benefit, index) => (
+                  <li key={index} className={styles.benefitItem}>
+                    <span className={styles.benefitCheck}>✓</span>
+                    <span className={styles.benefitText}>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
             )}
 
             {/* Feature CTA */}
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Link
-                className="bg-gradient-to-r from-[#0174e1] to-[#0166ca] text-white px-6 py-3 rounded-xl font-semibold text-base hover:scale-105 hover:shadow-xl transition-all duration-300"
-                to={ctaLink}>
+              <Button
+                size="lg"
+                href={ctaLink}
+              >
                 {ctaText}
-              </Link>
-              <Link
-                className="border-2 border-[#0174e1] text-[#0174e1] px-6 py-3 rounded-xl font-semibold text-base hover:bg-[#0174e1] hover:text-white transition-all duration-300"
-                to="https://calendly.com/iamdariiava/30min">
+                <ArrowRightIcon className={styles.buttonIcon} />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                href="https://calendly.com/iamdariiava/30min"
+              >
                 Learn More
-              </Link>
+              </Button>
             </div>
           </div>
 
-          <div className={`${layout === 'reverse' ? 'lg:order-1' : ''}`}>
+          <div className={layout === 'reverse' ? 'lg:order-1' : ''}>
             <div className="relative group">
               {imageComponent || (
                 <div className="p-16 text-center transition-all duration-300 border border-blue-200 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl group-hover:shadow-xl">
@@ -113,8 +236,6 @@ function FeatureCard({
                   <div className="mt-2 text-sm text-gray-500">Coming Soon</div>
                 </div>
               )}
-              {/* Floating element for visual interest */}
-
             </div>
           </div>
         </div>
@@ -162,7 +283,7 @@ function MultiImageGallery() {
   );
 }
 
-export default function Features() {
+export default function Startups() {
   return (
     <Layout
       title="Features"
@@ -193,14 +314,19 @@ export default function Features() {
           <div className="max-w-5xl mx-auto text-center">
             <div className="p-8 border border-gray-100 shadow-2xl bg-white/80 backdrop-blur-sm rounded-3xl md:p-16">
               {/* Category Badge */}
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#0174e1]/10 text-[#0174e1] text-sm font-semibold mb-6">
+              <Badge variant="outline" className="mb-6">
+                <SparklesIcon className={styles.badgeIcon} />
                 AI-POWERED FUNDRAISING PLATFORM
-              </div>
+              </Badge>
 
-              <Heading as="h1" className="max-w-4xl mx-auto mb-6 text-4xl font-bold leading-tight text-gray-900 md:text-6xl">
-                Features That Transform Your Fundraising
+              <Heading as="h1" className={clsx(styles.heroTitle, 'max-w-4xl mx-auto mb-6 text-4xl font-bold leading-tight md:text-6xl')}>
+                Features That{' '}
+                <span className={styles.heroTitleAccent}>
+                  Transform Your Fundraising
+                </span>
               </Heading>
-              <p className="max-w-4xl mx-auto mb-8 text-xl leading-relaxed text-gray-600">
+              
+              <p className={clsx(styles.heroDescription, 'max-w-4xl mx-auto mb-8 text-xl leading-relaxed')}>
                 <strong>RaiseTalks</strong> replaces hours of prep, endless files, <br />
                 and expensive advisors with one smart, founder-first platform
                 <br />
@@ -209,11 +335,14 @@ export default function Features() {
 
               {/* Enhanced CTAs */}
               <div className="flex flex-col justify-center gap-4 mb-8 sm:flex-row">
-                <Link
-                  className="bg-gradient-to-r from-[#0174e1] to-[#0166ca] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 min-w-[200px]"
-                  to="https://app.raisetalks.com/sign-up">
+                <Button
+                  size="lg"
+                  className="min-w-[200px]"
+                  href="https://app.raisetalks.com/sign-up"
+                >
                   Start Free Trial
-                </Link>
+                  <ArrowRightIcon className={styles.buttonIcon} />
+                </Button>
               </div>
 
             </div>
@@ -251,7 +380,7 @@ export default function Features() {
                 alt="AI Chat Interface"
                 className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
               />
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
                 <img
                   src="/img/icons/ai-advisor-icon.svg"
                   alt="AI Icon"
@@ -283,7 +412,7 @@ export default function Features() {
                 alt="Readiness Dashboard"
                 className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
               />
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
                 <img
                   src="/img/icons/ai-self-assesment-icon.svg"
                   alt="Assessment Icon"
@@ -314,7 +443,7 @@ export default function Features() {
                 alt="Analytics Dashboard"
                 className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
               />
-              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
+              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
                 <img
                   src="/img/icons/real-time-engagement-tracking-icon.svg"
                   alt="Analytics Icon"
@@ -346,7 +475,7 @@ export default function Features() {
                 alt="Customization Panel"
                 className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
               />
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
                 <img
                   src="/img/icons/advanced-data-room-customization.svg"
                   alt="Customization Icon"
@@ -377,7 +506,7 @@ export default function Features() {
                 alt="Collaboration Hub"
                 className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
               />
-              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-[#0174e1] transition-all duration-300">
+              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
                 <img
                   src="/img/icons/collaborative-fundraising-icon.svg"
                   alt="Collaboration Icon"
@@ -402,7 +531,7 @@ export default function Features() {
       <FAQSection />
 
       {/* Enhanced CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-[#0174e1] to-[#0166ca] relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden" style={{background: 'var(--raisetalks-brand-gradient)'}}>
         <div className="absolute inset-0 bg-[url('/img/raisetalks-hero-1.svg')] bg-center bg-cover opacity-10"></div>
         <div className="container relative z-10 px-4 mx-auto text-center text-white">
           <div className="max-w-4xl mx-auto">

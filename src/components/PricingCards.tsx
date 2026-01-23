@@ -12,7 +12,7 @@ export default function PricingCards() {
           <p className="text-xl text-gray-600">
             Choose the plan that's right for your business
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#0174e1] to-[#0166ca] mx-auto rounded-full mt-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] mx-auto rounded-full mt-6"></div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -42,13 +42,13 @@ export default function PricingCards() {
                 <span>1 User seat</span>
               </li>
             </ul>
-            <button className="w-full py-3 px-6 border-2 border-[#0174e1] text-[#0174e1] rounded-lg font-semibold hover:bg-[#0174e1] hover:text-white transition-colors">
+            <button className="w-full py-3 px-6 border-2 border-blue-600 text-[var(--raisetalks-blue-primary)] rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
               Get Started
             </button>
           </div>
 
           {/* Professional Plan */}
-          <div className="bg-gradient-to-b from-[#0174e1] to-[#0166ca] rounded-2xl shadow-xl p-8 text-white">
+          <div className="bg-gradient-to-b from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] rounded-2xl shadow-xl p-8 text-white">
             <div className="bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
               MOST POPULAR
             </div>
@@ -80,7 +80,7 @@ export default function PricingCards() {
                 <span>API access</span>
               </li>
             </ul>
-            <button className="w-full py-3 px-6 bg-white text-[#0174e1] rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <button className="w-full py-3 px-6 bg-white text-[var(--raisetalks-blue-primary)] rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Get Started
             </button>
           </div>
@@ -114,7 +114,7 @@ export default function PricingCards() {
                 <span>SLA guarantee</span>
               </li>
             </ul>
-            <button className="w-full py-3 px-6 border-2 border-[#0174e1] text-[#0174e1] rounded-lg font-semibold hover:bg-[#0174e1] hover:text-white transition-colors">
+            <button className="w-full py-3 px-6 border-2 border-blue-600 text-[var(--raisetalks-blue-primary)] rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
               Contact Sales
             </button>
           </div>
@@ -125,7 +125,7 @@ export default function PricingCards() {
             All plans include 14-day free trial. No credit card required.
           </p>
           <p className="text-sm text-gray-500">
-            Questions? <a href="#" className="text-[#0174e1] hover:underline">Contact our sales team</a>
+            Questions? <a href="#" className="text-[var(--raisetalks-blue-primary)] hover:underline">Contact our sales team</a>
           </p>
         </div>
       </div>

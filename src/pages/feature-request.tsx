@@ -192,7 +192,7 @@ export default function FeatureRequest() {
           position: absolute;
           width: 10px;
           height: 10px;
-          background: linear-gradient(45deg, #0174e1, #0166ca);
+          background: linear-gradient(45deg, var(--raisetalks-blue-primary), var(--raisetalks-blue-primary));
           animation: confetti 3s ease-out forwards;
         }
       `}</style>
@@ -216,7 +216,7 @@ export default function FeatureRequest() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <span className="text-sm font-semibold text-[#0174e1]">Feature Request</span>
+              <span className="text-sm font-semibold text-[var(--raisetalks-blue-primary)]">Feature Request</span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
@@ -227,7 +227,7 @@ export default function FeatureRequest() {
 
             <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-3xl mx-auto">
               Your ideas matter. Tell us what features would make your
-              <span className="text-[#0174e1] font-semibold"> fundraising journey</span> smoother.
+              <span className="text-[var(--raisetalks-blue-primary)] font-semibold"> fundraising journey</span> smoother.
             </p>
           </div>
         </div>
@@ -250,7 +250,7 @@ export default function FeatureRequest() {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0174e1] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--raisetalks-blue-primary)] focus:border-transparent transition-all"
                     placeholder="John Doe"
                   />
                 </div>
@@ -267,7 +267,7 @@ export default function FeatureRequest() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0174e1] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--raisetalks-blue-primary)] focus:border-transparent transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -284,7 +284,7 @@ export default function FeatureRequest() {
                       name="featureType"
                       value={formData.featureType}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0174e1] focus:border-transparent transition-all cursor-pointer"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--raisetalks-blue-primary)] focus:border-transparent transition-all cursor-pointer"
                     >
                       {featureTypeOptions.map(option => (
                         <option key={option.value} value={option.value}>
@@ -304,7 +304,7 @@ export default function FeatureRequest() {
                       name="priority"
                       value={formData.priority}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0174e1] focus:border-transparent transition-all cursor-pointer"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--raisetalks-blue-primary)] focus:border-transparent transition-all cursor-pointer"
                     >
                       {priorityOptions.map(option => (
                         <option key={option.value} value={option.value}>
@@ -327,7 +327,7 @@ export default function FeatureRequest() {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0174e1] focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--raisetalks-blue-primary)] focus:border-transparent transition-all resize-none"
                     placeholder="Describe the feature you'd like to see. Be as specific as possible..."
                   />
                   <div className="mt-2 text-sm text-gray-500 text-right">
@@ -346,7 +346,7 @@ export default function FeatureRequest() {
                     value={formData.useCase}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0174e1] focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--raisetalks-blue-primary)] focus:border-transparent transition-all resize-none"
                     placeholder="How would this feature help your fundraising process?"
                   />
                 </div>
@@ -378,7 +378,7 @@ export default function FeatureRequest() {
                     disabled={status === 'loading'}
                     className={`w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-white transition-all ${status === 'loading'
                       ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-[#0174e1] to-[#0166ca] hover:shadow-xl'
+                      : 'bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] hover:shadow-xl'
                       }`}
                   >
                     {status === 'loading' ? 'Submitting...' : 'Submit Feature Request'}
@@ -412,7 +412,7 @@ export default function FeatureRequest() {
             <div className="mt-12 text-center">
               <p className="text-gray-600 mb-4">
                 Have a bug to report? Email us directly at{' '}
-                <a href="mailto:support@raisetalks.ai" className="text-[#0174e1] hover:underline">
+                <a href="mailto:support@raisetalks.ai" className="text-[var(--raisetalks-blue-primary)] hover:underline">
                   support@raisetalks.ai
                 </a>
               </p>
@@ -434,7 +434,7 @@ export default function FeatureRequest() {
               style={{
                 left: `${Math.random() * 100}%`,
                 animationDelay: `${Math.random() * 0.5}s`,
-                backgroundColor: ['#0174e1', '#0166ca', '#4ade80', '#fbbf24', '#f87171'][Math.floor(Math.random() * 5)],
+                backgroundColor: ['var(--raisetalks-blue-primary)', 'var(--raisetalks-blue-primary)', '#4ade80', '#fbbf24', '#f87171'][Math.floor(Math.random() * 5)],
               }}
             />
           ))}

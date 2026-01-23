@@ -14,9 +14,12 @@
 }
 
 .solutionTitle {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-  color: #2c3e50;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 1.5rem;
 }
 
@@ -67,6 +70,7 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 .primaryButton,
@@ -81,26 +85,31 @@
 }
 
 .primaryButton {
-  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
-  color: white;
-  border: none;
+  background: transparent;
+  border: 2px solid rgba(0, 54, 135, 1);
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .primaryButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(1, 116, 225, 0.3);
-  color: white;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: white;
+  background-clip: unset;
   text-decoration: none;
 }
 
 .secondaryButton {
-  background: transparent;
-  color: #0174e1;
-  border: 2px solid #0174e1;
+  background: var(--raisetalks-blue-primary);
+  color: white;
+  border: 2px solid var(--raisetalks-blue-primary);
 }
 
 .secondaryButton:hover {
-  background: #0174e1;
+  background: var(--raisetalks-blue-secondary);
+  border-color: var(--raisetalks-blue-secondary);
   color: white;
   text-decoration: none;
 }
@@ -149,7 +158,7 @@
 .investorBlock {
   margin: 4rem 0 0 0;
   padding: 3rem 0 0 0;
-  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+  background: var(--raisetalks-brand-gradient);
   border-radius: 20px;
   color: white;
 }
@@ -177,7 +186,7 @@
   display: inline-block;
   padding: 1rem 2.5rem;
   background: white;
-  color: #0174e1;
+  color: #0174e1 !important;
   border-radius: 8px;
   font-weight: 600;
   font-size: 1.125rem;
@@ -189,7 +198,7 @@
 .exploreButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-  color: #0174e1;
+  color: #0174e1 !important;
   text-decoration: none;
 }
 
@@ -218,7 +227,7 @@
 
 @media (max-width: 768px) {
   .solutionTitle {
-    font-size: 2rem;
+    font-size: clamp(1.75rem, 4vw, 2rem);
   }
 
   .featureGrid {

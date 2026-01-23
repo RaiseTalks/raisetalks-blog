@@ -15,9 +15,6 @@ export default function LogoCarousel() {
   return (
     <section className={styles.logoSection}>
       <div className="container mx-auto px-4">
-        <div className={styles.logoHeader}>
-          <h2 className={styles.logoTitle}>Trusted by</h2>
-        </div>
         <div className={styles.logoCarousel}>
           <div className={styles.logoTrack}>
             {/* Double the partners for infinite scroll effect */}

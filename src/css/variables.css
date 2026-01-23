@@ -11,18 +11,23 @@
 
 /* RaiseTalks Brand Variables */
 :root {
-  /* Brand Colors - RaiseTalks */
-  --ifm-color-primary: #0166ca;
-  --ifm-color-primary-dark: #0052a3;
-  --ifm-color-primary-darker: #004c96;
-  --ifm-color-primary-darkest: #003d7a;
-  --ifm-color-primary-light: #1a75d1;
-  --ifm-color-primary-lighter: #3384d8;
-  --ifm-color-primary-lightest: #4d93df;
+  /* Brand Colors - RaiseTalks (From Figma Design) */
+  --ifm-color-primary: rgba(0, 119, 255, 1); /* Light end of brand gradient */
+  --ifm-color-primary-dark: rgba(0, 54, 135, 1); /* Dark end of brand gradient */
+  --ifm-color-primary-darker: rgba(0, 48, 120, 1);
+  --ifm-color-primary-darkest: rgba(0, 40, 100, 1);
+  --ifm-color-primary-light: rgba(26, 135, 255, 1);
+  --ifm-color-primary-lighter: rgba(51, 151, 255, 1);
+  --ifm-color-primary-lightest: rgba(77, 167, 255, 1);
+  
+  /* Brand Blue Colors from Figma - Now Using Brand Gradient */
+  --raisetalks-blue-primary: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
+  --raisetalks-blue-dark: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
+  --raisetalks-blue-text: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
 
   /* Global Colors from RaiseTalks Brand */
-  --e-global-color-primary: #0166ca;
-  --e-global-color-secondary: #0077ff;
+  --e-global-color-primary: var(--raisetalks-blue-primary);
+  --e-global-color-secondary: var(--raisetalks-blue-primary);
   --e-global-color-text: #000000;
   --e-global-color-accent: #ea2640;
   --e-global-color-secondary-accent: #ffab0e;
@@ -36,6 +41,9 @@
     #ff6929 -3.42%,
     #ea265f 71.08%
   );
+
+  /* RaiseTalks Brand Gradient - From Figma Design */
+  --raisetalks-brand-gradient: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
 
   /* Typography */
   --ifm-font-family-base: "Poppins", system-ui, -apple-system, sans-serif;
@@ -54,7 +62,7 @@
 /* Dark mode adjustments */
 [data-theme="dark"] {
   --ifm-color-primary: #1a75d1;
-  --ifm-color-primary-dark: #0166ca;
+  --ifm-color-primary-dark: var(--raisetalks-blue-primary);
   --ifm-color-primary-darker: #0052a3;
   --ifm-color-primary-darkest: #004c96;
   --ifm-color-primary-light: #3384d8;
@@ -75,7 +83,7 @@ h4,
 h5,
 h6 {
   font-family: var(--ifm-heading-font-family);
-  font-weight: 200;
+  font-weight: 700;
 }
 
 /* Accent color utilities */
@@ -93,4 +101,34 @@ h6 {
 
 .bg-secondary-accent {
   background-color: var(--e-global-color-secondary-accent) !important;
+}
+
+/* Brand Gradient Utility Classes */
+.bg-brand-gradient {
+  background: var(--raisetalks-brand-gradient) !important;
+}
+
+.text-brand-gradient {
+  background: var(--raisetalks-brand-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.border-brand-gradient {
+  border: 2px solid transparent !important;
+  background: linear-gradient(white, white) padding-box, var(--raisetalks-brand-gradient) border-box !important;
+}
+
+/* For elements that need gradient backgrounds where CSS variables are used */
+.gradient-bg {
+  background: var(--raisetalks-brand-gradient) !important;
+}
+
+/* For elements that need gradient text where CSS variables are used */
+.gradient-text {
+  background: var(--raisetalks-brand-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }

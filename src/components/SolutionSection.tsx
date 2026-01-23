@@ -25,6 +25,17 @@ export default function SolutionSection() {
   return (
     <section className={styles.solutionSection}>
       <div className="container px-4 mx-auto">
+        {/* Block 4A - Data Room Preview (moved up) */}
+        <div className={styles.dataRoomBlock}>
+          <div className={styles.dataRoomContent}>
+            <img
+              src="/img/DataRoomInterface.png"
+              alt="Data Room Interface - Smart, organized, investor-ready"
+              className={styles.dataRoomScreenshot}
+            />
+          </div>
+        </div>
+
         {/* Main Solution Block */}
         <div className={styles.solutionMain}>
           <div className={styles.solutionHeader}>
@@ -53,7 +64,7 @@ export default function SolutionSection() {
           <div className={styles.solutionButtons}>
             <Link
               className={styles.primaryButton}
-              to="/features">
+              to="/startups">
               See What It Can Do
             </Link>
             <Link
@@ -63,18 +74,6 @@ export default function SolutionSection() {
             </Link>
           </div>
         </div>
-
-        {/* Block 4A - Data Room Preview */}
-        <div className={styles.dataRoomBlock}>
-          <div className={styles.dataRoomContent}>
-            <img
-              src="/img/DataRoomInterface.png"
-              alt="Data Room Interface - Smart, organized, investor-ready"
-              className={styles.dataRoomScreenshot}
-            />
-          </div>
-        </div>
-
 
         {/* Block 4B - Investor Discovery */}
         <div className={styles.investorBlock}>

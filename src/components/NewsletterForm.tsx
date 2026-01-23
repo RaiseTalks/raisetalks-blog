@@ -25,8 +25,7 @@ export default function NewsletterForm() {
           Subscribe to our <strong>Newsletter</strong>
         </h3>
         <p className={styles.newsletterDescription}>
-          Fundraising is hard—we make it easier.<br />
-          Join our founders-only newsletter for no-fluff tips, investor updates, and smart tools that actually help.
+          Stay ahead with real fundraising playbooks, diligence checklists, and investor-ready tools - built for founders who want speed and trust in every round.
         </p>
         
         <form onSubmit={handleSubmit} className={styles.newsletterForm}>

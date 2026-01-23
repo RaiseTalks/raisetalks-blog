@@ -15,7 +15,7 @@
 }
 
 .footer {
-  background: #1f2937;
+  background: var(--raisetalks-brand-gradient);
   border-top: none;
   padding: 4rem 0 2rem 0;
   margin-top: 0;
@@ -45,7 +45,7 @@
 .footer__title {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #d1d5db;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -64,7 +64,7 @@
 
 /* Footer Links */
 .footer__link-item {
-  color: #9ca3af;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
@@ -82,7 +82,7 @@
 .footer__bottom {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .footer__bottom .container {
@@ -95,7 +95,7 @@
 
 /* Copyright */
 .footer__copyright {
-  color: #9ca3af;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.875rem;
   font-weight: 400;
   margin: 0;
@@ -110,7 +110,7 @@
 
 /* Social Icons */
 .footer__social-link {
-  color: #9ca3af;
+  color: rgba(255, 255, 255, 0.8);
   transition: color 0.2s ease;
   display: flex;
   align-items: center;
@@ -120,7 +120,7 @@
 }
 
 .footer__social-link:hover {
-  color: #0174e1;
+  color: #ffffff;
 }
 
 /* Mobile Responsive */

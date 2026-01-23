@@ -9,9 +9,12 @@
 }
 
 .faqTitle {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-  color: #2c3e50;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 1rem;
 }
 
@@ -48,7 +51,7 @@
   text-align: left;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--ifm-color-content);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -57,18 +60,18 @@
 }
 
 .faqQuestion:hover {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
 }
 
 .faqQuestion.active {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   background: #f0f7ff;
 }
 
 .faqIcon {
   font-size: 1.5rem;
   font-weight: 300;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary);
   transition: transform 0.3s ease;
   flex-shrink: 0;
   margin-left: 1rem;
@@ -93,7 +96,7 @@
 
 @media (max-width: 768px) {
   .faqTitle {
-    font-size: 2rem;
+    font-size: clamp(1.75rem, 4vw, 2rem);
   }
   
   .faqQuestion {

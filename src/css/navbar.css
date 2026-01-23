@@ -96,7 +96,7 @@
   margin-right: 0.5rem;
 }
 
-/* Optimized Icon Links */
+/* Optimized Icon Links - Using mask for gradient icons */
 .navbar__link--calendar::before,
 .navbar__link--x::before,
 .navbar__link--linkedin::before {
@@ -106,29 +106,50 @@
   height: 16px;
   margin-right: 5px;
   vertical-align: middle;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.7;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
   transition: opacity 0.3s ease;
 }
 
-.navbar__link--calendar:hover::before,
-.navbar__link--x:hover::before,
-.navbar__link--linkedin:hover::before {
-  opacity: 1;
-}
-
 .navbar__link--calendar::before {
-  background-image: url('/img/calendar-icon.svg');
+  -webkit-mask-image: url('/img/calendar-icon.svg');
+  mask-image: url('/img/calendar-icon.svg');
 }
 
 .navbar__link--x::before {
-  background-image: url('/img/x-icon.svg');
+  -webkit-mask-image: url('/img/x-icon.svg');
+  mask-image: url('/img/x-icon.svg');
 }
 
 .navbar__link--linkedin::before {
-  background-image: url('/img/linkedin-icon.svg');
+  -webkit-mask-image: url('/img/linkedin-icon.svg');
+  mask-image: url('/img/linkedin-icon.svg');
+}
+
+/* Gradient text for icon links */
+.navbar__link--calendar,
+.navbar__link--x,
+.navbar__link--linkedin {
+  background: var(--raisetalks-brand-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.navbar__link--calendar:hover,
+.navbar__link--x:hover,
+.navbar__link--linkedin:hover {
+  background: var(--raisetalks-brand-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
 }
 
 /* Hide text for icon-only links on desktop */
@@ -146,13 +167,16 @@
 
 /* Homepage-Style Auth Buttons */
 .navbar__link--login {
-  border: 2px solid #0174e1;
+  border: 2px solid rgba(0, 54, 135, 1);
   border-radius: 10px;
   padding: 0.375rem 1.125rem !important;
   margin-left: 1rem;
   font-weight: 600;
   font-size: 0.8125rem;
-  color: #0174e1 !important;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   line-height: 1.4;
   text-decoration: none;
@@ -163,18 +187,18 @@
 }
 
 .navbar__link--login:hover {
-  background: #0174e1;
-  color: white !important;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: white;
+  background-clip: unset;
   text-decoration: none;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(1, 116, 225, 0.3);
 }
 
 .navbar__link--signup {
   padding: 0.375rem 1.125rem !important;
   font-weight: 600;
   font-size: 0.8125rem;
-  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+  background: var(--raisetalks-brand-gradient);
   color: white !important;
   border-radius: 10px;
   border: 2px solid transparent;
@@ -189,10 +213,11 @@
 }
 
 .navbar__link--signup:hover {
-  background: linear-gradient(135deg, #0166ca 0%, #0156b3 100%);
+  background: var(--raisetalks-brand-gradient);
+  color: white !important;
   text-decoration: none;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(1, 116, 225, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 /* Native Docusaurus Mobile Navigation - Minimal Brand Theming */
@@ -200,270 +225,223 @@
   color: var(--ifm-color-primary);
 }
 
-/* Premium Mobile Navigation - Option 1 Design */
+/* Premium Mobile Navigation - Clean Redesign */
 @media (max-width: 996px) {
   /* Hide desktop navbar items on mobile */
   .navbar__items--right .navbar__link {
     display: none;
   }
 
-  /* Fullscreen sidebar with premium styling */
+  /* Fullscreen sidebar - single scroll container */
   .navbar-sidebar {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
     width: 100% !important;
     height: 100vh !important;
     height: 100dvh !important;
     max-width: 100% !important;
     background: #ffffff;
     z-index: 1000;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Show state for fullscreen sidebar */
   .navbar-sidebar--show .navbar-sidebar {
     transform: translateX(0) !important;
   }
 
-  /* Gradient header without logo - sticky for fullscreen */
+  /* Minimal header - just close button */
   .navbar-sidebar__brand {
-    background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
-    padding: 2rem 1.5rem;
-    border: none;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: 0 2px 10px rgba(1, 116, 225, 0.2);
+    background: #ffffff !important;
+    padding: 0.5rem 1rem !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-shrink: 0;
+    border-bottom: 1px solid #e5e7eb;
   }
 
-  /* Hide logo in mobile menu */
-  .navbar-sidebar__brand .navbar__logo {
-    display: none;
+  .navbar-sidebar__brand .navbar__logo,
+  .navbar-sidebar__brand .navbar__title,
+  .navbar-sidebar__brand .navbar__brand {
+    display: none !important;
   }
 
-  /* Style the title */
-  .navbar-sidebar__brand .navbar__title {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-family: 'Poppins', var(--ifm-font-family-base);
-    letter-spacing: -0.025em;
-  }
-
-  /* Ensure header can position the close button */
-  .navbar-sidebar__brand {
-    position: relative;
-  }
-
-  /* Close button styling + right alignment */
+  /* Close button */
   .navbar-sidebar__close {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    display: inline-flex;
+    position: static;
+    color: #374151 !important;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
-    color: #ffffff !important; /* Solid white */
-    transition: all 0.2s ease;
-    border-radius: 8px;
-    cursor: pointer;
   }
 
   .navbar-sidebar__close:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 119, 255, 1) !important;
   }
 
-  /* Content area optimized for fullscreen */
+  .navbar-sidebar__close svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Content area - no nested scroll */
   .navbar-sidebar__items {
+    flex: 1;
     padding: 0;
-    overflow-y: auto;
-    height: calc(100vh - 80px);
-    height: calc(100dvh - 80px);
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overflow: visible;
+    height: auto;
   }
 
-  /* Navigation section with label - centered for fullscreen */
+  /* Hide secondary panels */
+  .navbar-sidebar__items--show-secondary,
+  .navbar-sidebar__item[inert],
+  .theme-layout-navbar-sidebar-panel[inert] {
+    display: none !important;
+  }
+
+  /* Menu list - clean styling */
   .menu__list {
-    padding: 2rem 0;
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
+    padding: 1rem 0;
+    margin: 0;
+    list-style: none;
   }
 
-  /* Add NAVIGATION label */
   .menu__list::before {
-    content: 'NAVIGATION';
-    display: block;
-    padding: 0 1.5rem;
-    margin-bottom: 1rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #9ca3af;
-    letter-spacing: 0.1em;
-    font-family: 'Poppins', var(--ifm-font-family-base);
+    display: none;
   }
 
-  /* Menu items premium styling */
+  .menu__list-item {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .menu__list-item::before {
+    display: none;
+  }
+
+  /* Menu links - consistent styling */
   .menu__link {
-    padding: 1rem 1.5rem;
-    font-family: 'Poppins', var(--ifm-font-family-base);
-    font-weight: 500;
-    font-size: 1rem;
-    color: #374151;
-    transition: all 0.2s ease;
-    position: relative;
     display: block;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
   }
 
   .menu__link:hover {
-    background: linear-gradient(
-      90deg,
-      rgba(1, 116, 225, 0.08) 0%,
-      transparent 100%
-    );
-    color: #0174e1;
-    padding-left: 2rem;
+    background: rgba(0, 119, 255, 0.05);
+    color: rgba(0, 119, 255, 1);
+    border-left-color: rgba(0, 119, 255, 1);
     text-decoration: none;
   }
 
   .menu__link--active {
-    color: #0174e1;
-    background: linear-gradient(
-      90deg,
-      rgba(1, 116, 225, 0.1) 0%,
-      transparent 100%
-    );
-    border-left: 3px solid #0174e1;
+    background: rgba(0, 119, 255, 0.08);
+    color: rgba(0, 119, 255, 1);
+    border-left-color: rgba(0, 119, 255, 1);
     font-weight: 600;
   }
 
-  /* Social links section styling */
+  /* Social links in sidebar */
   .navbar-sidebar .navbar__link--calendar,
   .navbar-sidebar .navbar__link--x,
   .navbar-sidebar .navbar__link--linkedin {
     display: flex !important;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
     font-size: 1rem !important;
-    padding: 1rem 1.5rem;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #374151 !important;
+    background-clip: unset !important;
+    color: #374151 !important;
+    border-left: 3px solid transparent;
     margin: 0;
   }
 
-  /* Social section divider and label */
-  .menu__list-item:nth-child(4) {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #e5e7eb;
+  .navbar-sidebar .navbar__link--calendar:hover,
+  .navbar-sidebar .navbar__link--x:hover,
+  .navbar-sidebar .navbar__link--linkedin:hover {
+    background: rgba(0, 119, 255, 0.05) !important;
+    -webkit-text-fill-color: rgba(0, 119, 255, 1) !important;
+    color: rgba(0, 119, 255, 1) !important;
+    border-left-color: rgba(0, 119, 255, 1);
   }
 
-  .menu__list-item:nth-child(5)::before {
-    content: 'CONNECT WITH US';
-    display: block;
-    padding: 0 1.5rem;
-    margin-bottom: 1rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #9ca3af;
-    letter-spacing: 0.1em;
-    font-family: 'Poppins', var(--ifm-font-family-base);
+  .navbar-sidebar .navbar__link--calendar::before,
+  .navbar-sidebar .navbar__link--x::before,
+  .navbar-sidebar .navbar__link--linkedin::before {
+    background: rgba(0, 119, 255, 1) !important;
   }
 
-  /* Auth buttons section with spacing */
-  .menu__list-item:nth-child(7) {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  /* Auth buttons premium styling - centered for fullscreen */
+  /* Auth buttons - clean styling */
   .navbar-sidebar .navbar__link--login,
   .navbar-sidebar .navbar__link--signup {
     display: block !important;
-    margin: 1rem auto;
+    margin: 0.5rem 1.5rem;
+    padding: 0.875rem 1.5rem !important;
     text-align: center;
-    border-radius: 12px;
-    padding: 1rem 1.25rem !important;
-    font-family: 'Poppins', var(--ifm-font-family-base);
+    border-radius: 10px;
     font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
-    max-width: 400px;
-    width: calc(100% - 3rem);
   }
 
-  /* Primary CTA - Sign Up / Join Waiting List */
   .navbar-sidebar .navbar__link--signup {
-    background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
+    background: var(--raisetalks-brand-gradient);
     color: white !important;
+    -webkit-text-fill-color: white !important;
     border: none;
-    box-shadow: 0 4px 15px rgba(1, 116, 225, 0.3);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
   }
 
   .navbar-sidebar .navbar__link--signup:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(1, 116, 225, 0.4);
-    background: linear-gradient(135deg, #0166ca 0%, #0156b3 100%);
+    opacity: 0.9;
   }
 
-  /* Secondary button - Log In */
   .navbar-sidebar .navbar__link--login {
     background: transparent;
-    color: #0174e1 !important;
-    border: 2px solid #0174e1;
-    margin-top: 0;
+    color: rgba(0, 54, 135, 1) !important;
+    -webkit-text-fill-color: rgba(0, 54, 135, 1) !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    border: 2px solid rgba(0, 54, 135, 1);
     margin-bottom: 1.5rem;
   }
 
   .navbar-sidebar .navbar__link--login:hover {
-    background: #0174e1;
+    background: var(--raisetalks-brand-gradient);
     color: white !important;
-    border-color: #0174e1;
+    -webkit-text-fill-color: white !important;
+    border-color: transparent;
   }
 
-  /* Enhanced backdrop effect for fullscreen */
+  /* Backdrop */
   .navbar-sidebar__backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    backdrop-filter: blur(8px);
-    background: rgba(0, 0, 0, 0.6);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
     z-index: 999;
-  }
-
-  /* Hide the entire secondary panel container to prevent horizontal scroll */
-  .theme-layout-navbar-sidebar-panel[inert] {
-    display: none !important;
-  }
-
-  /* Alternative selector for secondary panels */
-  .navbar-sidebar__item.menu[inert] {
-    display: none !important;
-  }
-  
-  /* Fix close button stacking, spacing, and sizing */
-  .navbar-sidebar__brand { padding-right: 3rem; }
-  .navbar-sidebar__close {
-    z-index: 11;
-    background: transparent;
-    border: 0;
-    line-height: 0;
-    touch-action: manipulation;
-  }
-  .navbar-sidebar__close svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
   }
 }
 
