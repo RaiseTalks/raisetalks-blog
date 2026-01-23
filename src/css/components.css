@@ -4,7 +4,7 @@
  */
 
 /* Announcement Bar */
-div[class*="announcementBar"] {
+div[class*='announcementBar'] {
   background: var(--raisetalks-brand-gradient) !important;
 }
 
@@ -194,7 +194,6 @@ article .markdown a:focus {
    Used across all pages for consistent styling
    =================================== */
 .cleanHeroSection {
-  padding: 6rem 1rem 2rem;
   text-align: center;
 }
 

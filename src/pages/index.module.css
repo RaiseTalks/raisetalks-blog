@@ -11,7 +11,7 @@
 
 .heroTitle {
   font-size: clamp(2.5rem, 6vw, 3.75rem);
-  font-weight: 900;
+  font-weight: 900 !important;
   line-height: 1.1;
   letter-spacing: -0.025em;
   margin-bottom: 1.5rem;
@@ -19,7 +19,7 @@
 }
 
 .heroTitleAccent {
-  font-weight: 900;
+  font-weight: 900 !important;
   background: var(--raisetalks-brand-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
