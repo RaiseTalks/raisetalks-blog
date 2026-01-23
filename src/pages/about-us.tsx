@@ -112,32 +112,19 @@ export default function AboutUs() {
          description="Learn about RaiseTalks - AI-powered fundraising workspace for early-stage startups to organize data rooms and close rounds faster."
       >
          {/* Hero Section */}
-         <section className={styles.heroSection}>
-            <div className={styles.heroBackground}></div>
-            <div className={styles.heroContainer}>
-               <div className={styles.heroContent}>
-                  <div className={styles.heroGlassCard}>
-                     <Badge variant="outline">
-                        <SparklesIcon className={styles.badgeIcon} />
-                        OUR STORY
-                     </Badge>
-
-                     <Heading as="h1" className={styles.heroTitle}>
-                        About <span className={styles.heroTitleAccent}>RaiseTalks</span>
-                     </Heading>
-
-                     <p className={styles.heroDescription}>
-                        <strong>AI-first global fundraising workspace</strong> for startups and investors to run deals, streamline due diligence, and
-                        close rounds faster.
-                     </p>
-
-                     <div className={styles.heroButtons}>
-                        <Button size="lg" href="https://calendly.com/iamdariiava/30min">
-                           Book a Demo
-                           <ArrowRightIcon className={styles.buttonIcon} />
-                        </Button>
-                     </div>
-                  </div>
+         <section className="cleanHeroSection">
+            <div className="cleanHeroContainer">
+               <Heading as="h1" className="cleanHeroTitle">
+                  About <span className="cleanHeroTitleAccent">RaiseTalks</span>
+               </Heading>
+               <p className="cleanHeroDescription">
+                  <strong>AI-first global fundraising workspace</strong> for startups and investors to run deals, streamline due diligence, and
+                  close rounds faster.
+               </p>
+               <div className="cleanHeroButtons">
+                  <Link className="cleanHeroPrimaryButton" to="https://calendly.com/iamdariiava/30min">
+                     Book a Demo
+                  </Link>
                </div>
             </div>
          </section>

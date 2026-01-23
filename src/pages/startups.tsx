@@ -305,47 +305,22 @@ export default function Startups() {
         }
       `}</style>
 
-      {/* Enhanced Hero Section */}
-      <section className="relative flex items-center min-h-screen overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-[url('/img/raisetalks-hero-1.svg')] bg-center bg-cover opacity-30"></div>
-
-        <div className="container relative z-10 px-4 py-16 mx-auto">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="p-8 border border-gray-100 shadow-2xl bg-white/80 backdrop-blur-sm rounded-3xl md:p-16">
-              {/* Category Badge */}
-              <Badge variant="outline" className="mb-6">
-                <SparklesIcon className={styles.badgeIcon} />
-                AI-POWERED FUNDRAISING PLATFORM
-              </Badge>
-
-              <Heading as="h1" className={clsx(styles.heroTitle, 'max-w-4xl mx-auto mb-6 text-4xl font-bold leading-tight md:text-6xl')}>
-                Features That{' '}
-                <span className={styles.heroTitleAccent}>
-                  Transform Your Fundraising
-                </span>
-              </Heading>
-              
-              <p className={clsx(styles.heroDescription, 'max-w-4xl mx-auto mb-8 text-xl leading-relaxed')}>
-                <strong>RaiseTalks</strong> replaces hours of prep, endless files, <br />
-                and expensive advisors with one smart, founder-first platform
-                <br />
-                Get investor-ready faster with AI precision and zero guesswork
-              </p>
-
-              {/* Enhanced CTAs */}
-              <div className="flex flex-col justify-center gap-4 mb-8 sm:flex-row">
-                <Button
-                  size="lg"
-                  className="min-w-[200px]"
-                  href="https://app.raisetalks.com/sign-up"
-                >
-                  Start Free Trial
-                  <ArrowRightIcon className={styles.buttonIcon} />
-                </Button>
-              </div>
-
-            </div>
+      {/* Hero Section */}
+      <section className="cleanHeroSection">
+        <div className="cleanHeroContainer">
+          <Heading as="h1" className="cleanHeroTitle">
+            Features That{' '}
+            <span className="cleanHeroTitleAccent">Transform Your Fundraising</span>
+          </Heading>
+          <p className="cleanHeroDescription">
+            <strong>RaiseTalks</strong> replaces hours of prep, endless files,
+            and expensive advisors with one smart, founder-first platform.
+            Get investor-ready faster with AI precision and zero guesswork.
+          </p>
+          <div className="cleanHeroButtons">
+            <Link className="cleanHeroPrimaryButton" to="https://app.raisetalks.com/sign-up">
+              Start Free Trial
+            </Link>
           </div>
         </div>
       </section>

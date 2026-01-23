@@ -189,6 +189,120 @@ article .markdown a:focus {
   line-height: 1.4;
 }
 
+/* ===================================
+   Unified Clean Hero Section
+   Used across all pages for consistent styling
+   =================================== */
+.cleanHeroSection {
+  padding: 6rem 1rem 2rem;
+  text-align: center;
+}
+
+.cleanHeroContainer {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.cleanHeroTitle {
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 900 !important;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-content);
+}
+
+.cleanHeroTitleAccent {
+  font-weight: 900 !important;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cleanHeroDescription {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  color: var(--ifm-color-content-secondary);
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.cleanHeroButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .cleanHeroButtons {
+    flex-direction: row;
+  }
+}
+
+.cleanHeroPrimaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  min-width: 200px;
+  background: var(--raisetalks-brand-gradient);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.cleanHeroPrimaryButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: white;
+}
+
+.cleanHeroSecondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  min-width: 200px;
+  background: transparent;
+  border: 2px solid rgba(0, 54, 135, 1);
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+.cleanHeroSecondaryButton:hover {
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: white;
+  background-clip: unset;
+  text-decoration: none;
+}
+
+/* Hero subtitle for legal pages */
+.cleanHeroSubtitle {
+  font-size: 1rem;
+  color: var(--ifm-color-content-secondary);
+  margin-bottom: 0.5rem;
+}
+
+/* Dark mode support for clean hero */
+[data-theme='dark'] .cleanHeroSection {
+  background: transparent;
+}
+
 /* Print Styles for Blog Posts */
 @media print {
   .cta-box,

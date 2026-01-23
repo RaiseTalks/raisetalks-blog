@@ -66,44 +66,16 @@ export default function AffiliateProgram() {
         }
       `}</style>
 
-      {/* Enhanced Hero Section */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50">
-        {/* Background Pattern - matching homepage */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 35px,
-              rgba(1, 116, 225, 0.03) 35px,
-              rgba(1, 116, 225, 0.03) 70px
-            )`
-          }}></div>
-        </div>
-
-        {/* Animated gradient orb - matching homepage */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Pre-title badge */}
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-              <span className="text-sm font-semibold text-[var(--raisetalks-blue-primary)]">Affiliate Program</span>
-            </div>
-
-            {/* Main Title with gradient text */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-              <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-                Turn your network into capital
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-3xl mx-auto mb-8">
-              Support founders, earn rewards. Whether you're a startup enthusiast, VC scout, accelerator lead, or
-              founder community builder—our affiliate program lets you grow with us.
-            </p>
-          </div>
+      {/* Hero Section */}
+      <section className="cleanHeroSection">
+        <div className="cleanHeroContainer">
+          <h1 className="cleanHeroTitle">
+            <span className="cleanHeroTitleAccent">Turn your network into capital</span>
+          </h1>
+          <p className="cleanHeroDescription">
+            Support founders, earn rewards. Whether you're a startup enthusiast, VC scout, accelerator lead, or
+            founder community builder — our affiliate program lets you grow with us.
+          </p>
         </div>
       </section>
 
