@@ -1,73 +1,25 @@
 /* Hero Section */
 .heroSection {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(to bottom, rgb(249 250 251), white, rgb(249 250 251));
-}
-
-.heroBackground {
-  position: absolute;
-  inset: 0;
-  background-image: url('/img/raisetalks-hero-1.svg');
-  background-position: center;
-  background-size: cover;
-  opacity: 0.3;
-}
-
-.heroContainer {
-  position: relative;
-  z-index: 10;
-  padding: 4rem 1rem;
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 100%;
-}
-
-.heroContent {
-  max-width: 64rem;
-  margin: 0 auto;
+  padding: 6rem 1rem 2rem;
   text-align: center;
 }
 
-.heroGlassCard {
-  padding: 2rem;
-  border: 1px solid rgb(243 244 246);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(4px);
-  border-radius: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .heroGlassCard {
-    padding: 4rem;
-  }
-}
-
-.heroBadge {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  margin-bottom: 1.5rem;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.heroContainer {
+  max-width: 64rem;
+  margin: 0 auto;
 }
 
 .heroTitle {
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
-  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 900;
   line-height: 1.1;
+  letter-spacing: -0.025em;
   margin-bottom: 1.5rem;
   color: var(--ifm-color-content);
 }
 
 .heroTitleAccent {
+  font-weight: 900;
   background: var(--raisetalks-brand-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -151,7 +103,6 @@
   padding: 6rem 0;
   text-align: center;
   color: white;
-  min-height: 500px;
   display: flex;
   align-items: center;
   position: relative;
@@ -159,13 +110,13 @@
 }
 
 .hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("/img/raisetalks-hero-1.svg") no-repeat center;
+  background: url('/img/raisetalks-hero-1.svg') no-repeat center;
   background-size: cover;
   opacity: 1;
   z-index: 1;
@@ -952,6 +903,7 @@
 /* CTA Section */
 .ctaSection {
   padding: 6rem 0;
+  margin-top: 4rem;
   position: relative;
   overflow: hidden;
   background: var(--raisetalks-brand-gradient);
@@ -1047,10 +999,5 @@
 
 /* Dark Mode Support */
 [data-theme='dark'] .heroSection {
-  background: linear-gradient(to bottom, var(--ifm-color-emphasis-100), var(--ifm-color-emphasis-0), var(--ifm-color-emphasis-100));
-}
-
-[data-theme='dark'] .heroGlassCard {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: var(--ifm-color-emphasis-400);
+  background: transparent;
 }

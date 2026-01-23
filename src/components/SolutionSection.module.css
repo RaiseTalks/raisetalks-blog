@@ -1,259 +1,371 @@
 .solutionSection {
-  padding: 5rem 0;
-  background: white;
+   padding: 2rem 0 5rem;
+   background: white;
 }
 
 .solutionMain {
-  max-width: 900px;
-  margin: 0 auto 4rem;
-  text-align: center;
+   max-width: 900px;
+   margin: 0 auto 10rem;
+   text-align: center;
 }
 
 .solutionHeader {
-  margin-bottom: 3rem;
+   margin-bottom: 3rem;
 }
 
 .solutionTitle {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1.5rem;
+   font-size: clamp(2rem, 4vw, 3rem);
+   font-weight: 700;
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   margin-bottom: 1.5rem;
 }
 
 .solutionDescription {
-  font-size: 1.25rem;
-  color: #666;
-  line-height: 1.8;
-  max-width: 700px;
-  margin: 0 auto;
+   font-size: 1.25rem;
+   color: #666;
+   line-height: 1.8;
+   max-width: 700px;
+   margin: 0 auto;
 }
 
 .featureGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin: 3rem 0;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 1.5rem;
+   margin: 3rem 0;
 }
 
-.featureItem {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+.featureCard {
+   background: white;
+   border-radius: 1rem;
+   padding: 1.5rem;
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+   text-align: left;
 }
 
-.featureItem:hover {
-  background: #e8f4fd;
-  transform: translateX(5px);
+.featureIconContainer {
+   width: 3rem;
+   height: 3rem;
+   border-radius: 0.75rem;
+   background: rgba(1, 116, 225, 0.1);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-shrink: 0;
 }
 
 .featureIcon {
-  width: 56px;
-  margin-right: 1rem;
-  flex-shrink: 0;
+   height: 1.5rem;
+   width: 1.5rem;
+   color: #0174e1;
 }
 
-.featureText {
-  color: #555;
-  font-size: 1rem;
-  text-align: left;
+.featureTitle {
+   font-size: 1rem;
+   font-weight: 600;
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   margin: 0;
+   line-height: 1.3;
 }
 
 .solutionButtons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+   display: flex;
+   gap: 1rem;
+   justify-content: center;
+   flex-wrap: wrap;
+   margin-top: 2rem;
+   margin-bottom: 3rem;
 }
 
 .primaryButton,
 .secondaryButton {
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1.125rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
+   padding: 1rem 2rem;
+   border-radius: 8px;
+   font-weight: 600;
+   font-size: 1.125rem;
+   transition: all 0.3s ease;
+   text-decoration: none;
+   display: inline-block;
 }
 
 .primaryButton {
-  background: transparent;
-  border: 2px solid rgba(0, 54, 135, 1);
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+   background: transparent;
+   border: 2px solid rgba(0, 54, 135, 1);
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
 }
 
 .primaryButton:hover {
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: white;
-  background-clip: unset;
-  text-decoration: none;
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: unset;
+   -webkit-text-fill-color: white;
+   background-clip: unset;
+   text-decoration: none;
 }
 
 .secondaryButton {
-  background: var(--raisetalks-blue-primary);
-  color: white;
-  border: 2px solid var(--raisetalks-blue-primary);
+   background: var(--raisetalks-blue-primary);
+   color: white;
+   border: 2px solid var(--raisetalks-blue-primary);
 }
 
 .secondaryButton:hover {
-  background: var(--raisetalks-blue-secondary);
-  border-color: var(--raisetalks-blue-secondary);
-  color: white;
-  text-decoration: none;
+   background: var(--raisetalks-blue-secondary);
+   border-color: var(--raisetalks-blue-secondary);
+   color: white;
+   text-decoration: none;
 }
 
 /* Data Room Block */
 .dataRoomBlock {
-  margin: 4rem 0;
-  padding: 3rem 3rem 0 3rem;
-  background: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 100%);
-  border-radius: 20px;
+   margin: 4rem 0;
+   padding: 3rem 3rem 0 3rem;
+   background: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 100%);
+   border-radius: 20px;
 }
 
 .dataRoomContent {
-  text-align: center;
+   text-align: center;
 }
 
 .imagePlaceholder {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-  background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 1rem;
+   background: white;
+   border: 2px solid #e0e0e0;
+   border-radius: 12px;
+   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 .imagePlaceholder p {
-  font-size: 1.5rem;
-  color: #999;
-  margin: 0;
+   font-size: 1.5rem;
+   color: #999;
+   margin: 0;
 }
 
 .imagePlaceholder small {
-  color: #bbb;
-  font-size: 1rem;
+   color: #bbb;
+   font-size: 1rem;
 }
 
 .dataRoomScreenshot {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
+   width: 100%;
+   height: auto;
+   border-radius: 8px;
+   display: block;
+}
+
+/* AI Advisor Block */
+.aiAdvisorBlock {
+   max-width: 900px;
+   margin: 0 auto 6rem;
+   text-align: center;
+}
+
+.aiAdvisorTitle {
+   font-size: clamp(1.5rem, 3vw, 2rem);
+   font-weight: 700;
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   margin-bottom: 1.5rem;
+}
+
+.aiAdvisorVideo {
+   position: relative;
+   width: 100%;
+   padding-bottom: 56.25%;
+   border-radius: 1rem;
+   overflow: hidden;
+   margin-bottom: 2rem;
+   background: #000;
+}
+
+.aiAdvisorVideo iframe {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   border: none;
+}
+
+.videoThumbnail {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 10;
+   transition: opacity 0.5s ease;
+}
+
+.videoThumbnail.hidden {
+   opacity: 0;
+   pointer-events: none;
+}
+
+.thumbnailImage {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+.ytPlayer {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   pointer-events: none;
+}
+
+.aiAdvisorContent {
+   max-width: 700px;
+   margin: 0 auto;
+}
+
+.aiAdvisorText {
+   font-size: 1.25rem;
+   color: #555;
+   line-height: 1.8;
+   margin-bottom: 2rem;
+}
+
+.aiAdvisorButton {
+   display: inline-block;
+   padding: 1rem 2.5rem;
+   background: var(--raisetalks-brand-gradient);
+   color: white !important;
+   border-radius: 0.75rem;
+   font-weight: 600;
+   font-size: 1.125rem;
+   transition: all 0.3s ease;
+   text-decoration: none;
+}
+
+.aiAdvisorButton:hover {
+   transform: scale(1.05);
+   box-shadow: 0 10px 25px rgba(1, 116, 225, 0.3);
+   color: white !important;
+   text-decoration: none;
 }
 
 /* Investor Block */
 .investorBlock {
-  margin: 4rem 0 0 0;
-  padding: 3rem 0 0 0;
-  background: var(--raisetalks-brand-gradient);
-  border-radius: 20px;
-  color: white;
+   margin: 4rem 0 0 0;
+   padding: 3rem 0 0 0;
+   background: var(--raisetalks-brand-gradient);
+   border-radius: 20px;
+   color: white;
 }
 
 .investorContent {
-  /* max-width: 900px; */
-  margin: 0 auto;
-  text-align: center;
+   /* max-width: 900px; */
+   margin: 0 auto;
+   text-align: center;
 }
 
 .investorTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+   font-size: 2rem;
+   font-weight: 700;
+   margin-bottom: 1.5rem;
 }
 
 .investorDescription {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-  opacity: 0.95;
+   font-size: 1.125rem;
+   line-height: 1.8;
+   margin-bottom: 2rem;
+   opacity: 0.95;
 }
 
 .exploreButton {
-  display: inline-block;
-  padding: 1rem 2.5rem;
-  background: white;
-  color: #0174e1 !important;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1.125rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  margin-bottom: 3rem;
+   display: inline-block;
+   padding: 1rem 2.5rem;
+   background: white;
+   color: #0174e1 !important;
+   border-radius: 8px;
+   font-weight: 600;
+   font-size: 1.125rem;
+   transition: all 0.3s ease;
+   text-decoration: none;
+   margin-bottom: 3rem;
 }
 
 .exploreButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-  color: #0174e1 !important;
-  text-decoration: none;
+   transform: translateY(-2px);
+   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+   color: #0174e1 !important;
+   text-decoration: none;
 }
 
 .startupsLayoutImage {
-  width: 100%;
-  height: auto;
-  margin: 2rem 0 0 0;
-  border-radius: 0 0 20px 20px;
-  display: block;
+   width: 100%;
+   height: auto;
+   margin: 2rem 0 0 0;
+   border-radius: 0 0 20px 20px;
+   display: block;
 }
 
 .investorImage {
-  margin-top: 2rem;
+   margin-top: 2rem;
 }
 
 .investorBlock .imagePlaceholder {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
+   background: rgba(255, 255, 255, 0.1);
+   border: 2px solid rgba(255, 255, 255, 0.3);
+   backdrop-filter: blur(10px);
 }
 
 .investorBlock .imagePlaceholder p,
 .investorBlock .imagePlaceholder small {
-  color: white;
+   color: white;
 }
 
 @media (max-width: 768px) {
-  .solutionTitle {
-    font-size: clamp(1.75rem, 4vw, 2rem);
-  }
+   .solutionTitle {
+      font-size: clamp(1.75rem, 4vw, 2rem);
+   }
 
-  .featureGrid {
-    grid-template-columns: 1fr;
-  }
+   .featureGrid {
+      grid-template-columns: 1fr;
+   }
 
-  .dataRoomBlock,
-  .investorBlock {
-    padding: 2rem 1.5rem 0 1.5rem;
-  }
+   .dataRoomBlock,
+   .investorBlock {
+      padding: 2rem 1.5rem 0 1.5rem;
+   }
 
-  .investorTitle {
-    font-size: 1.5rem;
-  }
+   .investorTitle {
+      font-size: 1.5rem;
+   }
 
-  .imagePlaceholder {
-    padding: 0.5rem;
-  }
+   .imagePlaceholder {
+      padding: 0.5rem;
+   }
 
-  .dataRoomScreenshot {
-    border-radius: 6px;
-  }
+   .dataRoomScreenshot {
+      border-radius: 6px;
+   }
 
-  .startupsLayoutImage {
-    width: 100%;
-    margin: 2rem 0 0 0;
-    border-radius: 0 0 20px 20px;
-  }
+   .startupsLayoutImage {
+      width: 100%;
+      margin: 2rem 0 0 0;
+      border-radius: 0 0 20px 20px;
+   }
 }
