@@ -3,11 +3,11 @@
  * RaiseTalks Brand Variables (formerly Grand Guide Book)
  */
 
+/* Import Google Fonts - must be first @import per CSS spec */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 /* Tailwind CSS v4 Configuration and Directives */
 @import "tailwindcss";
-
-/* Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 /* RaiseTalks Brand Variables */
 :root {
