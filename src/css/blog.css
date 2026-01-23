@@ -373,11 +373,13 @@ article header .reading-time {
   font-weight: 500;
 }
 
-/* Article Tags in Header */
+/* Article Tags - Align with content */
 article header .tags {
-  margin-top: 2rem;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
@@ -391,7 +393,6 @@ article .container {
 
 article .markdown {
   max-width: 800px;
-  margin: 0 auto;
   padding: 2rem 1rem;
   font-size: 1.125rem;
   line-height: 1.8;
