@@ -5,6 +5,7 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import NavbarScroll from '@site/src/components/NavbarScroll';
 import SolutionSection from '@site/src/components/SolutionSection';
+import ScoringOSSummary from '@site/src/components/ScoringOSSummary';
 
 import styles from './index.module.css';
 
@@ -76,6 +77,7 @@ export default function Home() {
       <NavbarScroll />
       <HomepageHero />
       <SolutionSection />
+      <ScoringOSSummary />
       <HomepageCTA />
     </Layout>
   );

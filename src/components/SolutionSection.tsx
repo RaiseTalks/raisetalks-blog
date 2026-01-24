@@ -231,6 +231,7 @@ export default function SolutionSection() {
             {/* Main Solution Block */}
             <div className={styles.solutionMain}>
                <div className={styles.solutionHeader}>
+                  <span className={styles.badge}>For Startups</span>
                   <h2 className={styles.solutionTitle}>AI-Powered Fundraising, Finally.</h2>
                   <p className={styles.solutionDescription}>
                      <strong>RaiseTalks</strong> turns your startup information into an investor-ready, structured Data Room with AI
