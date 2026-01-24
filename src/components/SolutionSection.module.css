@@ -13,6 +13,24 @@
    margin-bottom: 3rem;
 }
 
+.badge {
+   display: inline-block;
+   padding: 0.5rem 1.25rem;
+   font-size: 0.75rem;
+   font-weight: 600;
+   letter-spacing: 0.05em;
+   text-transform: uppercase;
+   color: #64748b;
+   background: transparent;
+   border: 1.5px solid transparent;
+   border-radius: 100px;
+   margin-bottom: 1.5rem;
+   background-image: linear-gradient(white, white),
+      var(--raisetalks-brand-gradient);
+   background-origin: border-box;
+   background-clip: padding-box, border-box;
+}
+
 .solutionTitle {
    font-size: clamp(2rem, 4vw, 3rem);
    font-weight: 700;
