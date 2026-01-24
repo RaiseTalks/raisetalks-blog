@@ -43,7 +43,7 @@ function HomepageCTA() {
       <div className={styles.ctaBackground}></div>
       <div className={styles.ctaContent}>
         <Heading as="h2" className={styles.ctaTitle}>
-          Fundraising isn't guesswork. It's a process.
+          Fundraising isn't guesswork. It's an investment process.
         </Heading>
         <p className={styles.ctaDescription}>
           RaiseTalks helps you run it like a pro with automated data rooms, real investor insights, and deal-ready files. Join the Beta and lead your round with confidence.
