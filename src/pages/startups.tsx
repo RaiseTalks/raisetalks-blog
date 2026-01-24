@@ -438,37 +438,6 @@ export default function Startups() {
           ctaText="View Analytics"
         />
 
-        {/* Advanced Data Room Customization */}
-        <FeatureCard
-          title="Advanced Data Room Customization"
-          subtitle="Control every click. Impress every investor."
-          description="Fine-tune permissions, watermark downloads, and track heat-maps of document views—no plug-ins required."
-          imageComponent={
-            <div className="relative group">
-              <img
-                src="/img/icons/advanced-data-room-customization.png"
-                alt="Customization Panel"
-                className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
-              />
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
-                <img
-                  src="/img/icons/advanced-data-room-customization.svg"
-                  alt="Customization Icon"
-                  className="w-8 h-8 drop-shadow-sm"
-                />
-              </div>
-            </div>
-          }
-          category="Professional"
-          benefits={[
-            "Granular permission controls per investor",
-            "Automatic watermarking and download protection",
-            "Custom branding and white-label options",
-            "Advanced access logs and audit trails"
-          ]}
-          ctaText="Customize Now"
-        />
-
         {/* Collaborative Fundraising */}
         <FeatureCard
           title="Collaborative Fundraising"

@@ -320,7 +320,7 @@ const config: Config = {
     announcementBar: {
       id: 'visit_raisetalks',
       content:
-        '<a target="_blank" rel="noopener noreferrer" href="https://app.raisetalks.com/startups">Discover Web Summit 2025 Startups & Start Your Fundraising Journey with RaiseTalks</a>',
+        '<a target="_blank" rel="noopener noreferrer" href="https://app.raisetalks.com/startups">Join Public Beta - Lock in Early Access</a>',
       backgroundColor: 'rgba(0, 119, 255, 1)',
       textColor: '#ffffff',
       isCloseable: true,
