@@ -96,11 +96,11 @@ export default function TermsOfService() {
       </section>
 
       {/* Legal Content */}
-      <section ref={contentRef} className="py-16 bg-white">
+      <section ref={contentRef} className="py-8 sm:py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto legal-content text-gray-700">
 
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100 mb-8">
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 border border-blue-100 mb-8">
               <p className="text-lg leading-relaxed mb-0">
                 Welcome to RaiseTalks, operated by <strong className="text-[var(--raisetalks-blue-primary)]">RAISETALKS AI, Inc.</strong>, a Delaware Corporation,
                 registered at 1111B S Governors Ave STE 34329, Dover, DE 19904 (Registration No. 10212227), and represented by

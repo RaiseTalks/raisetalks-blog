@@ -302,6 +302,64 @@ article .markdown a:focus {
   background: transparent;
 }
 
+/* Mobile Hero Styles */
+@media (max-width: 640px) {
+  .cleanHeroSection {
+    padding: 3rem 1rem 1.5rem;
+  }
+
+  .cleanHeroTitle {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .cleanHeroDescription {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cleanHeroPrimaryButton,
+  .cleanHeroSecondaryButton {
+    min-width: unset;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .cleanHeroButtons {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .cta-box {
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .cta-box--primary {
+    padding: 25px;
+    margin: 25px 0;
+  }
+
+  .cta-box h3 {
+    font-size: 18px;
+  }
+
+  .cta-box--primary h3 {
+    font-size: 20px;
+  }
+
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 0.9375rem;
+  }
+
+  .cta-button--primary {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+}
+
 /* Print Styles for Blog Posts */
 @media print {
   .cta-box,

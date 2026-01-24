@@ -210,10 +210,10 @@ export default function FeatureRequest() {
       </section>
 
       {/* Form Section */}
-      <section className="py-16 bg-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
+            <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 border border-gray-200">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Field (Optional) */}
                 <div>
@@ -249,7 +249,7 @@ export default function FeatureRequest() {
                 </div>
 
                 {/* Feature Type and Priority Grid */}
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                   {/* Feature Type */}
                   <div>
                     <label htmlFor="featureType" className="block text-sm font-semibold text-gray-700 mb-2">
