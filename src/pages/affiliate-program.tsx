@@ -80,7 +80,7 @@ export default function AffiliateProgram() {
       </section>
 
       {/* Program Overview */}
-      <section ref={overviewRef} className="py-16 bg-white">
+      <section ref={overviewRef} className="py-8 sm:py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-4 gap-6 mb-16">
@@ -118,10 +118,10 @@ export default function AffiliateProgram() {
       </section>
 
       {/* Affiliate Program Plans */}
-      <section ref={comparisonRef} className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section ref={comparisonRef} className="py-10 sm:py-14 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Affiliate Program Tiers
             </h2>
             <p className="text-xl text-gray-600">
@@ -130,9 +130,9 @@ export default function AffiliateProgram() {
             <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] mx-auto rounded-full mt-6"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
             {/* Basic: Referral Partner */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
+            <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 border border-gray-200 hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-bold mb-2">Basic: Referral Partner</h3>
               <p className="text-gray-600 mb-6">Perfect for startup mentors, community builders, early users</p>
               <div className="mb-6">
@@ -178,7 +178,7 @@ export default function AffiliateProgram() {
             </div>
 
             {/* Pro: Venture Ambassador */}
-            <div className="bg-gradient-to-b from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] rounded-2xl shadow-xl p-8 text-white">
+            <div className="bg-gradient-to-b from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 text-white">
               <div className="bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
                 RECOMMENDED
               </div>
@@ -243,12 +243,12 @@ export default function AffiliateProgram() {
       </section>
 
       {/* Basic: Referral Partner */}
-      <section ref={basicRef} className="py-16 bg-white">
+      <section ref={basicRef} className="py-8 sm:py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Basic: Referral Partner</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Basic: Referral Partner</h2>
                 <p className="text-xl text-gray-600 mb-6">
                   Perfect for founders, startup mentors, or content creators who want to share RaiseTalks
                   with their audience and earn rewards along the way.
@@ -276,15 +276,15 @@ export default function AffiliateProgram() {
                   Start sharing, start earning—no approval needed.
                 </p>
                 <Link
-                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
+                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
                   to="#"
                 >
                   Join as a Referral Partner →
                 </Link>
               </div>
-              <div className="tier-card bg-gradient-to-br from-blue-50 to-white rounded-3xl p-8 border border-blue-100">
+              <div className="tier-card bg-gradient-to-br from-blue-50 to-white rounded-3xl p-4 sm:p-6 md:p-8 border border-blue-100">
                 <div className="text-center">
-                  <h3 className="text-6xl font-bold text-[var(--raisetalks-blue-primary)] mb-2">20%</h3>
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--raisetalks-blue-primary)] mb-2">20%</h3>
                   <p className="text-xl text-gray-600">One-time commission</p>
                   <div className="mt-6 pt-6 border-t border-blue-100">
                     <p className="text-sm text-gray-500">Average earnings per referral</p>
@@ -298,13 +298,13 @@ export default function AffiliateProgram() {
       </section>
 
       {/* Pro: Venture Ambassador */}
-      <section ref={proRef} className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section ref={proRef} className="py-8 sm:py-12 md:py-16 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="tier-card bg-gradient-to-br from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] rounded-3xl p-8 text-white">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+              <div className="tier-card bg-gradient-to-br from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] rounded-3xl p-4 sm:p-6 md:p-8 text-white">
                 <div className="text-center">
-                  <h3 className="text-6xl font-bold mb-2">10%</h3>
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">10%</h3>
                   <p className="text-xl opacity-90">Recurring commission</p>
                   <div className="mt-6 pt-6 border-t border-white/20">
                     <p className="text-sm opacity-80">Lifetime earnings potential</p>
@@ -314,7 +314,7 @@ export default function AffiliateProgram() {
                 </div>
               </div>
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Pro: Venture Ambassador</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pro: Venture Ambassador</h2>
                 <p className="text-xl text-gray-600 mb-6">
                   Built for ecosystem leaders actively scouting or supporting startups. Venture Ambassadors earn
                   recurring income and unlock exclusive access to the RaiseTalks partner network.
@@ -346,7 +346,7 @@ export default function AffiliateProgram() {
                   Apply to join our Pro network and grow with us.
                 </p>
                 <Link
-                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
+                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
                   to="#"
                 >
                   Apply to Become a Venture Ambassador →
@@ -358,13 +358,13 @@ export default function AffiliateProgram() {
       </section>
 
       {/* Pro Toolkit Overview */}
-      <section ref={toolkitRef} className="py-16 bg-white">
+      <section ref={toolkitRef} className="py-8 sm:py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">Pro Toolkit Overview</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Pro Toolkit Overview</h2>
             <p className="text-xl text-center text-gray-600 mb-12">Everything you need to succeed as a Venture Ambassador</p>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
               {/* Ambassador Welcome Guide */}
               <div className="bg-white rounded-xl p-6 border border-blue-100 hover:shadow-xl hover:border-blue-600 transition-all duration-300">
                 <h3 className="font-semibold text-gray-900 mb-2">Ambassador Welcome Guide</h3>
@@ -424,7 +424,7 @@ export default function AffiliateProgram() {
       </section>
 
       {/* Contact Section */}
-      <section ref={contactRef} className="py-16 bg-gray-50">
+      <section ref={contactRef} className="py-8 sm:py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Have Questions?</h2>
@@ -432,7 +432,7 @@ export default function AffiliateProgram() {
               We're happy to walk you through the program or help you onboard your first referral.
             </p>
             <Link
-              className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl inline-block"
+              className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl inline-block"
               to="#"
             >
               Contact Our Partner Team →

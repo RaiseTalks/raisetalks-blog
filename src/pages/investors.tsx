@@ -638,12 +638,12 @@ export default function InvestorsPage() {
             </p>
             <div className="flex flex-col justify-center gap-4 mb-8 sm:flex-row">
               <Link
-                className="bg-white text-[#0174e1] px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 min-w-[200px]"
+                className="bg-white text-[#0174e1] px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 w-full sm:w-auto sm:min-w-[200px]"
                 to="/startups">
                 Browse Startups
               </Link>
               <Link
-                className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-[#0174e1] transition-all duration-300 min-w-[200px]"
+                className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white hover:text-[#0174e1] transition-all duration-300 w-full sm:w-auto sm:min-w-[200px]"
                 to="https://app.raisetalks.com/investor-pipeline">
                 View Dealflow
               </Link>

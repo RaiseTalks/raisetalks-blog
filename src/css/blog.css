@@ -900,3 +900,63 @@ article .avatar [class*='authorSocials'] a + a {
   > div[role='group'] {
   margin-bottom: 0.5rem;
 }
+
+/* Mobile Blog Styles */
+@media (max-width: 640px) {
+  article header {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  article header h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  article .markdown {
+    padding: 1.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  article .markdown h2 {
+    font-size: 1.375rem;
+  }
+
+  article .markdown h3 {
+    font-size: 1.25rem;
+  }
+
+  .plugin-blog .main-wrapper article h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Improve touch targets for sidebar links */
+  .plugin-blog nav[aria-label='Blog recent posts navigation']
+    [class*='sidebarItemList'] a {
+    padding: 0.75rem 0.5rem;
+    min-height: 44px;
+  }
+
+  /* Reduce blockquote padding */
+  article .markdown blockquote {
+    padding: 1rem 1.25rem;
+  }
+
+  /* Reduce image margins */
+  article .markdown img {
+    margin: 1.5rem auto;
+  }
+
+  /* Blog list header */
+  .blog-sidebar h1,
+  .blog-wrapper h1 {
+    font-size: 2rem;
+  }
+
+  /* Blog wrapper spacing */
+  .blog-wrapper .main-wrapper {
+    padding: 1rem;
+  }
+
+  .plugin-blog .container.margin-vert--lg {
+    padding: 1rem 0.75rem;
+  }
+}
