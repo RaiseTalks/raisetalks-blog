@@ -1,17 +1,45 @@
-/* Container and Layout */
-.container {
-  max-width: 1152px;
-  margin: 0 auto;
-  padding: 0 1rem;
+/* ========================================
+   Scoring OS Page
+   Consistent with site design patterns
+   ======================================== */
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-radius: 100px;
+  background-image: linear-gradient(white, white),
+    var(--raisetalks-brand-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
+.badgeWrap {
+  margin-bottom: 1rem;
+}
+
+/* Sections */
 .section {
   padding: 5rem 0;
+  background: white;
 }
 
 .sectionAlt {
   padding: 5rem 0;
-  background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.8) 100%);
+  background: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 100%);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .sectionHeader {
@@ -19,302 +47,570 @@
   margin-bottom: 3rem;
 }
 
+.titleWithIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.titleIconWrap {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: rgba(1, 116, 225, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #0174e1;
+}
+
 .sectionTitle {
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
-  color: var(--ifm-color-content);
-  margin: 0 0 0.75rem;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .sectionSubtitle {
   font-size: 1.125rem;
-  color: var(--ifm-color-content-secondary);
+  color: #64748b;
   margin: 0;
+  line-height: 1.6;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
-/* Badge */
-.badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--ifm-color-primary);
-  background: rgba(1, 116, 225, 0.1);
-  border: 1px solid rgba(1, 116, 225, 0.2);
-  margin-bottom: 1rem;
-}
-
-/* Offerings Grid */
-.offeringsGrid {
+/* Benefits Grid */
+.benefitsGrid {
   display: grid;
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
 }
 
-@media (min-width: 768px) {
-  .offeringsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.offeringCard {
-  background: var(--ifm-color-content-inverse);
+.benefitCard {
+  background: white;
   border-radius: 1rem;
-  padding: 2rem;
-  border: 1px solid var(--ifm-color-emphasis-200);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
   transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
 }
 
-.offeringCard:hover {
-  border-color: rgba(1, 116, 225, 0.3);
+.benefitCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
 }
 
-.offeringHeader {
+.benefitIconWrap {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  background: rgba(1, 116, 225, 0.1);
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
 }
 
-.offeringIconWrap {
-  padding: 0.875rem;
-  border-radius: 0.75rem;
-  background: linear-gradient(135deg, rgba(1, 116, 225, 0.1) 0%, rgba(1, 116, 225, 0.2) 100%);
-  border: 1px solid rgba(1, 116, 225, 0.2);
-}
-
-.offeringIcon {
+.benefitIcon {
   width: 1.75rem;
   height: 1.75rem;
-  color: var(--ifm-color-primary);
+  color: #0174e1;
 }
 
-.offeringBadge {
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--ifm-color-content-secondary);
-  background: var(--ifm-color-emphasis-100);
-  border: 1px solid var(--ifm-color-emphasis-300);
-}
-
-.offeringTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ifm-color-content);
-  margin: 0 0 0.75rem;
-}
-
-.offeringDescription {
+.benefitTitle {
   font-size: 1rem;
-  color: var(--ifm-color-content-secondary);
-  line-height: 1.6;
-  margin: 0 0 1.5rem;
+  font-weight: 600;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.5rem 0;
 }
 
-.offeringFeatures {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.5rem;
-  flex: 1;
+.benefitDescription {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
 }
 
-.offeringFeature {
+/* Rubric Grid (Scoring Dimensions) */
+.rubricGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.rubricCard {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
+  transition: all 0.3s ease;
+}
+
+.rubricCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
+}
+
+.rubricIconWrap {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: rgba(1, 116, 225, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.rubricIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #0174e1;
+}
+
+.rubricLabel {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
+}
+
+.rubricDescription {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.scoreIndicator {
+  display: flex;
+  gap: 0.375rem;
+  justify-content: center;
+}
+
+.scoreDot {
+  width: 2rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(1, 116, 225, 0.2) 0%, rgba(1, 102, 202, 0.3) 100%);
+  transition: all 0.2s ease;
+}
+
+.rubricCard:hover .scoreDot {
+  background: linear-gradient(135deg, rgba(1, 116, 225, 0.4) 0%, rgba(1, 102, 202, 0.5) 100%);
+}
+
+/* Features Grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.featureCard {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
-  font-size: 0.9375rem;
-  color: var(--ifm-color-content-secondary);
-  margin-bottom: 0.75rem;
+  gap: 1rem;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
+  transition: all 0.3s ease;
 }
 
-.featureCheck {
-  color: var(--ifm-color-primary);
-  font-weight: 600;
+.featureCard:hover {
+  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
+}
+
+.featureIconWrap {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: rgba(1, 116, 225, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
-.offeringLink {
-  display: inline-flex;
+.featureIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #0174e1;
+}
+
+.featureTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.25rem 0;
+}
+
+.featureDescription {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* DD Grid */
+.ddGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ddCard {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
+  transition: all 0.3s ease;
+}
+
+.ddCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
+}
+
+.ddHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.ddIconWrap {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: rgba(1, 116, 225, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ddIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #0174e1;
+}
+
+.ddLabel {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.ddItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ddItem {
+  display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.ddItem:last-child {
+  margin-bottom: 0;
+}
+
+.ddBullet {
+  color: #0174e1;
   font-weight: 600;
-  color: var(--ifm-color-primary);
-  text-decoration: none;
-  transition: gap 0.2s ease;
 }
 
-.offeringLink:hover {
-  gap: 0.75rem;
-  text-decoration: none;
-}
-
-.linkArrow {
-  width: 1rem;
-  height: 1rem;
-  transition: transform 0.2s ease;
-}
-
-.offeringLink:hover .linkArrow {
-  transform: translateX(4px);
-}
-
-/* Highlights Grid */
-.highlightsGrid {
-  display: grid;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .highlightsGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.highlightCard {
-  text-align: center;
-  padding: 2rem;
-}
-
-.highlightIconWrap {
-  display: inline-flex;
-  padding: 1rem;
+/* Verification Card */
+.verificationCard {
+  background: white;
   border-radius: 1rem;
-  background: linear-gradient(135deg, rgba(1, 116, 225, 0.1) 0%, rgba(1, 116, 225, 0.2) 100%);
-  border: 1px solid rgba(1, 116, 225, 0.2);
-  margin-bottom: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
+  margin-bottom: 1.5rem;
 }
 
-.highlightIcon {
+.verificationTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 1rem 0;
+}
+
+.verificationStates {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.verificationItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.verificationDot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+.dotMissing {
+  background: #94a3b8;
+}
+
+.dotProvided {
+  background: #f59e0b;
+}
+
+.dotVerified {
+  background: #10b981;
+}
+
+/* Additional Features */
+.additionalFeatures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.additionalFeature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
+  font-size: 0.9375rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.additionalIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #0174e1;
+}
+
+/* Output Card */
+.outputCard {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
+}
+
+.outputInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.outputIconWrap {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outputIconWrap .outputIcon {
+  color: #059669;
+}
+
+.outputIconWrapAlt {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: rgba(139, 92, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outputIconWrapAlt .outputIcon {
+  color: #7c3aed;
+}
+
+.outputIconWrapAccent {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: rgba(244, 63, 94, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outputIconWrapAccent .outputIcon {
+  color: #e11d48;
+}
+
+.outputIcon {
   width: 1.5rem;
   height: 1.5rem;
-  color: var(--ifm-color-primary);
 }
 
-.highlightTitle {
-  font-size: 1.125rem;
+.outputTitle {
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--ifm-color-content);
-  margin: 0 0 0.5rem;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.25rem 0;
 }
 
-.highlightDescription {
-  font-size: 0.9375rem;
-  color: var(--ifm-color-content-secondary);
-  line-height: 1.5;
+.outputDescription {
+  font-size: 0.875rem;
+  color: #64748b;
   margin: 0;
+}
+
+/* Value Tags */
+.valueTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.valueTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  background: rgba(1, 116, 225, 0.08);
+  border: 1px solid rgba(1, 116, 225, 0.15);
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+
+.valueTag:hover {
+  background: rgba(1, 116, 225, 0.12);
+  border-color: rgba(1, 116, 225, 0.25);
 }
 
 /* CTA Section */
 .ctaSection {
-  padding: 6rem 1rem;
+  padding: 6rem 1.5rem;
   background: var(--raisetalks-brand-gradient);
-  position: relative;
-  overflow: hidden;
-}
-
-.ctaSection::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/img/raisetalks-hero-1.svg') center/cover;
-  opacity: 0.1;
+  text-align: center;
 }
 
 .ctaContainer {
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
-  position: relative;
-  z-index: 1;
 }
 
 .ctaTitle {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
   color: white;
-  margin: 0 0 1rem;
+  margin: 0 0 1rem 0;
 }
 
 .ctaDescription {
   font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.95);
-  margin: 0 0 2rem;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2rem 0;
+  line-height: 1.7;
 }
 
 .ctaButtons {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
   justify-content: center;
-}
-
-@media (min-width: 640px) {
-  .ctaButtons {
-    flex-direction: row;
-  }
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .ctaPrimary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: white;
-  color: #0174e1;
   padding: 1rem 2rem;
+  background: white;
+  color: #0174e1 !important;
   border-radius: 0.75rem;
-  font-size: 1rem;
   font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
-  min-width: 200px;
-  justify-content: center;
   transition: all 0.3s ease;
 }
 
 .ctaPrimary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   text-decoration: none;
-  color: #0174e1;
+  color: #0174e1 !important;
+}
+
+.ctaArrow {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.ctaPrimary:hover .ctaArrow {
+  transform: translateX(4px);
 }
 
 .ctaSecondary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  color: white;
   padding: 1rem 2rem;
-  border-radius: 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
+  background: transparent;
+  color: white !important;
   border: 2px solid white;
-  min-width: 200px;
-  justify-content: center;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .ctaSecondary:hover {
   background: white;
-  color: #0174e1;
+  color: #0174e1 !important;
   text-decoration: none;
-}
-
-.ctaArrow {
-  width: 1rem;
-  height: 1rem;
 }
 
 /* ========================================
@@ -323,6 +619,18 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rubricGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ddGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .section,
   .sectionAlt {
     padding: 4rem 0;
@@ -345,23 +653,40 @@
   }
 
   .sectionTitle {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
   .sectionSubtitle {
     font-size: 1rem;
   }
 
-  .offeringCard {
-    padding: 1.5rem;
+  .titleIconWrap {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
-  .offeringTitle {
-    font-size: 1.25rem;
+  .titleIcon {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
-  .highlightCard {
-    padding: 1.5rem;
+  .rubricCard,
+  .featureCard,
+  .ddCard {
+    padding: 1.25rem;
+  }
+
+  .outputCard {
+    padding: 1.25rem;
+  }
+
+  .valueTags {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+  }
+
+  .additionalFeatures {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -381,74 +706,213 @@
   }
 
   .badge {
-    font-size: 0.75rem;
+    font-size: 0.625rem;
     padding: 0.375rem 0.75rem;
   }
 
-  .offeringsGrid {
-    gap: 1.5rem;
+  .badgeWrap {
+    margin-bottom: 0.75rem;
   }
 
-  .offeringCard {
-    padding: 1.25rem;
+  .titleWithIcon {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .offeringHeader {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+  .sectionTitle {
+    font-size: 1.5rem;
   }
 
-  .offeringIconWrap {
-    padding: 0.75rem;
+  .sectionSubtitle {
+    font-size: 0.9375rem;
   }
 
-  .offeringIcon {
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .benefitCard {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .benefitIconWrap {
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .benefitIcon {
     width: 1.5rem;
     height: 1.5rem;
   }
 
-  .offeringTitle {
-    font-size: 1.125rem;
-  }
-
-  .offeringDescription {
-    font-size: 0.9375rem;
-    margin-bottom: 1rem;
-  }
-
-  .offeringFeature {
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .offeringLink {
+  .benefitTitle {
     font-size: 0.9375rem;
   }
 
-  .highlightsGrid {
+  .benefitDescription {
+    font-size: 0.8125rem;
+  }
+
+  .rubricGrid {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .highlightCard {
-    padding: 1.25rem;
+  .rubricCard {
+    padding: 1rem;
   }
 
-  .highlightIconWrap {
-    padding: 0.75rem;
-    margin-bottom: 1rem;
+  .rubricIconWrap {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
-  .highlightIcon {
+  .rubricIcon {
     width: 1.25rem;
     height: 1.25rem;
   }
 
-  .highlightTitle {
+  .rubricLabel {
     font-size: 1rem;
   }
 
-  .highlightDescription {
+  .rubricDescription {
+    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .scoreDot {
+    width: 1.5rem;
+    height: 0.375rem;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .featureCard {
+    padding: 1rem;
+  }
+
+  .featureIconWrap {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .featureIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .featureTitle {
     font-size: 0.875rem;
+  }
+
+  .featureDescription {
+    font-size: 0.75rem;
+  }
+
+  .ddGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ddCard {
+    padding: 1rem;
+  }
+
+  .ddIconWrap {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .ddIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .ddLabel {
+    font-size: 0.9375rem;
+  }
+
+  .ddItem {
+    font-size: 0.8125rem;
+  }
+
+  .verificationCard {
+    padding: 1rem;
+  }
+
+  .verificationTitle {
+    font-size: 0.875rem;
+  }
+
+  .verificationStates {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .verificationItem {
+    font-size: 0.8125rem;
+  }
+
+  .additionalFeatures {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .additionalFeature {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .additionalIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .outputCard {
+    padding: 1rem;
+  }
+
+  .outputInfo {
+    gap: 0.75rem;
+  }
+
+  .outputIconWrap,
+  .outputIconWrapAlt,
+  .outputIconWrapAccent {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .outputIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .outputTitle {
+    font-size: 0.9375rem;
+  }
+
+  .outputDescription {
+    font-size: 0.8125rem;
+  }
+
+  .valueTags {
+    gap: 0.375rem;
+  }
+
+  .valueTag {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .ctaSection {
@@ -465,16 +929,18 @@
   }
 
   .ctaButtons {
+    flex-direction: column;
+    align-items: center;
     gap: 0.75rem;
   }
 
   .ctaPrimary,
   .ctaSecondary {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.9375rem;
-    min-width: unset;
     width: 100%;
     max-width: 280px;
+    justify-content: center;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
   }
 }
 
@@ -494,23 +960,30 @@
   }
 
   .sectionSubtitle {
-    font-size: 0.9375rem;
-  }
-
-  .offeringCard {
-    padding: 1rem;
-  }
-
-  .offeringTitle {
-    font-size: 1rem;
-  }
-
-  .offeringDescription {
     font-size: 0.875rem;
   }
 
+  .benefitCard,
+  .rubricCard,
+  .featureCard,
+  .ddCard {
+    padding: 0.875rem;
+  }
+
+  .rubricLabel {
+    font-size: 0.9375rem;
+  }
+
+  .scoreDot {
+    width: 1.25rem;
+  }
+
   .ctaTitle {
-    font-size: 1.375rem;
+    font-size: 1.25rem;
+  }
+
+  .ctaDescription {
+    font-size: 0.9375rem;
   }
 
   .ctaPrimary,
@@ -518,23 +991,4 @@
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
   }
-}
-
-/* Dark mode adjustments */
-[data-theme='dark'] .sectionAlt {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.5) 100%);
-}
-
-[data-theme='dark'] .offeringCard {
-  background: var(--ifm-color-emphasis-100);
-  border-color: var(--ifm-color-emphasis-300);
-}
-
-[data-theme='dark'] .offeringCard:hover {
-  border-color: rgba(1, 116, 225, 0.4);
-}
-
-[data-theme='dark'] .offeringBadge {
-  background: var(--ifm-color-emphasis-200);
-  border-color: var(--ifm-color-emphasis-400);
 }

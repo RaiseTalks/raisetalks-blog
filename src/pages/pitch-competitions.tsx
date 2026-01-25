@@ -3,7 +3,7 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
-import styles from './use-cases.module.css';
+import styles from './pitch-competitions.module.css';
 
 // Icon components
 const TrophyIcon = ({ className }: { className?: string }) => (

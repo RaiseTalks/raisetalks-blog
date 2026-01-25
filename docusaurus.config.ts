@@ -110,18 +110,14 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/investors',
           label: 'Investors',
           position: 'left',
-          items: [
-            {
-              to: '/investors/scoring-os',
-              label: 'Scoring OS',
-            },
-            {
-              to: '/investors/use-cases',
-              label: 'Pitch Competitions',
-            },
-          ],
+        },
+        {
+          to: '/pitch-competitions',
+          label: 'Pitch Competitions',
+          position: 'left',
         },
         {
           to: 'https://app.raisetalks.com/pricing',
