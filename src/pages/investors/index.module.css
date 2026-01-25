@@ -428,14 +428,19 @@
 .outputCard {
   background: white;
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1.5rem 2rem;
   box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .outputInfo {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
 .outputIconWrap {
@@ -506,27 +511,27 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  justify-content: flex-end;
 }
 
 .valueTag {
   display: inline-flex;
   align-items: center;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #64748b;
-  background: rgba(1, 116, 225, 0.08);
-  border: 1px solid rgba(1, 116, 225, 0.15);
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0174e1;
+  background: linear-gradient(135deg, rgba(1, 116, 225, 0.08) 0%, rgba(1, 102, 202, 0.12) 100%);
+  border: 1px solid rgba(1, 116, 225, 0.2);
   border-radius: 100px;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .valueTag:hover {
-  background: rgba(1, 116, 225, 0.12);
-  border-color: rgba(1, 116, 225, 0.25);
+  background: linear-gradient(135deg, rgba(1, 116, 225, 0.12) 0%, rgba(1, 102, 202, 0.18) 100%);
+  border-color: rgba(1, 116, 225, 0.35);
+  transform: translateY(-1px);
 }
 
 /* CTA Section */
@@ -678,11 +683,14 @@
 
   .outputCard {
     padding: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   .valueTags {
-    margin-top: 0.75rem;
-    padding-top: 0.75rem;
+    justify-content: flex-start;
+    width: 100%;
   }
 
   .additionalFeatures {
@@ -880,6 +888,9 @@
 
   .outputCard {
     padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 
   .outputInfo {
@@ -908,11 +919,13 @@
 
   .valueTags {
     gap: 0.375rem;
+    justify-content: flex-start;
+    width: 100%;
   }
 
   .valueTag {
     font-size: 0.6875rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.375rem 0.625rem;
   }
 
   .ctaSection {
