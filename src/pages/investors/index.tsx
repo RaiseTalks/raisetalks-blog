@@ -251,12 +251,7 @@ export default function InvestorsPage() {
             <div className={styles.badgeWrap}>
               <span className={styles.badge}>Live Queue</span>
             </div>
-            <div className={styles.titleWithIcon}>
-              <div className={styles.titleIconWrap}>
-                <ClipboardCheckIcon className={styles.titleIcon} />
-              </div>
-              <h2 className={styles.sectionTitle}>Pre-Score Engine</h2>
-            </div>
+            <h2 className={styles.sectionTitle}>Pre-Score Engine</h2>
             <p className={styles.sectionSubtitle}>
               Quickly screen incoming deal flow with structured, evidence-based scoring
             </p>
@@ -305,12 +300,7 @@ export default function InvestorsPage() {
             <div className={styles.badgeWrap}>
               <span className={styles.badge}>Next In Action</span>
             </div>
-            <div className={styles.titleWithIcon}>
-              <div className={styles.titleIconWrap}>
-                <ScaleIcon className={styles.titleIcon} />
-              </div>
-              <h2 className={styles.sectionTitle}>Scoring & Committee Workspace</h2>
-            </div>
+            <h2 className={styles.sectionTitle}>Scoring & Committee Workspace</h2>
             <p className={styles.sectionSubtitle}>
               Collaborative scoring with variance detection and structured decision-making
             </p>
@@ -356,12 +346,7 @@ export default function InvestorsPage() {
             <div className={styles.badgeWrap}>
               <span className={styles.badge}>Live Direction</span>
             </div>
-            <div className={styles.titleWithIcon}>
-              <div className={styles.titleIconWrap}>
-                <ClipboardListIcon className={styles.titleIcon} />
-              </div>
-              <h2 className={styles.sectionTitle}>Due Diligence & IC Pack</h2>
-            </div>
+            <h2 className={styles.sectionTitle}>Due Diligence & IC Pack</h2>
             <p className={styles.sectionSubtitle}>
               Comprehensive DD tracking with full audit trail and IC-ready exports
             </p>
