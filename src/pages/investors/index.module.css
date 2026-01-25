@@ -1,0 +1,337 @@
+/* Container and Layout */
+.container {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.sectionAlt {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.8) 100%);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.75rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem;
+  color: var(--ifm-color-content-secondary);
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  background: rgba(1, 116, 225, 0.1);
+  border: 1px solid rgba(1, 116, 225, 0.2);
+  margin-bottom: 1rem;
+}
+
+/* Offerings Grid */
+.offeringsGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .offeringsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.offeringCard {
+  background: var(--ifm-color-content-inverse);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.offeringCard:hover {
+  border-color: rgba(1, 116, 225, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+}
+
+.offeringHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.offeringIconWrap {
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, rgba(1, 116, 225, 0.1) 0%, rgba(1, 116, 225, 0.2) 100%);
+  border: 1px solid rgba(1, 116, 225, 0.2);
+}
+
+.offeringIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.offeringBadge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ifm-color-content-secondary);
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.offeringTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.75rem;
+}
+
+.offeringDescription {
+  font-size: 1rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.offeringFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  flex: 1;
+}
+
+.offeringFeature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--ifm-color-content-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.featureCheck {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.offeringLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+
+.offeringLink:hover {
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.linkArrow {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.offeringLink:hover .linkArrow {
+  transform: translateX(4px);
+}
+
+/* Highlights Grid */
+.highlightsGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .highlightsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.highlightCard {
+  text-align: center;
+  padding: 2rem;
+}
+
+.highlightIconWrap {
+  display: inline-flex;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(1, 116, 225, 0.1) 0%, rgba(1, 116, 225, 0.2) 100%);
+  border: 1px solid rgba(1, 116, 225, 0.2);
+  margin-bottom: 1.25rem;
+}
+
+.highlightIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.highlightTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.5rem;
+}
+
+.highlightDescription {
+  font-size: 0.9375rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 6rem 1rem;
+  background: var(--raisetalks-brand-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/img/raisetalks-hero-1.svg') center/cover;
+  opacity: 0.1;
+}
+
+.ctaContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaTitle {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: white;
+  margin: 0 0 1rem;
+}
+
+.ctaDescription {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 2rem;
+  line-height: 1.6;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .ctaButtons {
+    flex-direction: row;
+  }
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  color: #0174e1;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  min-width: 200px;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.ctaPrimary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: #0174e1;
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid white;
+  min-width: 200px;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.ctaSecondary:hover {
+  background: white;
+  color: #0174e1;
+  text-decoration: none;
+}
+
+.ctaArrow {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .sectionAlt {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.5) 100%);
+}
+
+[data-theme='dark'] .offeringCard {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .offeringCard:hover {
+  border-color: rgba(1, 116, 225, 0.4);
+}
+
+[data-theme='dark'] .offeringBadge {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-400);
+}
