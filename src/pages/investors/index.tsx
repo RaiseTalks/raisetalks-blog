@@ -364,7 +364,7 @@ export default function InvestorsPage() {
                 <ul className={styles.ddItems}>
                   {cat.items.map((item, itemIdx) => (
                     <li key={itemIdx} className={styles.ddItem}>
-                      <span className={styles.ddBullet}>-</span>
+                      <span className={styles.ddBullet}>✓</span>
                       {item}
                     </li>
                   ))}
