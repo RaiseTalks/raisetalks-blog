@@ -115,6 +115,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/pitch-competitions',
+          label: 'Pitch Competitions',
+          position: 'left',
+        },
+        {
           to: 'https://app.raisetalks.com/pricing',
           label: 'Pricing',
           position: 'left',
@@ -321,6 +326,12 @@ const config: Config = {
   // Sitemap plugin is already included in the classic preset
 
   headTags: [
+    // Gtag stub to prevent errors in development
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: 'window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = window.gtag || gtag;',
+    },
     {
       tagName: 'link',
       attributes: {

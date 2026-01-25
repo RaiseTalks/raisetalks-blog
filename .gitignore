@@ -21,3 +21,6 @@ yarn-error.log*
 .yarn/
 SUPABASE_SETUP.md
 _bmad/*
+.claude/
+.gitignore
+_bmad-output/
