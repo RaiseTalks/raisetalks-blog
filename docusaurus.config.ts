@@ -334,7 +334,7 @@ const config: Config = {
     {
       tagName: 'script',
       attributes: {},
-      innerHTML: 'window.gtag = window.gtag || function() {};',
+      innerHTML: 'window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = window.gtag || gtag;',
     },
     {
       tagName: 'link',
