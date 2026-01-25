@@ -330,6 +330,12 @@ const config: Config = {
   // Sitemap plugin is already included in the classic preset
 
   headTags: [
+    // Gtag stub to prevent errors in development
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: 'window.gtag = window.gtag || function() {};',
+    },
     {
       tagName: 'link',
       attributes: {

@@ -317,6 +317,209 @@
   height: 1rem;
 }
 
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .section,
+  .sectionAlt {
+    padding: 4rem 0;
+  }
+}
+
+/* Small Tablet / Large Phone */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section,
+  .sectionAlt {
+    padding: 3.5rem 0;
+  }
+
+  .sectionHeader {
+    margin-bottom: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 1rem;
+  }
+
+  .offeringCard {
+    padding: 1.5rem;
+  }
+
+  .offeringTitle {
+    font-size: 1.25rem;
+  }
+
+  .highlightCard {
+    padding: 1.5rem;
+  }
+}
+
+/* Phone */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section,
+  .sectionAlt {
+    padding: 3rem 0;
+  }
+
+  .sectionHeader {
+    margin-bottom: 1.5rem;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .offeringsGrid {
+    gap: 1.5rem;
+  }
+
+  .offeringCard {
+    padding: 1.25rem;
+  }
+
+  .offeringHeader {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .offeringIconWrap {
+    padding: 0.75rem;
+  }
+
+  .offeringIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .offeringTitle {
+    font-size: 1.125rem;
+  }
+
+  .offeringDescription {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .offeringFeature {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .offeringLink {
+    font-size: 0.9375rem;
+  }
+
+  .highlightsGrid {
+    gap: 1rem;
+  }
+
+  .highlightCard {
+    padding: 1.25rem;
+  }
+
+  .highlightIconWrap {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .highlightIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .highlightTitle {
+    font-size: 1rem;
+  }
+
+  .highlightDescription {
+    font-size: 0.875rem;
+  }
+
+  .ctaSection {
+    padding: 3rem 1rem;
+  }
+
+  .ctaTitle {
+    font-size: 1.5rem;
+  }
+
+  .ctaDescription {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .ctaButtons {
+    gap: 0.75rem;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    min-width: unset;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Extra Small Phone */
+@media (max-width: 375px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .section,
+  .sectionAlt {
+    padding: 2.5rem 0;
+  }
+
+  .sectionTitle {
+    font-size: 1.375rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.9375rem;
+  }
+
+  .offeringCard {
+    padding: 1rem;
+  }
+
+  .offeringTitle {
+    font-size: 1rem;
+  }
+
+  .offeringDescription {
+    font-size: 0.875rem;
+  }
+
+  .ctaTitle {
+    font-size: 1.375rem;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
 /* Dark mode adjustments */
 [data-theme='dark'] .sectionAlt {
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.5) 100%);

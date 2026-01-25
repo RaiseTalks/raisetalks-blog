@@ -70,7 +70,7 @@ const offerings = [
     ],
     link: '/investors/scoring-os',
     linkText: 'Explore Scoring OS',
-    badge: 'Coming Soon',
+    badge: 'Live Queue',
   },
   {
     icon: TrophyIcon,
