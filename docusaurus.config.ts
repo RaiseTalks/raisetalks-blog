@@ -136,12 +136,6 @@ const config: Config = {
           className: 'navbar__link--calendar',
         },
         {
-          to: 'https://x.com/raisetalks_ai',
-          label: 'X',
-          position: 'right',
-          className: 'navbar__link--x',
-        },
-        {
           to: 'https://www.linkedin.com/company/raisetalks/',
           label: 'LinkedIn',
           position: 'right',
@@ -206,7 +200,7 @@ const config: Config = {
           items: [
             {
               label: 'Data Room',
-              to: 'https://raisetalks.com/data-room',
+              to: 'https://app.raisetalks.com/data-room',
             },
             {
               label: 'Inbox',
@@ -217,16 +211,28 @@ const config: Config = {
               to: 'https://app.raisetalks.com/self-score',
             },
             {
-              label: 'Guides',
-              to: 'https://app.raisetalks.com/guides',
+              label: 'Investor Catalogue',
+              to: 'https://app.raisetalks.com/investors',
             },
             {
-              label: 'Startups',
+              label: 'Startup Catalogue',
               to: 'https://app.raisetalks.com/startups',
             },
             {
               label: 'Advisor',
               to: 'https://app.raisetalks.com/advisor',
+            },
+            {
+              label: 'IR Pipeline',
+              to: 'https://app.raisetalks.com/ir-pipeline',
+            },
+            {
+              label: 'Dealflow',
+              to: 'https://app.raisetalks.com/dealflow',
+            },
+            {
+              label: 'Scoring',
+              to: 'https://app.raisetalks.com/scoring',
             },
           ],
         },
@@ -259,10 +265,6 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Twitter',
-              to: 'https://twitter.com/raisetalks',
-            },
-            {
               label: 'LinkedIn',
               to: 'https://linkedin.com/company/raisetalks',
             },
@@ -277,10 +279,6 @@ const config: Config = {
             {
               label: 'YouTube',
               to: 'https://youtube.com/@raisetalks',
-            },
-            {
-              label: 'TikTok',
-              to: 'https://tiktok.com/@raisetalks',
             },
           ],
         },

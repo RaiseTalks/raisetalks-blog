@@ -127,7 +127,7 @@ export default function AffiliateProgram() {
             <p className="text-xl text-gray-600">
               Choose the tier that matches your impact
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] mx-auto rounded-full mt-6"></div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
@@ -136,7 +136,7 @@ export default function AffiliateProgram() {
               <h3 className="text-2xl font-bold mb-2">Basic: Referral Partner</h3>
               <p className="text-gray-600 mb-6">Perfect for startup mentors, community builders, early users</p>
               <div className="mb-6">
-                <span className="text-4xl font-bold text-[var(--raisetalks-blue-primary)]">20%</span>
+                <span className="text-4xl font-bold text-[var(--raisetalks-blue-primary-flat)]">20%</span>
                 <span className="text-gray-600 ml-2">one-time commission</span>
               </div>
               <ul className="space-y-3 mb-8">
@@ -170,7 +170,7 @@ export default function AffiliateProgram() {
                 </li>
               </ul>
               <Link
-                className="w-full py-3 px-6 border-2 border-blue-600 text-[var(--raisetalks-blue-primary)] rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors text-center block"
+                className="w-full py-3 px-6 border-2 border-blue-600 text-[var(--raisetalks-blue-primary-flat)] rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors text-center block"
                 to="#"
               >
                 Join as Referral Partner
@@ -178,7 +178,7 @@ export default function AffiliateProgram() {
             </div>
 
             {/* Pro: Venture Ambassador */}
-            <div className="bg-gradient-to-b from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 text-white">
+            <div className="bg-gradient-to-b from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 text-white">
               <div className="bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
                 RECOMMENDED
               </div>
@@ -223,7 +223,7 @@ export default function AffiliateProgram() {
                 </li>
               </ul>
               <Link
-                className="w-full py-3 px-6 bg-white text-[var(--raisetalks-blue-primary)] rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center block"
+                className="w-full py-3 px-6 bg-white text-[var(--raisetalks-blue-primary-flat)] rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center block"
                 to="#"
               >
                 Apply to Become Venture Ambassador
@@ -236,7 +236,7 @@ export default function AffiliateProgram() {
               Both tiers include full tracking, monthly payouts, and partner support.
             </p>
             <p className="text-sm text-gray-500">
-              Questions? <a href="#" className="text-[var(--raisetalks-blue-primary)] hover:underline">Contact our partner team</a>
+              Questions? <a href="#" className="text-[var(--raisetalks-blue-primary-flat)] hover:underline">Contact our partner team</a>
             </p>
           </div>
         </div>
@@ -276,7 +276,7 @@ export default function AffiliateProgram() {
                   Start sharing, start earning—no approval needed.
                 </p>
                 <Link
-                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
+                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
                   to="#"
                 >
                   Join as a Referral Partner →
@@ -284,7 +284,7 @@ export default function AffiliateProgram() {
               </div>
               <div className="tier-card bg-gradient-to-br from-blue-50 to-white rounded-3xl p-4 sm:p-6 md:p-8 border border-blue-100">
                 <div className="text-center">
-                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--raisetalks-blue-primary)] mb-2">20%</h3>
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--raisetalks-blue-primary-flat)] mb-2">20%</h3>
                   <p className="text-xl text-gray-600">One-time commission</p>
                   <div className="mt-6 pt-6 border-t border-blue-100">
                     <p className="text-sm text-gray-500">Average earnings per referral</p>
@@ -302,7 +302,7 @@ export default function AffiliateProgram() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
-              <div className="tier-card bg-gradient-to-br from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] rounded-3xl p-4 sm:p-6 md:p-8 text-white">
+              <div className="tier-card bg-gradient-to-br from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] rounded-3xl p-4 sm:p-6 md:p-8 text-white">
                 <div className="text-center">
                   <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">10%</h3>
                   <p className="text-xl opacity-90">Recurring commission</p>
@@ -322,23 +322,23 @@ export default function AffiliateProgram() {
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">You'll get:</h3>
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3 mt-0.5">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3 mt-0.5">✓</span>
                     <span>10% recurring commission on all payments</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3 mt-0.5">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3 mt-0.5">✓</span>
                     <span>Featured access to deal-flow insights and beta features</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3 mt-0.5">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3 mt-0.5">✓</span>
                     <span>Co-branded campaigns & speaking opportunities</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3 mt-0.5">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3 mt-0.5">✓</span>
                     <span>Personalized onboarding and partner success support</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3 mt-0.5">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3 mt-0.5">✓</span>
                     <span>RaiseTalks Venture Ambassador badge</span>
                   </li>
                 </ul>
@@ -346,7 +346,7 @@ export default function AffiliateProgram() {
                   Apply to join our Pro network and grow with us.
                 </p>
                 <Link
-                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
+                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
                   to="#"
                 >
                   Apply to Become a Venture Ambassador →
@@ -432,7 +432,7 @@ export default function AffiliateProgram() {
               We're happy to walk you through the program or help you onboard your first referral.
             </p>
             <Link
-              className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl inline-block"
+              className="bg-gradient-to-r from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl inline-block"
               to="#"
             >
               Contact Our Partner Team →

@@ -78,7 +78,7 @@ export default function Pricing() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Pre-title badge */}
             <div className="inline-flex items-center px-4 py-2 mb-6 border border-blue-100 rounded-full bg-blue-50">
-              <span className="text-sm font-semibold text-[var(--raisetalks-blue-primary)]">Pricing</span>
+              <span className="text-sm font-semibold text-[var(--raisetalks-blue-primary-flat)]">Pricing</span>
             </div>
 
             {/* Main Title with gradient text */}
@@ -90,8 +90,8 @@ export default function Pricing() {
 
             {/* Subtitle with enhanced typography */}
             <p className="max-w-4xl mx-auto mb-8 text-xl font-medium leading-relaxed text-gray-600 md:text-2xl">
-              Whether you're <span className="text-[var(--raisetalks-blue-primary)] font-semibold">raising capital</span> or
-              <span className="text-[var(--raisetalks-blue-primary)] font-semibold"> sourcing deals</span>, RaiseTalks offers plans designed to help you move faster—with clarity, confidence, and AI support.
+              Whether you're <span className="text-[var(--raisetalks-blue-primary-flat)] font-semibold">raising capital</span> or
+              <span className="text-[var(--raisetalks-blue-primary-flat)] font-semibold"> sourcing deals</span>, RaiseTalks offers plans designed to help you move faster—with clarity, confidence, and AI support.
             </p>
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function Pricing() {
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">For Startups</h2>
               <p className="text-2xl font-medium text-gray-600">From pitch to data room—fundraise smarter with AI.</p>
-              <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] mx-auto rounded-full mt-6"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] mx-auto rounded-full mt-6"></div>
             </div>
 
             {/* Pricing Toggle */}
@@ -113,7 +113,7 @@ export default function Pricing() {
                 <button
                   onClick={() => setIsAnnual(false)}
                   className={`px-6 py-3 rounded-lg font-semibold transition-all cursor-pointer ${!isAnnual
-                    ? 'bg-white text-[var(--raisetalks-blue-primary)] shadow-md'
+                    ? 'bg-white text-[var(--raisetalks-blue-primary-flat)] shadow-md'
                     : 'text-gray-600 hover:text-gray-900'
                     }`}
                 >
@@ -122,7 +122,7 @@ export default function Pricing() {
                 <button
                   onClick={() => setIsAnnual(true)}
                   className={`px-6 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 cursor-pointer ${isAnnual
-                    ? 'bg-white text-[var(--raisetalks-blue-primary)] shadow-md'
+                    ? 'bg-white text-[var(--raisetalks-blue-primary-flat)] shadow-md'
                     : 'text-gray-600 hover:text-gray-900'
                     }`}
                 >
@@ -164,7 +164,7 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Link
-                  className="w-full py-3 px-6 border-2 border-blue-600 text-[var(--raisetalks-blue-primary)] rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors text-center block mt-auto"
+                  className="w-full py-3 px-6 border-2 border-blue-600 text-[var(--raisetalks-blue-primary-flat)] rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors text-center block mt-auto"
                   to="#"
                 >
                   Get Free
@@ -217,7 +217,7 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Link
-                  className="w-full py-3 px-6 bg-white text-[var(--raisetalks-blue-primary)] rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center block mt-auto"
+                  className="w-full py-3 px-6 bg-white text-[var(--raisetalks-blue-primary-flat)] rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center block mt-auto"
                   to="#"
                 >
                   Start Free
@@ -235,7 +235,7 @@ export default function Pricing() {
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">For Investors</h2>
               <p className="text-2xl font-medium text-gray-600">Smarter pipeline access, data rooms on demand.</p>
-              <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] mx-auto rounded-full mt-6"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] mx-auto rounded-full mt-6"></div>
             </div>
 
             <div className="max-w-md mx-auto">
@@ -257,27 +257,27 @@ export default function Pricing() {
 
                 <ul className="mb-8 space-y-3">
                   <li className="flex items-center">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3">✓</span>
                     <span>Curated startup deal flow</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3">✓</span>
                     <span>AI-verified founder profiles</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3">✓</span>
                     <span>One-click access to data rooms</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3">✓</span>
                     <span>Investor insights & activity tracking</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3">✓</span>
                     <span>Founder contact & notes</span>
                   </li>
                   <li className="flex items-center">
-                    <span className="text-[var(--raisetalks-blue-primary)] mr-3">✓</span>
+                    <span className="text-[var(--raisetalks-blue-primary-flat)] mr-3">✓</span>
                     <span>Priority onboarding</span>
                   </li>
                 </ul>
@@ -316,7 +316,7 @@ export default function Pricing() {
                   Start Free Today
                 </Link>
                 <Link
-                  className="border-2 border-blue-600 text-[var(--raisetalks-blue-primary)] hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105"
+                  className="border-2 border-blue-600 text-[var(--raisetalks-blue-primary-flat)] hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105"
                   to="https://calendly.com/iamdariiava/30min?month=2025-08"
                 >
                   Schedule Demo

@@ -495,7 +495,7 @@ export default function Startups() {
               </Link>
               <Link
                 className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white hover:text-[#0174e1] transition-all duration-300 w-full sm:w-auto sm:min-w-[200px]"
-                to="/pricing">
+                to="https://app.raisetalks.com/pricing">
                 View Pricing
               </Link>
             </div>

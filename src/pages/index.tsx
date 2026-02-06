@@ -57,7 +57,7 @@ function HomepageCTA() {
           </Link>
           <Link
             className={styles.ctaButtonSecondary}
-            to="/pricing">
+            to="https://app.raisetalks.com/pricing">
             View Pricing
           </Link>
         </div>

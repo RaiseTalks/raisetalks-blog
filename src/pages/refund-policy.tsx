@@ -53,7 +53,7 @@ export default function RefundPolicy() {
           animation: fadeInUp 0.8s ease-out forwards;
         }
         .legal-content h2 {
-          color: var(--raisetalks-blue-primary);
+          color: var(--raisetalks-blue-primary-flat);
           font-size: 1.5rem;
           font-weight: 700;
           margin: 2.5rem 0 1rem 0;
@@ -102,7 +102,7 @@ export default function RefundPolicy() {
 
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 border border-blue-100 mb-8">
               <p className="text-lg leading-relaxed mb-0">
-                At <strong className="text-[var(--raisetalks-blue-primary)]">RaiseTalks</strong>, we strive to deliver exceptional value and service
+                At <strong className="text-[var(--raisetalks-blue-primary-flat)]">RaiseTalks</strong>, we strive to deliver exceptional value and service
                 to help founders and investors accelerate fundraising. All payments are processed securely through{' '}
                 <strong>Stripe</strong>. Please review our refund terms carefully before purchasing a subscription or service.
               </p>
@@ -138,7 +138,7 @@ export default function RefundPolicy() {
             </ul>
             <p>
               Requests for refunds must be submitted within <strong>7 calendar days</strong> of the charge date by emailing{' '}
-              <a href="mailto:billing@raisetalks.ai" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">billing@raisetalks.ai</a>{' '}
+              <a href="mailto:billing@raisetalks.ai" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">billing@raisetalks.ai</a>{' '}
               with your account details and reason for refund.
             </p>
 
@@ -188,7 +188,7 @@ export default function RefundPolicy() {
             <h2>6. Payment Disputes</h2>
             <p>
               If you believe a charge is incorrect or unauthorized, please contact us first at{' '}
-              <a href="mailto:billing@raisetalks.ai" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">billing@raisetalks.ai</a>{' '}
+              <a href="mailto:billing@raisetalks.ai" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">billing@raisetalks.ai</a>{' '}
               so we can assist you. Unauthorized charge disputes filed directly with your payment provider without contacting
               us may delay resolution.
             </p>
@@ -198,10 +198,10 @@ export default function RefundPolicy() {
 
             <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
               <p className="font-semibold text-gray-900 mb-2">RaiseTalks Billing Support</p>
-              <p>Email: <a href="mailto:billing@raisetalks.ai" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">billing@raisetalks.ai</a></p>
+              <p>Email: <a href="mailto:billing@raisetalks.ai" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">billing@raisetalks.ai</a></p>
               <p className="text-sm text-gray-600 mt-4">
                 <strong>Tip:</strong> Before requesting a refund, try our{' '}
-                <Link to="/pricing" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">Free Tier</Link>{' '}
+                <Link to="https://app.raisetalks.com/pricing" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">Free Tier</Link>{' '}
                 to explore our features and see if they meet your needs.
               </p>
             </div>
@@ -209,14 +209,14 @@ export default function RefundPolicy() {
             <div className="mt-12 text-center">
               <div className="inline-flex items-center gap-4">
                 <Link
-                  to="/pricing"
-                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300"
+                  to="https://app.raisetalks.com/pricing"
+                  className="bg-gradient-to-r from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300"
                 >
                   View Pricing Plans
                 </Link>
                 <Link
                   to="/terms-of-service"
-                  className="border-2 border-blue-600 text-[var(--raisetalks-blue-primary)] hover:bg-blue-600 hover:text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                  className="border-2 border-blue-600 text-[var(--raisetalks-blue-primary-flat)] hover:bg-blue-600 hover:text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
                 >
                   Terms of Service
                 </Link>

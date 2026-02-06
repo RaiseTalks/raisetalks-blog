@@ -67,7 +67,7 @@ div[class*='announcementBar'] {
 /* Enhanced Tags Design */
 .tag {
   background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  color: var(--raisetalks-blue-primary);
+  color: var(--raisetalks-blue-primary-flat);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -85,7 +85,7 @@ div[class*='announcementBar'] {
   background: var(--raisetalks-brand-gradient);
   color: white;
   text-decoration: none;
-  border-color: var(--raisetalks-blue-primary);
+  border-color: var(--raisetalks-blue-primary-flat);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
 }
@@ -94,7 +94,7 @@ div[class*='announcementBar'] {
 .blog-post-preview h2 a:focus,
 .tag:focus,
 article .markdown a:focus {
-  outline: 2px solid var(--raisetalks-blue-primary);
+  outline: 2px solid var(--raisetalks-blue-primary-flat);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -147,7 +147,7 @@ article .markdown a:focus {
 
 .cta-button {
   background: white;
-  color: var(--raisetalks-blue-primary);
+  color: var(--raisetalks-blue-primary-flat);
   padding: 15px 30px;
   border-radius: 8px;
   text-decoration: none;
@@ -158,7 +158,7 @@ article .markdown a:focus {
 
 .cta-button--primary {
   background: white;
-  color: var(--raisetalks-blue-primary);
+  color: var(--raisetalks-blue-primary-flat);
   padding: 18px 35px;
   border-radius: 10px;
   text-decoration: none;
@@ -366,7 +366,7 @@ article .markdown a:focus {
   .cta-box,
   .cta-box--primary {
     background: #f8f9fa !important;
-    border: 2px solid var(--raisetalks-blue-primary) !important;
+    border: 2px solid var(--raisetalks-blue-primary-flat) !important;
     color: #000 !important;
   }
 
@@ -380,8 +380,8 @@ article .markdown a:focus {
   .cta-button,
   .cta-button--primary {
     background: white !important;
-    color: var(--raisetalks-blue-primary) !important;
-    border: 2px solid var(--raisetalks-blue-primary) !important;
+    color: var(--raisetalks-blue-primary-flat) !important;
+    border: 2px solid var(--raisetalks-blue-primary-flat) !important;
   }
 
   article header {

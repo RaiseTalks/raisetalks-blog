@@ -53,7 +53,7 @@ export default function TermsOfService() {
           animation: fadeInUp 0.8s ease-out forwards;
         }
         .legal-content h2 {
-          color: var(--raisetalks-blue-primary);
+          color: var(--raisetalks-blue-primary-flat);
           font-size: 1.5rem;
           font-weight: 700;
           margin: 2.5rem 0 1rem 0;
@@ -102,7 +102,7 @@ export default function TermsOfService() {
 
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 border border-blue-100 mb-8">
               <p className="text-lg leading-relaxed mb-0">
-                Welcome to RaiseTalks, operated by <strong className="text-[var(--raisetalks-blue-primary)]">RAISETALKS AI, Inc.</strong>, a Delaware Corporation,
+                Welcome to RaiseTalks, operated by <strong className="text-[var(--raisetalks-blue-primary-flat)]">RAISETALKS AI, Inc.</strong>, a Delaware Corporation,
                 registered at 1111B S Governors Ave STE 34329, Dover, DE 19904 (Registration No. 10212227), and represented by
                 Director Dariia Vasylieva ("RaiseTalks", "we", "us", or "our").
               </p>
@@ -147,7 +147,7 @@ export default function TermsOfService() {
             <h2>3. Data Privacy and Compliance</h2>
             <p>
               We are committed to protecting your privacy. All personal data is processed in accordance with our{' '}
-              <Link to="/privacy-policy" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">Privacy Policy</Link>{' '}
+              <Link to="/privacy-policy" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">Privacy Policy</Link>{' '}
               and applicable data protection laws, including the <strong>General Data Protection Regulation (GDPR)</strong> and
               relevant U.S. regulations.
             </p>
@@ -207,9 +207,9 @@ export default function TermsOfService() {
             <h2>9. Payment Terms</h2>
             <p>
               Access to premium features requires payment as outlined on our{' '}
-              <Link to="/pricing" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">Pricing Page</Link>.
+              <Link to="https://app.raisetalks.com/pricing" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">Pricing Page</Link>.
               All payments are processed through third-party providers (e.g., Stripe) and are subject to our{' '}
-              <Link to="/refund-policy" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">Refund Policy</Link>.
+              <Link to="/refund-policy" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">Refund Policy</Link>.
             </p>
             <p>
               You authorize us to charge your payment method on a recurring basis unless you cancel before renewal.
@@ -263,7 +263,7 @@ export default function TermsOfService() {
               <p className="font-semibold text-gray-900 mb-2">RAISETALKS AI, Inc.</p>
               <p>1111B S Governors Ave STE 34329</p>
               <p>Dover, DE 19904</p>
-              <p>Email: <a href="mailto:legal@raisetalks.ai" className="text-[var(--raisetalks-blue-primary)] font-semibold hover:underline">legal@raisetalks.ai</a></p>
+              <p>Email: <a href="mailto:legal@raisetalks.ai" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">legal@raisetalks.ai</a></p>
             </div>
 
           </div>

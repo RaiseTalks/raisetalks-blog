@@ -132,9 +132,9 @@
 }
 
 .secondaryButton {
-   background: var(--raisetalks-blue-primary);
+   background: var(--raisetalks-brand-gradient);
    color: white;
-   border: 2px solid var(--raisetalks-blue-primary);
+   border: 2px solid var(--raisetalks-blue-primary-flat);
 }
 
 .secondaryButton:hover {

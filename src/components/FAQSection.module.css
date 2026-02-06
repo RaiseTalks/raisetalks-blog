@@ -60,18 +60,18 @@
 }
 
 .faqQuestion:hover {
-  color: var(--raisetalks-blue-primary);
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .faqQuestion.active {
-  color: var(--raisetalks-blue-primary);
+  color: var(--raisetalks-blue-primary-flat);
   background: #f0f7ff;
 }
 
 .faqIcon {
   font-size: 1.5rem;
   font-weight: 300;
-  color: var(--raisetalks-blue-primary);
+  color: var(--raisetalks-blue-primary-flat);
   transition: transform 0.3s ease;
   flex-shrink: 0;
   margin-left: 1rem;
