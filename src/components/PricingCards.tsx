@@ -26,19 +26,19 @@ export default function PricingCards() {
             </div>
             <ul className="space-y-3 mb-8">
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>5 Reports per month</span>
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>Basic AI analysis</span>
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>Email support</span>
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>1 User seat</span>
               </li>
             </ul>
@@ -60,23 +60,23 @@ export default function PricingCards() {
             </div>
             <ul className="space-y-3 mb-8">
               <li className="flex items-center">
-                <span className="mr-2">✓</span>
+                <span className="mr-2" aria-hidden="true">✓</span>
                 <span>Unlimited Reports</span>
               </li>
               <li className="flex items-center">
-                <span className="mr-2">✓</span>
+                <span className="mr-2" aria-hidden="true">✓</span>
                 <span>Advanced AI analysis</span>
               </li>
               <li className="flex items-center">
-                <span className="mr-2">✓</span>
+                <span className="mr-2" aria-hidden="true">✓</span>
                 <span>Priority support</span>
               </li>
               <li className="flex items-center">
-                <span className="mr-2">✓</span>
+                <span className="mr-2" aria-hidden="true">✓</span>
                 <span>5 User seats</span>
               </li>
               <li className="flex items-center">
-                <span className="mr-2">✓</span>
+                <span className="mr-2" aria-hidden="true">✓</span>
                 <span>API access</span>
               </li>
             </ul>
@@ -94,23 +94,23 @@ export default function PricingCards() {
             </div>
             <ul className="space-y-3 mb-8">
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>Everything in Pro</span>
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>Custom AI models</span>
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>Dedicated support</span>
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>Unlimited seats</span>
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <span className="text-green-500 mr-2" aria-hidden="true">✓</span>
                 <span>SLA guarantee</span>
               </li>
             </ul>

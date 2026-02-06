@@ -196,22 +196,22 @@ export default function AboutUs() {
                {/* Photo Gallery */}
                <div className={styles.missionGallery}>
                   <div className={styles.missionGalleryItem}>
-                     <img src="/img/about-us/43.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} />
+                     <img src="/img/about-us/43.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} loading="lazy" />
                   </div>
                   <div className={styles.missionGalleryItem}>
-                     <img src="/img/about-us/44.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} />
+                     <img src="/img/about-us/44.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} loading="lazy" />
                   </div>
                   <div className={styles.missionGalleryItem}>
-                     <img src="/img/about-us/45.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} />
+                     <img src="/img/about-us/45.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} loading="lazy" />
                   </div>
                   <div className={styles.missionGalleryItem}>
-                     <img src="/img/about-us/46.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} />
+                     <img src="/img/about-us/46.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} loading="lazy" />
                   </div>
                   <div className={styles.missionGalleryItem}>
-                     <img src="/img/about-us/47.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} />
+                     <img src="/img/about-us/47.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} loading="lazy" />
                   </div>
                   <div className={styles.missionGalleryItem}>
-                     <img src="/img/about-us/48.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} />
+                     <img src="/img/about-us/48.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} loading="lazy" />
                   </div>
                </div>
             </div>
@@ -286,6 +286,7 @@ export default function AboutUs() {
                               src="/img/icons/dariia.png"
                               alt="Dr. Dariia Vasylieva - President, CEO"
                               className={styles.founderImageInner}
+                              loading="lazy"
                            />
                         </div>
                         <h3 className={styles.founderName}>Dr. Dariia Vasylieva</h3>

@@ -250,7 +250,7 @@
 .cardIcon {
   width: 1.5rem;
   height: 1.5rem;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .cardTitle {

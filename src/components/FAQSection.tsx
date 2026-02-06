@@ -16,7 +16,7 @@ const faqData: FAQItem[] = [
     answer: "RaiseTalks is built for early-stage startups, founders, and entrepreneurs seeking to improve their investment readiness and increase their chances of securing funding."
   },
   {
-    question: "How does AI Advisor works?",
+    question: "How does AI Advisor work?",
     answer: "Simply ask the any question about fundraising preparation—whether it's about structuring your data room, crafting a pitch deck, or building a financial model—and it provides tailored answers, tools, and templates."
   },
   {
@@ -76,13 +76,19 @@ export default function FAQSection() {
               <button
                 className={`${styles.faqQuestion} ${openIndex === index ? styles.active : ''}`}
                 onClick={() => toggleFAQ(index)}
+                aria-expanded={openIndex === index}
+                aria-controls={`faq-answer-${index}`}
+                id={`faq-question-${index}`}
               >
                 <span>{item.question}</span>
-                <span className={styles.faqIcon}>
+                <span className={styles.faqIcon} aria-hidden="true">
                   {openIndex === index ? '−' : '+'}
                 </span>
               </button>
               <div
+                id={`faq-answer-${index}`}
+                role="region"
+                aria-labelledby={`faq-question-${index}`}
                 className={`${styles.faqAnswer} ${openIndex === index ? styles.open : ''}`}
               >
                 <div className={styles.faqAnswerContent}>

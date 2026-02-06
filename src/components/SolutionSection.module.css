@@ -80,7 +80,7 @@
 .featureIcon {
    height: 1.5rem;
    width: 1.5rem;
-   color: #0174e1;
+   color: var(--raisetalks-blue-primary-flat);
 }
 
 .featureTitle {
@@ -316,7 +316,7 @@
    display: inline-block;
    padding: 1rem 2.5rem;
    background: white;
-   color: #0174e1 !important;
+   color: var(--raisetalks-blue-primary-flat) !important;
    border-radius: 8px;
    font-weight: 600;
    font-size: 1.125rem;
@@ -328,7 +328,7 @@
 .exploreButton:hover {
    transform: translateY(-2px);
    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-   color: #0174e1 !important;
+   color: var(--raisetalks-blue-primary-flat) !important;
    text-decoration: none;
 }
 

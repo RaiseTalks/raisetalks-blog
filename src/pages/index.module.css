@@ -422,11 +422,11 @@
 }
 
 .starterGradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
 }
 
 .enhanceGradient {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #003687 0%, #0174e1 100%);
 }
 
 .growthGradient {
@@ -593,15 +593,15 @@
 }
 
 .roadmapCard2 .roadmapCardHeader {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0174e1 0%, #0166ca 100%);
 }
 
 .roadmapCard3 .roadmapCardHeader {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #003687 0%, #0174e1 100%);
 }
 
 .roadmapCard4 .roadmapCardHeader {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #0060aa 0%, #0077ff 100%);
 }
 
 .quarterInfo {

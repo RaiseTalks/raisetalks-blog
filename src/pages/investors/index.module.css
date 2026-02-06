@@ -68,7 +68,7 @@
 .titleIcon {
   width: 1.5rem;
   height: 1.5rem;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .sectionTitle {
@@ -127,7 +127,7 @@
 .benefitIcon {
   width: 1.75rem;
   height: 1.75rem;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .benefitTitle {
@@ -183,7 +183,7 @@
 .rubricIcon {
   width: 1.5rem;
   height: 1.5rem;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .rubricLabel {
@@ -255,7 +255,7 @@
 .featureIcon {
   width: 1.25rem;
   height: 1.25rem;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .featureTitle {
@@ -316,7 +316,7 @@
 .ddIcon {
   width: 1.25rem;
   height: 1.25rem;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .ddLabel {
@@ -346,7 +346,7 @@
 }
 
 .ddBullet {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
   font-weight: 600;
 }
 
@@ -398,7 +398,7 @@
 }
 
 .dotVerified {
-  background: #0174e1;
+  background: var(--raisetalks-blue-primary-flat);
   border-color: #0166ca;
 }
 
@@ -426,7 +426,7 @@
 .additionalIcon {
   width: 1.25rem;
   height: 1.25rem;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 /* Output Card */
@@ -460,7 +460,7 @@
 }
 
 .outputIconWrap .outputIcon {
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .outputIconWrapAlt {
@@ -528,7 +528,7 @@
   padding: 0.5rem 1rem;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
   background: linear-gradient(135deg, rgba(1, 116, 225, 0.08) 0%, rgba(1, 102, 202, 0.12) 100%);
   border: 1px solid rgba(1, 116, 225, 0.2);
   border-radius: 100px;
@@ -581,7 +581,7 @@
   gap: 0.5rem;
   padding: 1rem 2rem;
   background: white;
-  color: #0174e1 !important;
+  color: var(--raisetalks-blue-primary-flat) !important;
   border-radius: 0.75rem;
   font-weight: 600;
   font-size: 1rem;
@@ -593,7 +593,7 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   text-decoration: none;
-  color: #0174e1 !important;
+  color: var(--raisetalks-blue-primary-flat) !important;
 }
 
 .ctaArrow {
@@ -622,7 +622,7 @@
 
 .ctaSecondary:hover {
   background: white;
-  color: #0174e1 !important;
+  color: var(--raisetalks-blue-primary-flat) !important;
   text-decoration: none;
 }
 

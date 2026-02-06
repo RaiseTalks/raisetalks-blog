@@ -23,6 +23,7 @@
   /* Brand Blue Colors from Figma - Now Using Brand Gradient */
   --raisetalks-blue-primary: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
   --raisetalks-blue-primary-flat: #0174e1;
+  --raisetalks-blue-secondary: #0166ca;
   --raisetalks-blue-dark: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
   --raisetalks-blue-text: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
 
@@ -32,16 +33,8 @@
   --e-global-color-text: #000000;
   --e-global-color-accent: #ea2640;
   --e-global-color-secondary-accent: #ffab0e;
-  --grandguide-main-gradient: linear-gradient(
-    75.88deg,
-    #0060aa -3.42%,
-    #00b7ed 99.98%
-  );
-  --grandguide-alt-gradient: linear-gradient(
-    70.99deg,
-    #ff6929 -3.42%,
-    #ea265f 71.08%
-  );
+  /* Legacy gradient aliases - mapped to brand gradient */
+  --grandguide-main-gradient: var(--raisetalks-brand-gradient);
 
   /* RaiseTalks Brand Gradient - From Figma Design */
   --raisetalks-brand-gradient: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);

@@ -178,12 +178,12 @@
 
 .button--outline {
   background: transparent;
-  color: #0174e1;
-  border-color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
+  border-color: var(--raisetalks-blue-primary-flat);
 }
 
 .button--outline:hover {
-  background: #0174e1;
+  background: var(--raisetalks-blue-primary-flat);
   color: white;
 }
 
@@ -735,7 +735,7 @@
 
 .ctaButtonPrimary {
   background: white;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
   padding: 1rem 2rem;
   border-radius: 0.75rem;
   font-weight: 600;
@@ -749,7 +749,7 @@
   transform: scale(1.05);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   text-decoration: none;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
 }
 
 .ctaButtonSecondary {
@@ -767,7 +767,7 @@
 
 .ctaButtonSecondary:hover {
   background: white;
-  color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
   text-decoration: none;
 }
 

@@ -9,9 +9,8 @@ export default function NewsletterForm() {
     e.preventDefault();
     setStatus('loading');
     
-    // Simulate API call
+    // TODO: Connect to newsletter API (e.g., Supabase or email service)
     setTimeout(() => {
-      console.log('Newsletter signup:', email);
       setStatus('success');
       setEmail('');
       setTimeout(() => setStatus('idle'), 3000);
@@ -33,6 +32,7 @@ export default function NewsletterForm() {
             <input
               type="email"
               placeholder="Enter your Email"
+              aria-label="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

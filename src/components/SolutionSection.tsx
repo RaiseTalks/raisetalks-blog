@@ -133,7 +133,7 @@ function AIAdvisorDemo() {
             playerVars: {
                autoplay: 1,
                controls: 0,
-               disablekb: 1,
+               disablekb: 0,
                fs: 0,
                iv_load_policy: 3,
                modestbranding: 1,
@@ -224,6 +224,7 @@ export default function SolutionSection() {
                      src="/img/DataRoomInterface.png"
                      alt="Data Room Interface - Smart, organized, investor-ready"
                      className={styles.dataRoomScreenshot}
+                     loading="lazy"
                   />
                </div>
             </div>
@@ -270,6 +271,7 @@ export default function SolutionSection() {
                   src="/img/startups-layout.png"
                   alt="Investor Dashboard - Curated startup pipeline"
                   className={styles.startupsLayoutImage}
+                  loading="lazy"
                />
             </div>
          </div>

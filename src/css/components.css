@@ -18,7 +18,7 @@ div[class*='announcementBar'] {
 
 /* Alternative gradient utility class */
 .hero--alt {
-  background: var(--grandguide-alt-gradient);
+  background: var(--raisetalks-brand-gradient);
 }
 
 .hero__title {

@@ -199,12 +199,12 @@
 
 .button--outline {
   background: transparent;
-  color: #0174e1;
-  border-color: #0174e1;
+  color: var(--raisetalks-blue-primary-flat);
+  border-color: var(--raisetalks-blue-primary-flat);
 }
 
 .button--outline:hover {
-  background: #0174e1;
+  background: var(--raisetalks-blue-primary-flat);
   color: white;
 }
 

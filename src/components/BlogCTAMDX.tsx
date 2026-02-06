@@ -7,7 +7,7 @@ export const DataRoomCTA: React.FC = () => (
     title="Download the Complete Data Room Checklist"
     description="Join 2,500+ funded founders who collectively raised $847M using this exact system"
     buttonText="Get Free Checklist + Email Course →"
-    buttonLink="#"
+    buttonLink="https://app.raisetalks.com/sign-up"
     disclaimer="No spam. Unsubscribe anytime. Used by founders at YC, Techstars & 500 Startups."
     variant="default"
   />
@@ -18,7 +18,7 @@ export const DataRoomCTAPrimary: React.FC = () => (
     title="Get Your Free Data Room Checklist Now"
     description="Join 2,500+ funded founders who raised $847M using this proven system"
     buttonText="Download Free Checklist + Bonus Email Course →"
-    buttonLink="#"
+    buttonLink="https://app.raisetalks.com/sign-up"
     disclaimer="Instant download • No spam • Unsubscribe anytime"
     variant="primary"
   />
