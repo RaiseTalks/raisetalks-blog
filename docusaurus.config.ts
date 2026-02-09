@@ -130,6 +130,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: 'https://tv.raisetalks.com',
+          label: 'RaiseTalks TV',
+          position: 'left',
+        },
+        {
           to: 'https://calendly.com/iamdariiava/30min',
           label: 'Contact Us',
           position: 'right',
