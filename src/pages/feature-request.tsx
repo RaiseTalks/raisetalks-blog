@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
@@ -29,6 +29,11 @@ export default function FeatureRequest() {
   const [errorMessage, setErrorMessage] = useState('');
   const [charCount, setCharCount] = useState(0);
   const maxChars = 2000;
+
+  // Bot protection: track form load time and honeypot value via refs
+  // (NOT in formData state to avoid localStorage leak from auto-save)
+  const formLoadedAt = useRef(Date.now());
+  const honeypotRef = useRef('');
 
   // Load draft from localStorage
   useEffect(() => {
@@ -101,7 +106,11 @@ export default function FeatureRequest() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          website: honeypotRef.current,
+          _formLoadedAt: formLoadedAt.current,
+        }),
       });
 
       if (!response.ok) {
@@ -215,6 +224,17 @@ export default function FeatureRequest() {
           <div className="max-w-3xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 border border-gray-200">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field — invisible to real users, catches bots */}
+                <input
+                  type="text"
+                  name="website"
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ position: 'absolute', left: '-9999px' }}
+                  onChange={(e) => { honeypotRef.current = e.target.value; }}
+                />
+
                 {/* Name Field (Optional) */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">

@@ -3,6 +3,7 @@
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { corsHeaders } from '../_shared/cors.ts';
+import { checkRateLimit, getClientIp } from '../_shared/rate-limit.ts';
 
 interface FeatureRequestPayload {
   name: string;
@@ -11,29 +12,19 @@ interface FeatureRequestPayload {
   priority: string;
   description: string;
   useCase: string;
+  website?: string;
+  _formLoadedAt?: number;
 }
 
-// Rate limiting store (in production, use Supabase database)
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-
-function checkRateLimit(email: string): boolean {
-  const now = Date.now();
-  const limit = 5; // 5 requests per hour
-  const window = 3600000; // 1 hour in milliseconds
-
-  const record = rateLimitMap.get(email);
-
-  if (!record || record.resetTime < now) {
-    rateLimitMap.set(email, { count: 1, resetTime: now + window });
-    return true;
-  }
-
-  if (record.count >= limit) {
-    return false;
-  }
-
-  record.count++;
-  return true;
+/**
+ * Escape HTML special characters to prevent injection in Telegram HTML messages.
+ */
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 async function sendToTelegram(
@@ -60,7 +51,7 @@ async function sendToTelegram(
 }
 
 serve(async (req) => {
-  // Handle CORS
+  // 1. Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
   }
@@ -74,10 +65,49 @@ serve(async (req) => {
       throw new Error('Telegram credentials not configured');
     }
 
-    // Parse request body
+    // 2. Parse request body
     const data: FeatureRequestPayload = await req.json();
 
-    // Validate required fields
+    // 3. Honeypot check: if filled, return fake success (trick the bot)
+    if (data.website) {
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: 'Feature request submitted successfully',
+        }),
+        {
+          status: 200,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      );
+    }
+
+    // 4. Time validation: reject if submitted too fast (< 3s) or too old (> 24h)
+    const MIN_ELAPSED_MS = 3000;
+    const MAX_ELAPSED_MS = 86400000; // 24 hours
+    if (data._formLoadedAt) {
+      const elapsed = Date.now() - data._formLoadedAt;
+      if (elapsed < MIN_ELAPSED_MS || elapsed > MAX_ELAPSED_MS) {
+        return new Response(
+          JSON.stringify({ error: 'Invalid submission timing' }),
+          {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          },
+        );
+      }
+    } else {
+      // Missing timestamp — reject as suspicious
+      return new Response(
+        JSON.stringify({ error: 'Invalid submission' }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      );
+    }
+
+    // 5. Field validation: email + description required
     if (!data.email || !data.description) {
       return new Response(
         JSON.stringify({ error: 'Missing required fields' }),
@@ -88,44 +118,79 @@ serve(async (req) => {
       );
     }
 
-    // Validate email format
+    // 6. Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-      return new Response(JSON.stringify({ error: 'Invalid email address' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
-
-    // Check rate limit
-    if (!checkRateLimit(data.email)) {
       return new Response(
-        JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+        JSON.stringify({ error: 'Invalid email address' }),
         {
-          status: 429,
+          status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         },
       );
     }
 
-    // Format message for Telegram
+    // 7. Max-length validation
+    if (
+      (data.name && data.name.length > 200) ||
+      data.email.length > 254 ||
+      data.description.length > 2000
+    ) {
+      return new Response(
+        JSON.stringify({ error: 'Field exceeds maximum length' }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      );
+    }
+
+    // 8. Rate limit check (dual-key: email + IP)
+    const clientIp = getClientIp(req);
+    const rateLimitResult = checkRateLimit(data.email, clientIp);
+
+    if (!rateLimitResult.allowed) {
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+        {
+          status: 429,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+            ...(rateLimitResult.retryAfter
+              ? { 'Retry-After': String(rateLimitResult.retryAfter) }
+              : {}),
+          },
+        },
+      );
+    }
+
+    // 9. Escape HTML in all user-provided fields before Telegram interpolation
+    const safeName = escapeHtml(data.name || '');
+    const safeEmail = escapeHtml(data.email);
+    const safeFeatureType = escapeHtml(data.featureType || '');
+    const safePriority = escapeHtml(data.priority || '');
+    const safeDescription = escapeHtml(data.description);
+    const safeUseCase = escapeHtml(data.useCase || '');
+
+    // 10. Format message for Telegram
     const message = `
 <b>New Feature Request</b>
 
-<b>From:</b> ${data.name || 'Anonymous'} (${data.email})
-<b>Type:</b> ${data.featureType.replace('-', ' ').toUpperCase()}
-<b>Priority:</b> ${data.priority.toUpperCase()}
+<b>From:</b> ${safeName || 'Anonymous'} (${safeEmail})
+<b>Type:</b> ${safeFeatureType.replace('-', ' ').toUpperCase()}
+<b>Priority:</b> ${safePriority.toUpperCase()}
 
 <b>Description:</b>
-${data.description}
+${safeDescription}
 
-${data.useCase ? `<b>Use Case:</b>\n${data.useCase}` : ''}
+${safeUseCase ? `<b>Use Case:</b>\n${safeUseCase}` : ''}
 
 ---
 <i>Submitted via RaiseTalks Feature Request Form</i>
     `.trim();
 
-    // Send to Telegram
+    // 11. Send to Telegram
     const telegramResponse = await sendToTelegram(
       TELEGRAM_BOT_TOKEN,
       TELEGRAM_CHAT_ID,
@@ -137,11 +202,6 @@ ${data.useCase ? `<b>Use Case:</b>\n${data.useCase}` : ''}
       console.error('Telegram API error:', error);
       throw new Error('Failed to send message to Telegram');
     }
-
-    // Optional: Store in Supabase database for backup
-    // const { data: dbData, error: dbError } = await supabase
-    //   .from('feature_requests')
-    //   .insert([data])
 
     return new Response(
       JSON.stringify({
