@@ -74,7 +74,7 @@ export default function AffiliateProgram() {
           </h1>
           <p className="cleanHeroDescription">
             Support founders, earn rewards. Whether you're a startup enthusiast, VC scout, accelerator lead, or
-            founder community builder — our affiliate program lets you grow with us.
+            founder community builder - our affiliate program lets you grow with us.
           </p>
         </div>
       </section>

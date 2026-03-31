@@ -25,7 +25,7 @@ export default function NewsletterForm() {
           Subscribe to our <strong>Newsletter</strong>
         </h3>
         <p className={styles.newsletterDescription}>
-          Stay ahead with real fundraising playbooks, diligence checklists, and investor-ready tools - built for founders who want speed and trust in every round.
+          Get insights from RaiseTalks and build trust in every round.
         </p>
         
         <form onSubmit={handleSubmit} className={styles.newsletterForm}>

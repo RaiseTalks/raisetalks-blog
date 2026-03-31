@@ -208,7 +208,7 @@ export default function InvestorsPage() {
           </Heading>
           <p className="cleanHeroDescription">
             Turn raw startup info into standardized, IC-ready outputs with audit trail,
-            benchmarks, and collaboration — so funds screen faster and decide better.
+            benchmarks, and collaboration - so funds screen faster and decide better.
           </p>
           <div className="cleanHeroButtons">
             <Link className="cleanHeroPrimaryButton" to="/startups">
