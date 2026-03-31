@@ -65,9 +65,6 @@ export default function FAQSection() {
       <div className="container mx-auto px-4">
         <div className={styles.faqHeader}>
           <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
-          <p className={styles.faqSubtitle}>
-            Everything you need to know about RaiseTalks
-          </p>
         </div>
 
         <div className={styles.faqContainer}>

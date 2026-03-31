@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -7,502 +7,511 @@ import FAQSection from '@site/src/components/FAQSection';
 
 import styles from './startups.module.css';
 
-// Custom hook for scroll animations
+// Scroll animation hook
 function useScrollAnimation() {
-  const ref = useRef(null);
-
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fadeInUp');
-        }
+        if (entry.isIntersecting) entry.target.classList.add(styles.visible);
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    if (ref.current) observer.observe(ref.current);
+    return () => { if (ref.current) observer.unobserve(ref.current); };
   }, []);
-
   return ref;
 }
 
-// Icon components - Simple SVG icons for features
-const DataRoomIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
-    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-    <path d="M16 13H8" />
-    <path d="M16 17H8" />
-    <path d="M10 9H8" />
+// Icons
+const PrepareIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.pillarIcon}>
+    <path d="M9 12l2 2 4-4" /><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2Z" />
   </svg>
 );
-
-const AIAdvisorIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
-    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
-  </svg>
-);
-
-const EngagementIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M22 12h-2.48a2 2 0 0 0-1.93 2.52l-1.35 4.87a1 1 0 0 1-1.93-.01L9.8 9.35a1 1 0 0 0-1.93.01L6.52 14.5A2 2 0 0 1 4.6 16H2" />
-  </svg>
-);
-
-const SecurityIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M20 13c0 5-3.5 7.5-8 12.5C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6-2 1.5.8 4 2 6 2a1 1 0 0 1 1 1z" />
-  </svg>
-);
-
-const ArrowRightIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M5 12h14" />
-    <path d="m12 5 7 7-7 7" />
-  </svg>
-);
-
-const SparklesIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+const IlluminateIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.pillarIcon}>
+    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
     <circle cx="12" cy="12" r="3" />
   </svg>
 );
+const AccelerateIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.pillarIcon}>
+    <path d="m5 12 7-7 7 7" /><path d="M12 19V5" />
+  </svg>
+);
+const CheckIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="14" height="14">
+    <path d="M20 6 9 17l-5-5"/>
+  </svg>
+);
 
+// Animated section wrapper
+function AnimSection({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const ref = useScrollAnimation();
+  return <div ref={ref} className={clsx(styles.animSection, className)}>{children}</div>;
+}
 
-// Badge Component
-function Badge({ 
-  children, 
-  variant = 'default', 
-  className = '' 
-}: { 
-  children: React.ReactNode; 
-  variant?: 'default' | 'secondary' | 'outline';
-  className?: string;
-}) {
+// Benefits list
+function BenefitList({ items }: { items: string[] }) {
   return (
-    <span className={clsx(styles.badge, styles[`badge--${variant}`], className)}>
-      {children}
-    </span>
+    <ul className={styles.benefitList}>
+      {items.map((item, i) => (
+        <li key={i} className={styles.benefitItem}>
+          <span className={styles.benefitCheck}><CheckIcon /></span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
-// Card Components
-function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <div className={clsx(styles.card, className)}>{children}</div>;
-}
-
-function CardHeader({ children }: { children: React.ReactNode }) {
-  return <div className={styles.cardHeader}>{children}</div>;
-}
-
-function CardContent({ children }: { children: React.ReactNode }) {
-  return <div className={styles.cardContent}>{children}</div>;
-}
-
-function CardTitle({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <h3 className={clsx(styles.cardTitle, className)}>{children}</h3>;
-}
-
-function CardDescription({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <p className={clsx(styles.cardDescription, className)}>{children}</p>;
-}
-
-// Button Component
-function Button({ 
-  children, 
-  size = 'default', 
-  variant = 'default', 
-  className = '',
-  onClick,
-  href
-}: { 
-  children: React.ReactNode; 
-  size?: 'default' | 'lg';
-  variant?: 'default' | 'outline';
-  className?: string;
-  onClick?: () => void;
-  href?: string;
-}) {
-  const buttonClass = clsx(styles.button, styles[`button--${variant}`], styles[`button--${size}`], className);
-  
-  if (href) {
-    return <Link className={buttonClass} to={href}>{children}</Link>;
-  }
-  
-  return (
-    <button className={buttonClass} onClick={onClick}>
-      {children}
-    </button>
-  );
-}
-
-// Original FeatureCard component with 2-column layout
-interface FeatureCardProps {
+// Feature slider
+interface SlideData {
   title: string;
   subtitle: string;
   description: string;
-  imageComponent?: React.ReactNode;
-  layout?: 'default' | 'reverse';
-  category?: string;
-  benefits?: string[];
-  ctaText?: string;
+  benefits: string[];
+  image: React.ReactNode;
+  ctaText: string;
   ctaLink?: string;
 }
 
-function FeatureCard({
-  title,
-  subtitle,
-  description,
-  imageComponent,
-  layout = 'default',
-  category = 'Core Feature',
-  benefits = [],
-  ctaText = 'Try This Feature',
-  ctaLink = 'https://app.raisetalks.com/sign-up'
-}: FeatureCardProps) {
-  const animationRef = useScrollAnimation();
+const ChevronLeft = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="20" height="20">
+    <path d="m15 18-6-6 6-6"/>
+  </svg>
+);
+const ChevronRight = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="20" height="20">
+    <path d="m9 18 6-6-6-6"/>
+  </svg>
+);
+
+function FeatureSlider({ slides }: { slides: SlideData[] }) {
+  const [active, setActive] = useState(0);
+  const total = slides.length;
+  const slide = slides[active];
+
+  const prev = () => setActive((i) => (i - 1 + total) % total);
+  const next = () => setActive((i) => (i + 1) % total);
+
+  const ref = useScrollAnimation();
 
   return (
-    <div
-      ref={animationRef}
-      className={clsx(
-        'py-20 border-b last:border-b-0 transition-all duration-700',
-        layout === 'reverse' ? styles.featureCardReverse : styles.featureCardDefault,
-        styles.animateIn
-      )}
-      id={title.toLowerCase().replace(/&/g, '').replace(/\s+/g, '-')}
-      style={{ animationDelay: '0.2s' }}
-    >
-      <div className={clsx('container px-4 mx-auto', styles.container)}>
-        <div className={clsx('grid lg:grid-cols-2 gap-16 items-center', layout === 'reverse' ? 'lg:flex-row-reverse' : '')}>
-          <div className={layout === 'reverse' ? 'lg:order-2' : ''}>
-            {/* Category Badge */}
-            <Badge variant="outline" className="mb-4">
-              {category}
-            </Badge>
-
-            {/* Feature Content */}
-            <CardTitle className={clsx(styles.heroTitle, 'mb-4 text-4xl font-bold leading-tight')}>{title}</CardTitle>
-            <p className={clsx(styles.heroTitleAccent, 'text-2xl font-semibold mb-6 leading-relaxed')}>{subtitle}</p>
-            <p className={clsx(styles.cardDescription, 'mb-8 text-xl leading-relaxed')}>{description}</p>
-
-            {/* Benefits List */}
-            {benefits.length > 0 && (
-              <ul className={clsx(styles.benefitsList, 'mb-8')}>
-                {benefits.map((benefit, index) => (
-                  <li key={index} className={styles.benefitItem}>
-                    <span className={styles.benefitCheck}>✓</span>
-                    <span className={styles.benefitText}>{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {/* Feature CTA */}
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Button
-                size="lg"
-                href={ctaLink}
-              >
-                {ctaText}
-                <ArrowRightIcon className={styles.buttonIcon} />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                href="https://calendly.com/iamdariiava/30min"
-              >
-                Learn More
-              </Button>
-            </div>
-          </div>
-
-          <div className={layout === 'reverse' ? 'lg:order-1' : ''}>
-            <div className="relative group">
-              {imageComponent || (
-                <div className="p-16 text-center transition-all duration-300 border border-blue-200 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl group-hover:shadow-xl">
-                  <div className="text-xl text-gray-400">Feature Screenshot</div>
-                  <div className="mt-2 text-sm text-gray-500">Coming Soon</div>
-                </div>
-              )}
-            </div>
+    <div ref={ref} className={clsx(styles.animSection, styles.sliderWrap)}>
+      {/* Slide content */}
+      <div className={styles.slideContent}>
+        <div className={styles.featureText}>
+          <h3 className={styles.featureTitle}>{slide.title}</h3>
+          <p className={styles.featureSubtitle}>{slide.subtitle}</p>
+          <p className={styles.featureDesc}>{slide.description}</p>
+          <BenefitList items={slide.benefits} />
+          <div className={styles.featureActions}>
+            <Link className={styles.btnPrimary} to={slide.ctaLink ?? 'https://app.raisetalks.com/sign-up'}>
+              {slide.ctaText}
+            </Link>
+            <Link className={styles.btnGhost} to="https://calendly.com/iamdariiava/30min">
+              Book a Demo
+            </Link>
           </div>
         </div>
+        <div className={styles.featureVisual}>
+          {slide.image}
+        </div>
+      </div>
+
+      {/* Controls row */}
+      <div className={styles.sliderControls}>
+        <button className={styles.sliderBtn} onClick={prev} aria-label="Previous">
+          <ChevronLeft />
+        </button>
+        <span className={styles.sliderCount}>
+          <span className={styles.sliderCountActive}>{String(active + 1).padStart(2, '0')}</span>
+          <span className={styles.sliderCountSep}>/</span>
+          <span className={styles.sliderCountTotal}>{String(total).padStart(2, '0')}</span>
+        </span>
+        <div className={styles.sliderDots}>
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              className={clsx(styles.sliderDot, i === active && styles.sliderDotActive)}
+              onClick={() => setActive(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        <button className={styles.sliderBtn} onClick={next} aria-label="Next">
+          <ChevronRight />
+        </button>
       </div>
     </div>
   );
 }
 
-function EnhancedImagePlaceholder({ children, title }: { children: React.ReactNode; title: string }) {
+// Image wrapper
+function FeatureImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="p-12 text-center transition-all duration-300 border border-blue-200 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl hover:shadow-xl group">
-      <div className="mb-2 text-lg font-semibold text-gray-600">{title}</div>
-      <div className="mb-4 text-base font-medium text-gray-600">{children}</div>
-      <div className="text-sm text-gray-500">Interactive Preview Coming Soon</div>
-      {/* Mock UI elements */}
-      <div className="mt-6 space-y-3">
-        <div className="w-3/4 h-3 mx-auto bg-gray-300 rounded-full opacity-60"></div>
-        <div className="w-1/2 h-3 mx-auto bg-gray-300 rounded-full opacity-40"></div>
-        <div className="w-2/3 h-3 mx-auto bg-gray-300 rounded-full opacity-30"></div>
-      </div>
+    <div className={styles.imageWrap}>
+      <img src={src} alt={alt} className={styles.featureImg} loading="lazy" />
     </div>
   );
 }
 
-function MultiImageGallery() {
-  const images = [
-    { title: "General", src: "/img/icons/general.svg" },
-    { title: "Product", src: "/img/icons/product.svg" },
-    { title: "Market", src: "/img/icons/market.svg" },
-    { title: "Finance", src: "/img/icons/finance.svg" }
-  ];
-
-  return (
-    <div className="grid grid-cols-2">
-      {images.map((image, index) => (
-        <div key={index} className="flex justify-center">
-          <img
-            src={image.src}
-            alt={image.title}
-            className="h-60 max-w-full p-2"
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default function Startups() {
   return (
     <Layout
-      title="Features"
-      description="AI-powered fundraising workspace features - data rooms, AI advisor, engagement tracking, and more">
+      title="For Startups - Build an Investor-Ready Raise"
+      description="RaiseTalks gives early-stage founders an AI-powered workspace to turn raw documents, data, and narrative into an investor-grade data room - scored, structured, and tracked in real time."
+    >
 
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeInUp {
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-      `}</style>
-
-      {/* Hero Section */}
-      <section className="cleanHeroSection">
-        <div className="cleanHeroContainer">
-          <Heading as="h1" className="cleanHeroTitle">
-            Features That{' '}
-            <span className="cleanHeroTitleAccent">Transform Your Fundraising</span>
+      {/* ── HERO ─────────────────────────────────────── */}
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div className={styles.heroEyebrow}>For Founders Who Are Serious About Raising</div>
+          <Heading as="h1" className={styles.heroTitle}>
+            The Raise Is Won<br />
+            <span className={styles.heroAccent}>Before the Meeting</span>
           </Heading>
-          <p className="cleanHeroDescription">
-            <strong>RaiseTalks</strong> replaces hours of prep, endless files,
-            and expensive advisors with one smart, founder-first platform.
-            Get investor-ready faster with AI precision and zero guesswork.
+          <p className={styles.heroDesc}>
+            Investors don’t pass on the idea. They pass on the mess. RaiseTalks fixes it first.
           </p>
-          <div className="cleanHeroButtons">
-            <Link className="cleanHeroPrimaryButton" to="https://app.raisetalks.com/sign-up">
-              Start Free Trial
+          <div className={styles.heroActions}>
+            <Link className={styles.btnPrimary} to="https://app.raisetalks.com/sign-up">
+              Try It Free
+            </Link>
+            <Link className={styles.btnSecondary} to="https://calendly.com/iamdariiava/30min">
+              Book a Demo
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <main>
-        {/* Basic Data Room */}
-        <FeatureCard
-          title="Basic Data Room"
-          subtitle="Investor-grade files, ready in a flash."
-          description="A secure, lightning-fast vault that lets you upload, organize, and share key docs with a single link."
-          imageComponent={<MultiImageGallery />}
-          category="Core Platform"
-          benefits={[
-            "Upload and organize documents in minutes",
-            "Share with a single secure link",
-            "Enterprise-grade security and encryption",
-            "Mobile-friendly access for investors"
-          ]}
-          ctaText="Create Data Room"
-        />
+      {/* ── TRUTH BAR ────────────────────────────────── */}
+      <div className={styles.truthBar}>
+        <div className={styles.truthInner}>
+          <span className={styles.truthLabel}>The Core Insight</span>
+          <blockquote className={styles.truthQuote}>
+            "The fundraising problem is not a pitch problem. It's a preparation problem —
+            and nobody has built the infrastructure to solve it at scale, with AI, from the investor's perspective."
+          </blockquote>
+        </div>
+      </div>
 
-        {/* AI Advisor */}
-        <FeatureCard
-          title="AI Advisor"
-          subtitle="24/7 fundraising co-pilot in your team."
-          description="Instant answers to investor questions, next-step prompts, and weak-spot flags before VCs notice."
-          imageComponent={
-            <div className="relative group">
-              <img
-                src="/img/icons/ai-advisor.svg"
-                alt="AI Chat Interface"
-                className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
-              />
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
-                <img
-                  src="/img/icons/ai-advisor-icon.svg"
-                  alt="AI Icon"
-                  className="w-10 h-6 drop-shadow-sm"
-                />
+      {/* ── PAIN POINTS ──────────────────────────────── */}
+      <section className={styles.painSection}>
+        <div className={styles.sectionInner}>
+          <AnimSection>
+            <div className={styles.sectionHeader}>
+              <div className={styles.sectionEyebrow}>The Problem</div>
+              <h2 className={styles.sectionTitle} style={{fontSize: 'clamp(1.5rem, 2.8vw, 2.1rem)'}}>
+                <span style={{whiteSpace: 'nowrap'}}>Great founders lose raises</span><br />
+                <span className={styles.accentText} style={{whiteSpace: 'nowrap'}}>in due diligence - not in the pitch</span>
+              </h2>
+              <p className={styles.sectionDesc}>
+                You have customers, product, conviction. But your raise dies in the paperwork.
+              </p>
+            </div>
+          </AnimSection>
+
+          <div className={styles.painGrid}>
+            {[
+              {
+                num: '01',
+                title: 'The Disorganized Data',
+                desc: 'Documents scattered across emails, Dropbox, Google Drive, etc. Investors spend hours just trying to find what they need - and most don\'t bother.',
+              },
+              {
+                num: '02',
+                title: 'The Inconsistent Narrative',
+                desc: 'The story you tell in the meeting doesn\'t match the numbers in the data room. Investors notice. They pass. They don\'t tell you why.',
+              },
+              {
+                num: '03',
+                title: 'The Invisible Gap',
+                desc: 'You don\'t know what "investor-ready" actually looks like. Nobody told you. There\'s no benchmark - until now.',
+              },
+            ].map((pain) => (
+              <AnimSection key={pain.num} className={styles.painCard}>
+                <div className={styles.painNum}>{pain.num}</div>
+                <h3 className={styles.painTitle}>{pain.title}</h3>
+                <p className={styles.painDesc}>{pain.desc}</p>
+              </AnimSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── THREE PILLARS ─────────────────────────────── */}
+      <section className={styles.pillarsSection}>
+        <div className={styles.sectionInner}>
+          <AnimSection>
+            <div className={styles.sectionHeader}>
+              <div className={styles.sectionEyebrow}>How RaiseTalks Works</div>
+              <h2 className={styles.sectionTitle}>
+                Three things we {' '}
+                <span className={styles.accentText}>do best</span>
+              </h2>
+            </div>
+          </AnimSection>
+
+          <div className={styles.pillarsGrid}>
+            {[
+              {
+                Icon: PrepareIcon,
+                number: '01',
+                name: 'Prepare',
+                headline: 'Fix issues in private before they become objections in the room.',
+                body: 'Our AI reads your data room the way a skeptical investor would - surfacing gaps, inconsistencies, and missing signals before they cost you the deal.',
+              },
+              {
+                Icon: IlluminateIcon,
+                number: '02',
+                name: 'Illuminate',
+                headline: 'The black box of investor behavior becomes a live feed.',
+                body: 'We show you exactly what investors see: which documents they open, how long they linger, which slides lose them, and what questions they\'re forming.',
+              },
+              {
+                Icon: AccelerateIcon,
+                number: '03',
+                name: 'Accelerate',
+                headline: 'Collapse weeks of back-and-forth diligence into days.',
+                body: 'Standardized scorecards, IC-ready summaries, and AI-generated Q&A give everyone in the process - founder and investor - their time back.',
+              },
+            ].map(({ Icon, number, name, headline, body }) => (
+              <AnimSection key={number} className={styles.pillarCard}>
+                <div className={styles.pillarCardHeader}>
+                  <div className={styles.pillarIconWrap}>
+                    <Icon />
+                  </div>
+                  <h3 className={styles.pillarName}>{name}</h3>
+                </div>
+                <p className={styles.pillarHeadline}>{headline}</p>
+                <p className={styles.pillarBody}>{body}</p>
+              </AnimSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURE DEEP-DIVES ───────────────────────── */}
+      <section className={styles.featuresSection}>
+        <div className={styles.sectionInner}>
+          <AnimSection>
+            <div className={styles.sectionHeader}>
+              <div className={styles.sectionEyebrow}>The Platform</div>
+              <h2 className={styles.sectionTitle}>
+                Everything you need to{' '}
+                <span className={styles.accentText}>walk in ready</span>
+              </h2>
+              <p className={styles.sectionDesc}>
+                Used by early-stage founders preparing seed and Series A raises.
+              </p>
+            </div>
+          </AnimSection>
+
+          <FeatureSlider slides={[
+            {
+              title: 'Investor-Grade Data Room',
+              subtitle: 'A secure vault your investors will actually use.',
+              description: 'Upload, organize, and share every document in a single structured workspace. No more Dropbox chaos - just a clean, professional data room that signals you mean business.',
+              benefits: [
+                'Drag-and-drop organization that matches investor expectations',
+                'Single secure link - one share, full access control',
+                'Enterprise encryption with granular permissions',
+                'Document versioning so nothing goes out of date',
+              ],
+              image: <FeatureImage src="/img/DataRoomInterface.png" alt="Investor-Grade Data Room" />,
+              ctaText: 'Create Data Room',
+            },
+            {
+              title: 'AI Readiness Scoring',
+              subtitle: 'Score your readiness. Close with confidence.',
+              description: 'Our AI audits your data room the way a skeptical investor would - checking completeness, consistency, and narrative alignment. You fix gaps in private before they become deal-killers.',
+              benefits: [
+                'Comprehensive readiness score benchmarked against successful raises',
+                'Gap identification with specific, actionable recommendations',
+                'Narrative consistency check across documents',
+                'Compliance and completeness review by section',
+              ],
+              image: <FeatureImage src="/img/icons/ai-self-assesment.png" alt="AI Readiness Scoring" />,
+              ctaText: 'Get Your Score',
+            },
+            {
+              title: 'AI Advisor',
+              subtitle: 'A 24/7 fundraising co-pilot that knows your deal.',
+              description: 'Instant answers to investor questions, next-step prompts, and weak-spot flags - all grounded in your actual documents. The advisor who tells you exactly what the investor is thinking.',
+              benefits: [
+                'Context-aware answers drawn from your own data room',
+                'Personalized next-step recommendations at every stage',
+                'Pre-meeting question prep based on investor profile',
+                '24/7 availability - available the night before a big meeting',
+              ],
+              image: <FeatureImage src="/img/icons/ai-advisor.svg" alt="AI Advisor" />,
+              ctaText: 'Try AI Advisor',
+            },
+            {
+              title: 'Investor Engagement Tracking',
+              subtitle: 'See interest spark - while it\'s happening.',
+              description: 'Live alerts reveal who opened what, how long they spent on each section, and which slides hold attention. Stop guessing who\'s serious. Know it.',
+              benefits: [
+                'Real-time notifications when investors view your materials',
+                'Time-on-page data for every document and section',
+                'Investor interest ranking to prioritize follow-ups',
+                'Slide-level heatmaps showing where attention concentrates',
+              ],
+              image: <FeatureImage src="/img/icons/real-time-engagement-tracking.png" alt="Engagement Tracking" />,
+              ctaText: 'View Analytics',
+            },
+            {
+              title: 'Collaborative Fundraising',
+              subtitle: 'Your whole team, moving as one.',
+              description: 'Co-edit materials, leave inline comments, and assign ownership - so nothing stalls because one person is the bottleneck. The raise moves at the speed of your best work.',
+              benefits: [
+                'Real-time collaborative editing across your team',
+                'Task assignment with progress tracking',
+                'Inline comments and version history',
+                'Role-based access control for advisors and co-founders',
+              ],
+              image: <FeatureImage src="/img/icons/collaborative-fundraising.png" alt="Collaborative Fundraising" />,
+              ctaText: 'Start Collaborating',
+            },
+          ]} />
+        </div>
+      </section>
+
+      {/* ── CHARACTER STRIP ──────────────────────────── */}
+      <section className={styles.characterSection}>
+        <div className={styles.sectionInner}>
+          <AnimSection>
+            <div className={clsx(styles.sectionHeader, styles.sectionHeaderLight)}>
+              <div className={styles.sectionEyebrowLight}>How We Show Up</div>
+              <h2 className={clsx(styles.sectionTitle, styles.sectionTitleLight)}>
+                RaiseTalks AI Advisor is not just a tool - a{' '}
+                <span className={styles.accentTextLight}>standard</span>
+              </h2>
+            </div>
+          </AnimSection>
+
+          <div className={styles.characterGrid}>
+            {[
+              {
+                trait: 'Precise',
+                desc: 'Not vague, not diplomatic. The gap is on slide 14. The inconsistency is in row 47. We point at things directly.',
+              },
+              {
+                trait: 'Warm',
+                desc: 'We know what it costs to build something and try to raise for it. We\'re direct because we respect the founder.',
+              },
+              {
+                trait: 'Confident',
+                desc: 'We know what investor-ready looks like. We\'ve seen enough raises to have conviction. We speak with authority.',
+              },
+              {
+                trait: 'Radical Transparency',
+                desc: 'We tell you what investors actually think - not a softened version designed to protect feelings. ',
+              },
+              {
+                trait: 'Founder First',
+                desc: 'Every feature, every decision is evaluated through one lens: does this make your raise more likely to succeed?',
+              },
+              {
+                trait: 'Relentless',
+                desc: 'Every data room we process makes us smarter. Our AI flywheel compounds. The product gets better with every raise.',
+              },
+            ].map(({ trait, desc }) => (
+              <AnimSection key={trait} className={styles.characterCard}>
+                <div className={styles.characterTrait}>{trait}</div>
+                <p className={styles.characterDesc}>{desc}</p>
+              </AnimSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PERKS ────────────────────────────────────── */}
+      <section className={styles.perksSection}>
+        <div className={styles.sectionInner}>
+          <AnimSection>
+            {/* Row 1 - headline + CTA */}
+            <div className={styles.perksRow1}>
+              <div className={styles.perksHeadGroup}>
+                <div className={styles.sectionEyebrow}>Founder Perks</div>
+                <h2 className={styles.perksTitle}>
+                  Get access to{' '}
+                  <span className={styles.accentText}>Perks</span>
+                </h2>
+              </div>
+              <div className={styles.perksCta}>
+                <a className={styles.btnPrimary} href="mailto:startups@raisetalks.ai">
+                  Claim Your Perks
+                </a>
               </div>
             </div>
-          }
-          layout="reverse"
-          category="Startups"
-          benefits={[
-            "Get instant answers to fundraising questions",
-            "Receive personalized next-step recommendations",
-            "Identify and fix weak spots before investors see them",
-            "24/7 availability with context-aware responses"
-          ]}
-          ctaText="Try AI Advisor"
-        />
 
-        {/* AI Self-Assessment & Pre-Scoring */}
-        <FeatureCard
-          title="AI Self-Assessment & Pre-Scoring"
-          subtitle="Score your readiness. Close with confidence."
-          description="Our AI audits your data room for completeness, clarity, and compliance—pinpointing gaps to fix early."
-          imageComponent={
-            <div className="relative group">
-              <img
-                src="/img/icons/ai-self-assesment.png"
-                alt="Readiness Dashboard"
-                className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
-              />
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
-                <img
-                  src="/img/icons/ai-self-assesment-icon.svg"
-                  alt="Assessment Icon"
-                  className="w-10 h-7 drop-shadow-sm"
-                />
-              </div>
+            {/* Row 2 - perk cards */}
+            <div className={styles.perksGrid}>
+              {[
+                {
+                  label: '30-Day Trial',
+                  title: 'Extended free trial',
+                  desc: 'Full platform access for 30 days - enough time to build and share your data room before your first investor meeting.',
+                },
+                {
+                  label: 'Onboarding',
+                  title: 'Priority setup call',
+                  desc: 'A 1-on-1 session with our team to get your data room structured and your readiness score running in under an hour.',
+                },
+                {
+                  label: 'Resources',
+                  title: 'Founder playbook',
+                  desc: 'The exact investor-readiness checklist our team uses - what documents to include, how to structure them, and what gaps kill deals.',
+                },
+                {
+                  label: 'Early Access',
+                  title: 'New features first',
+                  desc: 'Skip the waitlist. As a perk member you get early access to every new feature we ship - starting with our IC memo generator.',
+                },
+              ].map(({ label, title, desc }) => (
+                <div key={label} className={styles.perkCard}>
+                  <div className={styles.perkLabel}>{label}</div>
+                  <h3 className={styles.perkTitle}>{title}</h3>
+                  <p className={styles.perkDesc}>{desc}</p>
+                </div>
+              ))}
             </div>
-          }
-          category="AI-Powered"
-          benefits={[
-            "Comprehensive readiness assessment",
-            "Compliance checking for various regulations",
-            "Gap identification with specific recommendations",
-            "Benchmark against successful fundraising campaigns"
-          ]}
-          ctaText="Get Scored Now"
-        />
+          </AnimSection>
+        </div>
+      </section>
 
-        {/* Real-Time Engagement Tracking */}
-        <FeatureCard
-          title="Real-Time Engagement Tracking"
-          subtitle="See interest spark—while it's happening."
-          description="Live alerts reveal who opened what, how long they lingered, and which slides win—or lose—them."
-          imageComponent={
-            <div className="relative group">
-              <img
-                src="/img/icons/real-time-engagement-tracking.png"
-                alt="Analytics Dashboard"
-                className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
-              />
-              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
-                <img
-                  src="/img/icons/real-time-engagement-tracking-icon.svg"
-                  alt="Analytics Icon"
-                  className="w-8 h-8 drop-shadow-sm"
-                />
-              </div>
-            </div>
-          }
-          layout="reverse"
-          category="Analytics"
-          benefits={[
-            "Real-time notifications when investors view materials",
-            "Detailed engagement analytics and heatmaps",
-            "Time spent on each document and section",
-            "Investor interest scoring and ranking"
-          ]}
-          ctaText="View Analytics"
-        />
-
-        {/* Collaborative Fundraising */}
-        <FeatureCard
-          title="Collaborative Fundraising"
-          subtitle="Teamwork that actually saves time."
-          description="Co-edit decks, leave inline comments, and assign tasks in real-time so your raise moves as one."
-          imageComponent={
-            <div className="relative group">
-              <img
-                src="/img/icons/collaborative-fundraising.png"
-                alt="Collaboration Hub"
-                className="w-full h-auto transition-all duration-300 shadow-lg rounded-3xl group-hover:shadow-xl"
-              />
-              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center shadow-lg opacity-95 border-2 border-gray-200 hover:bg-white hover:border-blue-600 transition-all duration-300">
-                <img
-                  src="/img/icons/collaborative-fundraising-icon.svg"
-                  alt="Collaboration Icon"
-                  className="w-8 h-8 drop-shadow-sm"
-                />
-              </div>
-            </div>
-          }
-          layout="reverse"
-          category="Team Tools"
-          benefits={[
-            "Real-time collaborative editing",
-            "Task assignment and progress tracking",
-            "Inline comments and feedback system",
-            "Version control and change history"
-          ]}
-          ctaText="Start Collaborating"
-        />
-      </main>
-
-      {/* FAQ Section */}
+      {/* ── FAQ ──────────────────────────────────────── */}
       <FAQSection />
 
-      {/* Enhanced CTA Section */}
-      <section className="py-24 relative overflow-hidden" style={{background: 'var(--raisetalks-brand-gradient)'}}>
-        <div className="absolute inset-0 bg-[url('/img/raisetalks-hero-1.svg')] bg-center bg-cover opacity-10"></div>
-        <div className="container relative z-10 px-4 mx-auto text-center text-white">
-          <div className="max-w-4xl mx-auto">
-            <Heading as="h2" className="mb-6 text-4xl font-bold md:text-5xl">
-              Ready to Transform Your Fundraising?
-            </Heading>
-            <p className="mb-8 text-xl leading-relaxed opacity-95">
-              Join 1000+ founders who've streamlined their fundraising with AI-powered tools.
-              <br />
-              Start your free trial today and see the difference.
-            </p>
-            <div className="flex flex-col justify-center gap-4 mb-8 sm:flex-row">
-              <Link
-                className="bg-white text-[#0174e1] px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 w-full sm:w-auto sm:min-w-[200px]"
-                to="https://app.raisetalks.com/sign-up">
-                Start Free Trial
-              </Link>
-              <Link
-                className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white hover:text-[#0174e1] transition-all duration-300 w-full sm:w-auto sm:min-w-[200px]"
-                to="https://app.raisetalks.com/pricing">
-                View Pricing
-              </Link>
+      {/* ── FINAL CTA ────────────────────────────────── */}
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaInner}>
+          <AnimSection>
+            <div className={styles.ctaContent}>
+              <div className={styles.ctaEyebrow}>The Raise Starts Here</div>
+              <h2 className={styles.ctaTitle}>
+                Walk into that meeting ready.<br />
+                Not just prepared - <em>ready.</em>
+              </h2>
+              <p className={styles.ctaDesc}>
+                Join the founders building investor-grade data rooms with RaiseTalks.
+                Start free. Get your readiness score in minutes.
+              </p>
+              <div className={styles.ctaActions}>
+                <Link className={styles.ctaBtnPrimary} to="https://app.raisetalks.com/sign-up">
+                  Start Free
+                </Link>
+                <Link className={styles.ctaBtnSecondary} to="/pricing">
+                  View Pricing
+                </Link>
+              </div>
             </div>
-            <div className="text-sm opacity-80">
-              ✓ No credit card required  ✓ 14-day free trial  ✓ Setup in 5 minutes
-            </div>
-          </div>
+          </AnimSection>
         </div>
       </section>
     </Layout>
