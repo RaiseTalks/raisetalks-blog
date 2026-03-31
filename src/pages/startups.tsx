@@ -40,11 +40,6 @@ const AccelerateIcon = () => (
     <path d="m5 12 7-7 7 7" /><path d="M12 19V5" />
   </svg>
 );
-const ArrowRight = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
-    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-  </svg>
-);
 const CheckIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="14" height="14">
     <path d="M20 6 9 17l-5-5"/>
@@ -114,7 +109,7 @@ function FeatureSlider({ slides }: { slides: SlideData[] }) {
           <BenefitList items={slide.benefits} />
           <div className={styles.featureActions}>
             <Link className={styles.btnPrimary} to={slide.ctaLink ?? 'https://app.raisetalks.com/sign-up'}>
-              {slide.ctaText} <ArrowRight />
+              {slide.ctaText}
             </Link>
             <Link className={styles.btnGhost} to="https://calendly.com/iamdariiava/30min">
               Book a Demo
@@ -215,7 +210,7 @@ export default function Startups() {
                 <span className={styles.accentText} style={{whiteSpace: 'nowrap'}}>in due diligence - not in the pitch</span>
               </h2>
               <p className={styles.sectionDesc}>
-                You have customers. You have product. You have conviction. But your raise dies in the paperwork.
+                You have customers, product, conviction. But your raise dies in the paperwork.
               </p>
             </div>
           </AnimSection>
