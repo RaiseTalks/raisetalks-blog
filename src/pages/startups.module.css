@@ -561,7 +561,7 @@
 }
 
 .sectionTitleLight {
-  color: #fff;
+  color: #fff !important;
 }
 
 .sectionDescLight {
