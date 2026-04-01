@@ -864,6 +864,244 @@
   margin-top: 1rem;
 }
 
+/* Six-col grid for Numbers section */
+.gridSix {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .gridSix {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridSix {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Our Story Section */
+.storySection {
+  padding: 5rem 0;
+  background: white;
+}
+
+.storyLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .storyLayout {
+    flex-direction: row;
+    gap: 4rem;
+    align-items: stretch;
+  }
+}
+
+.storyText {
+  flex: 1;
+}
+
+.storyEyebrow {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0174e1;
+  margin-bottom: 1rem;
+}
+
+.storyHeading {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.storyParagraph {
+  font-size: 1.0625rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.storyParagraph:last-child {
+  margin-bottom: 0;
+}
+
+.storyQuoteSide {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .storyQuoteSide {
+    width: 380px;
+  }
+}
+
+.storyQuoteCard {
+  border-left: 4px solid #0174e1;
+  background: rgba(1, 116, 225, 0.04);
+  border-radius: 0 1rem 1rem 0;
+  padding: 2rem 2rem 2rem 1.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.storyQuoteText {
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--ifm-color-content);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.storyQuoteCite {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: normal;
+  display: block;
+}
+
+/* Recognition Strip */
+.recognitionStrip {
+  padding: 2.5rem 0;
+  background: var(--ifm-color-emphasis-100);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.recognitionInner {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .recognitionInner {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+}
+
+.recognitionLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ifm-color-content-secondary);
+  white-space: nowrap;
+}
+
+.recognitionLogos {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.recognitionLogo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  filter: grayscale(100%);
+}
+
+.recognitionLogo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* Our Values Section */
+.valuesSection {
+  padding: 5rem 0;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.gridSixCards {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .gridSixCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridSixCards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.valueCard {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-0.35rem);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.valueNumber {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0174e1;
+  margin-bottom: 0.75rem;
+  display: block;
+  letter-spacing: 0.05em;
+}
+
+.valueName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ifm-color-content);
+  margin-bottom: 0.625rem;
+}
+
+.valueDescription {
+  font-size: 0.9375rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
 /* Dark Mode Support */
 [data-theme='dark'] .heroSection {
   background: linear-gradient(to bottom, var(--ifm-color-emphasis-100), var(--ifm-color-emphasis-0), var(--ifm-color-emphasis-100));
@@ -900,4 +1138,35 @@
 
 [data-theme='dark'] .blockquote {
   background: rgba(1, 116, 225, 0.1);
+}
+
+[data-theme='dark'] .storySection {
+  background: var(--ifm-color-emphasis-0);
+}
+
+[data-theme='dark'] .storyQuoteCard {
+  background: rgba(1, 116, 225, 0.08);
+  border-left-color: #0174e1;
+}
+
+[data-theme='dark'] .recognitionStrip {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .recognitionLogo {
+  filter: grayscale(100%) brightness(1.6);
+}
+
+[data-theme='dark'] .recognitionLogo:hover {
+  filter: grayscale(0%) brightness(1);
+}
+
+[data-theme='dark'] .valuesSection {
+  background: var(--ifm-color-emphasis-100);
+}
+
+[data-theme='dark'] .valueCard {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-300);
 }

@@ -137,7 +137,7 @@ export default function AboutUs() {
                   <div className={styles.sectionDivider}></div>
                </div>
 
-               <div className={styles.gridThree}>
+               <div className={styles.gridSix}>
                   <div className={styles.statCard} style={{ animationDelay: "0ms" }}>
                      <p className={styles.statValue}>49+</p>
                      <p className={styles.statLabel}>Countries with Active Users</p>
@@ -152,9 +152,75 @@ export default function AboutUs() {
                      <p className={styles.statValue}>$300M+</p>
                      <p className={styles.statLabel}>VC Deals Closed by Founder</p>
                   </div>
+
+                  <div className={styles.statCard} style={{ animationDelay: "150ms" }}>
+                     <p className={styles.statValue}>17 Years</p>
+                     <p className={styles.statLabel}>Investment Experience</p>
+                  </div>
+
+                  <div className={styles.statCard} style={{ animationDelay: "200ms" }}>
+                     <p className={styles.statValue}>€3B+</p>
+                     <p className={styles.statLabel}>VC Deals Closed by Founder</p>
+                  </div>
+
+                  <div className={styles.statCard} style={{ animationDelay: "250ms" }}>
+                     <p className={styles.statValue}>10,000+</p>
+                     <p className={styles.statLabel}>Startups Reviewed</p>
+                  </div>
                </div>
             </div>
          </section>
+
+         {/* Our Story Section */}
+         <section className={clsx(styles.storySection, styles.animateIn)}>
+            <div className={styles.sectionContainer}>
+               <div className={styles.storyLayout}>
+                  <div className={styles.storyText}>
+                     <span className={styles.storyEyebrow}>Our Story</span>
+                     <h2 className={styles.storyHeading}>Built from the investor side</h2>
+                     <p className={styles.storyParagraph}>
+                        After 17 years reviewing 10,000+ startups and closing €3B+ in deals, Dr. Dariia Vasylieva saw the same problem repeat itself: founders failing not because their ideas weren't good — but because their preparation wasn't investor-grade. The data room was scattered. The narrative was inconsistent. The story didn't match the numbers.
+                     </p>
+                     <p className={styles.storyParagraph}>
+                        RaiseTalks was built to solve that from first principles — not as a file storage tool, but as an AI-native workspace that reads your materials the way a skeptical investor would, flags the gaps, and helps you close the distance between "promising" and "fundable."
+                     </p>
+                  </div>
+
+                  <div className={styles.storyQuoteSide}>
+                     <div className={styles.storyQuoteCard}>
+                        <p className={styles.storyQuoteText}>
+                           "The fundraising problem is not a pitch problem. It's a preparation problem — and nobody has built the infrastructure to solve it at scale, with AI, from the investor's perspective."
+                        </p>
+                        <cite className={styles.storyQuoteCite}>— Dr. Dariia Vasylieva</cite>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         {/* Recognition Strip */}
+         <div className={styles.recognitionStrip}>
+            <div className={styles.recognitionInner}>
+               <span className={styles.recognitionLabel}>Recognized by</span>
+               <div className={styles.recognitionLogos}>
+                  <img
+                     src="/img/logos/logo_microsoft_for_startups.png"
+                     alt="Microsoft for Startups"
+                     className={styles.recognitionLogo}
+                  />
+                  <img
+                     src="/img/logos/Web_Summit_logo.svg"
+                     alt="Web Summit"
+                     className={styles.recognitionLogo}
+                  />
+                  <img
+                     src="/img/logos/founders-institute.png"
+                     alt="Founders Institute"
+                     className={styles.recognitionLogo}
+                  />
+               </div>
+            </div>
+         </div>
 
          {/* Mission & Vision Section */}
          <section className={clsx(styles.missionSection, styles.animateIn)}>
@@ -267,6 +333,55 @@ export default function AboutUs() {
 
                <div className={styles.whyTagline}>
                   <p className={styles.whyTaglineText}>One workspace. Zero chaos.</p>
+               </div>
+            </div>
+         </section>
+
+         {/* Our Values Section */}
+         <section className={clsx(styles.valuesSection, styles.animateIn)}>
+            <div className={styles.sectionContainer}>
+               <div className={styles.sectionHeader}>
+                  <span className={styles.storyEyebrow}>How We Work</span>
+                  <h2 className={styles.sectionTitle}>The standard we hold ourselves to</h2>
+                  <div className={styles.sectionDivider}></div>
+               </div>
+
+               <div className={styles.gridSixCards}>
+                  <div className={styles.valueCard}>
+                     <span className={styles.valueNumber}>01</span>
+                     <p className={styles.valueName}>Precise</p>
+                     <p className={styles.valueDescription}>Not vague, not diplomatic. The gap is on slide 14. The inconsistency is in row 47. We point at things directly.</p>
+                  </div>
+
+                  <div className={styles.valueCard}>
+                     <span className={styles.valueNumber}>02</span>
+                     <p className={styles.valueName}>Warm</p>
+                     <p className={styles.valueDescription}>We know what it costs to build something and try to raise for it. We're direct because we respect the founder.</p>
+                  </div>
+
+                  <div className={styles.valueCard}>
+                     <span className={styles.valueNumber}>03</span>
+                     <p className={styles.valueName}>Confident</p>
+                     <p className={styles.valueDescription}>We know what investor-ready looks like. We've seen enough raises to have conviction. We speak with authority.</p>
+                  </div>
+
+                  <div className={styles.valueCard}>
+                     <span className={styles.valueNumber}>04</span>
+                     <p className={styles.valueName}>Radical Transparency</p>
+                     <p className={styles.valueDescription}>We tell you what investors actually think — not a softened version designed to protect feelings. Hard truths are a form of respect.</p>
+                  </div>
+
+                  <div className={styles.valueCard}>
+                     <span className={styles.valueNumber}>05</span>
+                     <p className={styles.valueName}>Founder First</p>
+                     <p className={styles.valueDescription}>Every feature, every decision is evaluated through one lens: does this make your raise more likely to succeed?</p>
+                  </div>
+
+                  <div className={styles.valueCard}>
+                     <span className={styles.valueNumber}>06</span>
+                     <p className={styles.valueName}>Relentless</p>
+                     <p className={styles.valueDescription}>Every data room we process makes us smarter. Our AI flywheel compounds. The product gets better with every raise.</p>
+                  </div>
                </div>
             </div>
          </section>
