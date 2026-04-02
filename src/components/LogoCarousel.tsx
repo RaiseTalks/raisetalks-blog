@@ -9,6 +9,8 @@ const partners = [
   { name: 'NLSQL', logo: '/img/logos/nlsql.png' },
   { name: 'GetVision', logo: '/img/logos/getvision-new-logo.svg' },
   { name: 'Grechka Media', logo: '/img/logos/grechka-media.svg' },
+  { name: 'Global AI Show', logo: '/img/logos/global-ai-show.png' },
+  { name: 'NVIDIA', logo: '/img/logos/nvidia-logo-horz.png' },
 ];
 
 export default function LogoCarousel() {
