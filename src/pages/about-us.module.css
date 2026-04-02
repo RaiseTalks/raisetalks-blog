@@ -95,17 +95,75 @@
   line-height: 1.6;
 }
 
-.heroButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
+/* Hero - matching startups page */
+.hero {
+  padding: 6rem 1.5rem 4rem;
+  text-align: center;
+  background: var(--ifm-background-color);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
-@media (min-width: 640px) {
-  .heroButtons {
-    flex-direction: row;
+.heroInner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.heroEyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(1, 116, 225, 0.25);
+  border-radius: 2rem;
+  padding: 0.3rem 1rem;
+  background: rgba(1, 116, 225, 0.05);
+}
+
+.heroTitle {
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-content);
+}
+
+.heroAccent {
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDesc {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.75;
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -214,7 +272,11 @@
 }
 
 .partnersSection {
-  padding: 5rem 0;
+  padding: 2.5rem 0;
+}
+
+.partnersSection .sectionHeader {
+  margin-bottom: 1.5rem;
 }
 
 .ctaSection {
@@ -431,6 +493,16 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
+
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .missionGalleryItem {
@@ -510,12 +582,15 @@
 .whyTagline {
   text-align: center;
   margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .whyTaglineText {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--ifm-color-content);
+  font-style: italic;
+  color: var(--ifm-color-primary);
+  margin: 0;
 }
 
 /* Founder Card */
@@ -525,11 +600,12 @@
   padding: 2rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border: 1px solid rgb(243 244 246);
+  margin-top: 3rem;
 }
 
 @media (min-width: 768px) {
   .founderCard {
-    padding: 3rem;
+    padding: 3.5rem;
   }
 }
 
@@ -583,7 +659,43 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--ifm-color-content);
-  margin-bottom: 0.5rem;
+  margin: 0;
+}
+
+.founderMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.founderNameRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .founderNameRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .founderMeta {
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    padding: 4rem 1rem 2.5rem;
+  }
+}
+
+.founderRoleLine {
+  font-size: 0.9rem;
+  color: var(--ifm-color-content-secondary);
+  font-weight: 500;
 }
 
 .founderRole {
@@ -607,6 +719,7 @@
   justify-content: center;
   color: #0A66C2;
   transition: transform 0.2s ease, color 0.2s ease;
+  margin-right: 1rem;
 }
 
 .founderLinkedIn:hover {
@@ -669,9 +782,10 @@
 /* Blockquote */
 .blockquote {
   border-left: 4px solid rgba(0, 54, 135, 1);
-  padding: 1rem 1.5rem;
+  padding: 1.5rem 2rem;
   background: rgba(0, 54, 135, 0.05);
   border-radius: 0 0.5rem 0.5rem 0;
+  margin-bottom: 1.5rem;
 }
 
 .blockquoteText {
@@ -1100,6 +1214,466 @@
   color: var(--ifm-color-content-secondary);
   line-height: 1.65;
   margin: 0;
+}
+
+/* Goal Section */
+.goalSection {
+  padding: 4rem 0;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.goalBar {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.goalBarLabel {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  padding-top: 0.3rem;
+  min-width: 100px;
+  font-family: 'Courier New', monospace;
+}
+
+.goalBarQuote {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-style: italic;
+  color: var(--ifm-color-content);
+  line-height: 1.65;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.goalBarSub {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-style: normal;
+  color: var(--ifm-color-content-secondary);
+}
+
+@media (max-width: 640px) {
+  .goalBar { flex-direction: column; gap: 0.5rem; }
+}
+
+[data-theme='dark'] .goalSection {
+  background: var(--ifm-color-emphasis-100);
+}
+
+/* Shared pill eyebrow - matches startups sectionEyebrow */
+.eyebrowPillLight {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2rem;
+  padding: 0.25rem 0.9rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.eyebrowPill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(1, 116, 225, 0.25);
+  border-radius: 2rem;
+  padding: 0.25rem 0.9rem;
+  background: rgba(1, 116, 225, 0.05);
+}
+
+/* Plain section title (no gradient) - matches startups sectionTitle */
+.sectionTitlePlain {
+  font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-content);
+  background: none;
+  -webkit-text-fill-color: unset;
+}
+
+.sectionTitlePlain .accentText,
+.accentText {
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Why We Exist Section */
+.whyExistSection {
+  padding: 5rem 0;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.whyExistInner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.accentText {
+  font-style: inherit;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-right: 0.1em;
+}
+
+.whyExistLabelLight {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: 'Courier New', monospace;
+  margin-bottom: 0.75rem;
+}
+
+.whyExistTitleLight {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2rem;
+  background: none;
+  -webkit-text-fill-color: unset;
+}
+
+.whyExistTitleLight em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 4px;
+}
+
+.whyExistStatementLight {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  border-left: 4px solid rgba(255, 255, 255, 0.4);
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-bottom: 1.75rem;
+}
+
+.whyExistBodyLight {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.whyExistStatement {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: var(--ifm-color-content);
+  line-height: 1.6;
+  border-left: 4px solid #0174e1;
+  padding: 1rem 1.5rem;
+  background: rgba(1, 116, 225, 0.05);
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-bottom: 1.75rem;
+}
+
+.whyExistBody {
+  font-size: 1.05rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+/* Vision Section */
+.visionSection {
+  padding: 5rem 0;
+  background: white;
+}
+
+.visionHorizonLabel {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ifm-color-content-secondary);
+  margin: 2rem 0 1.25rem;
+}
+
+.visionHorizons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: transparent;
+  border-radius: 16px;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .visionHorizons {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Vision Timeline - dots live inside each card */
+.visionTimelinePoint {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.visionTimelineLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--ifm-color-primary);
+  font-family: 'Courier New', monospace;
+}
+
+.visionTimelineDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+}
+
+.visionHorizonCard {
+  background: #f8fafc;
+  border-radius: 0;
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+/* Connecting line: rendered last so it appears above card backgrounds */
+.visionHorizonLine {
+  position: absolute;
+  /* top = card padding-top + label line-height + gap + half dot */
+  top: calc(2.5rem + 0.8rem + 0.4rem + 5px);
+  /* starts at center of left dot */
+  left: calc(2rem + 5px);
+  /* ends at center of right dot: 50% (second card start) + padding + half dot */
+  right: calc(50% - 2rem - 5px);
+  height: 1.5px;
+  background: var(--ifm-color-primary);
+  pointer-events: none;
+  grid-column: 1 / -1;
+}
+
+.visionHorizonTag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #64748b;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 2rem;
+  padding: 0.2rem 0.7rem;
+  background: #f1f5f9;
+}
+
+.visionHorizonTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ifm-color-content);
+  margin-bottom: 0.6rem;
+}
+
+.visionHorizonDesc {
+  font-size: 0.95rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+[data-theme='dark'] .visionSection {
+  background: var(--ifm-color-emphasis-0);
+}
+
+[data-theme='dark'] .visionHorizonCard {
+  background: var(--ifm-background-color);
+}
+
+/* Values List */
+.valuesList {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.valueRow {
+  display: flex;
+  gap: 2rem;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.valueRow:last-child {
+  border-bottom: none;
+}
+
+.valueRowNum {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ifm-color-primary);
+  font-family: 'Courier New', monospace;
+  flex-shrink: 0;
+  padding-top: 0.25rem;
+  min-width: 3rem;
+}
+
+.valueRowContent {
+  flex: 1;
+}
+
+.valueRowName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ifm-color-content);
+  margin-bottom: 0.35rem;
+}
+
+.valueRowQuote {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.75rem;
+  opacity: 0.85;
+}
+
+.valueRowDesc {
+  font-size: 0.97rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* Values Grid (card format matching pitch-competitions) */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.valueCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover {
+  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
+  transform: translateY(-2px);
+}
+
+.valueCardNumWrap {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: rgba(1, 116, 225, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.valueCardNum {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #0174e1;
+}
+
+.valueCardName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.25rem 0;
+}
+
+.valueCardQuote {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ifm-color-primary);
+  opacity: 0.8;
+  margin: 0 0 0.5rem 0;
+}
+
+.valueCardDesc {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+}
+
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--raisetalks-brand-gradient);
+  color: #fff !important;
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
+  color: #fff !important;
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--ifm-color-primary) !important;
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  border: 2px solid var(--ifm-color-primary);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btnSecondary:hover {
+  background: var(--ifm-color-primary);
+  color: #fff !important;
 }
 
 /* Dark Mode Support */

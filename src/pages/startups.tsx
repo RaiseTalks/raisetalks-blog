@@ -431,7 +431,7 @@ export default function Startups() {
       </section>
 
       {/* ── PERKS ────────────────────────────────────── */}
-      <section className={styles.perksSection}>
+      <section id="perks" className={styles.perksSection}>
         <div className={styles.sectionInner}>
           <AnimSection>
             {/* Row 1 - headline + CTA */}

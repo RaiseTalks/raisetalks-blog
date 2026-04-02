@@ -22,18 +22,7 @@ const ArrowRightIcon = ({ className }: { className?: string }) => (
    </svg>
 );
 
-const ZapIcon = ({ className }: { className?: string }) => (
-   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-   </svg>
-);
 
-const EyeIcon = ({ className }: { className?: string }) => (
-   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-   </svg>
-);
 
 const FileStackIcon = ({ className }: { className?: string }) => (
    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -108,158 +97,60 @@ function Button({
 export default function AboutUs() {
    return (
       <Layout
-         title="About Us"
-         description="Learn about RaiseTalks - AI-powered fundraising workspace for early-stage startups to organize data rooms and close rounds faster."
+         title="About Us | RaiseTalks"
+         description="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence. Learn our mission, values, and vision."
       >
          {/* Hero Section */}
-         <section className="cleanHeroSection">
-            <div className="cleanHeroContainer">
-               <Heading as="h1" className="cleanHeroTitle">
-                  About <span className="cleanHeroTitleAccent">RaiseTalks</span>
+         <section className={styles.hero}>
+            <div className={styles.heroInner}>
+               <div className={styles.heroEyebrow}>What We Do</div>
+               <Heading as="h1" className={styles.heroTitle}>
+                  Translating founder potential into{' '}
+                  <span className={styles.heroAccent}>investor-grade intelligence</span>
                </Heading>
-               <p className="cleanHeroDescription">
-                  <strong>AI-first global fundraising workspace</strong> for startups and investors to run deals, streamline due diligence, and
-                  close rounds faster.
-               </p>
-               <div className="cleanHeroButtons">
-                  <Link className="cleanHeroPrimaryButton" to="https://calendly.com/iamdariiava/30min">
+               <div className={styles.heroActions}>
+                  <Link className={styles.btnPrimary} to="https://calendly.com/iamdariiava/30min">
                      Book a Demo
+                  </Link>
+                  <Link className={styles.btnSecondary} to="/startups#perks">
+                     Get access to Perks
                   </Link>
                </div>
             </div>
          </section>
 
-         {/* RaiseTalks in Numbers Section */}
-         <section className={clsx(styles.numbersSection, styles.animateIn)}>
+         {/* Goal Section */}
+         <section className={clsx(styles.goalSection, styles.animateIn)}>
             <div className={styles.sectionContainer}>
-               <div className={styles.sectionHeader}>
-                  <h2 className={styles.sectionTitle}>RaiseTalks in Numbers</h2>
-                  <div className={styles.sectionDivider}></div>
-               </div>
-
-               <div className={styles.gridSix}>
-                  <div className={styles.statCard} style={{ animationDelay: "0ms" }}>
-                     <p className={styles.statValue}>49+</p>
-                     <p className={styles.statLabel}>Countries with Active Users</p>
-                  </div>
-
-                  <div className={styles.statCard} style={{ animationDelay: "50ms" }}>
-                     <p className={styles.statValue}>Public Beta</p>
-                     <p className={styles.statLabel}>Live and Growing</p>
-                  </div>
-
-                  <div className={styles.statCard} style={{ animationDelay: "100ms" }}>
-                     <p className={styles.statValue}>$300M+</p>
-                     <p className={styles.statLabel}>VC Deals Closed by Founder</p>
-                  </div>
-
-                  <div className={styles.statCard} style={{ animationDelay: "150ms" }}>
-                     <p className={styles.statValue}>17 Years</p>
-                     <p className={styles.statLabel}>Investment Experience</p>
-                  </div>
-
-                  <div className={styles.statCard} style={{ animationDelay: "200ms" }}>
-                     <p className={styles.statValue}>€3B+</p>
-                     <p className={styles.statLabel}>VC Deals Closed by Founder</p>
-                  </div>
-
-                  <div className={styles.statCard} style={{ animationDelay: "250ms" }}>
-                     <p className={styles.statValue}>10,000+</p>
-                     <p className={styles.statLabel}>Startups Reviewed</p>
-                  </div>
+               <div className={styles.goalBar}>
+                  <span className={styles.goalBarLabel}>10Y Goal</span>
+                  <blockquote className={styles.goalBarQuote}>
+                     Power 1M entrepreneurs to close rounds faster, deploying over{' '}
+                     <span className={styles.accentText}>$100 Bn</span>{' '}
+                     in capital by 2036.
+                     <span className={styles.goalBarSub}>We believe it's possible - and worth it because it changes the world.</span>
+                  </blockquote>
                </div>
             </div>
          </section>
 
-         {/* Our Story Section */}
-         <section className={clsx(styles.storySection, styles.animateIn)}>
-            <div className={styles.sectionContainer}>
-               <div className={styles.storyLayout}>
-                  <div className={styles.storyText}>
-                     <span className={styles.storyEyebrow}>Our Story</span>
-                     <h2 className={styles.storyHeading}>Built from the investor side</h2>
-                     <p className={styles.storyParagraph}>
-                        After 17 years reviewing 10,000+ startups and closing €3B+ in deals, Dr. Dariia Vasylieva saw the same problem repeat itself: founders failing not because their ideas weren't good — but because their preparation wasn't investor-grade. The data room was scattered. The narrative was inconsistent. The story didn't match the numbers.
-                     </p>
-                     <p className={styles.storyParagraph}>
-                        RaiseTalks was built to solve that from first principles — not as a file storage tool, but as an AI-native workspace that reads your materials the way a skeptical investor would, flags the gaps, and helps you close the distance between "promising" and "fundable."
-                     </p>
-                  </div>
-
-                  <div className={styles.storyQuoteSide}>
-                     <div className={styles.storyQuoteCard}>
-                        <p className={styles.storyQuoteText}>
-                           "The fundraising problem is not a pitch problem. It's a preparation problem — and nobody has built the infrastructure to solve it at scale, with AI, from the investor's perspective."
-                        </p>
-                        <cite className={styles.storyQuoteCite}>— Dr. Dariia Vasylieva</cite>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
-
-         {/* Recognition Strip */}
-         <div className={styles.recognitionStrip}>
-            <div className={styles.recognitionInner}>
-               <span className={styles.recognitionLabel}>Recognized by</span>
-               <div className={styles.recognitionLogos}>
-                  <img
-                     src="/img/logos/logo_microsoft_for_startups.png"
-                     alt="Microsoft for Startups"
-                     className={styles.recognitionLogo}
-                  />
-                  <img
-                     src="/img/logos/Web_Summit_logo.svg"
-                     alt="Web Summit"
-                     className={styles.recognitionLogo}
-                  />
-                  <img
-                     src="/img/logos/founders-institute.png"
-                     alt="Founders Institute"
-                     className={styles.recognitionLogo}
-                  />
-               </div>
-            </div>
-         </div>
-
-         {/* Mission & Vision Section */}
+         {/* Why We Exist Section */}
          <section className={clsx(styles.missionSection, styles.animateIn)}>
             <div className={styles.missionBackground}></div>
             <div className={styles.sectionContainer}>
-               <div className={styles.sectionHeader}>
-                  <h2 className={clsx(styles.sectionTitle, styles.sectionTitleWhite)}>Mission & Vision</h2>
-                  <div className={clsx(styles.sectionDivider, styles.sectionDividerWhite)}></div>
-               </div>
-
-               <div className={styles.gridTwo}>
-                  {/* Mission Card */}
-                  <div className={styles.missionCard} style={{ animationDelay: "0ms" }}>
-                     <div className={styles.missionCardHeader}>
-                        <div className={styles.missionIconContainer}>
-                           <ZapIcon className={styles.missionIcon} />
-                        </div>
-                        <h3 className={styles.missionCardTitle}>Mission</h3>
-                     </div>
-                     <p className={styles.missionCardText}>
-                        Make fundraising and diligence fast and reliable by standardizing company data into one investor-ready workspace
-                     </p>
+               <div className={styles.whyExistInner}>
+                  <div className={styles.eyebrowPillLight}>Purpose</div>
+                  <h2 className={styles.whyExistTitleLight}>Why We <em>Build</em></h2>
+                  <div className={styles.whyExistStatementLight}>
+                     To democratize access to capital by making every serious founder investor-ready - regardless of their network, their background, or how many times they've done this before.
                   </div>
-
-                  {/* Vision Card */}
-                  <div className={styles.missionCard} style={{ animationDelay: "50ms" }}>
-                     <div className={styles.missionCardHeader}>
-                        <div className={styles.missionIconContainer}>
-                           <EyeIcon className={styles.missionIcon} />
-                        </div>
-                        <h3 className={styles.missionCardTitle}>Vision</h3>
-                     </div>
-                     <p className={styles.missionCardText}>
-                        Provide the real-time intelligence data layer that powers efficient venture capital deal execution across private markets
-                     </p>
-                  </div>
+                  <p className={styles.whyExistBodyLight}>
+                     Capital has always flowed most easily to those who already know the language - the repeat founders, the Stanford alumni, the people who went to school with the partners. RaiseTalks is the great equalizer. We encode the knowledge that used to live only in warm introductions, and we give it to every founder who's serious enough to show up.
+                  </p>
+                  <p className={styles.whyExistBodyLight}>
+                     This is not a small aspiration. It is a structural reshaping of how capital moves in the world. When great ideas stop dying in due diligence, the entire innovation ecosystem becomes more productive.
+                  </p>
                </div>
-
-               {/* Photo Gallery */}
                <div className={styles.missionGallery}>
                   <div className={styles.missionGalleryItem}>
                      <img src="/img/about-us/43.jpg" alt="RaiseTalks team" className={styles.missionGalleryImage} />
@@ -283,14 +174,50 @@ export default function AboutUs() {
             </div>
          </section>
 
+
+         {/* Vision Section */}
+         <section className={clsx(styles.visionSection, styles.animateIn)}>
+            <div className={styles.sectionContainer}>
+               <div className={styles.sectionHeader}>
+                  <div className={styles.eyebrowPill}>Vision</div>
+                  <h2 className={styles.sectionTitlePlain}>What We're <em className={styles.accentText}>Building Toward</em></h2>
+                  <p className={styles.sectionSubtitle}>
+                     RaiseTalks is the operating system of early-stage capital - the infrastructure layer through which deals are organized, evaluated, and funded globally.
+                  </p>
+               </div>
+               <div className={styles.goalInner}>
+                  <p className={styles.whyExistBody}>
+                     Not a data room tool. Not a pitch coach. The connective tissue between the world's best founders and the capital they need to change it. A platform that has processed enough raises, tracked enough outcomes, and built enough intelligence to know - with genuine predictive accuracy - <em>what a successful company looks like at the seed stage</em>.
+                  </p>
+                  <div className={styles.visionHorizons}>
+                     <div className={styles.visionHorizonCard}>
+                        <div className={styles.visionTimelinePoint}>
+                           <span className={styles.visionTimelineLabel}>5YR</span>
+                           <div className={styles.visionTimelineDot}></div>
+                        </div>
+                        <h3 className={styles.visionHorizonTitle}>The Intelligence Standard</h3>
+                        <p className={styles.visionHorizonDesc}>RaiseTalks Readiness Score becomes the industry benchmark - the first thing investors ask about and the first thing founders prepare for. "What's your RaiseTalks score?" is a standard pre-meeting question.</p>
+                     </div>
+                     <div className={styles.visionHorizonCard}>
+                        <div className={styles.visionTimelinePoint}>
+                           <span className={styles.visionTimelineLabel}>10YR</span>
+                           <div className={styles.visionTimelineDot}></div>
+                        </div>
+                        <h3 className={styles.visionHorizonTitle}>The Capital Layer</h3>
+                        <p className={styles.visionHorizonDesc}>RaiseTalks becomes the infrastructure that connects founders and investors across markets, stages, and geographies - the Bloomberg Terminal of early-stage startup capital.</p>
+                     </div>
+                     <div className={styles.visionHorizonLine} aria-hidden="true"></div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
          {/* Why RaiseTalks Section */}
          <section className={clsx(styles.whySection, styles.animateIn)}>
             <div className={styles.sectionContainer}>
                <div className={styles.sectionHeader}>
+                  <div className={styles.eyebrowPill}>One workspace. Zero chaos.</div>
                   <h2 className={styles.sectionTitle}>Why RaiseTalks</h2>
-                  <p className={styles.sectionSubtitle}>
-                     RaiseTalks makes fundraising and diligence fast and reliable by turning scattered founder docs into a single investor-ready workspace - so investors can underwrite faster, and founders can close rounds with confidence.
-                  </p>
                </div>
 
                <div className={styles.gridThree}>
@@ -331,68 +258,6 @@ export default function AboutUs() {
                   </div>
                </div>
 
-               <div className={styles.whyTagline}>
-                  <p className={styles.whyTaglineText}>One workspace. Zero chaos.</p>
-               </div>
-            </div>
-         </section>
-
-         {/* Our Values Section */}
-         <section className={clsx(styles.valuesSection, styles.animateIn)}>
-            <div className={styles.sectionContainer}>
-               <div className={styles.sectionHeader}>
-                  <span className={styles.storyEyebrow}>How We Work</span>
-                  <h2 className={styles.sectionTitle}>The standard we hold ourselves to</h2>
-                  <div className={styles.sectionDivider}></div>
-               </div>
-
-               <div className={styles.gridSixCards}>
-                  <div className={styles.valueCard}>
-                     <span className={styles.valueNumber}>01</span>
-                     <p className={styles.valueName}>Precise</p>
-                     <p className={styles.valueDescription}>Not vague, not diplomatic. The gap is on slide 14. The inconsistency is in row 47. We point at things directly.</p>
-                  </div>
-
-                  <div className={styles.valueCard}>
-                     <span className={styles.valueNumber}>02</span>
-                     <p className={styles.valueName}>Warm</p>
-                     <p className={styles.valueDescription}>We know what it costs to build something and try to raise for it. We're direct because we respect the founder.</p>
-                  </div>
-
-                  <div className={styles.valueCard}>
-                     <span className={styles.valueNumber}>03</span>
-                     <p className={styles.valueName}>Confident</p>
-                     <p className={styles.valueDescription}>We know what investor-ready looks like. We've seen enough raises to have conviction. We speak with authority.</p>
-                  </div>
-
-                  <div className={styles.valueCard}>
-                     <span className={styles.valueNumber}>04</span>
-                     <p className={styles.valueName}>Radical Transparency</p>
-                     <p className={styles.valueDescription}>We tell you what investors actually think — not a softened version designed to protect feelings. Hard truths are a form of respect.</p>
-                  </div>
-
-                  <div className={styles.valueCard}>
-                     <span className={styles.valueNumber}>05</span>
-                     <p className={styles.valueName}>Founder First</p>
-                     <p className={styles.valueDescription}>Every feature, every decision is evaluated through one lens: does this make your raise more likely to succeed?</p>
-                  </div>
-
-                  <div className={styles.valueCard}>
-                     <span className={styles.valueNumber}>06</span>
-                     <p className={styles.valueName}>Relentless</p>
-                     <p className={styles.valueDescription}>Every data room we process makes us smarter. Our AI flywheel compounds. The product gets better with every raise.</p>
-                  </div>
-               </div>
-            </div>
-         </section>
-
-         {/* Founder Section */}
-         <section className={clsx(styles.founderSection, styles.animateIn)}>
-            <div className={styles.sectionContainer}>
-               <div className={styles.sectionHeader}>
-                  <h2 className={styles.sectionTitle}>Meet the Founder</h2>
-               </div>
-
                <div className={styles.founderCard}>
                   <div className={styles.founderLayout}>
                      <div className={styles.founderImageContainer}>
@@ -403,17 +268,20 @@ export default function AboutUs() {
                               className={styles.founderImageInner}
                            />
                         </div>
-                        <h3 className={styles.founderName}>Dr. Dariia Vasylieva</h3>
-                        <p className={styles.founderRole}>President, CEO</p>
-                        <p className={styles.founderCompany}>RaiseTalks</p>
-                        <a
-                           href="https://www.linkedin.com/in/dvasylieva/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className={styles.founderLinkedIn}
-                        >
-                           <LinkedInIcon className={styles.linkedInIcon} />
-                        </a>
+                        <div className={styles.founderMeta}>
+                           <div className={styles.founderNameRow}>
+                              <h3 className={styles.founderName}>Dr. Dariia Vasylieva</h3>
+                              <span className={styles.founderRoleLine}>President, CEO at RaiseTalks</span>
+                           </div>
+                           <a
+                              href="https://www.linkedin.com/in/dvasylieva/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={styles.founderLinkedIn}
+                           >
+                              <LinkedInIcon className={styles.linkedInIcon} />
+                           </a>
+                        </div>
                      </div>
 
                      <div className={styles.founderContent}>
@@ -424,16 +292,74 @@ export default function AboutUs() {
                            <cite className={styles.blockquoteCite}>— Dr. Dariia Vasylieva</cite>
                         </blockquote>
 
-                        <a
-                           href="https://www.linkedin.com/in/dvasylieva/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className={styles.founderButton}
-                        >
-                           Let's Talk
-                        </a>
                      </div>
                   </div>
+               </div>
+            </div>
+         </section>
+
+         {/* Values Section */}
+         <section className={clsx(styles.valuesSection, styles.animateIn)}>
+            <div className={styles.sectionContainer}>
+               <div className={styles.sectionHeader}>
+                  <span className={styles.eyebrowPill}>Values</span>
+                  <h2 className={styles.sectionTitlePlain}>What We Believe</h2>
+                  <p className={styles.sectionSubtitle}>
+                     Values are not wall art. They are the decisions we make when no one is watching - and especially when the right choice is the expensive one.
+                  </p>
+               </div>
+
+               <div className={styles.valuesGrid}>
+                  {[
+                     {
+                        num: '01',
+                        name: 'Founder First.',
+                        quote: '"Take care of the people first." - Ben Horowitz',
+                        desc: 'Every feature, decision, tradeoff is evaluated through one lens: does this make a founder\'s raise more likely to succeed?',
+                     },
+                     {
+                        num: '02',
+                        name: 'Intelligence Compounds.',
+                        quote: '"1% better every day = 37x in a year." - Kaizen',
+                        desc: 'Every raise we process makes us smarter. Every mistake we make becomes a system improvement. We never waste a setback.',
+                     },
+                     {
+                        num: '03',
+                        name: 'Flow Over Force.',
+                        quote: '"Wu wei - action through alignment." - Lao Tzu',
+                        desc: 'The best product experiences feel effortless. We build for flow - the state where the right next step is obvious, the friction is invisible.',
+                     },
+                     {
+                        num: '04',
+                        name: 'Earn the Trust, Every Time.',
+                        quote: '"Earn trust before you need it." - CEO Excellence (McKinsey)',
+                        desc: 'Founders share their most sensitive information with us - financials, cap tables, internal documents. We treat this as sacred.',
+                     },
+                     {
+                        num: '05',
+                        name: 'Equity in Access.',
+                        quote: '"Geography and biology shape outcomes more than individual genius." - Jared Diamond',
+                        desc: 'The founder in London, Dubai, or Accra deserves the same intelligence as the one in San Francisco.',
+                     },
+                     {
+                        num: '06',
+                        name: 'Build to Last.',
+                        quote: '"Preserve the core. Stimulate progress." - Jim Collins',
+                        desc: 'We make decisions with a 10-year lens. We don\'t optimize for the metric of the quarter at the expense of the trust of the decade.',
+                     },
+                  ].map(({ num, name, quote, desc }) => (
+                     <div key={num} className={styles.valueCard}>
+                        <div className={styles.valueCardNumWrap}>
+                           <span className={styles.valueCardNum}>{num}</span>
+                        </div>
+                        <div>
+                           <h3 className={styles.valueCardName}>{name}</h3>
+                           <p className={styles.valueCardQuote}>{quote}</p>
+                           <p className={styles.valueCardDesc}>{desc}</p>
+                        </div>
+                     </div>
+                  ))}
+
                </div>
             </div>
          </section>
@@ -442,8 +368,7 @@ export default function AboutUs() {
          <section className={clsx(styles.partnersSection, styles.animateIn)}>
             <div className={styles.sectionContainer}>
                <div className={styles.sectionHeader}>
-                  <h2 className={styles.sectionTitle}>Our Backers & Partners</h2>
-                  <p className={styles.sectionSubtitle}>Proudly supported by</p>
+                  <h2 className={styles.sectionTitlePlain}>Our Backers & Partners</h2>
                </div>
                <LogoCarousel />
             </div>
@@ -454,7 +379,7 @@ export default function AboutUs() {
             <div className={styles.ctaBackground}></div>
             <div className={styles.ctaContent}>
                <Heading as="h2" className={styles.ctaTitle}>
-                  Build With Us
+                  Investors Build With Us
                </Heading>
                <p className={styles.ctaDescription}>
                   Bring a trusted, standardized diligence layer to your portfolio or program - accelerating deal execution with investor-grade structure and real-time intelligence.
