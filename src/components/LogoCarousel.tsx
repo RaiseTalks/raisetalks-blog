@@ -11,6 +11,8 @@ const partners = [
   { name: 'Grechka Media', logo: '/img/logos/grechka-media.svg' },
   { name: 'Global AI Show', logo: '/img/logos/global-ai-show.png' },
   { name: 'NVIDIA', logo: '/img/logos/nvidia-logo-horz.png' },
+  { name: 'Step Conference', logo: '/img/logos/step-conference.png' },
+  { name: 'Dubai AI Festival', logo: '/img/logos/dubai-ai-festival.png' },
 ];
 
 export default function LogoCarousel() {
