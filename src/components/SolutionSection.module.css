@@ -15,30 +15,31 @@
 
 .badge {
    display: inline-block;
-   padding: 0.5rem 1.25rem;
-   font-size: 0.75rem;
+   font-size: 0.72rem;
    font-weight: 600;
-   letter-spacing: 0.05em;
+   letter-spacing: 0.18em;
    text-transform: uppercase;
-   color: #64748b;
-   background: transparent;
-   border: 1.5px solid transparent;
-   border-radius: 100px;
+   color: var(--ifm-color-primary);
    margin-bottom: 1.5rem;
-   background-image: linear-gradient(white, white),
-      var(--raisetalks-brand-gradient);
-   background-origin: border-box;
-   background-clip: padding-box, border-box;
+   border: 1px solid rgba(1, 116, 225, 0.25);
+   border-radius: 2rem;
+   padding: 0.3rem 1rem;
+   background: rgba(1, 116, 225, 0.05);
 }
 
 .solutionTitle {
-   font-size: clamp(2rem, 4vw, 3rem);
-   font-weight: 700;
+   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+   font-weight: 800;
+   line-height: 1.15;
+   color: var(--ifm-color-content);
+   margin-bottom: 1.5rem;
+}
+
+.solutionTitleAccent {
    background: var(--raisetalks-brand-gradient);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    background-clip: text;
-   margin-bottom: 1.5rem;
 }
 
 .solutionDescription {

@@ -192,7 +192,7 @@ export default function ScoringOSSummary() {
         {/* Header */}
         <div className={styles.header}>
           <span className={styles.badge}>For Investors</span>
-          <h2 className={styles.title}>Scoring OS</h2>
+          <h2 className={styles.title}>Scoring <span className={styles.titleAccent}>OS</span></h2>
           <p className={styles.subtitle}>
             Standardized scorecards, IC packs, and version-controlled
             diligence—collaborate in one place and move decisions 4x faster.

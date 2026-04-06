@@ -12,23 +12,21 @@ import styles from './index.module.css';
 // Hero Section Component
 function HomepageHero() {
   return (
-    <section className={styles.heroSection}>
-      <div className={styles.heroContainer}>
+    <section className={styles.hero}>
+      <div className={styles.heroInner}>
+        <div className={styles.heroEyebrow}>For Startups &amp; Investors</div>
         <Heading as="h1" className={styles.heroTitle}>
-          <span className={styles.heroTitleAccent}>AI-first Global Fundraising Workspace</span>
+          AI-first Global Fundraising{' '}
+          <span className={styles.heroAccent}>Workspace</span>
         </Heading>
-        <p className={styles.heroDescription}>
-          for startups and investors to run deals, streamline due diligence <br /> and close rounds faster
+        <p className={styles.heroDesc}>
+          for startups and investors to run deals, streamline due diligence and close rounds faster
         </p>
-        <div className={styles.heroButtons}>
-          <Link
-            className={styles.heroPrimaryButton}
-            to="https://app.raisetalks.com/sign-up">
+        <div className={styles.heroActions}>
+          <Link className={styles.btnPrimary} to="https://app.raisetalks.com/sign-up">
             Try It Free
           </Link>
-          <Link
-            className={styles.heroSecondaryButton}
-            to="https://calendly.com/iamdariiava/30min">
+          <Link className={styles.btnSecondary} to="https://calendly.com/iamdariiava/30min">
             Book A Demo
           </Link>
         </div>
