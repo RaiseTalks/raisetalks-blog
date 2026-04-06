@@ -232,7 +232,7 @@ export default function SolutionSection() {
             <div className={styles.solutionMain}>
                <div className={styles.solutionHeader}>
                   <span className={styles.badge}>For Startups</span>
-                  <h2 className={styles.solutionTitle}>AI-Powered Fundraising, Finally.</h2>
+                  <h2 className={styles.solutionTitle}>AI-Powered Fundraising,{' '}<span className={styles.solutionTitleAccent}>Finally.</span></h2>
                   <p className={styles.solutionDescription}>
                      <strong>RaiseTalks</strong> turns your startup information into an investor-ready, structured Data Room with AI
                      guidance and readiness scoring - so you fix gaps before investor diligence starts.
