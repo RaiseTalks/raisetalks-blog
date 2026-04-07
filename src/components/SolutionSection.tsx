@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import Link from "@docusaurus/Link";
 import styles from "./SolutionSection.module.css";
 
@@ -74,142 +74,58 @@ const ShieldCheckIcon = ({ className }: { className?: string }) => (
 );
 
 // AI Advisor Demo Component - Clean autoplay video, no controls
-function AIAdvisorDemo() {
-   const [isReady, setIsReady] = useState(false);
-   const [isStarted, setIsStarted] = useState(false);
-   const playerRef = useRef<any>(null);
-   const containerRef = useRef<HTMLDivElement>(null);
-   const hasAutoplayedRef = useRef(false);
-   const videoId = "sFMcoNhLodg";
-   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
-   // Load YouTube IFrame API
-   useEffect(() => {
-      if (!window.YT) {
-         const tag = document.createElement("script");
-         tag.src = "https://www.youtube.com/iframe_api";
-         const firstScriptTag = document.getElementsByTagName("script")[0];
-         firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-      }
-   }, []);
-
-   // Intersection Observer for autoplay
-   useEffect(() => {
-      const observer = new IntersectionObserver(
-         ([entry]) => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.5 && !hasAutoplayedRef.current) {
-               hasAutoplayedRef.current = true;
-               handleStart();
-            }
-
-            // Pause when scrolled out of view
-            if (!entry.isIntersecting && playerRef.current && isReady) {
-               try {
-                  playerRef.current.pauseVideo();
-               } catch (e) {}
-            }
-
-            // Resume when scrolled back into view
-            if (entry.isIntersecting && playerRef.current && isStarted && isReady) {
-               try {
-                  playerRef.current.playVideo();
-               } catch (e) {}
-            }
-         },
-         { threshold: [0, 0.5, 1] },
-      );
-
-      if (containerRef.current) {
-         observer.observe(containerRef.current);
-      }
-
-      return () => observer.disconnect();
-   }, [isStarted, isReady]);
-
-   const initPlayer = () => {
-      if (window.YT && window.YT.Player) {
-         playerRef.current = new window.YT.Player("yt-player", {
-            videoId: videoId,
-            playerVars: {
-               autoplay: 1,
-               controls: 0,
-               disablekb: 1,
-               fs: 0,
-               iv_load_policy: 3,
-               modestbranding: 1,
-               rel: 0,
-               showinfo: 0,
-               playsinline: 1,
-               mute: 1,
-               loop: 1,
-               playlist: videoId,
-            },
-            events: {
-               onReady: (event: any) => {
-                  event.target.playVideo();
-               },
-               onStateChange: (event: any) => {
-                  // Only show video after playing and YouTube UI has faded
-                  if (event.data === window.YT.PlayerState.PLAYING) {
-                     setTimeout(() => {
-                        setIsReady(true);
-                     }, 1000);
-                  }
-               },
-            },
-         });
-      } else {
-         window.onYouTubeIframeAPIReady = () => {
-            initPlayer();
-         };
-      }
-   };
-
-   const handleStart = () => {
-      setIsStarted(true);
-      setTimeout(initPlayer, 100);
-   };
-
+function DiligenceVideoBlock() {
    return (
       <div className={styles.aiAdvisorBlock}>
-         <h3 className={styles.aiAdvisorTitle}>Talk to your AI Fundraising Advisor</h3>
-         <div ref={containerRef} className={styles.aiAdvisorVideo}>
-            {/* Thumbnail - covers video until it's actually playing */}
-            <div className={`${styles.videoThumbnail} ${isReady ? styles.hidden : ""}`}>
-               <img src={thumbnailUrl} alt="AI Advisor Demo" className={styles.thumbnailImage} />
-            </div>
-            {/* YouTube player - hidden behind thumbnail until ready */}
-            {isStarted && <div id="yt-player" className={styles.ytPlayer}></div>}
+         <div className={styles.videoSectionHeader}>
+            <span className={styles.videoEyebrow}>See It In Action</span>
+            <h2 className={styles.videoSectionTitle}>
+               Your Next Investor Meeting<br />
+               <span className={styles.videoSectionAccent}>Is Closer Than You Think</span>
+            </h2>
+            <p className={styles.aiAdvisorText}>
+               RaiseTalks gives you one workspace to run your entire raise - so you spend less time on infrastructure and more time closing.
+            </p>
+         </div>
+         <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0, borderRadius: '1rem', overflow: 'hidden', background: '#000', marginBottom: '2rem' }}>
+            <iframe
+               src="https://www.youtube-nocookie.com/embed/8WOwPsQE158?controls=1&modestbranding=1&rel=0&playsinline=1"
+               title="Your Next Investor Meeting Is Closer Than You Think"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+               allowFullScreen
+               style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            />
          </div>
          <div className={styles.aiAdvisorContent}>
-            <p className={styles.aiAdvisorText}>
-               Your AI Fundraising Advisor turns your data room into IC-ready answers - grounded in your actual data. It doesn't guess. It
-               stress-tests your story like an investor
-            </p>
-            <Link className={styles.aiAdvisorButton} to="https://app.raisetalks.com/sign-up">
-               Run Investor Q&A
+            <Link className={styles.aiAdvisorButton} to="https://calendly.com/iamdariiava/30min">
+               See It In Action
             </Link>
          </div>
       </div>
    );
 }
 
+
 export default function SolutionSection() {
    const features = [
       {
-         title: "Investor-ready Structured Data Room",
+         title: "Investor-Ready Data Room",
+         desc: "Organized, structured, and built to impress from day one.",
          icon: FileStackIcon,
       },
       {
-         title: "AI Advisor for Readiness Preparation",
+         title: "AI Readiness Score",
+         desc: "Know exactly what's missing before investors find it.",
          icon: SparklesIcon,
       },
       {
-         title: "Investor Matchmaking + Pipeline",
+         title: "Investor Matchmaking & Pipeline",
+         desc: "Connect with the right investors at the right stage.",
          icon: UsersIcon,
       },
       {
-         title: "Secure Sharing & Controlled Access",
+         title: "Secure, Controlled Sharing",
+         desc: "Share with confidence, revoke access anytime.",
          icon: ShieldCheckIcon,
       },
    ];
@@ -217,25 +133,13 @@ export default function SolutionSection() {
    return (
       <section className={styles.solutionSection}>
          <div className="container px-4 mx-auto">
-            {/* Block 4A - Data Room Preview (moved up) */}
-            <div className={styles.dataRoomBlock}>
-               <div className={styles.dataRoomContent}>
-                  <img
-                     src="/img/DataRoomInterface.png"
-                     alt="Data Room Interface - Smart, organized, investor-ready"
-                     className={styles.dataRoomScreenshot}
-                  />
-               </div>
-            </div>
-
             {/* Main Solution Block */}
             <div className={styles.solutionMain}>
                <div className={styles.solutionHeader}>
                   <span className={styles.badge}>For Startups</span>
-                  <h2 className={styles.solutionTitle}>AI-Powered Fundraising,{' '}<span className={styles.solutionTitleAccent}>Finally.</span></h2>
+                  <h2 className={styles.solutionTitle}>Investors Decide Fast.{' '}<span className={styles.solutionTitleAccent}>Be Ready Faster.</span></h2>
                   <p className={styles.solutionDescription}>
-                     <strong>RaiseTalks</strong> turns your startup information into an investor-ready, structured Data Room with AI
-                     guidance and readiness scoring - so you fix gaps before investor diligence starts.
+                     RaiseTalks transforms your startup data into a structured, investor-grade Data Room with AI-powered gap analysis, so you walk into every conversation with confidence.
                   </p>
                </div>
 
@@ -245,27 +149,85 @@ export default function SolutionSection() {
                         <div className={styles.featureIconContainer}>
                            <feature.icon className={styles.featureIcon} />
                         </div>
-                        <h3 className={styles.featureTitle}>{feature.title}</h3>
+                        <div>
+                           <h3 className={styles.featureTitle}>{feature.title}</h3>
+                           <p className={styles.featureDesc}>{feature.desc}</p>
+                        </div>
+                     </div>
+                  ))}
+               </div>
+               <div className={styles.perksAction}>
+                  <div className={styles.perksText}>
+                     <span className={styles.perksTextTitle}>Exclusive Founder Perks</span>
+                     <span className={styles.perksTextDesc}>Tools and deals to accelerate your raise.</span>
+                  </div>
+                  <Link className={styles.perksButton} to="/startups#perks">
+                     Get access to Perks
+                  </Link>
+               </div>
+            </div>
+
+            {/* Diligence Video Block */}
+            <DiligenceVideoBlock />
+
+            {/* AI Advisor Demo Block - temporarily hidden */}
+            {/* <AIAdvisorDemo /> */}
+
+         </div>
+
+         {/* Narrative Block — full-width grey */}
+         <div className={styles.narrativeBlock}>
+            <div className={styles.narrativeInner}>
+               <div className={styles.narrativeRow1}>
+                  <div className={styles.narrativeHeadGroup}>
+                     <span className={styles.narrativeEyebrow}>RaiseTalks TV</span>
+                     <h2 className={styles.narrativeTitle}>
+                        Your Story Is the{' '}
+                        <span className={styles.narrativeTitleAccent}>Strategy</span>
+                     </h2>
+                     <p className={styles.narrativeSubtitle}>
+                        Cinema is the method. Narrative is the product. Perception is the outcome.
+                     </p>
+                  </div>
+                  <div className={styles.narrativeCta}>
+                     <Link className={styles.narrativeButton} to="https://tv.raisetalks.com">
+                        Explore Founder Originals
+                     </Link>
+                  </div>
+               </div>
+               <div className={styles.narrativeGrid}>
+                  {[
+                     { label: 'Diagnostic', desc: 'Audit your story, find the gaps weakening your raise.' },
+                     { label: 'Architecture', desc: 'Build the core system: category story, positioning, and investor messaging.' },
+                     { label: 'Engine', desc: 'A content system that reinforces your story consistently across channels.' },
+                     { label: 'Founder Original', desc: 'A flagship cinematic piece for investor communication, launches, and major announcements.' },
+                  ].map(({ label, desc }) => (
+                     <div key={label} className={styles.narrativeCard}>
+                        <div className={styles.narrativeCardLabel}>{label}</div>
+                        <p className={styles.narrativeCardDesc}>{desc}</p>
                      </div>
                   ))}
                </div>
             </div>
+         </div>
+      </section>
+   );
+}
 
-            {/* AI Advisor Demo Block */}
-            <AIAdvisorDemo />
-
-            {/* Block 4B - Investor Discovery */}
-            <div className={styles.investorBlock}>
-               <div className={styles.investorContent}>
-                  <h3 className={styles.investorTitle}>Discover Startups, Request Data Rooms Instantly</h3>
-                  <p className={styles.investorDescription}>
-                     RaiseTalks makes it easy for investors to access a curated pipeline of early-stage startups—all organized, scored, and
-                     ready to engage
-                  </p>
-                  <Link className={styles.exploreButton} to="https://app.raisetalks.com/startups">
-                     Explore Startups
-                  </Link>
-               </div>
+export function InvestorDiscoveryBlock() {
+   return (
+      <div className={styles.investorBlock}>
+         <div className={styles.investorInner}>
+            <div className={styles.investorContent}>
+               <h3 className={styles.investorTitle}>The Deals Worth Seeing -{' '}<span className={styles.investorTitleAccent}>Curated and Ready.</span></h3>
+               <p className={styles.investorDescription}>
+                  RaiseTalks surfaces pre-scored, diligence-ready startups - so you spend less time on due diligence.
+               </p>
+               <Link className={styles.exploreButton} to="https://app.raisetalks.com/startups">
+                  Explore Startups
+               </Link>
+            </div>
+            <div className={styles.investorImageCol}>
                <img
                   src="/img/startups-layout.png"
                   alt="Investor Dashboard - Curated startup pipeline"
@@ -273,6 +235,6 @@ export default function SolutionSection() {
                />
             </div>
          </div>
-      </section>
+      </div>
    );
 }

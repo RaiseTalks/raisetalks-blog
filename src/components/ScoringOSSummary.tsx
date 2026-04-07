@@ -3,73 +3,6 @@ import Link from "@docusaurus/Link";
 import styles from "./ScoringOSSummary.module.css";
 
 // ========================================
-// Dimension Icons
-// ========================================
-
-const TeamIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-    <circle cx="9" cy="7" r="4" />
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-  </svg>
-);
-
-const ProductIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="m7.5 4.27 9 5.15" />
-    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
-    <path d="m3.3 7 8.7 5 8.7-5" />
-    <path d="M12 22V12" />
-  </svg>
-);
-
-const MarketIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M3 3v18h18" />
-    <path d="m19 9-5 5-4-4-3 3" />
-  </svg>
-);
-
-const DealIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-  </svg>
-);
-
-// ========================================
 // Pipeline Card Icons
 // ========================================
 
@@ -120,19 +53,6 @@ const FileCheckIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const ChevronRightIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="m9 18 6-6-6-6" />
-  </svg>
-);
 
 const ArrowRightIcon = ({ className }: { className?: string }) => (
   <svg
@@ -153,31 +73,25 @@ const ArrowRightIcon = ({ className }: { className?: string }) => (
 // Data
 // ========================================
 
-const scoringDimensions = [
-  { label: "Team", icon: TeamIcon },
-  { label: "Product", icon: ProductIcon },
-  { label: "Market", icon: MarketIcon },
-  { label: "Deal", icon: DealIcon },
-];
 
 const pipelineSteps = [
   {
     step: 1,
     title: "Pre-Score Engine",
+    desc: "Standardized scorecards so every deal gets a fair, consistent look.",
     icon: GaugeIcon,
-    features: ["Auto-score analysis", "Benchmark against portfolio"],
   },
   {
     step: 2,
     title: "Committee Workspace",
+    desc: "One place for partners to align, debate, and decide.",
     icon: UsersRoundIcon,
-    features: ["Multi-reviewer scoring", "Evidence-linked rationales"],
   },
   {
     step: 3,
     title: "DD & IC Pack",
+    desc: "Diligence and investment memos, version-controlled and always current.",
     icon: FileCheckIcon,
-    features: ["Complete audit trail", "LP-grade exports"],
   },
 ];
 
@@ -192,21 +106,10 @@ export default function ScoringOSSummary() {
         {/* Header */}
         <div className={styles.header}>
           <span className={styles.badge}>For Investors</span>
-          <h2 className={styles.title}>Scoring <span className={styles.titleAccent}>OS</span></h2>
+          <h2 className={styles.title}>IC decision. <span className={styles.titleAccent}>4x faster.</span></h2>
           <p className={styles.subtitle}>
-            Standardized scorecards, IC packs, and version-controlled
-            diligence—collaborate in one place and move decisions 4x faster.
+            RaiseTalks Scoring OS gives your fund a single system to evaluate, align, and decide.
           </p>
-        </div>
-
-        {/* Scoring Dimensions Bar */}
-        <div className={styles.dimensionsBar}>
-          {scoringDimensions.map((dim, index) => (
-            <div key={index} className={styles.dimensionPill}>
-              <dim.icon className={styles.dimensionIcon} />
-              <span className={styles.dimensionLabel}>{dim.label}</span>
-            </div>
-          ))}
         </div>
 
         {/* Pipeline Cards */}
@@ -217,7 +120,10 @@ export default function ScoringOSSummary() {
                 <div className={styles.cardIconContainer}>
                   <step.icon className={styles.cardIcon} />
                 </div>
-                <h3 className={styles.cardTitle}>{step.title}</h3>
+                <div>
+                  <h3 className={styles.cardTitle}>{step.title}</h3>
+                  <p className={styles.cardDesc}>{step.desc}</p>
+                </div>
               </div>
             ))}
           </div>
