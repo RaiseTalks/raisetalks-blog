@@ -3,9 +3,147 @@
    background: white;
 }
 
+/* Narrative Block — matches FOUNDER PERKS layout on /startups */
+.narrativeBlock {
+   margin-top: 5rem;
+   padding: 5rem 0;
+   background: var(--ifm-color-emphasis-100);
+   width: 100%;
+}
+
+.narrativeInner {
+   max-width: 1100px;
+   margin: 0 auto;
+   padding: 0 1.5rem;
+}
+
+.narrativeRow1 {
+   display: flex;
+   align-items: flex-end;
+   justify-content: space-between;
+   gap: 2rem;
+   margin-bottom: 3rem;
+   flex-wrap: wrap;
+}
+
+.narrativeHeadGroup {
+   flex: 1;
+   min-width: 280px;
+}
+
+.narrativeEyebrow {
+   display: inline-block;
+   font-size: 0.72rem;
+   font-weight: 600;
+   letter-spacing: 0.18em;
+   text-transform: uppercase;
+   color: var(--ifm-color-primary);
+   margin-bottom: 0.75rem;
+   border: 1px solid rgba(1, 116, 225, 0.25);
+   border-radius: 2rem;
+   padding: 0.25rem 0.9rem;
+   background: rgba(1, 116, 225, 0.05);
+}
+
+.narrativeTitle {
+   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+   font-weight: 800;
+   line-height: 1.15;
+   margin: 0.5rem 0 0.75rem;
+   color: var(--ifm-color-content);
+}
+
+.narrativeTitleAccent {
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+}
+
+.narrativeSubtitle {
+   font-size: 1.05rem;
+   color: var(--ifm-color-content-secondary);
+   line-height: 1.6;
+   margin: 0;
+}
+
+.narrativeCta {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   flex-shrink: 0;
+}
+
+.narrativeGrid {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 1px;
+   background: var(--ifm-color-emphasis-200);
+   border-radius: 16px;
+   overflow: hidden;
+}
+
+.narrativeCard {
+   background: var(--ifm-background-color);
+   padding: 2rem 1.75rem;
+   transition: background 0.2s ease;
+}
+
+.narrativeCard:hover {
+   background: rgba(1, 116, 225, 0.03);
+}
+
+.narrativeCardLabel {
+   font-size: 0.65rem;
+   font-weight: 700;
+   letter-spacing: 0.2em;
+   text-transform: uppercase;
+   color: var(--ifm-color-primary);
+   font-family: 'Courier New', monospace;
+   margin-bottom: 0.75rem;
+}
+
+.narrativeCardDesc {
+   font-size: 0.9rem;
+   color: var(--ifm-color-content-secondary);
+   line-height: 1.7;
+   margin: 0;
+}
+
+.narrativeButton {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   background: var(--raisetalks-brand-gradient);
+   color: #fff !important;
+   padding: 0.85rem 1.75rem;
+   border-radius: 10px;
+   font-weight: 700;
+   font-size: 0.95rem;
+   text-decoration: none !important;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.narrativeButton:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
+   color: #fff !important;
+}
+
+@media (max-width: 900px) {
+   .narrativeRow1 { align-items: flex-start; }
+   .narrativeGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 580px) {
+   .narrativeBlock { padding: 3rem 0; }
+   .narrativeRow1 { flex-direction: column; gap: 1.5rem; }
+   .narrativeGrid { grid-template-columns: 1fr; }
+}
+
 .solutionMain {
    max-width: 900px;
-   margin: 0 auto 10rem;
+   margin: 0 auto 4rem;
    text-align: center;
 }
 
@@ -43,9 +181,9 @@
 }
 
 .solutionDescription {
-   font-size: 1.25rem;
-   color: #666;
-   line-height: 1.8;
+   font-size: 1.1rem;
+   color: var(--ifm-color-content-secondary);
+   line-height: 1.7;
    max-width: 700px;
    margin: 0 auto;
 }
@@ -55,6 +193,72 @@
    grid-template-columns: repeat(2, 1fr);
    gap: 1.5rem;
    margin: 3rem 0;
+}
+
+.perksAction {
+   display: inline-flex;
+   align-items: center;
+   gap: 1.25rem;
+   margin-top: 1.5rem;
+   padding: 0.75rem 1rem 0.75rem 1.25rem;
+   border: 1.5px solid rgba(1, 116, 225, 0.18);
+   border-radius: 100px;
+   background: rgba(1, 116, 225, 0.03);
+}
+
+@media (max-width: 600px) {
+   .perksAction {
+      flex-direction: column;
+      border-radius: 1rem;
+      align-items: flex-start;
+      padding: 1rem 1.25rem;
+   }
+}
+
+.perksText {
+   display: flex;
+   flex-direction: column;
+   gap: 0.1rem;
+}
+
+.perksTextTitle {
+   font-size: 0.9rem;
+   font-weight: 700;
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   line-height: 1.3;
+}
+
+.perksTextDesc {
+   font-size: 0.78rem;
+   color: var(--ifm-color-content-secondary);
+   line-height: 1.3;
+}
+
+.perksButton {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0.55rem 1.25rem;
+   background: var(--raisetalks-brand-gradient);
+   color: white;
+   border-radius: 100px;
+   font-weight: 600;
+   font-size: 0.85rem;
+   text-decoration: none;
+   white-space: nowrap;
+   transition: all 0.25s ease;
+   flex-shrink: 0;
+}
+
+.perksButton:hover {
+   opacity: 0.9;
+   color: white;
+   text-decoration: none;
+   transform: translateY(-1px);
+   box-shadow: 0 4px 12px rgba(1, 116, 225, 0.3);
 }
 
 .featureCard {
@@ -82,6 +286,13 @@
    height: 1.5rem;
    width: 1.5rem;
    color: var(--raisetalks-blue-primary-flat);
+}
+
+.featureDesc {
+   font-size: 0.85rem;
+   color: var(--ifm-color-content-secondary);
+   line-height: 1.5;
+   margin: 0.25rem 0 0;
 }
 
 .featureTitle {
@@ -188,8 +399,43 @@
 /* AI Advisor Block */
 .aiAdvisorBlock {
    max-width: 900px;
-   margin: 0 auto 6rem;
+   margin: 0 auto 2rem;
    text-align: center;
+}
+
+.videoSectionHeader {
+   text-align: center;
+   margin-bottom: 2rem;
+}
+
+.videoEyebrow {
+   display: inline-block;
+   font-size: 0.72rem;
+   font-weight: 600;
+   letter-spacing: 0.18em;
+   text-transform: uppercase;
+   color: var(--ifm-color-primary);
+   margin-bottom: 1rem;
+   border: 1px solid rgba(1, 116, 225, 0.25);
+   border-radius: 2rem;
+   padding: 0.3rem 1rem;
+   background: rgba(1, 116, 225, 0.05);
+}
+
+.videoSectionTitle {
+   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+   font-weight: 800;
+   line-height: 1.15;
+   letter-spacing: -0.02em;
+   color: var(--ifm-color-content);
+   margin: 0 0 1rem;
+}
+
+.videoSectionAccent {
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
 }
 
 .aiAdvisorTitle {
@@ -256,14 +502,14 @@
 
 .aiAdvisorContent {
    max-width: 700px;
-   margin: 0 auto;
+   margin: 2rem auto 0;
 }
 
 .aiAdvisorText {
-   font-size: 1.25rem;
-   color: #555;
-   line-height: 1.8;
-   margin-bottom: 2rem;
+   font-size: 1.1rem;
+   color: var(--ifm-color-content-secondary);
+   line-height: 1.7;
+   margin-bottom: 1.5rem;
 }
 
 .aiAdvisorButton {
@@ -287,58 +533,82 @@
 
 /* Investor Block */
 .investorBlock {
-   margin: 4rem 0 0 0;
-   padding: 3rem 0 0 0;
-   background: var(--raisetalks-brand-gradient);
-   border-radius: 20px;
+   margin-top: 4rem;
    color: white;
+   width: 100%;
+   overflow: hidden;
+}
+
+.investorInner {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   min-height: 480px;
 }
 
 .investorContent {
-   /* max-width: 900px; */
-   margin: 0 auto;
+   background: var(--raisetalks-brand-gradient);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
    text-align: center;
+   padding: 4rem 3.5rem;
+}
+
+.investorImageCol {
+   overflow: hidden;
 }
 
 .investorTitle {
-   font-size: 2rem;
-   font-weight: 700;
-   margin-bottom: 1.5rem;
+   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+   font-weight: 800;
+   line-height: 1.15;
+   letter-spacing: -0.02em;
+   color: #ffffff;
+   margin-bottom: 1rem;
+}
+
+.investorTitleAccent {
+   color: rgba(255, 255, 255, 0.85);
+   text-decoration: underline;
+   text-decoration-color: rgba(255, 255, 255, 0.35);
+   text-underline-offset: 4px;
 }
 
 .investorDescription {
    font-size: 1.125rem;
    line-height: 1.8;
    margin-bottom: 2rem;
-   opacity: 0.95;
+   color: rgba(255, 255, 255, 0.85);
 }
 
 .exploreButton {
-   display: inline-block;
-   padding: 1rem 2.5rem;
+   display: inline-flex;
+   align-items: center;
+   padding: 0.875rem 2rem;
    background: white;
-   color: var(--raisetalks-blue-primary-flat) !important;
-   border-radius: 8px;
+   color: #0174e1 !important;
+   border-radius: 0.75rem;
    font-weight: 600;
-   font-size: 1.125rem;
-   transition: all 0.3s ease;
+   font-size: 1rem;
+   transition: all 0.25s ease;
    text-decoration: none;
    margin-bottom: 3rem;
 }
 
 .exploreButton:hover {
    transform: translateY(-2px);
-   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
-   color: var(--raisetalks-blue-primary-flat) !important;
+   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25);
+   color: #0174e1 !important;
    text-decoration: none;
 }
 
 .startupsLayoutImage {
-   width: 100%;
-   height: auto;
-   margin: 2rem 0 0 0;
-   border-radius: 0 0 20px 20px;
    display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: top left;
 }
 
 .investorImage {
@@ -365,9 +635,21 @@
       grid-template-columns: 1fr;
    }
 
-   .dataRoomBlock,
-   .investorBlock {
+   .dataRoomBlock {
       padding: 2rem 1.5rem 0 1.5rem;
+   }
+
+   .investorInner {
+      grid-template-columns: 1fr;
+      min-height: unset;
+   }
+
+   .investorContent {
+      padding: 3rem 1.5rem;
+   }
+
+   .investorImageCol {
+      min-height: 260px;
    }
 
    .investorTitle {
