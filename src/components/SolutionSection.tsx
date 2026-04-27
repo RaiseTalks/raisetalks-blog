@@ -175,7 +175,7 @@ export default function SolutionSection() {
 
          </div>
 
-         {/* Narrative Block — full-width grey */}
+         {/* Narrative Block - full-width grey */}
          <div className={styles.narrativeBlock}>
             <div className={styles.narrativeInner}>
                <div className={styles.narrativeRow1}>

@@ -289,7 +289,7 @@ export default function AboutUs() {
                            <p className={styles.blockquoteText}>
                               "RaiseTalks is an AI-native VC investment-intelligence platform for early-stage portfolios: founders get investor-grade data rooms, readiness scores, and structured IR pipelines, while funds get faster diligence, clearer IC prep, and earlier visibility into the right deals. I've spent 17 years on the investment side, closed €3B+ in deals, and reviewed 10,000+ startups, and I'm turning that investment-readiness playbook into an AI-native platform that becomes the natural end-to-end workspace for VC investments."
                            </p>
-                           <cite className={styles.blockquoteCite}>— Dr. Dariia Vasylieva</cite>
+                           <cite className={styles.blockquoteCite}>- Dr. Dariia Vasylieva</cite>
                         </blockquote>
 
                      </div>

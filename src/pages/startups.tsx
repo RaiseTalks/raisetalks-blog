@@ -193,7 +193,7 @@ export default function Startups() {
         <div className={styles.truthInner}>
           <span className={styles.truthLabel}>The Core Insight</span>
           <blockquote className={styles.truthQuote}>
-            "The fundraising problem is not a pitch problem. It's a preparation problem —
+            "The fundraising problem is not a pitch problem. It's a preparation problem -
             and nobody has built the infrastructure to solve it at scale, with AI, from the investor's perspective."
           </blockquote>
         </div>

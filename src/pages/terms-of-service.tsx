@@ -179,8 +179,8 @@ export default function TermsOfService() {
 
             <h2>6. Intellectual Property</h2>
             <p>
-              All intellectual property rights in the Platform—including but not limited to content, visuals, code, tools,
-              templates, and AI models—are owned or licensed by RaiseTalks.
+              All intellectual property rights in the Platform-including but not limited to content, visuals, code, tools,
+              templates, and AI models-are owned or licensed by RaiseTalks.
             </p>
             <p>
               You may not use, reproduce, or distribute any part of the Platform except as expressly permitted in writing.

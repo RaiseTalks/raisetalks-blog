@@ -91,7 +91,7 @@ export default function Pricing() {
             {/* Subtitle with enhanced typography */}
             <p className="max-w-4xl mx-auto mb-8 text-xl font-medium leading-relaxed text-gray-600 md:text-2xl">
               Whether you're <span className="text-[var(--raisetalks-blue-primary)] font-semibold">raising capital</span> or
-              <span className="text-[var(--raisetalks-blue-primary)] font-semibold"> sourcing deals</span>, RaiseTalks offers plans designed to help you move faster—with clarity, confidence, and AI support.
+              <span className="text-[var(--raisetalks-blue-primary)] font-semibold"> sourcing deals</span>, RaiseTalks offers plans designed to help you move faster-with clarity, confidence, and AI support.
             </p>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function Pricing() {
           <div className="max-w-6xl mx-auto">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">For Startups</h2>
-              <p className="text-2xl font-medium text-gray-600">From pitch to data room—fundraise smarter with AI.</p>
+              <p className="text-2xl font-medium text-gray-600">From pitch to data room-fundraise smarter with AI.</p>
               <div className="w-24 h-1 bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] mx-auto rounded-full mt-6"></div>
             </div>
 

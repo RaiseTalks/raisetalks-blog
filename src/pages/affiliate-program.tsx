@@ -273,7 +273,7 @@ export default function AffiliateProgram() {
                   </li>
                 </ul>
                 <p className="text-lg font-semibold text-gray-900 mb-4">
-                  Start sharing, start earning—no approval needed.
+                  Start sharing, start earning-no approval needed.
                 </p>
                 <Link
                   className="bg-gradient-to-r from-[var(--raisetalks-blue-primary)] to-[var(--raisetalks-blue-primary)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"
