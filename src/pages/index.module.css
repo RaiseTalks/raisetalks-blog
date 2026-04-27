@@ -1,12 +1,46 @@
-/* Hero Section */
+/* ============================================================
+   Scroll animation utility
+   ============================================================ */
+
+.animSection {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animSection {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+
 .hero {
-  min-height: 88vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8rem 1.5rem 6rem;
+  padding: 7rem 1.5rem 5rem;
   text-align: center;
   background: #ffffff;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.05s;
+}
+
+.hero.visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero { opacity: 1; transition: none; }
 }
 
 .heroInner {
@@ -34,7 +68,7 @@
   font-weight: 900;
   line-height: 1.08;
   letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.5rem 0;
   color: var(--ifm-color-content);
 }
 
@@ -60,861 +94,56 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 480px) {
-  .heroActions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .btnPrimary,
-  .btnSecondary {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
 .btnPrimary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 2rem;
+  padding: 0.85rem 1.75rem;
   background: var(--raisetalks-brand-gradient);
-  color: white;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.25s ease;
+  color: #fff !important;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
 }
 
 .btnPrimary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(1, 116, 225, 0.3);
-  color: white;
-  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 .btnSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 2rem;
+  padding: 0.85rem 1.75rem;
   background: transparent;
-  color: #0174e1;
-  border: 1.5px solid rgba(1, 116, 225, 0.35);
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.25s ease;
+  color: var(--ifm-color-primary) !important;
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .btnSecondary:hover {
-  border-color: #0174e1;
-  background: rgba(1, 116, 225, 0.05);
-  color: #0174e1;
-  text-decoration: none;
-  transform: translateY(-2px);
+  background: var(--ifm-color-primary);
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
-/* Statistics Section */
-.stats {
-  padding: 5rem 0;
-  background: #f8f9fa;
-  transform: translateY(50px);
-  opacity: 0;
-  transition: all 0.8s ease-out;
-}
-
-.stats.animate {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.statsTitle {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #2c3e50;
-  font-weight: 200;
-}
-
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.statCard {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.statCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-.statNumber {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--ifm-color-primary);
-  margin-bottom: 1rem;
-}
-
-.statDescription {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.statTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
-}
-
-.statDetails {
-  font-size: 0.875rem;
-  color: #888;
-  line-height: 1.5;
-}
-
-/* Quote Section */
-.quote {
-  padding: 5rem 0;
-  background: white;
-}
-
-.quoteContent {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 3rem;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.quoteImage {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
-}
-
-.quotePretext {
-  font-size: 2rem;
-  font-weight: 300;
-  color: #666;
-  margin: 0;
-  line-height: 1.2;
-}
-
-.quoteMainText {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--ifm-color-primary);
-  margin: 1rem 0 2rem;
-}
-
-.quoteText {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: #555;
-  border-left: 4px solid var(--ifm-color-primary);
-  padding-left: 2rem;
-  margin: 2rem 0;
-}
-
-.quoteAuthor {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #333;
-  text-align: right;
-}
-
-/* Journey Section */
-.journey {
-  padding: 5rem 0;
-  background: var(--grandguide-main-gradient);
-  color: white;
-  text-align: center;
-}
-
-.journeyContent {
-  max-width: 800px;
-  margin: 0 auto 3rem;
-}
-
-.journeyTitle {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.journeySubtitle {
-  font-size: 1.25rem;
-  opacity: 0.9;
-  margin-bottom: 2rem;
-}
-
-.journeyButton {
-  background: white !important;
-  color: var(--ifm-color-primary) !important;
-  border: none !important;
-  font-weight: 600;
-  padding: 12px 30px;
-}
-
-.journeyImage {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.journeyImage img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Pricing Section */
-.pricing {
-  padding: 5rem 0;
-  background: #f8f9fa;
-}
-
-.pricingTitle {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #2c3e50;
-}
-
-.pricingSubtitle {
-  text-align: center;
-  font-size: 1.125rem;
-  color: #666;
-  margin-bottom: 3rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.pricingGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.pricingCard {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.pricingCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-.pricingHeader {
-  padding: 2rem;
-  text-align: center;
-  color: white;
-}
-
-.pricingHeader h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.starterGradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.enhanceGradient {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.growthGradient {
-  background: var(--grandguide-main-gradient);
-}
-
-.pricingBody {
-  padding: 2rem;
-}
-
-.originalPrice {
-  text-decoration: line-through;
-  color: #999;
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.priceDisplay {
-  margin-bottom: 1rem;
-}
-
-.price {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #2c3e50;
-}
-
-.period {
-  font-size: 1rem;
-  color: #666;
-  margin-left: 0.5rem;
-}
-
-.specialNote {
-  background: #f0f0ff;
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-  font-size: 0.875rem;
-  color: #666;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.infoIcon {
-  font-size: 1.25rem;
-}
-
-.featureList {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0 0;
-}
-
-.featureList li {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #eee;
-  font-size: 0.975rem;
-  color: #555;
-}
-
-.featureList li:last-child {
-  border-bottom: none;
-}
-
-/* Roadmap Section */
-.roadmap {
-  padding: 5rem 0;
-  background: #f8f9fa;
-  position: relative;
-  overflow: hidden;
-}
-
-.roadmapHeader {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.roadmapTitle {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  letter-spacing: 2px;
-}
-
-.roadmapSubtitle {
-  font-size: 1.125rem;
-  color: #666;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-.roadmapVisual {
-  text-align: center;
-  margin: 3rem 0;
-}
-
-.roadmapDesktop {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  display: block;
-}
-
-.roadmapMobile {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  display: none;
-}
-
-.roadmapGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.roadmapCard {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.roadmapCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.roadmapCard1 {
-  transform: translateY(0px);
-  animation-delay: 0.1s;
-}
-
-.roadmapCard2 {
-  transform: translateY(50px);
-  animation-delay: 0.2s;
-}
-
-.roadmapCard3 {
-  transform: translateY(100px);
-  animation-delay: 0.3s;
-}
-
-.roadmapCard4 {
-  transform: translateY(150px);
-  animation-delay: 0.4s;
-}
-
-.roadmapCardHeader {
-  background: var(--grandguide-main-gradient);
-  padding: 2rem;
-  text-align: center;
-  color: white;
-  position: relative;
-}
-
-.roadmapCard2 .roadmapCardHeader {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.roadmapCard3 .roadmapCardHeader {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.roadmapCard4 .roadmapCardHeader {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-.quarterInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.quarter {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.year {
-  font-size: 1.25rem;
-  font-weight: 300;
-  opacity: 0.9;
-}
-
-.roadmapCardBody {
-  padding: 2rem;
-}
-
-.roadmapFeature {
-  margin-bottom: 1.5rem;
-}
-
-.roadmapFeature:last-child {
-  margin-bottom: 0;
-}
-
-.roadmapFeature p {
-  font-size: 0.975rem;
-  color: #555;
-  line-height: 1.6;
-  margin: 0;
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
-}
-
-.roadmapFeature:last-child p {
-  border-bottom: none;
-}
-
-/* Animation keyframes */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Parallax effect */
-.roadmapCard1:hover {
-  transform: translateY(-8px) translateX(2px);
-}
-
-.roadmapCard2:hover {
-  transform: translateY(42px) translateX(-2px);
-}
-
-.roadmapCard3:hover {
-  transform: translateY(92px) translateX(2px);
-}
-
-.roadmapCard4:hover {
-  transform: translateY(142px) translateX(-2px);
-}
-
-/* Modal Styles */
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-out;
-}
-
-.modalContent {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-  position: relative;
-  animation: slideIn 0.3s ease-out;
-}
-
-.modalClose {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #666;
-  transition: color 0.3s ease;
-}
-
-.modalClose:hover {
-  color: #333;
-}
-
-.modalForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.modalForm input {
-  padding: 1rem;
-  border: 2px solid #eee;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.modalForm input:focus {
-  outline: none;
-  border-color: var(--ifm-color-primary);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Why Us Section */
-.whyUs {
-  padding: 5rem 0;
-  background: var(--grandguide-main-gradient);
-  color: white;
-}
-
-.whyUsTitle {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-}
-
-.featuresGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.featureCard {
-  text-align: center;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.featureCard:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.featureIcon {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 1rem;
-}
-
-.featureCard h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.featureCard p {
-  font-size: 1rem;
-  opacity: 0.9;
-}
-
-/* Responsive Design */
-@media (max-width: 996px) {
-  .heroTitle {
-    font-size: 2.5rem;
-  }
-
-  .quoteContent {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .quoteText {
-    text-align: left;
-  }
-
-  .quoteAuthor {
-    text-align: center;
-  }
-
-  .statsGrid,
-  .pricingGrid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Roadmap responsive */
-  .roadmapGrid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .roadmapCard1,
-  .roadmapCard2,
-  .roadmapCard3,
-  .roadmapCard4 {
-    transform: translateY(0px);
-  }
-
-  .roadmapCard1:hover,
-  .roadmapCard2:hover,
-  .roadmapCard3:hover,
-  .roadmapCard4:hover {
-    transform: translateY(-8px);
-  }
-}
-
-@media (max-width: 768px) {
-  .heroTitle {
-    font-size: 2rem;
-  }
-
-  .heroButtons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .statsTitle,
-  .pricingTitle,
-  .journeyTitle,
-  .whyUsTitle,
-  .roadmapTitle {
-    font-size: 2rem;
-  }
-
-  .quotePretext {
-    font-size: 1.5rem;
-  }
-
-  .quoteMainText {
-    font-size: 2rem;
-  }
-
-  /* Mobile roadmap adjustments */
-  .roadmapDesktop {
-    display: none;
-  }
-
-  .roadmapMobile {
-    display: block;
-  }
-
-  .quarter {
-    font-size: 2.5rem;
-  }
-
-  .roadmapCardHeader {
-    padding: 1.5rem;
-  }
-
-  .roadmapCardBody {
-    padding: 1.5rem;
-  }
-}
-
-/* CTA Section */
-.ctaSection {
-  padding: 6rem 0;
-  margin-top: 4rem;
-  position: relative;
-  overflow: hidden;
-  background: var(--raisetalks-brand-gradient);
-}
-
-.ctaBackground {
-  position: absolute;
-  inset: 0;
-  background-image: url('/img/raisetalks-hero-1.svg');
-  background-position: center;
-  background-size: cover;
-  opacity: 0.1;
-}
-
-.ctaContent {
-  position: relative;
-  z-index: 10;
-  max-width: 56rem;
-  margin: 0 auto;
-  text-align: center;
-  color: white;
-  padding: 0 1.5rem;
-}
-
-.ctaTitle {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: white;
-}
-
-.ctaDescription {
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
-  opacity: 0.95;
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.ctaButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (min-width: 640px) {
-  .ctaButtons {
-    flex-direction: row;
-  }
-}
-
-.ctaButtonPrimary {
-  background: white;
-  color: rgba(0, 54, 135, 1);
-  padding: 0.875rem 2rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.ctaButtonPrimary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-  color: rgba(0, 54, 135, 1);
-}
-
-.ctaButtonSecondary {
-  background: transparent;
-  color: white;
-  padding: 1rem 2.5rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 1.125rem;
-  text-decoration: none;
-  min-width: 200px;
-  border: 2px solid white;
-  transition: all 0.3s ease;
-}
-
-.ctaButtonSecondary:hover {
-  background: white;
-  color: rgba(0, 54, 135, 1);
-  text-decoration: none;
-}
+/* ============================================================
+   Pitch Competitions Block
+   ============================================================ */
 
-/* Pitch Competitions Block */
 .pitchSection {
   padding: 6rem 0;
-  background: #ffffff;
+  background: #f6f7f9;
 }
 
 .pitchInner {
@@ -932,30 +161,26 @@
 }
 
 .pitchLeft {
-  position: sticky;
-  top: 6rem;
+  position: static;
+  padding-top: 1.5rem;
 }
 
 .pitchEyebrow {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ifm-color-primary);
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(1, 116, 225, 0.25);
-  border-radius: 2rem;
-  padding: 0.3rem 1rem;
-  background: rgba(1, 116, 225, 0.05);
+  color: #0174e1;
+  margin: 0 0 1.25rem 0;
 }
 
 .pitchTitle {
-  font-size: clamp(1.9rem, 3.8vw, 2.75rem);
-  font-weight: 800;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--ifm-color-content);
+  color: #0a0a0b;
   margin: 0;
 }
 
@@ -970,12 +195,12 @@
   display: inline-flex;
   align-items: center;
   margin-top: 2rem;
-  padding: 0.875rem 2rem;
+  padding: 0.85rem 1.75rem;
   background: var(--raisetalks-brand-gradient);
-  color: white !important;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 1rem;
+  color: #fff !important;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -983,12 +208,13 @@
 .pitchCta:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
+  color: #fff !important;
 }
 
 .pitchRight {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .pitchItem {
@@ -996,45 +222,37 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  background: #fafbfc;
-  border: 1px solid rgba(1, 116, 225, 0.1);
-  border-radius: 0.875rem;
-}
-
-.pitchDot {
-  width: 0.5rem;
-  height: 0.5rem;
-  min-width: 0.5rem;
-  border-radius: 50%;
-  background: var(--raisetalks-brand-gradient);
-  margin-top: 0.45rem;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
 }
 
 .pitchItemTitle {
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--ifm-color-content);
+  color: #0a0a0b;
 }
 
 .pitchItemDesc {
-  font-size: 0.95rem;
-  color: var(--ifm-color-content-secondary);
+  font-size: 0.875rem;
+  color: #52525b;
 }
 
 .pitchStats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--ifm-color-emphasis-200);
-  border-radius: 1rem;
-  overflow: hidden;
+  gap: 0;
 }
 
 .pitchStat {
-  background: #fafbfc;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
   padding: 2rem;
   text-align: center;
 }
+
+.pitchStat:first-child { border-radius: 16px 0 0 16px; }
+.pitchStat:last-child { border-radius: 0 16px 16px 0; }
 
 .pitchStatValue {
   font-size: clamp(2rem, 4vw, 2.75rem);
@@ -1045,24 +263,148 @@
   background-clip: text;
   line-height: 1.1;
   margin-bottom: 0.4rem;
+  letter-spacing: -0.03em;
 }
 
 .pitchStatLabel {
   font-size: 0.875rem;
-  color: var(--ifm-color-content-secondary);
+  color: #71717a;
   font-weight: 500;
 }
 
+/* ============================================================
+   CTA Section
+   ============================================================ */
+
+.ctaSection {
+  padding: 6rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--raisetalks-brand-gradient);
+  text-align: center;
+}
+
+.ctaBackground {
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/raisetalks-hero-1.svg');
+  background-position: center;
+  background-size: cover;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+}
+
+.ctaDescription {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.7;
+  margin: 0 0 2.5rem 0;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButtonPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2.25rem;
+  background: #ffffff;
+  color: #0174e1 !important;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none !important;
+  transition: opacity 150ms ease, box-shadow 150ms ease;
+}
+
+.ctaButtonPrimary:hover {
+  opacity: 0.92;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  color: #0174e1 !important;
+  text-decoration: none !important;
+}
+
+.ctaButtonSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2.25rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none !important;
+  transition: border-color 100ms ease, color 100ms ease;
+}
+
+.ctaButtonSecondary:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
 @media (max-width: 768px) {
+  .hero { padding: 5rem 1.25rem 3.5rem; }
+  .pitchSection { padding: 4rem 0; }
   .pitchGrid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
   .pitchLeft { position: static; }
   .pitchStats { grid-template-columns: 1fr; }
+  .pitchStat:first-child { border-radius: 16px 16px 0 0; }
+  .pitchStat:last-child { border-radius: 0 0 16px 16px; }
+  .pitchStat + .pitchStat { border-top: none; }
+  .ctaSection { padding: 4rem 1.25rem; }
 }
 
-/* Dark Mode Support */
-[data-theme='dark'] .heroSection {
-  background: transparent;
+@media (max-width: 480px) {
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 1rem;
+  }
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ctaButtonPrimary,
+  .ctaButtonSecondary {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
 }

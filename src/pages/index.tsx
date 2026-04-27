@@ -1,34 +1,52 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
-
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
-import Heading from '@theme/Heading';
-import NavbarScroll from '@site/src/components/NavbarScroll';
 import SolutionSection, { InvestorDiscoveryBlock } from '@site/src/components/SolutionSection';
 import ScoringOSSummary from '@site/src/components/ScoringOSSummary';
-
 import styles from './index.module.css';
 
-// Hero Section Component
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
+      },
+      { threshold },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
+
 function HomepageHero() {
+  const section = useInView(0.05);
   return (
-    <section className={styles.hero}>
+    <section
+      ref={section.ref as React.RefObject<HTMLElement>}
+      className={`${styles.hero} ${section.visible ? styles.visible : ''}`}
+      aria-labelledby="hero-heading"
+    >
       <div className={styles.heroInner}>
         <div className={styles.heroEyebrow}>For Startups &amp; Investors</div>
-        <Heading as="h1" className={styles.heroTitle}>
+        <h1 id="hero-heading" className={styles.heroTitle}>
           AI-first Global{' '}
           <span className={styles.heroAccent}>Fundraising Workspace</span>
-        </Heading>
+        </h1>
         <p className={styles.heroDesc}>
-          to run deals, streamline due diligence and close rounds faster
+          Run deals, streamline due diligence, and close rounds faster — all in one place.
         </p>
         <div className={styles.heroActions}>
           <Link className={styles.btnPrimary} to="https://app.raisetalks.com/sign-up">
             Try It Free
           </Link>
           <Link className={styles.btnSecondary} to="https://calendly.com/iamdariiava/30min">
-            Book A Demo
+            Book a Demo
           </Link>
         </div>
       </div>
@@ -36,8 +54,8 @@ function HomepageHero() {
   );
 }
 
-// Pitch Competitions Block
 function PitchCompetitionsBlock() {
+  const section = useInView(0.1);
   const bullets = [
     { title: '100+ vetted startups per cohort.', desc: 'Screened before they reach you.' },
     { title: 'AI pre-scoring across Team, Product, Market, and Deal.', desc: 'So you arrive informed.' },
@@ -46,12 +64,16 @@ function PitchCompetitionsBlock() {
   ];
 
   return (
-    <section className={styles.pitchSection}>
+    <section
+      ref={section.ref as React.RefObject<HTMLElement>}
+      className={`${styles.pitchSection} ${styles.animSection} ${section.visible ? styles.visible : ''}`}
+      aria-labelledby="pitch-heading"
+    >
       <div className={styles.pitchInner}>
         <div className={styles.pitchGrid}>
           <div className={styles.pitchLeft}>
-            <span className={styles.pitchEyebrow}>Pitch Competitions</span>
-            <h2 className={styles.pitchTitle}>
+            <p className={styles.pitchEyebrow}>Pitch Competitions</p>
+            <h2 id="pitch-heading" className={styles.pitchTitle}>
               Every cohort is built for one thing:{' '}
               <span className={styles.pitchTitleAccent}>helping you deploy capital smarter and faster.</span>
             </h2>
@@ -70,44 +92,32 @@ function PitchCompetitionsBlock() {
             ))}
           </div>
         </div>
-        <div className={styles.pitchStats}>
-          {[
-            { value: '4x', label: 'Faster deal screening' },
-            { value: '85%', label: 'Investor satisfaction' },
-            { value: '72hr', label: 'Avg response time' },
-          ].map(({ value, label }) => (
-            <div key={label} className={styles.pitchStat}>
-              <div className={styles.pitchStatValue}>{value}</div>
-              <div className={styles.pitchStatLabel}>{label}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
 }
 
-// CTA Section Component
 function HomepageCTA() {
+  const section = useInView(0.1);
   return (
-    <section className={styles.ctaSection}>
-      <div className={styles.ctaBackground}></div>
+    <section
+      ref={section.ref as React.RefObject<HTMLElement>}
+      className={`${styles.ctaSection} ${styles.animSection} ${section.visible ? styles.visible : ''}`}
+      aria-labelledby="cta-heading"
+    >
+      <div className={styles.ctaBackground} aria-hidden="true" />
       <div className={styles.ctaContent}>
-        <Heading as="h2" className={styles.ctaTitle}>
+        <h2 id="cta-heading" className={styles.ctaTitle}>
           Fundraising isn't guesswork. It's an investment process.
-        </Heading>
+        </h2>
         <p className={styles.ctaDescription}>
-          RaiseTalks helps you run it like a pro with automated data rooms, real investor insights, and deal-ready files.
+          RaiseTalks helps you run it like a pro — automated data rooms, real investor insights, and deal-ready files.
         </p>
         <div className={styles.ctaButtons}>
-          <Link
-            className={styles.ctaButtonPrimary}
-            to="https://app.raisetalks.com/sign-up">
+          <Link className={styles.ctaButtonPrimary} to="https://app.raisetalks.com/sign-up">
             Start Free Trial
           </Link>
-          <Link
-            className={styles.ctaButtonSecondary}
-            to="/pricing">
+          <Link className={styles.ctaButtonSecondary} to="/pricing">
             View Pricing
           </Link>
         </div>
@@ -116,10 +126,7 @@ function HomepageCTA() {
   );
 }
 
-
-
 export default function Home() {
-
   return (
     <Layout
       title="RaiseTalks - AI-Powered Fundraising Workspace for Founders"
@@ -161,7 +168,6 @@ export default function Home() {
           ]
         })}</script>
       </Head>
-      <NavbarScroll />
       <HomepageHero />
       <SolutionSection />
       <ScoringOSSummary />

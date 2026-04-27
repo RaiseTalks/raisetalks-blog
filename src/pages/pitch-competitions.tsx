@@ -167,7 +167,7 @@ export default function PitchCompetitions() {
           <div className={styles.heroEyebrow}>Pitch Competitions</div>
           <h1 id="hero-heading" className={styles.heroH1}>
             Discover startups{' '}
-            <span className={styles.heroAccent}>worth meeting.</span>
+            <span className={styles.heroAccent}>worth meeting</span>
           </h1>
           <p className={styles.heroDesc}>
             Curated pitch competitions with pre-scored founders, structured data

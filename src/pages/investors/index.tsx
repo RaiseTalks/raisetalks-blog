@@ -313,7 +313,7 @@ export default function InvestorsPage() {
           <h1 id="hero-heading" className={styles.heroH1}>
             10,000 decks in.{' '}
             <span className={styles.heroAccent}>
-              Few worth a meeting.
+              Most aren't ready
             </span>
           </h1>
 

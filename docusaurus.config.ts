@@ -125,8 +125,8 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/blog',
-          label: 'Blog',
+          to: 'https://tv.raisetalks.com',
+          label: 'RaiseTalks TV',
           position: 'left',
         },
         {
@@ -134,18 +134,6 @@ const config: Config = {
           label: 'Contact Us',
           position: 'right',
           className: 'navbar__link--calendar',
-        },
-        {
-          to: 'https://x.com/raisetalks_ai',
-          label: 'X',
-          position: 'right',
-          className: 'navbar__link--x',
-        },
-        {
-          to: 'https://www.linkedin.com/company/raisetalks/',
-          label: 'LinkedIn',
-          position: 'right',
-          className: 'navbar__link--linkedin',
         },
         {
           to: 'https://app.raisetalks.com/sign-in',
@@ -168,7 +156,7 @@ const config: Config = {
           title: 'About Us',
           items: [
             {
-              label: 'About',
+              label: 'About RaiseTalks',
               to: '/about-us',
             },
             {
@@ -178,10 +166,6 @@ const config: Config = {
             {
               label: 'Investors',
               to: '/investors',
-            },
-            {
-              label: 'Schedule a Demo',
-              to: 'https://calendly.com/iamdariiava/30min',
             },
             {
               label: 'Careers',
@@ -205,6 +189,14 @@ const config: Config = {
           title: 'Platform',
           items: [
             {
+              label: 'Startups',
+              to: 'https://app.raisetalks.com/startups',
+            },
+            {
+              label: 'Investors',
+              to: 'https://app.raisetalks.com/investors',
+            },
+            {
               label: 'Data Room',
               to: 'https://raisetalks.com/data-room',
             },
@@ -213,19 +205,15 @@ const config: Config = {
               to: 'https://app.raisetalks.com/inbox',
             },
             {
-              label: 'Self-Score',
-              to: 'https://app.raisetalks.com/self-score',
+              label: 'Scoring',
+              to: 'https://app.raisetalks.com/scoring',
             },
             {
               label: 'Guides',
               to: 'https://app.raisetalks.com/guides',
             },
             {
-              label: 'Startups',
-              to: 'https://app.raisetalks.com/startups',
-            },
-            {
-              label: 'Advisor',
+              label: 'AI Advisor',
               to: 'https://app.raisetalks.com/advisor',
             },
           ],
@@ -234,20 +222,24 @@ const config: Config = {
           title: 'Resources',
           items: [
             {
-              label: 'Pricing',
-              to: 'https://app.raisetalks.com/pricing',
-            },
-            {
               label: 'Affiliate Program',
               to: '/affiliate-program',
             },
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Schedule a Demo',
+              to: 'https://calendly.com/iamdariiava/30min',
             },
             {
               label: 'Feature Requests',
               to: '/feature-request',
+            },
+            {
+              label: 'Pricing',
+              to: 'https://app.raisetalks.com/pricing',
+            },
+            {
+              label: 'Blog',
+              to: '/blog',
             },
             {
               label: 'Media ToolKit',
