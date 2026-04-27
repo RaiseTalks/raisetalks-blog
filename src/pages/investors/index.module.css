@@ -902,7 +902,7 @@
 .featureRowIcon {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  border-radius: 10px;
   background: rgba(1, 116, 225, 0.08);
   display: flex;
   align-items: center;
@@ -1432,19 +1432,27 @@
   }
 }
 
-@media (max-width: 640px) {
-  .solutionGrid {
-    grid-template-columns: 1fr;
-  }
-
+@media (max-width: 900px) {
   .sliderTabsWrap {
     justify-content: flex-start;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .sliderTabsWrap::-webkit-scrollbar {
+    display: none;
   }
 
   .sliderTabs {
     min-width: max-content;
+    padding-bottom: 1px;
+  }
+}
+
+@media (max-width: 640px) {
+  .solutionGrid {
+    grid-template-columns: 1fr;
   }
 
   .sliderTab {

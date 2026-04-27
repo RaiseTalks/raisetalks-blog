@@ -136,9 +136,10 @@ const IconGlobe = () => (
     <path d="M2 12h20"/>
   </svg>
 );
-const IconHandshake = () => (
+const IconTrendingUp = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/>
+    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+    <polyline points="17 6 23 6 23 12"/>
   </svg>
 );
 const IconTarget = () => (
@@ -168,11 +169,13 @@ const IconBarChart = () => (
     <line x1="2" x2="22" y1="20" y2="20"/>
   </svg>
 );
-const IconBuilding = () => (
+const IconBriefcase = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <rect width="16" height="20" x="4" y="2" rx="2"/>
-    <path d="M9 22v-4h6v4"/>
-    <path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/>
+    <rect width="20" height="14" x="2" y="7" rx="2"/>
+    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+    <line x1="12" x2="12" y1="12" y2="12"/>
+    <path d="M2 12h9"/>
+    <path d="M13 12h9"/>
   </svg>
 );
 const IconServer = () => (
@@ -264,22 +267,36 @@ export default function InvestorsPage() {
   return (
     <Layout
       title="For Investors - RaiseTalks"
-      description="RaiseTalks gives investors faster diligence, cleaner IC prep, and early access to vetted dealflow - before it reaches the market."
+      description="RaiseTalks delivers vetted dealflow, faster diligence, and IC-ready memos - before the round hits the market. Join the 60-day Investor Edition Pilot."
     >
       <Head>
+        <meta name="description" content="RaiseTalks delivers vetted dealflow, faster diligence, and IC-ready memos - before the round hits the market. Join the 60-day Investor Edition Pilot." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://raisetalks.ai/investors" />
+
         <meta property="og:title" content="For Investors - RaiseTalks" />
-        <meta
-          property="og:description"
-          content="Faster diligence. Cleaner IC prep. Early access to vetted dealflow."
-        />
+        <meta property="og:description" content="RaiseTalks delivers vetted dealflow, faster diligence, and IC-ready memos - before the round hits the market." />
         <meta property="og:url" content="https://raisetalks.ai/investors" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="RaiseTalks" />
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="For Investors - RaiseTalks" />
-        <meta
-          name="twitter:description"
-          content="Faster diligence. Cleaner IC prep. Early access to vetted dealflow."
-        />
+        <meta name="twitter:description" content="RaiseTalks delivers vetted dealflow, faster diligence, and IC-ready memos - before the round hits the market." />
+        <meta name="twitter:site" content="@raisetalks" />
+
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "For Investors - RaiseTalks",
+          "description": "RaiseTalks delivers vetted dealflow, faster diligence, and IC-ready memos - before the round hits the market.",
+          "url": "https://raisetalks.ai/investors",
+          "publisher": {
+            "@type": "Organization",
+            "name": "RaiseTalks",
+            "url": "https://raisetalks.ai"
+          }
+        })}</script>
       </Head>
 
       {/* ================================================================
@@ -516,7 +533,7 @@ export default function InvestorsPage() {
                     { Icon: IconUsers, title: 'Team', desc: 'Experience, expertise & execution capability' },
                     { Icon: IconCpu, title: 'Product-Tech', desc: 'Technology differentiation & moat' },
                     { Icon: IconGlobe, title: 'Market', desc: 'Size, timing & competitive dynamics' },
-                    { Icon: IconHandshake, title: 'Deal', desc: 'Terms, traction & investment thesis fit' },
+                    { Icon: IconTrendingUp, title: 'Deal', desc: 'Terms, traction & investment thesis fit' },
                   ].map((item) => (
                     <div key={item.title} className={styles.featureCard}>
                       <div className={styles.featureCardIcon}><item.Icon /></div>
@@ -604,7 +621,7 @@ export default function InvestorsPage() {
                   {[
                     { Icon: IconScales, label: 'Legal', items: ['Cap table', 'IP ownership', 'Contracts'] },
                     { Icon: IconBarChart, label: 'Financial', items: ['Audited statements', 'Projections', 'Unit economics'] },
-                    { Icon: IconBuilding, label: 'Commercial', items: ['Customer refs', 'Pipeline', 'Partnerships'] },
+                    { Icon: IconBriefcase, label: 'Commercial', items: ['Customer refs', 'Pipeline', 'Partnerships'] },
                     { Icon: IconServer, label: 'Tech', items: ['Architecture', 'Security audit', 'Scalability'] },
                   ].map((cat) => (
                     <div key={cat.label} className={styles.ddCatCard}>

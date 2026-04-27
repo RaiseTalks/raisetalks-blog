@@ -1,36 +1,17 @@
-/* ========================================
-   Pitch Competitions Page
-   Consistent with site design patterns
-   ======================================== */
+/* ============================================================
+   Shared utilities
+   ============================================================ */
 
-/* Badge */
-.badge {
-  display: inline-block;
-  padding: 0.5rem 1.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #64748b;
-  background: transparent;
-  border: 1.5px solid transparent;
-  border-radius: 100px;
-  margin-bottom: 1.5rem;
-  background-image: linear-gradient(white, white),
-    var(--raisetalks-brand-gradient);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-}
-
-/* Sections */
-.section {
-  padding: 5rem 0;
-  background: white;
-}
-
-.sectionAlt {
-  padding: 5rem 0;
-  background: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 100%);
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .container {
@@ -39,328 +20,464 @@
   padding: 0 1.5rem;
 }
 
-.sectionHeader {
+/* ============================================================
+   Scroll animation
+   ============================================================ */
+
+.animSection {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animSection {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  padding: 6rem 1.5rem 4rem;
   text-align: center;
-  margin-bottom: 3rem;
+  background: var(--ifm-background-color);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  opacity: 0;
+  transition: opacity 0.6s ease 0.05s;
 }
 
-.sectionTitle {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 700;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 1rem 0;
-  line-height: 1.2;
+.hero.visible {
+  opacity: 1;
 }
 
-.sectionSubtitle {
-  font-size: 1.125rem;
-  color: #64748b;
-  margin: 0;
-  line-height: 1.6;
-  max-width: 600px;
+@media (prefers-reduced-motion: reduce) {
+  .hero { opacity: 1; transition: none; }
+}
+
+.heroInner {
+  max-width: 820px;
   margin: 0 auto;
 }
 
-/* Benefits Grid */
+.heroEyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(1, 116, 225, 0.25);
+  border-radius: 2rem;
+  padding: 0.3rem 1rem;
+  background: rgba(1, 116, 225, 0.05);
+}
+
+.heroH1 {
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem 0;
+  color: var(--ifm-color-content);
+}
+
+.heroAccent {
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDesc {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.75;
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  background: var(--raisetalks-brand-gradient);
+  color: #fff !important;
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--ifm-color-primary) !important;
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  border: 2px solid var(--ifm-color-primary);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btnSecondary:hover {
+  background: var(--ifm-color-primary);
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   Sections
+   ============================================================ */
+
+.sectionLight {
+  padding: 5.5rem 1.5rem;
+  background: #ffffff;
+}
+
+.sectionGray {
+  padding: 5.5rem 1.5rem;
+  background: #f6f7f9;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0174e1;
+  margin: 0 0 1.25rem 0;
+}
+
+.sectionH2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #0a0a0b;
+  margin: 0 0 2.5rem 0;
+  max-width: 720px;
+}
+
+/* ============================================================
+   Benefits grid — 4 cards
+   ============================================================ */
+
 .benefitsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
-.benefitCard {
-  background: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
+.card {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
-  transition: all 0.3s ease;
+  gap: 0.875rem;
 }
 
-.benefitCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
-}
-
-.benefitIconWrap {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 1rem;
-  background: rgba(1, 116, 225, 0.1);
+.iconWrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(1, 116, 225, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1rem;
-}
-
-.benefitIcon {
-  width: 1.75rem;
-  height: 1.75rem;
   color: #0174e1;
-}
-
-.benefitTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 0.5rem 0;
-}
-
-.benefitDescription {
-  font-size: 0.875rem;
-  color: #64748b;
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* Steps Grid */
-.stepsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-}
-
-.stepCard {
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
-  transition: all 0.3s ease;
-}
-
-.stepCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
-}
-
-.stepNumber {
-  font-size: 2rem;
-  font-weight: 800;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.stepTitle {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 0 0 0.5rem 0;
-}
-
-.stepDescription {
-  font-size: 0.875rem;
-  color: #64748b;
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* Features Grid */
-.featuresGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.featureCard {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  background: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
-  transition: all 0.3s ease;
-}
-
-.featureCard:hover {
-  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
-}
-
-.featureIconWrap {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.75rem;
-  background: rgba(1, 116, 225, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-shrink: 0;
 }
 
-.featureIcon {
-  width: 1.25rem;
-  height: 1.25rem;
+.iconWrap svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a0a0b;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.cardBody {
+  font-size: 0.875rem;
+  color: #52525b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ============================================================
+   Process steps — 4 cols
+   ============================================================ */
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.stepCard {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stepNum {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   color: #0174e1;
+}
+
+.stepTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a0a0b;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.stepDesc {
+  font-size: 0.875rem;
+  color: #52525b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ============================================================
+   Features grid — 3 cols, icon + text inline
+   ============================================================ */
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.featureCard {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.featureIconWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(1, 116, 225, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0174e1;
+  flex-shrink: 0;
+}
+
+.featureIconWrap svg {
+  width: 18px;
+  height: 18px;
 }
 
 .featureTitle {
   font-size: 0.9375rem;
-  font-weight: 600;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 0.25rem 0;
+  font-weight: 700;
+  color: #0a0a0b;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.3;
 }
 
-.featureDescription {
-  font-size: 0.8125rem;
-  color: #64748b;
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* Metrics Grid */
-.metricsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.metricCard {
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem 1rem;
-  text-align: center;
-  box-shadow: 0 4px 24px rgba(0, 54, 135, 0.06);
-  transition: all 0.3s ease;
-}
-
-.metricCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 54, 135, 0.12);
-}
-
-.metricValue {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 800;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: block;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-.metricLabel {
+.featureDesc {
   font-size: 0.875rem;
-  color: #64748b;
-  line-height: 1.4;
+  color: #52525b;
+  line-height: 1.55;
+  margin: 0;
 }
 
-/* CTA Section */
+/* ============================================================
+   Stat strip
+   ============================================================ */
+
+.statStrip {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.statItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.statNum {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: linear-gradient(-28.77deg, #003687 46%, #0077ff 95%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: #71717a;
+  line-height: 1.4;
+  max-width: 18ch;
+}
+
+.statDivider {
+  width: 1px;
+  height: 60px;
+  background: #e4e4e7;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   CTA — blue gradient background
+   ============================================================ */
+
 .ctaSection {
+  position: relative;
   padding: 6rem 1.5rem;
   background: var(--raisetalks-brand-gradient);
   text-align: center;
+  overflow: hidden;
 }
 
-.ctaContainer {
-  max-width: 800px;
-  margin: 0 auto;
+.ctaGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 65%);
+  pointer-events: none;
 }
 
-.ctaTitle {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 700;
-  color: white;
+.ctaH2 {
+  position: relative;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #ffffff;
   margin: 0 0 1rem 0;
 }
 
-.ctaDescription {
-  font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 2rem 0;
+.ctaSub {
+  position: relative;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.7;
+  margin: 0 0 2.5rem 0;
 }
 
 .ctaButtons {
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-.ctaPrimary {
+.ctaBtnPrimary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: white;
+  padding: 1rem 2.25rem;
+  background: #ffffff;
   color: #0174e1 !important;
-  border-radius: 0.75rem;
-  font-weight: 600;
+  border-radius: 10px;
+  font-weight: 700;
   font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  text-decoration: none !important;
+  transition: opacity 150ms ease, box-shadow 150ms ease;
 }
 
-.ctaPrimary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
+.ctaBtnPrimary:hover {
+  opacity: 0.92;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  text-decoration: none !important;
   color: #0174e1 !important;
 }
 
-.ctaArrow {
-  width: 1.25rem;
-  height: 1.25rem;
-  transition: transform 0.2s ease;
-}
-
-.ctaPrimary:hover .ctaArrow {
-  transform: translateX(4px);
-}
-
-.ctaSecondary {
+.ctaBtnGhost {
   display: inline-flex;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 2.25rem;
   background: transparent;
-  color: white !important;
-  border: 2px solid white;
-  border-radius: 0.75rem;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
   font-weight: 600;
   font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  text-decoration: none !important;
+  transition: border-color 100ms ease, color 100ms ease;
 }
 
-.ctaSecondary:hover {
-  background: white;
-  color: #0174e1 !important;
-  text-decoration: none;
+.ctaBtnGhost:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
-/* ========================================
-   Responsive Design
-   ======================================== */
+/* ============================================================
+   Responsive
+   ============================================================ */
 
-/* Tablet */
 @media (max-width: 1024px) {
-  .section,
-  .sectionAlt {
-    padding: 4rem 0;
-  }
-
-  .benefitsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  .benefitsGrid,
   .stepsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -368,364 +485,53 @@
   .featuresGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .metricsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
-/* Small Tablet / Large Phone */
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1.25rem;
-  }
+  .hero { padding: 4rem 1.25rem 3rem; }
 
-  .section,
-  .sectionAlt {
-    padding: 3.5rem 0;
-  }
+  .sectionLight,
+  .sectionGray { padding: 4rem 1.25rem; }
 
-  .sectionHeader {
-    margin-bottom: 2.5rem;
-  }
+  .statStrip { flex-direction: column; }
 
-  .sectionTitle {
-    font-size: 1.75rem;
-  }
+  .statDivider { width: 60%; height: 1px; }
 
-  .sectionSubtitle {
-    font-size: 1rem;
-  }
+  .ctaSection { padding: 4rem 1.25rem; }
+}
 
-  .benefitsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-
-  .benefitCard {
-    padding: 1.25rem;
-  }
-
-  .benefitIconWrap {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .benefitIcon {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .stepsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-
-  .stepCard {
-    padding: 1.5rem 1.25rem;
-  }
-
-  .stepNumber {
-    font-size: 1.75rem;
-  }
-
-  .stepTitle {
-    font-size: 1rem;
-  }
-
+@media (max-width: 640px) {
+  .benefitsGrid,
+  .stepsGrid,
   .featuresGrid {
     grid-template-columns: 1fr;
-    gap: 1rem;
   }
 
-  .featureCard {
-    padding: 1.25rem;
-  }
-
-  .metricsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-
-  .metricCard {
-    padding: 1.5rem 1rem;
-  }
-
-  .metricValue {
-    font-size: 1.75rem;
-  }
-
-  .ctaSection {
-    padding: 4rem 1.25rem;
-  }
-
-  .ctaTitle {
-    font-size: 1.75rem;
-  }
-
-  .ctaDescription {
-    font-size: 1rem;
-  }
-}
-
-/* Phone */
-@media (max-width: 640px) {
-  .container {
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
     padding: 0 1rem;
   }
 
-  .section,
-  .sectionAlt {
-    padding: 3rem 0;
-  }
-
-  .sectionHeader {
-    margin-bottom: 2rem;
-  }
-
-  .sectionTitle {
-    font-size: 1.5rem;
-  }
-
-  .badge {
-    font-size: 0.6875rem;
-    padding: 0.375rem 1rem;
-  }
-
-  .benefitsGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .benefitCard {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .benefitIconWrap {
-    margin: 0;
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-
-  .benefitIcon {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .benefitTitle {
-    font-size: 0.9375rem;
-  }
-
-  .benefitDescription {
-    font-size: 0.8125rem;
-  }
-
-  .stepsGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .stepCard {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    gap: 1rem;
-    padding: 1.25rem;
-  }
-
-  .stepNumber {
-    font-size: 1.5rem;
-    margin-bottom: 0;
-    min-width: 2.5rem;
-  }
-
-  .stepTitle {
-    font-size: 0.9375rem;
-  }
-
-  .stepDescription {
-    font-size: 0.8125rem;
-  }
-
-  .featuresGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .featureCard {
-    padding: 1rem;
-  }
-
-  .featureIconWrap {
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-
-  .featureIcon {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .featureTitle {
-    font-size: 0.875rem;
-  }
-
-  .featureDescription {
-    font-size: 0.75rem;
-  }
-
-  .metricsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .metricCard {
-    padding: 1.25rem 0.75rem;
-  }
-
-  .metricValue {
-    font-size: 1.5rem;
-  }
-
-  .metricLabel {
-    font-size: 0.75rem;
-  }
-
-  .ctaSection {
-    padding: 3rem 1rem;
-  }
-
-  .ctaTitle {
-    font-size: 1.5rem;
-  }
-
-  .ctaDescription {
-    font-size: 0.9375rem;
-    margin-bottom: 1.5rem;
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
   }
 
   .ctaButtons {
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
   }
 
-  .ctaPrimary,
-  .ctaSecondary {
+  .ctaBtnPrimary,
+  .ctaBtnGhost {
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
     justify-content: center;
-    padding: 0.875rem 1.5rem;
-    font-size: 0.9375rem;
   }
 
-  .ctaArrow {
-    width: 1rem;
-    height: 1rem;
-  }
-}
+  .statItem { padding: 1.75rem 1.25rem; }
 
-/* Extra Small Phone */
-@media (max-width: 375px) {
-  .container {
-    padding: 0 0.75rem;
-  }
-
-  .section,
-  .sectionAlt {
-    padding: 2.5rem 0;
-  }
-
-  .sectionTitle {
-    font-size: 1.375rem;
-  }
-
-  .sectionSubtitle {
-    font-size: 0.875rem;
-  }
-
-  .badge {
-    font-size: 0.625rem;
-    padding: 0.3125rem 0.75rem;
-  }
-
-  .benefitCard {
-    padding: 0.875rem;
-    gap: 0.75rem;
-  }
-
-  .benefitIconWrap {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .benefitTitle {
-    font-size: 0.875rem;
-  }
-
-  .benefitDescription {
-    font-size: 0.75rem;
-  }
-
-  .stepCard {
-    padding: 1rem;
-    gap: 0.75rem;
-  }
-
-  .stepNumber {
-    font-size: 1.25rem;
-    min-width: 2rem;
-  }
-
-  .stepTitle {
-    font-size: 0.875rem;
-  }
-
-  .stepDescription {
-    font-size: 0.75rem;
-  }
-
-  .featureCard {
-    padding: 0.875rem;
-    gap: 0.75rem;
-  }
-
-  .metricsGrid {
-    gap: 0.75rem;
-  }
-
-  .metricCard {
-    padding: 1rem 0.5rem;
-  }
-
-  .metricValue {
-    font-size: 1.25rem;
-  }
-
-  .metricLabel {
-    font-size: 0.6875rem;
-  }
-
-  .ctaSection {
-    padding: 2.5rem 0.75rem;
-  }
-
-  .ctaTitle {
-    font-size: 1.25rem;
-  }
-
-  .ctaDescription {
-    font-size: 0.875rem;
-  }
-
-  .ctaPrimary,
-  .ctaSecondary {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
-    max-width: 260px;
-  }
+  .statNum { font-size: 2rem; }
 }

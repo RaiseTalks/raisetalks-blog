@@ -6,7 +6,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
   title: 'RaiseTalks',
-  tagline: 'Streamlining Due Diligence with Expert Insights',
+  tagline: 'AI-Powered Fundraising for Startups and Investors',
   favicon: 'favicon/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -85,7 +85,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/raisetalks-social-card.jpg',
+    image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -301,17 +301,21 @@ const config: Config = {
       {
         name: 'keywords',
         content:
-          'raisetalks, due diligence, fundraising, startup funding, venture capital, business intelligence',
+          'raisetalks, AI fundraising, startup funding, venture capital, investor diligence, data room, IC memo, pre-score engine, founder readiness, early-stage startups',
       },
       {
         name: 'description',
         content:
-          'Expert insights on due diligence, fundraising strategies, and business growth from RaiseTalks',
+          'RaiseTalks is the AI-powered fundraising workspace for early-stage founders and investors. Build investor-grade data rooms, score readiness, and close rounds faster.',
       },
       { name: 'author', content: 'RaiseTalks' },
       { name: 'robots', content: 'index, follow' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'RaiseTalks Blog' },
+      { property: 'og:site_name', content: 'RaiseTalks' },
+      { property: 'og:image', content: 'https://raisetalks.com/img/docusaurus-social-card.jpg' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@raisetalks' },
+      { name: 'twitter:image', content: 'https://raisetalks.com/img/docusaurus-social-card.jpg' },
     ],
     announcementBar: {
       id: 'visit_raisetalks',

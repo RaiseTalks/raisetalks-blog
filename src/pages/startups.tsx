@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import FAQSection from '@site/src/components/FAQSection';
@@ -162,9 +163,33 @@ function FeatureImage({ src, alt }: { src: string; alt: string }) {
 export default function Startups() {
   return (
     <Layout
-      title="For Startups - Build an Investor-Ready Raise"
+      title="For Startups - Build an Investor-Ready Raise | RaiseTalks"
       description="RaiseTalks gives early-stage founders an AI-powered workspace to turn raw documents, data, and narrative into an investor-grade data room - scored, structured, and tracked in real time."
     >
+      <Head>
+        <meta name="description" content="RaiseTalks gives early-stage founders an AI-powered workspace to turn raw documents, data, and narrative into an investor-grade data room - scored, structured, and tracked in real time." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://raisetalks.com/startups" />
+        <meta property="og:title" content="For Startups - Build an Investor-Ready Raise | RaiseTalks" />
+        <meta property="og:description" content="Turn your startup documents into an investor-grade data room with AI readiness scoring, structured filing, and real-time tracking." />
+        <meta property="og:url" content="https://raisetalks.com/startups" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="For Startups - Build an Investor-Ready Raise | RaiseTalks" />
+        <meta name="twitter:description" content="Turn your startup documents into an investor-grade data room with AI readiness scoring." />
+        <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:site" content="@raisetalks" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "RaiseTalks for Startups",
+          "serviceType": "AI Fundraising Platform",
+          "description": "AI-powered workspace for early-stage founders to build investor-grade data rooms and close funding rounds faster.",
+          "url": "https://raisetalks.com/startups",
+          "provider": { "@type": "Organization", "name": "RaiseTalks", "url": "https://raisetalks.com" }
+        })}</script>
+      </Head>
 
       {/* ── HERO ─────────────────────────────────────── */}
       <section className={styles.hero}>

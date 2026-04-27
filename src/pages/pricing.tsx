@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 
 // Custom hook for scroll animations
 function useScrollAnimation() {
@@ -37,8 +38,31 @@ export default function Pricing() {
 
   return (
     <Layout
-      title="Pricing"
-      description="AI-powered fundraising workspace pricing - Free tier available. Plans for startups and investors to move faster with confidence.">
+      title="Pricing - RaiseTalks AI Fundraising Workspace"
+      description="AI-powered fundraising workspace pricing. Free tier available. Plans for startups and investors to move faster with confidence.">
+      <Head>
+        <meta name="description" content="AI-powered fundraising workspace pricing. Free tier available. Plans for startups and investors to move faster with confidence." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://raisetalks.com/pricing" />
+        <meta property="og:title" content="Pricing - RaiseTalks AI Fundraising Workspace" />
+        <meta property="og:description" content="Free tier available. Plans for startups and investors to move faster with confidence." />
+        <meta property="og:url" content="https://raisetalks.com/pricing" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Pricing - RaiseTalks AI Fundraising Workspace" />
+        <meta name="twitter:description" content="Free tier available. Plans for startups and investors to move faster with confidence." />
+        <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:site" content="@raisetalks" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Pricing - RaiseTalks",
+          "url": "https://raisetalks.com/pricing",
+          "description": "AI-powered fundraising workspace pricing. Free tier available.",
+          "publisher": { "@type": "Organization", "name": "RaiseTalks", "url": "https://raisetalks.com" }
+        })}</script>
+      </Head>
 
       <style>{`
         @keyframes fadeInUp {

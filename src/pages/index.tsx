@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 import NavbarScroll from '@site/src/components/NavbarScroll';
 import SolutionSection, { InvestorDiscoveryBlock } from '@site/src/components/SolutionSection';
@@ -118,11 +119,48 @@ function HomepageCTA() {
 
 
 export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
+
   return (
     <Layout
-      title={`Welcome to ${siteConfig.title}`}
-      description="RaiseTalks - Your AI-powered fundraising workspace for early-stage founders">
+      title="RaiseTalks - AI-Powered Fundraising Workspace for Founders"
+      description="RaiseTalks is the AI-powered fundraising workspace for early-stage founders. Build investor-grade data rooms, get AI readiness scores, and close your round faster.">
+      <Head>
+        <meta name="description" content="RaiseTalks is the AI-powered fundraising workspace for early-stage founders. Build investor-grade data rooms, get AI readiness scores, and close your round faster." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://raisetalks.com/" />
+        <meta property="og:title" content="RaiseTalks - AI-Powered Fundraising Workspace for Founders" />
+        <meta property="og:description" content="Build investor-grade data rooms, get AI readiness scores, and close your round faster." />
+        <meta property="og:url" content="https://raisetalks.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="RaiseTalks - AI-Powered Fundraising Workspace for Founders" />
+        <meta name="twitter:description" content="Build investor-grade data rooms, get AI readiness scores, and close your round faster." />
+        <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:site" content="@raisetalks" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "name": "RaiseTalks",
+              "url": "https://raisetalks.com",
+              "description": "AI-powered fundraising workspace for early-stage founders and investors",
+              "sameAs": ["https://twitter.com/raisetalks"]
+            },
+            {
+              "@type": "WebSite",
+              "name": "RaiseTalks",
+              "url": "https://raisetalks.com",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://raisetalks.com/blog?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }
+          ]
+        })}</script>
+      </Head>
       <NavbarScroll />
       <HomepageHero />
       <SolutionSection />

@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";
+import Head from '@docusaurus/Head';
 import Heading from "@theme/Heading";
 import LogoCarousel from "@site/src/components/LogoCarousel";
 
@@ -100,6 +101,29 @@ export default function AboutUs() {
          title="About Us | RaiseTalks"
          description="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence. Learn our mission, values, and vision."
       >
+         <Head>
+           <meta name="description" content="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence. Learn our mission, values, and vision." />
+           <meta name="robots" content="index, follow" />
+           <link rel="canonical" href="https://raisetalks.com/about-us" />
+           <meta property="og:title" content="About Us | RaiseTalks" />
+           <meta property="og:description" content="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence." />
+           <meta property="og:url" content="https://raisetalks.com/about-us" />
+           <meta property="og:type" content="website" />
+           <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+           <meta name="twitter:card" content="summary_large_image" />
+           <meta name="twitter:title" content="About Us | RaiseTalks" />
+           <meta name="twitter:description" content="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence." />
+           <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+           <meta name="twitter:site" content="@raisetalks" />
+           <script type="application/ld+json">{JSON.stringify({
+             "@context": "https://schema.org",
+             "@type": "AboutPage",
+             "name": "About RaiseTalks",
+             "url": "https://raisetalks.com/about-us",
+             "description": "RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence.",
+             "publisher": { "@type": "Organization", "name": "RaiseTalks", "url": "https://raisetalks.com" }
+           })}</script>
+         </Head>
          {/* Hero Section */}
          <section className={styles.hero}>
             <div className={styles.heroInner}>
