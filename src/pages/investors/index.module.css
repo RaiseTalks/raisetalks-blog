@@ -1111,6 +1111,10 @@
     grid-template-columns: 1fr;
   }
 
+  .ddGrid {
+    grid-template-columns: 1fr;
+  }
+
   .outputCard {
     flex-direction: column;
     align-items: flex-start;
