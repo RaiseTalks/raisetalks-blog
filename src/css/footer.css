@@ -78,6 +78,75 @@
   text-decoration: none;
 }
 
+/* Social icon links in Community column */
+.footer__link-item[href*="twitter.com"]::before,
+.footer__link-item[href*="x.com"]::before,
+.footer__link-item[href*="linkedin.com"]::before,
+.footer__link-item[href*="instagram.com"]::before,
+.footer__link-item[href*="facebook.com"]::before,
+.footer__link-item[href*="youtube.com"]::before,
+.footer__link-item[href*="tiktok.com"]::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background 0.2s ease;
+}
+
+.footer__link-item[href*="twitter.com"]::before,
+.footer__link-item[href*="x.com"]::before {
+  -webkit-mask-image: url('/img/x-icon.svg');
+  mask-image: url('/img/x-icon.svg');
+}
+
+.footer__link-item[href*="linkedin.com"]::before {
+  -webkit-mask-image: url('/img/linkedin-icon.svg');
+  mask-image: url('/img/linkedin-icon.svg');
+}
+
+.footer__link-item[href*="instagram.com"]::before {
+  -webkit-mask-image: url('/img/instagram-icon.svg');
+  mask-image: url('/img/instagram-icon.svg');
+}
+
+.footer__link-item[href*="facebook.com"]::before {
+  -webkit-mask-image: url('/img/facebook-icon.svg');
+  mask-image: url('/img/facebook-icon.svg');
+}
+
+.footer__link-item[href*="youtube.com"]::before {
+  -webkit-mask-image: url('/img/youtube-icon.svg');
+  mask-image: url('/img/youtube-icon.svg');
+}
+
+.footer__link-item[href*="tiktok.com"]::before {
+  -webkit-mask-image: url('/img/tiktok-icon.svg');
+  mask-image: url('/img/tiktok-icon.svg');
+}
+
+.footer__link-item[href*="linkedin.com/company/raisetalks/jobs"]::before {
+  display: none;
+}
+
+.footer__link-item[href*="twitter.com"]:hover::before,
+.footer__link-item[href*="x.com"]:hover::before,
+.footer__link-item[href*="linkedin.com"]:hover::before,
+.footer__link-item[href*="instagram.com"]:hover::before,
+.footer__link-item[href*="facebook.com"]:hover::before,
+.footer__link-item[href*="youtube.com"]:hover::before,
+.footer__link-item[href*="tiktok.com"]:hover::before {
+  background: rgba(255, 255, 255, 1);
+}
+
 /* Footer Bottom Section */
 .footer__bottom {
   margin-top: 2rem;

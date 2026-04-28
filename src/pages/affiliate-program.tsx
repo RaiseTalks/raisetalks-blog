@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 
 // Custom hook for scroll animations
 function useScrollAnimation() {
@@ -40,8 +41,31 @@ export default function AffiliateProgram() {
 
   return (
     <Layout
-      title="Affiliate Program - Turn Your Network into Capital"
+      title="Affiliate Program - Turn Your Network into Capital | RaiseTalks"
       description="Join RaiseTalks Affiliate Program. Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators.">
+      <Head>
+        <meta name="description" content="Join RaiseTalks Affiliate Program. Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://raisetalks.com/affiliate-program" />
+        <meta property="og:title" content="Affiliate Program - Turn Your Network into Capital | RaiseTalks" />
+        <meta property="og:description" content="Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators." />
+        <meta property="og:url" content="https://raisetalks.com/affiliate-program" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Affiliate Program - Turn Your Network into Capital | RaiseTalks" />
+        <meta name="twitter:description" content="Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators." />
+        <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:site" content="@raisetalks" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Affiliate Program - RaiseTalks",
+          "url": "https://raisetalks.com/affiliate-program",
+          "description": "Join RaiseTalks Affiliate Program and earn commissions by referring startups and investors.",
+          "publisher": { "@type": "Organization", "name": "RaiseTalks", "url": "https://raisetalks.com" }
+        })}</script>
+      </Head>
 
       <style>{`
         @keyframes fadeInUp {
@@ -273,7 +297,7 @@ export default function AffiliateProgram() {
                   </li>
                 </ul>
                 <p className="text-lg font-semibold text-gray-900 mb-4">
-                  Start sharing, start earning—no approval needed.
+                  Start sharing, start earning-no approval needed.
                 </p>
                 <Link
                   className="bg-gradient-to-r from-[var(--raisetalks-blue-primary-flat)] to-[var(--raisetalks-blue-primary-flat)] text-white px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 inline-block"

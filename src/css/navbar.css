@@ -97,9 +97,7 @@
 }
 
 /* Optimized Icon Links - Using mask for gradient icons */
-.navbar__link--calendar::before,
-.navbar__link--x::before,
-.navbar__link--linkedin::before {
+.navbar__link--calendar::before {
   content: '';
   display: inline-block;
   width: 16px;
@@ -114,27 +112,12 @@
   -webkit-mask-position: center;
   mask-position: center;
   transition: opacity 0.3s ease;
-}
-
-.navbar__link--calendar::before {
   -webkit-mask-image: url('/img/calendar-icon.svg');
   mask-image: url('/img/calendar-icon.svg');
 }
 
-.navbar__link--x::before {
-  -webkit-mask-image: url('/img/x-icon.svg');
-  mask-image: url('/img/x-icon.svg');
-}
-
-.navbar__link--linkedin::before {
-  -webkit-mask-image: url('/img/linkedin-icon.svg');
-  mask-image: url('/img/linkedin-icon.svg');
-}
-
-/* Gradient text for icon links */
-.navbar__link--calendar,
-.navbar__link--x,
-.navbar__link--linkedin {
+/* Gradient text for calendar link */
+.navbar__link--calendar {
   background: var(--raisetalks-brand-gradient) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -142,27 +125,12 @@
   color: transparent !important;
 }
 
-.navbar__link--calendar:hover,
-.navbar__link--x:hover,
-.navbar__link--linkedin:hover {
+.navbar__link--calendar:hover {
   background: var(--raisetalks-brand-gradient) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   color: transparent !important;
-}
-
-/* Hide text for icon-only links on desktop */
-@media (min-width: 997px) {
-  .navbar__link--x,
-  .navbar__link--linkedin {
-    font-size: 0;
-  }
-
-  .navbar__link--x::before,
-  .navbar__link--linkedin::before {
-    margin-right: 0;
-  }
 }
 
 /* Homepage-Style Auth Buttons */
@@ -362,9 +330,7 @@
   }
 
   /* Social links in sidebar */
-  .navbar-sidebar .navbar__link--calendar,
-  .navbar-sidebar .navbar__link--x,
-  .navbar-sidebar .navbar__link--linkedin {
+  .navbar-sidebar .navbar__link--calendar {
     display: flex !important;
     align-items: center;
     gap: 0.5rem;
@@ -379,18 +345,14 @@
     margin: 0;
   }
 
-  .navbar-sidebar .navbar__link--calendar:hover,
-  .navbar-sidebar .navbar__link--x:hover,
-  .navbar-sidebar .navbar__link--linkedin:hover {
+  .navbar-sidebar .navbar__link--calendar:hover {
     background: rgba(0, 119, 255, 0.05) !important;
     -webkit-text-fill-color: rgba(0, 119, 255, 1) !important;
     color: rgba(0, 119, 255, 1) !important;
     border-left-color: rgba(0, 119, 255, 1);
   }
 
-  .navbar-sidebar .navbar__link--calendar::before,
-  .navbar-sidebar .navbar__link--x::before,
-  .navbar-sidebar .navbar__link--linkedin::before {
+  .navbar-sidebar .navbar__link--calendar::before {
     background: rgba(0, 119, 255, 1) !important;
   }
 

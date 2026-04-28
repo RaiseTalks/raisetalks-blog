@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";
+import Head from '@docusaurus/Head';
 import Heading from "@theme/Heading";
 import LogoCarousel from "@site/src/components/LogoCarousel";
 
@@ -100,6 +101,29 @@ export default function AboutUs() {
          title="About Us | RaiseTalks"
          description="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence. Learn our mission, values, and vision."
       >
+         <Head>
+           <meta name="description" content="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence. Learn our mission, values, and vision." />
+           <meta name="robots" content="index, follow" />
+           <link rel="canonical" href="https://raisetalks.com/about-us" />
+           <meta property="og:title" content="About Us | RaiseTalks" />
+           <meta property="og:description" content="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence." />
+           <meta property="og:url" content="https://raisetalks.com/about-us" />
+           <meta property="og:type" content="website" />
+           <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+           <meta name="twitter:card" content="summary_large_image" />
+           <meta name="twitter:title" content="About Us | RaiseTalks" />
+           <meta name="twitter:description" content="RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence." />
+           <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+           <meta name="twitter:site" content="@raisetalks" />
+           <script type="application/ld+json">{JSON.stringify({
+             "@context": "https://schema.org",
+             "@type": "AboutPage",
+             "name": "About RaiseTalks",
+             "url": "https://raisetalks.com/about-us",
+             "description": "RaiseTalks is an AI-native fundraising workspace translating founder potential into investor-grade intelligence.",
+             "publisher": { "@type": "Organization", "name": "RaiseTalks", "url": "https://raisetalks.com" }
+           })}</script>
+         </Head>
          {/* Hero Section */}
          <section className={styles.hero}>
             <div className={styles.heroInner}>
@@ -263,7 +287,7 @@ export default function AboutUs() {
                      <div className={styles.founderImageContainer}>
                         <div className={styles.founderImage}>
                            <img
-                              src="/img/icons/dariia.png"
+                              src="/img/icons/dariia.jpg"
                               alt="Dr. Dariia Vasylieva - President, CEO"
                               className={styles.founderImageInner}
                               loading="lazy"
@@ -290,7 +314,7 @@ export default function AboutUs() {
                            <p className={styles.blockquoteText}>
                               "RaiseTalks is an AI-native VC investment-intelligence platform for early-stage portfolios: founders get investor-grade data rooms, readiness scores, and structured IR pipelines, while funds get faster diligence, clearer IC prep, and earlier visibility into the right deals. I've spent 17 years on the investment side, closed €3B+ in deals, and reviewed 10,000+ startups, and I'm turning that investment-readiness playbook into an AI-native platform that becomes the natural end-to-end workspace for VC investments."
                            </p>
-                           <cite className={styles.blockquoteCite}>— Dr. Dariia Vasylieva</cite>
+                           <cite className={styles.blockquoteCite}>- Dr. Dariia Vasylieva</cite>
                         </blockquote>
 
                      </div>

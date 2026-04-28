@@ -1,0 +1,47 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+.label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(1, 116, 225, 0.45);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.svg {
+  width: 180px;
+  height: 180px;
+}
+
+.arc {
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc {
+    transition: none;
+  }
+}
+
+.scoreNum {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  fill: #0a0a0b;
+  letter-spacing: -0.03em;
+}
+
+.scoreSub {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  fill: #a1a1aa;
+}

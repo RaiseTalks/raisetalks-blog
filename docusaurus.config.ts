@@ -6,7 +6,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
   title: 'RaiseTalks',
-  tagline: 'Streamlining Due Diligence with Expert Insights',
+  tagline: 'AI-Powered Fundraising for Startups and Investors',
   favicon: 'favicon/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -85,7 +85,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/raisetalks-social-card.jpg',
+    image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -122,11 +122,6 @@ const config: Config = {
         {
           to: 'https://app.raisetalks.com/pricing',
           label: 'Pricing',
-          position: 'left',
-        },
-        {
-          to: '/blog',
-          label: 'Blog',
           position: 'left',
         },
         {
@@ -167,7 +162,7 @@ const config: Config = {
           title: 'About Us',
           items: [
             {
-              label: 'About',
+              label: 'About RaiseTalks',
               to: '/about-us',
             },
             {
@@ -177,10 +172,6 @@ const config: Config = {
             {
               label: 'Investors',
               to: '/investors',
-            },
-            {
-              label: 'Schedule a Demo',
-              to: 'https://calendly.com/iamdariiava/30min',
             },
             {
               label: 'Careers',
@@ -204,6 +195,14 @@ const config: Config = {
           title: 'Platform',
           items: [
             {
+              label: 'Startups',
+              to: 'https://app.raisetalks.com/startups',
+            },
+            {
+              label: 'Investors',
+              to: 'https://app.raisetalks.com/investors',
+            },
+            {
               label: 'Data Room',
               to: 'https://app.raisetalks.com/data-room',
             },
@@ -212,8 +211,8 @@ const config: Config = {
               to: 'https://app.raisetalks.com/inbox',
             },
             {
-              label: 'Self-Score',
-              to: 'https://app.raisetalks.com/self-score',
+              label: 'Scoring',
+              to: 'https://app.raisetalks.com/scoring',
             },
             {
               label: 'Investor Catalogue',
@@ -224,7 +223,7 @@ const config: Config = {
               to: 'https://app.raisetalks.com/startups',
             },
             {
-              label: 'Advisor',
+              label: 'AI Advisor',
               to: 'https://app.raisetalks.com/advisor',
             },
             {
@@ -245,20 +244,24 @@ const config: Config = {
           title: 'Resources',
           items: [
             {
-              label: 'Pricing',
-              to: 'https://app.raisetalks.com/pricing',
-            },
-            {
               label: 'Affiliate Program',
               to: '/affiliate-program',
             },
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Schedule a Demo',
+              to: 'https://calendly.com/iamdariiava/30min',
             },
             {
               label: 'Feature Requests',
               to: '/feature-request',
+            },
+            {
+              label: 'Pricing',
+              to: 'https://app.raisetalks.com/pricing',
+            },
+            {
+              label: 'Blog',
+              to: '/blog',
             },
             {
               label: 'Media ToolKit',
@@ -304,17 +307,21 @@ const config: Config = {
       {
         name: 'keywords',
         content:
-          'raisetalks, due diligence, fundraising, startup funding, venture capital, business intelligence',
+          'raisetalks, AI fundraising, startup funding, venture capital, investor diligence, data room, IC memo, pre-score engine, founder readiness, early-stage startups',
       },
       {
         name: 'description',
         content:
-          'Expert insights on due diligence, fundraising strategies, and business growth from RaiseTalks',
+          'RaiseTalks is the AI-powered fundraising workspace for early-stage founders and investors. Build investor-grade data rooms, score readiness, and close rounds faster.',
       },
       { name: 'author', content: 'RaiseTalks' },
       { name: 'robots', content: 'index, follow' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'RaiseTalks Blog' },
+      { property: 'og:site_name', content: 'RaiseTalks' },
+      { property: 'og:image', content: 'https://raisetalks.com/img/docusaurus-social-card.jpg' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@raisetalks' },
+      { name: 'twitter:image', content: 'https://raisetalks.com/img/docusaurus-social-card.jpg' },
     ],
     announcementBar: {
       id: 'visit_raisetalks',

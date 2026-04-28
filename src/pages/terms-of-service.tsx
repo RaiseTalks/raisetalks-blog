@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 
 // Custom hook for scroll animations
 function useScrollAnimation() {
@@ -35,8 +36,16 @@ export default function TermsOfService() {
 
   return (
     <Layout
-      title="Terms of Service"
+      title="Terms of Service | RaiseTalks"
       description="Terms of Service for RaiseTalks - AI-powered fundraising workspace. Legal terms and conditions governing the use of our platform.">
+      <Head>
+        <meta name="description" content="Terms of Service for RaiseTalks - AI-powered fundraising workspace. Legal terms and conditions governing the use of our platform." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://raisetalks.com/terms-of-service" />
+        <meta property="og:title" content="Terms of Service | RaiseTalks" />
+        <meta property="og:url" content="https://raisetalks.com/terms-of-service" />
+        <meta property="og:type" content="website" />
+      </Head>
 
       <style>{`
         @keyframes fadeInUp {
@@ -179,8 +188,8 @@ export default function TermsOfService() {
 
             <h2>6. Intellectual Property</h2>
             <p>
-              All intellectual property rights in the Platform—including but not limited to content, visuals, code, tools,
-              templates, and AI models—are owned or licensed by RaiseTalks.
+              All intellectual property rights in the Platform-including but not limited to content, visuals, code, tools,
+              templates, and AI models-are owned or licensed by RaiseTalks.
             </p>
             <p>
               You may not use, reproduce, or distribute any part of the Platform except as expressly permitted in writing.
