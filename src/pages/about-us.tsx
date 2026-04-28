@@ -287,7 +287,7 @@ export default function AboutUs() {
                      <div className={styles.founderImageContainer}>
                         <div className={styles.founderImage}>
                            <img
-                              src="/img/icons/dariia.png"
+                              src="/img/icons/dariia.jpg"
                               alt="Dr. Dariia Vasylieva - President, CEO"
                               className={styles.founderImageInner}
                            />

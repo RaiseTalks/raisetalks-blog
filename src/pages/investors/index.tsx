@@ -42,14 +42,21 @@ function useCounter(target: number, active: boolean, duration = 1400) {
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) { setCount(target); return; }
+    let cancelled = false;
+    let rafId = 0;
     const start = performance.now();
     const tick = (now: number) => {
+      if (cancelled) return;
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3);
       setCount(Math.round(eased * target));
-      if (p < 1) requestAnimationFrame(tick);
+      if (p < 1) rafId = requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafId);
+    };
   }, [active, target, duration]);
   return count;
 }
@@ -409,7 +416,7 @@ export default function InvestorsPage() {
               </div>
 
               {/* Gauge — floats off the right edge of this panel */}
-              <div className={styles.problemGaugeWrap} aria-hidden="true">
+              <div className={styles.problemGaugeWrap}>
                 <ReadinessGauge />
               </div>
             </div>
@@ -500,24 +507,54 @@ export default function InvestorsPage() {
 
           {/* Tab bar */}
           <div className={styles.sliderTabsWrap}>
-            <div className={styles.sliderTabs} role="tablist">
-              {sliderTabs.map((tab, i) => (
-                <button
-                  key={tab.num}
-                  role="tab"
-                  aria-selected={activeSlide === i}
-                  className={`${styles.sliderTab} ${activeSlide === i ? styles.sliderTabActive : ''}`}
-                  onClick={() => setActiveSlide(i)}
-                >
-                  <span className={styles.sliderTabNum}>{tab.num}</span>
-                  <span className={styles.sliderTabLabel}>{tab.label}</span>
-                </button>
-              ))}
+            <div className={styles.sliderTabs} role="tablist" aria-labelledby="slider-heading">
+              {sliderTabs.map((tab, i) => {
+                const tabId = `slider-tab-${i}`;
+                const panelId = `slider-panel-${i}`;
+                const isActive = activeSlide === i;
+                return (
+                  <button
+                    key={tab.num}
+                    id={tabId}
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-controls={panelId}
+                    tabIndex={isActive ? 0 : -1}
+                    className={`${styles.sliderTab} ${isActive ? styles.sliderTabActive : ''}`}
+                    onClick={() => setActiveSlide(i)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        setActiveSlide((i + 1) % sliderTabs.length);
+                      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        setActiveSlide((i - 1 + sliderTabs.length) % sliderTabs.length);
+                      } else if (e.key === 'Home') {
+                        e.preventDefault();
+                        setActiveSlide(0);
+                      } else if (e.key === 'End') {
+                        e.preventDefault();
+                        setActiveSlide(sliderTabs.length - 1);
+                      }
+                    }}
+                  >
+                    <span className={styles.sliderTabNum}>{tab.num}</span>
+                    <span className={styles.sliderTabLabel}>{tab.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           {/* Slide content */}
-          <div className={styles.sliderBody} key={activeSlide}>
+          <div
+            className={styles.sliderBody}
+            key={activeSlide}
+            role="tabpanel"
+            id={`slider-panel-${activeSlide}`}
+            aria-labelledby={`slider-tab-${activeSlide}`}
+            tabIndex={0}
+          >
 
             {/* ── Slide 0: Pre-Score Engine ── */}
             {activeSlide === 0 && (

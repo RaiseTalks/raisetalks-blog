@@ -100,24 +100,38 @@ export default function FAQSection() {
     setOpenIndex(openIndex === id ? null : id);
   };
 
-  const renderItem = (item: FAQItem, id: string) => (
-    <div key={id} className={styles.faqItem}>
-      <button
-        className={`${styles.faqQuestion} ${openIndex === id ? styles.active : ''}`}
-        onClick={() => toggleFAQ(id)}
-      >
-        <span>{item.question}</span>
-        <span className={styles.faqIcon}>
-          {openIndex === id ? '−' : '+'}
-        </span>
-      </button>
-      <div className={`${styles.faqAnswer} ${openIndex === id ? styles.open : ''}`}>
-        <div className={styles.faqAnswerContent}>
-          {item.answer}
+  const renderItem = (item: FAQItem, id: string) => {
+    const isOpen = openIndex === id;
+    const panelId = `faq-panel-${id}`;
+    const buttonId = `faq-button-${id}`;
+    return (
+      <div key={id} className={styles.faqItem}>
+        <button
+          id={buttonId}
+          className={`${styles.faqQuestion} ${isOpen ? styles.active : ''}`}
+          onClick={() => toggleFAQ(id)}
+          aria-expanded={isOpen}
+          aria-controls={panelId}
+        >
+          <span>{item.question}</span>
+          <span className={styles.faqIcon} aria-hidden="true">
+            {isOpen ? '−' : '+'}
+          </span>
+        </button>
+        <div
+          id={panelId}
+          role="region"
+          aria-labelledby={buttonId}
+          aria-hidden={!isOpen}
+          className={`${styles.faqAnswer} ${isOpen ? styles.open : ''}`}
+        >
+          <div className={styles.faqAnswerContent}>
+            {item.answer}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section className={styles.faqSection}>

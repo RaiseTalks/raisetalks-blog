@@ -21,6 +21,9 @@ export default function ReadinessGauge() {
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    let cancelled = false;
+    let rafId = 0;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !animatedRef.current) {
@@ -35,13 +38,14 @@ export default function ReadinessGauge() {
           const duration = 1400;
           const start = performance.now();
           const animate = (now: number) => {
+            if (cancelled) return;
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.round(eased * score));
-            if (progress < 1) requestAnimationFrame(animate);
+            if (progress < 1) rafId = requestAnimationFrame(animate);
           };
-          requestAnimationFrame(animate);
+          rafId = requestAnimationFrame(animate);
           observer.disconnect();
         }
       },
@@ -49,7 +53,11 @@ export default function ReadinessGauge() {
     );
 
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafId);
+      observer.disconnect();
+    };
   }, []);
 
   return (
