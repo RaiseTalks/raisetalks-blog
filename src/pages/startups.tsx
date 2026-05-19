@@ -174,11 +174,11 @@ export default function Startups() {
         <meta property="og:description" content="Turn your startup documents into an investor-grade data room with AI readiness scoring, structured filing, and real-time tracking." />
         <meta property="og:url" content="https://raisetalks.com/startups" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta property="og:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="For Startups - Build an Investor-Ready Raise | RaiseTalks" />
         <meta name="twitter:description" content="Turn your startup documents into an investor-grade data room with AI readiness scoring." />
-        <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:site" content="@raisetalks" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",

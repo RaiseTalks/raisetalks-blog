@@ -147,11 +147,11 @@ export default function PitchCompetitions() {
         <meta property="og:description" content="Curated startup showcases with pre-scored founders, structured data rooms, and direct investor access." />
         <meta property="og:url" content="https://raisetalks.com/pitch-competitions" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta property="og:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Pitch Competitions - Discover Vetted Startups | RaiseTalks" />
         <meta name="twitter:description" content="Curated startup showcases with pre-scored founders and direct investor access." />
-        <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:site" content="@raisetalks" />
       </Head>
 

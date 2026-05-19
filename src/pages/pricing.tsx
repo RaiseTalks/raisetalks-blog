@@ -48,11 +48,11 @@ export default function Pricing() {
         <meta property="og:description" content="Free tier available. Plans for startups and investors to move faster with confidence." />
         <meta property="og:url" content="https://raisetalks.com/pricing" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta property="og:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Pricing - RaiseTalks AI Fundraising Workspace" />
         <meta name="twitter:description" content="Free tier available. Plans for startups and investors to move faster with confidence." />
-        <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:site" content="@raisetalks" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",

@@ -85,7 +85,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/og-raisetalks.jpg',
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -318,10 +318,10 @@ const config: Config = {
       { name: 'robots', content: 'index, follow' },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'RaiseTalks' },
-      { property: 'og:image', content: 'https://raisetalks.com/img/docusaurus-social-card.jpg' },
+      { property: 'og:image', content: 'https://raisetalks.com/img/og-raisetalks.jpg' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@raisetalks' },
-      { name: 'twitter:image', content: 'https://raisetalks.com/img/docusaurus-social-card.jpg' },
+      { name: 'twitter:image', content: 'https://raisetalks.com/img/og-raisetalks.jpg' },
     ],
     announcementBar: {
       id: 'visit_raisetalks',

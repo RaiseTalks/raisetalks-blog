@@ -51,11 +51,11 @@ export default function AffiliateProgram() {
         <meta property="og:description" content="Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators." />
         <meta property="og:url" content="https://raisetalks.com/affiliate-program" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta property="og:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Affiliate Program - Turn Your Network into Capital | RaiseTalks" />
         <meta name="twitter:description" content="Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators." />
-        <meta name="twitter:image" content="https://raisetalks.com/img/docusaurus-social-card.jpg" />
+        <meta name="twitter:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:site" content="@raisetalks" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
