@@ -723,7 +723,7 @@
 
 /* Output card */
 .slideOutput {
-  background: linear-gradient(-28.77deg, rgba(0,54,135,0.06) 0%, rgba(0,119,255,0.06) 100%);
+  background: linear-gradient(28.77deg, rgba(0,54,135,0.06) 0%, rgba(0,119,255,0.06) 100%);
   border: 1px solid rgba(1, 116, 225, 0.15);
   border-radius: 12px;
   padding: 1.5rem;
@@ -1238,7 +1238,7 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
-  background: linear-gradient(-28.77deg, #003687 46%, #0077ff 95%);
+  background: linear-gradient(28.77deg, #003687 46%, #0077ff 95%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

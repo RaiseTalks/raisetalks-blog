@@ -1,223 +1,230 @@
 /**
  * Footer Styles
- * Modern Footer with Newsletter Section
+ * Custom RaiseTalks footer (Figma: Website node 1285:476)
  */
 
-/* Newsletter Footer Section */
-.newsletter-footer-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
-}
-
-.newsletter-footer-section .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.footer {
-  background: var(--raisetalks-brand-gradient);
-  border-top: none;
-  padding: 4rem 0 2rem 0;
+.rt-footer {
+  /* Figma: linear-gradient(45.88deg, dark-blue 3.42%, light-blue 99.98%) */
+  background: linear-gradient(45.88deg, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
+  color: #ededed;
   margin-top: 0;
-  color: #ffffff;
 }
 
-/* Footer Container */
-.footer .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* Footer Links Container */
-.footer__links {
+.rt-footer__grid {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 3rem 2rem;
-  margin-bottom: 3rem;
-  justify-items: start;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
+  align-items: stretch;
+  border-left: 0.5px solid #0077ff;
+  border-right: 0.5px solid #0077ff;
 }
 
-/* Section Titles */
-.footer__title {
-  font-size: 0.875rem;
+/* Logo column - a slim wordmark bar (Figma), not a large icon block */
+.rt-footer__logo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  border-right: 0.5px solid #0077ff;
+}
+
+.rt-footer__logo-mark {
+  height: 24px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+}
+
+/* Link columns (Company / Platform) */
+.rt-footer__col {
+  padding: 2rem;
+  border-right: 0.5px solid #0077ff;
+}
+
+.rt-footer__col-title {
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 1.375rem;
+  line-height: 1.35;
+  color: #ededed;
+  margin: 0 0 1rem;
 }
 
-/* Footer Items */
-.footer__item {
-  margin-bottom: 0.5rem;
-}
-
-.footer__items {
+.rt-footer__links {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-/* Footer Links */
-.footer__link-item {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.5;
-  transition: color 0.2s ease;
-  display: inline-block;
-}
-
-.footer__link-item:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-/* Social icon links in Community column */
-.footer__link-item[href*="twitter.com"]::before,
-.footer__link-item[href*="x.com"]::before,
-.footer__link-item[href*="linkedin.com"]::before,
-.footer__link-item[href*="instagram.com"]::before,
-.footer__link-item[href*="facebook.com"]::before,
-.footer__link-item[href*="youtube.com"]::before,
-.footer__link-item[href*="tiktok.com"]::before {
-  content: '';
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin-right: 7px;
-  vertical-align: middle;
-  background: rgba(255, 255, 255, 0.8);
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  transition: background 0.2s ease;
-}
-
-.footer__link-item[href*="twitter.com"]::before,
-.footer__link-item[href*="x.com"]::before {
-  -webkit-mask-image: url('/img/x-icon.svg');
-  mask-image: url('/img/x-icon.svg');
-}
-
-.footer__link-item[href*="linkedin.com"]::before {
-  -webkit-mask-image: url('/img/linkedin-icon.svg');
-  mask-image: url('/img/linkedin-icon.svg');
-}
-
-.footer__link-item[href*="instagram.com"]::before {
-  -webkit-mask-image: url('/img/instagram-icon.svg');
-  mask-image: url('/img/instagram-icon.svg');
-}
-
-.footer__link-item[href*="facebook.com"]::before {
-  -webkit-mask-image: url('/img/facebook-icon.svg');
-  mask-image: url('/img/facebook-icon.svg');
-}
-
-.footer__link-item[href*="youtube.com"]::before {
-  -webkit-mask-image: url('/img/youtube-icon.svg');
-  mask-image: url('/img/youtube-icon.svg');
-}
-
-.footer__link-item[href*="tiktok.com"]::before {
-  -webkit-mask-image: url('/img/tiktok-icon.svg');
-  mask-image: url('/img/tiktok-icon.svg');
-}
-
-.footer__link-item[href*="linkedin.com/company/raisetalks/jobs"]::before {
-  display: none;
-}
-
-.footer__link-item[href*="twitter.com"]:hover::before,
-.footer__link-item[href*="x.com"]:hover::before,
-.footer__link-item[href*="linkedin.com"]:hover::before,
-.footer__link-item[href*="instagram.com"]:hover::before,
-.footer__link-item[href*="facebook.com"]:hover::before,
-.footer__link-item[href*="youtube.com"]:hover::before,
-.footer__link-item[href*="tiktok.com"]:hover::before {
-  background: rgba(255, 255, 255, 1);
-}
-
-/* Footer Bottom Section */
-.footer__bottom {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.footer__bottom .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rt-footer__link {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.906rem;
+  line-height: 1.45;
+  color: #ededed;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.rt-footer__link:hover {
+  background-color: #005fcc;
+  color: #ededed;
+  text-decoration: none;
+}
+
+/* Community + Newsletter column */
+.rt-footer__community-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.rt-footer__community {
+  padding: 2rem;
+  border-left: 0.5px solid #0077ff;
+  border-bottom: 0.5px solid #0077ff;
+}
+
+.rt-footer__community-grid {
+  display: flex;
+  gap: 2rem;
+}
+
+.rt-footer__newsletter {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 0.5px solid #0077ff;
+}
+
+/* Bottom bar */
+.rt-footer__bottom {
+  border-top: 0.5px solid #0077ff;
+  border-bottom: 0.5px solid #0077ff;
+}
+
+.rt-footer__bottom-inner {
+  width: 100%;
+  min-height: 64px;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+  padding: 1rem 2rem;
+  border-left: 0.5px solid #0077ff;
+  border-right: 0.5px solid #0077ff;
 }
 
-/* Copyright */
-.footer__copyright {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.875rem;
+.rt-footer__copyright {
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: #ededed;
   margin: 0;
 }
 
-/* Social Links Container */
-.footer__social {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-/* Social Icons */
-.footer__social-link {
-  color: rgba(255, 255, 255, 0.8);
-  transition: color 0.2s ease;
+.rt-footer__legal {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  gap: 2.25rem;
+  flex-wrap: wrap;
 }
 
-.footer__social-link:hover {
+.rt-footer__legal-link {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: #ededed;
+  text-decoration: none;
+}
+
+.rt-footer__legal-link:hover {
   color: #ffffff;
+  text-decoration: underline;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .footer {
-    padding: 3rem 0 2rem 0;
+/* Tablet */
+@media (max-width: 996px) {
+  .rt-footer__grid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .footer__links {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 1.5rem;
-    margin-bottom: 2rem;
+  .rt-footer__logo-col {
+    grid-column: 1 / -1;
   }
 
-  .footer__bottom .container {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
+  .rt-footer__community-col {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .footer__social {
-    justify-content: center;
+  .rt-footer__community {
+    border-bottom: none;
+    border-right: 0.5px solid #0077ff;
+  }
+
+  .rt-footer__community-grid {
+    max-width: 480px;
   }
 }
 
-@media (max-width: 480px) {
-  .footer__links {
+/* Mobile */
+@media (max-width: 640px) {
+  .rt-footer__grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+  }
+
+  .rt-footer__logo-col,
+  .rt-footer__community-col {
+    grid-column: auto;
+  }
+
+  .rt-footer__community-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rt-footer__community {
+    border-bottom: 0.5px solid #0077ff;
+    border-right: none;
+  }
+
+  .rt-footer__col,
+  .rt-footer__community,
+  .rt-footer__newsletter {
+    padding: 1.5rem;
+  }
+
+  /* Figma stacks the legal links above the copyright line on mobile,
+     both left-aligned (not centered like tablet/desktop). */
+  .rt-footer__bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .rt-footer__legal {
+    order: 1;
+    justify-content: flex-start;
+    gap: 1.25rem;
+  }
+
+  .rt-footer__copyright {
+    order: 2;
   }
 }
