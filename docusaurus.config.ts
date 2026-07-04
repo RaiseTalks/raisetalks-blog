@@ -130,6 +130,18 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: 'https://calendly.com/iamdariiava/30min',
+          label: 'Contact Us',
+          position: 'right',
+          className: 'navbar__link--calendar',
+        },
+        {
+          to: 'https://www.linkedin.com/company/raisetalks/',
+          label: 'LinkedIn',
+          position: 'right',
+          className: 'navbar__link--linkedin',
+        },
+        {
           to: 'https://app.raisetalks.com/sign-in',
           label: 'Log In',
           position: 'right',
@@ -137,7 +149,7 @@ const config: Config = {
         },
         {
           to: 'https://app.raisetalks.com/sign-up',
-          label: 'Try it Free',
+          label: 'Sign Up',
           position: 'right',
           className: 'navbar__link--signup button button--primary',
         },
@@ -147,7 +159,7 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Company',
+          title: 'About Us',
           items: [
             {
               label: 'About RaiseTalks',
@@ -166,20 +178,16 @@ const config: Config = {
               to: 'https://www.linkedin.com/company/raisetalks/jobs/',
             },
             {
-              label: 'Affiliate Program',
-              to: '/affiliate-program',
+              label: 'Terms of Service',
+              to: '/terms-of-service',
             },
             {
-              label: 'Feature Requests',
-              to: '/feature-request',
+              label: 'Privacy Policy',
+              to: '/privacy-policy',
             },
             {
-              label: 'Pricing',
-              to: 'https://app.raisetalks.com/pricing',
-            },
-            {
-              label: 'Media Toolkit',
-              to: 'https://app.raisetalks.com/brand',
+              label: 'Refund Policy',
+              to: '/refund-policy',
             },
           ],
         },
@@ -187,11 +195,11 @@ const config: Config = {
           title: 'Platform',
           items: [
             {
-              label: 'Startup Catalogue',
+              label: 'Startups',
               to: 'https://app.raisetalks.com/startups',
             },
             {
-              label: 'Investor Catalogue',
+              label: 'Investors',
               to: 'https://app.raisetalks.com/investors',
             },
             {
@@ -207,8 +215,12 @@ const config: Config = {
               to: 'https://app.raisetalks.com/scoring',
             },
             {
-              label: 'Dealflow',
-              to: 'https://app.raisetalks.com/dealflow',
+              label: 'Investor Catalogue',
+              to: 'https://app.raisetalks.com/investors',
+            },
+            {
+              label: 'Startup Catalogue',
+              to: 'https://app.raisetalks.com/startups',
             },
             {
               label: 'AI Advisor',
@@ -217,6 +229,43 @@ const config: Config = {
             {
               label: 'IR Pipeline',
               to: 'https://app.raisetalks.com/ir-pipeline',
+            },
+            {
+              label: 'Dealflow',
+              to: 'https://app.raisetalks.com/dealflow',
+            },
+            {
+              label: 'Scoring',
+              to: 'https://app.raisetalks.com/scoring',
+            },
+          ],
+        },
+        {
+          title: 'Resources',
+          items: [
+            {
+              label: 'Affiliate Program',
+              to: '/affiliate-program',
+            },
+            {
+              label: 'Schedule a Demo',
+              to: 'https://calendly.com/iamdariiava/30min',
+            },
+            {
+              label: 'Feature Requests',
+              to: '/feature-request',
+            },
+            {
+              label: 'Pricing',
+              to: 'https://app.raisetalks.com/pricing',
+            },
+            {
+              label: 'Blog',
+              to: '/blog',
+            },
+            {
+              label: 'Media ToolKit',
+              to: '#',
             },
           ],
         },
@@ -228,10 +277,6 @@ const config: Config = {
               to: 'https://linkedin.com/company/raisetalks',
             },
             {
-              label: 'YouTube',
-              to: 'https://youtube.com/@raisetalks',
-            },
-            {
               label: 'Instagram',
               to: 'https://instagram.com/raisetalks',
             },
@@ -239,22 +284,9 @@ const config: Config = {
               label: 'Facebook',
               to: 'https://facebook.com/raisetalks',
             },
-          ],
-        },
-        {
-          title: 'Legal',
-          items: [
             {
-              label: 'Privacy policy',
-              to: '/privacy-policy',
-            },
-            {
-              label: 'Terms of Service',
-              to: '/terms-of-service',
-            },
-            {
-              label: 'Refund Policy',
-              to: '/refund-policy',
+              label: 'YouTube',
+              to: 'https://youtube.com/@raisetalks',
             },
           ],
         },

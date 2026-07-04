@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "@docusaurus/Link";
 import styles from "./SolutionSection.module.css";
-import AudienceToggle from './AudienceToggle';
 
 declare global {
    interface Window {
@@ -74,107 +73,41 @@ const ShieldCheckIcon = ({ className }: { className?: string }) => (
    </svg>
 );
 
-// Investor-facing icons - gradient stroke (brand yellow -> brand pink),
-// matching the "For Investors" toggle dot
-const IconGradientDefs = () => (
-   <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
-      <defs>
-         <linearGradient id="investorIconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="20%" stopColor="#ffab0e" />
-            <stop offset="75%" stopColor="#ea2640" />
-         </linearGradient>
-      </defs>
-   </svg>
-);
-
-const GaugeIcon = ({ className }: { className?: string }) => (
-   <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="url(#investorIconGradient)"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-   >
-      <path d="m12 14 4-4" />
-      <path d="M3.34 19a10 10 0 1 1 17.32 0" />
-   </svg>
-);
-
-const UsersRoundIcon = ({ className }: { className?: string }) => (
-   <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="url(#investorIconGradient)"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-   >
-      <path d="M18 21a8 8 0 0 0-16 0" />
-      <circle cx="10" cy="8" r="5" />
-      <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
-   </svg>
-);
-
-const FileCheckIcon = ({ className }: { className?: string }) => (
-   <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="url(#investorIconGradient)"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-   >
-      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
-      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-      <path d="m9 15 2 2 4-4" />
-   </svg>
-);
-
 // AI Advisor Demo Component - Clean autoplay video, no controls
-export function DiligenceVideoBlock() {
+function DiligenceVideoBlock() {
    return (
-      <section className={styles.videoSection}>
-         <div className="container px-4 mx-auto">
-            <div className={styles.videoInner}>
-               <div className={styles.videoMedia}>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '1369 / 778', borderRadius: '1rem', overflow: 'hidden', background: '#000'}}>
-                   <iframe
-                        src="https://www.youtube-nocookie.com/embed/8WOwPsQE158?controls=1&modestbranding=1&rel=0&playsinline=1"
-                        title="Your Next Investor Meeting Is Closer Than You Think"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                     />
-                  </div>
-               </div>
-                <div className={styles.videoText}>
-                  <h2 className={styles.videoTitle}>
-                     Your Next Investor Meeting<br />
-                     <span className={styles.videoTitleAccent}>Is Closer Than You Think</span>
-                  </h2>
-                  <p className={styles.videoDesc}>
-                     RaiseTalks gives you one workspace to run your entire raise - so you spend less time on infrastructure and more time closing.
-                  </p>
-                  <Link className={styles.videoButton} to="https://calendly.com/iamdariiava/30min">
-                     See it in action
-                  </Link>
-               </div>
-            </div>   
+      <div className={styles.aiAdvisorBlock}>
+         <div className={styles.videoSectionHeader}>
+            <span className={styles.videoEyebrow}>See It In Action</span>
+            <h2 className={styles.videoSectionTitle}>
+               Your Next Investor Meeting<br />
+               <span className={styles.videoSectionAccent}>Is Closer Than You Think</span>
+            </h2>
+            <p className={styles.aiAdvisorText}>
+               RaiseTalks gives you one workspace to run your entire raise - so you spend less time on infrastructure and more time closing.
+            </p>
          </div>
-
-      </section>
-   )
+         <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0, borderRadius: '1rem', overflow: 'hidden', background: '#000', marginBottom: '2rem' }}>
+            <iframe
+               src="https://www.youtube-nocookie.com/embed/8WOwPsQE158?controls=1&modestbranding=1&rel=0&playsinline=1"
+               title="Your Next Investor Meeting Is Closer Than You Think"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+               allowFullScreen
+               style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            />
+         </div>
+         <div className={styles.aiAdvisorContent}>
+            <Link className={styles.aiAdvisorButton} to="https://calendly.com/iamdariiava/30min">
+               See It In Action
+            </Link>
+         </div>
+      </div>
+   );
 }
 
 
 export default function SolutionSection() {
-   const [active, setActive] = useState<'startups' | 'investors'>('startups');
-
-   const startupFeatures = [
+   const features = [
       {
          title: "Investor-Ready Data Room",
          desc: "Organized, structured, and built to impress from day one.",
@@ -197,77 +130,25 @@ export default function SolutionSection() {
       },
    ];
 
-   const investorFeatures = [
-      {
-         title: "Pre-Score Engine",
-         desc: "Standardized scorecards so every deal gets a fair, consistent look.",
-         icon: GaugeIcon,
-      },
-      {
-         title: "Committee Workspace",
-         desc: "One place for partners to align, debate, and decide.",
-         icon: UsersRoundIcon,
-      },
-      {
-         title: "DD & IC Pack",
-         desc: "Diligence and investment memos, version-controlled and always current.",
-         icon: FileCheckIcon,
-      },
-   ];
-
-   const features = active === 'startups' ? startupFeatures : investorFeatures;
-
    return (
       <section className={styles.solutionSection}>
-         <IconGradientDefs />
-         {/* Main Solution Block */}
-         <div className={`container mx-auto ${styles.solutionMain}`}>
+         <div className="container px-4 mx-auto">
+            {/* Main Solution Block */}
+            <div className={styles.solutionMain}>
                <div className={styles.solutionHeader}>
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                     <AudienceToggle active={active} onSelect={setActive} />
-                  </div>
-                  {active === 'startups' ? (
-                     <div className="flex flex-col lg:flex-row items-start justify-between gap-8">
-                        <h2 className={`${styles.solutionTitle} flex-1`}>Investors Decide Fast.<br /> <span className={styles.solutionTitleAccent}>Be Ready Faster.</span></h2>
-                        <div className="flex flex-1 flex-col items-start gap-6">
-                           <div className="flex flex-col gap-2">
-                              <p className={styles.solutionDescription}>
-                                 RaiseTalks transforms your startup data into a structured, investor-grade Data Room with AI-powered gap analysis, so you walk into every conversation with confidence.
-                              </p>
-                              <p className={styles.solutionDescription}>
-                                 We provide you with tools and deals to accelerate your raise.
-                              </p>
-                           </div>
-                           <Link className={styles.perksButton} to="/startups#perks">
-                              Get access to Perks
-                           </Link>
-                        </div>
-                     </div>
-                  ) : (
-                     <div className="flex flex-col lg:flex-row items-start justify-between gap-8">
-                        <h2 className={`${styles.solutionTitle} flex-1`}>IC decision.<br /><span className={styles.solutionTitleAccent}>4x faster</span></h2>
-                        <div className="flex flex-1 flex-col items-start gap-6">
-                           <p className={styles.solutionDescription}>
-                              RaiseTalks Scoring OS gives your fund a single system to evaluate, align, and decide.
-                           </p>
-                           <div className="flex gap-6 flex-wrap">
-                              <Link className={styles.perksButton} to="/investors">
-                                 Start Scoring OS
-                              </Link>
-                              <Link className={styles.perksButtonSecondary} to="https://calendly.com/iamdariiava/30min">
-                                 See Demo
-                              </Link>
-                           </div>
-                        </div>
-                     </div>
-                  )}
+                  <span className={styles.badge}>For Startups</span>
+                  <h2 className={styles.solutionTitle}>Investors Decide Fast.{' '}<span className={styles.solutionTitleAccent}>Be Ready Faster.</span></h2>
+                  <p className={styles.solutionDescription}>
+                     RaiseTalks transforms your startup data into a structured, investor-grade Data Room with AI-powered gap analysis, so you walk into every conversation with confidence.
+                  </p>
                </div>
 
-               <div className={`${styles.featureGrid} ${active === 'investors' ? styles.featureGridThree : ''}`}>
-
+               <div className={styles.featureGrid}>
                   {features.map((feature, index) => (
                      <div key={index} className={styles.featureCard}>
-                        <feature.icon className={styles.featureIcon} />
+                        <div className={styles.featureIconContainer}>
+                           <feature.icon className={styles.featureIcon} />
+                        </div>
                         <div>
                            <h3 className={styles.featureTitle}>{feature.title}</h3>
                            <p className={styles.featureDesc}>{feature.desc}</p>
@@ -275,49 +156,59 @@ export default function SolutionSection() {
                      </div>
                   ))}
                </div>
+               <div className={styles.perksAction}>
+                  <div className={styles.perksText}>
+                     <span className={styles.perksTextTitle}>Exclusive Founder Perks</span>
+                     <span className={styles.perksTextDesc}>Tools and deals to accelerate your raise.</span>
+                  </div>
+                  <Link className={styles.perksButton} to="/startups#perks">
+                     Get access to Perks
+                  </Link>
+               </div>
+            </div>
+
+            {/* Diligence Video Block */}
+            <DiligenceVideoBlock />
+
+            {/* AI Advisor Demo Block - temporarily hidden */}
+            {/* <AIAdvisorDemo /> */}
+
          </div>
-      </section>
-   );
-}
 
-export function NarrativeBlock() {
-   const items = [
-      { icon: '/img/icons/stethoscope.svg', label: 'Diagnostic', desc: 'Audit your story, find the gaps weakening your raise.' },
-      { icon: '/img/icons/brain-cog.svg', label: 'Architecture', desc: 'Build the core system: category story, positioning, and investor messaging.' },
-      { icon: '/img/icons/atom.svg', label: 'Engine', desc: 'A content system that reinforces your story consistently across channels.' },
-      { icon: '/img/icons/tv-minimal-play.svg', label: 'Founder Original', desc: 'A flagship cinematic piece for investor communication, launches, and major announcements.' },
-   ];
-
-   return (
-      <section className={styles.narrativeBlock}>
-         <div className={`container mx-auto ${styles.narrativePanel}`}>
-               <div className={styles.narrativeTop}>
-                  <div className={styles.narrativeLeft}>
-                     <img src="/img/raisetalks-tv-logo.svg" alt="RaiseTalks TV" className={styles.narrativeLogo} />
+         {/* Narrative Block — full-width grey */}
+         <div className={styles.narrativeBlock}>
+            <div className={styles.narrativeInner}>
+               <div className={styles.narrativeRow1}>
+                  <div className={styles.narrativeHeadGroup}>
+                     <span className={styles.narrativeEyebrow}>RaiseTalks TV</span>
                      <h2 className={styles.narrativeTitle}>
-                        Your Story<br />
-                        <span className={styles.narrativeTitleAccent}>Is the Strategy</span>
+                        Your Story Is the{' '}
+                        <span className={styles.narrativeTitleAccent}>Strategy</span>
                      </h2>
                      <p className={styles.narrativeSubtitle}>
-                        Cinema is the method.<br />
-                        Narrative is the product.<br />
-                        Perception is the outcome.
+                        Cinema is the method. Narrative is the product. Perception is the outcome.
                      </p>
                   </div>
-                  <div className={styles.narrativeGrid}>
-                     {items.map(({ icon, label, desc }) => (
-                        <div key={label} className={styles.narrativeItem}>
-                           <img src={icon} alt="" className={styles.narrativeItemIcon} />
-                           <h4 className={styles.narrativeItemTitle}>{label}</h4>
-                           <p className={styles.narrativeItemDesc}>{desc}</p>
-                        </div>
-                     ))}
+                  <div className={styles.narrativeCta}>
+                     <Link className={styles.narrativeButton} to="https://tv.raisetalks.com">
+                        Explore Founder Originals
+                     </Link>
                   </div>
                </div>
-               <Link className={styles.narrativeButton} to="https://tv.raisetalks.com">
-                  <img src="/img/icons/play.svg" alt="" className={styles.narrativeButtonIcon} />
-                  Explore Founder Originals
-               </Link>
+               <div className={styles.narrativeGrid}>
+                  {[
+                     { label: 'Diagnostic', desc: 'Audit your story, find the gaps weakening your raise.' },
+                     { label: 'Architecture', desc: 'Build the core system: category story, positioning, and investor messaging.' },
+                     { label: 'Engine', desc: 'A content system that reinforces your story consistently across channels.' },
+                     { label: 'Founder Original', desc: 'A flagship cinematic piece for investor communication, launches, and major announcements.' },
+                  ].map(({ label, desc }) => (
+                     <div key={label} className={styles.narrativeCard}>
+                        <div className={styles.narrativeCardLabel}>{label}</div>
+                        <p className={styles.narrativeCardDesc}>{desc}</p>
+                     </div>
+                  ))}
+               </div>
+            </div>
          </div>
       </section>
    );
@@ -325,34 +216,26 @@ export function NarrativeBlock() {
 
 export function InvestorDiscoveryBlock() {
    return (
-      <section className={styles.investorSection}>
-         <div className="container px-4 mx-auto">
-            <div className={styles.investorCard}>
-               <div className={styles.investorInner}>
-                  <div className={styles.investorImageCol}>
-                     <div className={styles.imageGlowWrap}>
-                        <div className={`${styles.imageGlow} ${styles.imageGlowOne}`} aria-hidden="true" />
-                        <div className={`${styles.imageGlow} ${styles.imageGlowTwo}`} aria-hidden="true" />
-                        <img
-                           src="/img/startup-catalog-mockup.png"
-                           alt="Investor Dashboard - Curated startup pipeline"
-                           className={styles.startupsLayoutImage}
-                           loading="lazy"
-                        />
-                     </div>
-                  </div>
-                  <div className={styles.investorContent}>
-                     <h3 className={styles.investorTitle}>Spend less time <br /><span className={styles.investorTitleAccent}>on Due Diligence</span></h3>
-                     <p className={styles.investorDescription}>
-                        RaiseTalks surfaces curated and ready pre-scored startups worth seeing.
-                     </p>
-                     <Link className={styles.exploreButton} to="https://app.raisetalks.com/startups">
-                        Explore Startups
-                     </Link>
-                  </div>
-               </div>
+      <div className={styles.investorBlock}>
+         <div className={styles.investorInner}>
+            <div className={styles.investorContent}>
+               <h3 className={styles.investorTitle}>The Deals Worth Seeing -{' '}<span className={styles.investorTitleAccent}>Curated and Ready.</span></h3>
+               <p className={styles.investorDescription}>
+                  RaiseTalks surfaces pre-scored, diligence-ready startups - so you spend less time on due diligence.
+               </p>
+               <Link className={styles.exploreButton} to="https://app.raisetalks.com/startups">
+                  Explore Startups
+               </Link>
+            </div>
+            <div className={styles.investorImageCol}>
+               <img
+                  src="/img/startups-layout.png"
+                  alt="Investor Dashboard - Curated startup pipeline"
+                  className={styles.startupsLayoutImage}
+                  loading="lazy"
+               />
             </div>
          </div>
-      </section>
+      </div>
    );
 }

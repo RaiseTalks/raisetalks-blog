@@ -21,11 +21,11 @@
   --ifm-color-primary-lightest: rgba(77, 167, 255, 1);
   
   /* Brand Blue Colors from Figma - Now Using Brand Gradient */
-  --raisetalks-blue-primary: linear-gradient(28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
+  --raisetalks-blue-primary: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
   --raisetalks-blue-primary-flat: #0174e1;
   --raisetalks-blue-secondary: #0166ca;
-  --raisetalks-blue-dark: linear-gradient(28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
-  --raisetalks-blue-text: linear-gradient(28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
+  --raisetalks-blue-dark: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
+  --raisetalks-blue-text: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
 
   /* Global Colors from RaiseTalks Brand */
   --e-global-color-primary: var(--raisetalks-blue-primary);
@@ -37,10 +37,7 @@
   --grandguide-main-gradient: var(--raisetalks-brand-gradient);
 
   /* RaiseTalks Brand Gradient - From Figma Design */
-  --raisetalks-brand-gradient: linear-gradient(28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
-
-  /* RaiseTalks Accent Brand Gradient (yellow to pink) - From Figma Design */
-  --raisetalks-accent-gradient: linear-gradient(2.6deg, rgba(255, 171, 14, 1) 22.643%, rgba(234, 38, 64, 1) 71.081%);
+  --raisetalks-brand-gradient: linear-gradient(-28.77deg, rgba(0, 54, 135, 1) 46.446%, rgba(0, 119, 255, 1) 94.763%);
 
   /* Typography */
   --ifm-font-family-base: "Poppins", system-ui, -apple-system, sans-serif;

@@ -1,45 +1,64 @@
+.newsletterSection {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+  border-radius: 20px;
+  margin-bottom: 3rem;
+}
+
 .newsletterContent {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  max-width: 392px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.newsletterTitle {
+  font-size: 1.75rem;
+  color: var(--ifm-color-content);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.newsletterTitle strong {
+  font-weight: 700;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .newsletterDescription {
-  font-size: 0.906rem;
-  line-height: 1.45;
-  color: #ededed;
-  margin: 0;
+  font-size: 1rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
 .newsletterForm {
-  width: 100%;
+  margin-top: 2rem;
 }
 
 .formGroup {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .emailInput {
   flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 0.906rem;
-  color: #1a1a1a;
-  padding: 0.4rem 0;
+  padding: 1rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
 }
 
-.emailInput::placeholder {
-  color: #888888;
+.emailInput:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(1, 116, 225, 0.1);
 }
 
 .emailInput:disabled {
@@ -48,27 +67,21 @@
 }
 
 .subscribeButton {
-  flex-shrink: 0;
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
+  background: var(--raisetalks-brand-gradient);
+  color: white;
   border: none;
-  border-bottom: 2.5px solid var(--e-global-color-secondary-accent);
-  border-radius: 4px;
-  background: linear-gradient(
-    46deg,
-    var(--e-global-color-secondary-accent) 23%,
-    var(--e-global-color-accent) 71%
-  );
-  color: #ffffff;
-  font-size: 0.906rem;
-  font-weight: 500;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 .subscribeButton:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(234, 38, 64, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(1, 116, 225, 0.3);
 }
 
 .subscribeButton:disabled {
@@ -77,23 +90,23 @@
 }
 
 .successMessage {
-  margin: 0;
-  color: #ffffff;
-  font-size: 0.85rem;
+  margin-top: 1rem;
+  color: #28a745;
+  font-size: 0.95rem;
   animation: fadeIn 0.3s ease;
 }
 
 .errorMessage {
-  margin: 0;
-  color: #ffd4d4;
-  font-size: 0.85rem;
+  margin-top: 1rem;
+  color: #dc3545;
+  font-size: 0.95rem;
   animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-6px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
@@ -103,11 +116,19 @@
 
 @media (max-width: 640px) {
   .formGroup {
-    flex-wrap: wrap;
+    flex-direction: column;
   }
-
+  
   .emailInput,
   .subscribeButton {
     width: 100%;
+  }
+  
+  .newsletterTitle {
+    font-size: 1.5rem;
+  }
+  
+  .newsletterDescription {
+    font-size: 0.95rem;
   }
 }
