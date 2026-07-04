@@ -127,17 +127,17 @@ export default function AboutUs() {
          {/* Hero Section */}
          <section className={styles.hero}>
             <div className={styles.heroInner}>
-               <div className={styles.heroEyebrow}>What We Do</div>
+               <div className={styles.heroEyebrow}>We Are</div>
                <Heading as="h1" className={styles.heroTitle}>
-                  Translating founder potential into{' '}
+                  Translating founder potential into <br />
                   <span className={styles.heroAccent}>investor-grade intelligence</span>
                </Heading>
                <div className={styles.heroActions}>
                   <Link className={styles.btnPrimary} to="https://calendly.com/iamdariiava/30min">
-                     Book a Demo
+                     Browse startups
                   </Link>
-                  <Link className={styles.btnSecondary} to="/startups#perks">
-                     Get access to Perks
+                  <Link className={styles.btnSecondary} to="https://calendly.com/iamdariiava/30min">
+                     Schedule Demo
                   </Link>
                </div>
             </div>
@@ -145,14 +145,16 @@ export default function AboutUs() {
 
          {/* Goal Section */}
          <section className={clsx(styles.goalSection, styles.animateIn)}>
-            <div className={styles.sectionContainer}>
-               <div className={styles.goalBar}>
-                  <span className={styles.goalBarLabel}>10Y Goal</span>
-                  <blockquote className={styles.goalBarQuote}>
-                     Power 1M entrepreneurs to close rounds faster, deploying over{' '}
-                     <span className={styles.accentText}>$100 Bn</span>{' '}
-                     in capital by 2036.
-                     <span className={styles.goalBarSub}>We believe it's possible - and worth it because it changes the world.</span>
+            <div className={styles.goalContainer}>
+               <div className={styles.goalEyebrow}>Our 10-Year Goal</div>
+               <div className={styles.goalCardWrap}>
+                  <blockquote className={styles.goalCard}>
+                     <p className={styles.goalCardQuote}>
+                        Power 1M entrepreneurs to close rounds faster, deploying over{' '}
+                        <span className={styles.goalCardHighlight}>$100 Bn</span>{' '}
+                        in capital by 2036.
+                     </p>
+                     <p className={styles.goalCardSub}>We believe it's possible - and worth it because it changes the world.</p>
                   </blockquote>
                </div>
             </div>
@@ -160,20 +162,37 @@ export default function AboutUs() {
 
          {/* Why We Exist Section */}
          <section className={clsx(styles.missionSection, styles.animateIn)}>
-            <div className={styles.missionBackground}></div>
+            
             <div className={styles.sectionContainer}>
                <div className={styles.whyExistInner}>
-                  <div className={styles.eyebrowPillLight}>Purpose</div>
-                  <h2 className={styles.whyExistTitleLight}>Why We <em>Build</em></h2>
-                  <div className={styles.whyExistStatementLight}>
-                     To democratize access to capital by making every serious founder investor-ready - regardless of their network, their background, or how many times they've done this before.
+                  <div>
+                  <h2 className={styles.whyExistTitleLight}><em>Why</em> we Build.</h2>
+                  <p className={styles.whyExistBodyLight}>
+                     Capital has always flowed most easily to those who already know the language: <br />the repeat founders, the Stanford alumni, the people who went to school with the partners.
+                  </p>
+
+                  <p className="pb-3 italic font-serif tracking-wide">RaiseTalks is the great equalizer.</p>
+
+                  <p className={styles.whyExistBodyLight}>We encode the knowledge that used to live only in warm inttoductions, <b />
+                     and we give it to every founder who's serious enough to show up</p>
+                      
+                  <p className={styles.whyExistBodyLight}>RaiseTalks is the great equalizer. We encode the knowledge that used to live only in warm introductions, and we give it to every founder who's serious enough to show up. </p>
+                  
+                  <p className={styles.whyExistBodyLight}>
+                     This is not a small aspiration.
+                  </p>
+                  
+                  <p className={styles.whyExistBodyLight}> It is a structural reshaping of how capital moves in the world. </p>
+                     
+                  <p className="font-bold">When great ideas stop dying in due diligence, the entire innovation ecosystem becomes more productive.
+                  </p>
                   </div>
-                  <p className={styles.whyExistBodyLight}>
-                     Capital has always flowed most easily to those who already know the language - the repeat founders, the Stanford alumni, the people who went to school with the partners. RaiseTalks is the great equalizer. We encode the knowledge that used to live only in warm introductions, and we give it to every founder who's serious enough to show up.
-                  </p>
-                  <p className={styles.whyExistBodyLight}>
-                     This is not a small aspiration. It is a structural reshaping of how capital moves in the world. When great ideas stop dying in due diligence, the entire innovation ecosystem becomes more productive.
-                  </p>
+                  <div>
+                     <div className={styles.goalEyebrow}>Our Purpose</div>
+                     <p className="mb-7">To democratize access to capital by making every serious founder investor-ready - regardless of their network, their background, or how many times they've done this before.</p>
+
+                     <img src="/img/footer-logo.png" className="p-7" alt="Raisetalks logo" />
+                  </div>
                </div>
                <div className={styles.missionGallery}>
                   <div className={styles.missionGalleryItem}>
