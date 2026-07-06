@@ -196,7 +196,7 @@ export default function Pricing() {
               </div>
 
               {/* Pro Plan */}
-              <div className="rounded-2xl shadow-xl p-8 text-white flex flex-col" style={{background: 'linear-gradient(-28.77deg, var(--raisetalks-brand-gradient) 46.446%, var(--raisetalks-brand-gradient) 94.763%)'}}>
+              <div className="rounded-2xl shadow-xl p-8 text-white flex flex-col" style={{background: 'var(--raisetalks-brand-gradient)'}}>
                 <div className="inline-block px-3 py-1 mb-4 text-sm font-semibold text-white rounded-full bg-white/20">
                   MOST POPULAR
                 </div>
@@ -308,7 +308,7 @@ export default function Pricing() {
 
                 <Link
                   className="w-full py-3 px-6 text-white rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center block mb-3"
-                  style={{background: 'linear-gradient(-28.77deg, var(--raisetalks-brand-gradient) 46.446%, var(--raisetalks-brand-gradient) 94.763%)'}}
+                  style={{background: 'var(--raisetalks-brand-gradient)'}}
                   to="#"
                 >
                   Request Investor Access
@@ -334,7 +334,7 @@ export default function Pricing() {
               <div className="flex flex-col items-center justify-center gap-4 mb-6 sm:flex-row">
                 <Link
                   className="text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
-                  style={{background: 'linear-gradient(-28.77deg, var(--raisetalks-brand-gradient) 46.446%, var(--raisetalks-brand-gradient) 94.763%)'}}
+                  style={{background: 'var(--raisetalks-brand-gradient)'}}
                   to="https://app.raisetalks.com/sign-up"
                 >
                   Start Free Today

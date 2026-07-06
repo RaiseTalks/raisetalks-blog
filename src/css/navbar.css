@@ -80,6 +80,26 @@
   align-items: center;
 }
 
+/* Center the nav links within the space between the logo and the auth
+   buttons (matches Figma). The brand is pulled out of flow so centering
+   applies only to the link cluster, not the logo.
+   Desktop-only (>996px): below that, infima collapses .navbar__items into
+   the sidebar drawer and the toggle button takes its place in the flow —
+   absolutely positioning the brand there would overlap the toggle. */
+@media (min-width: 997px) {
+  .navbar__items:not(.navbar__items--right) {
+    position: relative;
+    justify-content: center;
+    gap: 2.25rem;
+  }
+
+  .navbar__items:not(.navbar__items--right) > .navbar__brand {
+    position: absolute;
+    left: 0;
+    margin: 0;
+  }
+}
+
 .navbar__items--right {
   gap: 0.25rem;
   align-items: center;
@@ -195,9 +215,16 @@
 
 /* Premium Mobile Navigation - Clean Redesign */
 @media (max-width: 996px) {
-  /* Hide desktop navbar items on mobile */
+  /* Figma tablet/mobile keep the Login + Try it Free buttons pinned in the
+     top bar next to the hamburger; only the left-side nav links collapse
+     into the sidebar drawer (infima hides ALL .navbar__item by default). */
+  .navbar__items--right .navbar__item,
   .navbar__items--right .navbar__link {
-    display: none;
+    display: inline-flex;
+  }
+
+  .navbar__items--right {
+    gap: 0.5rem;
   }
 
   /* Fullscreen sidebar - single scroll container */
@@ -404,6 +431,24 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
+  }
+}
+
+/* Tablet: match Figma sizing for the pinned Login/Try it Free buttons */
+@media (max-width: 768px) {
+  .navbar__items--right .navbar__link--login,
+  .navbar__items--right .navbar__link--signup {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.906rem;
+    min-width: 0;
+    margin-left: 0;
+  }
+}
+
+/* Mobile: drop the Login button from the top bar, keep it in the drawer */
+@media (max-width: 480px) {
+  .navbar__items--right .navbar__link--login {
+    display: none;
   }
 }
 

@@ -1,127 +1,114 @@
 .solutionSection {
-   padding: 2rem 0 5rem;
    background: white;
 }
 
-/* Narrative Block — matches FOUNDER PERKS layout on /startups */
+/* Narrative Block (Your Story Is the Strategy) */
 .narrativeBlock {
-   margin-top: 5rem;
-   padding: 5rem 0;
-   background: var(--ifm-color-emphasis-100);
    width: 100%;
 }
 
-.narrativeInner {
-   max-width: 1100px;
-   margin: 0 auto;
-   padding: 0 1.5rem;
-}
-
-.narrativeRow1 {
+.narrativePanel {
+   position: relative;
+   border-radius: 16px;
+   overflow: hidden;
+   padding: 4rem;
    display: flex;
-   align-items: flex-end;
-   justify-content: space-between;
-   gap: 2rem;
-   margin-bottom: 3rem;
-   flex-wrap: wrap;
+   flex-direction: column;
+   gap: 4rem;
+   background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/img/narrative-bg.png') center / cover no-repeat;
 }
 
-.narrativeHeadGroup {
+.narrativeTop {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 4rem;
+}
+
+.narrativeLeft {
    flex: 1;
    min-width: 280px;
 }
 
-.narrativeEyebrow {
-   display: inline-block;
-   font-size: 0.72rem;
-   font-weight: 600;
-   letter-spacing: 0.18em;
-   text-transform: uppercase;
-   color: var(--ifm-color-primary);
-   margin-bottom: 0.75rem;
-   border: 1px solid rgba(1, 116, 225, 0.25);
-   border-radius: 2rem;
-   padding: 0.25rem 0.9rem;
-   background: rgba(1, 116, 225, 0.05);
+.narrativeLogo {
+   height: 14px;
+   width: auto;
+   display: block;
+   margin-bottom: 2rem;
 }
 
 .narrativeTitle {
-   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
-   font-weight: 800;
-   line-height: 1.15;
-   margin: 0.5rem 0 0.75rem;
-   color: var(--ifm-color-content);
+   font-size: 3rem;
+   font-weight: 400;
+   line-height: 1.25;
+   margin: 0 0 1rem;
+   color: #fff;
 }
 
 .narrativeTitleAccent {
-   background: var(--raisetalks-brand-gradient);
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   background-clip: text;
+   font-style: italic;
+   font-family: Georgia, serif;
+   color: #fff;
 }
 
 .narrativeSubtitle {
-   font-size: 1.05rem;
-   color: var(--ifm-color-content-secondary);
-   line-height: 1.6;
+   font-size: 0.906rem;
+   color: #ccc;
+   line-height: 1.45;
    margin: 0;
 }
 
-.narrativeCta {
+.narrativeGrid {
+   flex: 1;
+   min-width: 280px;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 2rem;
+}
+
+.narrativeItem {
    display: flex;
    flex-direction: column;
-   align-items: flex-start;
-   flex-shrink: 0;
+   gap: 0.75rem;
 }
 
-.narrativeGrid {
-   display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   gap: 1px;
-   background: var(--ifm-color-emphasis-200);
-   border-radius: 16px;
-   overflow: hidden;
+.narrativeItemIcon {
+   width: 32px;
+   height: 32px;
 }
 
-.narrativeCard {
-   background: var(--ifm-background-color);
-   padding: 2rem 1.75rem;
-   transition: background 0.2s ease;
+.narrativeItemTitle {
+   font-size: 1.375rem;
+   font-weight: 400;
+   color: #fff;
+   margin: 0;
+   line-height: 1.35;
 }
 
-.narrativeCard:hover {
-   background: rgba(1, 116, 225, 0.03);
-}
-
-.narrativeCardLabel {
-   font-size: 0.65rem;
-   font-weight: 700;
-   letter-spacing: 0.2em;
-   text-transform: uppercase;
-   color: var(--ifm-color-primary);
-   font-family: 'Courier New', monospace;
-   margin-bottom: 0.75rem;
-}
-
-.narrativeCardDesc {
-   font-size: 0.9rem;
-   color: var(--ifm-color-content-secondary);
-   line-height: 1.7;
+.narrativeItemDesc {
+   font-size: 0.906rem;
+   color: #ccc;
+   line-height: 1.45;
    margin: 0;
 }
 
 .narrativeButton {
-   display: inline-flex;
+   display: flex;
    align-items: center;
+   justify-content: center;
    gap: 0.5rem;
    background: var(--raisetalks-brand-gradient);
    color: #fff !important;
    padding: 0.85rem 1.75rem;
-   border-radius: 10px;
-   font-weight: 700;
-   font-size: 0.95rem;
+   border-radius: 8px;
+   font-weight: 400;
+   font-size: 1rem;
    text-decoration: none !important;
    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.narrativeButtonIcon {
+   width: 16px;
+   height: 16px;
 }
 
 .narrativeButton:hover {
@@ -130,25 +117,37 @@
    color: #fff !important;
 }
 
-@media (max-width: 900px) {
-   .narrativeRow1 { align-items: flex-start; }
-   .narrativeGrid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 768px) {
+   .narrativeTitle { font-size: 2.5rem; }
 }
 
 @media (max-width: 580px) {
-   .narrativeBlock { padding: 3rem 0; }
-   .narrativeRow1 { flex-direction: column; gap: 1.5rem; }
-   .narrativeGrid { grid-template-columns: 1fr; }
+   .narrativePanel { padding: 2rem; gap: 2rem; }
+   .narrativeTop { flex-direction: column; gap: 2rem; }
+}
+
+@media (max-width: 480px) {
+   .narrativePanel { padding: 1.5rem; gap: 2rem; }
+   .narrativeTitle { font-size: 1.75rem; }
+   .narrativeGrid { gap: 1rem 1.5rem; }
+   .narrativeItemTitle { font-size: 1.125rem; }
 }
 
 .solutionMain {
-   max-width: 900px;
-   margin: 0 auto 4rem;
-   text-align: center;
+   margin: 0 auto;
+   background: #fff;
+   border-left: 0.5px solid #dae0e7;
+   border-right: 0.5px solid #dae0e7;
+   padding: 4rem;
+   display: flex;
+   flex-direction: column;
+   gap: 4rem;
 }
 
 .solutionHeader {
-   margin-bottom: 3rem;
+   display: flex;
+   flex-direction: column;
+   gap: 4rem;
 }
 
 .badge {
@@ -166,11 +165,11 @@
 }
 
 .solutionTitle {
-   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
-   font-weight: 800;
-   line-height: 1.15;
+   font-size: 2.25rem;
+   font-weight: 400;
+   line-height: 1.25;
    color: var(--ifm-color-content);
-   margin-bottom: 1.5rem;
+   margin: 0;
 }
 
 .solutionTitleAccent {
@@ -178,75 +177,43 @@
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    background-clip: text;
+   font-style: italic;
+   font-family: Georgia, serif;
 }
 
 .solutionDescription {
-   font-size: 1.1rem;
-   color: var(--ifm-color-content-secondary);
-   line-height: 1.7;
-   max-width: 700px;
-   margin: 0 auto;
+   font-size: 0.75rem;
+   color: #222;
+   line-height: 1.45;
+   margin: 0;
 }
 
 .featureGrid {
    display: grid;
    grid-template-columns: repeat(2, 1fr);
-   gap: 1.5rem;
-   margin: 3rem 0;
+   gap: 0;
+   margin: 0;
 }
 
-.perksAction {
-   display: inline-flex;
-   align-items: center;
-   gap: 1.25rem;
-   margin-top: 1.5rem;
-   padding: 0.75rem 1rem 0.75rem 1.25rem;
-   border: 1.5px solid rgba(1, 116, 225, 0.18);
-   border-radius: 100px;
-   background: rgba(1, 116, 225, 0.03);
+.featureGrid:not(.featureGridThree) .featureCard:nth-child(odd) {
+   border-right: 1px solid #e4e4e7;
 }
 
-@media (max-width: 600px) {
-   .perksAction {
-      flex-direction: column;
-      border-radius: 1rem;
-      align-items: flex-start;
-      padding: 1rem 1.25rem;
-   }
-}
-
-.perksText {
-   display: flex;
-   flex-direction: column;
-   gap: 0.1rem;
-}
-
-.perksTextTitle {
-   font-size: 0.9rem;
-   font-weight: 700;
-   background: var(--raisetalks-brand-gradient);
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   background-clip: text;
-   line-height: 1.3;
-}
-
-.perksTextDesc {
-   font-size: 0.78rem;
-   color: var(--ifm-color-content-secondary);
-   line-height: 1.3;
+.featureGrid:not(.featureGridThree) .featureCard:nth-child(-n+2) {
+   border-bottom: 1px solid #e4e4e7;
 }
 
 .perksButton {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   padding: 0.55rem 1.25rem;
+   padding: 0.75rem 1rem;
    background: var(--raisetalks-brand-gradient);
    color: white;
-   border-radius: 100px;
-   font-weight: 600;
-   font-size: 0.85rem;
+   border-radius: 8px;
+   border-bottom: 3px solid #003687;
+   font-weight: 400;
+   font-size: 0.906rem;
    text-decoration: none;
    white-space: nowrap;
    transition: all 0.25s ease;
@@ -261,49 +228,61 @@
    box-shadow: 0 4px 12px rgba(1, 116, 225, 0.3);
 }
 
-.featureCard {
-   background: white;
-   border-radius: 1rem;
-   padding: 1.5rem;
-   display: flex;
+.perksButtonSecondary {
+   display: inline-flex;
    align-items: center;
-   gap: 1rem;
+   justify-content: center;
+   padding: 0.75rem 1rem;
+   background: transparent;
+   color: #000;
+   border-radius: 8px;
+   border: 1px solid #003687;
+   border-bottom-width: 3px;
+   font-weight: 400;
+   font-size: 0.906rem;
+   text-decoration: none;
+   white-space: nowrap;
+   transition: opacity 0.2s ease;
+}
+
+.perksButtonSecondary:hover {
+   opacity: 0.75;
+   color: #000;
+   text-decoration: none;
+}
+
+.featureCard {
+   background: transparent;
+   border: none;
+   border-radius: 0;
+   padding: 3rem;
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   gap: 1.5rem;
    text-align: left;
 }
 
-.featureIconContainer {
-   width: 3rem;
+.featureIcon {
    height: 3rem;
-   border-radius: 0.75rem;
-   background: rgba(1, 116, 225, 0.1);
-   display: flex;
-   align-items: center;
-   justify-content: center;
+   width: 3rem;
+   color: var(--raisetalks-blue-primary-flat);
    flex-shrink: 0;
 }
 
-.featureIcon {
-   height: 1.5rem;
-   width: 1.5rem;
-   color: var(--raisetalks-blue-primary-flat);
-}
-
 .featureDesc {
-   font-size: 0.85rem;
-   color: var(--ifm-color-content-secondary);
-   line-height: 1.5;
+   font-size: 0.906rem;
+   color: #222;
+   line-height: 1.45;
    margin: 0.25rem 0 0;
 }
 
 .featureTitle {
-   font-size: 1rem;
-   font-weight: 600;
-   background: var(--raisetalks-brand-gradient);
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   background-clip: text;
+   font-size: 1.375rem;
+   font-weight: 400;
+   color: #222;
    margin: 0;
-   line-height: 1.3;
+   line-height: 1.35;
 }
 
 .solutionButtons {
@@ -396,277 +375,355 @@
    display: block;
 }
 
-/* AI Advisor Block */
-.aiAdvisorBlock {
-   max-width: 900px;
-   margin: 0 auto 2rem;
-   text-align: center;
+/* Video Block (Your Next Investor Meeting) */
+.videoSection {
+   padding: 5rem 0;
+   background: #fafafa;
 }
 
-.videoSectionHeader {
-   text-align: center;
-   margin-bottom: 2rem;
+.videoInner {
+   max-width: 1024px;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   gap: 4rem;
 }
 
-.videoEyebrow {
-   display: inline-block;
-   font-size: 0.72rem;
-   font-weight: 600;
-   letter-spacing: 0.18em;
-   text-transform: uppercase;
-   color: var(--ifm-color-primary);
-   margin-bottom: 1rem;
-   border: 1px solid rgba(1, 116, 225, 0.25);
-   border-radius: 2rem;
-   padding: 0.3rem 1rem;
-   background: rgba(1, 116, 225, 0.05);
+.videoMedia {
+   flex: 1;
+   min-width: 0;
 }
 
-.videoSectionTitle {
-   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
-   font-weight: 800;
-   line-height: 1.15;
-   letter-spacing: -0.02em;
-   color: var(--ifm-color-content);
+.videoText {
+   flex: 1;
+   min-width: 0;
+}
+
+.videoTitle {
+   font-size: 2rem;
+   font-weight: 400;
+   line-height: 1.3;
+   color: #000;
    margin: 0 0 1rem;
 }
 
-.videoSectionAccent {
+.videoTitleAccent {
+   font-style: italic;
+   font-family: Georgia, serif;
    background: var(--raisetalks-brand-gradient);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    background-clip: text;
 }
 
-.aiAdvisorTitle {
-   font-size: clamp(1.5rem, 3vw, 2rem);
-   font-weight: 700;
-   background: var(--raisetalks-brand-gradient);
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   background-clip: text;
-   margin-bottom: 1.5rem;
+.videoDesc {
+   font-size: 0.9rem;
+   line-height: 1.45;
+   color: #4b4b4b;
+   margin: 0 0 1.5rem;
+   max-width: 28rem;
 }
 
-.aiAdvisorVideo {
-   position: relative;
-   width: 100%;
-   padding-bottom: 56.25%;
-   border-radius: 1rem;
-   overflow: hidden;
-   margin-bottom: 2rem;
-   background: #000;
-}
-
-.aiAdvisorVideo iframe {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   border: none;
-}
-
-.videoThumbnail {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   z-index: 10;
-   transition: opacity 0.5s ease;
-}
-
-.videoThumbnail.hidden {
-   opacity: 0;
-   pointer-events: none;
-}
-
-.thumbnailImage {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-}
-
-.ytPlayer {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   pointer-events: none;
-}
-
-.aiAdvisorContent {
-   max-width: 700px;
-   margin: 2rem auto 0;
-}
-
-.aiAdvisorText {
-   font-size: 1.1rem;
-   color: var(--ifm-color-content-secondary);
-   line-height: 1.7;
-   margin-bottom: 1.5rem;
-}
-
-.aiAdvisorButton {
-   display: inline-block;
-   padding: 1rem 2.5rem;
-   background: var(--raisetalks-brand-gradient);
-   color: white !important;
-   border-radius: 0.75rem;
-   font-weight: 600;
-   font-size: 1.125rem;
-   transition: all 0.3s ease;
+.videoButton {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0.75rem 1rem;
+   border: 1px solid var(--ifm-color-primary-dark);
+   border-bottom-width: 3px;
+   border-radius: 8px;
+   color: #000 !important;
+   font-weight: 400;
+   font-size: 0.9rem;
    text-decoration: none;
 }
 
-.aiAdvisorButton:hover {
-   transform: scale(1.05);
-   box-shadow: 0 10px 25px rgba(1, 116, 225, 0.3);
-   color: white !important;
+.videoButton:hover {
    text-decoration: none;
+   transform: translateY(-1px);
 }
 
-/* Investor Block */
-.investorBlock {
-   margin-top: 4rem;
-   color: white;
-   width: 100%;
-   overflow: hidden;
+@media (max-width: 768px) {
+   .videoInner {
+      flex-direction: column;
+   }
+
+   /* .videoMedia's flex:1 sets flex-basis:0% on the main axis, which is now
+      vertical (column). The aspect-ratio wrapper inside has no intrinsic
+      content (the iframe is absolutely positioned), so it collapses to
+      0x0 instead of sizing from the 100% width. Switch to a plain
+      full-width block once stacked. */
+   .videoMedia {
+      flex: none;
+      width: 100%;
+   }
+
+   .videoText {
+      flex: none;
+      width: 100%;
+   }
+}
+
+/* Investor Block (Spend less time on Due Diligence) */
+.investorSection {
+   background: #ffffff;
+}
+
+.investorCard {
+   max-width: 1270px;
+   margin: 0 auto;
+   background: #fff;
+   border-left: 0.5px solid #dae0e7;
+   border-right: 0.5px solid #dae0e7;
+   padding: 4rem;
 }
 
 .investorInner {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   min-height: 480px;
-}
-
-.investorContent {
-   background: var(--raisetalks-brand-gradient);
    display: flex;
-   flex-direction: column;
    align-items: center;
-   justify-content: center;
-   text-align: center;
-   padding: 4rem 3.5rem;
+   justify-content: space-between;
+   gap: 3rem;
 }
 
 .investorImageCol {
-   overflow: hidden;
+   flex: 0 1 440px;
+   min-width: 0;
+}
+
+.investorContent {
+   flex: 1;
+   max-width: 420px;
+   min-width: 0;
 }
 
 .investorTitle {
-   font-size: clamp(1.9rem, 3.8vw, 2.75rem);
-   font-weight: 800;
-   line-height: 1.15;
-   letter-spacing: -0.02em;
-   color: #ffffff;
-   margin-bottom: 1rem;
+   font-size: 2.5rem;
+   font-weight: 400;
+   line-height: 1.25;
+   color: #000;
+   margin: 0 0 1rem;
 }
 
 .investorTitleAccent {
-   color: rgba(255, 255, 255, 0.85);
-   text-decoration: underline;
-   text-decoration-color: rgba(255, 255, 255, 0.35);
-   text-underline-offset: 4px;
+   font-style: italic;
+   font-family: Georgia, serif;
+   background: var(--raisetalks-brand-gradient);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
 }
 
 .investorDescription {
-   font-size: 1.125rem;
-   line-height: 1.8;
-   margin-bottom: 2rem;
-   color: rgba(255, 255, 255, 0.85);
+   font-size: 0.906rem;
+   line-height: 1.45;
+   color: #4b4b4b;
+   margin: 0 0 1.5rem;
 }
 
 .exploreButton {
    display: inline-flex;
    align-items: center;
-   padding: 0.875rem 2rem;
-   background: white;
-   color: #0174e1 !important;
-   border-radius: 0.75rem;
-   font-weight: 600;
-   font-size: 1rem;
+   padding: 0.75rem 1rem;
+   background: var(--raisetalks-brand-gradient);
+   color: white !important;
+   border-radius: 0.5rem;
+   font-weight: 400;
+   font-size: 0.906rem;
    transition: all 0.25s ease;
    text-decoration: none;
-   margin-bottom: 3rem;
 }
 
 .exploreButton:hover {
    transform: translateY(-2px);
-   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25);
-   color: #0174e1 !important;
+   box-shadow: 0 8px 20px rgba(0, 119, 255, 0.25);
+   color: white !important;
    text-decoration: none;
 }
 
+.imageGlowWrap {
+   position: relative;
+}
+
+.imageGlow {
+   position: absolute;
+   inset: 0;
+   z-index: 0;
+   pointer-events: none;
+   -webkit-mask-image: url('/img/startup-catalog-mockup.png');
+   -webkit-mask-size: contain;
+   -webkit-mask-repeat: no-repeat;
+   -webkit-mask-position: center;
+   mask-image: url('/img/startup-catalog-mockup.png');
+   mask-size: contain;
+   mask-repeat: no-repeat;
+   mask-position: center;
+}
+
+.imageGlowOne {
+   background: #b4d7ff;
+   opacity: 0.75;
+   transform: translate(-6%, 8%);
+}
+
+.imageGlowTwo {
+   background: #d7e9ff;
+   opacity: 0.5;
+   transform: translate(-12%, 16%);
+}
+
 .startupsLayoutImage {
+   position: relative;
+   z-index: 1;
    display: block;
    width: 100%;
-   height: 100%;
-   object-fit: cover;
-   object-position: top left;
+   height: auto;
+   border-radius: 1rem;
 }
 
-.investorImage {
-   margin-top: 2rem;
+.featureGridThree {
+   grid-template-columns: repeat(3, 1fr);
 }
 
-.investorBlock .imagePlaceholder {
-   background: rgba(255, 255, 255, 0.1);
-   border: 2px solid rgba(255, 255, 255, 0.3);
-   backdrop-filter: blur(10px);
+.featureGridThree .featureCard {
+   border-right: 1px solid #e4e4e7;
 }
 
-.investorBlock .imagePlaceholder p,
-.investorBlock .imagePlaceholder small {
-   color: white;
+.featureGridThree .featureCard:last-child {
+   border-right: none;
+}
+
+@media (max-width: 900px) {
+   .featureGrid,
+   .featureGridThree {
+      grid-template-columns: 1fr;
+   }
+
+   .featureGrid .featureCard,
+   .featureGridThree .featureCard {
+      border-right: none;
+   }
+
+   .featureGrid:not(.featureGridThree) .featureCard:nth-child(-n+2) {
+      border-bottom: none;
+   }
+
+   .featureGrid .featureCard:not(:last-child),
+   .featureGridThree .featureCard:not(:last-child) {
+      border-bottom: 1px solid #e4e4e7;
+   }
 }
 
 @media (max-width: 768px) {
-   .solutionTitle {
-      font-size: clamp(1.75rem, 4vw, 2rem);
+   .solutionMain {
+      padding: 2rem;
+      gap: 2.5rem;
    }
 
-   .featureGrid {
+   .solutionHeader {
+      gap: 2.5rem;
+   }
+
+   .solutionTitle {
+      font-size: 2.5rem;
+   }
+
+   .featureGrid,
+   .featureGridThree {
       grid-template-columns: 1fr;
+   }
+
+   .featureCard {
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1rem;
+   }
+
+   .videoSection {
+      padding: 3rem 0;
+   }
+
+   .videoTitle {
+      font-size: 1.75rem;
    }
 
    .dataRoomBlock {
       padding: 2rem 1.5rem 0 1.5rem;
    }
 
-   .investorInner {
-      grid-template-columns: 1fr;
-      min-height: unset;
+   .investorCard {
+      padding: 2rem;
    }
 
+   .investorInner {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+   }
+
+   /* Figma stacks text above the image on tablet/mobile, opposite of the
+      side-by-side desktop DOM order (image col first), and centers it. */
    .investorContent {
-      padding: 3rem 1.5rem;
+      order: 1;
+      max-width: none;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
    }
 
    .investorImageCol {
-      min-height: 260px;
-   }
-
-   .investorTitle {
-      font-size: 1.5rem;
-   }
-
-   .imagePlaceholder {
-      padding: 0.5rem;
+      order: 2;
+      flex: 1;
+      width: 100%;
    }
 
    .dataRoomScreenshot {
       border-radius: 6px;
    }
+}
 
-   .startupsLayoutImage {
+@media (max-width: 480px) {
+   .solutionMain {
+      padding: 1.5rem 1rem;
+      gap: 1.5rem;
+   }
+
+   .solutionHeader {
+      gap: 1.5rem;
+   }
+
+   .solutionTitle {
+      font-size: 1.75rem;
+   }
+
+   .featureCard {
+      flex-direction: row;
+      padding: 1rem 0;
+      gap: 1rem;
+   }
+
+   .featureIcon {
+      height: 2rem;
+      width: 2rem;
+   }
+
+   .videoSection {
+      padding: 2.5rem 0;
+   }
+
+   .videoTitle {
+      font-size: 1.25rem;
+   }
+
+   .videoButton {
       width: 100%;
-      margin: 2rem 0 0 0;
-      border-radius: 0 0 20px 20px;
+   }
+
+   .investorCard {
+      padding: 1.5rem;
+   }
+
+   .investorTitle {
+      font-size: 1.75rem;
    }
 }

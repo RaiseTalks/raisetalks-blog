@@ -130,18 +130,6 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: 'https://calendly.com/iamdariiava/30min',
-          label: 'Contact Us',
-          position: 'right',
-          className: 'navbar__link--calendar',
-        },
-        {
-          to: 'https://www.linkedin.com/company/raisetalks/',
-          label: 'LinkedIn',
-          position: 'right',
-          className: 'navbar__link--linkedin',
-        },
-        {
           to: 'https://app.raisetalks.com/sign-in',
           label: 'Log In',
           position: 'right',
@@ -149,7 +137,7 @@ const config: Config = {
         },
         {
           to: 'https://app.raisetalks.com/sign-up',
-          label: 'Sign Up',
+          label: 'Try it Free',
           position: 'right',
           className: 'navbar__link--signup button button--primary',
         },
