@@ -159,7 +159,7 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'About Us',
+          title: 'Company',
           items: [
             {
               label: 'About RaiseTalks',
@@ -178,16 +178,20 @@ const config: Config = {
               to: 'https://www.linkedin.com/company/raisetalks/jobs/',
             },
             {
-              label: 'Terms of Service',
-              to: '/terms-of-service',
+              label: 'Affiliate Program',
+              to: '/affiliate-program',
             },
             {
-              label: 'Privacy Policy',
-              to: '/privacy-policy',
+              label: 'Feature Requests',
+              to: '/feature-request',
             },
             {
-              label: 'Refund Policy',
-              to: '/refund-policy',
+              label: 'Pricing',
+              to: 'https://app.raisetalks.com/pricing',
+            },
+            {
+              label: 'Media Toolkit',
+              to: 'https://app.raisetalks.com/brand',
             },
           ],
         },
@@ -195,11 +199,11 @@ const config: Config = {
           title: 'Platform',
           items: [
             {
-              label: 'Startups',
+              label: 'Startup Catalogue',
               to: 'https://app.raisetalks.com/startups',
             },
             {
-              label: 'Investors',
+              label: 'Investor Catalogue',
               to: 'https://app.raisetalks.com/investors',
             },
             {
@@ -215,12 +219,8 @@ const config: Config = {
               to: 'https://app.raisetalks.com/scoring',
             },
             {
-              label: 'Investor Catalogue',
-              to: 'https://app.raisetalks.com/investors',
-            },
-            {
-              label: 'Startup Catalogue',
-              to: 'https://app.raisetalks.com/startups',
+              label: 'Dealflow',
+              to: 'https://app.raisetalks.com/dealflow',
             },
             {
               label: 'AI Advisor',
@@ -229,43 +229,6 @@ const config: Config = {
             {
               label: 'IR Pipeline',
               to: 'https://app.raisetalks.com/ir-pipeline',
-            },
-            {
-              label: 'Dealflow',
-              to: 'https://app.raisetalks.com/dealflow',
-            },
-            {
-              label: 'Scoring',
-              to: 'https://app.raisetalks.com/scoring',
-            },
-          ],
-        },
-        {
-          title: 'Resources',
-          items: [
-            {
-              label: 'Affiliate Program',
-              to: '/affiliate-program',
-            },
-            {
-              label: 'Schedule a Demo',
-              to: 'https://calendly.com/iamdariiava/30min',
-            },
-            {
-              label: 'Feature Requests',
-              to: '/feature-request',
-            },
-            {
-              label: 'Pricing',
-              to: 'https://app.raisetalks.com/pricing',
-            },
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'Media ToolKit',
-              to: '#',
             },
           ],
         },
@@ -277,6 +240,10 @@ const config: Config = {
               to: 'https://linkedin.com/company/raisetalks',
             },
             {
+              label: 'YouTube',
+              to: 'https://youtube.com/@raisetalks',
+            },
+            {
               label: 'Instagram',
               to: 'https://instagram.com/raisetalks',
             },
@@ -284,9 +251,22 @@ const config: Config = {
               label: 'Facebook',
               to: 'https://facebook.com/raisetalks',
             },
+          ],
+        },
+        {
+          title: 'Legal',
+          items: [
             {
-              label: 'YouTube',
-              to: 'https://youtube.com/@raisetalks',
+              label: 'Privacy policy',
+              to: '/privacy-policy',
+            },
+            {
+              label: 'Terms of Service',
+              to: '/terms-of-service',
+            },
+            {
+              label: 'Refund Policy',
+              to: '/refund-policy',
             },
           ],
         },

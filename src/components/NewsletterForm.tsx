@@ -18,49 +18,44 @@ export default function NewsletterForm() {
   };
 
   return (
-    <div className={styles.newsletterSection}>
-      <div className={styles.newsletterContent}>
-        <h3 className={styles.newsletterTitle}>
-          Subscribe to our <strong>Newsletter</strong>
-        </h3>
-        <p className={styles.newsletterDescription}>
-          Get insights from RaiseTalks and build trust in every round.
-        </p>
-        
-        <form onSubmit={handleSubmit} className={styles.newsletterForm}>
-          <div className={styles.formGroup}>
-            <input
-              type="email"
-              placeholder="Enter your Email"
-              aria-label="Email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className={styles.emailInput}
-              disabled={status === 'loading'}
-            />
-            <button 
-              type="submit" 
-              className={styles.subscribeButton}
-              disabled={status === 'loading'}
-            >
-              {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
-            </button>
-          </div>
-          
-          {status === 'success' && (
-            <p className={styles.successMessage}>
-              ✓ Successfully subscribed to our newsletter!
-            </p>
-          )}
-          
-          {status === 'error' && (
-            <p className={styles.errorMessage}>
-              Something went wrong. Please try again.
-            </p>
-          )}
-        </form>
-      </div>
+    <div className={styles.newsletterContent}>
+      <p className={styles.newsletterDescription}>
+        Get insights from RaiseTalks and build trust in every round.
+      </p>
+
+      <form onSubmit={handleSubmit} className={styles.newsletterForm}>
+        <div className={styles.formGroup}>
+          <input
+            type="email"
+            placeholder="Enter your Email"
+            aria-label="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className={styles.emailInput}
+            disabled={status === 'loading'}
+          />
+          <button
+            type="submit"
+            className={styles.subscribeButton}
+            disabled={status === 'loading'}
+          >
+            {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+          </button>
+        </div>
+
+        {status === 'success' && (
+          <p className={styles.successMessage}>
+            Successfully subscribed to our newsletter.
+          </p>
+        )}
+
+        {status === 'error' && (
+          <p className={styles.errorMessage}>
+            Something went wrong. Please try again.
+          </p>
+        )}
+      </form>
     </div>
   );
 }

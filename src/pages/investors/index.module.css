@@ -1,5 +1,7 @@
 /* ============================================================
-   Shared utilities
+   Investors page — Figma rebuild
+   Palette: brand blue #0174e1 · gradient var(--raisetalks-brand-gradient)
+   Type:    Poppins (headings/body) · Georgia italic (accents)
    ============================================================ */
 
 .srOnly {
@@ -14,16 +16,129 @@
   border: 0;
 }
 
+/* ---- Editorial grid ----
+   Hero's rail is unified to the same wider position as the wide region
+   below, so the vertical guides don't jump narrower then wider again as
+   you scroll past the hero. The audience-band row is the exception: its
+   card fills its own 840px rail edge-to-edge (per Figma), so its rail
+   stays at that narrower position, scoped to just its own row — see
+   .bandSection below. Both regions share the same breakpoint ladder
+   (Tailwind's container utility: 640/768/1024/1280/1536px), so the rail
+   stays perfectly continuous and aligned all the way into the shared
+   footer, regardless of background color changes along the way (white
+   sections, dark CTA, footer). */
+.regionNarrow,
+.regionWide {
+  position: relative;
+  /* Tailwind container half-widths; below 640px Tailwind has no max-width
+     (full bleed) so the rail is hidden there anyway. */
+  --rail-half: 9999px;
+}
+@media (min-width: 640px)  { .regionNarrow, .regionWide { --rail-half: 320px; } }
+@media (min-width: 768px)  { .regionNarrow, .regionWide { --rail-half: 384px; } }
+@media (min-width: 1024px) { .regionNarrow, .regionWide { --rail-half: 512px; } }
+@media (min-width: 1280px) { .regionNarrow, .regionWide { --rail-half: 640px; } }
+@media (min-width: 1536px) { .regionNarrow, .regionWide { --rail-half: 768px; } }
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  /* Scoped to hero's own top/bottom divider lines (its container's edges,
+     inset by hero's own padding) — not hero's true section bounds, or
+     the rail dangles into the padding gap with nothing to anchor to.
+     Top padding is 0, so the top line/rail sit flush against the navbar. */
+  top: 0;
+  bottom: 2rem;
+  width: 0.5px;
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+  z-index: 2;
+}
+.hero::before { left: calc(50% - var(--rail-half)); }
+.hero::after { right: calc(50% - var(--rail-half)); }
+.regionWide::before,
+.regionWide::after {
+  content: '';
+  position: absolute;
+  /* Starts at the Frustration Patterns section's own top padding, not the
+     region's true top edge — otherwise the rail pokes up above the single
+     divider line that closes off the audience band above it. */
+  top: 2rem;
+  bottom: 0;
+  width: 0.5px;
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+  z-index: 2;
+}
+.regionWide::before { left: calc(50% - var(--rail-half)); }
+.regionWide::after { right: calc(50% - var(--rail-half)); }
+
 .container {
-  max-width: 1100px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.25rem, 3vw, 2.75rem);
+  background: var(--frame-bg, transparent);
+}
+/* Horizontal rules break out to the full screen width regardless of the
+   container's own (narrower) box — pseudo-elements rather than a literal
+   border, since a border can never be wider than its own box. The vertical
+   rails are drawn separately by .regionNarrow/.regionWide and stay put. */
+.container::before,
+.container::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  height: 0.5px;
+  transform: translateX(-50%);
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+  z-index: 2;
+}
+.container::before { top: 0; }
+.container::after { bottom: 0; }
+/* Mirrors the .regionWide rail ladder exactly, so content edges and rails
+   never drift apart. Below 640px, no max-width — full bleed, matching
+   Tailwind's own container at that size. */
+@media (min-width: 640px)  { .container { max-width: 640px; } }
+@media (min-width: 768px)  { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+@media (min-width: 1536px) { .container { max-width: 1536px; } }
+/* .narrow overrides the ladder above for the hero/audience-band frame —
+   must stay last in source order to win at every breakpoint (equal
+   specificity, later rule wins). Keeps Figma's tighter 840px content
+   frame; the horizontal rules above still break out full width. */
+.narrow { max-width: 840px; }
+/* DD section sits directly above the proof section, which supplies its own
+   full-width divider (.spacerRow) — drop this rail-bound one to avoid two
+   mismatched lines back to back. */
+.containerNoBottomBorder::after { display: none; }
+/* What You Get → Pre-Score Engine: a single divider, kept inside the
+   vertical rails rather than breaking full-bleed like the rest of the
+   wide region. */
+.containerInsetTopBorder::before {
+  left: 0;
+  width: 100%;
+  transform: none;
+}
+@media (max-width: 640px) {
+  .regionNarrow::before,
+  .regionNarrow::after,
+  .regionWide::before,
+  .regionWide::after,
+  .ctaSection::before,
+  .ctaSection::after { display: none; }
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
 
-/* ============================================================
-   Scroll animation base
-   ============================================================ */
-
+/* ---- Scroll animation ---- */
 .animSection {
   opacity: 0;
   transform: translateY(28px);
@@ -31,1528 +146,755 @@
     opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 .animSection.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .animSection {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  .animSection { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- Accent + brand text ---- */
+.accent {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--raisetalks-blue-primary-flat);
+}
+.brand {
+  color: var(--raisetalks-blue-primary-flat);
+  font-weight: 700;
+}
+
+/* ---- Shared headings ---- */
+.sectionH2 {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.85rem 0;
+}
+.sectionH2Center {
+  composes: sectionH2;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.sectionSub {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ifm-color-content-secondary);
+  margin: 0 0 1.75rem 0;
+  max-width: 30rem;
+}
+
+/* ---- Buttons ---- */
+.btnPrimary,
+.btnSecondary,
+.ctaBtnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+.btnPrimary {
+  background: var(--raisetalks-brand-gradient);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(1, 116, 225, 0.28);
+}
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(1, 116, 225, 0.36);
+  color: #fff;
+}
+.btnSecondary {
+  background: #fff;
+  color: var(--raisetalks-blue-primary-flat);
+  border: 1.5px solid var(--raisetalks-blue-primary-flat);
+}
+.btnSecondary:hover {
+  transform: translateY(-2px);
+  color: var(--raisetalks-blue-primary-flat);
+  box-shadow: 0 10px 24px rgba(1, 116, 225, 0.16);
 }
 
 /* ============================================================
-   HERO — matches startups.tsx / about-us.tsx pattern
+   HERO
    ============================================================ */
-
 .hero {
-  padding: 6rem 1.5rem 4rem;
+  position: relative;
+  padding: 0 1.5rem 2rem;
   text-align: center;
   background: var(--ifm-background-color);
+  overflow: hidden;
   opacity: 0;
   transition: opacity 0.6s ease 0.05s;
 }
-
-.hero.visible {
-  opacity: 1;
-}
-
+.hero.visible { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
-  .hero {
-    opacity: 1;
-    transition: none;
-  }
+  .hero { opacity: 1; transition: none; }
 }
-
+.heroBg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 0;
+}
 .heroInner {
-  max-width: 820px;
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
   margin: 0 auto;
+  padding: 1.5rem 0;
 }
-
-.heroEyebrow {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ifm-color-primary);
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(1, 116, 225, 0.25);
-  border-radius: 2rem;
-  padding: 0.3rem 1rem;
-  background: rgba(1, 116, 225, 0.05);
-}
-
 .heroH1 {
-  font-size: clamp(2.6rem, 6vw, 4rem);
-  font-weight: 900;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: clamp(2.1rem, 5vw, 3.25rem);
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.02em;
-  margin: 0 0 1.5rem 0;
   color: var(--ifm-color-content);
+  margin: 0 0 1.25rem 0;
 }
-
-.heroAccent {
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
+.heroH1 .accent { font-weight: 400; }
 .heroDesc {
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.75;
-  max-width: 640px;
-  margin: 0 auto 2.5rem;
+  line-height: 1.65;
+  max-width: 32rem;
+  margin: 0 auto 2rem;
 }
-
 .heroActions {
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
-
-.btnPrimary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--raisetalks-brand-gradient);
-  color: #fff !important;
-  padding: 0.85rem 1.75rem;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: none;
+@media (max-width: 480px) {
+  .heroActions { flex-direction: column; align-items: stretch; }
 }
-
-.btnPrimary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
-  color: #fff !important;
-  text-decoration: none !important;
-}
-
-.btnPrimary:focus-visible {
-  outline: 2px solid #0174e1;
-  outline-offset: 3px;
-}
-
-.btnSecondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  color: var(--ifm-color-primary) !important;
-  padding: 0.85rem 1.75rem;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none !important;
-  border: 2px solid var(--ifm-color-primary);
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.btnSecondary:hover {
-  background: var(--ifm-color-primary);
-  color: #fff !important;
-  text-decoration: none !important;
-}
-
-.btnSecondary:focus-visible {
-  outline: 2px solid #0174e1;
-  outline-offset: 3px;
-}
-
 
 /* ============================================================
-   Section base
+   AUDIENCE BAND
    ============================================================ */
-
-.sectionLight {
-  padding: 5.5rem 1.5rem;
-  background: #ffffff;
-}
-
-.sectionGray {
-  padding: 5.5rem 1.5rem;
-  background: #f6f7f9;
-}
-
-.sectionCentered {
-  text-align: center;
-}
-
-/* Problem section */
-.problemSection {
-  overflow: hidden;
-}
-
-/* Wrapper gives the gauge a relative anchor point */
-.baPanelAfterWrap {
+.bandSection {
   position: relative;
-  overflow: hidden;
-  border-radius: 14px;
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  padding: 2rem 0;
 }
-
-.baPanelAfterWrap .baPanel {
-  position: relative;
-  z-index: 1;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-/* Gauge sits inside the "With RaiseTalks" panel as a background watermark */
-.problemGaugeWrap {
+/* Figma: the quote card fills the full 840px rail frame edge-to-edge on
+   all four sides — no container gutter, no vertical gap before the card
+   touches the horizontal divider lines above/below. The outer spacing
+   between this row and its neighbors comes from .bandSection's own
+   padding, matching Figma's separate spacer frames. */
+.bandSection .container { padding: 0; }
+/* This row's own rail, independent of the wider hero/frustration rail —
+   stays at Figma's 840px frame so it touches the card's own edges
+   exactly, top/bottom included (bandSection's padding, matching where
+   the card itself starts and ends). */
+.bandSection::before,
+.bandSection::after {
+  content: '';
   position: absolute;
-  right: 16px;
-  top: 44px;
+  top: 2rem;
+  bottom: 2rem;
+  width: 0.5px;
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
   pointer-events: none;
-  opacity: 1;
   z-index: 2;
 }
-
-.eyebrow {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #0174e1;
-  margin: 0 0 1.25rem 0;
+.bandSection::before { left: calc(50% - 420px); }
+.bandSection::after { right: calc(50% - 420px); }
+.band {
+  position: relative;
+  overflow: hidden;
+  background: var(--raisetalks-blue-primary-flat);
+  border-radius: 1.25rem;
+  padding: 2.25rem 2rem;
+  text-align: center;
+  box-shadow: 0 18px 44px rgba(1, 116, 225, 0.24);
 }
-
-.sectionH2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #0a0a0b;
-  margin: 0 0 1.25rem 0;
-  max-width: 720px;
+.bandBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 0;
 }
-
-.sectionBody {
-  font-size: clamp(1rem, 1.25vw, 1.125rem);
-  color: #52525b;
-  line-height: 1.8;
-  max-width: 65ch;
-  margin: 0 0 3rem 0;
+.bandText {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  max-width: 42rem;
+  color: #fff;
+  font-size: clamp(1rem, 1.9vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.45;
 }
 
 /* ============================================================
-   Solution — What You Get with RaiseTalks
+   FRUSTRATION PATTERNS
    ============================================================ */
-
-.solutionHeading {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #0a0a0b;
-  margin: 0 0 2rem 0;
-}
-
-.solutionFeatured {
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  border-radius: 16px;
-  padding: 2rem 2.25rem;
-  margin-bottom: 1.25rem;
-}
-
-.solutionGrid {
+.problemSection { padding: 2rem 0; background: var(--ifm-background-color); }
+.problemHead {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem 3rem;
+  align-items: start;
+  margin-bottom: 2.5rem;
 }
-
-.solutionCard {
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  border-radius: 16px;
-  padding: 1.75rem 1.5rem;
+.problemBody {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ifm-color-content-secondary);
+  margin: 0.5rem 0 0;
 }
-
-.solutionCardTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0174e1;
-  margin: 0 0 1rem 0;
-  line-height: 1.35;
-}
-
-.solutionCardBody {
-  font-size: 0.9375rem;
-  color: #52525b;
-  line-height: 1.7;
-  margin: 0;
-}
-
-/* ============================================================
-   Before / After
-   ============================================================ */
-
-.beforeAfter {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.baPanel {
-  border-radius: 14px;
-  padding: 1.75rem;
-}
-
-.baPanelBefore {
-  background: #f6f7f9;
-  border: 1px solid #e4e4e7;
-}
-
-.baPanelAfter {
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-}
-
-.baPanelLabel {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #a1a1aa;
-  margin: 0 0 1.25rem 0;
-}
-
-.baPanelAfter .baPanelLabel {
-  color: #0174e1;
-}
-
-.baList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-}
-
-.baFileBad,
-.baFileGood {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  font-size: 0.875rem;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.baFileBad {
-  color: #a1a1aa;
-}
-
-.baFileGood {
-  color: #27272a;
-}
-
-.baFileDot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #d4d4d8;
-  flex-shrink: 0;
-}
-
-.baCheck {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-}
-
-/* ============================================================
-   Process strip
-   ============================================================ */
-
-.processStrip {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-}
-
-.processStep {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 140px;
-  flex: 1;
-}
-
-.processIconWrap {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: rgba(1, 116, 225, 0.08);
-  border: 1px solid rgba(1, 116, 225, 0.15);
+.mockupRow {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0174e1;
+  gap: clamp(1rem, 4vw, 4rem);
 }
-
-.processIconWrap svg {
-  width: 22px;
-  height: 22px;
+.mockup {
+  display: block;
+  height: auto;
+  border-radius: 0.75rem;
 }
-
-.processNum {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #a1a1aa;
+.mockupMain {
+  width: min(31%, 420px);
+  z-index: 2;
 }
-
-.processLabel {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #0a0a0b;
-  text-align: center;
-  line-height: 1.3;
-  max-width: 120px;
-}
-
-.processLine {
-  flex: 1;
-  height: 1.5px;
-  background: #e4e4e7;
+.mockupSide {
+  width: 100%;
   position: relative;
-  min-width: 40px;
-  margin-bottom: 40px; /* offset to align with icon center */
-  overflow: hidden;
+  z-index: 1;
 }
-
-.processLine::after {
+.mockupSideWrap {
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+  width: min(15.5%, 210px);
+}
+.mockupSideWrap::before,
+.mockupSideWrap::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: #0174e1;
-  transform: scaleX(0);
-  transform-origin: left;
+  -webkit-mask-image: url('/img/investors/startup-catalog-mockup.png');
+  mask-image: url('/img/investors/startup-catalog-mockup.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  pointer-events: none;
+  z-index: 0;
 }
-
-.processLine.processLineVisible::after {
-  animation: lineDraw 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.mockupSideWrap::before {
+  background: #b4d7ff;
+  opacity: 0.75;
+  transform: translate(-6%, 8%);
 }
-
-@keyframes lineDraw {
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .processLine.processLineVisible::after {
-    animation: none;
-    transform: scaleX(1);
-  }
-}
-
-/* ============================================================
-   Who it's for
-   ============================================================ */
-
-.whoSmall {
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #a1a1aa;
-  margin: 0 0 1rem 0;
-}
-
-.whoLarge {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: #0a0a0b;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-/* ============================================================
-   Slider
-   ============================================================ */
-
-.sliderTabsWrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-}
-
-.sliderTabs {
-  display: inline-flex;
-  gap: 0;
-  border-bottom: 1px solid #e4e4e7;
-}
-
-.sliderTab {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem 1rem 2rem;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  color: #71717a;
-  font-family: 'Poppins', system-ui, sans-serif;
-  white-space: nowrap;
-}
-
-.sliderTab:hover {
-  color: #0174e1;
-}
-
-.sliderTab:focus-visible {
-  outline: 2px solid #0174e1;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.sliderTabActive {
-  color: #0174e1;
-  border-bottom-color: #0174e1;
-}
-
-.sliderTabNum {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+.mockupSideWrap::after {
+  background: #d7e9ff;
   opacity: 0.5;
+  transform: translate(-12%, 16%);
 }
-
-.sliderTabLabel {
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.soonBadge {
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  border-radius: 100px;
-  padding: 0.15rem 0.5rem;
-}
-
-.sliderBody {
-  animation: slideFadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes slideFadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sliderBody { animation: none; }
-}
-
-.slide {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.slideDesc {
-  font-size: 1rem;
-  color: #52525b;
-  line-height: 1.7;
-  margin: 0;
-  max-width: 65ch;
-}
-
-/* 2-column grid used in slides 1 and 3 */
-.slideGrid2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
-
-.slideItem {
-  padding: 1.5rem;
-  background: #f6f7f9;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.slideItemBadge {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #0174e1;
-}
-
-.slideItemText {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #0a0a0b;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* DD grid */
-.ddGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-}
-
-.ddCat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.ddCatLabel {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #0174e1;
-  margin: 0;
-}
-
-.ddCatList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.ddCatList li {
-  font-size: 0.9375rem;
-  color: #3f3f46;
-  padding-left: 0.875rem;
-  position: relative;
-}
-
-.ddCatList li::before {
-  content: '-';
-  position: absolute;
-  left: 0;
-  color: #a1a1aa;
-}
-
-/* Row: verification + features */
-.slideRow {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.slideRowLabel {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #a1a1aa;
-  margin: 0 0 0.625rem 0;
-}
-
-.verificationItems {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.verificationItem {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #52525b;
-}
-
-.verificationDot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.slideFeatures {
-  display: flex;
-  gap: 0.625rem;
-  flex-wrap: wrap;
-}
-
-.slideFeatureTag {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #52525b;
-  background: #f6f7f9;
-  border: 1px solid #e4e4e7;
-  border-radius: 8px;
-  padding: 0.375rem 0.875rem;
-}
-
-/* Output card */
-.slideOutput {
-  background: linear-gradient(-28.77deg, rgba(0,54,135,0.06) 0%, rgba(0,119,255,0.06) 100%);
-  border: 1px solid rgba(1, 116, 225, 0.15);
-  border-radius: 12px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.slideOutputTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0174e1;
-}
-
-.slideOutputSub {
-  font-size: 0.875rem;
-  color: #52525b;
-}
-
-.slideOutputTags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-.slideTag {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #0174e1;
-  background: rgba(1, 116, 225, 0.07);
-  border: 1px solid rgba(1, 116, 225, 0.18);
-  border-radius: 100px;
-  padding: 0.25rem 0.75rem;
+@media (max-width: 860px) {
+  .problemHead { grid-template-columns: 1fr; gap: 1rem; }
+  .mockupSideWrap { display: none; }
+  .mockupMain { width: 100%; }
 }
 
 /* ============================================================
-   Slide header (pill + h2 + subtitle)
+   Shared section shells
    ============================================================ */
-
-.slideHeader {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.875rem;
-  margin-bottom: 2.5rem;
-}
-
-.slidePill {
-  display: inline-block;
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #52525b;
-  border: 1.5px solid #d4d4d8;
-  border-radius: 100px;
-  padding: 0.35rem 1.125rem;
-}
-
-.slideH2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0;
-}
-
-.slideHeaderSub {
-  font-size: 1rem;
-  color: #71717a;
-  line-height: 1.65;
-  max-width: 52ch;
-  margin: 0;
-}
+.sectionGray { padding: 2rem 0; background: transparent; }
+.featureSection { padding: 2rem 0; background: transparent; }
 
 /* ============================================================
-   Feature grid — 4 columns (slides 0 and 2)
+   WHAT YOU GET — masonry cards
    ============================================================ */
-
-.featureGrid4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-}
-
-.featureCard {
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  border-radius: 16px;
-  padding: 2rem 1.5rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.875rem;
-}
-
-.featureCardIcon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: rgba(1, 116, 225, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0174e1;
-  flex-shrink: 0;
-}
-
-.featureCardIcon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.featureCardTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0a0a0b;
-  margin: 0;
-  line-height: 1.3;
-}
-
-.featureCardDesc {
-  font-size: 0.875rem;
-  color: #71717a;
-  line-height: 1.6;
-  margin: 0;
-  flex: 1;
-}
-
-.skeletonBars {
-  display: flex;
-  flex-direction: row;
-  gap: 0.375rem;
-  width: 100%;
-  margin-top: 0.25rem;
-}
-
-.skeletonBar {
-  display: block;
-  height: 6px;
-  border-radius: 100px;
-  background: rgba(1, 116, 225, 0.18);
-  flex: 1;
-}
-
-/* ============================================================
-   Feature grid — 2x2 (slide 1)
-   ============================================================ */
-
-.featureGrid2x2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: #e4e4e7;
-  border: 1px solid #e4e4e7;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.featureRow2Card {
-  background: #ffffff;
-  padding: 1.5rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.featureRowIcon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: rgba(1, 116, 225, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0174e1;
-  flex-shrink: 0;
-}
-
-.featureRowIcon svg {
-  width: 18px;
-  height: 18px;
-}
-
-.featureRowTitle {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: #0174e1;
-  margin: 0 0 0.35rem 0;
-  line-height: 1.3;
-}
-
-.featureRowDesc {
-  font-size: 0.875rem;
-  color: #71717a;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* ============================================================
-   Output card (bottom row)
-   ============================================================ */
-
-.outputCard {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  border-radius: 14px;
-  padding: 1.25rem 1.5rem;
-  flex-wrap: wrap;
-}
-
-.outputCardLeft {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.outputCardIcon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(1, 116, 225, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0174e1;
-  flex-shrink: 0;
-}
-
-.outputCardIcon svg {
-  width: 20px;
-  height: 20px;
-}
-
-.outputCardTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0174e1;
-  margin: 0 0 0.2rem 0;
-}
-
-.outputCardSub {
-  font-size: 0.875rem;
-  color: #71717a;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.outputCardTags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-/* ============================================================
-   DD category cards (slide 2)
-   ============================================================ */
-
-.ddCatCard {
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  border-radius: 16px;
-  padding: 1.75rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.ddCatHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.ddCatName {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0a0a0b;
-}
-
-.ddCheckList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.ddCheckItem {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9375rem;
-  color: #3f3f46;
-  line-height: 1.4;
-}
-
-.ddCheckMark {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-}
-
-/* ============================================================
-   Verification states card (slide 2)
-   ============================================================ */
-
-.verStatesCard {
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  border-radius: 14px;
-  padding: 1.25rem 1.75rem;
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.verStatesLabel {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #0a0a0b;
-  margin: 0;
-  white-space: nowrap;
-}
-
-/* ============================================================
-   3-col feature row (slide 2: Q&A Log / Doc Requests / Audit)
-   ============================================================ */
-
-.featureRow3 {
+.getGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-}
-
-.featureRow3Item {
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  border-radius: 14px;
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-}
-
-.featureRow3Label {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #0a0a0b;
-}
-
-/* ============================================================
-   Responsive — new slider components
-   ============================================================ */
-
-@media (max-width: 1024px) {
-  .featureGrid4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .featureGrid4 {
-    grid-template-columns: 1fr;
-  }
-
-  .featureGrid2x2 {
-    grid-template-columns: 1fr;
-  }
-
-  .featureRow3 {
-    grid-template-columns: 1fr;
-  }
-
-  .ddGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .outputCard {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-/* ============================================================
-   Scoring workspace link (legacy)
-   ============================================================ */
-
-/* Scoring workspace link */
-.slideLink {
-  padding-top: 0.5rem;
-}
-
-.slideLinkAnchor {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #0174e1 !important;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(1, 116, 225, 0.3);
-  padding-bottom: 2px;
-  transition: border-color 0.15s ease;
-}
-
-.slideLinkAnchor:hover {
-  border-bottom-color: #0174e1;
-  text-decoration: none !important;
-}
-
-/* ============================================================
-   Outcomes grid
-   ============================================================ */
-
-.outcomesGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
-
-.outcomeCard {
-  background: #ffffff;
-  border: 1px solid #e4e4e7;
-  border-radius: 16px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
-  transition: transform 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
-  cursor: default;
+  align-items: stretch;
 }
+.getCol { display: flex; flex-direction: column; gap: 1rem; }
 
-.outcomeCard:hover {
-  transform: translateY(-2px);
-  border-color: #0174e1;
-  box-shadow: 0 4px 24px rgba(1, 116, 225, 0.08);
-}
-
-.outcomeIconWrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(1, 116, 225, 0.07);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0174e1;
-}
-
-.outcomeIconWrap svg {
-  width: 20px;
-  height: 20px;
-}
-
-.outcomeText {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.45;
-  color: #0a0a0b;
-  margin: 0;
-  flex: 1;
-}
-
-.outcomeBadge {
-  display: inline-block;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #0174e1;
-  background: rgba(1, 116, 225, 0.07);
-  border: 1px solid rgba(1, 116, 225, 0.15);
-  border-radius: 100px;
-  padding: 0.25rem 0.75rem;
-  align-self: flex-start;
-}
-
-/* ============================================================
-   Proof
-   ============================================================ */
-
-.statStrip {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  margin-bottom: 4rem;
-}
-
-.statItem {
+/* Figma spec for these cards specifically: 36px padding, 24px gap between
+   icon / title-group / checklist-group, 12px gap inside the title-group
+   between the title and each body paragraph. */
+.getGrid .card { padding: 2.25rem; }
+.getGrid .cardIcon { margin-bottom: 1.5rem; }
+.getGrid .cardTitle { margin-bottom: 0.75rem; }
+.getGrid .cardBody { margin-bottom: 0.75rem; }
+.getGrid .cardBody:last-child { margin-bottom: 0; }
+.getGrid .checkList { margin-top: 1.5rem; }
+.getGrid .checkItem { padding: 0.1875rem 0; }
+/* The grid stretches each column to the tallest one (the single tall card in
+   column 1). Within a column, the last card grows to absorb the leftover
+   space as its own bottom padding, rather than as a gap between cards —
+   this keeps all three columns bottom-flush at any viewport width, unlike
+   a fixed padding/margin tuned to one screen size. */
+.getGrid .getCol > .card:last-child {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 2.5rem 2rem;
-  text-align: center;
 }
 
-.statNum {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  background: linear-gradient(-28.77deg, #003687 46%, #0077ff 95%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.card {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 0.9rem;
+  padding: 1.4rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
-.statLabel {
-  font-size: 0.875rem;
-  color: #71717a;
-  line-height: 1.4;
-  max-width: 18ch;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.09);
 }
-
-.statDivider {
-  width: 1px;
-  height: 60px;
-  background: #e4e4e7;
-  flex-shrink: 0;
-}
-
-.quoteBlock {
-  max-width: 680px;
-  margin: 0 auto 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-  text-align: center;
-}
-
-.quoteBlock svg {
-  width: 28px;
-  height: 28px;
-  color: #d4d4d8;
-}
-
-.quoteText {
-  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
-  font-weight: 500;
-  line-height: 1.7;
-  color: #27272a;
-  margin: 0;
-  font-style: normal;
-}
-
-.quoteAttr {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #71717a;
-}
-
-.honestyNote {
-  text-align: center;
-  font-size: 0.8125rem;
-  color: #a1a1aa;
-  margin: 0;
-}
-
-/* ============================================================
-   Closing CTA
-   ============================================================ */
-
-.ctaSection {
-  position: relative;
-  padding: 6rem 1.5rem;
-  background: var(--raisetalks-brand-gradient);
-  text-align: center;
-  overflow: hidden;
-}
-
-.ctaGlow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.12) 0%,
-    transparent 65%
-  );
-  pointer-events: none;
-}
-
-.ctaH2 {
-  position: relative;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  color: #ffffff;
-  margin: 0 0 1rem 0;
-}
-
-.ctaSub {
-  position: relative;
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.7;
-  margin: 0 0 2.5rem 0;
-}
-
-.ctaButtons {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.ctaBtnPrimary {
+.cardIcon {
   display: inline-flex;
-  align-items: center;
-  padding: 1rem 2.25rem;
-  background: #ffffff;
-  color: #0174e1 !important;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: opacity 150ms ease, box-shadow 150ms ease;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--raisetalks-blue-primary-flat);
+  margin-bottom: 0.9rem;
 }
-
-.ctaBtnPrimary:hover {
-  opacity: 0.92;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
-  color: #0174e1 !important;
-}
-
-.ctaBtnPrimary:focus-visible {
-  outline: 2px solid #0174e1;
-  outline-offset: 3px;
-}
-
-.ctaBtnGhost {
-  display: inline-flex;
-  align-items: center;
-  padding: 1rem 2.25rem;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.8) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+.cardIcon svg { width: 100%; height: 100%; }
+.cardTitle {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1.1rem;
   font-weight: 600;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.6rem;
+}
+.cardTitleSm {
+  composes: cardTitle;
   font-size: 1rem;
-  text-decoration: none;
-  transition: border-color 100ms ease, color 100ms ease;
+}
+.cardBody {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ifm-color-content-secondary);
+  margin: 0 0 0.55rem;
+}
+.cardBody:last-child { margin-bottom: 0; }
+.cardNote {
+  margin: 0.85rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  opacity: 0.7;
 }
 
-.ctaBtnGhost:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #ffffff !important;
-  text-decoration: none;
+/* ---- Check lists ---- */
+.checkList { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.28rem 0;
+  font-size: 0.95rem;
+  color: var(--ifm-color-content-secondary);
 }
-
-.ctaBtnGhost:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.5);
-  outline-offset: 3px;
-}
-
-.ctaEmail {
-  position: relative;
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.35);
-  margin: 0;
-}
-
-.ctaEmailLink {
-  color: rgba(255, 255, 255, 0.55) !important;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.ctaEmailLink:hover {
-  color: #ffffff !important;
-}
-
-/* ============================================================
-   Responsive
-   ============================================================ */
-
-@media (max-width: 1024px) {
-  .ddGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .solutionGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .outcomesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+.checkListBold .checkItem { color: var(--ifm-color-content); font-weight: 600; }
+.checkMark { width: 1rem; height: 1rem; flex-shrink: 0; }
 
 @media (max-width: 900px) {
-  .sliderTabsWrap {
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .sliderTabsWrap::-webkit-scrollbar {
-    display: none;
-  }
-
-  .sliderTabs {
-    min-width: max-content;
-    padding-bottom: 1px;
-  }
+  .getGrid { grid-template-columns: 1fr; }
 }
 
+/* ============================================================
+   SPLIT layout (Pre-Score / Committee / DD)
+   ============================================================ */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.splitText { min-width: 0; }
+.splitMedia { min-width: 0; height: 100%; position: relative; }
+.mediaImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 30px 70px rgba(11, 31, 68, 0.35);
+}
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; }
+  /* keep media below text on narrow screens regardless of DOM order */
+  .splitMedia { order: 2; }
+}
+/* Figma: text col 411px / media col 821px — media takes ~2x the text column,
+   with a wider gutter between them (120px in Figma) and its bottom flush
+   with the text column's bottom. The image is absolutely positioned so its
+   own intrinsic aspect ratio can't grow the grid row past the text height —
+   the row height comes from the text column alone, and the image crops
+   (object-fit: cover) to fill it exactly. */
+.splitPrescore { grid-template-columns: 1fr 2fr; align-items: stretch; gap: clamp(2.5rem, 6vw, 7.5rem); }
+.splitPrescore .mediaImg { position: absolute; inset: 0; }
+@media (max-width: 900px) {
+  .splitPrescore { grid-template-columns: 1fr; }
+  .splitPrescore .splitMedia { height: 320px; }
+  .splitPrescore .mediaImg { position: static; inset: auto; }
+}
+
+/* ---- Pre-Score feature list ---- */
+.featureList { list-style: none; margin: 0 0 2rem; padding: 0; }
+.featureRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+.featureRow .checkMark { width: 1.15rem; height: 1.15rem; margin-top: 0.15rem; }
+.featureRowTitle {
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.15rem;
+}
+.featureRowDesc {
+  font-size: 0.88rem;
+  color: var(--ifm-color-content-secondary);
+  margin: 0;
+}
+
+/* ---- Mini card (Pre-Scoring Card / Short Memo / IC Pack) ---- */
+.miniCard {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+}
+.miniCardTitle {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.3rem;
+}
+.miniCardSub {
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  margin: 0 0 1rem;
+}
+.miniCardInner {
+  background: #f7f9fc;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+}
+
+/* ---- Committee 2x2 staggered cards ---- */
+.committeeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.cardOffset { transform: translateY(2.5rem); }
+@media (max-width: 900px) {
+  .committeeGrid { order: 2; }
+  .cardOffset { transform: none; }
+}
+@media (max-width: 520px) {
+  .committeeGrid { grid-template-columns: 1fr; }
+}
+
+/* ---- DD pills ---- */
+.pillRow { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+.pill {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  color: var(--raisetalks-blue-primary-flat);
+  border: 1px solid rgba(1, 116, 225, 0.35);
+  background: rgba(1, 116, 225, 0.04);
+  border-radius: 0.6rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* ---- DD category rows ---- */
+.ddList { display: flex; flex-direction: column; }
+.ddRow {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+}
+.ddRow:last-child { border-bottom: none; }
+.ddIcon {
+  display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  color: var(--raisetalks-blue-primary-flat);
+}
+.ddIcon svg { width: 100%; height: 100%; }
+.ddRowTitle {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.25rem;
+}
+.ddRowItems {
+  font-size: 0.88rem;
+  color: var(--ifm-color-content-secondary);
+  margin: 0;
+}
+.ddDot { color: var(--raisetalks-blue-primary-flat); margin: 0 0.55rem; }
+
+/* ============================================================
+   PROOF / TESTIMONIAL
+   ============================================================ */
+.proofSection {
+  position: relative;
+  padding: 0;                 /* spacing comes from the spacer rows below */
+  background: var(--ifm-background-color);
+  overflow: hidden;
+}
+/* Figma spacer rows — empty 64px cells around the content. The horizontal
+   rules run the FULL screen width; the content inside stays centered. */
+.spacerRow,
+.proofContent {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1));
+}
+.spacerRow { height: 64px; }
+.spacerRow:first-of-type { border-top: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1)); }
+.proofContent { padding: 2.5rem clamp(1.25rem, 3vw, 2.75rem); }
 @media (max-width: 640px) {
-  .solutionGrid {
-    grid-template-columns: 1fr;
-  }
+  .spacerRow { height: 40px; }
+}
+.proofBg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  /* swirl is 1480px wide in Figma = the content-frame width; top-aligned, bleeds down */
+  width: min(1480px, calc(100% - 2 * var(--gutter, 1.25rem)));
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+}
+.quoteBlock {
+  position: relative;
+  margin: 0 auto 3.5rem;
+  max-width: 46rem;
+  text-align: center;
+}
+.avatarWrap {
+  width: 116px;
+  height: 116px;
+  margin: 0 auto 1.75rem;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 60%, #ec4899 100%);
+  box-shadow: 0 14px 34px rgba(11, 31, 68, 0.18);
+}
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  background: #eef2f7;
+  display: block;
+}
+.quoteBlock svg {
+  width: 2rem;
+  height: 2rem;
+  color: rgba(1, 116, 225, 0.25);
+  margin: 0 auto 0.75rem;
+  display: block;
+}
+.quoteText {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--ifm-color-content);
+  margin: 0 0 1.25rem;
+  border: none;
+  padding: 0;
+}
+.quoteAttr { display: flex; flex-direction: column; gap: 0.15rem; }
+.quoteName { font-weight: 700; color: var(--ifm-color-content); }
+.quoteRole { font-size: 0.9rem; color: var(--ifm-color-content-secondary); }
 
-  .sliderTab {
-    padding: 0.85rem 1.25rem;
-  }
+/* ---- Stat strip ---- */
+.statStrip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  flex-wrap: wrap;
+}
+.statItem { text-align: left; }
+.statNum {
+  display: block;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 600;
+  color: var(--raisetalks-blue-primary-flat);
+  line-height: 1.1;
+}
+.statLabel {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  max-width: 12rem;
+}
+.statDivider {
+  width: 1px;
+  height: 48px;
+  flex: none;
+  align-self: center;
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.55) 50%, rgba(15, 23, 42, 0) 100%);
+}
+@media (max-width: 520px) {
+  .statDivider { display: none; }
+  .statStrip { flex-direction: column; gap: 1.75rem; }
+  .statItem { text-align: center; }
+  .statLabel { margin-left: auto; margin-right: auto; }
 }
 
-@media (max-width: 768px) {
-  .problemGaugeWrap {
-    display: none;
-  }
-
-  .hero {
-    padding: 4rem 1.25rem 3rem;
-  }
-
-  .sectionLight,
-  .sectionGray {
-    padding: 4rem 1.25rem;
-  }
-
-  .beforeAfter {
-    grid-template-columns: 1fr;
-  }
-
-  .processStrip {
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-  }
-
-  .processLine {
-    display: none;
-  }
-
-  .processStep {
-    min-width: 120px;
-    flex: 0 1 auto;
-  }
-
-  .outcomesGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .statStrip {
-    flex-direction: column;
-  }
-
-  .statDivider {
-    width: 60%;
-    height: 1px;
-  }
-
-  .ctaSection {
-    padding: 4rem 1.25rem;
-  }
+/* ============================================================
+   CLOSING CTA
+   ============================================================ */
+/* Full-bleed dark band — spans the entire viewport width */
+.ctaSection {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0a1830 0%, #0b1f44 100%);
+  /* outer edges of the band, full screen width */
+  border-top: 1px solid #1E437B;
+  border-bottom: 1px solid #1E437B;
 }
-
-@media (max-width: 480px) {
-  .heroActions {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 1rem;
-  }
-
-  .btnPrimary,
-  .btnSecondary {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .sectionLight,
-  .sectionGray {
-    padding: 3rem 1rem;
-  }
-
-  .whoLarge {
-    font-size: 1.375rem;
-  }
-
-  .ctaButtons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ctaBtnPrimary,
-  .ctaBtnGhost {
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
-  }
-
-  .statItem {
-    padding: 1.75rem 1.25rem;
-  }
-
-  .statNum {
-    font-size: 2rem;
-  }
+.ctaBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Empty framed strips inside the dark band, top and bottom — the navy
+   background continues through them, each closed off by its own line,
+   matching the testimonial section's spacer-row treatment.
+   The line always sits on the CONTENT-facing side (spacer→content for the
+   top strip, content→spacer for the bottom one) so it's sandwiched by navy
+   on both sides — same as the top's visibility. The outer, section-facing
+   side of each strip is left unlined; that boundary is already marked by
+   .ctaSection's own border-top/bottom. */
+.ctaSpacer {
+  position: relative;
+  z-index: 1; /* paint above .ctaBg, matching .container's stacking */
+  height: 64px;
+  border-bottom: 1px solid #1E437B;
+}
+.ctaSpacer:last-of-type {
+  border-bottom: none;
+  border-top: 1px solid #1E437B;
+}
+@media (max-width: 640px) {
+  .ctaSpacer { height: 40px; }
+}
+/* Light grid lines on the dark CTA (page rails are dark → invisible on navy).
+   Vertical rails span the full band; aligned to the footer's rail x-position. */
+.ctaSection::before,
+.ctaSection::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.5px;
+  background: #1E437B;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Reuses --rail-half from the enclosing .regionWide (custom properties
+   inherit) — same ladder as the wide region's own rail and the footer's,
+   so all three stay pixel-aligned. No gutter clamp: the footer's rail has
+   no minimum-inset safeguard either, so matching it means the raw offset. */
+.ctaSection::before { left: calc(50% - var(--rail-half)); }
+.ctaSection::after { right: calc(50% - var(--rail-half)); }
+/* content box: no border of its own — the full-width band border handles it */
+.ctaSection .container {
+  background: transparent;
+}
+.ctaSection .container::before,
+.ctaSection .container::after {
+  display: none;
+}
+.ctaH2 {
+  position: relative;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+.ctaH2 .accent { color: #fff; }
+.ctaSub {
+  position: relative;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  max-width: 32rem;
+  margin: 0 auto 2rem;
+}
+.ctaSection .heroActions { position: relative; }
+/* Figma: the gradient border (RaiseTalks/Brand Gradient) wraps the whole
+   button, but its width varies per side — thicker along the bottom edge.
+   Gradients can't be a border-color, so this uses the standard two-layer
+   trick: a solid fill clipped to padding-box, the brand gradient clipped to
+   border-box. Since border-width differs per side, the SAME gradient reads
+   as a thin ring on top/left/right and a thick bar along the bottom. */
+.ctaBtnGhost {
+  position: relative;
+  color: #fff;
+  border-style: solid;
+  border-width: 1px 1px 3px 1px;
+  border-color: transparent;
+  background:
+    linear-gradient(#0b1f44, #0b1f44) padding-box,
+    var(--raisetalks-brand-gradient) border-box;
+  /* soft blue glow under the thicker bottom edge, matching Figma's finish */
+  box-shadow: 0 4px 14px rgba(0, 119, 255, 0.4);
+}
+.ctaBtnGhost:hover {
+  transform: translateY(-2px);
+  color: #fff;
+  filter: brightness(1.2);
+  box-shadow: 0 6px 18px rgba(0, 119, 255, 0.55);
 }
