@@ -623,16 +623,17 @@
 .btnPrimary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
   background: var(--raisetalks-brand-gradient);
   color: #fff !important;
-  padding: 0.85rem 1.75rem;
   border-radius: 10px;
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: none;
+  border: 1px solid #003687;
+  border-bottom-width: 3px;
 }
 
 .btnPrimary:hover {
@@ -847,13 +848,19 @@
 }
 
 .ctaBtnPrimary {
-  display: inline-flex;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
-  background: var(--raisetalks-brand-gradient);
+  justify-content: center;
+  padding: 12px 16px;
+  gap: 10px;
+  min-width: 151px;
+  height: 42px;
+  background: linear-gradient(75.88deg, #003687 -3.42%, #0077ff 99.98%);
+  border-bottom: 3px solid #003687;
+  border-radius: 8px;
   color: #fff !important;
-  padding: 1rem 2rem;
-  border-radius: 12px;
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none !important;
@@ -867,22 +874,30 @@
 }
 
 .ctaBtnSecondary {
-  display: inline-flex;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   background: transparent;
   color: var(--ifm-color-primary) !important;
-  padding: 1rem 2rem;
-  border-radius: 12px;
+  padding: 12px 16px;
+  gap: 10px;
+  min-width: 151px;
+  height: 42px;
+  border-radius: 8px;
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none !important;
-  border: 2px solid var(--ifm-color-primary);
-  transition: background 0.2s ease, color 0.2s ease;
+  border: 1px solid var(--ifm-color-primary);
+  border-bottom-width: 3px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .ctaBtnSecondary:hover {
-  background: var(--ifm-color-primary);
-  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(1, 116, 225, 0.25);
+  color: var(--ifm-color-primary) !important;
 }
 
 .ctaNote {

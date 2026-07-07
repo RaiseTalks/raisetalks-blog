@@ -334,7 +334,7 @@ export default function PitchCompetitions() {
             <Link href="/startups" className={styles.ctaBtnPrimary}>Browse Startups</Link>
             <Link
               href="https://calendly.com/raisetalks/demo"
-              className={styles.ctaBtnGhost}
+              className={styles.ctaBtnSecondary}
               target="_blank"
               rel="noopener noreferrer"
             >

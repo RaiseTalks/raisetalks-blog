@@ -555,10 +555,10 @@ export default function InvestorsPage() {
             close the tab.
           </p>
           <div className={styles.heroActions}>
-            <a href={DEMO_URL} className={styles.btnPrimary} target="_blank" rel="noopener noreferrer">
+            <a href={DEMO_URL} className={styles.ctaBtnPrimary} target="_blank" rel="noopener noreferrer">
               Book a Demo
             </a>
-            <a href={ACCESS_URL} className={styles.ctaBtnGhost}>
+            <a href={ACCESS_URL} className={styles.ctaBtnSecondary}>
               Request Early Access
             </a>
           </div>

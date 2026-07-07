@@ -144,10 +144,10 @@ function HomepageCTA() {
               RaiseTalks helps you run it like a pro — automated data rooms, real investor insights, and deal-ready files.
             </p>
             <div className={styles.ctaButtons}>
-              <Link className={styles.ctaButtonPrimary} to="https://app.raisetalks.com/sign-up">
+              <Link className={styles.ctaBtnPrimary} to="https://app.raisetalks.com/sign-up">
                 Try it Free
               </Link>
-              <Link className={styles.ctaButtonSecondary} to="https://calendly.com/iamdariiava/30min">
+              <Link className={styles.ctaBtnSecondary} to="https://calendly.com/iamdariiava/30min">
                 Book a Demo
               </Link>
             </div>

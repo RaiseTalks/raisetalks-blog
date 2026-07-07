@@ -395,10 +395,10 @@ export default function AboutUs() {
                </div>
 
                <div className={styles.ctaButtons}>
-                  <Link className={styles.ctaButtonPrimary} to="https://calendly.com/iamdariiava/30min">
+                  <Link className={styles.ctaBtnPrimary} to="https://calendly.com/iamdariiava/30min">
                      Book a Demo
                   </Link>
-                  <Link className={styles.ctaButtonSecondary} to="https://app.raisetalks.com/sign-up">
+                  <Link className={styles.ctaBtnSecondary} to="https://app.raisetalks.com/sign-up">
                      Try it FREE
                   </Link>
                </div>

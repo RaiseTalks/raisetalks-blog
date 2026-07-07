@@ -190,28 +190,39 @@
 }
 
 /* ---- Buttons ---- */
-.btnPrimary,
-.ctaBtnGhost {
+.ctaBtnSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.75rem;
+  padding: 12px 16px;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 0.6rem;
+  border-radius: 8px;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   cursor: pointer;
 }
 .btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
   background: var(--raisetalks-brand-gradient);
-  color: #fff;
-  box-shadow: 0 8px 22px rgba(1, 116, 225, 0.28);
+  color: #fff !important;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #003687;
+  border-bottom-width: 3px;
+  cursor: pointer;
 }
 .btnPrimary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(1, 116, 225, 0.36);
-  color: #fff;
+  box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
+  color: #fff !important;
+  text-decoration: none !important;
 }
 .btnSecondary {
   display: inline-flex;
@@ -882,27 +893,49 @@
   margin: 0 auto 2rem;
 }
 .ctaSection .heroActions { position: relative; }
-/* Figma: the gradient border (RaiseTalks/Brand Gradient) wraps the whole
-   button, but its width varies per side — thicker along the bottom edge.
-   Gradients can't be a border-color, so this uses the standard two-layer
-   trick: a solid fill clipped to padding-box, the brand gradient clipped to
-   border-box. Since border-width differs per side, the SAME gradient reads
-   as a thin ring on top/left/right and a thick bar along the bottom. */
-.ctaBtnGhost {
-  position: relative;
-  color: #fff;
-  border-style: solid;
-  border-width: 1px 1px 3px 1px;
-  border-color: transparent;
-  background:
-    linear-gradient(#0b1f44, #0b1f44) padding-box,
-    var(--raisetalks-brand-gradient) border-box;
-  /* soft blue glow under the thicker bottom edge, matching Figma's finish */
-  box-shadow: 0 4px 14px rgba(0, 119, 255, 0.4);
+.ctaBtnPrimary {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  gap: 10px;
+  min-width: 151px;
+  height: 42px;
+  background: linear-gradient(75.88deg, #003687 -3.42%, #0077ff 99.98%);
+  border-bottom: 3px solid #003687;
+  border-radius: 8px;
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.ctaBtnGhost:hover {
+.ctaBtnPrimary:hover {
   transform: translateY(-2px);
-  color: #fff;
-  filter: brightness(1.2);
-  box-shadow: 0 6px 18px rgba(0, 119, 255, 0.55);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  color: #fff !important;
+  text-decoration: none !important;
+}
+.ctaBtnSecondary {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  gap: 10px;
+  min-width: 151px;
+  height: 42px;
+  border-radius: 8px;
+  background: transparent;
+  color: #fff !important;
+  border: 1px solid #003687;
+  border-bottom-width: 3px;
+}
+.ctaBtnSecondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  color: #fff !important;
 }

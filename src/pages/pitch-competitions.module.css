@@ -143,15 +143,17 @@
 .btnPrimary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
   background: var(--raisetalks-brand-gradient);
   color: #fff !important;
-  padding: 0.85rem 1.75rem;
   border-radius: 10px;
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: none;
+  border: 1px solid #003687;
+  border-bottom-width: 3px;
 }
 
 .btnPrimary:hover {
@@ -571,7 +573,7 @@
 @media (min-width: 1536px) { .ctaSection { --rail-half: 768px; } }
 
 .ctaSection::before,
-.ctaSection::after {
+.ctaSection::after { 
   content: '';
   position: absolute;
   top: 0;
@@ -625,42 +627,57 @@
 }
 
 .ctaBtnPrimary {
-  display: inline-flex;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  padding: 1rem 2.25rem;
-  background: #ffffff;
-  color: #0174e1 !important;
-  border-radius: 10px;
+  justify-content: center;
+  padding: 12px 16px;
+  gap: 10px;
+  min-width: 151px;
+  height: 42px;
+  background: linear-gradient(75.88deg, #003687 -3.42%, #0077ff 99.98%);
+  border-bottom: 3px solid #003687;
+  border-radius: 8px;
+  color: #fff !important;
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none !important;
-  transition: opacity 150ms ease, box-shadow 150ms ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .ctaBtnPrimary:hover {
-  opacity: 0.92;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
   text-decoration: none !important;
-  color: #0174e1 !important;
+  color: #fff !important;
 }
 
-.ctaBtnGhost {
-  display: inline-flex;
+.ctaBtnSecondary {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  padding: 1rem 2.25rem;
+  justify-content: center;
+  padding: 12px 16px;
+  gap: 10px;
+  min-width: 151px;
+  height: 42px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.8) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  color: #fff !important;
+  border: 1px solid #003687;
+  border-bottom-width: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none !important;
-  transition: border-color 100ms ease, color 100ms ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.ctaBtnGhost:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #ffffff !important;
+.ctaBtnSecondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  color: #fff !important;
   text-decoration: none !important;
 }
 
@@ -723,7 +740,7 @@
   }
 
   .ctaBtnPrimary,
-  .ctaBtnGhost {
+  .ctaBtnSecondary {
     width: 100%;
     max-width: 300px;
     justify-content: center;
