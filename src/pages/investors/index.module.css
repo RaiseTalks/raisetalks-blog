@@ -191,7 +191,6 @@
 
 /* ---- Buttons ---- */
 .btnPrimary,
-.btnSecondary,
 .ctaBtnGhost {
   display: inline-flex;
   align-items: center;
@@ -215,14 +214,23 @@
   color: #fff;
 }
 .btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
   background: #fff;
-  color: var(--raisetalks-blue-primary-flat);
-  border: 1.5px solid var(--raisetalks-blue-primary-flat);
+  color: #000 !important;
+  border: 1px solid var(--ifm-color-primary-dark);
+  border-bottom-width: 3px;
 }
 .btnSecondary:hover {
-  transform: translateY(-2px);
-  color: var(--raisetalks-blue-primary-flat);
-  box-shadow: 0 10px 24px rgba(1, 116, 225, 0.16);
+  transform: translateY(-1px);
+  color: #000 !important;
 }
 
 /* ============================================================

@@ -90,7 +90,7 @@
   .navbar__items:not(.navbar__items--right) {
     position: relative;
     justify-content: center;
-    gap: 2.25rem;
+    gap: 1.25rem;
   }
 
   .navbar__items:not(.navbar__items--right) > .navbar__brand {
