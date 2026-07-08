@@ -96,7 +96,7 @@ export default function TermsOfService() {
             <span className="cleanHeroTitleAccent">Terms of Service</span>
           </h1>
           <p className="cleanHeroSubtitle">
-            Last Updated: <strong>August 5, 2025</strong>
+            Last Updated: <strong>July 8, 2026</strong>
           </p>
           <p className="cleanHeroDescription">
             Please read these terms carefully before using RaiseTalks.
@@ -232,6 +232,14 @@ export default function TermsOfService() {
             <p>
               You may terminate your account at any time via your dashboard or by contacting support. Termination does not
               release you from any outstanding payment obligations.
+            </p>
+            <p>
+              <strong>What happens to your data on termination.</strong> When you delete your account, your personal
+              data and content (including your data room) are permanently erased without undue delay, in accordance with
+              our <a href="/privacy-policy">Privacy Policy</a>. A limited set of records is retained as described there —
+              billing and invoice records held by our payment provider for tax law, anti-spam bounce/complaint records,
+              and an anonymous deletion receipt containing no personal data. If you choose, you can download a copy of
+              your data from your profile before deleting your account.
             </p>
 
             <h2>11. Indemnity</h2>

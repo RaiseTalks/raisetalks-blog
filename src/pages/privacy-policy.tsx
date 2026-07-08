@@ -108,7 +108,7 @@ export default function PrivacyPolicy() {
             <span className="cleanHeroTitleAccent">Privacy Policy</span>
           </h1>
           <p className="cleanHeroSubtitle">
-            Last Updated: <strong>August 5, 2025</strong>
+            Last Updated: <strong>July 8, 2026</strong>
           </p>
           <p className="cleanHeroDescription">
             Your privacy is important to us. Learn how we protect your data.
@@ -182,6 +182,7 @@ export default function PrivacyPolicy() {
               <li><strong>Directly from you</strong> – when you sign up, use features, or contact us</li>
               <li><strong>Automatically</strong> – via cookies and analytics tools</li>
               <li><strong>From third parties</strong> – such as referral sources or integrations you connect</li>
+              <li><strong>From public sources</strong> – publicly available professional information about investors and firms, used to build our investor catalog (see Section 10)</li>
             </ul>
 
             <h2>4. Why We Process Your Data</h2>
@@ -226,25 +227,47 @@ export default function PrivacyPolicy() {
               <li><strong>Right to Data Portability</strong> – Obtain your data in a readable format</li>
               <li><strong>Right to Object</strong> – Object to processing under legitimate interests</li>
               <li><strong>Right to Withdraw Consent</strong> – Revoke your consent at any time</li>
+              <li><strong>Right to Lodge a Complaint</strong> – Complain to your local data protection supervisory authority</li>
             </ul>
             <p>
-              To exercise any of these rights, email us at <strong>privacy@raisetalks.ai</strong>. We may need to verify your identity.
+              You can exercise the most common rights yourself, directly in the platform: go to{' '}
+              <strong>Profile</strong> to <strong>Download my data</strong> (a machine-readable export of your
+              information) or to <strong>Delete Account</strong> (permanent erasure). For any other request, or to
+              contact us, email <strong>privacy@raisetalks.ai</strong>. We may need to verify your identity, and we
+              respond within one month.
             </p>
 
-            <h2>6. Data Security</h2>
+            <h2>6. Data Security & Service Providers</h2>
             <p>We implement robust technical and organizational measures to protect your data, including:</p>
             <ul>
               <li>Encrypted transmission and storage</li>
               <li>Role-based access control</li>
               <li>Regular audits and system monitoring</li>
-              <li>Secure third-party service providers (e.g., Stripe for payments)</li>
+            </ul>
+            <p>
+              We rely on the following trusted third-party processors, each under a data processing agreement and
+              appropriate transfer safeguards:
+            </p>
+            <ul>
+              <li><strong>Stripe</strong> – payment processing and billing</li>
+              <li><strong>Supabase</strong> – database, authentication, and file storage</li>
+              <li><strong>Resend</strong> – transactional and notification email delivery</li>
+              <li><strong>Microsoft Azure</strong> – application hosting and AI services</li>
             </ul>
 
             <h2>7. Data Retention</h2>
             <p>
-              We retain your data only as long as necessary for the purposes described in this policy, or as required by law.
-              When no longer needed, data is securely deleted or anonymized.
+              We retain your data only as long as necessary for the purposes described in this policy, or as required
+              by law. When you delete your account, your personal data is erased without undue delay. Some records are
+              retained after deletion, on the following bases:
             </p>
+            <ul>
+              <li><strong>Billing and invoice records</strong> – retained by our payment provider (Stripe) for the period required by tax and accounting law.</li>
+              <li><strong>Email bounce and complaint records</strong> – retained indefinitely to comply with anti-spam obligations and protect sender reputation.</li>
+              <li><strong>An anonymous deletion receipt</strong> – retained indefinitely to document that the deletion occurred; it contains no personal data (only a one-way hash of the email).</li>
+              <li><strong>Investor catalog information</strong> – retained while our investor-intelligence service operates (see Section 10).</li>
+            </ul>
+            <p>When no longer needed, data is securely deleted or anonymized.</p>
 
             <h2>8. International Data Transfers</h2>
             <p>
@@ -262,13 +285,34 @@ export default function PrivacyPolicy() {
               preferences through your browser settings or by adjusting cookie consent settings when visiting our site.
             </p>
 
-            <h2>10. Updates to This Policy</h2>
+            <h2>10. Public-Source Investor Information</h2>
+            <p>
+              RaiseTalks maintains a catalog of investors and investment firms to help startups find relevant funding
+              sources. Some entries are built from <strong>publicly available professional information</strong> (for
+              example: firm name, investment focus, public website, and publicly listed professional contact details).
+              We process this information under our <strong>legitimate interest</strong> (GDPR Art. 6(1)(f)) in operating
+              an investor-discovery service, and it exists independently of whether the investor holds a RaiseTalks
+              account.
+            </p>
+            <p>
+              If you are an individual and wish to object to, correct, or remove your details from the catalog, email{' '}
+              <strong>privacy@raisetalks.ai</strong> and we will address your request.
+            </p>
+
+            <h2>11. Children's Data</h2>
+            <p>
+              RaiseTalks is a business platform intended for users aged 16 and over. We do not knowingly collect
+              personal data from children under 16. If you believe a child has provided us with personal data, contact{' '}
+              <strong>privacy@raisetalks.ai</strong> and we will delete it.
+            </p>
+
+            <h2>12. Updates to This Policy</h2>
             <p>
               We may update this Privacy Policy as our services evolve or as required by law. The updated version will always
               be posted on our website with the revised date.
             </p>
 
-            <h2>11. Contact Us</h2>
+            <h2>13. Contact Us</h2>
             <p>If you have any questions or requests regarding this Privacy Policy or your personal data:</p>
 
             <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
