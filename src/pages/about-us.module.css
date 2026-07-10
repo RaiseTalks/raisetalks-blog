@@ -304,6 +304,12 @@
   .workspaceRow {
     flex-direction: column;
 }
+
+/* Tablet/mobile: founder quote card sits above the three text cards,
+     matching the Figma tablet layout (card-first, then the stack). */
+  .workspaceFounderCard {
+    order: -1;
+  }
 }
 
 .workspaceCardsCol {
@@ -596,7 +602,7 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ifm-color-primary);
-  padding: 0 0 0.75rem 0.5rem;
+  padding: 1px 32px 12px 32px;
   font-family: 'Courier New', monospace;
 }
 
@@ -752,9 +758,10 @@
     max-width: none;
   }
 
-.whyBuildGraphicCol {
-    max-width: 320px;
-    margin: 0 auto;
+/* Tablet/mobile: the brand-mark graphic is dropped and the body copy
+     runs as a single full-width column, matching the Figma tablet layout. */
+  .whyBuildGraphicCol {
+    display: none;
   }
 }
 
@@ -841,9 +848,8 @@
 
 @media (max-width: 500px) {
   .visionRotateWrap {
-    transform: scale(0.75);
-    transform-origin: top center;
-    margin-bottom: -160px;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -945,20 +951,16 @@
 
 .visionRotateWrap {
   position: relative;
-  width: 460px;
-  height: 640px;
+  width: 640px;
+  height: 460px;
   margin: 0 auto;
   max-width: 100%;
 }
 
 .visionHorizons {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 640px;
-  height: 460px;
-  transform: translate(-50%, -50%) rotate(90deg);
-  transform-origin: center center;
+  position: relative;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -1015,13 +1017,28 @@
   margin: 0;
 }
 
+/* Tablet: heading and subtitle stay side-by-side (Figma tablet), with a
+   narrower subtitle column so the heading keeps enough room. */
 @media (max-width: 900px) {
+  .valuesHeaderRow {
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .valuesSubtitleText {
+    flex: 0 0 40%;
+    max-width: 40%;
+  }
+}
+
+/* Mobile only: stack the heading above the subtitle. */
+@media (max-width: 640px) {
   .valuesHeaderRow {
     flex-direction: column;
 }
 
 .valuesSubtitleText {
-    flex-basis: auto;
+    flex: 1 1 auto;
     max-width: none;
   }
 }
@@ -1029,18 +1046,6 @@
 .valuesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-}
-
-@media (max-width: 768px) {
-  .valuesGrid {
-    grid-template-columns: repeat(2, 1fr);
-}
-}
-
-@media (max-width: 480px) {
-  .valuesGrid {
-    grid-template-columns: 1fr;
-}
 }
 
 .valueCard {
@@ -1053,6 +1058,54 @@
 
 .valuesGrid > .valueCard:nth-child(3n) {
   border-right: none;
+}
+
+/* Tablet: 2-column grid with a vertical divider between the columns and
+   horizontal dividers between the rows (Figma tablet). Card padding is
+   reduced so the copy keeps the same measure as the design. Placed after
+   the base rules above so these overrides win the cascade. */
+@media (max-width: 768px) {
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.valueCard {
+    padding: 2rem 1rem;
+    border-right: 0.5px solid #dae0e7;
+    border-bottom: 0.5px solid #dae0e7;
+  }
+  /* Re-add the right border on left-column cards that the base 3n rule
+     removes, then clear it on the right column. */
+  .valuesGrid > .valueCard:nth-child(3n) {
+    border-right: 0.5px solid #dae0e7;
+  }
+  .valuesGrid > .valueCard:nth-child(2n) {
+    border-right: none;
+  }
+  /* Last row (cards 5 & 6) has no bottom divider. */
+  .valuesGrid > .valueCard:nth-child(n + 5) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .valuesGrid {
+    grid-template-columns: 1fr;
+}
+
+/* Single column: only horizontal dividers, none on the last card. */
+  .valueCard,
+  .valuesGrid > .valueCard:nth-child(3n),
+  .valuesGrid > .valueCard:nth-child(2n) {
+    border-right: none;
+    border-bottom: 0.5px solid #dae0e7;
+  }
+  .valuesGrid > .valueCard:nth-child(n + 5) {
+    border-bottom: 0.5px solid #dae0e7;
+  }
+  .valuesGrid > .valueCard:last-child {
+    border-bottom: none;
+  }
 }
 
 .valueCardName {
@@ -1150,4 +1203,34 @@
 
 [data-theme='dark'] .valuesGrid {
   border-color: var(--ifm-color-emphasis-300);
+}
+
+/* ------------------------------------------------------------------
+   Tablet content gutters
+
+   On desktop these sections indent their content from the left rail
+   (asymmetric 4rem/5rem left padding). The Figma tablet layout centers
+   the content with symmetric gutters, so at <=900px we even out the
+   horizontal padding. Rails (the section's own borders and the
+   full-bleed horizontal rules) are unaffected — only the content
+   moves inward. Placed last so it wins over the base section rules.
+   ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .missionSection .sectionContainer,
+  .visionSection .sectionContainer,
+  .whySection .sectionContainer,
+  .valuesSection .sectionContainer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .missionSection .sectionContainer,
+  .visionSection .sectionContainer,
+  .whySection .sectionContainer,
+  .valuesSection .sectionContainer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
