@@ -99,15 +99,9 @@
 }
 
 @media (max-width: 480px) {
-  .heroActions {
-    flex-direction: column;
-    align-items: stretch;
-}
-
-.btnPrimary,
+  .btnPrimary,
   .btnSecondary {
-    width: 100%;
-    justify-content: center;
+    white-space: nowrap;
   }
 }
 
