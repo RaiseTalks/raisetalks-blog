@@ -835,12 +835,6 @@
 }
 }
 
-@media (max-width: 500px) {
-  .visionRotateWrap {
-    width: 100%;
-    height: auto;
-  }
-}
 
 .visionHeadingBlock {
   display: flex;
@@ -940,10 +934,11 @@
 
 .visionRotateWrap {
   position: relative;
-  width: 640px;
-  height: 460px;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
   margin: 0 auto;
-  max-width: 100%;
+  aspect-ratio: 640 / 460;
 }
 
 .visionHorizons {
