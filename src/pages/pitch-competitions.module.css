@@ -166,15 +166,17 @@
 .btnSecondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ifm-color-primary-dark);
+  border-bottom-width: 3px;
+  border-radius: 8px;
   background: transparent;
   color: #000 !important;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
   font-weight: 400;
   font-size: 0.9rem;
   text-decoration: none !important;
-  border: 1px solid var(--ifm-color-primary-dark);
-  border-bottom-width: 3px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btnSecondary:hover {
@@ -716,35 +718,124 @@
 }
 
 @media (max-width: 640px) {
+  * {
+    box-sizing: border-box;
+    max-width: 100% !important;
+  }
+
+  body {
+    overflow-x: hidden !important;
+  }
+
+  .container {
+    padding: 0 1.25rem !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .hero {
+    padding: 3rem 1.25rem 2rem !important;
+  }
+
+  .heroH1 {
+    font-size: 2rem !important;
+  }
+
+  .heroAccent {
+    font-size: 1.5rem !important;
+  }
+
+  .sectionGray {
+    padding: 3rem 0 !important;
+    overflow: hidden !important;
+  }
+
+  .sectionGray > div {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    padding: 0 1.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .sectionGray > div > div {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
   .benefitsGrid,
   .stepsGrid,
   .featuresGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .card {
+    padding: 1.5rem 1.25rem;
   }
 
   .heroActions {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 1rem;
+    gap: 0.5rem;
+    padding: 0;
   }
 
-  .btnPrimary,
-  .btnSecondary {
-    width: 100%;
-    justify-content: center;
+  .heroActions .btnPrimary,
+  .heroActions .btnSecondary {
+    padding: 8px 8px !important;
+    height: 36px !important;
+    font-size: 0.75rem !important;
+    min-width: unset !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 140px !important;
   }
 
   .ctaButtons {
-    flex-direction: column;
-    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
   }
 
-  .ctaBtnPrimary,
-  .ctaBtnSecondary {
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
+  .ctaButtons .ctaBtnPrimary,
+  .ctaButtons .ctaBtnSecondary {
+    padding: 8px 8px !important;
+    height: 36px !important;
+    font-size: 0.75rem !important;
+    min-width: unset !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 140px !important;
   }
 
   .statItem { padding: 1.75rem 1.25rem; }
+
+  .processSection,
+  .processSpacer {
+    --rail-half: 0px !important;
+  }
+
+  .processSection::before,
+  .processSection::after,
+  .processSpacer::before,
+  .processSpacer::after {
+    display: none !important;
+  }
+
+  .processBand {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  .processNum {
+    font-size: 2rem !important;
+  }
+
+  .processCard {
+    padding: 1.5rem !important;
+  }
+
+  .processSection {
+    padding: 2rem 1.25rem !important;
+  }
 }

@@ -96,6 +96,24 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .heroActions {
+    gap: 0.5rem;
+  }
+
+  .heroActions .btnPrimary,
+  .heroActions .btnSecondary {
+    padding: 8px 8px !important;
+    height: 36px !important;
+    font-size: 0.75rem !important;
+    min-width: unset !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 140px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -491,6 +509,23 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .ctaButtons {
+    gap: 0.5rem;
+  }
+
+  .ctaButtons .ctaBtnPrimary,
+  .ctaButtons .ctaBtnSecondary {
+    padding: 8px 8px !important;
+    height: 36px !important;
+    font-size: 0.75rem !important;
+    min-width: unset !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 140px !important;
+  }
 }
 
 .ctaBtnPrimary {
@@ -1144,25 +1179,29 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
   color: #fff !important;
+  text-decoration: none !important;
 }
 
 .btnSecondary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   padding: 0.75rem 1rem;
+  border: 1px solid var(--ifm-color-primary-dark);
+  border-bottom-width: 3px;
   border-radius: 8px;
+  background: transparent;
+  color: #000 !important;
   font-weight: 400;
   font-size: 0.9rem;
   text-decoration: none !important;
-  color: #000 !important;
-  border: 1px solid var(--ifm-color-primary-dark);
-  border-bottom-width: 3px;
-  background: transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btnSecondary:hover {
   transform: translateY(-1px);
+  color: #000 !important;
+  text-decoration: none !important;
 }
 
 /* Dark Mode Support */

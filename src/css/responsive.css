@@ -3,6 +3,19 @@
  * Perfect Responsive Design - No More Stairs
  */
 
+@media (max-width: 640px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 @media (max-width: 768px) {
   /* Blog Header Mobile */
   .blog-wrapper .blog-sidebar {
