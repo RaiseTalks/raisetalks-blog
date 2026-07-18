@@ -108,16 +108,26 @@ export default function FAQSection() {
       <div key={id} className={styles.faqItem}>
         <button
           id={buttonId}
-          className={`${styles.faqQuestion} ${isOpen ? styles.active : ''}`}
+          className={`${styles.faqQuestion} flex ${isOpen ? styles.active : ''}`}
           onClick={() => toggleFAQ(id)}
           aria-expanded={isOpen}
           aria-controls={panelId}
         >
+          <svg
+            className={styles.faqIcon}
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          <div>
           <span>{item.question}</span>
-          <span className={styles.faqIcon} aria-hidden="true">
-            {isOpen ? '−' : '+'}
-          </span>
-        </button>
         <div
           id={panelId}
           role="region"
@@ -129,6 +139,8 @@ export default function FAQSection() {
             {item.answer}
           </div>
         </div>
+        </div>
+        </button>
       </div>
     );
   };

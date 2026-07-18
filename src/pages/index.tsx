@@ -4,6 +4,7 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import SolutionSection, { DiligenceVideoBlock, NarrativeBlock, InvestorDiscoveryBlock } from '@site/src/components/SolutionSection';
 import LogoCarousel from '@site/src/components/LogoCarousel';
+import McpCommunicator from '../components/McpCommunicator';
 import WorkspaceBanner from '@site/src/components/WorkspaceBanner';
 import GridSeam from '@site/src/components/GridSeam';
 import styles from './index.module.css';
@@ -214,6 +215,7 @@ export default function Home() {
       <GridSeam />
       <InvestorDiscoveryBlock />
       <GridSeam />
+      <McpCommunicator />
       <GridSeam variant="dark" />
       <HomepageCTA />
     </Layout>

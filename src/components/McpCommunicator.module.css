@@ -1,0 +1,14 @@
+.sectionInner {
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 128px;
+    border-left: 0.5px solid #CED6DE;
+    border-right: 0.5px solid #CED6DE;
+    background:#FAFAFA;
+}
+
+@media (min-width: 640px) { .sectionInner { max-width: 640px; padding: 2rem; } }
+@media (min-width: 768px) { .sectionInner { max-width: 768px; padding: 2.5rem; } }
+@media (min-width: 1024px) { .sectionInner { max-width: 1024px; padding: 4rem; } }
+@media (min-width: 1280px) { .sectionInner { max-width: 1280px; padding: 4rem; } }
+@media (min-width: 1536px) { .sectionInner { max-width: 1536px; padding: 4rem; } }

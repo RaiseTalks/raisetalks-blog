@@ -15,16 +15,87 @@
 
 /* Shared layout */
 .sectionInner {
-  max-width: 1480px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 64px;
+  padding: 1.5rem;
   gap: 128px;
   border-left: 0.5px solid #CED6DE;
   border-right: 0.5px solid #CED6DE;
 }
 
+@media (min-width: 640px) {
+  .sectionInner {
+    max-width: 640px;
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .sectionInner {
+    max-width: 768px;
+    padding: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionInner {
+    max-width: 1024px;
+    padding: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sectionInner {
+    max-width: 1280px;
+    padding: 4rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .sectionInner {
+    max-width: 1536px;
+    padding: 4rem;
+  }
+}
+
+/* Responsive grid line spacers */
+.gridLineSpacer {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .gridLineSpacer {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .gridLineSpacer {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridLineSpacer {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .gridLineSpacer {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .gridLineSpacer {
+    max-width: 1536px;
+  }
+}
+
 .sectionHeader {
   margin: 0 auto 1.5rem;
+  max-width: 1352px;
 }
 
 .sectionEyebrow {
@@ -39,9 +110,10 @@
 }
 
 .sectionTitle {
-  font-size: 2.75rem;
+  font-size: 32px;
   font-weight: 400;
   line-height: 1.15;
+  max-width: 1352px;
   color: var(--ifm-color-content);
 }
 
@@ -72,7 +144,7 @@
 }
 
 .heroInner {
-  max-width: 1024px;
+  max-width: 820px;
   max-height: 483px;
   padding-top: 128px;
   padding-bottom: 80px;
@@ -174,7 +246,7 @@
 
 .truthInner {
   
-  max-width: 840px;
+  max-width: 680px;
   margin: 0 auto;
   gap: 2rem;
   align-items: flex-start;
@@ -571,8 +643,6 @@
 
 /* ── CHARACTER SECTION ────────────────────────────────── */
 .characterSection {
-  background: var(--raisetalks-brand-gradient);
-  padding: 5rem 0;
 }
 
 .sectionHeaderLight {
@@ -595,29 +665,26 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-.sectionTitleLight {
-  color: #fff !important;
-}
 
 .sectionDescLight {
   color: rgba(255, 255, 255, 0.75);
 }
 
 .accentTextLight {
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.35);
-  text-underline-offset: 4px;
-  -webkit-text-fill-color: unset;
-  background: none;
+
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+  font-family: Georgia, serif;
 }
 
 .characterGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 64px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
   overflow: hidden;
 }
 
@@ -625,7 +692,11 @@
   background: rgba(255, 255, 255, 0.06);
   padding: 2rem 1.75rem;
   transition: background 0.25s ease;
-  border: none;
+  border-bottom: 0.5px solid #CED6DE;
+}
+
+.characterCard:nth-child(n+5) {
+  border-bottom: none;
 }
 
 .characterCard:hover {
@@ -633,15 +704,13 @@
 }
 
 .characterTrait {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff;
+  font-size: 1.375rem;
+  font-weight: 400;
   margin-bottom: 0.6rem;
 }
 
 .characterDesc {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.72);
   line-height: 1.7;
   margin: 0;
 }
@@ -727,7 +796,6 @@
 }
 
 .perksRow1 {
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 3rem;
@@ -738,15 +806,14 @@
 .perksHeadGroup {
   flex: 0 1 auto;
   min-width: 0;
-  text-align: center;
 }
 
 .perksTitle {
-  font-size: clamp(1.9rem, 3.8vw, 2.75rem);
-  font-weight: 800;
+  font-size: 3rem;
+  font-weight: 400;
   line-height: 1.15;
-  margin: 0.5rem 0 0.75rem;
   color: var(--ifm-color-content);
+  margin-bottom: 2rem;
 }
 
 .perksSubtitle {
@@ -756,14 +823,7 @@
   margin: 0;
 }
 
-.perksCta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  flex: 0 1 auto;
-}
+
 
 .perksCta .btnPrimary {
   width: 100%;
@@ -779,10 +839,8 @@
 
 .perksGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
-  background: var(--ifm-color-emphasis-200);
-  border-radius: 16px;
   overflow: hidden;
 }
 
@@ -790,6 +848,8 @@
   background: var(--ifm-background-color);
   padding: 2rem 1.75rem;
   transition: background 0.2s ease;
+  display: flex;
+  gap: 24px
 }
 
 .perkCard:hover {
@@ -807,8 +867,8 @@
 }
 
 .perkTitle {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1.375rem;
+  font-weight: 400;
   color: var(--ifm-color-content);
   margin-bottom: 0.6rem;
 }
@@ -819,6 +879,23 @@
   line-height: 1.7;
   margin: 0;
 }
+
+.perkIcon {
+  width: 33px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ifm-color-primary);
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+.perkIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
 
 @media (max-width: 900px) {
   .perksRow1 { align-items: flex-start; }
@@ -833,7 +910,7 @@
 /* ── CTA SECTION ──────────────────────────────────────── */
 .ctaSection {
   padding: 6rem 1.5rem;
-  background: var(--ifm-background-color);
+  background: var(--ifm-background-color) url('/img/investors/cta-bg.png') center/cover no-repeat;
   border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
@@ -861,27 +938,27 @@
 }
 
 .ctaTitle {
-  font-size: clamp(1.9rem, 4vw, 2.8rem);
-  font-weight: 900;
+  font-size: 3rem;
+  font-weight: 400;
   line-height: 1.15;
-  color: var(--ifm-color-content);
   margin-bottom: 1.25rem;
   letter-spacing: -0.015em;
+  color: #FFFFFF;
 }
 
 .ctaTitle em {
   font-style: italic;
-  background: var(--raisetalks-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: Georgia, serif;
+  text-decoration: underline;
+  text-align: center;
 }
 
 .ctaDesc {
-  font-size: 1.05rem;
+  font-size: 0.90625rem;
   color: var(--ifm-color-content-secondary);
   line-height: 1.7;
   margin-bottom: 2rem;
+  color: #D7D7D7;
 }
 
 .ctaActions {
@@ -923,7 +1000,7 @@
   border-bottom: 3px solid #003687;
   border-radius: 8px;
   color: #fff !important;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 1rem;
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -942,13 +1019,13 @@
   align-items: center;
   justify-content: center;
   background: transparent;
-  color: var(--ifm-color-primary) !important;
+  color: #FFFFFF;
   padding: 12px 16px;
   gap: 10px;
   min-width: 151px;
   height: 42px;
   border-radius: 8px;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 1rem;
   text-decoration: none !important;
   border: 1px solid var(--ifm-color-primary);
