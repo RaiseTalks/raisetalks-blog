@@ -3,7 +3,7 @@ import styles from './McpCommunicator.module.css'
 
 export default function McpCommunicator() {
   const [copied, setCopied] = useState(false);
-  const url = "https://mcp.raisetalks.com/mcp";
+  const url = "https://mcp.raisetalks.com/";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
@@ -52,40 +52,57 @@ export default function McpCommunicator() {
 
         <div className="grid lg:grid-cols-3 gap-5 text-white/75">
 
-        <div className="border-b lg:border-b-0 border-r-0 lg:border-r-[0.5px] border-[#DAE0E7] p-5">
+        <div className="flex flex-col border-b lg:border-b-0 border-r-0 lg:border-r-[0.5px] border-[#DAE0E7] p-5">
             <div className="rounded-[8px] p-1 mb-5 text-center bg-[#ffab0e] text-black w-8">1</div>
             <p className="text-white font-bold mb-3">Copy the RaiseTalks URL</p>
             <p className="text-sm">Click to copy the connector URL - you'll paste it into Claude in the next step</p>
-            <button
-              onClick={handleCopy}
-              className={`w-full flex items-center justify-between gap-4 mt-8 p-4 rounded-lg transition-all duration-300 ${
-                copied
-                  ? 'border border-green-500 bg-green-900/20'
-                  : 'border border-[#ffab0e] hover:bg-[#ffab0e]/25 cursor-pointer bg-[#ffab0e]/10'
-              }`}
-              title="Click to copy URL to clipboard"
-            >
-              <span className={`text-sm font-mono flex-1 truncate ${copied ? 'text-green-400' : 'text-[#ffab0e]'}`}>
-                {copied ? 'Copied to clipboard' : url}
-              </span>
-              <div className={`w-5 h-5 flex-shrink-0 ${copied ? 'text-green-400' : 'text-[#ffab0e]'}`}>
-                {copied ? (
-                  <svg fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                ) : (
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
-                )}
+            <div className="mt-auto pt-8">
+              <div
+                className={`rounded-lg transition-all duration-300 ${
+                  copied ? 'bg-green-500 p-px' : 'bg-gradient-to-r from-[#0174e1] to-[#0166ca] p-px'
+                }`}
+              >
+                <button
+                  onClick={handleCopy}
+                  className={`w-full flex items-center justify-between gap-4 p-4 rounded-[7px] transition-all duration-300 cursor-pointer ${
+                    copied ? 'bg-green-900/20' : 'bg-[#0C1B31]'
+                  }`}
+                  title="Click to copy URL to clipboard"
+                >
+                  <span className={`text-sm font-mono flex-1 truncate ${copied ? 'text-green-400' : 'text-white'}`}>
+                    {copied ? 'Copied to clipboard' : url}
+                  </span>
+                  <div className={`w-5 h-5 flex-shrink-0 ${copied ? 'text-green-400' : 'text-white'}`}>
+                    {copied ? (
+                      <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                    )}
+                  </div>
+                </button>
               </div>
-            </button>
+            </div>
         </div>
 
-        <div  className=" border-b lg:border-b-0 border-r-0 lg:border-r-[0.5px] border-[#DAE0E7]/75 p-5">
+        <div className="flex flex-col border-b lg:border-b-0 border-r-0 lg:border-r-[0.5px] border-[#DAE0E7]/75 p-5">
             <div className="rounded-[8px] p-1 mb-5 text-center bg-[#0077FF] text-white w-8">2</div>
             <p className="text-white font-bold mb-3">Add it in Claude</p>
-            <p className="text-sm">Open <span className="text-white font-bold">Settings → Connectors</span>, add a custom connector, name in <span className="text-white font-bold">RaiseTalks</span>, and paste the URL.</p>
+            <p className="text-sm">In Claude desktop or claude.ai, go to <span className="text-white font-bold">Settings → Connectors</span>, add a custom connector, name it <span className="text-white font-bold">RaiseTalks</span>, and paste the URL.</p>
+            <div className="mt-auto pt-8">
+              <a
+                href="https://claude.ai/new#settings/customize-connectors"
+                className="w-full flex items-center justify-center gap-2 p-4 rounded-lg bg-gradient-to-r from-[#f5a623] to-[#e5484d] text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+              >
+                Open Claude Customize
+                <svg className="size-4 shrink-0" aria-hidden="true" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.25 14V18.65C18.25 19.2101 18.25 19.4901 18.141 19.704C18.0451 19.8922 17.8922 20.0451 17.704 20.141C17.4901 20.25 17.2101 20.25 16.65 20.25H5.35C4.78995 20.25 4.50992 20.25 4.29601 20.141C4.10785 20.0451 3.95487 19.8922 3.85899 19.704C3.75 19.4901 3.75 19.2101 3.75 18.65V7.35C3.75 6.78995 3.75 6.50992 3.85899 6.29601C3.95487 6.10785 4.10785 5.95487 4.29601 5.85899C4.50992 5.75 4.78995 5.75 5.35 5.75H9.25M13.75 3.75H20.25M20.25 3.75V10.25M20.25 3.75L11 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
         </div>
 
         <div className="p-5">
