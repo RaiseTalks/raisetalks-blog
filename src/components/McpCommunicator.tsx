@@ -50,7 +50,7 @@ export default function McpCommunicator() {
         
 
 
-        <div className="grid lg:grid-cols-3 gap-5 text-white/75">
+        <div className="grid lg:grid-cols-3 gap-5 lg:gap-x-0 text-white/75">
 
         <div className="flex flex-col border-b lg:border-b-0 border-r-0 lg:border-r-[0.5px] border-[#DAE0E7] p-5">
             <div className="rounded-[8px] p-1 mb-5 text-center bg-[#ffab0e] text-black w-8">1</div>
