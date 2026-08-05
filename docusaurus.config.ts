@@ -120,7 +120,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: 'https://app.raisetalks.com/pricing',
+          to: '/pricing',
           label: 'Pricing',
           position: 'left',
         },
@@ -175,7 +175,7 @@ const config: Config = {
             },
             {
               label: 'Pricing',
-              to: 'https://app.raisetalks.com/pricing',
+              to: '/pricing',
             },
             {
               label: 'Media Toolkit',
