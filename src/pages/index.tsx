@@ -37,8 +37,9 @@ function HomepageHero() {
     >
       <div className={styles.heroInner}>
         <h1 id="hero-heading" className={styles.heroTitle}>
-          AI-first Global{' '}
-          <span className={styles.heroAccent}>Fundraising Workspace</span>
+          AI-native Global Fundraising <br />
+          <span className={styles.heroAccent}>and Due Diligence for <br />
+          early-stage ventures</span>
         </h1>
         <p className={styles.heroDesc}>
           Run deals, streamline due diligence, and close rounds faster — all in one place.

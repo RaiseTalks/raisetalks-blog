@@ -115,8 +115,8 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/pitch-competitions',
-          label: 'Pitch Competitions',
+          to: '/decoder-game',
+          label: 'Decoder Game',
           position: 'left',
         },
         {
@@ -166,8 +166,8 @@ const config: Config = {
               to: 'https://www.linkedin.com/company/raisetalks/jobs/',
             },
             {
-              label: 'Affiliate Program',
-              to: '/affiliate-program',
+              label: 'Pitch Competition',
+              to: '/pitch-competitions',
             },
             {
               label: 'Feature Requests',
@@ -238,6 +238,10 @@ const config: Config = {
             {
               label: 'Facebook',
               to: 'https://facebook.com/raisetalks',
+            },
+             {
+              label: 'Affiliate Program',
+              to: '/affiliate-program',
             },
           ],
         },

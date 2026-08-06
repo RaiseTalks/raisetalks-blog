@@ -8,7 +8,7 @@ type FooterLinkItem = {label: string; to?: string; href?: string};
 type FooterLinkGroup = {title?: string; items: FooterLinkItem[]};
 
 const SOCIAL_COLUMNS = [
-  ['LinkedIn', 'YouTube'],
+  ['LinkedIn', 'YouTube', 'Affiliate Program'],
   ['Instagram', 'Facebook'],
 ];
 
@@ -36,7 +36,7 @@ export default function Footer(): ReactNode {
         <div className="container mx-auto rt-footer__grid">
           <div className="rt-footer__logo-col">
             <img
-              src={useBaseUrl('/img/about-us/shiny-logo.png')}
+              src={useBaseUrl('/img/backgrounds/footer-logo.webp')}
               alt=""
               aria-hidden="true"
               className="rt-footer__logo-icon"

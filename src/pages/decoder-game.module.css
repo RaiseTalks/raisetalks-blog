@@ -1,0 +1,122 @@
+/* Page grid rails — faint vertical lines framing the centered content.
+   Mirrors the rail ladder used on investors/about-us/startups so the lines
+   sit at the same x-positions across the site. --rail-half tracks Tailwind's
+   container half-widths; below 640px there is no max-width (full bleed) so the
+   rails are pushed off-screen and effectively hidden. */
+.pageRails {
+  position: relative;
+  --rail-half: 9999px;
+}
+@media (min-width: 640px)  { .pageRails { --rail-half: 320px; } }
+@media (min-width: 768px)  { .pageRails { --rail-half: 384px; } }
+@media (min-width: 1024px) { .pageRails { --rail-half: 512px; } }
+@media (min-width: 1280px) { .pageRails { --rail-half: 640px; } }
+@media (min-width: 1536px) { .pageRails { --rail-half: 768px; } }
+
+.pageRails::before,
+.pageRails::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.5px;
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+  z-index: 2;
+}
+.pageRails::before { left: calc(50% - var(--rail-half)); }
+.pageRails::after { right: calc(50% - var(--rail-half)); }
+
+/* Narrower rails for the hero — a tighter 480px half-width frame around the
+   hero content, matching the pitch-competitions hero rails
+   (left/right at calc(50% - 480px)) rather than the wider page ladder. */
+.heroRails {
+  position: relative;
+}
+.heroRails::before,
+.heroRails::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.5px;
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+  z-index: 2;
+}
+.heroRails::before { left: max(1.5rem, calc(50% - 480px)); }
+.heroRails::after { right: max(1.5rem, calc(50% - 480px)); }
+
+/* Narrower rails for the FAQ block — a 512px half-width frame that hugs the
+   FAQ's own max-w-[1024px] column, so it steps in from the wider page rails
+   the same way the hero does. */
+.faqRails {
+  position: relative;
+}
+.faqRails::before,
+.faqRails::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.5px;
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+  z-index: 2;
+}
+.faqRails::before { left: max(1.5rem, calc(50% - 512px)); }
+.faqRails::after { right: max(1.5rem, calc(50% - 512px)); }
+
+/* Rail variant for dark / blue-background sections. Same x-ladder as
+   .pageRails, but white lines so they stay visible against the dark fill
+   (a gray rail would disappear there). Mirrors the pitch-competitions
+   .processSection rails. Sections using this should be full-bleed so the
+   rails land over their background. */
+.pageRailsDark {
+  position: relative;
+  --rail-half: 9999px;
+}
+@media (min-width: 640px)  { .pageRailsDark { --rail-half: 320px; } }
+@media (min-width: 768px)  { .pageRailsDark { --rail-half: 384px; } }
+@media (min-width: 1024px) { .pageRailsDark { --rail-half: 512px; } }
+@media (min-width: 1280px) { .pageRailsDark { --rail-half: 640px; } }
+@media (min-width: 1536px) { .pageRailsDark { --rail-half: 768px; } }
+
+.pageRailsDark::before,
+.pageRailsDark::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.5px;
+  background: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 2;
+}
+.pageRailsDark::before { left: calc(50% - var(--rail-half)); }
+.pageRailsDark::after { right: calc(50% - var(--rail-half)); }
+
+/* Centered content container whose max-width matches the rail span exactly
+   (2 × --rail-half at each breakpoint), so section content always sits inside
+   the vertical rails and text never crosses them. Mirrors the container used
+   on the pitch-competitions page. Pair with horizontal padding to inset text
+   off the rails. */
+.railContainer {
+  width: 100%;
+  margin-inline: auto;
+}
+@media (min-width: 640px)  { .railContainer { max-width: 640px; } }
+@media (min-width: 768px)  { .railContainer { max-width: 768px; } }
+@media (min-width: 1024px) { .railContainer { max-width: 1024px; } }
+@media (min-width: 1280px) { .railContainer { max-width: 1280px; } }
+@media (min-width: 1536px) { .railContainer { max-width: 1536px; } }
+
+/* Horizontal frame lines — span the FULL width so they cut clean across the
+   vertical rails (which draw on top at z-index 2), forming the grid
+   intersections. Matches the pitch-competitions full-width section borders. */
+.railDivider {
+  height: 0.5px;
+  width: 100%;
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+}

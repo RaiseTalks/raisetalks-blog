@@ -57,7 +57,7 @@
   position: relative;
   padding: 6rem 1.5rem 4rem;
   text-align: center;
-  background: var(--ifm-background-color) url(/img/about-us/about-us-hero.png) no-repeat center / cover;
+  background: var(--ifm-background-color) url(/img/backgrounds/hero-alt-desktop.webp) no-repeat center / cover;
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
   opacity: 0;
   transition: opacity 0.6s ease 0.05s;
@@ -301,7 +301,7 @@
 .processSection {
   position: relative;
   padding: 5.5rem 1.5rem;
-  background: var(--raisetalks-blue-primary-flat) url(/img/11f2836e48717136d3bcf81e1a5c1e68e98d08a0.png) no-repeat center / cover;
+  background: var(--raisetalks-blue-primary-flat) url(/img/backgrounds/blue-section-desktop.webp) no-repeat center / cover;
   overflow: hidden;
 }
 
@@ -592,7 +592,7 @@
 .ctaGlow {
   position: absolute;
   inset: 0;
-  background-image: url('/img/about-us/cta-bg.png');
+  background-image: url('/img/backgrounds/main-cta-desktop.webp');
   background-size: 70%;
   background-position: center;
   background-repeat: no-repeat;

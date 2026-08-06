@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="lucide/camera">
+<g id="Vector">
+<path d="M28.0946 9.39453C28.744 9.39452 29.3814 9.57141 29.9391 9.90645C30.4968 10.2415 30.9541 10.7222 31.2626 11.2977L32.1374 12.9289C32.4459 13.5044 32.9032 13.9851 33.4609 14.3201C34.0186 14.6552 34.656 14.832 35.3054 14.832H38.9C39.8548 14.832 40.7705 15.2139 41.4456 15.8938C42.1207 16.5736 42.5 17.4956 42.5 18.457V34.7695C42.5 35.7309 42.1207 36.653 41.4456 37.3328C40.7705 38.0126 39.8548 38.3945 38.9 38.3945H10.1C9.14522 38.3945 8.22955 38.0126 7.55442 37.3328C6.87928 36.653 6.5 35.7309 6.5 34.7695V18.457C6.5 17.4956 6.87928 16.5736 7.55442 15.8938C8.22955 15.2139 9.14522 14.832 10.1 14.832H13.6946C14.3434 14.8321 14.9801 14.6556 15.5374 14.3212C16.0947 13.9868 16.552 13.507 16.8608 12.9325L17.741 11.294C18.0498 10.7195 18.5071 10.2397 19.0644 9.90535C19.6217 9.57099 20.2584 9.3945 20.9072 9.39453H28.0946Z" stroke="url(#paint0_linear_0_6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.5 31.1445C27.4823 31.1445 29.9 28.7101 29.9 25.707C29.9 22.704 27.4823 20.2695 24.5 20.2695C21.5177 20.2695 19.1 22.704 19.1 25.707C19.1 28.7101 21.5177 31.1445 24.5 31.1445Z" stroke="url(#paint1_linear_0_6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_6" x1="6.5" y1="43.3245" x2="48.9467" y2="30.0718" gradientUnits="userSpaceOnUse">
+<stop stop-color="#003687"/>
+<stop offset="1" stop-color="#0077FF"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_6" x1="6.5" y1="43.3245" x2="48.9467" y2="30.0718" gradientUnits="userSpaceOnUse">
+<stop stop-color="#003687"/>
+<stop offset="1" stop-color="#0077FF"/>
+</linearGradient>
+</defs>
+</svg>

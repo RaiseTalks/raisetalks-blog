@@ -29,9 +29,21 @@
 
 .hero {
   text-align: center;
-  background: #ffffff url('/img/hero-background.png') center / cover no-repeat;
+  background: #ffffff url('/img/backgrounds/homepage-hero-desktop.webp') center / cover no-repeat;
   opacity: 0;
   transition: opacity 0.6s ease 0.05s;
+}
+
+@media (max-width: 996px) {
+  .hero {
+    background-image: url('/img/backgrounds/homepage-hero-tablet.webp');
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-image: url('/img/backgrounds/homepage-hero-mobile.webp');
+  }
 }
 
 .hero.visible {
@@ -67,7 +79,7 @@
 }
 
 .heroTitle {
-  font-size: 4.5rem;
+  font-size: 4.0rem;
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.02em;

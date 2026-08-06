@@ -59,7 +59,7 @@ const NoPitchCoachIcon = ({ className }: { className?: string }) => (
 );
 
 export default function AboutUs() {
-   const goalCardBg = useBaseUrl('/img/11f2836e48717136d3bcf81e1a5c1e68e98d08a0.png');
+   const goalCardBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
    const visionTimelineImg = useBaseUrl('/img/about-us/vision-timeline.png');
    return (
       <Layout
@@ -168,7 +168,7 @@ export default function AboutUs() {
                         <p className={clsx(styles.whyExistBodyLight, "font-semibold")}>When great ideas stop dying in due diligence, the entire innovation ecosystem becomes more productive.</p>
                      </div>
                      <div className={styles.whyBuildGraphicCol}>
-                        <img src="/img/about-us/shiny-logo.png" className={styles.whyBuildGraphic} alt="RaiseTalks brand mark" loading="lazy" />
+                        <img src="/img/backgrounds/footer-logo.webp" className={styles.whyBuildGraphic} alt="RaiseTalks brand mark" loading="lazy" />
                      </div>
                   </div>
                </div>
@@ -293,10 +293,10 @@ export default function AboutUs() {
                               loading="lazy"
                            />
                         </div>
-                        <div>
+                        <a href="https://www.linkedin.com/in/dvasylieva/">
                            <p className={styles.workspaceFounderName}>Dr. Dariia Vasylieva</p>
                            <p className={styles.workspaceFounderRole}>President, CEO at RaiseTalks</p>
-                        </div>
+                        </a>
                      </div>
                   </div>
                </div>

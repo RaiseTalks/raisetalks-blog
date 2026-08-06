@@ -188,7 +188,7 @@ function FeatureImage({ src, alt }: { src: string; alt: string }) {
 
 
 export default function Startups() {
-  const pillarsBg = useBaseUrl('/img/11f2836e48717136d3bcf81e1a5c1e68e98d08a0.png');
+  const pillarsBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
 
   return (
     <Layout

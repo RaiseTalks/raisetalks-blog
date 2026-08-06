@@ -22,7 +22,7 @@
 .hero {
   position: relative;
   text-align: center;
-  background: #ffffff url('/img/about-us/about-us-hero.png') center / cover no-repeat;
+  background: #ffffff url('/img/backgrounds/hero-alt-desktop.webp') center / cover no-repeat;
   /* Touches the navbar exactly — .hero has no padding of its own, so a
      border here sits flush with whatever's above, no gap. The bottom
      line comes from the rail divider below instead, to avoid a double
@@ -38,6 +38,8 @@
 @media (min-width: 1024px) { .hero { --rail-half: 512px; } }
 @media (min-width: 1280px) { .hero { --rail-half: 640px; } }
 @media (min-width: 1536px) { .hero { --rail-half: 768px; } }
+@media (max-width: 996px) { .hero { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
+@media (max-width: 768px) { .hero { background-image: url('/img/backgrounds/hero-alt-mobile.webp'); } }
 /* Hero's rail matches the rest of the page's width (not its own
    narrower 720px content column) — same treatment as the content below,
    so the vertical guides don't jump narrower then wider again. Scoped to
@@ -60,7 +62,6 @@
   max-width: 720px;
   margin: 0 auto;
   padding: 6rem 1rem 4rem;
-  border: 1px solid black;
 }
 
 .heroEyebrow {
@@ -454,7 +455,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-image: url('/img/about-us/cta-bg.png');
+  background-image: url('/img/backgrounds/main-cta-desktop.webp');
   background-size: 70%;
   background-position: center;
   background-repeat: no-repeat;

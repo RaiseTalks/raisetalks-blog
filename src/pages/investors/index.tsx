@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import InvestorMcpAccess from '@site/src/components/InvestorMcpAccess';
 import styles from './index.module.css';
 
 // ---------------------------------------------------------------------------
@@ -163,9 +164,9 @@ export default function InvestorsPage() {
   const proof = useInView(0.15);
   const cta = useInView(0.1);
 
-  const heroBg = useBaseUrl('/img/investors/hero-bg.png');
-  const ctaBg = useBaseUrl('/img/investors/cta-bg.png');
-  const bandBg = useBaseUrl('/img/11f2836e48717136d3bcf81e1a5c1e68e98d08a0.png');
+  const heroBg = useBaseUrl('/img/backgrounds/hero-alt-desktop.webp');
+  const ctaBg = useBaseUrl('/img/backgrounds/main-cta-desktop.webp');
+  const bandBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
   const dashboardShadow = useBaseUrl('/img/investors/startup-catalog-mockup.png');
   const prescoreImg = useBaseUrl('/img/investors/prescore-dashboard.png');
   const avatar = useBaseUrl('/img/investors/avatar-dariia.png');
@@ -531,6 +532,12 @@ export default function InvestorsPage() {
 
         {/* Empty spacer row below the content (single line, not doubled) */}
         <div className={styles.spacerRow} />
+      </section>
+
+      {/* ================= MCP LEAD MAGNET ================= */}
+      <section aria-labelledby="mcp-heading">
+        <h2 id="mcp-heading" className={styles.srOnly}>Run diligence inside Claude</h2>
+        <InvestorMcpAccess />
       </section>
 
       {/* ================= CLOSING CTA ================= */}

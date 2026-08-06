@@ -8,6 +8,18 @@
   margin-right: calc(50% - 50vw);
 }
 
+/* Portrait carousel = Figma section 2601:9424 — #F7F7F7 band, 64px vertical
+   padding, 580px cards => 708px total. Overrides the shared top margin. */
+.portraitCarousel {
+  margin-top: 0;
+  padding: 64px 0;
+  background: #f7f7f7;
+  /* Sit above the page's vertical rails (z-index 2) so the opaque band covers
+     them — the carousel section has no vertical grid lines. */
+  position: relative;
+  z-index: 3;
+}
+
 .photoRow {
   position: relative;
   overflow: hidden;
@@ -39,6 +51,13 @@
   margin: 0 0.5rem;
   border-radius: 1rem;
   overflow: hidden;
+  background: #f7f7f7;
+}
+
+.photoItem.portrait {
+  width: 320px;
+  height: 480px; /* scaled down from Figma 387×580, keeps 0.667 aspect */
+  margin: 0 1rem; /* 32px gap between cards */
 }
 
 .photoItem img {
@@ -77,5 +96,10 @@
   .photoItem {
     width: 240px;
     height: 160px;
+  }
+
+  .photoItem.portrait {
+    width: 240px;
+    height: 360px; /* keeps Figma's 387:580 (~0.667) aspect ratio */
   }
 }

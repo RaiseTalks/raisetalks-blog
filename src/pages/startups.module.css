@@ -910,7 +910,7 @@
 /* ── CTA SECTION ──────────────────────────────────────── */
 .ctaSection {
   padding: 6rem 1.5rem;
-  background: var(--ifm-background-color) url('/img/investors/cta-bg.png') center/cover no-repeat;
+  background: var(--ifm-background-color) url('/img/backgrounds/main-cta-desktop.webp') center/cover no-repeat;
   border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
