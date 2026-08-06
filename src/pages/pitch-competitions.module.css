@@ -97,9 +97,11 @@
 
 .heroEyebrow {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
   margin-bottom: 1.5rem;
@@ -107,9 +109,10 @@
 }
 
 .heroH1 {
-  font-size: 3.5rem;
-  font-weight: 400;
-  line-height: 1.08;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-hero);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   margin: 0 0 1.5rem 0;
   color: var(--ifm-color-content);
@@ -121,14 +124,15 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-style: italic;
-  font-family: Georgia, serif;
-  font-size: 2.5rem;
+  font-family: var(--rt-font-serif);
+  font-size: var(--rt-fs-hero-alt);
 }
 
 .heroDesc {
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.75;
+  line-height: var(--rt-lh-body);
   max-width: 640px;
   margin: 0 auto 2.5rem;
 }
@@ -149,7 +153,7 @@
   color: #fff !important;
   border-radius: 10px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid #003687;
@@ -174,7 +178,7 @@
   background: transparent;
   color: #000 !important;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -221,18 +225,21 @@
 }
 
 .eyebrow {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: #0174e1;
   margin: 0 0 1.25rem 0;
 }
 
 .sectionH2 {
-  font-size: 2.5rem;
-  font-weight: 400;
-  line-height: 1.15;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
   letter-spacing: -0.02em;
   color: #0a0a0b;
   margin: 0 0 2.5rem 0;
@@ -279,17 +286,19 @@
 
 
 .cardTitle {
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-semibold);
+  line-height: var(--rt-lh-h4);
   color: #0a0a0b;
   margin: 0;
-  line-height: 1.3;
 }
 
 .cardBody {
-  font-size: 0.875rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: #52525b;
-  line-height: 1.65;
+  line-height: var(--rt-lh-body);
   margin: 0;
 }
 
@@ -345,15 +354,18 @@
 .processSpacer::after { right: calc(50% - var(--rail-half)); }
 
 .processEyebrow {
-  font-size: 2.25rem;
-  font-weight: 400;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h3);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h3);
   color: #fff;
   margin: 0 0 0.5rem 0;
-  font-family: 'Poppins', system-ui, sans-serif;
 }
 
 .processSubtitle {
-  font-size: 0.95rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
 }
@@ -402,16 +414,17 @@
 }
 
 .processCardTitle {
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: 1.5rem;
-  line-height: 1.3;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  line-height: var(--rt-lh-h4);
   color: #fff;
   margin: 0 0 0.5rem 0;
 }
 
 .processCardDesc {
-  font-size: 0.8125rem;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #e5e5e5;
   margin: 0;
 }
@@ -459,17 +472,19 @@
 }
 
 .featureTitle {
-  font-size: 1.375rem;
-  font-weight: 400;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h4);
   color: #0a0a0b;
   margin: 0 0 0.35rem 0;
-  line-height: 1.3;
 }
 
 .featureDesc {
-  font-size: 0.90625rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: #52525b;
-  line-height: 1.55;
+  line-height: var(--rt-lh-body);
   margin: 0;
 }
 
@@ -604,9 +619,10 @@
 
 .ctaH2 {
   position: relative;
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1.1;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
   letter-spacing: -0.025em;
   color: #ffffff;
   margin: 0 0 1rem 0;
@@ -614,9 +630,10 @@
 
 .ctaSub {
   position: relative;
-  font-size: 0.90625rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.7;
+  line-height: var(--rt-lh-body);
   margin: 0 0 2.5rem 0;
 }
 
@@ -643,7 +660,7 @@
   border-radius: 8px;
   color: #fff !important;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -671,7 +688,7 @@
   border-bottom-width: 3px;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -737,14 +754,6 @@
     padding: 3rem 1.25rem 2rem !important;
   }
 
-  .heroH1 {
-    font-size: 2rem !important;
-  }
-
-  .heroAccent {
-    font-size: 1.5rem !important;
-  }
-
   .sectionGray {
     padding: 3rem 0 !important;
     overflow: hidden !important;
@@ -785,7 +794,7 @@
   .heroActions .btnSecondary {
     padding: 8px 8px !important;
     height: 36px !important;
-    font-size: 0.75rem !important;
+    font-size: var(--rt-fs-footnote) !important;
     min-width: unset !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -801,7 +810,7 @@
   .ctaButtons .ctaBtnSecondary {
     padding: 8px 8px !important;
     height: 36px !important;
-    font-size: 0.75rem !important;
+    font-size: var(--rt-fs-footnote) !important;
     min-width: unset !important;
     flex: 0 0 auto !important;
     width: auto !important;

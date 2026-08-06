@@ -94,8 +94,8 @@ export default function AboutUs() {
             <div className={styles.heroInner}>
                <div className={styles.heroEyebrow}>We Are</div>
                <Heading as="h1" className={styles.heroTitle}>
-                  Translating founder potential into <br />
-                  <span className={styles.heroAccent}>investor-grade intelligence</span>
+                  Translating founder potential <br />
+                  <span className={styles.heroAccent}> into investor-grade intelligence</span>
                </Heading>
                <div className={styles.heroActions}>
                   <Link className={styles.btnPrimary} to="https://calendly.com/iamdariiava/30min">
@@ -249,64 +249,6 @@ export default function AboutUs() {
             <div className={styles.railDividerInner}></div>
          </div>
 
-         {/* Why RaiseTalks Section */}
-         <section className={clsx(styles.whySection, styles.animateIn)}>
-            <div className={styles.sectionContainer}>
-               <h2 className={styles.workspaceHeading}>
-                  <span className={styles.workspaceHeadingLine1}>One Workspace.</span>
-                  <span className={styles.workspaceHeadingLine2}>Zero chaos.</span>
-               </h2>
-
-               <div className={styles.workspaceRow}>
-                  <div className={styles.workspaceCardsCol}>
-                     <div className={styles.workspaceCard}>
-                        <h3 className={styles.workspaceCardTitle}>From messy docs to investor-grade data</h3>
-                        <p className={styles.workspaceCardDesc}>
-                           We transform raw startup inputs into structured, consistent, investor-ready materials - data room, narrative, metrics, and diligence-ready evidence - so your story and numbers match.
-                        </p>
-                     </div>
-
-                     <div className={styles.workspaceCard}>
-                        <h3 className={styles.workspaceCardTitle}>Standardized diligence that moves deals faster</h3>
-                        <p className={styles.workspaceCardDesc}>
-                           RaiseTalks aligns founders, VCs, and accelerators on one shared structure and workflow - reducing back-and-forth, version chaos, and missing information.
-                        </p>
-                     </div>
-
-                     <div className={styles.workspaceCard}>
-                        <h3 className={styles.workspaceCardTitle}>Data rails for VC private markets</h3>
-                        <p className={styles.workspaceCardDesc}>
-                           As your workspace stays current, RaiseTalks becomes a real-time intelligence layer: interest signals, readiness scoring, and decision support - so trust compounds from round to round.
-                        </p>
-                     </div>
-                  </div>
-
-                  <div className={styles.workspaceFounderCard}>
-                     <p className={styles.workspaceFounderQuote}>
-                        "RaiseTalks is an AI-native VC investment-intelligence platform for early-stage portfolios: founders get investor-grade data rooms, readiness scores, and structured IR pipelines, while funds get faster diligence, clearer IC prep, and earlier visibility into the right deals. I've spent 17 years on the investment side, closed €3B+ in deals, and reviewed 10,000+ startups, and I'm turning that investment-readiness playbook into an AI-native platform that becomes the natural end-to-end workspace for VC investments."
-                     </p>
-                     <div className={styles.workspaceFounderFooter}>
-                        <div className={styles.workspaceFounderAvatar}>
-                           <img
-                              src="/img/icons/dariia.jpg"
-                              alt="Dr. Dariia Vasylieva - President, CEO"
-                              loading="lazy"
-                           />
-                        </div>
-                        <a href="https://www.linkedin.com/in/dvasylieva/">
-                           <p className={styles.workspaceFounderName}>Dr. Dariia Vasylieva</p>
-                           <p className={styles.workspaceFounderRole}>President, CEO at RaiseTalks</p>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
-
-         {/* Rail Divider */}
-         <div className={styles.railDividerLight}>
-            <div className={styles.railDividerInner}></div>
-         </div>
 
          {/* Values Section */}
          <section className={clsx(styles.valuesSection, styles.animateIn)}>

@@ -179,17 +179,13 @@
     display: none !important;
   }
 
-  .heroH1 {
-    font-size: 1.75rem !important;
-  }
-
   .heroActions {
     flex-wrap: nowrap !important;
   }
 
   .heroActions a {
     flex: 0 0 auto !important;
-    font-size: 0.75rem !important;
+    font-size: var(--rt-fs-footnote) !important;
     padding: 8px 12px !important;
     min-width: 100px !important;
   }
@@ -225,10 +221,10 @@
 
 /* ---- Shared headings ---- */
 .sectionH2 {
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
-  font-weight: 500;
-  line-height: 1.12;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-medium);
+  line-height: var(--rt-lh-h2);
   letter-spacing: -0.02em;
   color: var(--ifm-color-content);
   margin: 0 0 0.85rem 0;
@@ -239,8 +235,8 @@
   margin-bottom: 2.5rem;
 }
 .sectionSub {
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: var(--ifm-color-content-secondary);
   margin: 0 0 1.75rem 0;
   max-width: 30rem;
@@ -252,7 +248,7 @@
   align-items: center;
   justify-content: center;
   padding: 12px 16px;
-  font-size: 1rem;
+  font-size: var(--rt-fs-body);
   font-weight: 600;
   border-radius: 8px;
   text-decoration: none;
@@ -268,7 +264,7 @@
   color: #fff !important;
   border-radius: 10px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid #003687;
@@ -292,7 +288,7 @@
   background: transparent;
   color: #000 !important;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -337,19 +333,19 @@
   padding: 1.5rem 0;
 }
 .heroH1 {
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: clamp(2.1rem, 5vw, 3.25rem);
-  font-weight: 500;
-  line-height: 1.08;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-hero);
+  font-weight: var(--rt-weight-medium);
+  line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   color: var(--ifm-color-content);
   margin: 0 0 1.25rem 0;
 }
 .heroH1 .accent { font-weight: 400; }
 .heroDesc {
-  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.65;
+  line-height: var(--rt-lh-body);
   max-width: 32rem;
   margin: 0 auto 2rem;
 }
@@ -369,7 +365,7 @@
   .heroActions .btnSecondary {
     padding: 8px 8px !important;
     height: 36px !important;
-    font-size: 0.75rem !important;
+    font-size: var(--rt-fs-footnote) !important;
     min-width: unset !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -437,9 +433,10 @@
   margin: 0 auto;
   max-width: 42rem;
   color: #fff;
-  font-size: clamp(1rem, 1.9vw, 1.3rem);
-  font-weight: 500;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-medium);
+  line-height: var(--rt-lh-h4);
 }
 
 /* ============================================================
@@ -454,8 +451,8 @@
   margin-bottom: 2.5rem;
 }
 .problemBody {
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: var(--ifm-color-content-secondary);
   margin: 0.5rem 0 0;
 }
@@ -576,9 +573,10 @@
 }
 .cardIcon svg { width: 100%; height: 100%; }
 .cardTitle {
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-semibold);
+  line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
   margin: 0 0 0.6rem;
 }
@@ -587,15 +585,15 @@
   font-size: 1rem;
 }
 .cardBody {
-  font-size: 0.88rem;
-  line-height: 1.55;
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: var(--ifm-color-content-secondary);
   margin: 0 0 0.55rem;
 }
 .cardBody:last-child { margin-bottom: 0; }
 .cardNote {
   margin: 0.85rem 0 0;
-  font-size: 0.85rem;
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
   opacity: 0.7;
 }
@@ -607,10 +605,10 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.28rem 0;
-  font-size: 0.95rem;
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
 }
-.checkListBold .checkItem { color: var(--ifm-color-content); font-weight: 600; }
+.checkListBold .checkItem { color: var(--ifm-color-content); font-weight: var(--rt-weight-semibold); }
 .checkMark { width: 1rem; height: 1rem; flex-shrink: 0; }
 
 @media (max-width: 900px) {
@@ -665,13 +663,13 @@
 }
 .featureRow .checkMark { width: 1.15rem; height: 1.15rem; margin-top: 0.15rem; }
 .featureRowTitle {
-  font-weight: 600;
-  font-size: 0.98rem;
+  font-weight: var(--rt-weight-semibold);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content);
   margin: 0 0 0.15rem;
 }
 .featureRowDesc {
-  font-size: 0.88rem;
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
   margin: 0;
 }
@@ -685,14 +683,15 @@
   box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
 }
 .miniCardTitle {
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-semibold);
+  line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
   margin: 0 0 0.3rem;
 }
 .miniCardSub {
-  font-size: 0.85rem;
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
   margin: 0 0 1rem;
 }
@@ -727,7 +726,7 @@
   background: rgba(1, 116, 225, 0.04);
   border-radius: 0.6rem;
   padding: 0.5rem 1rem;
-  font-size: 0.95rem;
+  font-size: var(--rt-fs-body);
 }
 
 /* ---- DD category rows ---- */
@@ -749,14 +748,15 @@
 }
 .ddIcon svg { width: 100%; height: 100%; }
 .ddRowTitle {
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-medium);
+  line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
   margin: 0 0 0.25rem;
 }
 .ddRowItems {
-  font-size: 0.88rem;
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
   margin: 0;
 }
@@ -830,10 +830,10 @@
   display: block;
 }
 .quoteText {
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: var(--rt-font-sans);
   font-style: italic;
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  line-height: 1.5;
+  font-size: var(--rt-fs-h4);
+  line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
   margin: 0 0 1.25rem;
   border: none;
@@ -841,7 +841,7 @@
 }
 .quoteAttr { display: flex; flex-direction: column; gap: 0.15rem; }
 .quoteName { font-weight: 700; color: var(--ifm-color-content); }
-.quoteRole { font-size: 0.9rem; color: var(--ifm-color-content-secondary); }
+.quoteRole { font-size: var(--rt-fs-body); color: var(--ifm-color-content-secondary); }
 
 /* ---- Stat strip ---- */
 .statStrip {
@@ -864,7 +864,7 @@
 .statLabel {
   display: block;
   margin-top: 0.3rem;
-  font-size: 0.85rem;
+  font-size: var(--rt-fs-footnote);
   color: var(--ifm-color-content-secondary);
   max-width: 12rem;
 }
@@ -955,10 +955,10 @@
 }
 .ctaH2 {
   position: relative;
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: clamp(1.7rem, 3.5vw, 2.5rem);
-  font-weight: 500;
-  line-height: 1.12;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-medium);
+  line-height: var(--rt-lh-h2);
   color: #fff;
   margin: 0 0 1rem;
 }
@@ -966,8 +966,8 @@
 .ctaSub {
   position: relative;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   max-width: 32rem;
   margin: 0 auto 2rem;
 }
@@ -987,7 +987,7 @@
   border-radius: 8px;
   color: #fff !important;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

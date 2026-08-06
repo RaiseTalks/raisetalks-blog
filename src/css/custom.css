@@ -6,6 +6,7 @@
  * 
  * Architecture:
  * - variables.css: Brand colors, fonts, and global CSS variables
+ * - typography.css: Website type-scale design tokens (Hero/H1–H4/Eyebrow/Body)
  * - navbar.css: Navigation bar and mobile menu styles
  * - blog.css: Blog posts, articles, and content styles
  * - footer.css: Footer layout and styling
@@ -15,6 +16,7 @@
 
 /* Import all component CSS files */
 @import './variables.css';
+@import './typography.css';
 @import './navbar.css';
 @import './blog.css';
 @import './footer.css';

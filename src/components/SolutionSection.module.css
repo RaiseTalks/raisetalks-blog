@@ -37,9 +37,10 @@
 }
 
 .narrativeTitle {
-   font-size: 3rem;
-   font-weight: 400;
-   line-height: 1.25;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-h2);
+   font-weight: var(--rt-weight-regular);
+   line-height: var(--rt-lh-h2);
    margin: 0 0 1rem;
    color: #fff;
 }
@@ -51,9 +52,10 @@
 }
 
 .narrativeSubtitle {
-   font-size: 0.906rem;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-body);
    color: #ccc;
-   line-height: 1.45;
+   line-height: var(--rt-lh-body);
    margin: 0;
 }
 
@@ -77,17 +79,19 @@
 }
 
 .narrativeItemTitle {
-   font-size: 1.375rem;
-   font-weight: 400;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-h4);
+   font-weight: var(--rt-weight-regular);
    color: #fff;
    margin: 0;
-   line-height: 1.35;
+   line-height: var(--rt-lh-h4);
 }
 
 .narrativeItemDesc {
-   font-size: 0.906rem;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-body);
    color: #ccc;
-   line-height: 1.45;
+   line-height: var(--rt-lh-body);
    margin: 0;
 }
 
@@ -117,10 +121,6 @@
    color: #fff !important;
 }
 
-@media (max-width: 768px) {
-   .narrativeTitle { font-size: 2.5rem; }
-}
-
 @media (max-width: 580px) {
    .narrativePanel { padding: 2rem; gap: 2rem; }
    .narrativeTop { flex-direction: column; gap: 2rem; }
@@ -128,9 +128,7 @@
 
 @media (max-width: 480px) {
    .narrativePanel { padding: 1.5rem; gap: 2rem; }
-   .narrativeTitle { font-size: 1.75rem; }
    .narrativeGrid { gap: 1rem 1.5rem; }
-   .narrativeItemTitle { font-size: 1.125rem; }
 }
 
 .solutionMain {
@@ -165,9 +163,10 @@
 }
 
 .solutionTitle {
-   font-size: 2.25rem;
-   font-weight: 400;
-   line-height: 1.25;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-h2);
+   font-weight: var(--rt-weight-regular);
+   line-height: var(--rt-lh-h2);
    color: var(--ifm-color-content);
    margin: 0;
 }
@@ -182,9 +181,10 @@
 }
 
 .solutionDescription {
-   font-size: 0.75rem;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-footnote);
    color: #222;
-   line-height: 1.45;
+   line-height: var(--rt-lh-footnote);
    margin: 0;
 }
 
@@ -271,18 +271,20 @@
 }
 
 .featureDesc {
-   font-size: 0.906rem;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-body);
    color: #222;
-   line-height: 1.45;
+   line-height: var(--rt-lh-body);
    margin: 0.25rem 0 0;
 }
 
 .featureTitle {
-   font-size: 1.375rem;
-   font-weight: 400;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-h4);
+   font-weight: var(--rt-weight-regular);
    color: #222;
    margin: 0;
-   line-height: 1.35;
+   line-height: var(--rt-lh-h4);
 }
 
 .solutionButtons {
@@ -400,9 +402,10 @@
 }
 
 .videoTitle {
-   font-size: 2rem;
-   font-weight: 400;
-   line-height: 1.3;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-h3);
+   font-weight: var(--rt-weight-regular);
+   line-height: var(--rt-lh-h3);
    color: #000;
    margin: 0 0 1rem;
 }
@@ -417,8 +420,9 @@
 }
 
 .videoDesc {
-   font-size: 0.9rem;
-   line-height: 1.45;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-body);
+   line-height: var(--rt-lh-body);
    color: #4b4b4b;
    margin: 0 0 1.5rem;
    max-width: 28rem;
@@ -497,9 +501,10 @@
 }
 
 .investorTitle {
-   font-size: 2.5rem;
-   font-weight: 400;
-   line-height: 1.25;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-h2);
+   font-weight: var(--rt-weight-regular);
+   line-height: var(--rt-lh-h2);
    color: #000;
    margin: 0 0 1rem;
 }
@@ -514,8 +519,9 @@
 }
 
 .investorDescription {
-   font-size: 0.906rem;
-   line-height: 1.45;
+   font-family: var(--rt-font-sans);
+   font-size: var(--rt-fs-body);
+   line-height: var(--rt-lh-body);
    color: #4b4b4b;
    margin: 0 0 1.5rem;
 }
@@ -623,10 +629,6 @@
       gap: 2.5rem;
    }
 
-   .solutionTitle {
-      font-size: 2.5rem;
-   }
-
    .featureGrid,
    .featureGridThree {
       grid-template-columns: 1fr;
@@ -640,10 +642,6 @@
 
    .videoSection {
       padding: 3rem 0;
-   }
-
-   .videoTitle {
-      font-size: 1.75rem;
    }
 
    .dataRoomBlock {
@@ -692,10 +690,6 @@
       gap: 1.5rem;
    }
 
-   .solutionTitle {
-      font-size: 1.75rem;
-   }
-
    .featureCard {
       flex-direction: row;
       padding: 1rem 0;
@@ -711,19 +705,11 @@
       padding: 2.5rem 0;
    }
 
-   .videoTitle {
-      font-size: 1.25rem;
-   }
-
    .videoButton {
       width: 100%;
    }
 
    .investorCard {
       padding: 1.5rem;
-   }
-
-   .investorTitle {
-      font-size: 1.75rem;
    }
 }

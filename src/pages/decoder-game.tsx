@@ -137,8 +137,8 @@ export default function decoderGame () {
         <div className={styles.heroRails}>
         <div className={styles.railDivider} />
         <div className="flex flex-col gap-[36px] text-center max-w-4xl mx-auto px-6 pt-[96px] md:pt-[128px] pb-[80px]">
-        <div className="font-[Poppins] font-normal text-[36px] md:text-[64px] leading-[1.2] tracking-[0.5px]">If you'd pay for one piece <br /> of knowledge tonight, <br /> <span className="font-[Georgia] italic text-brand-gradient">what would you pay for?</span></div>
-        <div className="font-[Poppins] font-normal text-[14.4px] text-[#4B4B4B] mx-auto">One chip. One question you'd actually pay to have answered. <br />
+        <div className="rt-hero tracking-[0.5px]">If you'd pay for one piece <br /> of knowledge tonight, <br /> <span className="font-[Georgia] italic text-brand-gradient">what would you pay for?</span></div>
+        <div className="rt-body text-[#4B4B4B] mx-auto">One chip. One question you'd actually pay to have answered. <br />
         The room picks the night's agenda and answers it live. <br />
         Join the next game, or bring it to your city.
         </div>
@@ -149,13 +149,13 @@ export default function decoderGame () {
           href="https://luma.com/z0q3ykpd"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF] hover:text-[#FFFFFF] no-underline hover:no-underline font-[Poppins] font-normal text-[14.5px]"
+          className="rt-body inline-block py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF] hover:text-[#FFFFFF] no-underline hover:no-underline"
           style={{ background: 'linear-gradient(75.88deg, #003687 -3.42%, #0077FF 99.98%)' }}>
             Join The Game
         </a>
         <a
           href="mailto:hq@raisetalks.ai?subject=Co-Host%20RaiseTalks%20Decoder%20Game"
-          className="inline-block py-[12px] px-[16px] rounded-[8px] text-black hover:text-black no-underline hover:no-underline font-[Poppins] font-normal text-[14.5px]"
+          className="rt-body inline-block py-[12px] px-[16px] rounded-[8px] text-black hover:text-black no-underline hover:no-underline"
           style={{
             border: '1px solid transparent',
             borderBottomWidth: '3px',
@@ -183,8 +183,8 @@ export default function decoderGame () {
         <div className={`${styles.railContainer} flex flex-col gap-[64px] md:gap-[128px] px-6 md:px-[64px] py-[64px] justify-center`}>
             <div className="flex flex-col md:flex-row gap-[64px]">
                 <div className="flex-1 min-w-0 gap-[24px]">
-                    <div className="text-[32px] md:text-[48px] font-normal font-[Poppins]">One Chip - <span className="italic font-[Georgia] text-brand-gradient">One Bet</span></div>
-                    <div className="text-[#333333] text-[14.4px]">
+                    <div className="rt-h2">One Chip - <span className="italic font-[Georgia] text-brand-gradient">One Bet</span></div>
+                    <div className="rt-body text-[#333333]">
                     <div className="flex items-center gap-[6px] py-[4px]">
                         <CheckmarkIcon />
                         <p>Every participant bets on one question.</p>
@@ -203,18 +203,18 @@ export default function decoderGame () {
                     </div>
                     </div>
                 </div>
-                <div className="flex-1 min-w-0 grid grid-cols-2 gap-[24px]">
+                <div className="flex-1 min-w-0 grid grid-cols-2 md:grid-cols-[minmax(min-content,1fr)_minmax(min-content,1fr)] gap-[24px]">
                     <div className="flex flex-col gap-[24px] min-w-0 min-h-[146px] bg-[#F7F7F7] p-[36px] rounded-[16px] border border-[#DEDEDE]">
-                        <p>Timeline</p>
-                        <p className="italic font-[Georgia] text-brand-gradient">60 Minutes</p>
+                        <p className="rt-h4">Timeline</p>
+                        <p className="rt-h4-alt text-brand-gradient">60 Minutes</p>
                     </div>
-                    <div className="flex flex-col gap-[24px] min-w-0 min-h-[146px] bg-[#F7F7F7] p-[36px] rounded-[16px] border border-[#DEDEDE]">
-                        <p>Knowledge Budget</p>
-                        <p className="italic font-[Georgia] text-brand-gradient">$1,000</p>
+                    <div className="flex flex-col gap-[24px] min-h-[146px] bg-[#F7F7F7] p-[36px] rounded-[16px] border border-[#DEDEDE]">
+                        <p className="rt-h4 md:whitespace-nowrap">Knowledge Budget</p>
+                        <p className="rt-h4-alt text-brand-gradient">$1,000</p>
                     </div>
                     <div className="flex flex-col gap-[24px] col-span-2 w-full min-h-[146px] bg-[#F7F7F7] p-[36px] rounded-[16px] border border-[#DEDEDE]">
-                        <p>Voices Chip Roles:</p>
-                        <div className="flex items-center gap-[12px] font-[Poppins] font-normal text-[14.4px]">
+                        <p className="rt-h4">Voices Chip Roles:</p>
+                        <div className="flex items-center gap-[12px] rt-body">
                             <span>Founder</span>
                             <span className="w-[8px] h-[8px] rounded-full bg-[#0077FF]" />
                             <span>Investor</span>
@@ -283,7 +283,7 @@ export default function decoderGame () {
                 backgroundRepeat: 'no-repeat',
             }}
         >
-            <div className="text-[32px] md:text-[48px] text-center">What People are Saying </div>
+            <div className="rt-h2 text-center">What People are Saying </div>
 
             <div className={`${styles.railContainer} flex flex-col md:flex-row gap-[32px] px-6 md:px-[64px]`}>
 
@@ -296,11 +296,11 @@ export default function decoderGame () {
     'linear-gradient(75.88deg, #003687 -3.42%, #0077FF 99.98%) border-box',
 }}
 >
-                <div className="italic font-[Georgia] text-[24px]">“It was a great event and the best part was getting to know Dariia Vasylieva. Excellent topic and amazing workshop."</div>
+                <div className="rt-h4-alt">“It was a great event and the best part was getting to know Dariia Vasylieva. Excellent topic and amazing workshop."</div>
 
                 <div>
                     <p>Reza Ghiasi, </p>
-                    <p className="text-[#E5E5E5] text-[14.4px]">Co-Founder @ YEX</p>
+                    <p className="rt-body text-[#E5E5E5]">Co-Founder @ YEX</p>
                 </div>
 
             </div>
@@ -314,13 +314,13 @@ export default function decoderGame () {
     'linear-gradient(75.88deg, #003687 -3.42%, #0077FF 99.98%) border-box',
 }}
 >
-                <div className="italic font-[Georgia] text-[24px]">
+                <div className="rt-h4-alt">
                     “Events like this remind you how important strong communities and meaningful conversations are in building the next generation of companies.”
                 </div>
 
                 <div>
                     <p>Ikram Boumedience, </p>
-                    <p className="text-[#E5E5E5] text-[14.4px]">Founder & CEO @ ScoutLabs.io</p>
+                    <p className="rt-body text-[#E5E5E5]">Founder & CEO @ ScoutLabs.io</p>
                 </div>
 
             </div>
@@ -334,13 +334,13 @@ export default function decoderGame () {
     'linear-gradient(75.88deg, #003687 -3.42%, #0077FF 99.98%) border-box',
 }}
 >
-                <div className="italic font-[Georgia] text-[24px]">
+                <div className="rt-h4-alt">
                     “It was a pleasure connecting with so many talented professionals, innovators, and thought leaders.”
                     </div>
 
                 <div>
-                    <p className="font-[Poppins] text-[22px]">Hanan Al-Shayeb, </p>
-                    <p className="text-[#E5E5E5] text-[14.4px]">CEO @ Altery</p>
+                    <p>Hanan Al-Shayeb, </p>
+                    <p className="rt-body text-[#E5E5E5]">CEO @ Altery</p>
                 </div>
 
             </div>
@@ -393,10 +393,10 @@ export default function decoderGame () {
         <div className="w-full bg-[#F7F7F7]">
         <div className={`${styles.railContainer} flex flex-col md:flex-row px-6 md:px-[64px] py-[64px] gap-[64px]`}>
             <div className="flex flex-col items-start py-[64px] gap-[36px] font-normal">
-                <p className="text-[32px] md:text-[48px]">Join us as <br /> <span className="italic font-[Georgia] text-[36px] md:text-[50px] text-brand-gradient">Co-Host</span></p>
+                <p className="rt-h2">Join us as <br /> <span className="rt-h2-alt text-brand-gradient">Co-Host</span></p>
                 <a 
                 href="mailto:hq@raisetalks.ai?subject=Co-Host%20RaiseTalks%20Decoder%20Game"
-                className="py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF] font-[Poppins] font-normal text-[14.5px]"
+                className="rt-body py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF]"
                 style={{ background: 'linear-gradient(75.88deg, #003687 -3.42%, #0077FF 99.98%)' }}>
                     Co-Host RaiseTalks Decoder Game
                 </a>
@@ -406,29 +406,29 @@ export default function decoderGame () {
                 <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-b border-r border-b-[#E0E5EB] border-r-[#E0E5EB] border-solid bg-[#F7F7F7]">
                     <img src="/img/decoder-game/icons/lightbulb.svg" alt="" width={48} height={48} className="shrink-0" />
                     <div className="flex flex-col gap-[4px] font-[Poppins]">
-                        <p className="text-[22px]">A curated Room</p>
-                        <p className="text-[#333333] text-[14.4px]">Direct visibility with founders, investors, and operators who showed up to trade real questions for real answers.</p>
+                        <p className="rt-h4">A curated Room</p>
+                        <p className="rt-body text-[#333333]">Direct visibility with founders, investors, and operators who showed up to trade real questions for real answers.</p>
                     </div>
                 </div>
                 <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-b border-b-[#E0E5EB] border-solid bg-[#F7F7F7]">
                     <img src="/img/decoder-game/icons/star-check.svg" alt="" width={48} height={48} className="shrink-0" />
                     <div className="flex flex-col gap-[4px] font-[Poppins]">
-                        <p className="text-[22px]">A proprietary dataset</p>
-                        <p className="text-[#333333] text-[14.4px]">Every night's votes become a ranked map of the market's live pains - yours to use for content and positioning.</p>
+                        <p className="rt-h4">A proprietary dataset</p>
+                        <p className="rt-body text-[#333333]">Every night's votes become a ranked map of the market's live pains - yours to use for content and positioning.</p>
                     </div>
                 </div>
-                <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-r border-r-[#E0E5EB] border-solid bg-white">
+                <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-r border-r-[#E0E5EB] border-solid">
                     <img src="/img/decoder-game/icons/camera.svg" alt="" width={48} height={48} className="shrink-0" />
                     <div className="flex flex-col gap-[4px] font-[Poppins]">
-                        <p className="text-[22px]">Ready-made content</p>
-                        <p className="text-[#333333] text-[14.4px]">Photo, video and quote assets from a high-energy, visually distinct format  - built for social.</p>
+                        <p className="rt-h4">Ready-made content</p>
+                        <p className="rt-body text-[#333333]">Photo, video and quote assets from a high-energy, visually distinct format  - built for social.</p>
                     </div>
                 </div>
                 <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] bg-[#F7F7F7]">
                     <img src="/img/decoder-game/icons/file-check.svg" alt="" width={48} height={48} className="shrink-0" />
                     <div className="flex flex-col gap-[4px] font-[Poppins]">
-                        <p className="text-[22px]">A proven format</p>
-                        <p className="text-[#333333] text-[14.4px]">Already run in Dubai, with strong reviews from founders and investors in the room.</p>
+                        <p className="rt-h4">A proven format</p>
+                        <p className="rt-body text-[#333333]">Already run in Dubai, with strong reviews from founders and investors in the room.</p>
                     </div>
                 </div>
 
@@ -460,7 +460,7 @@ export default function decoderGame () {
         {/* FAQ */}
         <div className="flex flex-col mx-auto px-6 md:px-[64px] pt-[64px] pb-[120px] md:pb-[202px] w-full max-w-[1024px] gap-[32px]">
 
-            <div className="text-[32px] md:text-[48px] text-center">Frequently Asked Questions</div>
+            <div className="rt-h2 text-center">Frequently Asked Questions</div>
         <div className="flex flex-col">
         {faqs.map((item, index) => (
             <div key={index} className="border-b border-[#f6f7f9] py-[24px]">
@@ -471,10 +471,10 @@ export default function decoderGame () {
                     {openIndex !== index && <line x1="12" y1="5" x2="12" y2="19" />}
                 </svg>
 
-                <span className="text-[22px] font-semibold">{item.question}</span>
+                <span className="rt-h4-bold">{item.question}</span>
 
             </button>
-            {openIndex === index && <p className="bg-[#F7F7F7] border border-[#d7dde5] rounded-[16px] p-[24px] text-[14.4px] text-[#333] ml-[48px] mt-[16px] whitespace-pre-line">{item.answer}</p>}
+            {openIndex === index && <p className="bg-[#F7F7F7] border border-[#d7dde5] rounded-[16px] p-[24px] rt-body text-[#333] ml-[48px] mt-[16px] whitespace-pre-line">{item.answer}</p>}
 
             </div>
         ))
@@ -538,16 +538,16 @@ export default function decoderGame () {
     <div className="flex flex-col items-center gap-[48px]">
         <div className="flex flex-col items-center gap-[12px]">
             <div className="flex flex-col items-center gap-[4px] text-center text-white">
-                <p className="text-[32px] md:text-[48px]">Pick your city, open your room</p>
-                <p className="text-[34px] md:text-[50px] italic font-[Georgia]">Let your audience build the agenda</p>
+                <p className="rt-h2">Pick your city, open your room</p>
+                <p className="rt-h2-alt">Let your audience build the agenda</p>
             </div>
-            <p className="text-[#d7d7d7] text-[14.4px] text-center max-w-[540px]">We handle the game — you host the night that gets talked about after.</p>
+            <p className="rt-body text-[#d7d7d7] text-center max-w-[540px]">We handle the game — you host the night that gets talked about after.</p>
         </div>
         <a
             href="https://calendly.com/iamdariiava/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF] hover:text-[#FFFFFF] no-underline hover:no-underline font-[Poppins] font-normal text-[14.5px]"
+            className="rt-body inline-block py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF] hover:text-[#FFFFFF] no-underline hover:no-underline"
             style={{ background: 'linear-gradient(75.88deg, #003687 -3.42%, #0077FF 99.98%)' }}
         >
             Book a Call

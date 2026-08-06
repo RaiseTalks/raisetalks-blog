@@ -35,9 +35,10 @@
   z-index: 1;
   max-width: 1150px;
   color: #ffffff;
-  font-size: 2rem;
-  font-weight: 400;
-  line-height: 1.25;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h3);
+  line-height: var(--rt-lh-h3);
   margin: 0;
   text-align: center;
 }
@@ -46,18 +47,10 @@
   .card {
     padding: 2.5rem 1.5rem;
   }
-
-  .text {
-    font-size: 1.5rem;
-  }
 }
 
 @media (max-width: 480px) {
   .card {
     padding: 1.5rem;
-  }
-
-  .text {
-    font-size: 1.375rem;
   }
 }

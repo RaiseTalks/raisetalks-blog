@@ -100,9 +100,11 @@
 
 .sectionEyebrow {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: #EA2640;
   margin-bottom: 0.75rem;
@@ -110,17 +112,19 @@
 }
 
 .sectionTitle {
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1.15;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h3);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h3);
   max-width: 1352px;
   color: var(--ifm-color-content);
 }
 
 .sectionDesc {
-  font-size: 0.90625rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.7;
+  line-height: var(--rt-lh-body);
   margin-bottom: 7rem;
   max-width: 302px;
 }
@@ -155,9 +159,11 @@
 
 .heroEyebrow {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
   margin-bottom: 1.5rem;
@@ -168,9 +174,10 @@
 }
 
 .heroTitle {
-  font-size: 3.75rem;
-  font-weight: 400;
-  line-height: 1.08;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-hero);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
   color: var(--ifm-color-content);
@@ -181,16 +188,17 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 400;
-  font-size: 3.75rem;
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-hero-alt);
   font-style: italic;
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
 }
 
 .heroDesc {
-  font-size: 0.90625rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.75;
+  line-height: var(--rt-lh-body);
   max-width: 420px;
   margin: 0 auto 2.5rem;
 }
@@ -212,7 +220,7 @@
   .heroActions .btnSecondary {
     padding: 8px 8px !important;
     height: 36px !important;
-    font-size: 0.75rem !important;
+    font-size: var(--rt-fs-footnote) !important;
     min-width: unset !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -224,7 +232,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
+  font-size: var(--rt-fs-footnote);
   color: var(--ifm-color-content-secondary);
   margin: 0;
   padding: 0.35rem 0.9rem;
@@ -256,9 +264,11 @@
 
 .truthLabel {
   flex-shrink: 0;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   padding: 32px 32px 12px 32px;
   min-width: 100px;
@@ -268,10 +278,11 @@
 
 .truthQuote {
   background: #0077FF;
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  line-height: var(--rt-lh-h4);
   color: white;
   font-style: italic;
-  line-height: 1.65;
   margin: 0;
   border-radius: 16px;
   border: 1px solid #0077FF;
@@ -313,16 +324,19 @@
 }
 
 .painTitle {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-semibold);
+  line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
   margin-bottom: 0.75rem;
 }
 
 .painDesc {
-  font-size: 0.95rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.7;
+  line-height: var(--rt-lh-body);
   margin: 0;
 }
 
@@ -384,28 +398,30 @@
 }
 
 .pillarName {
-  font-size: 32px;
-  font-weight: 400;
+  font-family: var(--rt-font-serif);
+  font-size: var(--rt-fs-h3-alt);
+  font-weight: var(--rt-weight-regular);
   font-style: italic;
-  font-family: Georgia, serif;
   margin: 0;
-  line-height: 1.3;
+  line-height: var(--rt-lh-h3);
   color: white;
 }
 
 .pillarHeadline {
-  font-size: 0.95rem;
-  font-weight: 400;
-  line-height: 1.5;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-body);
   margin-bottom: 0.75rem;
   max-width: 282.67px;
   color: white;
 }
 
 .pillarBody {
-  font-size: 0.7rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-footnote);
   color: #E5E5E5;
-  line-height: 1.7;
+  line-height: var(--rt-lh-footnote);
   max-width: 282.67px;
   margin: 0;
 }
@@ -489,7 +505,7 @@
 }
 
 .sliderCountTotal {
-  font-size: 0.9rem;
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
 }
 
@@ -516,25 +532,28 @@
 }
 
 .featureTitle {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 800;
-  line-height: 1.2;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h3);
+  font-weight: var(--rt-weight-semibold);
+  line-height: var(--rt-lh-h3);
   color: var(--ifm-color-content);
   margin-bottom: 0.75rem;
 }
 
 .featureSubtitle {
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-semibold);
   color: var(--ifm-color-primary);
-  line-height: 1.5;
+  line-height: var(--rt-lh-body);
   margin-bottom: 1rem;
 }
 
 .featureDesc {
-  font-size: 1rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.75;
+  line-height: var(--rt-lh-body);
   margin-bottom: 1.5rem;
 }
 
@@ -549,9 +568,10 @@
   align-items: flex-start;
   gap: 0.6rem;
   margin-bottom: 0.6rem;
-  font-size: 0.95rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content);
-  line-height: 1.5;
+  line-height: var(--rt-lh-body);
 }
 
 .benefitCheck {
@@ -626,7 +646,7 @@
 }
 
 .iconCellLabel {
-  font-size: 0.75rem;
+  font-size: var(--rt-fs-footnote);
   font-weight: 600;
   color: var(--ifm-color-content-secondary);
   letter-spacing: 0.05em;
@@ -653,9 +673,11 @@
 
 .sectionEyebrowLight {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.65);
   margin-bottom: 0.75rem;
@@ -704,14 +726,17 @@
 }
 
 .characterTrait {
-  font-size: 1.375rem;
-  font-weight: 400;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h4);
   margin-bottom: 0.6rem;
 }
 
 .characterDesc {
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   margin: 0;
 }
 
@@ -733,7 +758,7 @@
   color: #fff !important;
   border-radius: 10px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid #003687;
@@ -758,7 +783,7 @@
   background: transparent;
   color: #000 !important;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -777,7 +802,7 @@
   padding: 0.85rem 1.25rem;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   border: 1px solid var(--ifm-color-emphasis-300);
   transition: border-color 0.2s ease, background 0.2s ease;
@@ -809,17 +834,19 @@
 }
 
 .perksTitle {
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1.15;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
   color: var(--ifm-color-content);
   margin-bottom: 2rem;
 }
 
 .perksSubtitle {
-  font-size: 1.05rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.6;
+  line-height: var(--rt-lh-body);
   margin: 0;
 }
 
@@ -831,7 +858,9 @@
 }
 
 .perksCtaNote {
-  font-size: 0.8rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
   color: var(--ifm-color-content-secondary);
   margin: 0;
   opacity: 0.7;
@@ -867,16 +896,19 @@
 }
 
 .perkTitle {
-  font-size: 1.375rem;
-  font-weight: 400;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
   margin-bottom: 0.6rem;
 }
 
 .perkDesc {
-  font-size: 0.9rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.7;
+  line-height: var(--rt-lh-body);
   margin: 0;
 }
 
@@ -925,9 +957,11 @@
 
 .ctaEyebrow {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
   margin-bottom: 1.25rem;
@@ -938,9 +972,10 @@
 }
 
 .ctaTitle {
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1.15;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
   margin-bottom: 1.25rem;
   letter-spacing: -0.015em;
   color: #FFFFFF;
@@ -954,9 +989,10 @@
 }
 
 .ctaDesc {
-  font-size: 0.90625rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  line-height: 1.7;
+  line-height: var(--rt-lh-body);
   margin-bottom: 2rem;
   color: #D7D7D7;
 }
@@ -978,7 +1014,7 @@
   .ctaActions .ctaBtnSecondary {
     padding: 8px 8px !important;
     height: 36px !important;
-    font-size: 0.75rem !important;
+    font-size: var(--rt-fs-footnote) !important;
     min-width: unset !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -1001,7 +1037,7 @@
   border-radius: 8px;
   color: #fff !important;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -1026,7 +1062,7 @@
   height: 42px;
   border-radius: 8px;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   border: 1px solid var(--ifm-color-primary);
   border-bottom-width: 3px;
@@ -1040,7 +1076,9 @@
 }
 
 .ctaNote {
-  font-size: 0.82rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
   color: var(--ifm-color-content-secondary);
   opacity: 0.65;
   margin: 0;

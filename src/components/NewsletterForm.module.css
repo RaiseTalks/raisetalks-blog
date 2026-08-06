@@ -7,8 +7,10 @@
 }
 
 .newsletterDescription {
-  font-size: 0.906rem;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #ededed;
   margin: 0;
 }

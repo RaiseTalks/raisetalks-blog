@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "@docusaurus/Link";
 import styles from "./SolutionSection.module.css";
 import AudienceToggle from './AudienceToggle';
+import McpCommunicator from './McpCommunicator';
 
 declare global {
    interface Window {
@@ -276,6 +277,9 @@ export default function SolutionSection() {
                   ))}
                </div>
          </div>
+
+         {/* Startup MCP connector — only in the "For Startups" view */}
+         {active === 'startups' && <McpCommunicator />}
       </section>
    );
 }

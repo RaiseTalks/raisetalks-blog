@@ -59,16 +59,18 @@
 .hero::after { right: max(1rem, calc(50% - var(--rail-half))); }
 
 .heroInner {
-  max-width: 720px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 6rem 1rem 4rem;
 }
 
 .heroEyebrow {
   display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
   margin-bottom: 1.25rem;
@@ -76,13 +78,22 @@
 }
 
 .heroTitle {
-  font-size: 2.25rem;
-  font-weight: 400;
-  line-height: 1.08;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-hero);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
   color: var(--ifm-color-content);
 }
+/* .heroInner caps out at 960px, but the rail (--rail-half) keeps growing
+   past that on larger screens. Break the title out of heroInner's cap so
+   it uses the extra space up to the rail — negative margins here expand
+   an auto-width block symmetrically, keeping it centered; the rail lines
+   and font-size are untouched. */
+@media (min-width: 1024px) { .heroTitle { margin-left: -32px; margin-right: -32px; } }
+@media (min-width: 1280px) { .heroTitle { margin-left: -160px; margin-right: -160px; } }
+@media (min-width: 1536px) { .heroTitle { margin-left: -288px; margin-right: -288px; } }
 
 .heroAccent {
   background: var(--raisetalks-brand-gradient);
@@ -110,7 +121,7 @@
   .heroActions .btnSecondary {
     padding: 8px 8px !important;
     height: 36px !important;
-    font-size: 0.75rem !important;
+    font-size: var(--rt-fs-footnote) !important;
     min-width: unset !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -289,19 +300,19 @@
 }
 
 .workspaceHeadingLine1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 1.25;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2);
+  line-height: var(--rt-lh-h2);
   color: #000;
 }
 
 .workspaceHeadingLine2 {
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 1.25;
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2-alt);
+  line-height: var(--rt-lh-h2);
   background: linear-gradient(90deg, rgba(0, 54, 135, 1) 0%, rgba(0, 119, 255, 1) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -349,19 +360,19 @@
 }
 
 .workspaceCardTitle {
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: 1.375rem;
-  line-height: 1.35;
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h4-alt);
+  line-height: var(--rt-lh-h4);
   color: #000;
   margin: 0 0 0.5rem;
 }
 
 .workspaceCardDesc {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.906rem;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #404040;
   margin: 0;
 }
@@ -382,9 +393,9 @@
 }
 
 .workspaceFounderQuote {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.375rem;
-  line-height: 1.35;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  line-height: var(--rt-lh-h4);
   color: white;
   margin: 0;
 }
@@ -410,16 +421,18 @@
 }
 
 .workspaceFounderName {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: 0.906rem;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-semibold);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: white;
   margin: 0;
 }
 
 .workspaceFounderRole {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.75rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
   color: #dbdbdb;
   margin: 0.15rem 0 0;
 }
@@ -479,26 +492,26 @@
 }
 
 .ctaTitleLine1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 1.25;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2);
+  line-height: var(--rt-lh-h2);
   color: white;
 }
 
 .ctaTitleLine2 {
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 1.25;
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2-alt);
+  line-height: var(--rt-lh-h2);
   color: white;
 }
 
 .ctaDescription {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.906rem;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #d7d7d7;
   max-width: 540px;
   margin: 0 auto;
@@ -522,7 +535,7 @@
   .ctaButtons .ctaBtnSecondary {
     padding: 8px 8px !important;
     height: 36px !important;
-    font-size: 0.75rem !important;
+    font-size: var(--rt-fs-footnote) !important;
     min-width: unset !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -545,7 +558,7 @@
   border-radius: 8px;
   border-bottom: 3px solid #003687;
   font-weight: 700;
-  font-size: 0.906rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -573,7 +586,7 @@
   border: 1px solid #003687;
   border-bottom-width: 3px;
   font-weight: 400;
-  font-size: 0.906rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -623,13 +636,14 @@
 }
 
 .goalEyebrow {
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-eyebrow);
+  font-weight: var(--rt-weight-bold);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
   padding: 1px 32px 12px 32px;
-  font-family: 'Courier New', monospace;
 }
 
 .goalCardWrap {
@@ -660,9 +674,10 @@
 .goalCardQuote {
   position: relative;
   z-index: 1;
-  font-size: 1.75rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h3);
   color: white;
-  line-height: 1.3;
+  line-height: var(--rt-lh-h3);
   margin: 0 0 1rem;
 }
 
@@ -676,7 +691,8 @@
   z-index: 1;
   display: block;
   margin-top: 0.75rem;
-  font-size: 0.8125rem;
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
   font-style: normal;
   color: rgba(255, 255, 255, 0.85);
 }
@@ -692,9 +708,10 @@
 /* Plain section title (no gradient) - matches startups sectionTitle */
 
 .sectionTitlePlain {
-  font-size: clamp(1.9rem, 3.8vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1.15;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
   margin-bottom: 1rem;
   color: var(--ifm-color-content);
   background: none;
@@ -729,10 +746,11 @@
 }
 
 .whyBuildEyebrow {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-bold);
+  font-size: var(--rt-fs-eyebrow);
+  line-height: var(--rt-lh-eyebrow);
+  letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
   margin-bottom: 0.5rem;
@@ -752,10 +770,10 @@
 }
 
 .whyBuildPullQuote {
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   font-style: italic;
-  font-size: 1.375rem;
-  line-height: 1.35;
+  font-size: var(--rt-fs-h4-alt);
+  line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
   margin: 0.25rem 0;
 }
@@ -792,10 +810,11 @@
 }
 
 .whyExistTitleLight {
-  font-size: 3rem;
-  font-weight: 400;
+  font-size: var(--rt-fs-h2-alt);
+  line-height: var(--rt-lh-h2);
+  font-weight: var(--rt-weight-regular);
   font-style: italic;
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   margin: 0;
   background: linear-gradient(90deg, rgba(0, 54, 135, 1) 0%, rgba(0, 119, 255, 1) 100%);
   -webkit-background-clip: text;
@@ -813,8 +832,8 @@
 }
 
 .whyExistBodyLight {
-  font-size: 0.906rem;
-  line-height: 1.45;
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #4b4b4b;
   margin: 0;
 }
@@ -887,19 +906,19 @@
 }
 
 .visionHeadingLine1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 1.25;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2);
+  line-height: var(--rt-lh-h2);
   color: #222;
 }
 
 .visionHeadingLine2 {
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 1.25;
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2-alt);
+  line-height: var(--rt-lh-h2);
   background: linear-gradient(90deg, rgba(0, 54, 135, 1) 0%, rgba(0, 119, 255, 1) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -907,9 +926,9 @@
 }
 
 .visionSubtitleText {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.906rem;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #222;
   margin: 0;
 }
@@ -939,10 +958,10 @@
 }
 
 .visionCompareText {
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   font-style: italic;
-  font-size: 1.375rem;
-  line-height: 1.35;
+  font-size: var(--rt-fs-h4-alt);
+  line-height: var(--rt-lh-h4);
   color: #939393;
   margin: 0;
 }
@@ -954,17 +973,17 @@
 }
 
 .visionParagraphLead {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.375rem;
-  line-height: 1.35;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  line-height: var(--rt-lh-h4);
   color: #000;
   margin: 0;
 }
 
 .visionParagraphSub {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.906rem;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #000;
   margin: 0;
 }
@@ -1009,19 +1028,19 @@
 }
 
 .valuesHeadingLine1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 1.25;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2);
+  line-height: var(--rt-lh-h2);
   color: #222;
 }
 
 .valuesHeadingLine2 {
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 1.25;
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2-alt);
+  line-height: var(--rt-lh-h2);
   background: linear-gradient(90deg, rgba(0, 54, 135, 1) 0%, rgba(0, 119, 255, 1) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -1029,9 +1048,9 @@
 }
 
 .valuesSubtitleText {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.906rem;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #222;
   flex: 0 0 400px;
   max-width: 400px;
@@ -1130,18 +1149,18 @@
 }
 
 .valueCardName {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 1.375rem;
-  line-height: 1.35;
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h4);
+  line-height: var(--rt-lh-h4);
   color: #000;
   margin: 0;
 }
 
 .valueCardDesc {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.906rem;
-  line-height: 1.45;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #4b4b4b;
   margin: 0;
 }
@@ -1153,10 +1172,10 @@
 }
 
 .valueCardQuote {
-  font-family: Georgia, serif;
+  font-family: var(--rt-font-serif);
   font-style: italic;
-  font-size: 0.75rem;
-  line-height: 1.4;
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
   color: #000;
   margin: 0;
 }
@@ -1170,7 +1189,7 @@
   color: #fff !important;
   border-radius: 10px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid #003687;
@@ -1195,7 +1214,7 @@
   background: transparent;
   color: #000 !important;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

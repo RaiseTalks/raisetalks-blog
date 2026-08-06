@@ -1,7 +1,42 @@
 import React, { useState } from "react";
-import styles from './McpCommunicator.module.css'
+import styles from './McpCommunicator.module.css';
+
+// Accordion copy. The first item's body is from Figma (node 2715:19419);
+// the remaining bodies are written to match the same voice.
+const ACCORDION = [
+  {
+    title: 'Build from a prompt',
+    body: 'Create or update any data-room section — profile, vision, traction — just by describing the change.',
+  },
+  {
+    title: 'Know your score',
+    body: 'Ask for your AI readiness score and see exactly what investors will judge you on.',
+  },
+  {
+    title: 'Fix the gaps',
+    body: "Surface what's still missing before you share your room, then fill it in without leaving the chat.",
+  },
+  {
+    title: "See who's engaged",
+    body: 'See which investors opened your room and what they spent their time on.',
+  },
+];
+
+function PlusIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="16" height="16" viewBox="0 0 24 24" fill="none"
+      stroke="#1a1a1a" strokeWidth={2} strokeLinecap="round"
+      className={`shrink-0 transition-transform duration-200 ${open ? 'rotate-45' : ''}`}
+      aria-hidden="true"
+    >
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
 
 export default function McpCommunicator() {
+  const [openIndex, setOpenIndex] = useState<number>(0);
   const [copied, setCopied] = useState(false);
   const url = "https://mcp.raisetalks.com/";
 
@@ -10,113 +45,115 @@ export default function McpCommunicator() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-    return(
+
+  return (
     <section className={styles.sectionInner}>
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-[90px]">
-        <div className="w-full lg:w-[480px] lg:flex-shrink-0">
-        <p className="text-[48px] leading-[1.25] font-normal mb-5 text-center lg:text-left">Your data room, <br /> <span className="italic font-serif bg-gradient-to-r from-[#003687] to-[#0077FF] bg-clip-text text-transparent">right inside Claude</span></p>
-        <p className="text-xs text-center lg:text-left mb-10">Connect RaiseTalks to Claude and run your raise from a prompt —
-            update any section of your data room, see what's still missing, and
-             sharpen your story without leaving the chat.</p>
-
+      {/* Heading + accordion */}
+      <div className="flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-start">
+        <div className="flex-1 min-w-0 flex flex-col gap-4">
+          <div className="flex flex-col gap-1 leading-[1.25]">
+            <p className="text-[40px] md:text-[48px] font-normal text-black m-0">Your data room,</p>
+            <p className="text-[42px] md:text-[50px] italic font-serif m-0 bg-gradient-to-r from-[#FFAB0E] to-[#EA2640] bg-clip-text text-transparent">
+              Right inside Claude
+            </p>
+          </div>
+          <p className="text-[#333] text-[14.4px] leading-[1.45] max-w-[513px] m-0">
+            Connect RaiseTalks to Claude and run your raise from a prompt — build and update
+            your data room, see what's still missing, and sharpen your story without leaving the chat.
+          </p>
         </div>
 
-     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-        <div className="p-6 border-b border-b-[0.5px] border-[#DAE0E7]">
-            <p className="font-semibold text-black mb-2">Update from a prompt</p>
-            <p className="text-sm text-gray-600">Edit any data-room section - profile, vision, traction - just by describing the change</p>
-        </div>
-        <div className="p-6 border-b border-b-[0.5px] border-[#DAE0E7] border-l border-l-[0.5px] border-[#DAE0E7]">
-            <p className="font-semibold text-black mb-2">Spot what's missing</p>
-            <p className="text-sm text-gray-600">Ask what's still incomplete before you share your room with an investor</p>
-        </div>
-        <div className="p-6">
-            <p className="font-semibold text-black mb-2">Sharpen your story</p>
-            <p className="text-sm text-gray-600">Draft and refine copy that reads straight from your live RaiseTalks data</p>
-        </div>
-        <div className="p-6 border-l border-l-[0.5px] border-[#DAE0E7]">
-            <p className="font-semibold text-black mb-2">Secure by design</p>
-            <p className="text-sm text-gray-600">OAuth sign-in with your own account - Claude only ever sees what you allow.</p>
-        </div>
-    </div>
-    </div>
-
-     <div className="bg-[#0C1B31] p-10 mt-15 lg:rounded-[16px] flex-1">
-        <div className="flex justify-between mb-10">
-        <p className="text-white/75 text-[14.5px]">Connect in three steps</p>
-        <p className="text-white/75 text-[14.5px] text-white">Works with Claude</p>
-        </div>
-        
-        
-
-
-        <div className="grid lg:grid-cols-3 gap-5 lg:gap-x-0 text-white/75">
-
-        <div className="flex flex-col border-b lg:border-b-0 border-r-0 lg:border-r-[0.5px] border-[#DAE0E7] p-5">
-            <div className="rounded-[8px] p-1 mb-5 text-center bg-[#ffab0e] text-black w-8">1</div>
-            <p className="text-white font-bold mb-3">Copy the RaiseTalks URL</p>
-            <p className="text-sm">Click to copy the connector URL - you'll paste it into Claude in the next step</p>
-            <div className="mt-auto pt-8">
-              <div
-                className={`rounded-lg transition-all duration-300 ${
-                  copied ? 'bg-green-500 p-px' : 'bg-gradient-to-r from-[#0174e1] to-[#0166ca] p-px'
-                }`}
-              >
+        <div className="flex-1 min-w-0 w-full flex flex-col gap-3">
+          {ACCORDION.map((item, index) => {
+            const open = openIndex === index;
+            return (
+              <div key={index} className="bg-[#fcfcfc] border border-[#f7f7f7] rounded-[16px] p-4">
                 <button
-                  onClick={handleCopy}
-                  className={`w-full flex items-center justify-between gap-4 p-4 rounded-[7px] transition-all duration-300 cursor-pointer ${
-                    copied ? 'bg-green-900/20' : 'bg-[#0C1B31]'
-                  }`}
-                  title="Click to copy URL to clipboard"
+                  type="button"
+                  onClick={() => setOpenIndex(open ? -1 : index)}
+                  aria-expanded={open}
+                  className="w-full flex items-center justify-between gap-4 bg-transparent text-left cursor-pointer p-0"
                 >
-                  <span className={`text-sm font-mono flex-1 truncate ${copied ? 'text-green-400' : 'text-white'}`}>
-                    {copied ? 'Copied to clipboard' : url}
-                  </span>
-                  <div className={`w-5 h-5 flex-shrink-0 ${copied ? 'text-green-400' : 'text-white'}`}>
-                    {copied ? (
-                      <svg fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    ) : (
-                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    )}
-                  </div>
+                  <span className="font-semibold text-[#1a1a1a] text-[14.4px] leading-[1.45]">{item.title}</span>
+                  <PlusIcon open={open} />
                 </button>
+                {open && (
+                  <p className="text-[#333] text-[14.4px] leading-[1.45] mt-3 m-0">{item.body}</p>
+                )}
               </div>
-            </div>
+            );
+          })}
         </div>
+      </div>
 
-        <div className="flex flex-col border-b lg:border-b-0 border-r-0 lg:border-r-[0.5px] border-[#DAE0E7]/75 p-5">
-            <div className="rounded-[8px] p-1 mb-5 text-center bg-[#0077FF] text-white w-8">2</div>
-            <p className="text-white font-bold mb-3">Add it in Claude</p>
-            <p className="text-sm">In Claude desktop or claude.ai, go to <span className="text-white font-bold">Settings → Connectors</span>, add a custom connector, name it <span className="text-white font-bold">RaiseTalks</span>, and paste the URL.</p>
-            <div className="mt-auto pt-8">
+      {/* Connector card */}
+      <div className="relative w-full">
+        <img
+          src="/img/mcp-connect-logos.png"
+          alt="RaiseTalks connected to Claude"
+          className="absolute left-6 md:left-9 -top-[40px] md:-top-[56px] w-[180px] md:w-[240px] h-auto pointer-events-none select-none z-[1]"
+        />
+        <div className="bg-[#f7f7f7] border border-[#dedede] rounded-[24px] px-6 md:px-[48px] pt-[96px] md:pt-[128px] pb-[48px]">
+          <div className="flex flex-col md:flex-row gap-[48px] md:gap-[64px] items-stretch">
+            {/* Step 1 */}
+            <div className="flex-1 min-w-0 flex flex-col justify-between gap-6">
+              <div className="flex flex-col gap-6">
+                <span className="w-9 h-9 rounded-[4px] bg-[#ffab0e] border-b-[3px] border-[#e39a05] flex items-center justify-center text-white text-[22px] leading-none">1</span>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[#1a1a1a] text-[22px] leading-[1.35] m-0">Copy the RaiseTalks URL</p>
+                  <p className="text-[#333] text-[14.4px] leading-[1.45] m-0">Click to copy the connector URL - you'll paste it into Claude in the next step.</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={handleCopy}
+                title="Click to copy URL to clipboard"
+                className="w-full flex gap-[10px] items-center justify-center px-4 py-3 rounded-[8px] bg-[#f2f2f2] border border-[#ebebeb] cursor-pointer transition-colors hover:bg-[#ececec]"
+              >
+                <span className="text-[14.4px] text-black text-center truncate">{copied ? 'Copied to clipboard' : url}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="shrink-0" aria-hidden="true">
+                  {copied ? (
+                    <path d="M20 6 9 17l-5-5" />
+                  ) : (
+                    <><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></>
+                  )}
+                </svg>
+              </button>
+            </div>
+
+            {/* Step 2 */}
+            <div className="flex-1 min-w-0 flex flex-col justify-between gap-6 md:border-l md:border-[#ebebeb] md:pl-[48px] border-t border-[#ebebeb] pt-6 md:border-t-0 md:pt-0">
+              <div className="flex flex-col gap-6">
+                <span className="w-9 h-9 rounded-[4px] bg-[#ffab0e] border-b-[3px] border-[#e39a05] flex items-center justify-center text-white text-[22px] leading-none">2</span>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[#1a1a1a] text-[22px] leading-[1.35] m-0">Add it in Claude</p>
+                  <p className="text-[#333] text-[14.4px] leading-[1.45] m-0">In Claude desktop or claude.ai, go to Settings → Connectors, add a custom connector, name it RaiseTalks, and paste the URL.</p>
+                </div>
+              </div>
               <a
                 href="https://claude.ai/new#settings/customize-connectors"
-                className="w-full flex items-center justify-center gap-2 p-4 rounded-lg bg-gradient-to-r from-[#f5a623] to-[#e5484d] text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex gap-[10px] items-center justify-center px-4 py-3 rounded-[8px] bg-white border border-[#ffab0e] border-b-[3px] text-black no-underline hover:no-underline hover:text-black transition-opacity hover:opacity-90"
               >
-                Open Claude Customize
-                <svg className="size-4 shrink-0" aria-hidden="true" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.25 14V18.65C18.25 19.2101 18.25 19.4901 18.141 19.704C18.0451 19.8922 17.8922 20.0451 17.704 20.141C17.4901 20.25 17.2101 20.25 16.65 20.25H5.35C4.78995 20.25 4.50992 20.25 4.29601 20.141C4.10785 20.0451 3.95487 19.8922 3.85899 19.704C3.75 19.4901 3.75 19.2101 3.75 18.65V7.35C3.75 6.78995 3.75 6.50992 3.85899 6.29601C3.95487 6.10785 4.10785 5.95487 4.29601 5.85899C4.50992 5.75 4.78995 5.75 5.35 5.75H9.25M13.75 3.75H20.25M20.25 3.75V10.25M20.25 3.75L11 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <span className="text-[14.4px] text-center">Open in Claude</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="shrink-0" aria-hidden="true">
+                  <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                 </svg>
               </a>
             </div>
+
+            {/* Step 3 */}
+            <div className="flex-1 min-w-0 flex flex-col gap-6 md:border-l md:border-[#ebebeb] md:pl-[48px] border-t border-[#ebebeb] pt-6 md:border-t-0 md:pt-0">
+              <span className="w-9 h-9 rounded-[4px] bg-[#ffab0e] border-b-[3px] border-[#e39a05] flex items-center justify-center text-white text-[22px] leading-none">3</span>
+              <div className="flex flex-col gap-1">
+                <p className="text-[#1a1a1a] text-[22px] leading-[1.35] m-0">Connect and sign in</p>
+                <p className="text-[#333] text-[14.4px] leading-[1.45] m-0">Click Add → Connect and sign in with your RaiseTalks account. Then just ask Claude to build or update your data room.</p>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div className="p-5">
-            <div className="rounded-[8px] p-1 mb-5 text-center bg-red-500 text-white w-8">3</div>
-            <p className="text-white font-bold mb-3">Connect and sign</p>
-            <p className="text-sm">Click <span className="text-white font-bold">Add → Connect</span> and sign in with your RaiseTalks account. Then just ask Claude to update your data room.</p>
-
-        </div>
-    </div>
-
-    <p className="text-center text-white/75 text-xs mt-5">Using Claude Code or another  CLI? Connect from <span className="text-[#0077FF]">the command line </span> instead.</p>
-   </div>
-
-
+      </div>
     </section>
-    )
+  );
 }

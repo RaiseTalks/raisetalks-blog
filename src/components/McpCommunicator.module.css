@@ -1,7 +1,9 @@
 .sectionInner {
     max-width: 100%;
     margin: 0 auto;
-    gap: 128px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
     border-left: 0.5px solid #CED6DE;
     border-right: 0.5px solid #CED6DE;
     background:#FAFAFA;

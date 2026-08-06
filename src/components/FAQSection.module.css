@@ -9,16 +9,18 @@
 }
 
 .faqTitle {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1.25;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
   margin: 0;
   color: #222;
 }
 
 .faqSubtitle {
-  font-size: 1.125rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   color: #666;
   max-width: 600px;
   margin: 0 auto;
@@ -48,10 +50,10 @@
   background: none;
   border: none;
   text-align: left;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.375rem;
-  font-weight: 600;
-  line-height: 1.35;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4);
+  font-weight: var(--rt-weight-semibold);
+  line-height: var(--rt-lh-h4);
   color: #000;
   cursor: pointer;
   display: flex;
@@ -93,10 +95,10 @@
   border: 1px solid #dae0e7;
   border-radius: 1rem;
   color: #000;
-  line-height: 1.45;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.90625rem;
-  font-weight: 400;
+  line-height: var(--rt-lh-body);
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-regular);
 }
 
 .showMoreWrapper {
@@ -135,10 +137,6 @@
     padding: 2rem 0;
   }
 
-  .faqTitle {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-  }
-
   .faqContainer {
     border-left: none;
     border-right: none;
@@ -146,13 +144,11 @@
 
   .faqQuestion {
     padding: 1.5rem 1.25rem;
-    font-size: 1.125rem;
     gap: 0.75rem;
   }
 
   .faqAnswerContent {
     padding: 1rem 1.25rem;
     margin: 0.75rem 1.25rem 1.5rem;
-    font-size: 0.875rem;
   }
 }
