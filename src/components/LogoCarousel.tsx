@@ -2,15 +2,19 @@ import React from 'react';
 import styles from './LogoCarousel.module.css';
 
 const partners = [
-  { name: 'Microsoft for Startups', logo: '/img/logos/logo_microsoft_for_startups.png' },
-  { name: 'Web Summit', logo: '/img/logos/Web_Summit_logo.svg' },
-  { name: 'Founders Institute', logo: '/img/logos/founders-institute.png' },
-  { name: 'NLSQL', logo: '/img/logos/nlsql.png' },
-  { name: 'GetVision', logo: '/img/logos/getvision-new-logo.svg' },
-  { name: 'Global AI Show', logo: '/img/logos/global-ai-show.png' },
-  { name: 'NVIDIA', logo: '/img/logos/nvidia-logo-horz.png' },
-  { name: 'Step Conference', logo: '/img/logos/step-conference.png' },
-  { name: 'Dubai AI Festival', logo: '/img/logos/dubai-ai-festival.png' },
+  { name: 'Microsoft for Startups', logo: '/img/logos/microsoft-for-startups.webp' },
+  { name: 'Web Summit', logo: '/img/logos/web-summit.webp' },
+  { name: 'Founders Institute', logo: '/img/logos/founders-institute.webp' },
+  { name: 'NLSQL', logo: '/img/logos/nlsql.webp' },
+  { name: 'GetVision', logo: '/img/logos/getvision.webp' },
+  { name: 'Global AI Show', logo: '/img/logos/global-ai-show.webp' },
+  { name: 'NVIDIA', logo: '/img/logos/nvidia.webp' },
+  { name: 'Step Conference', logo: '/img/logos/step-conference.webp' },
+  { name: 'Dubai AI Festival', logo: '/img/logos/dubai-ai-festival.webp' },
+  { name: 'AWS', logo: '/img/logos/aws.webp' },
+  { name: 'Grechka Media', logo: '/img/logos/grechka-media.webp' },
+  { name: 'Al Liwan', logo: '/img/logos/al-liwan.webp' },
+  { name: 'Founders to Founders', logo: '/img/logos/founders-to-founders.webp' },
 ];
 
 export default function LogoCarousel() {

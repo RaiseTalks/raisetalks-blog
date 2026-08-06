@@ -180,6 +180,14 @@
    font-family: Georgia, serif;
 }
 
+/* "For Startups" heading accent uses the yellow/pink brand gradient
+   instead of the shared blue one, matching Figma (node 2602:4604). */
+.solutionTitleAccentStartup {
+   background: linear-gradient(75.88deg, #FFAB0E -3.42%, #EA2640 99.98%);
+   -webkit-background-clip: text;
+   background-clip: text;
+}
+
 .solutionDescription {
    font-family: var(--rt-font-sans);
    font-size: var(--rt-fs-footnote);
@@ -226,6 +234,15 @@
    text-decoration: none;
    transform: translateY(-1px);
    box-shadow: 0 4px 12px rgba(1, 116, 225, 0.3);
+}
+
+.perksButtonAccent {
+   background: linear-gradient(70.99deg, #FFAB0E 22.64%, #EA2640 71.08%);
+   border-bottom: 3px solid #FFAB0E;
+}
+
+.perksButtonAccent:hover {
+   box-shadow: 0 4px 12px rgba(234, 38, 64, 0.3);
 }
 
 .perksButtonSecondary {
@@ -474,7 +491,6 @@
 }
 
 .investorCard {
-   max-width: 1024px;
    margin: 0 auto;
    background: #fff;
    border-left: 0.5px solid #dae0e7;
@@ -500,6 +516,12 @@
    min-width: 0;
 }
 
+/* Extra room for the "Searching Investors" accent line to stay on one
+   line at desktop sizes, without shrinking its type-scale font-size. */
+.investorContentWide {
+   max-width: 600px;
+}
+
 .investorTitle {
    font-family: var(--rt-font-sans);
    font-size: var(--rt-fs-h2);
@@ -509,13 +531,38 @@
    margin: 0 0 1rem;
 }
 
+/* "Searching Investors" heading accent uses the yellow/pink brand gradient,
+   matching Figma (node 2601:8565). Font styling comes from the shared
+   rt-h2-alt typography utility; this only adds the gradient clip and keeps
+   the phrase from wrapping at desktop sizes. */
+.investorTitleAccentAlt {
+   background: linear-gradient(75.88deg, #FFAB0E -3.42%, #EA2640 99.98%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+}
+
+/* Only force one line once the content column is actually wide enough
+   (verified at >=1280px); below that, let it wrap rather than overflow. */
+@media (min-width: 1280px) {
+   .investorTitleAccentAlt {
+      white-space: nowrap;
+   }
+}
+
+/* "Searching Startups" heading accent uses the shared blue brand gradient,
+   matching Figma (node 2781:4870). Font styling comes from rt-h2-alt. */
 .investorTitleAccent {
-   font-style: italic;
-   font-family: Georgia, serif;
    background: var(--raisetalks-brand-gradient);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    background-clip: text;
+}
+
+@media (min-width: 1280px) {
+   .investorTitleAccent {
+      white-space: nowrap;
+   }
 }
 
 .investorDescription {
@@ -546,6 +593,15 @@
    text-decoration: none;
 }
 
+.exploreButtonAccent {
+   background: linear-gradient(40.68deg, #FFAB0E 22.64%, #EA2640 71.08%);
+   border-bottom: 3px solid #FFAB0E;
+}
+
+.exploreButtonAccent:hover {
+   box-shadow: 0 8px 20px rgba(234, 38, 64, 0.25);
+}
+
 .imageGlowWrap {
    position: relative;
 }
@@ -565,13 +621,33 @@
    mask-position: center;
 }
 
-.imageGlowOne {
+.imageGlowInvestorOne {
+   -webkit-mask-image: url('/img/investor-catalog-mockup.png');
+   mask-image: url('/img/investor-catalog-mockup.png');
    background: #b4d7ff;
-   opacity: 0.75;
+   opacity: 0.5;
    transform: translate(-6%, 8%);
 }
 
-.imageGlowTwo {
+.imageGlowInvestorTwo {
+   -webkit-mask-image: url('/img/investor-catalog-mockup.png');
+   mask-image: url('/img/investor-catalog-mockup.png');
+   background: #d7e9ff;
+   opacity: 0.5;
+   transform: translate(-12%, 16%);
+}
+
+.imageGlowStartupOne {
+   -webkit-mask-image: url('/img/startup-catalog-mockup.png');
+   mask-image: url('/img/startup-catalog-mockup.png');
+   background: #b4d7ff;
+   opacity: 0.5;
+   transform: translate(-6%, 8%);
+}
+
+.imageGlowStartupTwo {
+   -webkit-mask-image: url('/img/startup-catalog-mockup.png');
+   mask-image: url('/img/startup-catalog-mockup.png');
    background: #d7e9ff;
    opacity: 0.5;
    transform: translate(-12%, 16%);
@@ -598,7 +674,7 @@
    border-right: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 640px) {
    .featureGrid,
    .featureGridThree {
       grid-template-columns: 1fr;
@@ -627,11 +703,6 @@
 
    .solutionHeader {
       gap: 2.5rem;
-   }
-
-   .featureGrid,
-   .featureGridThree {
-      grid-template-columns: 1fr;
    }
 
    .featureCard {

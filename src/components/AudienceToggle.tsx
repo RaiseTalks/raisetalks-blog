@@ -14,7 +14,7 @@ export default function AudienceToggle({ active, onSelect }: AudienceToggleProps
         className={`${styles.pill} ${active === 'startups' ? styles.active : ''}`}
         onClick={() => onSelect?.('startups')}
       >
-        <span className={`${styles.dot} ${styles.dotBlue}`} />
+        <span className={`${styles.dot} ${styles.dotYellow}`} />
         For Startups
       </button>
       <button
@@ -22,7 +22,7 @@ export default function AudienceToggle({ active, onSelect }: AudienceToggleProps
         className={`${styles.pill} ${active === 'investors' ? styles.active : ''}`}
         onClick={() => onSelect?.('investors')}
       >
-        <span className={`${styles.dot} ${styles.dotYellow}`} />
+        <span className={`${styles.dot} ${styles.dotBlue}`} />
         For Investors
       </button>
     </div>

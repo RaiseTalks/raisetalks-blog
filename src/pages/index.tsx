@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
-import SolutionSection, { DiligenceVideoBlock, NarrativeBlock, InvestorDiscoveryBlock } from '@site/src/components/SolutionSection';
+import SolutionSection, { DiligenceVideoBlock, NarrativeBlock } from '@site/src/components/SolutionSection';
 import LogoCarousel from '@site/src/components/LogoCarousel';
 import WorkspaceBanner from '@site/src/components/WorkspaceBanner';
 import GridSeam from '@site/src/components/GridSeam';
@@ -37,9 +37,10 @@ function HomepageHero() {
     >
       <div className={styles.heroInner}>
         <h1 id="hero-heading" className={styles.heroTitle}>
-          AI-native Global Fundraising <br />
-          <span className={styles.heroAccent}>and Due Diligence for <br />
-          early-stage ventures</span>
+          <span className={styles.heroAccent}>AI-native </span> <br /> 
+          Global Fundraising <br /> & Due Diligence <br />
+          <span className={styles.heroAccent}>
+          for early-stage ventures</span>
         </h1>
         <p className={styles.heroDesc}>
           Run deals, streamline due diligence, and close rounds faster — all in one place.
@@ -248,16 +249,21 @@ export default function Home() {
                      "RaiseTalks is an AI-native VC investment-intelligence platform for early-stage portfolios: founders get investor-grade data rooms, readiness scores, and structured IR pipelines, while funds get faster diligence, clearer IC prep, and earlier visibility into the right deals. I've spent 17 years on the investment side, closed €3B+ in deals, and reviewed 10,000+ startups, and I'm turning that investment-readiness playbook into an AI-native platform that becomes the natural end-to-end workspace for VC investments."
                   </p>
                   <div className={styles.workspaceFounderFooter}>
-                     <div className={styles.workspaceFounderAvatar}>
-                        <img
-                           src="/img/icons/dariia.jpg"
-                           alt="Dr. Dariia Vasylieva - President, CEO"
-                           loading="lazy"
-                        />
+                     <div className={styles.workspaceFounderIdentity}>
+                        <div className={styles.workspaceFounderAvatar}>
+                           <img
+                              src="/img/icons/dariia.jpg"
+                              alt="Dr. Dariia Vasylieva - President, CEO"
+                              loading="lazy"
+                           />
+                        </div>
+                        <div>
+                           <p className={styles.workspaceFounderName}>Dr. Dariia Vasylieva</p>
+                           <p className={styles.workspaceFounderRole}>President, CEO at RaiseTalks</p>
+                        </div>
                      </div>
-                     <a href="https://www.linkedin.com/in/dvasylieva/">
-                        <p className={styles.workspaceFounderName}>Dr. Dariia Vasylieva</p>
-                        <p className={styles.workspaceFounderRole}>President, CEO at RaiseTalks</p>
+                     <a className={styles.workspaceFounderLinkedin} href="https://www.linkedin.com/in/dvasylieva/">
+                        Let's Connect on Linkedin
                      </a>
                   </div>
                </div>
@@ -269,8 +275,6 @@ export default function Home() {
       <NarrativeBlock />
       <GridSeam />
       <PitchCompetitionsBlock />
-      <GridSeam />
-      <InvestorDiscoveryBlock />
       <GridSeam variant="dark" />
       <HomepageCTA />
     </Layout>

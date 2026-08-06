@@ -534,11 +534,7 @@ export default function InvestorsPage() {
         <div className={styles.spacerRow} />
       </section>
 
-      {/* ================= MCP LEAD MAGNET ================= */}
-      <section aria-labelledby="mcp-heading">
-        <h2 id="mcp-heading" className={styles.srOnly}>Run diligence inside Claude</h2>
-        <InvestorMcpAccess />
-      </section>
+     
 
       {/* ================= CLOSING CTA ================= */}
       <section

@@ -95,6 +95,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-style: italic;
+  font-family: Georgia, serif;
 }
 
 .heroDesc {
@@ -542,18 +544,21 @@
 }
 
 .whySection .sectionContainer {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .workspaceHeading {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.75rem;
   text-align: center;
-  margin: 0 0 3rem;
+  margin: 0 0 4rem;
 }
 
 .workspaceHeadingLine1 {
@@ -570,7 +575,7 @@
   font-weight: var(--rt-weight-regular);
   font-size: var(--rt-fs-h2-alt);
   line-height: var(--rt-lh-h2);
-  background: linear-gradient(90deg, rgba(0, 54, 135, 1) 0%, rgba(0, 119, 255, 1) 100%);
+  background: var(--raisetalks-brand-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -601,8 +606,8 @@
 }
 
 .workspaceCard {
-  background: white;
-  border: 1px solid #dae0e7;
+  background: #f7f7f7;
+  border: 1px solid #d7dde5;
   border-radius: 1rem;
   padding: 2rem;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -613,13 +618,25 @@
   transform: translateY(-0.25rem);
 }
 
+/* Tablet: the 3 info cards form a 2-col + full-width-third grid instead of
+   a single stacked column (matches Figma tablet frame, node 2823:6767). */
+@media (min-width: 641px) and (max-width: 900px) {
+  .workspaceCardsCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .workspaceCardsCol .workspaceCard:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 .workspaceCardTitle {
   font-family: var(--rt-font-serif);
   font-style: italic;
   font-weight: var(--rt-weight-regular);
   font-size: var(--rt-fs-h4-alt);
   line-height: var(--rt-lh-h4);
-  color: #000;
+  color: #1a1a1a;
   margin: 0 0 0.5rem;
 }
 
@@ -627,7 +644,7 @@
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-body);
   line-height: var(--rt-lh-body);
-  color: #404040;
+  color: #333;
   margin: 0;
 }
 
@@ -638,9 +655,10 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 2rem;
-  background: #0a1929;
+  background: url('/img/workspace-founder-bg.png') center / cover no-repeat, #0077ff;
+  border: 1px solid #0054d3;
+  border-bottom-width: 8px;
   border-radius: 1rem;
-  border-bottom: 8px solid #0054d3;
   padding: 3rem;
 }
 
@@ -654,13 +672,23 @@
 
 .workspaceFounderFooter {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.workspaceFounderIdentity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .workspaceFounderAvatar {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -679,14 +707,38 @@
   line-height: var(--rt-lh-body);
   color: white;
   margin: 0;
+  white-space: nowrap;
 }
 
 .workspaceFounderRole {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-footnote);
   line-height: var(--rt-lh-footnote);
-  color: #dbdbdb;
+  color: #e6e6e6;
   margin: 0.15rem 0 0;
+  white-space: nowrap;
+}
+
+.workspaceFounderLinkedin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  color: #fff !important;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  text-decoration: none !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.workspaceFounderLinkedin:hover {
+  background: #fff;
+  color: #0054d3 !important;
 }
 
 [data-theme='dark'] .whySection {
