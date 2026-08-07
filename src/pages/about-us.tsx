@@ -60,7 +60,8 @@ const NoPitchCoachIcon = ({ className }: { className?: string }) => (
 
 export default function AboutUs() {
    const goalCardBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
-   const visionTimelineImg = useBaseUrl('/img/about-us/vision-timeline.png');
+   const visionTimelineImg = useBaseUrl('/img/about-us/vision-timeline.svg');
+   const visionTimelineMobileImg = useBaseUrl('/img/about-us/vision-timeline-mobile.svg');
    return (
       <Layout
          title="About Us | RaiseTalks"
@@ -215,12 +216,15 @@ export default function AboutUs() {
 
                   <div className={styles.visionGraphicCol}>
                      <div className={styles.visionRotateWrap}>
-                        <img
-                           src={visionTimelineImg}
-                           alt="Timeline: In 5 years, the RaiseTalks Readiness Score becomes the industry benchmark - the first thing investors ask about and founders prepare for. In 10 years, RaiseTalks becomes the infrastructure connecting founders and investors across markets, stages, and geographies - the Bloomberg Terminal of early-stage startup capital."
-                           className={styles.visionHorizons}
-                           loading="lazy"
-                        />
+                        <picture>
+                           <source media="(max-width: 768px)" srcSet={visionTimelineMobileImg} />
+                           <img
+                              src={visionTimelineImg}
+                              alt="Timeline: In 5 years, the RaiseTalks Readiness Score becomes the industry benchmark - the first thing investors ask about and founders prepare for. In 10 years, RaiseTalks becomes the infrastructure connecting founders and investors across markets, stages, and geographies - the Bloomberg Terminal of early-stage startup capital."
+                              className={styles.visionHorizons}
+                              loading="lazy"
+                           />
+                        </picture>
                      </div>
                   </div>
                </div>

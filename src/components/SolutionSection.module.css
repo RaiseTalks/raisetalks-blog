@@ -19,8 +19,10 @@
    display: flex;
    flex-direction: column;
    gap: 4rem;
-   background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/img/narrative-bg.png') center / cover no-repeat;
+   background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/img/narrative-bg-desktop.webp') center / cover no-repeat;
 }
+@media (max-width: 996px) { .narrativePanel { background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/img/narrative-bg-tablet.webp'); } }
+@media (max-width: 768px) { .narrativePanel { background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/img/narrative-bg-mobile.webp'); } }
 
 .narrativeTop {
    display: flex;
@@ -613,43 +615,43 @@
    inset: 0;
    z-index: 0;
    pointer-events: none;
-   -webkit-mask-image: url('/img/startup-catalog-mockup.png');
+   -webkit-mask-image: url('/img/startup-catalog-mockup.webp');
    -webkit-mask-size: contain;
    -webkit-mask-repeat: no-repeat;
    -webkit-mask-position: center;
-   mask-image: url('/img/startup-catalog-mockup.png');
+   mask-image: url('/img/startup-catalog-mockup.webp');
    mask-size: contain;
    mask-repeat: no-repeat;
    mask-position: center;
 }
 
 .imageGlowInvestorOne {
-   -webkit-mask-image: url('/img/investor-catalog-mockup.png');
-   mask-image: url('/img/investor-catalog-mockup.png');
+   -webkit-mask-image: url('/img/investor-catalog-mockup.webp');
+   mask-image: url('/img/investor-catalog-mockup.webp');
    background: #b4d7ff;
    opacity: 0.5;
    transform: translate(-6%, 8%);
 }
 
 .imageGlowInvestorTwo {
-   -webkit-mask-image: url('/img/investor-catalog-mockup.png');
-   mask-image: url('/img/investor-catalog-mockup.png');
+   -webkit-mask-image: url('/img/investor-catalog-mockup.webp');
+   mask-image: url('/img/investor-catalog-mockup.webp');
    background: #d7e9ff;
    opacity: 0.5;
    transform: translate(-12%, 16%);
 }
 
 .imageGlowStartupOne {
-   -webkit-mask-image: url('/img/startup-catalog-mockup.png');
-   mask-image: url('/img/startup-catalog-mockup.png');
+   -webkit-mask-image: url('/img/startup-catalog-mockup.webp');
+   mask-image: url('/img/startup-catalog-mockup.webp');
    background: #b4d7ff;
    opacity: 0.5;
    transform: translate(-6%, 8%);
 }
 
 .imageGlowStartupTwo {
-   -webkit-mask-image: url('/img/startup-catalog-mockup.png');
-   mask-image: url('/img/startup-catalog-mockup.png');
+   -webkit-mask-image: url('/img/startup-catalog-mockup.webp');
+   mask-image: url('/img/startup-catalog-mockup.webp');
    background: #d7e9ff;
    opacity: 0.5;
    transform: translate(-12%, 16%);

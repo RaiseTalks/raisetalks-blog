@@ -131,7 +131,7 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
       {/* Connector card */}
       <div className="relative w-full">
         <img
-          src="/img/mcp-connect-logos.png"
+          src="/img/mcp-connect-logos.webp"
           alt="RaiseTalks connected to Claude"
           className="absolute left-6 md:left-9 -top-[40px] md:-top-[56px] w-[180px] md:w-[240px] h-auto pointer-events-none select-none z-[1]"
         />

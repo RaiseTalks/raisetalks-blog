@@ -167,9 +167,9 @@ export default function InvestorsPage() {
   const heroBg = useBaseUrl('/img/backgrounds/hero-alt-desktop.webp');
   const ctaBg = useBaseUrl('/img/backgrounds/main-cta-desktop.webp');
   const bandBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
-  const dashboardShadow = useBaseUrl('/img/investors/startup-catalog-mockup.png');
-  const prescoreImg = useBaseUrl('/img/investors/prescore-dashboard.png');
-  const avatar = useBaseUrl('/img/investors/avatar-dariia.png');
+  const dashboardShadow = useBaseUrl('/img/investors/startup-catalog-mockup.webp');
+  const prescoreImg = useBaseUrl('/img/investors/prescore-dashboard.svg');
+  const avatar = useBaseUrl('/img/investors/avatar-dariia.webp');
   const swirlBg = useBaseUrl('/img/investors/swirl.png');
 
   const DEMO_URL = 'https://calendly.com/raisetalks/demo';

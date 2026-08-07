@@ -447,7 +447,12 @@
 /* ============================================================
    FRUSTRATION PATTERNS
    ============================================================ */
-.problemSection { padding: 2rem 0; background: var(--ifm-background-color); }
+.problemSection {
+  padding: 2rem 0;
+  background: var(--ifm-background-color) url('/img/investors/frustration-bg-desktop.webp') center / cover no-repeat;
+}
+@media (max-width: 996px) { .problemSection { background-image: url('/img/investors/frustration-bg-tablet.webp'); } }
+@media (max-width: 768px) { .problemSection { background-image: url('/img/investors/frustration-bg-mobile.webp'); } }
 .problemHead {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -492,8 +497,8 @@
   content: '';
   position: absolute;
   inset: 0;
-  -webkit-mask-image: url('/img/investors/startup-catalog-mockup.png');
-  mask-image: url('/img/investors/startup-catalog-mockup.png');
+  -webkit-mask-image: url('/img/investors/startup-catalog-mockup.webp');
+  mask-image: url('/img/investors/startup-catalog-mockup.webp');
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;

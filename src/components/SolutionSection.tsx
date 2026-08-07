@@ -287,7 +287,7 @@ export default function SolutionSection() {
                               <div className={`${styles.imageGlow} ${styles.imageGlowInvestorOne}`} aria-hidden="true" />
                               <div className={`${styles.imageGlow} ${styles.imageGlowInvestorTwo}`} aria-hidden="true" />
                               <img
-                                 src="/img/investor-catalog-mockup.png"
+                                 src="/img/investor-catalog-mockup.webp"
                                  alt="Investor Catalog - Curated investors matched to your raise"
                                  className={styles.startupsLayoutImage}
                                  loading="lazy"
@@ -320,7 +320,7 @@ export default function SolutionSection() {
                               <div className={`${styles.imageGlow} ${styles.imageGlowStartupOne}`} aria-hidden="true" />
                               <div className={`${styles.imageGlow} ${styles.imageGlowStartupTwo}`} aria-hidden="true" />
                               <img
-                                 src="/img/startup-catalog-mockup.png"
+                                 src="/img/startup-catalog-mockup.webp"
                                  alt="Startup Catalog - Curated startups matched to your thesis"
                                  className={styles.startupsLayoutImage}
                                  loading="lazy"
