@@ -1,0 +1,46 @@
+/**
+ * Page rail — the shared mechanism for constraining and framing page
+ * content width, used the same way on every page. Think of it as a div
+ * with a border: `.rt-rail` sets the width (so content lives inside it,
+ * never past it) and draws the border itself — nothing else should draw
+ * a competing vertical line at a different offset.
+ *
+ * - Mobile   (<640px):        fixed 8px margin, fluid content width.
+ * - Tablet   (640–1023px):    fixed 48px margin, fluid content width.
+ * - Desktop  (1024px+):       fixed content-width ladder (1024/1280/1536),
+ *                             margin is whatever remains, auto-centered.
+ *
+ * Combine with a component's own class for background/padding/etc:
+ *   <div className={`rt-rail ${styles.myPanel}`}>
+ * Only one rail should ever be in play for a given horizontal position —
+ * don't also add `container`, a custom max-width, or another border in a
+ * parent/child of an .rt-rail box, or the lines will double up and drift
+ * apart at different viewport widths (they use different formulas).
+ */
+.rt-rail {
+  width: 100%;
+  /* !important: responsive.css has a sitewide `* { max-width: 100% }`
+     overflow guard below 640px that otherwise wins here despite lower
+     specificity (a Tailwind v4 cascade-layer effect) — don't remove that
+     guard, just make sure the rail's own width formula always applies. */
+  max-width: calc(100% - 16px) !important;
+  margin-inline: auto;
+  box-sizing: border-box;
+  border-left: 0.5px solid var(--rail-color, #dae0e7);
+  border-right: 0.5px solid var(--rail-color, #dae0e7);
+}
+
+@media (min-width: 640px) {
+  .rt-rail { max-width: calc(100% - 96px) !important; }
+}
+@media (min-width: 1024px) { .rt-rail { max-width: 1024px !important; } }
+@media (min-width: 1280px) { .rt-rail { max-width: 1280px !important; } }
+@media (min-width: 1536px) { .rt-rail { max-width: 1536px !important; } }
+
+/* Dark-background variant — same widths, a lighter line for contrast
+   against navy sections. Set via a class rather than color-mix so it works
+   without relying on CSS variable inheritance quirks. */
+.rt-rail-dark {
+  border-left-color: rgba(255, 255, 255, 0.3);
+  border-right-color: rgba(255, 255, 255, 0.3);
+}

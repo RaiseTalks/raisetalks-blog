@@ -35,7 +35,7 @@ function HomepageHero() {
       className={`${styles.hero} ${section.visible ? styles.visible : ''}`}
       aria-labelledby="hero-heading"
     >
-      <div className={styles.heroInner}>
+      <div className={`rt-rail ${styles.heroInner}`}>
         <h1 id="hero-heading" className={styles.heroTitle}>
           <span className={styles.heroAccent}>AI-native </span> <br /> 
           Global Fundraising <br /> & Due Diligence <br />
@@ -63,9 +63,9 @@ function PitchCompetitionsBlock() {
   return (
     <section
       ref={section.ref as React.RefObject<HTMLElement>}
-      className={`${styles.animSection} ${section.visible ? styles.visible : ''} bg-[#fafafa] py-16`}
+      className={`${styles.animSection} ${section.visible ? styles.visible : ''} bg-[#fafafa]`}
     >
-      <div className="container px-4 mx-auto flex flex-col lg:flex-row gap-10 lg:gap-[90px]">
+      <div className="rt-rail px-8 pt-8 pb-8 sm:px-12 sm:pt-12 sm:pb-12 lg:px-16 lg:pt-16 lg:pb-16 flex flex-col lg:flex-row gap-10 sm:gap-[90px]">
       <div className="w-full lg:w-[480px] lg:flex-shrink-0">
         <h2 className="text-[28px] md:text-[40px] lg:text-[48px] font-normal leading-[1.25] text-black" style={{ fontWeight: 400 }}>
           Attend our <br />
@@ -135,7 +135,7 @@ function HomepageCTA() {
       className={`${styles.ctaSection} ${styles.animSection} ${section.visible ? styles.visible : ''}`}
       aria-labelledby="cta-heading"
     >
-      <div className={`container mx-auto h-full ${styles.ctaBorderBox}`}>
+      <div className={`rt-rail rt-rail-dark h-full ${styles.ctaBorderBox}`}>
           <div className={styles.ctaBackgroundWindow} aria-hidden="true">
             <img src="/img/cta-navy-bg.svg" className={styles.ctaBackgroundArt} alt="" />
           </div>
@@ -207,14 +207,12 @@ export default function Home() {
       <GridSeam />
       <WorkspaceBanner />
       <GridSeam />
-      <DiligenceVideoBlock />
-      <GridSeam />
       <SolutionSection />
       <GridSeam />
 
       {/* Why RaiseTalks Section */}
       <section className={clsx(styles.whySection, styles.animateIn)}>
-         <div className={styles.sectionContainer}>
+         <div className={`rt-rail ${styles.sectionContainer}`}>
             <h2 className={styles.workspaceHeading}>
                <span className={styles.workspaceHeadingLine1}>One Workspace.</span>
                <span className={styles.workspaceHeadingLine2}>Zero chaos.</span>

@@ -78,6 +78,9 @@ export default function Footer(): ReactNode {
             <div className="rt-footer__newsletter">
               <p className="rt-footer__col-title">Newsletter</p>
               <NewsletterForm />
+              <Link to="/affiliate-program" className="rt-footer__affiliate-banner">
+                Become an affiliate and earn money
+              </Link>
             </div>
           </div>
         </div>

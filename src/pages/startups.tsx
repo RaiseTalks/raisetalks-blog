@@ -5,6 +5,7 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import FAQSection from '@site/src/components/FAQSection';
+import { DiligenceVideoBlock} from '@site/src/components/SolutionSection';
 
 import styles from './startups.module.css';
 
@@ -567,6 +568,8 @@ export default function Startups() {
           </AnimSection>
         </div>
       </section>
+
+      <DiligenceVideoBlock />
 
       {/* ── FAQ ──────────────────────────────────────── */}
       <FAQSection />

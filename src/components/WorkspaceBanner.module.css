@@ -2,6 +2,8 @@
   background: #ffffff;
 }
 
+/* Width/margin/the rail border come from the shared `rt-rail` class
+   (src/css/rail.css), combined with .card in WorkspaceBanner.tsx. */
 .card {
   position: relative;
   overflow: hidden;

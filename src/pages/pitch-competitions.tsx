@@ -218,7 +218,7 @@ export default function PitchCompetitions() {
       </section>
 
       <div className={styles.pageRegion}>
-      <GridSeam innerClassName="w-full mx-auto h-full sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]" />
+      <GridSeam />
 
       {/* ================================================================
           BENEFITS

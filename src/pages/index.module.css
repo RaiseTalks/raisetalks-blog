@@ -54,14 +54,17 @@
   .hero { opacity: 1; transition: none; }
 }
 
+/* Width/margin/the rail border come from the shared `rt-rail` class
+   (src/css/rail.css) so it matches the rest of the page on mobile/tablet.
+   Desktop keeps its own narrower 1024px cap below. */
 .heroInner {
-  max-width: 1024px;
-  margin: 0 auto;
-  width: 100%;
-  border-left: 1px solid #dae0e7;
-  border-right: 1px solid #dae0e7;
   padding: 8rem 4rem 5rem;
-  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .heroInner {
+    max-width: 1024px !important;
+  }
 }
 
 .heroEyebrow {
@@ -312,10 +315,10 @@
   text-align: center;
 }
 
+/* Width/margin/the rail border come from the shared `rt-rail`/`rt-rail-dark`
+   classes (src/css/rail.css), combined with .ctaBorderBox in index.tsx. */
 .ctaBorderBox {
   position: relative;
-  border-left: 1px solid #1e437b;
-  border-right: 1px solid #1e437b;
   padding: 4rem 1.5rem;
 }
 
@@ -526,18 +529,11 @@
   }
 }
 
+/* Width, margin and the rail border itself come from the shared `rt-rail`
+   class (src/css/rail.css) — this only adds the section's own padding. */
 .sectionContainer {
-  width: 100%;
-  margin: 0 auto;
   padding: 0 1rem;
-  border-left: 0.5px solid #dae0e7;
-  border-right: 0.5px solid #dae0e7;
 }
-@media (min-width: 640px)  { .sectionContainer { max-width: 640px; } }
-@media (min-width: 768px)  { .sectionContainer { max-width: 768px; } }
-@media (min-width: 1024px) { .sectionContainer { max-width: 1024px; } }
-@media (min-width: 1280px) { .sectionContainer { max-width: 1280px; } }
-@media (min-width: 1536px) { .sectionContainer { max-width: 1536px; } }
 
 .whySection {
   background: rgb(249 250 251);

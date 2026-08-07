@@ -130,17 +130,6 @@ export function DiligenceVideoBlock() {
       <section className={styles.videoSection}>
          <div className="container px-4 mx-auto">
             <div className={styles.videoInner}>
-               <div className={styles.videoMedia}>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '1369 / 778', borderRadius: '1rem', overflow: 'hidden', background: '#000'}}>
-                   <iframe
-                        src="https://www.youtube-nocookie.com/embed/8WOwPsQE158?controls=1&modestbranding=1&rel=0&playsinline=1"
-                        title="Your Next Investor Meeting Is Closer Than You Think"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                     />
-                  </div>
-               </div>
                 <div className={styles.videoText}>
                   <h2 className={styles.videoTitle}>
                      Your Next Investor Meeting<br />
@@ -152,6 +141,17 @@ export function DiligenceVideoBlock() {
                   <Link className={styles.videoButton} to="https://calendly.com/iamdariiava/30min">
                      See it in action
                   </Link>
+               </div>
+               <div className={styles.videoMedia}>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '1369 / 778', borderRadius: '1rem', overflow: 'hidden', background: '#000'}}>
+                   <iframe
+                        src="https://www.youtube-nocookie.com/embed/8WOwPsQE158?controls=1&modestbranding=1&rel=0&playsinline=1"
+                        title="Your Next Investor Meeting Is Closer Than You Think"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                     />
+                  </div>
                </div>
             </div>   
          </div>
@@ -213,7 +213,7 @@ export default function SolutionSection() {
          <IconGradientDefs />
 
          {/* Toggle */}
-         <div className={`container mx-auto ${styles.solutionMain}`}>
+         <div className={`rt-rail ${styles.solutionMain}`}>
                <div className={styles.solutionHeader}>
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
                      <AudienceToggle active={active} onSelect={setActive} />
@@ -225,7 +225,7 @@ export default function SolutionSection() {
          <McpCommunicator variant={active} />
 
          {/* Main Solution Block */}
-         <div className={`container mx-auto ${styles.solutionMain}`}>
+         <div className={`rt-rail ${styles.solutionMain}`}>
                <div className={styles.solutionHeader}>
                   {active === 'startups' ? (
                      <div className="flex flex-col items-center text-center gap-6">
@@ -283,9 +283,8 @@ export default function SolutionSection() {
          <>
             <GridSeam />
             <section className={styles.investorSection}>
-               <div className="container mx-auto">
-                  <div className={styles.investorCard}>
-                     <div className={styles.investorInner}>
+               <div className={`rt-rail ${styles.investorCard}`}>
+                  <div className={styles.investorInner}>
                         <div className={styles.investorImageCol}>
                            <div className={styles.imageGlowWrap}>
                               <div className={`${styles.imageGlow} ${styles.imageGlowInvestorOne}`} aria-hidden="true" />
@@ -308,7 +307,6 @@ export default function SolutionSection() {
                            </Link>
                         </div>
                      </div>
-                  </div>
                </div>
             </section>
          </>
@@ -318,9 +316,8 @@ export default function SolutionSection() {
          <>
             <GridSeam />
             <section className={styles.investorSection}>
-               <div className="container mx-auto">
-                  <div className={styles.investorCard}>
-                     <div className={styles.investorInner}>
+               <div className={`rt-rail ${styles.investorCard}`}>
+                  <div className={styles.investorInner}>
                         <div className={styles.investorImageCol}>
                            <div className={styles.imageGlowWrap}>
                               <div className={`${styles.imageGlow} ${styles.imageGlowStartupOne}`} aria-hidden="true" />
@@ -343,7 +340,6 @@ export default function SolutionSection() {
                            </Link>
                         </div>
                      </div>
-                  </div>
                </div>
             </section>
          </>
@@ -362,7 +358,7 @@ export function NarrativeBlock() {
 
    return (
       <section className={styles.narrativeBlock}>
-         <div className={`container mx-auto ${styles.narrativePanel}`}>
+         <div className={`rt-rail rt-rail-dark ${styles.narrativePanel}`}>
                <div className={styles.narrativeTop}>
                   <div className={styles.narrativeLeft}>
                      <img src="/img/raisetalks-tv-logo.svg" alt="RaiseTalks TV" className={styles.narrativeLogo} />

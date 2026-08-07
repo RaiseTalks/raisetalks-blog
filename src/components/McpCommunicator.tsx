@@ -90,7 +90,7 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
   };
 
   return (
-    <section className={styles.sectionInner}>
+    <section className={`rt-rail ${styles.sectionInner}`}>
       {/* Heading + accordion */}
       <div className="flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-start">
         <div className="flex-1 min-w-0 flex flex-col gap-4">
@@ -136,7 +136,7 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
           className="absolute left-6 md:left-9 -top-[40px] md:-top-[56px] w-[180px] md:w-[240px] h-auto pointer-events-none select-none z-[1]"
         />
         <div className="bg-[#f7f7f7] border border-[#dedede] rounded-[24px] px-6 md:px-[48px] pt-[96px] md:pt-[128px] pb-[48px]">
-          <div className="flex flex-col md:flex-row gap-[48px] md:gap-[64px] items-stretch">
+          <div className="flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-stretch">
             {/* Step 1 */}
             <div className="flex-1 min-w-0 flex flex-col justify-between gap-6">
               <div className="flex flex-col gap-6">
@@ -173,7 +173,7 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
             </div>
 
             {/* Step 2 */}
-            <div className="flex-1 min-w-0 flex flex-col justify-between gap-6 md:border-l md:border-[#ebebeb] md:pl-[48px] border-t border-[#ebebeb] pt-6 md:border-t-0 md:pt-0">
+            <div className="flex-1 min-w-0 flex flex-col justify-between gap-6 lg:border-l lg:border-[#ebebeb] lg:pl-[48px] border-t border-[#ebebeb] pt-6 lg:border-t-0 lg:pt-0">
               <div className="flex flex-col gap-6">
                 <span className={`w-9 h-9 rounded-[4px] border-b-[3px] flex items-center justify-center text-white text-[22px] leading-none ${content.stepBadge}`}>2</span>
                 <div className="flex flex-col gap-1">
@@ -195,7 +195,7 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
             </div>
 
             {/* Step 3 */}
-            <div className="flex-1 min-w-0 flex flex-col gap-6 md:border-l md:border-[#ebebeb] md:pl-[48px] border-t border-[#ebebeb] pt-6 md:border-t-0 md:pt-0">
+            <div className="flex-1 min-w-0 flex flex-col gap-6 lg:border-l lg:border-[#ebebeb] lg:pl-[48px] border-t border-[#ebebeb] pt-6 lg:border-t-0 lg:pt-0">
               <span className={`w-9 h-9 rounded-[4px] border-b-[3px] flex items-center justify-center text-white text-[22px] leading-none ${content.stepBadge}`}>3</span>
               <div className="flex flex-col gap-1">
                 <p className="text-[#1a1a1a] text-[22px] leading-[1.35] m-0">Connect and sign in</p>

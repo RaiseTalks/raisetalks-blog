@@ -239,10 +239,6 @@ const config: Config = {
               label: 'Facebook',
               to: 'https://facebook.com/raisetalks',
             },
-             {
-              label: 'Affiliate Program',
-              to: '/affiliate-program',
-            },
           ],
         },
         {

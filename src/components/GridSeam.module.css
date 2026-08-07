@@ -1,3 +1,6 @@
+/* The vertical rail lines come from the `rt-rail` class (src/css/rail.css)
+   on the inner div, not from this file — keeps every section's rail on the
+   same formula instead of each drawing its own border independently. */
 .seam {
   width: 100%;
   height: 60px;
@@ -9,8 +12,6 @@
 .seam > div {
   height: 100%;
   box-sizing: border-box;
-  border-left: 0.5px solid #dae0e7;
-  border-right: 0.5px solid #dae0e7;
 }
 
 .seamDark {
@@ -19,12 +20,14 @@
   border-bottom-color: #1e437b;
 }
 
-.seamDark > div {
-  border-left-color: #1e437b;
-  border-right-color: #1e437b;
+/* Tablet (640–1023px): 48px rail-spacer height per Figma. */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .seam {
+    height: 48px;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 639px) {
   .seam {
     height: 32px;
   }
