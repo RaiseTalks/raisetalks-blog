@@ -46,6 +46,7 @@
    .hero's own top/bottom (both flush, since .hero has zero padding). */
 .hero::before,
 .hero::after {
+  display: none;
   content: '';
   position: absolute;
   top: 0;
@@ -80,7 +81,7 @@
 .heroTitle {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-regular);
+  font-weight: var(--rt-weight-hero);
   line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;

@@ -214,7 +214,9 @@ export default function InvestorsPage() {
         aria-labelledby="hero-heading"
       >
         <img src={heroBg} alt="" aria-hidden="true" className={styles.heroBg} />
-        <div className={`${styles.container} ${styles.narrow}`}>
+        {/* Bottom rail-bound border dropped — the proof section directly
+            below supplies its own full-width divider (.spacerRow). */}
+        <div className={`${styles.container} ${styles.narrow} ${styles.containerNoBottomBorder}`}>
           <div className={styles.heroInner}>
             <h1 id="hero-heading" className={styles.heroH1}>
               10,000 decks in.
@@ -237,22 +239,49 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      {/* ================= AUDIENCE BAND ================= */}
+      {/* ================= PROOF / TESTIMONIAL ================= */}
       <section
-        ref={band.ref as React.RefObject<HTMLElement>}
-        className={`${styles.bandSection} ${styles.animSection} ${band.visible ? styles.visible : ''}`}
+        ref={proof.ref as React.RefObject<HTMLElement>}
+        className={`${styles.proofSection} ${styles.animSection} ${proof.visible ? styles.visible : ''}`}
+        aria-labelledby="proof-heading"
       >
-        <div className={`${styles.container} ${styles.narrow}`}>
-          <div className={styles.band}>
-            <img src={bandBg} alt="" aria-hidden="true" className={styles.bandBg} />
-            <p className={styles.bandText}>
-              RaiseTalks is built for angels, micro funds, institutional VCs and
-              accelerators who want to spend less time on intake and more time on
-              conviction.
-            </p>
+        <img src={swirlBg} alt="" aria-hidden="true" className={styles.proofBg} />
+        <h2 id="proof-heading" className={styles.srOnly}>Proof</h2>
+
+        {/* Empty spacer row above the content (single line, not doubled) */}
+        <div className={styles.spacerRow} />
+
+        <div className={styles.proofContent}>
+          <figure className={styles.quoteBlock}>
+            <div className={styles.avatarWrap}>
+              <img src={avatar} alt="Dariia Vasylieva, Founder of RaiseTalks" className={styles.avatar} loading="lazy" />
+            </div>
+            <IconQuote />
+            <blockquote className={styles.quoteText}>
+              &quot;We reviewed 1M impressions of founder activity across 63
+              countries. The signal is there - RaiseTalks surfaces it.&quot;
+            </blockquote>
+            <figcaption className={styles.quoteAttr}>
+              <span className={styles.quoteName}>Dariia Vasylieva</span>
+              <span className={styles.quoteRole}>Founder</span>
+            </figcaption>
+          </figure>
+
+          <div className={styles.statStrip}>
+            <StatItem display="400000" label="Founder activity impressions reviewed" active={proof.visible} />
+            <div className={styles.statDivider} aria-hidden="true" />
+            <StatItem display="49" label="Countries" active={proof.visible} />
+            <div className={styles.statDivider} aria-hidden="true" />
+            <StatItem display="< 1 min" label="Average IC memo draft time" active={proof.visible} />
           </div>
         </div>
+
+        {/* Empty spacer row below the content (single line, not doubled) */}
+        <div className={styles.spacerRow} />
       </section>
+
+
+   
 
       </div>
 
@@ -263,7 +292,9 @@ export default function InvestorsPage() {
         className={`${styles.problemSection} ${styles.animSection} ${problem.visible ? styles.visible : ''}`}
         aria-labelledby="problem-heading"
       >
-        <div className={styles.container}>
+        {/* Top rail-bound border dropped — the proof section directly
+            above supplies its own full-width divider (.spacerRow). */}
+        <div className={`${styles.container} ${styles.containerNoTopBorder}`}>
           <div className={styles.problemHead}>
             <h2 id="problem-heading" className={styles.sectionH2}>
               Investors Face the same
@@ -448,8 +479,8 @@ export default function InvestorsPage() {
         className={`${styles.featureSection} ${styles.animSection} ${dd.visible ? styles.visible : ''}`}
         aria-labelledby="dd-heading"
       >
-        {/* No bottom rail-bound border here — the proof section's own
-            full-width spacer row supplies the divider immediately below. */}
+        {/* No bottom rail-bound border here — the audience band section's
+            own top border supplies the divider immediately below. */}
         <div className={`${styles.container} ${styles.containerNoBottomBorder}`}>
           <div className={styles.split}>
             <div className={styles.splitText}>
@@ -493,45 +524,21 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      {/* ================= PROOF / TESTIMONIAL ================= */}
+         {/* ================= AUDIENCE BAND ================= */}
       <section
-        ref={proof.ref as React.RefObject<HTMLElement>}
-        className={`${styles.proofSection} ${styles.animSection} ${proof.visible ? styles.visible : ''}`}
-        aria-labelledby="proof-heading"
+        ref={band.ref as React.RefObject<HTMLElement>}
+        className={`${styles.bandSection} ${styles.animSection} ${band.visible ? styles.visible : ''}`}
       >
-        <img src={swirlBg} alt="" aria-hidden="true" className={styles.proofBg} />
-        <h2 id="proof-heading" className={styles.srOnly}>Proof</h2>
-
-        {/* Empty spacer row above the content (single line, not doubled) */}
-        <div className={styles.spacerRow} />
-
-        <div className={styles.proofContent}>
-          <figure className={styles.quoteBlock}>
-            <div className={styles.avatarWrap}>
-              <img src={avatar} alt="Dariia Vasylieva, Founder of RaiseTalks" className={styles.avatar} loading="lazy" />
-            </div>
-            <IconQuote />
-            <blockquote className={styles.quoteText}>
-              &quot;We reviewed 400K+ impressions of founder activity across 49
-              countries. The signal is there - RaiseTalks surfaces it.&quot;
-            </blockquote>
-            <figcaption className={styles.quoteAttr}>
-              <span className={styles.quoteName}>Dariia Vasylieva</span>
-              <span className={styles.quoteRole}>Founder</span>
-            </figcaption>
-          </figure>
-
-          <div className={styles.statStrip}>
-            <StatItem display="400000" label="Founder activity impressions reviewed" active={proof.visible} />
-            <div className={styles.statDivider} aria-hidden="true" />
-            <StatItem display="49" label="Countries" active={proof.visible} />
-            <div className={styles.statDivider} aria-hidden="true" />
-            <StatItem display="< 3 min" label="Average IC memo draft time" active={proof.visible} />
+        <div className={`${styles.container} ${styles.narrow}`}>
+          <div className={styles.band}>
+            <img src={bandBg} alt="" aria-hidden="true" className={styles.bandBg} />
+            <p className={styles.bandText}>
+              RaiseTalks is built for angels, micro funds, institutional VCs and
+              accelerators who want to spend less time on intake and more time on
+              conviction.
+            </p>
           </div>
         </div>
-
-        {/* Empty spacer row below the content (single line, not doubled) */}
-        <div className={styles.spacerRow} />
       </section>
 
      

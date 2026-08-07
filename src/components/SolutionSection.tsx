@@ -235,9 +235,6 @@ export default function SolutionSection() {
                               <p className={styles.solutionDescription}>
                                  RaiseTalks transforms your startup data into a structured, investor-grade Data Room with AI-powered gap analysis, so you walk into every conversation with confidence.
                               </p>
-                              <p className={styles.solutionDescription}>
-                                 We provide you with tools and deals to accelerate your raise.
-                              </p>
                            </div>
                            <Link className={`${styles.perksButton} ${styles.perksButtonAccent}`} to="/startups#perks">
                               Get access to Perks

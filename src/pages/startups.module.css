@@ -143,8 +143,8 @@
 .hero {
   text-align: center;
   background: var(--ifm-background-color);
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
-   border: 0.5px solid #DAE0E7;
+  border-top: 0.5px solid #DAE0E7;
+  border-bottom: 0.5px solid #DAE0E7;
 }
 
 .heroInner {
@@ -153,8 +153,6 @@
   padding-top: 128px;
   padding-bottom: 80px;
   margin: 0 auto;
-  border-left: 0.5px solid #DAE0E7;
-  border-right: 0.5px solid #DAE0E7;
 }
 
 .heroEyebrow {
@@ -176,7 +174,7 @@
 .heroTitle {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-regular);
+  font-weight: var(--rt-weight-hero);
   line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
@@ -196,7 +194,7 @@
 
 .heroDesc {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-body);
+  font-size: 1.25rem; /* 20px */
   color: var(--ifm-color-content-secondary);
   line-height: var(--rt-lh-body);
   max-width: 420px;

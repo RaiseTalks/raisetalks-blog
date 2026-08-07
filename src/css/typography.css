@@ -53,6 +53,7 @@
 
   /* --- Mobile font sizes (default) --- */
   /* Hero collapses to the H1 scale on mobile (Figma shows "—"). */
+  --rt-weight-hero: var(--rt-weight-regular);
   --rt-fs-hero: 2rem;         /* 32px */
   --rt-fs-hero-alt: 2.125rem; /* 34px */
   --rt-fs-h1: 2rem;           /* 32px */
@@ -74,7 +75,8 @@
   :root {
     --rt-ls-eyebrow: 4.2px;
 
-    --rt-fs-hero: 3.5rem;       /* 56px */
+    --rt-weight-hero: var(--rt-weight-medium);
+    --rt-fs-hero: 3rem;         /* 48px */
     --rt-fs-hero-alt: 3.625rem; /* 58px */
     --rt-fs-h1: 3rem;           /* 48px */
     --rt-fs-h1-alt: 3.125rem;   /* 50px */
@@ -95,7 +97,8 @@
   :root {
     --rt-ls-eyebrow: 4px;
 
-    --rt-fs-hero: 4.5rem;       /* 72px */
+    --rt-weight-hero: var(--rt-weight-medium);
+    --rt-fs-hero: 3rem;         /* 48px */
     --rt-fs-hero-alt: 4.625rem; /* 74px */
     --rt-fs-h1: 3.75rem;        /* 60px */
     --rt-fs-h1-alt: 3.875rem;   /* 62px */
@@ -118,7 +121,7 @@
 /* Hero */
 .rt-hero {
   font-family: var(--rt-font-sans);
-  font-weight: var(--rt-weight-regular);
+  font-weight: var(--rt-weight-hero);
   font-size: var(--rt-fs-hero);
   line-height: var(--rt-lh-hero);
 }

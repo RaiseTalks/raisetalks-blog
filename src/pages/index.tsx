@@ -205,11 +205,6 @@ export default function Home() {
       <HomepageHero />
       <LogoCarousel />
       <GridSeam />
-      <WorkspaceBanner />
-      <GridSeam />
-      <SolutionSection />
-      <GridSeam />
-
       {/* Why RaiseTalks Section */}
       <section className={clsx(styles.whySection, styles.animateIn)}>
          <div className={`rt-rail ${styles.sectionContainer}`}>
@@ -269,6 +264,11 @@ export default function Home() {
          </div>
       </section>
 
+      <GridSeam />
+      <SolutionSection />
+      <GridSeam />
+
+      
       <GridSeam />
       <NarrativeBlock />
       <GridSeam />

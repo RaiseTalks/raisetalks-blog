@@ -54,16 +54,27 @@
   .hero { opacity: 1; transition: none; }
 }
 
-/* Width/margin/the rail border come from the shared `rt-rail` class
-   (src/css/rail.css) so it matches the rest of the page on mobile/tablet.
-   Desktop keeps its own narrower 1024px cap below. */
+/* Width/margin come from the shared `rt-rail` class (src/css/rail.css) so
+   it matches the rest of the page on mobile/tablet. Desktop keeps its own
+   narrower 1024px cap below. The rail's border lines are suppressed here —
+   the hero should sit flush with no visible seam. */
 .heroInner {
   padding: 8rem 4rem 5rem;
+}
+
+.hero .heroInner {
+  border-left: none;
+  border-right: none;
 }
 
 @media (min-width: 1024px) {
   .heroInner {
     max-width: 1024px !important;
+  }
+
+  .heroAccent {
+    font-size: 3rem;    /* 48px */
+    font-weight: var(--rt-weight-medium);
   }
 }
 
@@ -86,7 +97,7 @@
 .heroTitle {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-regular);
+  font-weight: var(--rt-weight-hero);
   line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   margin: 0 0 1.5rem 0;
@@ -104,7 +115,7 @@
 
 .heroDesc {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-body);
+  font-size: 1.25rem; /* 20px */
   color: var(--ifm-color-content-secondary);
   line-height: var(--rt-lh-body);
   max-width: 640px;

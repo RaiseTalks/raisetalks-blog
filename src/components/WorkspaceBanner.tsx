@@ -9,9 +9,7 @@ export default function WorkspaceBanner() {
           <img src="/img/cta-navy-bg.svg" className={styles.backgroundArt} alt="" />
         </div>
         <p className={styles.text}>
-          RaiseTalks is a full-stack fundraising workspace built for founders. That means
-          organized data rooms, smart investor matching, and an ecosystem that brings founders
-          and investors together in one place.
+          One Workspace. Zero chaos.
         </p>
       </div>
     </section>

@@ -27,12 +27,18 @@
 .pageRails::before { left: calc(50% - var(--rail-half)); }
 .pageRails::after { right: calc(50% - var(--rail-half)); }
 
-/* Narrower rails for the hero — a tighter 480px half-width frame around the
-   hero content, matching the pitch-competitions hero rails
-   (left/right at calc(50% - 480px)) rather than the wider page ladder. */
+/* Hero rails — same responsive ladder as .pageRails, so the vertical
+   lines stay continuous into the rest of the page instead of stepping
+   in/out at this boundary. */
 .heroRails {
   position: relative;
+  --rail-half: 9999px;
 }
+@media (min-width: 640px)  { .heroRails { --rail-half: 320px; } }
+@media (min-width: 768px)  { .heroRails { --rail-half: 384px; } }
+@media (min-width: 1024px) { .heroRails { --rail-half: 512px; } }
+@media (min-width: 1280px) { .heroRails { --rail-half: 640px; } }
+@media (min-width: 1536px) { .heroRails { --rail-half: 768px; } }
 .heroRails::before,
 .heroRails::after {
   content: '';
@@ -44,15 +50,20 @@
   pointer-events: none;
   z-index: 2;
 }
-.heroRails::before { left: max(1.5rem, calc(50% - 480px)); }
-.heroRails::after { right: max(1.5rem, calc(50% - 480px)); }
+.heroRails::before { left: calc(50% - var(--rail-half)); }
+.heroRails::after { right: calc(50% - var(--rail-half)); }
 
-/* Narrower rails for the FAQ block — a 512px half-width frame that hugs the
-   FAQ's own max-w-[1024px] column, so it steps in from the wider page rails
-   the same way the hero does. */
+/* FAQ rails — same responsive ladder as .pageRails, so the vertical
+   lines stay continuous instead of stepping in/out at this boundary. */
 .faqRails {
   position: relative;
+  --rail-half: 9999px;
 }
+@media (min-width: 640px)  { .faqRails { --rail-half: 320px; } }
+@media (min-width: 768px)  { .faqRails { --rail-half: 384px; } }
+@media (min-width: 1024px) { .faqRails { --rail-half: 512px; } }
+@media (min-width: 1280px) { .faqRails { --rail-half: 640px; } }
+@media (min-width: 1536px) { .faqRails { --rail-half: 768px; } }
 .faqRails::before,
 .faqRails::after {
   content: '';
@@ -64,8 +75,8 @@
   pointer-events: none;
   z-index: 2;
 }
-.faqRails::before { left: max(1.5rem, calc(50% - 512px)); }
-.faqRails::after { right: max(1.5rem, calc(50% - 512px)); }
+.faqRails::before { left: calc(50% - var(--rail-half)); }
+.faqRails::after { right: calc(50% - var(--rail-half)); }
 
 /* Rail variant for dark / blue-background sections. Same x-ladder as
    .pageRails, but white lines so they stay visible against the dark fill

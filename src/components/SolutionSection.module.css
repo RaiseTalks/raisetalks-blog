@@ -193,7 +193,7 @@
 
 .solutionDescription {
    font-family: var(--rt-font-sans);
-   font-size: var(--rt-fs-footnote);
+   font-size: 14.4px;
    color: #222;
    line-height: var(--rt-lh-footnote);
    margin: 0;

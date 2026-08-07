@@ -41,6 +41,7 @@
 @media (min-width: 1536px) { .regionNarrow, .regionWide { --rail-half: 768px; } }
 .hero::before,
 .hero::after {
+  display: none;
   content: '';
   position: absolute;
   /* Scoped to hero's own top/bottom divider lines (its container's edges,
@@ -60,10 +61,10 @@
 .regionWide::after {
   content: '';
   position: absolute;
-  /* Starts at the Frustration Patterns section's own top padding, not the
-     region's true top edge — otherwise the rail pokes up above the single
-     divider line that closes off the audience band above it. */
-  top: 2rem;
+  /* Starts flush at the region's true top edge, continuing directly from
+     the proof section's own rail (.proofSection::before/::after) directly
+     above it — no gap at the seam. */
+  top: 0;
   bottom: 0;
   width: 0.5px;
   background: var(--rail-color, rgba(15, 23, 42, 0.1));
@@ -113,10 +114,12 @@
    specificity, later rule wins). Keeps Figma's tighter 840px content
    frame; the horizontal rules above still break out full width. */
 .narrow { max-width: 840px; }
-/* DD section sits directly above the proof section, which supplies its own
-   full-width divider (.spacerRow) — drop this rail-bound one to avoid two
-   mismatched lines back to back. */
+/* Use on whichever side of a section boundary should defer to its
+   neighbor's own divider (a .spacerRow, or the other section's own
+   intact rule) — drop this rail-bound one to avoid two mismatched
+   lines back to back. */
 .containerNoBottomBorder::after { display: none; }
+.containerNoTopBorder::before { display: none; }
 /* What You Get → Pre-Score Engine: a single divider, kept inside the
    vertical rails rather than breaking full-bleed like the rest of the
    wide region. */
@@ -174,6 +177,8 @@
 
   .hero::before,
   .hero::after,
+  .proofSection::before,
+  .proofSection::after,
   .container::before,
   .container::after {
     display: none !important;
@@ -343,7 +348,7 @@
 }
 .heroH1 .accent { font-weight: 400; }
 .heroDesc {
-  font-size: var(--rt-fs-body);
+  font-size: 1.25rem; /* 20px */
   color: var(--ifm-color-content-secondary);
   line-height: var(--rt-lh-body);
   max-width: 32rem;
@@ -771,6 +776,23 @@
   background: var(--ifm-background-color);
   overflow: hidden;
 }
+/* Continues the vertical rail through the testimonial — hero's own rail is
+   suppressed above, so this is scoped to just this section's own height
+   rather than the whole .regionNarrow wrapper. Inherits --rail-half from
+   the enclosing .regionNarrow, so it stays aligned with the wide region. */
+.proofSection::before,
+.proofSection::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.5px;
+  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  pointer-events: none;
+  z-index: 2;
+}
+.proofSection::before { left: calc(50% - var(--rail-half)); }
+.proofSection::after { right: calc(50% - var(--rail-half)); }
 /* Figma spacer rows — empty 64px cells around the content. The horizontal
    rules run the FULL screen width; the content inside stays centered. */
 .spacerRow,

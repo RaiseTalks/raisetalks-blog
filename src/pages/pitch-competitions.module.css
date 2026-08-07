@@ -63,11 +63,20 @@
   transition: opacity 0.6s ease 0.05s;
 }
 
-/* Fixed, narrower than .pageRegion's rail — kept at its original
-   position. .statsSection below is adjusted to match this instead of
-   the other way around. */
+/* Vertical rail hidden on the hero itself (see "remove vertical rail
+   from all hero" pass). Uses the same responsive ladder as .pageRegion
+   for consistency, in case the rail is ever re-enabled here. */
+.hero {
+  --rail-half: 9999px;
+}
+@media (min-width: 640px)  { .hero { --rail-half: 320px; } }
+@media (min-width: 768px)  { .hero { --rail-half: 384px; } }
+@media (min-width: 1024px) { .hero { --rail-half: 512px; } }
+@media (min-width: 1280px) { .hero { --rail-half: 640px; } }
+@media (min-width: 1536px) { .hero { --rail-half: 768px; } }
 .hero::before,
 .hero::after {
+  display: none;
   content: '';
   position: absolute;
   top: 0;
@@ -77,8 +86,8 @@
   pointer-events: none;
   z-index: 2;
 }
-.hero::before { left: max(1.5rem, calc(50% - 480px)); }
-.hero::after { right: max(1.5rem, calc(50% - 480px)); }
+.hero::before { left: calc(50% - var(--rail-half)); }
+.hero::after { right: calc(50% - var(--rail-half)); }
 
 .hero.visible {
   opacity: 1;
@@ -111,7 +120,7 @@
 .heroH1 {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-regular);
+  font-weight: var(--rt-weight-hero);
   line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   margin: 0 0 1.5rem 0;
@@ -130,7 +139,7 @@
 
 .heroDesc {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-body);
+  font-size: 1.25rem; /* 20px */
   color: var(--ifm-color-content-secondary);
   line-height: var(--rt-lh-body);
   max-width: 640px;
@@ -198,13 +207,18 @@
   background: #ffffff;
 }
 
-/* Metrics (stats) section — own rail matching .hero's fixed position
-   exactly, since it sits directly under the hero and should read as one
-   continuous frame with it, separate from .pageRegion's wider ladder
-   used by Benefits onward. */
+/* Metrics (stats) section — uses the same responsive rail ladder as
+   .pageRegion (Benefits onward), so the vertical lines stay continuous
+   all the way down the page instead of stepping in/out at this boundary. */
 .statsSection {
   position: relative;
+  --rail-half: 9999px;
 }
+@media (min-width: 640px)  { .statsSection { --rail-half: 320px; } }
+@media (min-width: 768px)  { .statsSection { --rail-half: 384px; } }
+@media (min-width: 1024px) { .statsSection { --rail-half: 512px; } }
+@media (min-width: 1280px) { .statsSection { --rail-half: 640px; } }
+@media (min-width: 1536px) { .statsSection { --rail-half: 768px; } }
 .statsSection::before,
 .statsSection::after {
   content: '';
@@ -216,8 +230,8 @@
   pointer-events: none;
   z-index: 2;
 }
-.statsSection::before { left: max(1.5rem, calc(50% - 480px)); }
-.statsSection::after { right: max(1.5rem, calc(50% - 480px)); }
+.statsSection::before { left: calc(50% - var(--rail-half)); }
+.statsSection::after { right: calc(50% - var(--rail-half)); }
 
 .sectionGray {
   padding: 5.5rem 1.5rem;
