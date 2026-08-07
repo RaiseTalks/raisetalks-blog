@@ -6,14 +6,14 @@ type Photo = { src: string; alt: string };
 // Default two-row team strip used on the about-us page.
 const DEFAULT_ROWS: Photo[][] = [
   [
-    { src: '/img/about-us/43.jpg', alt: 'RaiseTalks team' },
-    { src: '/img/about-us/44.jpg', alt: 'RaiseTalks team' },
-    { src: '/img/about-us/45.jpg', alt: 'RaiseTalks team' },
+    { src: '/img/about-us/43.webp', alt: 'RaiseTalks team' },
+    { src: '/img/about-us/44.webp', alt: 'RaiseTalks team' },
+    { src: '/img/about-us/45.webp', alt: 'RaiseTalks team' },
   ],
   [
-    { src: '/img/about-us/46.jpg', alt: 'RaiseTalks team' },
-    { src: '/img/about-us/47.jpg', alt: 'RaiseTalks team' },
-    { src: '/img/about-us/48.jpg', alt: 'RaiseTalks team' },
+    { src: '/img/about-us/46.webp', alt: 'RaiseTalks team' },
+    { src: '/img/about-us/47.webp', alt: 'RaiseTalks team' },
+    { src: '/img/about-us/48.webp', alt: 'RaiseTalks team' },
   ],
 ];
 
