@@ -138,6 +138,13 @@
   }
 
   .faqContainer {
+    /* The 64px desktop padding never scaled down, so at tablet/mobile
+       widths it alone was eating ~35% of the viewport before the
+       question's own padding and icon even started — nowhere near
+       Figma's tight ~24-32px gutter. The outer .container's px-4 (16px)
+       plus .faqQuestion's own padding below now provide the gutter
+       instead. */
+    padding: 0;
     border-left: none;
     border-right: none;
   }
@@ -148,7 +155,12 @@
   }
 
   .faqAnswerContent {
+    /* Desktop's margin is 1rem 2rem 2rem 0 — left:0 so the answer
+       box's left edge lines up with the question text above it. This
+       had a nonzero left/right margin instead, insetting the box on
+       both sides so it didn't match the question's width (Figma's
+       mobile frame keeps them aligned). */
     padding: 1rem 1.25rem;
-    margin: 0.75rem 1.25rem 1.5rem;
+    margin: 0.75rem 0 1.5rem;
   }
 }

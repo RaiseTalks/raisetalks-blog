@@ -96,6 +96,7 @@
 .sectionHeader {
   margin: 0 auto 1.5rem;
   max-width: 1352px;
+  gap: 16px;
 }
 
 .sectionEyebrow {
@@ -106,7 +107,7 @@
   line-height: var(--rt-lh-eyebrow);
   letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
-  color: #EA2640;
+  color: #0077ff;
   margin-bottom: 0.75rem;
   padding: 0.25rem 0.9rem;
 }
@@ -293,6 +294,27 @@
 
 /* ── PAIN POINTS ──────────────────────────────────────── */
 
+/* Header and card grid sit side by side at desktop (.sectionInner's own
+   128px gap handles their spacing there), but neither Figma's tablet
+   (768px) nor mobile frame keeps that row layout — both stack the
+   header full-width above the cards. Without this, the row never
+   breaks and the card grid gets squeezed/pushed off-screen below
+   1024px. */
+@media (max-width: 1024px) {
+  .painSectionRow {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+}
+
+/* .sectionDesc's 7rem margin-bottom is meant for a header sitting in
+   its own column with nothing below it there (fine at desktop, where
+   this section is still a row); stacked, it just stacks on top of the
+   2.5rem flex gap above, doubling the space before the grid. */
+.painSectionRow .sectionDesc {
+  margin-bottom: 0;
+}
+
 .painGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -338,13 +360,23 @@
   margin: 0;
 }
 
-@media (max-width: 768px) {
+/* Narrowed from 768px — Figma's tablet frame (768px wide) still shows
+   the 2-column grid; only the mobile frame (~370px) collapses to one
+   column, so the breakpoint needs to sit below 768, not at it. */
+@media (max-width: 640px) {
   .painGrid { grid-template-columns: 1fr; }
 }
 
 /* ── THREE PILLARS ────────────────────────────────────── */
 .pillarsSection {
-  background: var(--ifm-color-emphasis-100);
+  /* background-color (longhand), not background (shorthand) — the
+     shorthand resets background-size/position/repeat to their initial
+     values, which was clobbering the bg-cover/bg-center/bg-no-repeat
+     Tailwind utilities on this element and the inline background-image.
+     That left the section showing the bg image untiled at native size,
+     cropped to its flat top-left corner instead of the light-streak
+     art scaled to cover (see the Figma reference). */
+  background-color: var(--ifm-color-emphasis-100);
 }
 
 .pillarsSection .sectionInner {
@@ -428,122 +460,124 @@
   background: var(--ifm-color-emphasis-100);
 }
 
+/* Tablet and mobile: horizontal swipeable scroll instead of a stacked
+   column — matches both Figma frames (744px tablet and 358px mobile),
+   which show the next card peeking in at the edge rather than a full
+   single-column stack. */
 @media (max-width: 900px) {
-  .pillarsGrid { grid-template-columns: 1fr; gap: 1rem; }
+  .pillarsGrid {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+
+  .pillarsGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pillarCard {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
 }
 
 /* ── FEATURE DEEP-DIVES (SLIDER) ─────────────────────── */
 .featuresSection {
-  padding: 5rem 0;
+  /* Figma's header frame for this section (node 1316-3036) samples to
+     the same #f7f7f7 as the rows below — one continuous block, not a
+     white header sitting above gray rows. */
+  padding: 5rem 0 0;
+  background: #f7f7f7;
 }
 
-.sliderWrap {
+/* Title (+ eyebrow) on the left, description on the right — matches
+   Figma; the shared .sectionHeader stacks them, which is right for
+   other sections on this page but not this one. */
+.featuresSectionHeader {
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
 }
 
-.slideContent {
+/* .sectionDesc's 7rem margin-bottom is for sections where it stacks
+   above other content; here it's a flex item next to the title, so
+   that bottom margin would just add unwanted space under the header. */
+.featuresSectionHeader .sectionDesc {
+  margin-bottom: 0;
+}
+
+/* Full-width wrapper per row — no background of its own, so the
+   outer gutters beyond the bordered content column keep showing
+   .featuresSection's ambient #f7f7f7 (confirmed against Figma's
+   dev-mode inspector: only the bordered column alternates white/
+   #f7f7f7, not the full viewport width). */
+.featureRowBand {
+  background: transparent;
+}
+
+/* The alternating fill itself, scoped to the bordered content column
+   (.sectionInner) instead of the full-bleed wrapper above. */
+.featureRowInner {
+  background: #fff;
+}
+
+.featureRowInnerAlt {
+  background: #f7f7f7;
+}
+
+.featureRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
-  align-items: center;
-  padding: 4rem 0 2.5rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  align-items: stretch;
+  padding: 4rem 0;
 }
 
-.sliderControls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  padding: 1.75rem 0 0;
+/* Odd rows in Figma swap the image to the left instead of the right. */
+.featureRowReverse .featureText {
+  order: 2;
 }
 
-.sliderBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  border: 1.5px solid var(--ifm-color-emphasis-300);
-  background: var(--ifm-background-color);
-  color: var(--ifm-color-content);
-  cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-  flex-shrink: 0;
+.featureRowReverse .featureVisual {
+  order: 1;
 }
 
-.sliderBtn:hover {
-  border-color: var(--ifm-color-primary);
-  background: rgba(1, 116, 225, 0.06);
-  transform: translateY(-1px);
+/* Checklist card alternates opposite its row band — #f7f7f7 card on a
+   white row, white card on a #f7f7f7 row — so it stays visible against
+   either. */
+.benefitCard {
+  background: #f7f7f7;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 16px;
+  padding: 1.5rem;
 }
 
-.sliderCount {
-  display: flex;
-  align-items: baseline;
-  gap: 0.25rem;
-  font-family: 'Courier New', monospace;
-  min-width: 4rem;
-  justify-content: center;
-}
-
-.sliderCountActive {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--ifm-color-primary);
-  line-height: 1;
-}
-
-.sliderCountSep {
-  font-size: 1rem;
-  color: var(--ifm-color-emphasis-400);
-}
-
-.sliderCountTotal {
-  font-size: var(--rt-fs-body);
-  color: var(--ifm-color-content-secondary);
-}
-
-.sliderDots {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.sliderDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  border: none;
-  background: var(--ifm-color-emphasis-300);
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.sliderDotActive {
-  background: var(--ifm-color-primary);
-  transform: scale(1.4);
+.benefitCardAlt {
+  background: #fff;
 }
 
 .featureTitle {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-h3);
-  font-weight: var(--rt-weight-semibold);
+  font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h3);
   color: var(--ifm-color-content);
   margin-bottom: 0.75rem;
 }
 
 .featureSubtitle {
-  font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-body);
-  font-weight: var(--rt-weight-semibold);
-  color: var(--ifm-color-primary);
-  line-height: var(--rt-lh-body);
+  font-family: var(--rt-font-serif);
+  font-style: italic;
+  font-size: var(--rt-fs-h4-alt);
+  font-weight: var(--rt-weight-regular);
+  color: var(--ifm-color-content);
+  line-height: var(--rt-lh-h4);
   margin-bottom: 1rem;
 }
 
@@ -558,7 +592,7 @@
 .benefitList {
   list-style: none;
   padding: 0;
-  margin: 0 0 2rem;
+  margin: 0;
 }
 
 .benefitItem {
@@ -570,6 +604,10 @@
   font-size: var(--rt-fs-body);
   color: var(--ifm-color-content);
   line-height: var(--rt-lh-body);
+}
+
+.benefitItem:last-child {
+  margin-bottom: 0;
 }
 
 .benefitCheck {
@@ -585,17 +623,11 @@
   justify-content: center;
 }
 
-.featureActions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-/* Feature visual */
+/* Feature visual — stretched to match the text column's height (see
+   .featureRow's align-items: stretch) instead of sizing to the image's
+   own aspect ratio, so neither column looks taller than the other. */
 .featureVisual {
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .imageWrap {
@@ -615,8 +647,12 @@
 
 .featureImg {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  /* contain, not cover — these are UI screenshots with text in them;
+     cover crops wide/short screenshots down to a center sliver and cuts
+     off content. imageWrap's own background letterboxes the gap. */
+  object-fit: contain;
 }
 
 .iconsGrid {
@@ -652,10 +688,16 @@
 }
 
 @media (max-width: 900px) {
-  .slideContent {
+  .featureRow {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     padding: 3rem 0 2rem;
+  }
+
+  /* Text stays first regardless of the alternating order, once stacked. */
+  .featureRowReverse .featureText,
+  .featureRowReverse .featureVisual {
+    order: initial;
   }
 }
 
@@ -818,12 +860,67 @@
   background: var(--ifm-color-emphasis-100);
 }
 
+/* Header column (title+button) is a fixed 330px, not an equal 50%
+   split with the grid — Figma's desktop frame (1347-5203) uses a
+   330px header column next to a 958px grid (roughly 1:2.9), with a
+   64px gap between them. The previous equal flex:1/flex:1 split gave
+   the header column ~50% of the width, and since its content (title +
+   button) is far narrower than that, the leftover space inside that
+   column read as an oversized gap before the grid — the grid itself
+   wasn't actually far away, the column around the text was just too
+   wide. */
+.perksOuterRow {
+  gap: 4rem;
+}
+
 .perksRow1 {
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
+  /* Was missing display:flex entirely, which accidentally still read
+     as "correct" at desktop (title above button) only because plain
+     block children stack that way anyway — confirmed against the
+     desktop Figma frame (1347-5203): narrow left column, title then
+     button underneath, not side by side. Made explicit here instead
+     of relying on that accident. */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 0 0 330px;
+  gap: 2rem;
   margin-bottom: 3rem;
-  flex-wrap: wrap;
+}
+
+.perksGrid {
+  flex: 1 1 auto;
+}
+
+/* Header row (title + CTA) and the perks grid sit side by side at
+   desktop, but Figma's tablet frame (768px) stacks the header
+   full-width above a full-width 2x2 grid instead — without this, the
+   grid gets squeezed into a narrow column and its cards overflow off
+   the right edge of the viewport at tablet width. */
+@media (max-width: 1024px) {
+  .perksOuterRow {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* Only at this width does Figma put the title and button on the same
+     row (title left, button right) — desktop keeps them stacked (see
+     the base rule above), and mobile (580px, further down) explodes
+     the grouping entirely to push the button below the grid. The fixed
+     330px basis is a horizontal-axis value; reset it since the main
+     axis is vertical here, or the header row would try to be 330px
+     tall. */
+  .perksRow1 {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .perksGrid {
+    flex: 0 0 auto;
+  }
 }
 
 .perksHeadGroup {
@@ -867,16 +964,31 @@
 .perksGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  overflow: hidden;
 }
 
 .perkCard {
-  background: var(--ifm-background-color);
+  /* Pixel-sampled straight from the Figma export: the card fill is the
+     same #f7f7f7 as .perksSection's own background, not a white box —
+     only thin border lines separate the 4 cards (same pattern as
+     .iconCell above). var(--ifm-background-color) — which resolves to
+     literal "transparent" in this project's theme — happened to look
+     right for this reason alone; explicit here instead of by accident. */
+  background: transparent;
+  border-right: 1px solid var(--ifm-color-emphasis-200);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
   padding: 2rem 1.75rem;
   transition: background 0.2s ease;
   display: flex;
   gap: 24px
+}
+
+.perkCard:nth-child(2n) {
+  border-right: none;
+}
+
+.perkCard:nth-child(3),
+.perkCard:nth-child(4) {
+  border-bottom: none;
 }
 
 .perkCard:hover {
@@ -933,8 +1045,29 @@
 }
 
 @media (max-width: 580px) {
-  .perksRow1 { flex-direction: column; gap: 1.5rem; }
-  .perksGrid { grid-template-columns: 1fr; }
+  /* Figma's mobile frame moves the "Claim your Perks" button to the very
+     end, below the whole 4-item list, instead of right under the title.
+     .perksRow1 only exists to group title+button as one row at wider
+     breakpoints; display:contents drops it from the box model so its
+     children (headGroup, cta) become direct flex items of
+     .perksOuterRow alongside .perksGrid, letting `order` place them
+     title → grid → button without touching the JSX. */
+  .perksRow1 {
+    display: contents;
+  }
+
+  .perksHeadGroup {
+    order: 1;
+  }
+
+  .perksGrid {
+    order: 2;
+    grid-template-columns: 1fr;
+  }
+
+  .perksCta {
+    order: 3;
+  }
 }
 
 /* ── CTA SECTION ──────────────────────────────────────── */
@@ -942,6 +1075,25 @@
   padding: 6rem 1.5rem;
   background: var(--ifm-background-color) url('/img/backgrounds/main-cta-desktop.webp') center/cover no-repeat;
   border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Dedicated tablet/mobile background exports already exist in
+   static/img/backgrounds but were unused — the desktop image is a
+   wide 4440x1440 banner with its only visible detail (faint curved
+   accents) sitting near the left/right edges, so cover-fitting it into
+   a narrow, tall mobile section crops straight to the flat center,
+   losing that detail entirely. Same swap pattern already used by
+   .hero in about-us.module.css. */
+@media (max-width: 996px) {
+  .ctaSection {
+    background-image: url('/img/backgrounds/main-cta-tablet.webp');
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaSection {
+    background-image: url('/img/backgrounds/main-cta-mobile.webp');
+  }
 }
 
 .ctaInner {
@@ -1098,12 +1250,9 @@
 
 /* ── RESPONSIVE ───────────────────────────────────────── */
 @media (max-width: 480px) {
-  .ctaActions,
-  .featureActions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
+  /* Figma keeps Start Free / View Pricing side by side even at mobile
+     widths (the ≤640px rule above already shrinks them to fit) —
+     stacking them full-width here didn't match. */
   .btnPrimary,
   .btnSecondary,
   .btnGhost,
@@ -1112,17 +1261,7 @@
     white-space: nowrap;
   }
 
-  .ctaActions .btnPrimary,
-  .ctaActions .btnSecondary,
-  .ctaActions .btnGhost,
-  .featureActions .btnPrimary,
-  .featureActions .btnSecondary,
-  .featureActions .btnGhost {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .slideContent { gap: 2rem; padding: 2.5rem 0 1.5rem; }
+  .featureRow { gap: 2rem; padding: 2.5rem 0 1.5rem; }
   .pillarCard { padding: 1.75rem 1.5rem; }
   .painCard { padding: 1.75rem 1.5rem; }
   .characterCard { padding: 1.5rem; }

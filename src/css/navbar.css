@@ -83,14 +83,27 @@
 /* Center the nav links within the space between the logo and the auth
    buttons (matches Figma). The brand is pulled out of flow so centering
    applies only to the link cluster, not the logo.
-   Desktop-only (>996px): below that, infima collapses .navbar__items into
-   the sidebar drawer and the toggle button takes its place in the flow —
-   absolutely positioning the brand there would overlap the toggle. */
-@media (min-width: 997px) {
+   Desktop-only (>=1200px): below that, the mobile sidebar takes over and
+   the toggle button takes its place in the flow — absolutely positioning
+   the brand there would overlap the toggle. 1200 (not infima's stock
+   996) because six links + logo + auth buttons don't fit on one line
+   until then; the mobile breakpoint is raised to match via a
+   patch-package patch on @docusaurus/theme-common (see
+   .yarn/patches/@docusaurus-theme-common-*.patch and
+   navbarMobileSidebar's desktopBreakpoint override) so the sidebar drawer
+   still actually works through that whole range instead of just looking
+   like it does. */
+@media (min-width: 1200px) {
   .navbar__items:not(.navbar__items--right) {
     position: relative;
     justify-content: center;
     gap: 1.25rem;
+    /* The brand is pulled out of flow below, so this box's own width still
+       spans the full space next to it and centering ignores the brand's
+       footprint. Reserve that footprint (logo's 210px + a gap) as padding
+       so the link cluster centers in the space actually left between the
+       logo and the auth buttons, instead of overlapping the logo. */
+    padding-left: calc(210px + 1rem);
   }
 
   .navbar__items:not(.navbar__items--right) > .navbar__brand {
@@ -213,8 +226,14 @@
   color: var(--ifm-color-primary);
 }
 
-/* Premium Mobile Navigation - Clean Redesign */
-@media (max-width: 996px) {
+/* Premium Mobile Navigation - Clean Redesign
+   Raised to 1199px (from infima's stock 996px) to match the
+   patch-package-raised JS breakpoint above — see the comment on the
+   1200px desktop rule. Infima's own compiled CSS still treats 997-1199px
+   as desktop (shows the inline links, hides the toggle) since only our
+   JS patch and this stylesheet know about the raised threshold, so the
+   sub-block below forces the mobile appearance across that gap. */
+@media (max-width: 1199px) {
   /* Figma tablet/mobile keep the Login + Try it Free buttons pinned in the
      top bar next to the hamburger; only the left-side nav links collapse
      into the sidebar drawer (infima hides ALL .navbar__item by default). */
@@ -431,6 +450,23 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
+  }
+}
+
+/* Infima's own compiled CSS (not ours, can't edit it) still hardcodes the
+   996px cutoff for its default toggle/link visibility, so 997-1199px is
+   the one range where infima's CSS and our raised JS breakpoint disagree:
+   JS says "mobile" (sidebar mounts, see the theme-common patch), but
+   infima's CSS still shows the inline desktop links and hides the
+   toggle button. Force the mobile appearance across just that gap. */
+@media (min-width: 997px) and (max-width: 1199px) {
+  .navbar__toggle {
+    display: inherit;
+  }
+
+  .navbar__items:not(.navbar__items--right) > .navbar__link,
+  .navbar__items:not(.navbar__items--right) > .navbar__item {
+    display: none;
   }
 }
 

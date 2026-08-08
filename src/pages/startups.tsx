@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
@@ -95,84 +95,35 @@ function BenefitList({ items }: { items: string[] }) {
   );
 }
 
-// Feature slider
+// Feature rows (stacked, alternating image side + band background — matches Figma)
 interface SlideData {
   title: string;
   subtitle: string;
   description: string;
   benefits: string[];
   image: React.ReactNode;
-  ctaText: string;
-  ctaLink?: string;
 }
 
-const ChevronLeft = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="20" height="20">
-    <path d="m15 18-6-6 6-6"/>
-  </svg>
-);
-const ChevronRight = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="20" height="20">
-    <path d="m9 18 6-6-6-6"/>
-  </svg>
-);
-
-function FeatureSlider({ slides }: { slides: SlideData[] }) {
-  const [active, setActive] = useState(0);
-  const total = slides.length;
-  const slide = slides[active];
-
-  const prev = () => setActive((i) => (i - 1 + total) % total);
-  const next = () => setActive((i) => (i + 1) % total);
-
+function FeatureRow({ slide, index }: { slide: SlideData; index: number }) {
   const ref = useScrollAnimation();
+  const reversed = index % 2 === 1;
 
   return (
-    <div ref={ref} className={clsx(styles.animSection, styles.sliderWrap)}>
-      {/* Slide content */}
-      <div className={styles.slideContent}>
-        <div className={styles.featureText}>
-          <h3 className={styles.featureTitle}>{slide.title}</h3>
-          <p className={styles.featureSubtitle}>{slide.subtitle}</p>
-          <p className={styles.featureDesc}>{slide.description}</p>
-          <BenefitList items={slide.benefits} />
-          <div className={styles.featureActions}>
-            <Link className={styles.btnPrimary} to={slide.ctaLink ?? 'https://app.raisetalks.com/sign-up'}>
-              {slide.ctaText}
-            </Link>
-            <Link className={styles.btnGhost} to="https://calendly.com/iamdariiava/30min">
-              Book a Demo
-            </Link>
+    <div className={styles.featureRowBand}>
+      <div className={clsx(styles.sectionInner, styles.featureRowInner, reversed && styles.featureRowInnerAlt)}>
+        <div ref={ref} className={clsx(styles.animSection, styles.featureRow, reversed && styles.featureRowReverse)}>
+          <div className={styles.featureText}>
+            <h3 className={styles.featureTitle}>{slide.title}</h3>
+            <p className={styles.featureSubtitle}>{slide.subtitle}</p>
+            <p className={styles.featureDesc}>{slide.description}</p>
+            <div className={clsx(styles.benefitCard, reversed && styles.benefitCardAlt)}>
+              <BenefitList items={slide.benefits} />
+            </div>
+          </div>
+          <div className={styles.featureVisual}>
+            {slide.image}
           </div>
         </div>
-        <div className={styles.featureVisual}>
-          {slide.image}
-        </div>
-      </div>
-
-      {/* Controls row */}
-      <div className={styles.sliderControls}>
-        <button className={styles.sliderBtn} onClick={prev} aria-label="Previous">
-          <ChevronLeft />
-        </button>
-        <span className={styles.sliderCount}>
-          <span className={styles.sliderCountActive}>{String(active + 1).padStart(2, '0')}</span>
-          <span className={styles.sliderCountSep}>/</span>
-          <span className={styles.sliderCountTotal}>{String(total).padStart(2, '0')}</span>
-        </span>
-        <div className={styles.sliderDots}>
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              className={clsx(styles.sliderDot, i === active && styles.sliderDotActive)}
-              onClick={() => setActive(i)}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
-        <button className={styles.sliderBtn} onClick={next} aria-label="Next">
-          <ChevronRight />
-        </button>
       </div>
     </div>
   );
@@ -249,7 +200,6 @@ export default function Startups() {
       {/* ── TRUTH BAR ────────────────────────────────── */}
       <div className={styles.truthBar}>
         <div className={styles.truthInner}>
-          <span className={styles.truthLabel}>The Core Insight</span>
           <blockquote className={styles.truthQuote}>
             "The fundraising problem is not a pitch problem. It's a preparation problem -
             and nobody has built the infrastructure to solve it at scale, with AI, from the investor's perspective."
@@ -263,18 +213,20 @@ export default function Startups() {
 
       {/* ── PAIN POINTS ──────────────────────────────── */}
       <section>
-        <div className={`${styles.sectionInner} flex flex-1`}>
+        <div className={`${styles.sectionInner} ${styles.painSectionRow} flex flex-1`}>
           <AnimSection>
             <div className={styles.sectionHeader}>
               <div className={styles.sectionEyebrow}>The Problem</div>
 
-              <p className={styles.sectionDesc}>
-                You have customers, product, conviction. But your raise dies in the paperwork.
-              </p>
+             
               <h2 className={styles.sectionTitle}>
                 <span style={{whiteSpace: 'nowrap'}}>Great founders lose <br /> raises 
                 in due diligence.</span> <br /> <span className={styles.accentText}>not in the pitch</span>
               </h2>
+
+               <p className={styles.sectionDesc}>
+                You have customers, product, conviction. But your raise dies in the paperwork.
+              </p>
               
             </div>
           </AnimSection>
@@ -323,7 +275,7 @@ export default function Startups() {
         
         <div className={styles.sectionInner}>
 
-          <p className='text-center font-normal text-[48px] mb-[32px] py-[32px] text-white'>How RaiseTalks Works</p>
+          <h2 className='rt-h2 text-center text-white mb-[32px] py-[32px]'>How RaiseTalks Works</h2>
 
           <div className={styles.pillarsGrid}>
             {[
@@ -369,19 +321,22 @@ export default function Startups() {
       <section className={styles.featuresSection}>
         <div className={styles.sectionInner}>
           <AnimSection>
-            <div className={styles.sectionHeader}>
-              <div className={styles.sectionEyebrow}>The Platform</div>
-              <h2 className={styles.sectionTitle}>
-                Everything you need to{' '}
-                <span className={styles.accentText}>walk in ready</span>
-              </h2>
+            <div className={clsx(styles.sectionHeader, styles.featuresSectionHeader)}>
+              <div>
+                <div className={styles.sectionEyebrow}>The Platform</div>
+                <h2 className={styles.sectionTitle}>
+                  Everything you need to{' '}
+                  <span className={styles.accentText}>walk in ready</span>
+                </h2>
+              </div>
               <p className={styles.sectionDesc}>
                 Used by early-stage founders preparing seed and Series A raises.
               </p>
             </div>
           </AnimSection>
+        </div>
 
-          <FeatureSlider slides={[
+        {[
             {
               title: 'Investor-Grade Data Room',
               subtitle: 'A secure vault your investors will actually use.',
@@ -393,7 +348,6 @@ export default function Startups() {
                 'Document versioning so nothing goes out of date',
               ],
               image: <FeatureImage src="/img/DataRoomInterface.png" alt="Investor-Grade Data Room" />,
-              ctaText: 'Create Data Room',
             },
             {
               title: 'AI Readiness Scoring',
@@ -406,7 +360,6 @@ export default function Startups() {
                 'Compliance and completeness review by section',
               ],
               image: <FeatureImage src="/img/icons/ai-self-assesment.png" alt="AI Readiness Scoring" />,
-              ctaText: 'Get Your Score',
             },
             {
               title: 'AI Advisor',
@@ -419,7 +372,6 @@ export default function Startups() {
                 '24/7 availability - available the night before a big meeting',
               ],
               image: <FeatureImage src="/img/icons/ai-advisor.svg" alt="AI Advisor" />,
-              ctaText: 'Try AI Advisor',
             },
             {
               title: 'Investor Engagement Tracking',
@@ -432,7 +384,6 @@ export default function Startups() {
                 'Slide-level heatmaps showing where attention concentrates',
               ],
               image: <FeatureImage src="/img/icons/real-time-engagement-tracking.png" alt="Engagement Tracking" />,
-              ctaText: 'View Analytics',
             },
             {
               title: 'Collaborative Fundraising',
@@ -445,11 +396,15 @@ export default function Startups() {
                 'Role-based access control for advisors and co-founders',
               ],
               image: <FeatureImage src="/img/icons/collaborative-fundraising.png" alt="Collaborative Fundraising" />,
-              ctaText: 'Start Collaborating',
             },
-          ]} />
-        </div>
+        ].map((slide, i) => (
+          <FeatureRow key={slide.title} slide={slide} index={i} />
+        ))}
       </section>
+
+      <div className={`${styles.processSpacer} h-[64px] w-full bg-[#f7f7f7] border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} h-[64px] border-x-[0.5px] border-x-[#DAE0E7]`}></div>
+      </div>
 
       {/* ── CHARACTER STRIP ──────────────────────────── */}
       <section className={styles.characterSection}>
@@ -511,8 +466,8 @@ export default function Startups() {
         <div className={styles.sectionInner}>
           <AnimSection>
             {/* Row 1 - headline + CTA */}
-            <div className='flex'>
-            <div className={`${styles.perksRow1} flex-1`}>
+            <div className={`${styles.perksOuterRow} flex`}>
+            <div className={styles.perksRow1}>
               <div className={styles.perksHeadGroup}>
                 <h2 className={styles.perksTitle}>
                   Get access to <br />
@@ -527,7 +482,7 @@ export default function Startups() {
             </div>
 
             {/* Row 2 - perk cards */}
-            <div className={`${styles.perksGrid} flex-1`}>
+            <div className={styles.perksGrid}>
               {[
                 {
                   icon: <TrialIcon />,

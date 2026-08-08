@@ -886,9 +886,22 @@
   min-width: 0;
 }
 
-@media (max-width: 900px) {
+/* Stacks below 1024px (not just 900px) so tablet-class devices whose
+   viewport sits between the two — iPad Pro portrait (1024), Surface Pro
+   (912), Surface Duo (540) — don't get squeezed into the side-by-side
+   row, where the much-shorter graphic column left a large dead gap
+   under itself while the text column kept running. */
+@media (max-width: 1024px) {
   .visionInner {
     flex-direction: column;
+    /* .visionInner's own align-items:flex-start (above) means "top-align"
+       in row mode, but once flex-direction flips to column the cross axis
+       becomes horizontal, so flex-start instead shrink-wraps each column
+       to its content's width — which is why the graphic (width:100% of
+       an unstretched, and therefore auto-sized, .visionGraphicCol) was
+       rendering undersized instead of filling the row. Stretch overrides
+       that back to full-width columns. */
+    align-items: stretch;
 }
 }
 
@@ -989,13 +1002,35 @@
   margin: 0;
 }
 
+/* Aspect ratio matches vision-timeline.svg's own viewBox (560x527) so
+   object-fit: contain doesn't have to shrink the graphic to fit a
+   mismatched box — that mismatch was the "shrunk" look on tablet/mobile.
+   Swapped to vision-timeline-mobile.svg's viewBox (346x658) at the same
+   768px breakpoint the <picture> element itself uses to swap images. */
 .visionRotateWrap {
   position: relative;
   width: 100%;
   max-width: 640px;
   height: auto;
   margin: 0 auto;
-  aspect-ratio: 640 / 460;
+  aspect-ratio: 560 / 527;
+}
+
+/* The 640px cap is sized for sitting next to the text column in the
+   desktop row layout. Once .visionInner stacks (see the 1024px rule
+   above), the graphic is the only thing on its row and should use the
+   full section width instead of sitting undersized in the middle of a
+   lot of empty space. */
+@media (max-width: 1024px) {
+  .visionRotateWrap {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .visionRotateWrap {
+    aspect-ratio: 346 / 658;
+  }
 }
 
 .visionHorizons {
@@ -1104,8 +1139,11 @@
 /* Tablet: 2-column grid with a vertical divider between the columns and
    horizontal dividers between the rows (Figma tablet). Card padding is
    reduced so the copy keeps the same measure as the design. Placed after
-   the base rules above so these overrides win the cascade. */
-@media (max-width: 768px) {
+   the base rules above so these overrides win the cascade. Uses 996px to
+   match this page's own tablet breakpoint (see .hero above), not 768px —
+   otherwise iPad-landscape-width viewports (~1024px down to 997px) would
+   still render 3 columns. */
+@media (max-width: 996px) {
   .valuesGrid {
     grid-template-columns: repeat(2, 1fr);
 }
@@ -1129,23 +1167,34 @@
   }
 }
 
+/* Mobile: horizontal scroll instead of a stacked single column, so all
+   six cards stay reachable via swipe without the section growing tall.
+   Each card becomes a self-contained bordered tile; the grid's column
+   dividers no longer apply. Gutter matches .valuesSection's own
+   sectionContainer padding at this width (1.5rem) so the first card
+   lines up with the rest of the page. */
 @media (max-width: 480px) {
   .valuesGrid {
-    grid-template-columns: 1fr;
-}
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem 0.5rem;
+    scrollbar-width: none;
+  }
+  .valuesGrid::-webkit-scrollbar {
+    display: none;
+  }
 
-/* Single column: only horizontal dividers, none on the last card. */
-  .valueCard,
-  .valuesGrid > .valueCard:nth-child(3n),
-  .valuesGrid > .valueCard:nth-child(2n) {
-    border-right: none;
-    border-bottom: 0.5px solid #dae0e7;
-  }
-  .valuesGrid > .valueCard:nth-child(n + 5) {
-    border-bottom: 0.5px solid #dae0e7;
-  }
-  .valuesGrid > .valueCard:last-child {
-    border-bottom: none;
+  .valueCard {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    border: 0.5px solid #dae0e7;
+    border-radius: 0.75rem;
   }
 }
 

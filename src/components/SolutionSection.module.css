@@ -405,22 +405,27 @@
    background: #fafafa;
 }
 
+/* Centered text above a wide video, not side-by-side — confirmed
+   against the desktop Figma frame (2715-19301): title/subtitle/button
+   sit centered in a ~681px column, then a ~928px-wide video block
+   below, both centered on the same 1024px axis. */
 .videoInner {
    max-width: 1024px;
    margin: 0 auto;
    display: flex;
+   flex-direction: column;
    align-items: center;
-   gap: 4rem;
+   text-align: center;
+   gap: 3rem;
 }
 
 .videoMedia {
-   flex: 1;
-   min-width: 0;
+   width: 100%;
+   max-width: 58rem;
 }
 
 .videoText {
-   flex: 1;
-   min-width: 0;
+   max-width: 42.5rem;
 }
 
 .videoTitle {
@@ -446,8 +451,11 @@
    font-size: var(--rt-fs-body);
    line-height: var(--rt-lh-body);
    color: #4b4b4b;
-   margin: 0 0 1.5rem;
-   max-width: 28rem;
+   margin: 0 auto 1.5rem;
+   /* Figma's description spans the full text column (681px), not a
+      narrower measure — the old 28rem/448px cap was sized for the
+      previous side-by-side layout's narrower column. */
+   max-width: 100%;
 }
 
 .videoButton {
@@ -467,27 +475,6 @@
 .videoButton:hover {
    text-decoration: none;
    transform: translateY(-1px);
-}
-
-@media (max-width: 768px) {
-   .videoInner {
-      flex-direction: column;
-   }
-
-   /* .videoMedia's flex:1 sets flex-basis:0% on the main axis, which is now
-      vertical (column). The aspect-ratio wrapper inside has no intrinsic
-      content (the iframe is absolutely positioned), so it collapses to
-      0x0 instead of sizing from the 100% width. Switch to a plain
-      full-width block once stacked. */
-   .videoMedia {
-      flex: none;
-      width: 100%;
-   }
-
-   .videoText {
-      flex: none;
-      width: 100%;
-   }
 }
 
 /* Investor Block (Spend less time on Due Diligence) */
