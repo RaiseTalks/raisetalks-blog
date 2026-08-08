@@ -449,10 +449,8 @@
    ============================================================ */
 .problemSection {
   padding: 2rem 0;
-  background: var(--ifm-background-color) url('/img/investors/frustration-bg-desktop.webp') center / cover no-repeat;
+  background: var(--ifm-background-color);
 }
-@media (max-width: 996px) { .problemSection { background-image: url('/img/investors/frustration-bg-tablet.webp'); } }
-@media (max-width: 768px) { .problemSection { background-image: url('/img/investors/frustration-bg-mobile.webp'); } }
 .problemHead {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -470,58 +468,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(1rem, 4vw, 4rem);
 }
 .mockup {
   display: block;
-  height: auto;
-  border-radius: 0.75rem;
-}
-.mockupMain {
-  width: min(31%, 420px);
-  z-index: 2;
-}
-.mockupSide {
   width: 100%;
-  position: relative;
-  z-index: 1;
-}
-.mockupSideWrap {
-  display: block;
-  position: relative;
-  flex-shrink: 0;
-  width: min(15.5%, 210px);
-}
-.mockupSideWrap::before,
-.mockupSideWrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  -webkit-mask-image: url('/img/investors/startup-catalog-mockup.webp');
-  mask-image: url('/img/investors/startup-catalog-mockup.webp');
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  pointer-events: none;
-  z-index: 0;
-}
-.mockupSideWrap::before {
-  background: #b4d7ff;
-  opacity: 0.75;
-  transform: translate(-6%, 8%);
-}
-.mockupSideWrap::after {
-  background: #d7e9ff;
-  opacity: 0.5;
-  transform: translate(-12%, 16%);
+  max-width: 1200px;
+  height: auto;
 }
 @media (max-width: 860px) {
   .problemHead { grid-template-columns: 1fr; gap: 1rem; }
-  .mockupSideWrap { display: none; }
-  .mockupMain { width: 100%; }
 }
 
 /* ============================================================

@@ -167,7 +167,9 @@ export default function InvestorsPage() {
   const heroBg = useBaseUrl('/img/backgrounds/hero-alt-desktop.webp');
   const ctaBg = useBaseUrl('/img/backgrounds/main-cta-desktop.webp');
   const bandBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
-  const dashboardShadow = useBaseUrl('/img/investors/startup-catalog-mockup.webp');
+  const frustrationDesktop = useBaseUrl('/img/investors/frustration-bg-desktop.webp');
+  const frustrationTablet = useBaseUrl('/img/investors/frustration-bg-tablet.webp');
+  const frustrationMobile = useBaseUrl('/img/investors/frustration-bg-mobile.webp');
   const prescoreImg = useBaseUrl('/img/investors/prescore-dashboard.svg');
   const avatar = useBaseUrl('/img/investors/avatar-dariia.webp');
   const swirlBg = useBaseUrl('/img/investors/swirl.png');
@@ -311,13 +313,16 @@ export default function InvestorsPage() {
           </div>
 
           <div className={styles.mockupRow}>
-            <span className={styles.mockupSideWrap}>
-              <img src={dashboardShadow} alt="" aria-hidden="true" className={`${styles.mockup} ${styles.mockupSide}`} loading="lazy" />
-            </span>
-            <img src={dashboardShadow} alt="RaiseTalks startup catalog dashboard" className={`${styles.mockup} ${styles.mockupMain}`} loading="lazy" />
-            <span className={styles.mockupSideWrap}>
-              <img src={dashboardShadow} alt="" aria-hidden="true" className={`${styles.mockup} ${styles.mockupSide}`} loading="lazy" />
-            </span>
+            <picture>
+              <source media="(max-width: 640px)" srcSet={frustrationMobile} />
+              <source media="(max-width: 996px)" srcSet={frustrationTablet} />
+              <img
+                src={frustrationDesktop}
+                alt="Founder sharing scattered files over chat next to a RaiseTalks data room with AI readiness score and IC memo ready in minutes"
+                className={styles.mockup}
+                loading="lazy"
+              />
+            </picture>
           </div>
         </div>
       </section>
