@@ -35,10 +35,10 @@
 }
 @media (min-width: 640px)  { .hero { --rail-half: 320px; } }
 @media (min-width: 768px)  { .hero { --rail-half: 384px; } }
-@media (min-width: 1024px) { .hero { --rail-half: 512px; } }
-@media (min-width: 1280px) { .hero { --rail-half: 640px; } }
-@media (min-width: 1536px) { .hero { --rail-half: 768px; } }
-@media (max-width: 996px) { .hero { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
+@media (min-width: 1024px) { .hero { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .hero { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .hero { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (max-width: 1024px) { .hero { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
 @media (max-width: 768px) { .hero { background-image: url('/img/backgrounds/hero-alt-mobile.webp'); } }
 /* Hero's rail matches the rest of the page's width (not its own
    narrower 720px content column) — same treatment as the content below,
@@ -203,15 +203,28 @@
 .railDividerInner {
   width: 100%;
 }
+/* Below 640px this box has no shrink at all — its border-left/right
+   (below) would sit flush at the true screen edge with no "outside" to
+   contrast against, reading as invisible. Same fix as .ctaContent and
+   .valuesSection .sectionContainer: shrink 16px narrower and center,
+   matching the homepage's shared .rt-rail utility (src/css/rail.css).
+   !important: responsive.css has a sitewide `* { max-width: 100% }`
+   at this same breakpoint that otherwise wins (see rail.css). */
+@media (max-width: 640px) {
+  .railDividerInner {
+    max-width: calc(100% - 16px) !important;
+    margin-inline: auto;
+  }
+}
 /* Matches the footer's own Tailwind `.container` breakpoints exactly
    (640/768/1024/1280/1536), so the rail stays continuous and aligned
    all the way into the shared footer at every viewport width — same
    reasoning as the investors page. */
 @media (min-width: 640px)  { .railDividerInner { max-width: 640px; } }
 @media (min-width: 768px)  { .railDividerInner { max-width: 768px; } }
-@media (min-width: 1024px) { .railDividerInner { max-width: 1024px; } }
-@media (min-width: 1280px) { .railDividerInner { max-width: 1280px; } }
-@media (min-width: 1536px) { .railDividerInner { max-width: 1536px; } }
+@media (min-width: 1024px) { .railDividerInner { max-width: min(1024px, calc(100% - 48px)); } }
+@media (min-width: 1280px) { .railDividerInner { max-width: min(1280px, calc(100% - 48px)); } }
+@media (min-width: 1536px) { .railDividerInner { max-width: min(1536px, calc(100% - 48px)); } }
 
 .railDividerLight .railDividerInner {
   border-left: 0.5px solid #dae0e7;
@@ -234,9 +247,9 @@
    see .railDividerInner above. */
 @media (min-width: 640px)  { .sectionContainer { max-width: 640px; } }
 @media (min-width: 768px)  { .sectionContainer { max-width: 768px; } }
-@media (min-width: 1024px) { .sectionContainer { max-width: 1024px; } }
-@media (min-width: 1280px) { .sectionContainer { max-width: 1280px; } }
-@media (min-width: 1536px) { .sectionContainer { max-width: 1536px; } }
+@media (min-width: 1024px) { .sectionContainer { max-width: min(1024px, calc(100% - 48px)); } }
+@media (min-width: 1280px) { .sectionContainer { max-width: min(1280px, calc(100% - 48px)); } }
+@media (min-width: 1536px) { .sectionContainer { max-width: min(1536px, calc(100% - 48px)); } }
 
 .partnersSection .sectionContainer {
   border: none;
@@ -268,7 +281,17 @@
      border lines sit at the box's true edge regardless (pseudo-elements
      below aren't affected by padding), so this only pushes the content
      in from them on every side. */
-  padding: 4rem 1rem 4rem 4rem;
+  padding: 4rem;
+}
+
+/* Figma (node 1285-1008) shows this section's rail capped at a fixed
+   1024px, centered in a much wider 1920px canvas — it does not keep
+   growing at the 1280/1536 breakpoints the way .sectionContainer does
+   by default elsewhere on the page. */
+@media (min-width: 1024px) {
+  .missionSection .sectionContainer {
+    max-width: min(1024px, calc(100% - 48px));
+  }
 }
 /* Full-bleed horizontal rules — break out past this container's own
    vertical rail to the screen edges, same "full bleed" technique used
@@ -461,11 +484,11 @@
    see .railDividerInner above. */
 @media (min-width: 640px)  { .ctaContent { max-width: 640px; } }
 @media (min-width: 768px)  { .ctaContent { max-width: 768px; } }
-@media (min-width: 1024px) { .ctaContent { max-width: 1024px; } }
-@media (min-width: 1280px) { .ctaContent { max-width: 1280px; } }
-@media (min-width: 1536px) { .ctaContent { max-width: 1536px; } }
+@media (min-width: 1024px) { .ctaContent { max-width: min(1024px, calc(100% - 48px)); } }
+@media (min-width: 1280px) { .ctaContent { max-width: min(1280px, calc(100% - 48px)); } }
+@media (min-width: 1536px) { .ctaContent { max-width: min(1536px, calc(100% - 48px)); } }
 
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .ctaContent {
     background-image: url('/img/backgrounds/main-cta-tablet.webp');
   }
@@ -474,6 +497,20 @@
 @media (max-width: 768px) {
   .ctaContent {
     background-image: url('/img/backgrounds/main-cta-mobile.webp');
+  }
+}
+
+@media (max-width: 640px) {
+  .ctaContent {
+    /* Same fix as .valuesSection .sectionContainer: below 640px this
+       box is otherwise 100% width with the rail flush at the true
+       screen edge, which reads as invisible (no "outside" to contrast
+       against). Shrink 16px narrower and center it, matching the
+       homepage's shared .rt-rail utility (src/css/rail.css).
+       !important: responsive.css has a sitewide `* { max-width: 100% }`
+       at this same breakpoint that otherwise wins (see rail.css). */
+    max-width: calc(100% - 16px) !important;
+    margin-inline: auto;
   }
 }
 
@@ -609,30 +646,66 @@
 /* Our Values Section */
 
 .valuesSection {
-  background: var(--ifm-color-emphasis-100);
+  background: #ffffff;
+  /* Single source of truth for .valueCard's own horizontal padding, so
+     .valuesHeading can match it at every breakpoint instead of drifting
+     out of sync with a hardcoded copy. */
+  --value-card-pad-x: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .valuesSection {
+    --value-card-pad-x: 1rem;
+  }
 }
 
 .valuesSection .sectionContainer {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  padding-left: 4rem;
+  /* 3rem (not 4) so cards get enough width for descriptions to wrap to
+     3 lines, matching Figma — 4rem pushed some to a 4th line. */
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 /* Goal Section */
 
 .goalSection {
-  background: var(--ifm-color-emphasis-100);
+  background: #ffffff;
 }
 
 .goalContainer {
-  max-width: 720px;
+  /* Figma (desktop node 1285-965) shows this card at a fixed 1024px,
+     flush with its own rail — the same width as the Why We Build
+     section's rail (node 1285-1008), not the 720px used previously. */
+  max-width: 1024px;
   margin: 0 auto;
-  /* Top padding only, for the eyebrow label above the card — the card
-     itself sits flush against the container's bottom edge, touching
-     the rail divider below with no gap (same as its left/right edges). */
-  padding: 1.75rem 0 0;
+  /* Mobile gutter (Figma node 1936-48): 6px, nearly full-bleed. */
+  padding: 1.75rem 6px 0;
   border-left: 0.5px solid #dae0e7;
   border-right: 0.5px solid #dae0e7;
+}
+
+/* Tablet gutter (Figma node 1429-99, 768px canvas): 16px, wider than
+   the mobile inset. Stays through iPad Pro's 1024px portrait width —
+   at exactly 1024px the container hits its own max-width cap with no
+   natural margin left outside it, so removing the gutter there would
+   bleed the card to the actual screen edge instead of just its rail. */
+@media (min-width: 768px) {
+  .goalContainer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Only once the viewport comfortably clears the 1024px rail (leaving
+   real margin outside it) does the card go flush with the rail lines,
+   matching the desktop design (node 1285-965). */
+@media (min-width: 1280px) {
+  .goalContainer {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .goalEyebrow {
@@ -718,56 +791,31 @@
   -webkit-text-fill-color: unset;
 }
 
-/* Why We Exist Section */
+/* Why We Exist Section — centered single column, matching Figma
+   (node 1285-1008): no eyebrow, no two-column split, no graphic. */
 
 .whyExistInner {
-  max-width: 1040px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
 }
 
-.whyBuildRow1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 3rem;
-}
-
-.whyBuildHeadingCol {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.whyBuildPurposeCol {
-  flex: 0 0 400px;
-  max-width: 400px;
-}
-
-.whyBuildEyebrow {
-  font-family: var(--rt-font-sans);
-  font-weight: var(--rt-weight-bold);
-  font-size: var(--rt-fs-eyebrow);
-  line-height: var(--rt-lh-eyebrow);
-  letter-spacing: var(--rt-ls-eyebrow);
-  text-transform: uppercase;
-  color: var(--ifm-color-primary);
-  margin-bottom: 0.5rem;
-}
-
-.whyBuildRow2 {
-  display: flex;
-  gap: 3rem;
-}
-
-.whyBuildTextCol {
-  flex: 1 1 0;
-  min-width: 0;
+.whyBuildBody {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
+
+/* Per-paragraph measure widths, matching Figma's own text-box widths at
+   the 1024px rail (each paragraph wraps at its own designed width rather
+   than the full column width) — min() keeps them fluid on narrow screens. */
+.whyBuildP1 { max-width: min(808px, 100%); }
+.whyBuildP2 { max-width: min(648px, 100%); }
+.whyBuildP3 { max-width: min(512px, 100%); }
+.whyBuildP4 { max-width: min(430px, 100%); }
 
 .whyBuildPullQuote {
   font-family: var(--rt-font-serif);
@@ -775,38 +823,7 @@
   font-size: var(--rt-fs-h4-alt);
   line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
-  margin: 0.25rem 0;
-}
-
-.whyBuildGraphicCol {
-  flex: 1 1 0;
-  min-width: 0;
-  position: relative;
-}
-
-.whyBuildGraphic {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-@media (max-width: 900px) {
-  .whyBuildRow1,
-  .whyBuildRow2 {
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.whyBuildPurposeCol {
-    flex: 1 1 auto;
-    max-width: none;
-  }
-
-/* Tablet/mobile: the brand-mark graphic is dropped and the body copy
-     runs as a single full-width column, matching the Figma tablet layout. */
-  .whyBuildGraphicCol {
-    display: none;
-  }
+  margin: 0;
 }
 
 .whyExistTitleLight {
@@ -948,7 +965,6 @@
 
 .visionCompareRow {
   display: flex;
-  border-bottom: 0.5px solid #dae0e7;
 }
 
 .visionCompareItem {
@@ -959,8 +975,13 @@
   padding: 1.5rem;
 }
 
-.visionCompareItem:first-child {
-  border-right: 0.5px solid #dae0e7;
+/* Figma mobile (node 2279-279): icon on top, text below it (stacked),
+   not side-by-side — the item is too narrow on mobile for a row. */
+@media (max-width: 640px) {
+  .visionCompareItem {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .visionCompareIcon {
@@ -1060,6 +1081,18 @@
   margin: 0;
   flex: 1 1 0;
   min-width: 0;
+  /* Matches .valueCard's own horizontal padding below via the shared
+     --value-card-pad-x variable, so the gap from the outer rail to
+     this heading reads the same as the gap from an inner grid divider
+     to the next card's text — and the two can't drift apart again at
+     the 1024px breakpoint where the card's padding shrinks. */
+  padding-left: var(--value-card-pad-x);
+}
+
+@media (max-width: 640px) {
+  .valuesHeading {
+    padding-left: 0;
+  }
 }
 
 .valuesHeadingLine1 {
@@ -1127,28 +1160,39 @@
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  padding: 3rem;
+  padding: 3rem var(--value-card-pad-x);
   border-right: 0.5px solid #dae0e7;
+  transition: background-color 0.2s ease;
+}
+
+.valueCard:hover {
+  background: #fcfcfc;
 }
 
 .valuesGrid > .valueCard:nth-child(3n) {
   border-right: none;
 }
 
+/* Horizontal divider between row 1 (cards 1-3) and row 2 (cards 4-6)
+   in the 3-column desktop grid. */
+.valuesGrid > .valueCard:nth-child(-n + 3) {
+  border-bottom: 0.5px solid #dae0e7;
+}
+
 /* Tablet: 2-column grid with a vertical divider between the columns and
    horizontal dividers between the rows (Figma tablet). Card padding is
    reduced so the copy keeps the same measure as the design. Placed after
-   the base rules above so these overrides win the cascade. Uses 996px to
+   the base rules above so these overrides win the cascade. Uses 1024px to
    match this page's own tablet breakpoint (see .hero above), not 768px —
-   otherwise iPad-landscape-width viewports (~1024px down to 997px) would
+   otherwise iPad-landscape/iPad Pro-width viewports (997px-1024px) would
    still render 3 columns. */
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .valuesGrid {
     grid-template-columns: repeat(2, 1fr);
 }
 
 .valueCard {
-    padding: 2rem 1rem;
+    padding: 2rem var(--value-card-pad-x);
     border-right: 0.5px solid #dae0e7;
     border-bottom: 0.5px solid #dae0e7;
   }
@@ -1168,10 +1212,10 @@
 
 /* Mobile: horizontal scroll instead of a stacked single column, so all
    six cards stay reachable via swipe without the section growing tall.
-   Each card becomes a self-contained bordered tile; the grid's column
-   dividers no longer apply. Gutter matches .valuesSection's own
-   sectionContainer padding at this width (1.5rem) so the first card
-   lines up with the rest of the page. */
+   Figma (node 1936-497) keeps the same plain divider-line treatment as
+   desktop/tablet here — no rounded, fully-bordered tiles. Gutter matches
+   .valuesSection's own sectionContainer padding at this width (1.5rem)
+   so the first card lines up with the rest of the page. */
 @media (max-width: 480px) {
   .valuesGrid {
     display: flex;
@@ -1192,8 +1236,30 @@
   .valueCard {
     flex: 0 0 85%;
     scroll-snap-align: start;
-    border: 0.5px solid #dae0e7;
-    border-radius: 0.75rem;
+    border-right: 0.5px solid #dae0e7;
+    /* Clears the tablet rule's border-bottom (max-width:1024px still
+       matches here) and the desktop row-divider's nth-child(-n+3)
+       border-bottom — this is a single scrollable row, so only the
+       vertical divider between cards applies, never a horizontal one. */
+    border-bottom: none;
+  }
+  /* The base 3-column rule's :nth-child(3n) no-border-right, and the
+     tablet 2-column rule's :nth-child(2n) no-border-right, only make
+     sense for their own grid layouts; here cards run in a single
+     scrollable row, so every card gets its divider back except the
+     actual last. */
+  .valuesGrid > .valueCard:nth-child(3n),
+  .valuesGrid > .valueCard:nth-child(2n) {
+    border-right: 0.5px solid #dae0e7;
+  }
+  /* The desktop row-divider's :nth-child(-n+3) border-bottom has the
+     same specificity as this override and would otherwise still win by
+     source order — match its selector exactly to clear it here too. */
+  .valuesGrid > .valueCard:nth-child(-n + 3) {
+    border-bottom: none;
+  }
+  .valuesGrid > .valueCard:last-child {
+    border-right: none;
   }
 }
 
@@ -1215,7 +1281,12 @@
 }
 
 .valueQuoteBox {
-  border: 1px solid #dae0e7;
+  /* Pins the quote box to the card's bottom edge so it lines up across
+     a row regardless of how many lines the description above it wraps
+     to (grid rows already stretch cards to equal height). */
+  margin-top: auto;
+  background: #fafafa;
+  border: 1px solid #f6f7f9;
   border-radius: 0.5rem;
   padding: 1rem;
 }
@@ -1325,5 +1396,20 @@
   .valuesSection .sectionContainer {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  /* Figma mobile spec (node 1936-497): 32px top padding, not the 5rem
+     (80px) used at wider breakpoints. */
+  .valuesSection .sectionContainer {
+    padding-top: 32px;
+    /* Same technique as the homepage's shared .rt-rail utility
+       (src/css/rail.css): shrink 16px narrower than the viewport and
+       auto-center, so the rail line sits 8px in from the true screen
+       edge instead of flush at it — flush-at-0 has no "outside" to
+       contrast against, which is why the line read as invisible.
+       !important: responsive.css has a sitewide `* { max-width: 100% }`
+       at this same breakpoint that otherwise wins (see rail.css). */
+    max-width: calc(100% - 16px) !important;
+    margin-inline: auto;
   }
 }

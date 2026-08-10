@@ -34,7 +34,7 @@
   transition: opacity 0.6s ease 0.05s;
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .hero {
     background-image: url('/img/backgrounds/homepage-hero-tablet.webp');
   }
@@ -69,7 +69,9 @@
 
 @media (min-width: 1024px) {
   .heroInner {
-    max-width: 1024px !important;
+    /* min() guards against 0 margin right at 1024px (iPad Pro portrait
+       etc.) — see the matching fix in src/css/rail.css. */
+    max-width: min(1024px, calc(100% - 48px)) !important;
   }
 
   .heroAccent {
@@ -352,7 +354,7 @@
   border-right-color: #16315A !important;
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .ctaBorderBox {
     background-image: url('/img/backgrounds/main-cta-tablet.webp');
   }

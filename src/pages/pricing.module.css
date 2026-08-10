@@ -3,7 +3,7 @@
   background: #fafafa url('/img/backgrounds/hero-alt-desktop.webp') center / cover no-repeat;
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .hero {
     background-image: url('/img/backgrounds/hero-alt-tablet.webp');
   }
@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .ctaSection {
     background-image: url('/img/backgrounds/main-cta-tablet.webp');
   }

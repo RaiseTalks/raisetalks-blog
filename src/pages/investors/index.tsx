@@ -218,7 +218,7 @@ export default function InvestorsPage() {
       >
         <picture>
           <source media="(max-width: 768px)" srcSet={heroBgMobile} />
-          <source media="(max-width: 996px)" srcSet={heroBgTablet} />
+          <source media="(max-width: 1024px)" srcSet={heroBgTablet} />
           <img src={heroBg} alt="" aria-hidden="true" className={styles.heroBg} />
         </picture>
         {/* Bottom rail-bound border dropped — the proof section directly
@@ -320,7 +320,7 @@ export default function InvestorsPage() {
           <div className={styles.mockupRow}>
             <picture>
               <source media="(max-width: 640px)" srcSet={frustrationMobile} />
-              <source media="(max-width: 996px)" srcSet={frustrationTablet} />
+              <source media="(max-width: 1024px)" srcSet={frustrationTablet} />
               <img
                 src={frustrationDesktop}
                 alt="Founder sharing scattered files over chat next to a RaiseTalks data room with AI readiness score and IC memo ready in minutes"

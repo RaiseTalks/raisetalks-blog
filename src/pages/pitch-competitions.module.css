@@ -20,9 +20,9 @@
 }
 @media (min-width: 640px)  { .container { max-width: 640px; } }
 @media (min-width: 768px)  { .container { max-width: 768px; } }
-@media (min-width: 1024px) { .container { max-width: 1024px; } }
-@media (min-width: 1280px) { .container { max-width: 1280px; } }
-@media (min-width: 1536px) { .container { max-width: 1536px; } }
+@media (min-width: 1024px) { .container { max-width: min(1024px, calc(100% - 48px)); } }
+@media (min-width: 1280px) { .container { max-width: min(1280px, calc(100% - 48px)); } }
+@media (min-width: 1536px) { .container { max-width: min(1536px, calc(100% - 48px)); } }
 
 /* ============================================================
    Scroll animation
@@ -62,7 +62,7 @@
   opacity: 0;
   transition: opacity 0.6s ease 0.05s;
 }
-@media (max-width: 996px) { .hero { background-image: url(/img/backgrounds/hero-alt-tablet.webp); } }
+@media (max-width: 1024px) { .hero { background-image: url(/img/backgrounds/hero-alt-tablet.webp); } }
 @media (max-width: 768px) { .hero { background-image: url(/img/backgrounds/hero-alt-mobile.webp); } }
 
 /* Vertical rail hidden on the hero itself (see "remove vertical rail
@@ -73,9 +73,9 @@
 }
 @media (min-width: 640px)  { .hero { --rail-half: 320px; } }
 @media (min-width: 768px)  { .hero { --rail-half: 384px; } }
-@media (min-width: 1024px) { .hero { --rail-half: 512px; } }
-@media (min-width: 1280px) { .hero { --rail-half: 640px; } }
-@media (min-width: 1536px) { .hero { --rail-half: 768px; } }
+@media (min-width: 1024px) { .hero { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .hero { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .hero { --rail-half: min(768px, calc(50% - 24px)); } }
 .hero::before,
 .hero::after {
   display: none;
@@ -218,9 +218,9 @@
 }
 @media (min-width: 640px)  { .statsSection { --rail-half: 320px; } }
 @media (min-width: 768px)  { .statsSection { --rail-half: 384px; } }
-@media (min-width: 1024px) { .statsSection { --rail-half: 512px; } }
-@media (min-width: 1280px) { .statsSection { --rail-half: 640px; } }
-@media (min-width: 1536px) { .statsSection { --rail-half: 768px; } }
+@media (min-width: 1024px) { .statsSection { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .statsSection { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .statsSection { --rail-half: min(768px, calc(50% - 24px)); } }
 .statsSection::before,
 .statsSection::after {
   content: '';
@@ -343,9 +343,9 @@
 }
 @media (min-width: 640px)  { .processSection, .processSpacer { --rail-half: 320px; } }
 @media (min-width: 768px)  { .processSection, .processSpacer { --rail-half: 384px; } }
-@media (min-width: 1024px) { .processSection, .processSpacer { --rail-half: 512px; } }
-@media (min-width: 1280px) { .processSection, .processSpacer { --rail-half: 640px; } }
-@media (min-width: 1536px) { .processSection, .processSpacer { --rail-half: 768px; } }
+@media (min-width: 1024px) { .processSection, .processSpacer { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .processSection, .processSpacer { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .processSection, .processSpacer { --rail-half: min(768px, calc(50% - 24px)); } }
 
 .processSpacer {
   position: relative;
@@ -565,9 +565,9 @@
 }
 @media (min-width: 640px)  { .pageRegion { --rail-half: 320px; } }
 @media (min-width: 768px)  { .pageRegion { --rail-half: 384px; } }
-@media (min-width: 1024px) { .pageRegion { --rail-half: 512px; } }
-@media (min-width: 1280px) { .pageRegion { --rail-half: 640px; } }
-@media (min-width: 1536px) { .pageRegion { --rail-half: 768px; } }
+@media (min-width: 1024px) { .pageRegion { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .pageRegion { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .pageRegion { --rail-half: min(768px, calc(50% - 24px)); } }
 
 .pageRegion::before,
 .pageRegion::after {
@@ -605,9 +605,9 @@
 }
 @media (min-width: 640px)  { .ctaSection { --rail-half: 320px; } }
 @media (min-width: 768px)  { .ctaSection { --rail-half: 384px; } }
-@media (min-width: 1024px) { .ctaSection { --rail-half: 512px; } }
-@media (min-width: 1280px) { .ctaSection { --rail-half: 640px; } }
-@media (min-width: 1536px) { .ctaSection { --rail-half: 768px; } }
+@media (min-width: 1024px) { .ctaSection { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .ctaSection { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .ctaSection { --rail-half: min(768px, calc(50% - 24px)); } }
 
 .ctaSection::before,
 .ctaSection::after {
@@ -643,7 +643,7 @@
      Negative z-index sits in layer 2, guaranteed behind it. */
   z-index: -1;
 }
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .ctaGlow { background-image: url('/img/backgrounds/main-cta-tablet.webp'); }
 }
 @media (max-width: 768px) {

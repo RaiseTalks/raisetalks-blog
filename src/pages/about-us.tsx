@@ -139,38 +139,24 @@ export default function AboutUs() {
 
          {/* Why We Exist Section */}
          <section className={clsx(styles.missionSection, styles.animateIn)}>
-            
             <div className={styles.sectionContainer}>
                <div className={styles.whyExistInner}>
-                  <div className={styles.whyBuildRow1}>
-                     <div className={styles.whyBuildHeadingCol}>
-                        <h2 className={styles.whyExistTitleLight}><em>Why</em> we Build.</h2>
-                     </div>
-                     <div className={styles.whyBuildPurposeCol}>
-                        <div className={styles.whyBuildEyebrow}>Our Purpose</div>
-                        <p className={styles.whyExistBodyLight}>To democratize access to capital by making every serious founder investor-ready - regardless of their network, their background, or how many times they've done this before.</p>
-                     </div>
-                  </div>
+                  <h2 className={styles.whyExistTitleLight}><em>Why</em> we Build.</h2>
 
-                  <div className={styles.whyBuildRow2}>
-                     <div className={styles.whyBuildTextCol}>
-                        <p className={styles.whyExistBodyLight}>
-                           Capital has always flowed most easily to those who already know the language: <br />the repeat founders, the Stanford alumni, the people who went to school with the partners.
-                        </p>
+                  <div className={styles.whyBuildBody}>
+                     <p className={clsx(styles.whyExistBodyLight, styles.whyBuildP1)}>We strive to democratize access to capital by making every serious founder investor-ready - regardless of their network, their background, or how many times they've done this before.</p>
 
-                        <p className={styles.whyBuildPullQuote}>RaiseTalks is the great equalizer.</p>
+                     <p className={clsx(styles.whyExistBodyLight, styles.whyBuildP2)}>Capital has always flowed most easily to those who already know the language: the repeat founders, the Stanford alumni, the people who went to school with the partners.</p>
 
-                        <p className={styles.whyExistBodyLight}>We encode the knowledge that used to live only in warm introductions, and we give it to every founder who's serious enough to show up.</p>
+                     <p className={styles.whyBuildPullQuote}>RaiseTalks is the great equalizer.</p>
 
-                        <p className={styles.whyExistBodyLight}>This is not a small aspiration.</p>
+                     <p className={clsx(styles.whyExistBodyLight, styles.whyBuildP3)}>We encode the knowledge that used to live only in warm introductions, and we give it to every founder who's serious enough to show up.</p>
 
-                        <p className={styles.whyExistBodyLight}>It is a structural reshaping of how capital moves in the world.</p>
+                     <p className={styles.whyExistBodyLight}>This is not a small aspiration.</p>
 
-                        <p className={clsx(styles.whyExistBodyLight, "font-semibold")}>When great ideas stop dying in due diligence, the entire innovation ecosystem becomes more productive.</p>
-                     </div>
-                     <div className={styles.whyBuildGraphicCol}>
-                        <img src="/img/backgrounds/footer-logo.webp" className={styles.whyBuildGraphic} alt="RaiseTalks brand mark" loading="lazy" />
-                     </div>
+                     <p className={styles.whyExistBodyLight}>It is a structural reshaping of how capital moves in the world.</p>
+
+                     <p className={clsx(styles.whyExistBodyLight, styles.whyBuildP4, "font-semibold")}>When great ideas stop dying in due diligence, the entire innovation ecosystem becomes more productive.</p>
                   </div>
                </div>
             </div>

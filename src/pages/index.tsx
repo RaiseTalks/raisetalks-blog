@@ -65,8 +65,8 @@ function PitchCompetitionsBlock() {
       ref={section.ref as React.RefObject<HTMLElement>}
       className={`${styles.animSection} ${section.visible ? styles.visible : ''} bg-white`}
     >
-      <div className="rt-rail px-8 pt-8 pb-8 sm:px-12 sm:pt-12 sm:pb-12 lg:px-16 lg:pt-16 lg:pb-16 flex flex-col lg:flex-row gap-10 sm:gap-[90px]">
-      <div className="w-full lg:w-[480px] lg:flex-shrink-0">
+      <div className="rt-rail px-8 pt-8 pb-8 sm:px-12 sm:pt-12 sm:pb-12 lg:px-16 lg:pt-16 lg:pb-16 flex flex-col xl:flex-row gap-10 sm:gap-[90px]">
+      <div className="w-full xl:w-[480px] xl:flex-shrink-0">
         <h2 className="text-[28px] md:text-[40px] lg:text-[48px] font-normal leading-[1.25] text-black" style={{ fontWeight: 400 }}>
           Attend our <br />
           <span className="italic font-serif bg-[image:var(--raisetalks-brand-gradient)] bg-clip-text text-transparent">Pitch Competitions</span>

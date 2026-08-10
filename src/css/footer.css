@@ -43,8 +43,11 @@
   object-fit: contain;
 }
 
-/* Icon is desktop-only — mobile/tablet keep the wordmark alone. */
-@media (max-width: 996px) {
+/* Icon is desktop-only — mobile/tablet keep the wordmark alone. 1024px
+   matches the site's real desktop threshold (see .rt-rail in rail.css);
+   996px left iPad Pro-width viewports (997-1024px) showing the desktop
+   icon instead of the tablet wordmark-only layout below. */
+@media (max-width: 1024px) {
   .rt-footer__logo-icon {
     display: none;
   }
@@ -188,8 +191,10 @@
   text-decoration: underline;
 }
 
-/* Tablet */
-@media (max-width: 996px) {
+/* Tablet — 1024px matches the site's real desktop threshold (see
+   .rt-rail in rail.css); 996px left iPad Pro-width viewports
+   (997-1024px) rendering the desktop 4-column grid instead of this. */
+@media (max-width: 1024px) {
   .rt-footer__grid {
     grid-template-columns: 1fr 1fr;
   }

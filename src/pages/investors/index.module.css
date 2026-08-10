@@ -30,15 +30,22 @@
 .regionNarrow,
 .regionWide {
   position: relative;
-  /* Tailwind container half-widths; below 640px Tailwind has no max-width
-     (full bleed) so the rail is hidden there anyway. */
-  --rail-half: 9999px;
+  /* Mirrors the homepage's shared rail formula (src/css/rail.css .rt-rail):
+     fixed 8px margin below 640px, fixed 48px margin 640-1023px (both fluid
+     width), then the same fixed content-width ladder from 1024px up.
+     `50vw - Npx` resolves the `calc(50% - var(--rail-half))` position formula
+     below to a flat N-px inset, since these wrappers span the full viewport
+     width (50% of their own box == 50vw). */
+  --rail-half: calc(50vw - 8px);
 }
-@media (min-width: 640px)  { .regionNarrow, .regionWide { --rail-half: 320px; } }
-@media (min-width: 768px)  { .regionNarrow, .regionWide { --rail-half: 384px; } }
-@media (min-width: 1024px) { .regionNarrow, .regionWide { --rail-half: 512px; } }
-@media (min-width: 1280px) { .regionNarrow, .regionWide { --rail-half: 640px; } }
-@media (min-width: 1536px) { .regionNarrow, .regionWide { --rail-half: 768px; } }
+@media (min-width: 640px)  { .regionNarrow, .regionWide { --rail-half: calc(50vw - 48px); } }
+/* min() rather than a flat px value: without it, margin is exactly 0 at
+   each breakpoint's own minimum width (e.g. 1024px viewports, iPad Pro
+   portrait, would put the rail flush on the physical screen edge,
+   reading as "no frame"). Guarantees at least a 24px margin per side. */
+@media (min-width: 1024px) { .regionNarrow, .regionWide { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .regionNarrow, .regionWide { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .regionNarrow, .regionWide { --rail-half: min(768px, calc(50% - 24px)); } }
 .hero::before,
 .hero::after {
   display: none;
@@ -50,8 +57,13 @@
      Top padding is 0, so the top line/rail sit flush against the navbar. */
   top: 0;
   bottom: 2rem;
-  width: 0.5px;
-  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  /* Border rather than a background-filled width: 0.5px box — browsers
+     snap hairline borders to a crisp single device pixel, whereas a
+     sub-pixel-wide background box can antialias down to near-invisible
+     depending on which pixel its fractional edge lands on. Matches the
+     technique .rt-rail already uses (src/css/rail.css). */
+  width: 0;
+  border-left: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1));
   pointer-events: none;
   z-index: 2;
 }
@@ -66,8 +78,10 @@
      above it — no gap at the seam. */
   top: 0;
   bottom: 0;
-  width: 0.5px;
-  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  /* Border, not a background-filled width: 0.5px box — see .hero::before
+     above for why. */
+  width: 0;
+  border-left: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1));
   pointer-events: none;
   z-index: 2;
 }
@@ -82,6 +96,10 @@
   margin: 0 auto;
   padding: clamp(2rem, 4vw, 3.25rem) clamp(1.25rem, 3vw, 2.75rem);
   background: var(--frame-bg, transparent);
+  /* Matches the homepage rail's own margin below 1024px (see .rt-rail in
+     src/css/rail.css); !important needed to beat this page's own
+     `* { max-width: 100% !important }` mobile overflow guard below. */
+  max-width: calc(100% - 16px) !important;
 }
 /* Horizontal rules break out to the full screen width regardless of the
    container's own (narrower) box — pseudo-elements rather than a literal
@@ -102,13 +120,11 @@
 .container::before { top: 0; }
 .container::after { bottom: 0; }
 /* Mirrors the .regionWide rail ladder exactly, so content edges and rails
-   never drift apart. Below 640px, no max-width — full bleed, matching
-   Tailwind's own container at that size. */
-@media (min-width: 640px)  { .container { max-width: 640px; } }
-@media (min-width: 768px)  { .container { max-width: 768px; } }
-@media (min-width: 1024px) { .container { max-width: 1024px; } }
-@media (min-width: 1280px) { .container { max-width: 1280px; } }
-@media (min-width: 1536px) { .container { max-width: 1536px; } }
+   never drift apart. */
+@media (min-width: 640px)  { .container { max-width: calc(100% - 96px); } }
+@media (min-width: 1024px) { .container { max-width: min(1024px, calc(100% - 48px)); } }
+@media (min-width: 1280px) { .container { max-width: min(1280px, calc(100% - 48px)); } }
+@media (min-width: 1536px) { .container { max-width: min(1536px, calc(100% - 48px)); } }
 /* .narrow overrides the ladder above for the hero/audience-band frame —
    must stay last in source order to win at every breakpoint (equal
    specificity, later rule wins). Keeps Figma's tighter 840px content
@@ -138,13 +154,6 @@
     overflow-x: hidden !important;
   }
 
-  .regionNarrow::before,
-  .regionNarrow::after,
-  .regionWide::before,
-  .regionWide::after,
-  .ctaSection::before,
-  .ctaSection::after { display: none !important; }
-
   .container {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
@@ -170,15 +179,9 @@
     height: auto !important;
   }
 
-  .regionNarrow,
-  .regionWide {
-    --rail-half: 0px !important;
-  }
-
-  .hero::before,
-  .hero::after,
-  .proofSection::before,
-  .proofSection::after,
+  /* Horizontal full-bleed rules only — vertical rails stay visible on
+     mobile now, matching the homepage's rt-rail (see .regionNarrow /
+     .regionWide --rail-half above). */
   .container::before,
   .container::after {
     display: none !important;
@@ -407,8 +410,10 @@
   position: absolute;
   top: 2rem;
   bottom: 2rem;
-  width: 0.5px;
-  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  /* Border, not a background-filled width: 0.5px box — see .hero::before
+     above for why. */
+  width: 0;
+  border-left: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1));
   pointer-events: none;
   z-index: 2;
 }
@@ -746,8 +751,10 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 0.5px;
-  background: var(--rail-color, rgba(15, 23, 42, 0.1));
+  /* Border, not a background-filled width: 0.5px box — see .hero::before
+     above for why. */
+  width: 0;
+  border-left: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1));
   pointer-events: none;
   z-index: 2;
 }
@@ -902,7 +909,7 @@
      Negative z-index sits in layer 2, guaranteed behind it. */
   z-index: -1;
 }
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .ctaImageRail { background-image: url('/img/backgrounds/main-cta-tablet.webp'); }
 }
 @media (max-width: 768px) {
@@ -937,8 +944,10 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 0.5px;
-  background: #16315A;
+  /* Border, not a background-filled width: 0.5px box — see .hero::before
+     above for why. */
+  width: 0;
+  border-left: 0.5px solid #16315A;
   pointer-events: none;
   z-index: 1;
 }

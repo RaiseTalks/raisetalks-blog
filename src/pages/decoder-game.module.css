@@ -9,9 +9,9 @@
 }
 @media (min-width: 640px)  { .pageRails { --rail-half: 320px; } }
 @media (min-width: 768px)  { .pageRails { --rail-half: 384px; } }
-@media (min-width: 1024px) { .pageRails { --rail-half: 512px; } }
-@media (min-width: 1280px) { .pageRails { --rail-half: 640px; } }
-@media (min-width: 1536px) { .pageRails { --rail-half: 768px; } }
+@media (min-width: 1024px) { .pageRails { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .pageRails { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .pageRails { --rail-half: min(768px, calc(50% - 24px)); } }
 
 .pageRails::before,
 .pageRails::after {
@@ -42,10 +42,10 @@
 }
 @media (min-width: 640px)  { .heroRails { --rail-half: 320px; } }
 @media (min-width: 768px)  { .heroRails { --rail-half: 384px; } }
-@media (min-width: 1024px) { .heroRails { --rail-half: 512px; } }
-@media (min-width: 1280px) { .heroRails { --rail-half: 640px; } }
-@media (min-width: 1536px) { .heroRails { --rail-half: 768px; } }
-@media (max-width: 996px) { .heroRails { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
+@media (min-width: 1024px) { .heroRails { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .heroRails { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .heroRails { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (max-width: 1024px) { .heroRails { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
 @media (max-width: 768px) { .heroRails { background-image: url('/img/backgrounds/hero-alt-mobile.webp'); } }
 
 /* Vertical rail hidden on the hero itself, matching the same treatment on
@@ -73,9 +73,9 @@
 }
 @media (min-width: 640px)  { .faqRails { --rail-half: 320px; } }
 @media (min-width: 768px)  { .faqRails { --rail-half: 384px; } }
-@media (min-width: 1024px) { .faqRails { --rail-half: 512px; } }
-@media (min-width: 1280px) { .faqRails { --rail-half: 640px; } }
-@media (min-width: 1536px) { .faqRails { --rail-half: 768px; } }
+@media (min-width: 1024px) { .faqRails { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .faqRails { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .faqRails { --rail-half: min(768px, calc(50% - 24px)); } }
 .faqRails::before,
 .faqRails::after {
   content: '';
@@ -101,9 +101,9 @@
 }
 @media (min-width: 640px)  { .pageRailsDark { --rail-half: 320px; } }
 @media (min-width: 768px)  { .pageRailsDark { --rail-half: 384px; } }
-@media (min-width: 1024px) { .pageRailsDark { --rail-half: 512px; } }
-@media (min-width: 1280px) { .pageRailsDark { --rail-half: 640px; } }
-@media (min-width: 1536px) { .pageRailsDark { --rail-half: 768px; } }
+@media (min-width: 1024px) { .pageRailsDark { --rail-half: min(512px, calc(50% - 24px)); } }
+@media (min-width: 1280px) { .pageRailsDark { --rail-half: min(640px, calc(50% - 24px)); } }
+@media (min-width: 1536px) { .pageRailsDark { --rail-half: min(768px, calc(50% - 24px)); } }
 
 .pageRailsDark::before,
 .pageRailsDark::after {
@@ -130,9 +130,9 @@
 }
 @media (min-width: 640px)  { .railContainer { max-width: 640px; } }
 @media (min-width: 768px)  { .railContainer { max-width: 768px; } }
-@media (min-width: 1024px) { .railContainer { max-width: 1024px; } }
-@media (min-width: 1280px) { .railContainer { max-width: 1280px; } }
-@media (min-width: 1536px) { .railContainer { max-width: 1536px; } }
+@media (min-width: 1024px) { .railContainer { max-width: min(1024px, calc(100% - 48px)); } }
+@media (min-width: 1280px) { .railContainer { max-width: min(1280px, calc(100% - 48px)); } }
+@media (min-width: 1536px) { .railContainer { max-width: min(1536px, calc(100% - 48px)); } }
 
 .ctaBg {
   background-color: #0a1f44;
@@ -141,7 +141,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .ctaBg { background-image: url('/img/backgrounds/main-cta-tablet.webp'); }
 }
 @media (max-width: 768px) {

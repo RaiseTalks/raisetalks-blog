@@ -22,6 +22,19 @@
   border-left: 0.5px solid #CED6DE;
   border-right: 0.5px solid #CED6DE;
 }
+/* Below 640px this box is otherwise exactly 100% of the viewport, so its
+   border-left/right sit flush at the true screen edge with nothing
+   "outside" to contrast against — reads as invisible even though it
+   technically renders. Same fix as the homepage's shared .rt-rail utility
+   (src/css/rail.css): shrink 16px narrower and center.
+   !important: responsive.css has a sitewide `* { max-width: 100% }`
+   guard at this same breakpoint that otherwise wins (see rail.css). */
+@media (max-width: 640px) {
+  .sectionInner {
+    max-width: calc(100% - 16px) !important;
+    margin-inline: auto;
+  }
+}
 
 @media (min-width: 640px) {
   .sectionInner {
@@ -61,6 +74,19 @@
 /* Responsive grid line spacers */
 .gridLineSpacer {
   width: 100%;
+}
+/* This spacer's border-x (applied inline via Tailwind, e.g. border-x-[0.5px])
+   forms the same vertical rail as .sectionInner above. Below 640px it is
+   otherwise exactly 100% of the viewport with the border flush at the true
+   screen edge — invisible with nothing "outside" to contrast against. Same
+   fix as the homepage's shared .rt-rail utility (src/css/rail.css).
+   !important: responsive.css has a sitewide `* { max-width: 100% }` guard
+   at this same breakpoint that otherwise wins (see rail.css). */
+@media (max-width: 640px) {
+  .gridLineSpacer {
+    max-width: calc(100% - 16px) !important;
+    margin-inline: auto;
+  }
 }
 
 @media (min-width: 640px) {
@@ -147,7 +173,7 @@
   border-top: 0.5px solid #DAE0E7;
   border-bottom: 0.5px solid #DAE0E7;
 }
-@media (max-width: 996px) { .hero { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
+@media (max-width: 1024px) { .hero { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
 @media (max-width: 768px) { .hero { background-image: url('/img/backgrounds/hero-alt-mobile.webp'); } }
 
 .heroInner {
@@ -291,7 +317,20 @@
 }
 
 @media (max-width: 640px) {
-  .truthInner { flex-direction: column; gap: 0.75rem; }
+  .truthInner {
+    flex-direction: column;
+    gap: 0.75rem;
+    /* .truthInner's own max-width (680px) never actually shrinks it on
+       mobile — it's larger than the viewport, so this box still fills
+       100% of its parent (.truthBar has no width/padding of its own),
+       putting the border-left/right flush at the true screen edge with
+       nothing "outside" to contrast against. Same fix as .sectionInner
+       above and the homepage's shared .rt-rail utility (src/css/rail.css).
+       !important: responsive.css has a sitewide `* { max-width: 100% }`
+       guard at this same breakpoint that otherwise wins (see rail.css). */
+    max-width: calc(100% - 16px) !important;
+    margin-inline: auto;
+  }
 }
 
 /* ── PAIN POINTS ──────────────────────────────────────── */
@@ -1084,7 +1123,7 @@
    a narrow, tall mobile section crops straight to the flat center,
    losing that detail entirely. Same swap pattern already used by
    .hero in about-us.module.css. */
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .ctaSection {
     background-image: url('/img/backgrounds/main-cta-tablet.webp');
   }
