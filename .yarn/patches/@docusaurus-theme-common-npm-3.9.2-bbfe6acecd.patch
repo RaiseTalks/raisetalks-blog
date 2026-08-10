@@ -1,0 +1,17 @@
+diff --git a/lib/contexts/navbarMobileSidebar.js b/lib/contexts/navbarMobileSidebar.js
+index e967c6da1ad02528f32cf285a3481dd4c281a0e7..7b8f543f6437ce98e36927ec1d95a32a790e0759 100644
+--- a/lib/contexts/navbarMobileSidebar.js
++++ b/lib/contexts/navbarMobileSidebar.js
+@@ -18,7 +18,11 @@ function useIsNavbarMobileSidebarDisabled() {
+ }
+ function useContextValue() {
+     const disabled = useIsNavbarMobileSidebarDisabled();
+-    const windowSize = useWindowSize();
++    // RaiseTalks: raised from the Infima default of 996px so the mobile
++    // sidebar keeps working through iPad-Pro-portrait-class widths
++    // (997-1199px), where the full inline desktop nav doesn't fit. The
++    // matching CSS override lives in src/css/navbar.css.
++    const windowSize = useWindowSize({ desktopBreakpoint: 1199 });
+     const shouldRender = !disabled && windowSize === 'mobile';
+     const [shown, setShown] = useState(false);
+     const toggle = useCallback(() => {

@@ -18,7 +18,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.yarn/
+
+# Yarn Berry: ignore local cache/state but keep committed patches,
+# since yarn.lock resolves @docusaurus/theme-common via a relative
+# path into .yarn/patches/ - without it, `yarn install --immutable`
+# fails in CI with ENOENT.
+.yarn/*
+!.yarn/patches
 SUPABASE_SETUP.md
 _bmad/*
 .claude/
