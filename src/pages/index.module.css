@@ -759,7 +759,12 @@
 
 @media (max-width: 640px) {
   .whySection .sectionContainer {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    /* 0.25rem here + rt-rail's own 8px margin ≈ the ~12px edge inset in
+       Figma (node 2823:6818) — that spec has no rail framing on mobile,
+       just the cards floating with their own small margin. */
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    border-left-color: transparent;
+    border-right-color: transparent;
   }
 }
