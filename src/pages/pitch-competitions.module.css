@@ -58,10 +58,12 @@
   padding: 6rem 1.5rem 4rem;
   text-align: center;
   background: var(--ifm-background-color) url(/img/backgrounds/hero-alt-desktop.webp) no-repeat center / cover;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  border-bottom: 0.5px solid var(--ifm-color-emphasis-200);
   opacity: 0;
   transition: opacity 0.6s ease 0.05s;
 }
+@media (max-width: 996px) { .hero { background-image: url(/img/backgrounds/hero-alt-tablet.webp); } }
+@media (max-width: 768px) { .hero { background-image: url(/img/backgrounds/hero-alt-mobile.webp); } }
 
 /* Vertical rail hidden on the hero itself (see "remove vertical rail
    from all hero" pass). Uses the same responsive ladder as .pageRegion
@@ -588,6 +590,10 @@
 
 .ctaSection {
   position: relative;
+  /* Establishes its own stacking context so .ctaGlow's negative z-index
+     stays scoped to this section instead of bubbling up to the page's
+     stacking context and potentially landing behind an earlier section. */
+  z-index: 0;
   padding: 6rem 1.5rem;
   background: #0c1b31;
   text-align: center;
@@ -604,7 +610,7 @@
 @media (min-width: 1536px) { .ctaSection { --rail-half: 768px; } }
 
 .ctaSection::before,
-.ctaSection::after { 
+.ctaSection::after {
   content: '';
   position: absolute;
   top: 0;
@@ -618,17 +624,30 @@
 .ctaSection::before { left: calc(50% - var(--rail-half)); }
 .ctaSection::after { right: calc(50% - var(--rail-half)); }
 
+/* Confined between the two rail lines above, rather than spanning the
+   full section — the navy gutters outside the rail stay flat #0c1b31. */
 .ctaGlow {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - var(--rail-half));
+  right: calc(50% - var(--rail-half));
   background-image: url('/img/backgrounds/main-cta-desktop.webp');
-  background-size: 70%;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.35;
-  mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
   pointer-events: none;
+  /* Negative, not 0 — .container below has no position/z-index of its own,
+     so a static sibling always paints in front of a positioned z-index:0
+     sibling regardless of DOM order (CSS2.1 painting-order layers 3 vs 6).
+     Negative z-index sits in layer 2, guaranteed behind it. */
+  z-index: -1;
+}
+@media (max-width: 996px) {
+  .ctaGlow { background-image: url('/img/backgrounds/main-cta-tablet.webp'); }
+}
+@media (max-width: 768px) {
+  .ctaGlow { background-image: url('/img/backgrounds/main-cta-mobile.webp'); }
 }
 
 .ctaH2 {

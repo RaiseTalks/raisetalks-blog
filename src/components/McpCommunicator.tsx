@@ -30,8 +30,9 @@ const VARIANTS = {
       },
     ],
     accentGradient: 'bg-gradient-to-r from-[#FFAB0E] to-[#EA2640]',
-    stepBadge: 'bg-[#ffab0e] border-[#e39a05]',
+    stepBadgeGradient: 'linear-gradient(172.31deg, #FFAB0E 76.15%, #EA2640 107.36%)',
     step2Border: 'border-[#ffab0e]',
+    step2BorderBottom: 'border-b-[#EA2640]',
     step3Body: 'Click Add → Connect and sign in with your RaiseTalks account. Then just ask Claude to build or update your data room.',
   },
   investors: {
@@ -58,8 +59,9 @@ const VARIANTS = {
       },
     ],
     accentGradient: 'bg-gradient-to-r from-[#003687] to-[#0077FF]',
-    stepBadge: 'bg-[#0077ff] border-[#003687]',
+    stepBadgeGradient: 'linear-gradient(172.31deg, #0077FF 76.15%, #003687 107.36%)',
     step2Border: 'border-[#003687]',
+    step2BorderBottom: 'border-b-[#0077FF]',
     step3Body: 'Click Add → Connect and sign in with your RaiseTalks account. Then just ask Claude to score a startup or prep an IC memo.',
   },
 } as const;
@@ -140,7 +142,10 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
             {/* Step 1 */}
             <div className="flex-1 min-w-0 flex flex-col justify-between gap-6">
               <div className="flex flex-col gap-6">
-                <span className={`w-9 h-9 rounded-[4px] border-b-[3px] flex items-center justify-center text-white text-[22px] leading-none ${content.stepBadge}`}>1</span>
+                <span
+                  className="w-[42px] h-[42px] rounded-full flex items-center justify-center gap-[10px] text-white text-[22px] leading-none"
+                  style={{ background: content.stepBadgeGradient }}
+                >1</span>
                 <div className="flex flex-col gap-1">
                   <p className="text-[#1a1a1a] text-[22px] leading-[1.35] m-0">Copy the RaiseTalks URL</p>
                   <p className="text-[#333] text-[14.4px] leading-[1.45] m-0">Click to copy the connector URL - you'll paste it into Claude in the next step.</p>
@@ -175,7 +180,10 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
             {/* Step 2 */}
             <div className="flex-1 min-w-0 flex flex-col justify-between gap-6 lg:border-l lg:border-[#ebebeb] lg:pl-[48px] border-t border-[#ebebeb] pt-6 lg:border-t-0 lg:pt-0">
               <div className="flex flex-col gap-6">
-                <span className={`w-9 h-9 rounded-[4px] border-b-[3px] flex items-center justify-center text-white text-[22px] leading-none ${content.stepBadge}`}>2</span>
+                <span
+                  className="w-[42px] h-[42px] rounded-full flex items-center justify-center gap-[10px] text-white text-[22px] leading-none"
+                  style={{ background: content.stepBadgeGradient }}
+                >2</span>
                 <div className="flex flex-col gap-1">
                   <p className="text-[#1a1a1a] text-[22px] leading-[1.35] m-0">Add it in Claude</p>
                   <p className="text-[#333] text-[14.4px] leading-[1.45] m-0">In Claude desktop or claude.ai, go to Settings → Connectors, add a custom connector, name it RaiseTalks, and paste the URL.</p>
@@ -185,7 +193,7 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
                 href="https://claude.ai/new#settings/customize-connectors"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-full flex gap-[10px] items-center justify-center px-4 py-3 rounded-[8px] bg-white border border-b-[3px] text-black no-underline hover:no-underline hover:text-black transition-opacity hover:opacity-90 ${content.step2Border}`}
+                className={`w-full flex gap-[10px] items-center justify-center px-4 py-3 rounded-[8px] bg-white border border-b-[3px] text-black no-underline hover:no-underline hover:text-black transition-opacity hover:opacity-90 ${content.step2Border} ${content.step2BorderBottom}`}
               >
                 <span className="text-[14.4px] text-center">Open in Claude</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="shrink-0" aria-hidden="true">
@@ -196,7 +204,10 @@ export default function McpCommunicator({ variant = 'startups' }: { variant?: ke
 
             {/* Step 3 */}
             <div className="flex-1 min-w-0 flex flex-col gap-6 lg:border-l lg:border-[#ebebeb] lg:pl-[48px] border-t border-[#ebebeb] pt-6 lg:border-t-0 lg:pt-0">
-              <span className={`w-9 h-9 rounded-[4px] border-b-[3px] flex items-center justify-center text-white text-[22px] leading-none ${content.stepBadge}`}>3</span>
+              <span
+                className="w-[42px] h-[42px] rounded-full flex items-center justify-center gap-[10px] text-white text-[22px] leading-none"
+                style={{ background: content.stepBadgeGradient }}
+              >3</span>
               <div className="flex flex-col gap-1">
                 <p className="text-[#1a1a1a] text-[22px] leading-[1.35] m-0">Connect and sign in</p>
                 <p className="text-[#333] text-[14.4px] leading-[1.45] m-0">{content.step3Body}</p>

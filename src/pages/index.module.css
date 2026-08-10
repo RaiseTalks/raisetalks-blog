@@ -327,43 +327,41 @@
 }
 
 /* Width/margin/the rail border come from the shared `rt-rail`/`rt-rail-dark`
-   classes (src/css/rail.css), combined with .ctaBorderBox in index.tsx. */
+   classes (src/css/rail.css), combined with .ctaBorderBox in index.tsx.
+   The main-cta background sits on this rail-bounded box rather than
+   .ctaSection itself, so the image stays inside the rail's vertical grid
+   lines instead of bleeding into the full-width navy gutters. */
 .ctaBorderBox {
   position: relative;
   padding: 4rem 1.5rem;
+  background: url('/img/backgrounds/main-cta-desktop.webp') center / cover no-repeat;
+  /* Overrides rt-rail-dark's default rgba(255,255,255,0.3) vertical lines
+     with this section's own rail color — !important since both are
+     single-class selectors and load order between global rail.css and
+     this module isn't guaranteed. */
+  border-left-color: #16315A !important;
+  border-right-color: #16315A !important;
 }
 
-.ctaBackgroundWindow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 360px;
-  overflow: hidden;
-  pointer-events: none;
+/* Same override, applied to the GridSeam bands directly above/below the
+   CTA (via its `innerClassName` prop) so the vertical rail stays the same
+   color through the whole CTA area — scoped here rather than in
+   GridSeam.module.css so other GridSeam usages on the page are unaffected. */
+.ctaSeamRail {
+  border-left-color: #16315A !important;
+  border-right-color: #16315A !important;
 }
 
-.ctaBackgroundArt {
-  position: absolute;
-  top: -711.58px;
-  left: 0;
-  width: 100%;
-  height: 1404.91px;
-  max-width: none;
+@media (max-width: 996px) {
+  .ctaBorderBox {
+    background-image: url('/img/backgrounds/main-cta-tablet.webp');
+  }
 }
 
-.ctaBackgroundWindow::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    #0c1b31 0%,
-    #0c1b31 10%,
-    rgba(12, 27, 49, 0.2) 54.54%,
-    #0c1b31 90%,
-    #0c1b31 100%
-  );
+@media (max-width: 768px) {
+  .ctaBorderBox {
+    background-image: url('/img/backgrounds/main-cta-mobile.webp');
+  }
 }
 
 .ctaContent {

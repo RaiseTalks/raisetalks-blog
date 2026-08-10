@@ -32,6 +32,12 @@
    in/out at this boundary. */
 .heroRails {
   position: relative;
+  /* Width-based, not cover — this hero is taller relative to its width
+     than the other pages' heroes (extra padding, larger heading), and
+     cover crops horizontally to match box height, zooming in far more
+     here than elsewhere. Sizing to 100% width keeps the image's apparent
+     zoom level consistent across pages regardless of section height. */
+  background: #ffffff url('/img/backgrounds/hero-alt-desktop.webp') center / 100% auto no-repeat;
   --rail-half: 9999px;
 }
 @media (min-width: 640px)  { .heroRails { --rail-half: 320px; } }
@@ -39,8 +45,14 @@
 @media (min-width: 1024px) { .heroRails { --rail-half: 512px; } }
 @media (min-width: 1280px) { .heroRails { --rail-half: 640px; } }
 @media (min-width: 1536px) { .heroRails { --rail-half: 768px; } }
+@media (max-width: 996px) { .heroRails { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
+@media (max-width: 768px) { .heroRails { background-image: url('/img/backgrounds/hero-alt-mobile.webp'); } }
+
+/* Vertical rail hidden on the hero itself, matching the same treatment on
+   about-us/investors/pitch-competitions. */
 .heroRails::before,
 .heroRails::after {
+  display: none;
   content: '';
   position: absolute;
   top: 0;
@@ -121,6 +133,20 @@
 @media (min-width: 1024px) { .railContainer { max-width: 1024px; } }
 @media (min-width: 1280px) { .railContainer { max-width: 1280px; } }
 @media (min-width: 1536px) { .railContainer { max-width: 1536px; } }
+
+.ctaBg {
+  background-color: #0a1f44;
+  background-image: url('/img/backgrounds/main-cta-desktop.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (max-width: 996px) {
+  .ctaBg { background-image: url('/img/backgrounds/main-cta-tablet.webp'); }
+}
+@media (max-width: 768px) {
+  .ctaBg { background-image: url('/img/backgrounds/main-cta-mobile.webp'); }
+}
 
 /* Horizontal frame lines — span the FULL width so they cut clean across the
    vertical rails (which draw on top at z-index 2), forming the grid

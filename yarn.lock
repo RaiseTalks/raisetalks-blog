@@ -2587,6 +2587,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@docusaurus/theme-common@patch:@docusaurus/theme-common@npm%3A3.9.2#~/.yarn/patches/@docusaurus-theme-common-npm-3.9.2-bbfe6acecd.patch":
+  version: 3.9.2
+  resolution: "@docusaurus/theme-common@patch:@docusaurus/theme-common@npm%3A3.9.2#~/.yarn/patches/@docusaurus-theme-common-npm-3.9.2-bbfe6acecd.patch::version=3.9.2&hash=1803e2"
+  dependencies:
+    "@docusaurus/mdx-loader": "npm:3.9.2"
+    "@docusaurus/module-type-aliases": "npm:3.9.2"
+    "@docusaurus/utils": "npm:3.9.2"
+    "@docusaurus/utils-common": "npm:3.9.2"
+    "@types/history": "npm:^4.7.11"
+    "@types/react": "npm:*"
+    "@types/react-router-config": "npm:*"
+    clsx: "npm:^2.0.0"
+    parse-numeric-range: "npm:^1.3.0"
+    prism-react-renderer: "npm:^2.3.0"
+    tslib: "npm:^2.6.0"
+    utility-types: "npm:^3.10.0"
+  peerDependencies:
+    "@docusaurus/plugin-content-docs": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10c0/7fdddf099461d9bab32947b0b3f67f086b25701d947ae8f3b7fd68e7a3dd924707705c39a6e0060544575b83e1db412fb8cbed186da6d52aa5588b584c2006e1
+  languageName: node
+  linkType: hard
+
 "@docusaurus/theme-search-algolia@npm:3.9.2":
   version: 3.9.2
   resolution: "@docusaurus/theme-search-algolia@npm:3.9.2"

@@ -524,13 +524,8 @@ export default function decoderGame () {
     confined to the centered rail column. */}
 <div className="w-full flex justify-center" style={{ backgroundColor: '#0C1B31' }}>
     <div
-        className={`${styles.railContainer} flex flex-col items-center justify-center min-h-[445px] px-6 md:px-[64px] pt-[96px] md:pt-[128px] pb-[64px] text-white`}
+        className={`${styles.railContainer} ${styles.ctaBg} flex flex-col items-center justify-center min-h-[445px] px-6 md:px-[64px] pt-[96px] md:pt-[128px] pb-[64px] text-white`}
         style={{
-            backgroundColor: '#0a1f44',
-            backgroundImage: 'url(/img/backgrounds/main-cta-desktop.webp)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
             borderLeft: '0.5px solid #16315A',
             borderRight: '0.5px solid #16315A',
         }}

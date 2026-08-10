@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
+import styles from './pricing.module.css';
 
 // Custom hook for scroll animations
 function useScrollAnimation() {
@@ -209,7 +210,7 @@ export default function Pricing() {
       `}</style>
 
       {/* Enhanced Hero Section */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50">
+      <section className={`relative py-20 overflow-hidden ${styles.hero}`}>
         {/* Background Pattern - matching homepage */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -348,48 +349,30 @@ export default function Pricing() {
       </section>
 
       {/* Bottom CTA Section */}
-      <section className="py-16 bg-white">
-        <div className="container px-4 mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="p-8 border border-blue-100 bg-gradient-to-br from-blue-50 to-gray-50 rounded-3xl">
-              <h3 className="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">
-                Ready to transform your fundraising?
-              </h3>
-              <p className="mb-6 text-lg text-gray-600">
-                Join thousands of founders and investors using AI to move faster with confidence.
-              </p>
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaInner}>
+          <h3 className={styles.ctaTitle}>
+            Ready to transform your fundraising?
+          </h3>
+          <p className={styles.ctaDesc}>
+            Join thousands of founders and investors using AI to move faster with confidence.
+          </p>
 
-              <div className="flex flex-col items-center justify-center gap-4 mb-6 sm:flex-row">
-                <Link
-                  className="text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
-                  style={{background: 'var(--raisetalks-brand-gradient)'}}
-                  to="https://app.raisetalks.com/sign-up"
-                >
-                  Start Free Today
-                </Link>
-                <Link
-                  className="border-2 border-blue-600 text-[var(--raisetalks-blue-primary-flat)] hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105"
-                  to={CALENDLY_URL}
-                >
-                  Schedule Demo
-                </Link>
-              </div>
+          <div className={styles.ctaButtons}>
+            <Link className={styles.ctaBtnPrimary} to="https://app.raisetalks.com/sign-up">
+              Start Free Today
+            </Link>
+            <Link className={styles.ctaBtnSecondary} to={CALENDLY_URL}>
+              Schedule Demo
+            </Link>
+          </div>
 
-              <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
-                <div className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>14-day free trial</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>No credit card required</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>Cancel anytime</span>
-                </div>
-              </div>
-            </div>
+          <div className={styles.ctaTrust}>
+            <span>14-day free trial</span>
+            <span className={styles.ctaTrustDivider}>-</span>
+            <span>No credit card required</span>
+            <span className={styles.ctaTrustDivider}>-</span>
+            <span>Cancel anytime</span>
           </div>
         </div>
       </section>

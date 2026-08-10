@@ -870,22 +870,43 @@
 /* Full-bleed dark band — spans the entire viewport width */
 .ctaSection {
   position: relative;
+  /* Establishes its own stacking context so .ctaImageRail's negative
+     z-index stays scoped to this section instead of bubbling up to the
+     page's stacking context and potentially landing behind an earlier
+     section. */
+  z-index: 0;
   text-align: center;
   overflow: hidden;
   background: linear-gradient(180deg, #0a1830 0%, #0b1f44 100%);
   /* outer edges of the band, full screen width */
-  border-top: 1px solid #1E437B;
-  border-bottom: 1px solid #1E437B;
+  border-top: 0.5px solid #16315A;
+  border-bottom: 0.5px solid #16315A;
 }
-.ctaBg {
+
+/* Confined between the rail lines below, rather than spanning the full
+   band — the navy gutters outside the rail stay flat. */
+.ctaImageRail {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - var(--rail-half));
+  right: calc(50% - var(--rail-half));
+  background-image: url('/img/backgrounds/main-cta-desktop.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   pointer-events: none;
-  z-index: 0;
+  /* Negative, not 0 — .container below has no position/z-index of its own,
+     so a static sibling always paints in front of a positioned z-index:0
+     sibling regardless of DOM order (CSS2.1 painting-order layers 3 vs 6).
+     Negative z-index sits in layer 2, guaranteed behind it. */
+  z-index: -1;
+}
+@media (max-width: 996px) {
+  .ctaImageRail { background-image: url('/img/backgrounds/main-cta-tablet.webp'); }
+}
+@media (max-width: 768px) {
+  .ctaImageRail { background-image: url('/img/backgrounds/main-cta-mobile.webp'); }
 }
 /* Empty framed strips inside the dark band, top and bottom — the navy
    background continues through them, each closed off by its own line,
@@ -897,13 +918,13 @@
    .ctaSection's own border-top/bottom. */
 .ctaSpacer {
   position: relative;
-  z-index: 1; /* paint above .ctaBg, matching .container's stacking */
+  z-index: 1; /* paint above .ctaSection's background, matching .container's stacking */
   height: 64px;
-  border-bottom: 1px solid #1E437B;
+  border-bottom: 0.5px solid #16315A;
 }
 .ctaSpacer:last-of-type {
   border-bottom: none;
-  border-top: 1px solid #1E437B;
+  border-top: 0.5px solid #16315A;
 }
 @media (max-width: 640px) {
   .ctaSpacer { height: 40px; }
@@ -917,7 +938,7 @@
   top: 0;
   bottom: 0;
   width: 0.5px;
-  background: #1E437B;
+  background: #16315A;
   pointer-events: none;
   z-index: 1;
 }

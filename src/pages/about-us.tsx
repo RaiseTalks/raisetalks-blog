@@ -99,7 +99,7 @@ export default function AboutUs() {
                   <span className={styles.heroAccent}> into investor-grade intelligence</span>
                </Heading>
                <div className={styles.heroActions}>
-                  <Link className={styles.btnPrimary} to="https://calendly.com/iamdariiava/30min">
+                  <Link className={styles.btnPrimary} to="https://app.raisetalks.com/startups">
                      Browse startups
                   </Link>
                   <Link className={styles.btnSecondary} to="https://calendly.com/iamdariiava/30min">

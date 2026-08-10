@@ -63,7 +63,7 @@ function PitchCompetitionsBlock() {
   return (
     <section
       ref={section.ref as React.RefObject<HTMLElement>}
-      className={`${styles.animSection} ${section.visible ? styles.visible : ''} bg-[#fafafa]`}
+      className={`${styles.animSection} ${section.visible ? styles.visible : ''} bg-white`}
     >
       <div className="rt-rail px-8 pt-8 pb-8 sm:px-12 sm:pt-12 sm:pb-12 lg:px-16 lg:pt-16 lg:pb-16 flex flex-col lg:flex-row gap-10 sm:gap-[90px]">
       <div className="w-full lg:w-[480px] lg:flex-shrink-0">
@@ -103,20 +103,20 @@ function PitchCompetitionsBlock() {
       </div>
 
       <div className="flex-1 grid grid-cols-1 md:grid-cols-2">
-      <div className="border-b border-[#e4e4e7] p-6 md:p-12">
+      <div className="border-b border-[#e4e4e7] p-6 md:p-12 transition-colors hover:bg-[#FCFCFC]">
         <h4 className="text-[24px] leading-[32px] font-normal text-black m-0 mb-[15px]" style={{ fontWeight: 400 }}>Direct founder access.</h4>
         <p className="text-[14.714px] leading-[1.2] text-[#4b4b4b] m-0">From first look to first conversation.</p>
 
       </div>
-      <div className="border-b md:border-l border-[#e4e4e7] p-6 md:p-12">
+      <div className="border-b md:border-l border-[#e4e4e7] p-6 md:p-12 transition-colors hover:bg-[#FCFCFC]">
         <h4 className="text-[24px] leading-[32px] font-normal text-black m-0 mb-[15px]" style={{ fontWeight: 400 }}>100+ vetted startups per cohort</h4>
         <p className="text-[14.714px] leading-[1.2] text-[#4b4b4b] m-0">Screened before they reach you.</p>
       </div>
-        <div className="border-b md:border-b-0 border-[#e4e4e7] p-6 md:p-12">
+        <div className="border-b md:border-b-0 border-[#e4e4e7] p-6 md:p-12 transition-colors hover:bg-[#FCFCFC]">
           <h4 className="text-[24px] leading-[32px] font-normal text-black m-0 mb-[15px]" style={{ fontWeight: 400 }}>Standardized data rooms for every participant.</h4>
           <p className="text-[14.714px] leading-[1.2] text-[#4b4b4b] m-0">No chasing documents.</p>
         </div>
-        <div className="md:border-l border-[#e4e4e7] p-6 md:p-12">
+        <div className="md:border-l border-[#e4e4e7] p-6 md:p-12 transition-colors hover:bg-[#FCFCFC]">
           <h4 className="text-[24px] leading-[32px] font-normal text-black m-0 mb-[15px]" style={{ fontWeight: 400 }}>AI pre-scoring across Team, Product, Market, and Deal.</h4>
           <p className="text-[14.714px] leading-[1.2] text-[#4b4b4b] m-0">So you arrive informed.</p>
         </div>
@@ -136,9 +136,6 @@ function HomepageCTA() {
       aria-labelledby="cta-heading"
     >
       <div className={`rt-rail rt-rail-dark h-full ${styles.ctaBorderBox}`}>
-          <div className={styles.ctaBackgroundWindow} aria-hidden="true">
-            <img src="/img/cta-navy-bg.svg" className={styles.ctaBackgroundArt} alt="" />
-          </div>
           <div className={styles.ctaContent}>
             <h2 id="cta-heading" className={styles.ctaTitle}>
               Fundraising isn't guesswork. <br /> <span className="italic font-serif">It's an investment process.</span>
@@ -273,8 +270,10 @@ export default function Home() {
       <NarrativeBlock />
       <GridSeam />
       <PitchCompetitionsBlock />
-      <GridSeam variant="dark" />
+      <GridSeam />
+      <GridSeam variant="dark" innerClassName={`rt-rail h-full ${styles.ctaSeamRail}`} />
       <HomepageCTA />
+      <GridSeam variant="dark" innerClassName={`rt-rail h-full ${styles.ctaSeamRail}`} />
     </Layout>
   );
 }

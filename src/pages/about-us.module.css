@@ -455,6 +455,7 @@
   border-left: 0.5px solid #1e437b;
   border-right: 0.5px solid #1e437b;
   box-shadow: 0 -0.5px 0 0 #1e437b;
+  background: url('/img/backgrounds/main-cta-desktop.webp') center / cover no-repeat;
 }
 /* Matches the footer's own Tailwind `.container` breakpoints exactly —
    see .railDividerInner above. */
@@ -464,18 +465,16 @@
 @media (min-width: 1280px) { .ctaContent { max-width: 1280px; } }
 @media (min-width: 1536px) { .ctaContent { max-width: 1536px; } }
 
-.ctaContent::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: url('/img/backgrounds/main-cta-desktop.webp');
-  background-size: 70%;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.35;
-  mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+@media (max-width: 996px) {
+  .ctaContent {
+    background-image: url('/img/backgrounds/main-cta-tablet.webp');
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaContent {
+    background-image: url('/img/backgrounds/main-cta-mobile.webp');
+  }
 }
 
 .ctaTextGroup {

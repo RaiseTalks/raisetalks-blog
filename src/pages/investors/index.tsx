@@ -165,7 +165,8 @@ export default function InvestorsPage() {
   const cta = useInView(0.1);
 
   const heroBg = useBaseUrl('/img/backgrounds/hero-alt-desktop.webp');
-  const ctaBg = useBaseUrl('/img/backgrounds/main-cta-desktop.webp');
+  const heroBgTablet = useBaseUrl('/img/backgrounds/hero-alt-tablet.webp');
+  const heroBgMobile = useBaseUrl('/img/backgrounds/hero-alt-mobile.webp');
   const bandBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
   const frustrationDesktop = useBaseUrl('/img/investors/frustration-bg-desktop.webp');
   const frustrationTablet = useBaseUrl('/img/investors/frustration-bg-tablet.webp');
@@ -215,7 +216,11 @@ export default function InvestorsPage() {
         className={`${styles.hero} ${hero.visible ? styles.visible : ''}`}
         aria-labelledby="hero-heading"
       >
-        <img src={heroBg} alt="" aria-hidden="true" className={styles.heroBg} />
+        <picture>
+          <source media="(max-width: 768px)" srcSet={heroBgMobile} />
+          <source media="(max-width: 996px)" srcSet={heroBgTablet} />
+          <img src={heroBg} alt="" aria-hidden="true" className={styles.heroBg} />
+        </picture>
         {/* Bottom rail-bound border dropped — the proof section directly
             below supplies its own full-width divider (.spacerRow). */}
         <div className={`${styles.container} ${styles.narrow} ${styles.containerNoBottomBorder}`}>
@@ -554,7 +559,7 @@ export default function InvestorsPage() {
         className={`${styles.ctaSection} ${styles.animSection} ${cta.visible ? styles.visible : ''}`}
         aria-labelledby="cta-heading"
       >
-        <img src={ctaBg} alt="" aria-hidden="true" className={styles.ctaBg} />
+        <div className={styles.ctaImageRail} aria-hidden="true" />
 
         {/* Empty spacer strip above the content — dark bg continues, own closing line */}
         <div className={styles.ctaSpacer} />
