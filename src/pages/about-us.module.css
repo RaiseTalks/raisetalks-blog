@@ -39,9 +39,7 @@
 }
 @media (min-width: 640px)  { .hero { --rail-half: 320px; } }
 @media (min-width: 768px)  { .hero { --rail-half: 384px; } }
-@media (min-width: 1024px) { .hero { --rail-half: min(512px, calc(50% - 24px)); } }
-@media (min-width: 1280px) { .hero { --rail-half: min(640px, calc(50% - 24px)); } }
-@media (min-width: 1536px) { .hero { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (min-width: 1024px) { .hero { --rail-half: min(740px, calc(50% - 24px)); } }
 @media (max-width: 1024px) { .hero { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
 @media (max-width: 768px) { .hero { background-image: url('/img/backgrounds/hero-alt-mobile.webp'); } }
 /* Hero's rail matches the rest of the page's width (not its own
@@ -186,10 +184,16 @@
   display: flex;
   justify-content: center;
 }
-@media (max-width: 640px) {
+@media (max-width: 1023px) {
   .railDividerLight,
   .railDividerDark {
-    height: 40px;
+    height: 48px;
+  }
+}
+@media (max-width: 639px) {
+  .railDividerLight,
+  .railDividerDark {
+    height: 32px;
   }
 }
 
@@ -226,9 +230,7 @@
    reasoning as the investors page. */
 @media (min-width: 640px)  { .railDividerInner { max-width: 640px; } }
 @media (min-width: 768px)  { .railDividerInner { max-width: 768px; } }
-@media (min-width: 1024px) { .railDividerInner { max-width: min(1024px, calc(100% - 48px)); } }
-@media (min-width: 1280px) { .railDividerInner { max-width: min(1280px, calc(100% - 48px)); } }
-@media (min-width: 1536px) { .railDividerInner { max-width: min(1536px, calc(100% - 48px)); } }
+@media (min-width: 1024px) { .railDividerInner { max-width: min(1480px, calc(100% - 48px)); } }
 
 .railDividerLight .railDividerInner {
   border-left: 0.5px solid #dae0e7;
@@ -251,9 +253,7 @@
    see .railDividerInner above. */
 @media (min-width: 640px)  { .sectionContainer { max-width: 640px; } }
 @media (min-width: 768px)  { .sectionContainer { max-width: 768px; } }
-@media (min-width: 1024px) { .sectionContainer { max-width: min(1024px, calc(100% - 48px)); } }
-@media (min-width: 1280px) { .sectionContainer { max-width: min(1280px, calc(100% - 48px)); } }
-@media (min-width: 1536px) { .sectionContainer { max-width: min(1536px, calc(100% - 48px)); } }
+@media (min-width: 1024px) { .sectionContainer { max-width: min(1480px, calc(100% - 48px)); } }
 
 .partnersSection .sectionContainer {
   border: none;
@@ -488,9 +488,7 @@
    see .railDividerInner above. */
 @media (min-width: 640px)  { .ctaContent { max-width: 640px; } }
 @media (min-width: 768px)  { .ctaContent { max-width: 768px; } }
-@media (min-width: 1024px) { .ctaContent { max-width: min(1024px, calc(100% - 48px)); } }
-@media (min-width: 1280px) { .ctaContent { max-width: min(1280px, calc(100% - 48px)); } }
-@media (min-width: 1536px) { .ctaContent { max-width: min(1536px, calc(100% - 48px)); } }
+@media (min-width: 1024px) { .ctaContent { max-width: min(1480px, calc(100% - 48px)); } }
 
 @media (max-width: 1024px) {
   .ctaContent {
@@ -664,8 +662,12 @@
 }
 
 .valuesSection .sectionContainer {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  /* Figma (node 1285-1233 / 2279-257): content starts 64px from the rail's
+     top edge and runs flush to the section's bottom — the divider spacer
+     band directly below already supplies the visual gap before the next
+     section, so no bottom padding is added here. */
+  padding-top: 4rem;
+  padding-bottom: 0;
   /* 3rem (not 4) so cards get enough width for descriptions to wrap to
      3 lines, matching Figma — 4rem pushed some to a 4th line. */
   padding-left: 3rem;
@@ -870,7 +872,10 @@
    .missionSection .sectionContainer. */
 .visionSection .sectionContainer {
   position: relative;
-  padding: 5rem 1rem 5rem 4rem;
+  /* Figma (node 1285-1074): symmetric 64px inset on every side, including
+     the image column, which ends flush 64px from the rail edge rather
+     than bleeding toward it. */
+  padding: 4rem;
 }
 .visionSection .sectionContainer::before,
 .visionSection .sectionContainer::after {

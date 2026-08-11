@@ -43,9 +43,7 @@
    each breakpoint's own minimum width (e.g. 1024px viewports, iPad Pro
    portrait, would put the rail flush on the physical screen edge,
    reading as "no frame"). Guarantees at least a 24px margin per side. */
-@media (min-width: 1024px) { .regionNarrow, .regionWide { --rail-half: min(512px, calc(50% - 24px)); } }
-@media (min-width: 1280px) { .regionNarrow, .regionWide { --rail-half: min(640px, calc(50% - 24px)); } }
-@media (min-width: 1536px) { .regionNarrow, .regionWide { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (min-width: 1024px) { .regionNarrow, .regionWide { --rail-half: min(740px, calc(50% - 24px)); } }
 .hero::before,
 .hero::after {
   display: none;
@@ -94,7 +92,7 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.25rem, 3vw, 2.75rem);
+  padding: 2rem clamp(1.25rem, 3vw, 2.75rem);
   background: var(--frame-bg, transparent);
   /* Matches the homepage rail's own margin below 1024px (see .rt-rail in
      src/css/rail.css); !important needed to beat this page's own
@@ -121,15 +119,33 @@
 .container::after { bottom: 0; }
 /* Mirrors the .regionWide rail ladder exactly, so content edges and rails
    never drift apart. */
-@media (min-width: 640px)  { .container { max-width: calc(100% - 96px); } }
-@media (min-width: 1024px) { .container { max-width: min(1024px, calc(100% - 48px)); } }
-@media (min-width: 1280px) { .container { max-width: min(1280px, calc(100% - 48px)); } }
-@media (min-width: 1536px) { .container { max-width: min(1536px, calc(100% - 48px)); } }
+@media (min-width: 640px)  {
+  .container {
+    max-width: calc(100% - 96px);
+    /* Figma (node 1296-320 etc.): 48px inset, not the ~32px the clamp()
+       formula produced at tablet widths. */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: min(1480px, calc(100% - 48px));
+    /* Figma: 64px inset, not the ~52px the clamp() formula produced at
+       desktop widths. */
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
 /* .narrow overrides the ladder above for the hero/audience-band frame —
    must stay last in source order to win at every breakpoint (equal
-   specificity, later rule wins). Keeps Figma's tighter 840px content
-   frame; the horizontal rules above still break out full width. */
-.narrow { max-width: 840px; }
+   specificity, later rule wins). Figma's own measured values for this
+   frame specifically: 378px content/6px margin on the ~390px mobile
+   canvas, 736px content/16px margin on the 768px tablet canvas, flat
+   1024px from desktop up — not a single flat 840px at every width. */
+.narrow { max-width: calc(100% - 12px); }
+@media (min-width: 640px)  { .narrow { max-width: calc(100% - 32px); } }
+@media (min-width: 1024px) { .narrow { max-width: min(1024px, calc(100% - 48px)); } }
 /* Use on whichever side of a section boundary should defer to its
    neighbor's own divider (a .spacerRow, or the other section's own
    intact rule) — drop this rail-bound one to avoid two mismatched

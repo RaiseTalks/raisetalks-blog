@@ -203,7 +203,7 @@ export default function decoderGame () {
                     </div>
                     </div>
                 </div>
-                <div className="flex-1 min-w-0 grid grid-cols-2 md:grid-cols-[minmax(min-content,1fr)_minmax(min-content,1fr)] gap-[24px]">
+                <div className="flex-1 min-w-0 grid grid-cols-2 md:grid-cols-[minmax(min-content,1fr)_minmax(min-content,1fr)] gap-[32px]">
                     <div className="flex flex-col gap-[24px] min-w-0 min-h-[146px] bg-[#F7F7F7] p-[36px] rounded-[16px] border border-[#DEDEDE]">
                         <p className="rt-h4">Timeline</p>
                         <p className="rt-h4-alt text-brand-gradient">60 Minutes</p>

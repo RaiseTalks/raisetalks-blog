@@ -204,7 +204,7 @@ export default function PitchCompetitions() {
         className={`${styles.sectionLight} ${styles.statsSection} ${styles.animSection} ${metricsSec.visible ? styles.visible : ''}`}
         aria-labelledby="metrics-heading"
       >
-        <div className={styles.container}>
+        <div className={styles.containerNarrow}>
           <h2 id="metrics-heading" className={styles.srOnly}>Results</h2>
           <div className={styles.statStrip}>
             {statItems.map((s) => (
@@ -228,7 +228,7 @@ export default function PitchCompetitions() {
         className={`${styles.sectionGray} ${styles.animSection} ${benefitsSec.visible ? styles.visible : ''}`}
         aria-labelledby="benefits-heading"
       >
-        <div className="flex w-full mx-auto gap-[48px] px-16 py-12 sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
+        <div className="flex w-full mx-auto gap-[48px] px-16 py-12 sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1480px]">
           <h2 id="benefits-heading" className={`${styles.sectionH2} flex-1`}>
             Why Join Our <br />
             <span className={styles.heroAccent}>Pitch Competitions</span>
@@ -292,7 +292,7 @@ export default function PitchCompetitions() {
         className={`${styles.sectionGray} ${styles.animSection} ${featuresSec.visible ? styles.visible : ''}`}
         aria-labelledby="features-heading"
       >
-        <div className={styles.container}>
+        <div className={styles.containerNarrow}>
           <h2 id="features-heading" className={styles.sectionH2}>
             What You Get in Every Competition
           </h2>

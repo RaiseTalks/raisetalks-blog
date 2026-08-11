@@ -58,21 +58,7 @@
 
 @media (min-width: 1024px) {
   .sectionInner {
-    max-width: min(1024px, calc(100% - 48px));
-    padding: 4rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .sectionInner {
-    max-width: min(1280px, calc(100% - 48px));
-    padding: 4rem;
-  }
-}
-
-@media (min-width: 1536px) {
-  .sectionInner {
-    max-width: min(1536px, calc(100% - 48px));
+    max-width: min(1480px, calc(100% - 48px));
     padding: 4rem;
   }
 }
@@ -134,25 +120,13 @@
 
 @media (min-width: 1024px) {
   .gridLineSpacer {
-    max-width: min(1024px, calc(100% - 48px));
-  }
-}
-
-@media (min-width: 1280px) {
-  .gridLineSpacer {
-    max-width: min(1280px, calc(100% - 48px));
-  }
-}
-
-@media (min-width: 1536px) {
-  .gridLineSpacer {
-    max-width: min(1536px, calc(100% - 48px));
+    max-width: min(1480px, calc(100% - 48px));
   }
 }
 
 /* Narrower variant — rail stays capped at the same 1024px width as
    .truthInner (the truth-bar quote block) instead of growing to
-   1280px/1536px on larger screens. Combine with .gridLineSpacer;
+   1480px on larger screens. Combine with .gridLineSpacer;
    this unconditional rule sits after all its breakpoints above, so it
    wins the cascade and overrides them from 1024px up. Below 1024px it
    has no effect (the base class's own max-width is already smaller).
@@ -368,7 +342,10 @@
 .truthInner {
   max-width: min(1024px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 0 6px;
+  /* Flush at every breakpoint — the quote card itself supplies its own
+     32px padding, so the card's edge should meet the rail line, not sit
+     inset from it. */
+  padding: 0;
   border-left: 0.5px solid #DAE0E7;
   border-right: 0.5px solid #DAE0E7;
 }
@@ -377,12 +354,6 @@
     max-width: calc(100% - 16px) !important;
     margin-inline: auto;
   }
-}
-@media (min-width: 768px) {
-  .truthInner { padding: 0 16px; }
-}
-@media (min-width: 1280px) {
-  .truthInner { padding: 0; }
 }
 
 .truthQuote {
@@ -401,16 +372,28 @@
 
 /* ── PAIN POINTS ──────────────────────────────────────── */
 
-/* Header and card grid sit side by side at desktop (.sectionInner's own
-   128px gap handles their spacing there), but neither Figma's tablet
-   (768px) nor mobile frame keeps that row layout — both stack the
-   header full-width above the cards. Without this, the row never
-   breaks and the card grid gets squeezed/pushed off-screen below
-   1024px. */
+/* Header and card grid sit side by side at desktop — overrides
+   .sectionInner's own 128px gap, which is sized for other rows using
+   that class; Figma (node 1316-4740/4741/4748) measures the actual gap
+   between the two columns here at 64px. */
+.painSectionRow {
+  gap: 64px;
+}
+
+/* Neither Figma's tablet (768px) nor mobile frame keeps that row layout —
+   both stack the header full-width above the cards, with the stacking
+   gap itself tapering from 48px (tablet) to 24px (mobile) rather than a
+   flat value. Without the flex-direction change, the row never breaks
+   and the card grid gets squeezed/pushed off-screen below 1024px. */
 @media (max-width: 1024px) {
   .painSectionRow {
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 48px;
+  }
+}
+@media (max-width: 639px) {
+  .painSectionRow {
+    gap: 24px;
   }
 }
 
@@ -430,6 +413,16 @@
   gap: 32px;
 }
 
+/* Figma tapers both the grid gap and card padding below desktop (tablet
+   node 1496:850-860: 24px/24px; mobile node 1967:4410-4444: 24px/12px) —
+   the base values above/below are desktop-only. */
+@media (max-width: 1023px) {
+  .painGrid { gap: 24px; }
+}
+@media (max-width: 639px) {
+  .painGrid { gap: 12px; }
+}
+
 .painCard:nth-child(3) {
   grid-column: 1 / -1;
 }
@@ -439,6 +432,9 @@
   padding: 36px;
   border-radius: 16px;
   border: 1px solid #DEDEDE;
+}
+@media (max-width: 1023px) {
+  .painCard { padding: 24px; }
 }
 
 .painNum {
@@ -648,7 +644,8 @@
 .featureRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  /* Figma (node 1347-5327): 64px column gap, not 80px. */
+  gap: 4rem;
   align-items: stretch;
   padding: 4rem 0;
 }
@@ -857,14 +854,19 @@
 .characterGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 64px;
+  /* Figma (node 1347-4913/4914): 64px between columns, but rows abut
+     exactly with no gap — the divider between them is each card's own
+     border-bottom, not a grid gap. */
+  column-gap: 64px;
+  row-gap: 0;
   background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
 
 .characterCard {
   background: rgba(255, 255, 255, 0.06);
-  padding: 2rem 1.75rem;
+  /* Figma: 32px uniform, not 32px/28px. */
+  padding: 2rem;
   transition: background 0.25s ease;
   border-bottom: 0.5px solid #CED6DE;
 }
@@ -893,7 +895,8 @@
 }
 
 @media (max-width: 900px) {
-  .characterGrid { grid-template-columns: 1fr 1fr; }
+  /* Figma tablet (node 1500-1071): column-gap narrows to 48px here. */
+  .characterGrid { grid-template-columns: 1fr 1fr; column-gap: 48px; }
 }
 
 @media (max-width: 580px) {
@@ -1088,7 +1091,8 @@
   background: transparent;
   border-right: 1px solid var(--ifm-color-emphasis-200);
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
-  padding: 2rem 1.75rem;
+  /* Figma (nodes 1347-5211/1347-5213): 48px uniform, not 32px/28px. */
+  padding: 3rem;
   transition: background 0.2s ease;
   display: flex;
   gap: 24px
@@ -1222,9 +1226,7 @@
    .gridLineSpacer above. */
 @media (min-width: 640px) { .ctaImageBox { max-width: min(640px, calc(100% - 48px)); } }
 @media (min-width: 768px) { .ctaImageBox { max-width: min(768px, calc(100% - 48px)); } }
-@media (min-width: 1024px) { .ctaImageBox { max-width: min(1024px, calc(100% - 48px)); } }
-@media (min-width: 1280px) { .ctaImageBox { max-width: min(1280px, calc(100% - 48px)); } }
-@media (min-width: 1536px) { .ctaImageBox { max-width: min(1536px, calc(100% - 48px)); } }
+@media (min-width: 1024px) { .ctaImageBox { max-width: min(1480px, calc(100% - 48px)); } }
 
 /* Dedicated tablet/mobile background exports already exist in
    static/img/backgrounds but were unused — the desktop image is a
@@ -1415,6 +1417,5 @@
 
   .featureRow { gap: 2rem; padding: 2.5rem 0 1.5rem; }
   .pillarCard { padding: 1.75rem 1.5rem; }
-  .painCard { padding: 1.75rem 1.5rem; }
   .characterCard { padding: 1.5rem; }
 }

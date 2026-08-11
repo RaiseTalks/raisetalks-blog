@@ -39,9 +39,7 @@
    physical screen edge, reading as "no frame"). This guarantees at least
    a 24px margin per side, only capping at the fixed width once the
    viewport actually has room for it. */
-@media (min-width: 1024px) { .rt-rail { max-width: min(1024px, calc(100% - 48px)) !important; } }
-@media (min-width: 1280px) { .rt-rail { max-width: min(1280px, calc(100% - 48px)) !important; } }
-@media (min-width: 1536px) { .rt-rail { max-width: min(1536px, calc(100% - 48px)) !important; } }
+@media (min-width: 1024px) { .rt-rail { max-width: min(1480px, calc(100% - 48px)) !important; } }
 
 /* Dark-background variant — same widths, a lighter line for contrast
    against navy sections. Set via a class rather than color-mix so it works

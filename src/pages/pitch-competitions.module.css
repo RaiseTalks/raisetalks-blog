@@ -20,9 +20,19 @@
 }
 @media (min-width: 640px)  { .container { max-width: 640px; } }
 @media (min-width: 768px)  { .container { max-width: 768px; } }
-@media (min-width: 1024px) { .container { max-width: min(1024px, calc(100% - 48px)); } }
-@media (min-width: 1280px) { .container { max-width: min(1280px, calc(100% - 48px)); } }
-@media (min-width: 1536px) { .container { max-width: min(1536px, calc(100% - 48px)); } }
+@media (min-width: 1024px) { .container { max-width: min(1480px, calc(100% - 48px)); } }
+
+/* Narrower content column for sections whose inner content Figma centers
+   more tightly (Metrics, What You Get) — nested inside the SAME
+   continuous rail lines as .pageRegion/.statsSection (those don't change),
+   just the content column itself narrows and centers within them. */
+.containerNarrow {
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+@media (min-width: 640px)  { .containerNarrow { max-width: 640px; } }
+@media (min-width: 768px)  { .containerNarrow { max-width: 768px; } }
+@media (min-width: 1024px) { .containerNarrow { max-width: min(1024px, calc(100% - 48px)); } }
 
 /* ============================================================
    Scroll animation
@@ -77,9 +87,7 @@
 }
 @media (min-width: 640px)  { .hero { --rail-half: 320px; } }
 @media (min-width: 768px)  { .hero { --rail-half: 384px; } }
-@media (min-width: 1024px) { .hero { --rail-half: min(512px, calc(50% - 24px)); } }
-@media (min-width: 1280px) { .hero { --rail-half: min(640px, calc(50% - 24px)); } }
-@media (min-width: 1536px) { .hero { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (min-width: 1024px) { .hero { --rail-half: min(740px, calc(50% - 24px)); } }
 .hero::before,
 .hero::after {
   display: none;
@@ -221,9 +229,7 @@
 }
 @media (min-width: 640px)  { .statsSection { --rail-half: 320px; } }
 @media (min-width: 768px)  { .statsSection { --rail-half: 384px; } }
-@media (min-width: 1024px) { .statsSection { --rail-half: min(512px, calc(50% - 24px)); } }
-@media (min-width: 1280px) { .statsSection { --rail-half: min(640px, calc(50% - 24px)); } }
-@media (min-width: 1536px) { .statsSection { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (min-width: 1024px) { .statsSection { --rail-half: min(740px, calc(50% - 24px)); } }
 .statsSection::before,
 .statsSection::after {
   content: '';
@@ -239,7 +245,9 @@
 .statsSection::after { right: calc(50% - var(--rail-half)); }
 
 .sectionGray {
-  padding: 5.5rem 1.5rem;
+  /* Figma (nodes 1285-1754 Benefits, 1285-1957/1285-1961 Features): 64px
+     inset on every side, not 88px. */
+  padding: 4rem 1.5rem;
   background: #f6f7f9;
 }
 
@@ -346,9 +354,7 @@
 }
 @media (min-width: 640px)  { .processSection, .processSpacer { --rail-half: 320px; } }
 @media (min-width: 768px)  { .processSection, .processSpacer { --rail-half: 384px; } }
-@media (min-width: 1024px) { .processSection, .processSpacer { --rail-half: min(512px, calc(50% - 24px)); } }
-@media (min-width: 1280px) { .processSection, .processSpacer { --rail-half: min(640px, calc(50% - 24px)); } }
-@media (min-width: 1536px) { .processSection, .processSpacer { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (min-width: 1024px) { .processSection, .processSpacer { --rail-half: min(740px, calc(50% - 24px)); } }
 
 .processSpacer {
   position: relative;
@@ -579,9 +585,7 @@
 }
 @media (min-width: 640px)  { .pageRegion { --rail-half: 320px; } }
 @media (min-width: 768px)  { .pageRegion { --rail-half: 384px; } }
-@media (min-width: 1024px) { .pageRegion { --rail-half: min(512px, calc(50% - 24px)); } }
-@media (min-width: 1280px) { .pageRegion { --rail-half: min(640px, calc(50% - 24px)); } }
-@media (min-width: 1536px) { .pageRegion { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (min-width: 1024px) { .pageRegion { --rail-half: min(740px, calc(50% - 24px)); } }
 
 .pageRegion::before,
 .pageRegion::after {
@@ -608,7 +612,8 @@
      stays scoped to this section instead of bubbling up to the page's
      stacking context and potentially landing behind an earlier section. */
   z-index: 0;
-  padding: 6rem 1.5rem;
+  /* Figma (node 2368-258): 64px top/bottom strips, not 96px. */
+  padding: 4rem 1.5rem;
   background: #0c1b31;
   text-align: center;
   overflow: hidden;
@@ -619,9 +624,7 @@
 }
 @media (min-width: 640px)  { .ctaSection { --rail-half: 320px; } }
 @media (min-width: 768px)  { .ctaSection { --rail-half: 384px; } }
-@media (min-width: 1024px) { .ctaSection { --rail-half: min(512px, calc(50% - 24px)); } }
-@media (min-width: 1280px) { .ctaSection { --rail-half: min(640px, calc(50% - 24px)); } }
-@media (min-width: 1536px) { .ctaSection { --rail-half: min(768px, calc(50% - 24px)); } }
+@media (min-width: 1024px) { .ctaSection { --rail-half: min(740px, calc(50% - 24px)); } }
 
 .ctaSection::before,
 .ctaSection::after {
