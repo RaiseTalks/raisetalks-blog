@@ -177,7 +177,7 @@ export default function decoderGame () {
         <div className={styles.pageRails}>
 
         {/* 64px transition strip between hero and One Chip (Figma spacer 2601:7819) */}
-        <div className="h-[64px]" />
+        <div className="h-[32px] sm:h-[48px] lg:h-[64px]" />
         <div className={styles.railDivider} />
 
         <div className={`${styles.railContainer} flex flex-col gap-[64px] md:gap-[128px] px-6 md:px-[64px] py-[64px] justify-center`}>
@@ -243,7 +243,7 @@ export default function decoderGame () {
 
         {/* section divider */}
         <div className={styles.railDivider} />
-        <div className="h-[64px]" />
+        <div className="h-[32px] sm:h-[48px] lg:h-[64px]" />
         <div className={styles.railDivider} />
 
         {/* Speaker photo carousel — auto-scroll marquee, single row of portrait cards */}
@@ -257,7 +257,7 @@ export default function decoderGame () {
             48px rounded top corners, 1px #258bff top/bottom border, and an inner
             1480px column with 1px #258bff side lines. Sits above the page rails. */}
         <div
-          className="relative z-[3] flex h-[64px] w-full items-center justify-center overflow-hidden"
+          className="relative z-[3] flex h-[32px] sm:h-[48px] lg:h-[64px] w-full items-center justify-center overflow-hidden"
           style={{
             background: '#0077ff',
             borderTop: '0.5px solid #258bff',
@@ -351,7 +351,7 @@ export default function decoderGame () {
         {/* Blue divider bar closing the testimonials section — mirrors the top bar
             (Figma 2601:7853) but with 48px rounded BOTTOM corners. */}
         <div
-          className="relative z-[3] flex h-[64px] w-full items-center justify-center overflow-hidden"
+          className="relative z-[3] flex h-[32px] sm:h-[48px] lg:h-[64px] w-full items-center justify-center overflow-hidden"
           style={{
             background: '#0077ff',
             borderTop: '0.5px solid #258bff',
@@ -375,7 +375,7 @@ export default function decoderGame () {
             #f7f7f7 band, 64px, 1px #d7dde5 top/bottom border + inner column side
             lines aligned to the page rails. */}
         <div
-          className="relative z-[3] flex h-[64px] w-full items-center justify-center overflow-hidden"
+          className="relative z-[3] flex h-[32px] sm:h-[48px] lg:h-[64px] w-full items-center justify-center overflow-hidden"
           style={{
             background: '#f7f7f7',
             borderTop: '0.5px solid #d7dde5',
@@ -445,7 +445,7 @@ export default function decoderGame () {
         {/* Horizontal grid divider below "Join us as Co-Host" (mirrors the one
             above) — #f7f7f7 band, 64px, 1px #d7dde5 top/bottom + inner column lines. */}
         <div
-          className="relative z-[3] flex h-[64px] w-full items-center justify-center overflow-hidden"
+          className="relative z-[3] flex h-[32px] sm:h-[48px] lg:h-[64px] w-full items-center justify-center overflow-hidden"
           style={{
             background: '#f7f7f7',
             borderTop: '0.5px solid #d7dde5',
@@ -507,7 +507,7 @@ export default function decoderGame () {
 
         {/* Navy grid divider above the CTA — #0C1B31 band, 0.5px #16315A lines. */}
         <div
-          className="relative z-[3] flex h-[64px] w-full items-center justify-center overflow-hidden"
+          className="relative z-[3] flex h-[32px] sm:h-[48px] lg:h-[64px] w-full items-center justify-center overflow-hidden"
           style={{
             background: '#0C1B31',
             borderTop: '0.5px solid #16315A',
@@ -553,7 +553,7 @@ export default function decoderGame () {
 
         {/* Navy grid divider below the CTA — mirrors the one above. */}
         <div
-          className="relative z-[3] flex h-[64px] w-full items-center justify-center overflow-hidden"
+          className="relative z-[3] flex h-[32px] sm:h-[48px] lg:h-[64px] w-full items-center justify-center overflow-hidden"
           style={{
             background: '#0C1B31',
             borderTop: '0.5px solid #16315A',

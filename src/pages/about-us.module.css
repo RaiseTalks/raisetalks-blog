@@ -22,7 +22,11 @@
 .hero {
   position: relative;
   text-align: center;
-  background: #ffffff url('/img/backgrounds/hero-alt-desktop.webp') center / cover no-repeat;
+  /* Width-based, not cover — keeps the image's apparent zoom level
+     consistent with startups/decoder-game regardless of this section's
+     height (cover would scale to height and crop/zoom differently per
+     page). */
+  background: #ffffff url('/img/backgrounds/hero-alt-desktop.webp') center / 100% auto no-repeat;
   /* Touches the navbar exactly — .hero has no padding of its own, so a
      border here sits flush with whatever's above, no gap. The bottom
      line comes from the rail divider below instead, to avoid a double

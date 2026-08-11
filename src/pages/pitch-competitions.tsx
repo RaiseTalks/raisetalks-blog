@@ -247,7 +247,7 @@ export default function PitchCompetitions() {
         </div>
       </section>
       </div>
-<div className={`${styles.processSpacer} h-[64px] w-full bg-[#0077FF] border-b border-b-[#258BFF]`}></div>
+<div className={`${styles.processSpacer} w-full bg-[#0077FF] border-b border-b-[#258BFF]`}></div>
       {/* ================================================================
           HOW IT WORKS
       ================================================================ */}
@@ -281,7 +281,7 @@ export default function PitchCompetitions() {
         </div>
       </section>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full bg-[#0077FF] border-t border-t-[#258BFF]`}></div>
+      <div className={`${styles.processSpacer} w-full bg-[#0077FF] border-t border-t-[#258BFF]`}></div>
 
       <div className={styles.pageRegion}>
       {/* ================================================================
@@ -311,7 +311,7 @@ export default function PitchCompetitions() {
       </section>
       </div>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full bg-[#0C1B31] border-b border-b-[#1E437B]`}></div>
+      <div className={`${styles.processSpacer} w-full bg-[#0C1B31] border-b border-b-[#1E437B]`}></div>
 
       {/* ================================================================
           CTA
@@ -344,7 +344,7 @@ export default function PitchCompetitions() {
         </div>
       </section>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full bg-[#0C1B31] border-t border-t-[#1E437B]`}></div>
+      <div className={`${styles.processSpacer} w-full bg-[#0C1B31] border-t border-t-[#1E437B]`}></div>
     </Layout>
   );
 }

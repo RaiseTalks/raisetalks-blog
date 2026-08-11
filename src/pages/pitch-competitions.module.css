@@ -57,7 +57,11 @@
   position: relative;
   padding: 6rem 1.5rem 4rem;
   text-align: center;
-  background: var(--ifm-background-color) url(/img/backgrounds/hero-alt-desktop.webp) no-repeat center / cover;
+  /* Width-based, not cover — keeps the image's apparent zoom level
+     consistent with startups/decoder-game regardless of this section's
+     height (cover would scale to height and crop/zoom differently per
+     page). */
+  background: var(--ifm-background-color) url(/img/backgrounds/hero-alt-desktop.webp) no-repeat center / 100% auto;
   border-bottom: 0.5px solid var(--ifm-color-emphasis-200);
   opacity: 0;
   transition: opacity 0.6s ease 0.05s;
@@ -136,7 +140,6 @@
   background-clip: text;
   font-style: italic;
   font-family: var(--rt-font-serif);
-  font-size: var(--rt-fs-hero-alt);
 }
 
 .heroDesc {
@@ -349,6 +352,17 @@
 
 .processSpacer {
   position: relative;
+  /* Matches the homepage's GridSeam (src/components/GridSeam.module.css)
+     and startups.module.css's .processSpacer — height was previously a
+     flat 64px at every viewport via inline Tailwind h-[64px], never
+     tapering down on tablet/mobile like the shared reference does. */
+  height: 64px;
+}
+@media (max-width: 1023px) {
+  .processSpacer { height: 48px; }
+}
+@media (max-width: 639px) {
+  .processSpacer { height: 32px; }
 }
 
 .processSection::before,

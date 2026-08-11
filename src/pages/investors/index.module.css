@@ -343,13 +343,20 @@
 .heroH1 {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-medium);
+  font-weight: var(--rt-weight-hero);
   line-height: var(--rt-lh-hero);
   letter-spacing: -0.02em;
   color: var(--ifm-color-content);
   margin: 0 0 1.25rem 0;
 }
-.heroH1 .accent { font-weight: 400; }
+.heroH1 .accent {
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 400;
+}
 .heroDesc {
   font-size: 1.25rem; /* 20px */
   color: var(--ifm-color-content-secondary);

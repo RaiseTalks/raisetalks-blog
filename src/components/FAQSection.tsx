@@ -123,7 +123,7 @@ export default function FAQSection() {
             strokeWidth="2"
             aria-hidden="true"
           >
-            <line x1="12" y1="5" x2="12" y2="19" />
+            {!isOpen && <line x1="12" y1="5" x2="12" y2="19" />}
             <line x1="5" y1="12" x2="19" y2="12" />
           </svg>
           <div>
@@ -147,7 +147,7 @@ export default function FAQSection() {
 
   return (
     <section className={styles.faqSection}>
-      <div className="container mx-auto px-4">
+      <div className={styles.faqRail}>
         <div className={styles.faqHeader}>
           <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
         </div>

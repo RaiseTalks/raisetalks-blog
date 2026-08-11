@@ -36,44 +36,73 @@
   }
 }
 
+/* min() rather than a flat px value: without it, margin is exactly 0 at
+   each breakpoint's own minimum width (e.g. 1024px viewports, iPad Pro
+   portrait, would put the rail flush on the physical screen edge,
+   reading as "no frame"). Guarantees at least a 24px margin per side,
+   only capping at the fixed width once the viewport actually has room
+   for it. Same formula as the homepage's shared .rt-rail (rail.css). */
 @media (min-width: 640px) {
   .sectionInner {
-    max-width: 640px;
+    max-width: min(640px, calc(100% - 48px));
     padding: 2rem;
   }
 }
 
 @media (min-width: 768px) {
   .sectionInner {
-    max-width: 768px;
+    max-width: min(768px, calc(100% - 48px));
     padding: 4rem;
   }
 }
 
 @media (min-width: 1024px) {
   .sectionInner {
-    max-width: 1024px;
+    max-width: min(1024px, calc(100% - 48px));
     padding: 4rem;
   }
 }
 
 @media (min-width: 1280px) {
   .sectionInner {
-    max-width: 1280px;
+    max-width: min(1280px, calc(100% - 48px));
     padding: 4rem;
   }
 }
 
 @media (min-width: 1536px) {
   .sectionInner {
-    max-width: 1536px;
+    max-width: min(1536px, calc(100% - 48px));
     padding: 4rem;
   }
+}
+
+/* Section-boundary spacer bands. Height was previously a flat 64px at
+   every viewport width (inline Tailwind h-[64px] on each instance) —
+   the homepage's equivalent (GridSeam, src/components/GridSeam.module.css)
+   tapers 60px desktop -> 48px tablet (640-1023px) -> 32px mobile
+   (<640px). Matched here at the same breakpoints, keeping this page's
+   own 64px desktop value. */
+.processSpacer {
+  height: 64px;
+}
+@media (max-width: 1023px) {
+  .processSpacer { height: 48px; }
+}
+@media (max-width: 639px) {
+  .processSpacer { height: 32px; }
 }
 
 /* Responsive grid line spacers */
 .gridLineSpacer {
   width: 100%;
+  height: 64px;
+}
+@media (max-width: 1023px) {
+  .gridLineSpacer { height: 48px; }
+}
+@media (max-width: 639px) {
+  .gridLineSpacer { height: 32px; }
 }
 /* This spacer's border-x (applied inline via Tailwind, e.g. border-x-[0.5px])
    forms the same vertical rail as .sectionInner above. Below 640px it is
@@ -89,40 +118,77 @@
   }
 }
 
+/* min() guards against the rail going flush at each breakpoint's exact
+   minimum width — same reasoning and formula as .sectionInner above. */
 @media (min-width: 640px) {
   .gridLineSpacer {
-    max-width: 640px;
+    max-width: min(640px, calc(100% - 48px));
   }
 }
 
 @media (min-width: 768px) {
   .gridLineSpacer {
-    max-width: 768px;
+    max-width: min(768px, calc(100% - 48px));
   }
 }
 
 @media (min-width: 1024px) {
   .gridLineSpacer {
-    max-width: 1024px;
+    max-width: min(1024px, calc(100% - 48px));
   }
 }
 
 @media (min-width: 1280px) {
   .gridLineSpacer {
-    max-width: 1280px;
+    max-width: min(1280px, calc(100% - 48px));
   }
 }
 
 @media (min-width: 1536px) {
   .gridLineSpacer {
-    max-width: 1536px;
+    max-width: min(1536px, calc(100% - 48px));
+  }
+}
+
+/* Narrower variant — rail stays capped at the same 1024px width as
+   .truthInner (the truth-bar quote block) instead of growing to
+   1280px/1536px on larger screens. Combine with .gridLineSpacer;
+   this unconditional rule sits after all its breakpoints above, so it
+   wins the cascade and overrides them from 1024px up. Below 1024px it
+   has no effect (the base class's own max-width is already smaller).
+   min() guards the exact-1024px-viewport case the same way as above. */
+.gridLineSpacerNarrow {
+  max-width: min(1024px, calc(100% - 48px));
+}
+
+/* Full-bleed grey backdrop behind the video block, matching the grey
+   spacer bands directly above/below it — DiligenceVideoBlock itself
+   has no background of its own (shared with the homepage), so without
+   this the ambient area outside .narrowRailWrap reads as white. */
+.videoAmbientBg {
+  background: #F7F7F7;
+}
+
+/* Carries the same narrow rail through the video block and FAQ section
+   themselves (Figma node 2715-19301 shows the border running the full
+   height of the section, not just the spacer bands above/below it). */
+.narrowRailWrap {
+  width: 100%;
+  max-width: min(1024px, calc(100% - 48px));
+  margin: 0 auto;
+  border-left: 0.5px solid #DEDEDE;
+  border-right: 0.5px solid #DEDEDE;
+}
+@media (max-width: 640px) {
+  .narrowRailWrap {
+    max-width: calc(100% - 16px) !important;
+    margin-inline: auto;
   }
 }
 
 .sectionHeader {
   margin: 0 auto 1.5rem;
   max-width: 1352px;
-  gap: 16px;
 }
 
 .sectionEyebrow {
@@ -134,17 +200,24 @@
   letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: #0077ff;
-  margin-bottom: 0.75rem;
-  padding: 0.25rem 0.9rem;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.9rem 0.25rem 0;
+}
+@media (min-width: 1024px) {
+  .sectionEyebrow { margin-bottom: 0.375rem; }
 }
 
 .sectionTitle {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-h3);
+  font-size: var(--rt-fs-h2);
   font-weight: var(--rt-weight-regular);
-  line-height: var(--rt-lh-h3);
+  line-height: var(--rt-lh-h2);
   max-width: 1352px;
   color: var(--ifm-color-content);
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 768px) {
+  .sectionTitle { margin-bottom: 1rem; }
 }
 
 .sectionDesc {
@@ -161,6 +234,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-size: var(--rt-fs-h2-alt);
   font-weight: 400;
   font-style: italic;
   font-family: Georgia, serif;
@@ -169,7 +243,13 @@
 /* ── HERO ─────────────────────────────────────────────── */
 .hero {
   text-align: center;
-  background: var(--ifm-background-color) url('/img/backgrounds/hero-alt-desktop.webp') center / cover no-repeat;
+  /* Width-based, not cover — this hero is taller relative to its width
+     than about-us/pitch-competitions (extra padding, larger heading), and
+     cover crops horizontally to match box height, zooming in far more
+     here than elsewhere. Sizing to 100% width keeps the image's apparent
+     zoom level consistent across pages regardless of section height
+     (same fix used on decoder-game's .heroRails). */
+  background: var(--ifm-background-color) url('/img/backgrounds/hero-alt-desktop.webp') center / 100% auto no-repeat;
   border-top: 0.5px solid #DAE0E7;
   border-bottom: 0.5px solid #DAE0E7;
 }
@@ -178,7 +258,6 @@
 
 .heroInner {
   max-width: 820px;
-  max-height: 483px;
   padding-top: 128px;
   padding-bottom: 80px;
   margin: 0 auto;
@@ -202,9 +281,9 @@
 
 .heroTitle {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-hero);
-  line-height: var(--rt-lh-hero);
+  font-size: var(--rt-fs-h1);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1);
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
   color: var(--ifm-color-content);
@@ -215,19 +294,26 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-size: var(--rt-fs-h1-alt);
+  line-height: var(--rt-lh-h1);
   font-weight: var(--rt-weight-regular);
-  font-size: var(--rt-fs-hero-alt);
   font-style: italic;
   font-family: var(--rt-font-serif);
 }
 
 .heroDesc {
   font-family: var(--rt-font-sans);
-  font-size: 1.25rem; /* 20px */
+  font-size: 0.9rem; /* 14.4px */
   color: var(--ifm-color-content-secondary);
   line-height: var(--rt-lh-body);
   max-width: 420px;
   margin: 0 auto 2.5rem;
+}
+@media (min-width: 768px) {
+  .heroDesc { font-size: 1.125rem; /* 18px */ }
+}
+@media (min-width: 1024px) {
+  .heroDesc { font-size: 1.25rem; /* 20px */ }
 }
 
 .heroActions {
@@ -280,57 +366,37 @@
 /* ── TRUTH BAR ────────────────────────────────────────── */
 
 .truthInner {
-  
-  max-width: 680px;
+  max-width: min(1024px, calc(100% - 48px));
   margin: 0 auto;
-  gap: 2rem;
-  align-items: flex-start;
+  padding: 0 6px;
   border-left: 0.5px solid #DAE0E7;
   border-right: 0.5px solid #DAE0E7;
 }
-
-.truthLabel {
-  flex-shrink: 0;
-  font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-eyebrow);
-  font-weight: var(--rt-weight-bold);
-  line-height: var(--rt-lh-eyebrow);
-  letter-spacing: var(--rt-ls-eyebrow);
-  text-transform: uppercase;
-  padding: 32px 32px 12px 32px;
-  min-width: 100px;
-  gap: 10px;
-  color: #0077FF;
-}
-
-.truthQuote {
-  background: #0077FF;
-  font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-h4);
-  line-height: var(--rt-lh-h4);
-  color: white;
-  font-style: italic;
-  margin: 0;
-  border-radius: 16px;
-  border: 1px solid #0077FF;
-  padding: 32px;
-}
-
 @media (max-width: 640px) {
   .truthInner {
-    flex-direction: column;
-    gap: 0.75rem;
-    /* .truthInner's own max-width (680px) never actually shrinks it on
-       mobile — it's larger than the viewport, so this box still fills
-       100% of its parent (.truthBar has no width/padding of its own),
-       putting the border-left/right flush at the true screen edge with
-       nothing "outside" to contrast against. Same fix as .sectionInner
-       above and the homepage's shared .rt-rail utility (src/css/rail.css).
-       !important: responsive.css has a sitewide `* { max-width: 100% }`
-       guard at this same breakpoint that otherwise wins (see rail.css). */
     max-width: calc(100% - 16px) !important;
     margin-inline: auto;
   }
+}
+@media (min-width: 768px) {
+  .truthInner { padding: 0 16px; }
+}
+@media (min-width: 1280px) {
+  .truthInner { padding: 0; }
+}
+
+.truthQuote {
+  background: var(--ifm-color-primary);
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h3);
+  line-height: var(--rt-lh-h3);
+  color: white;
+  font-style: normal;
+  margin: 0;
+  border-radius: 16px;
+  border: none;
+  padding: 32px;
+  box-shadow: 0 20px 40px -12px rgba(1, 116, 225, 0.45), 0 8px 16px rgba(1, 116, 225, 0.25);
 }
 
 /* ── PAIN POINTS ──────────────────────────────────────── */
@@ -369,10 +435,10 @@
 }
 
 .painCard {
-  background: #FAFAFA;
-  padding: 2.5rem 2rem;
+  background: #F7F7F7;
+  padding: 36px;
   border-radius: 16px;
-  border: 1px solid #D8D9D9;
+  border: 1px solid #DEDEDE;
 }
 
 .painNum {
@@ -387,7 +453,7 @@
 .painTitle {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-h4);
-  font-weight: var(--rt-weight-semibold);
+  font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
   margin-bottom: 0.75rem;
@@ -532,18 +598,25 @@
   /* Figma's header frame for this section (node 1316-3036) samples to
      the same #f7f7f7 as the rows below — one continuous block, not a
      white header sitting above gray rows. */
-  padding: 5rem 0 0;
+  padding: 0 0 0;
   background: #f7f7f7;
 }
 
 /* Title (+ eyebrow) on the left, description on the right — matches
-   Figma; the shared .sectionHeader stacks them, which is right for
-   other sections on this page but not this one. */
+   Figma's desktop frame. Figma's tablet/mobile frames (node 1500-912)
+   stack the description under the title instead, same breakpoint as
+   .painSectionRow above. */
 .featuresSectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
+}
+@media (max-width: 1024px) {
+  .featuresSectionHeader {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
 
 /* .sectionDesc's 7rem margin-bottom is for sections where it stacks
@@ -895,7 +968,7 @@
 
 /* ── PERKS SECTION ────────────────────────────────────── */
 .perksSection {
-  padding: 5rem 0;
+  padding: 0rem 0;
   background: var(--ifm-color-emphasis-100);
 }
 
@@ -1031,7 +1104,7 @@
 }
 
 .perkCard:hover {
-  background: rgba(1, 116, 225, 0.03);
+  background: #FCFCFC;
 }
 
 .perkLabel {
@@ -1107,14 +1180,51 @@
   .perksCta {
     order: 3;
   }
+
+  /* Single column now, so the 2x2 grid's right/bottom border pairing
+     (nth-child based) no longer lines up with actual card position —
+     card 1 and 3 kept a stray border-right, and card 3 lost its
+     border-bottom (meant for the old grid's bottom row, not this
+     stack). Reset to a plain top-to-bottom divider list instead. */
+  .perkCard {
+    border-right: none;
+    border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  }
+
+  .perkCard:last-child {
+    border-bottom: none;
+  }
 }
 
 /* ── CTA SECTION ──────────────────────────────────────── */
 .ctaSection {
-  padding: 6rem 1.5rem;
-  background: var(--ifm-background-color) url('/img/backgrounds/main-cta-desktop.webp') center/cover no-repeat;
-  border-top: 0.5px solid var(--ifm-color-emphasis-200);
+  /* Solid fallback sampled from the image's own edge tone (rgb(13,27,50))
+     so the full-bleed area outside .ctaImageBox's rail blends seamlessly —
+     Figma (node 2368-239) contains the background image inside the
+     bordered rail box, not full-bleed across the section. */
+  background: #0D1B32;
 }
+
+.ctaImageBox {
+  max-width: 100%;
+  margin: 0 auto;
+  border-left: 0.5px solid #16315A;
+  border-right: 0.5px solid #16315A;
+  background: url('/img/backgrounds/main-cta-desktop.webp') center/cover no-repeat;
+}
+@media (max-width: 640px) {
+  .ctaImageBox {
+    max-width: calc(100% - 16px) !important;
+    margin-inline: auto;
+  }
+}
+/* min() guards the flush-at-exact-breakpoint case, same as .sectionInner/
+   .gridLineSpacer above. */
+@media (min-width: 640px) { .ctaImageBox { max-width: min(640px, calc(100% - 48px)); } }
+@media (min-width: 768px) { .ctaImageBox { max-width: min(768px, calc(100% - 48px)); } }
+@media (min-width: 1024px) { .ctaImageBox { max-width: min(1024px, calc(100% - 48px)); } }
+@media (min-width: 1280px) { .ctaImageBox { max-width: min(1280px, calc(100% - 48px)); } }
+@media (min-width: 1536px) { .ctaImageBox { max-width: min(1536px, calc(100% - 48px)); } }
 
 /* Dedicated tablet/mobile background exports already exist in
    static/img/backgrounds but were unused — the desktop image is a
@@ -1124,20 +1234,21 @@
    losing that detail entirely. Same swap pattern already used by
    .hero in about-us.module.css. */
 @media (max-width: 1024px) {
-  .ctaSection {
+  .ctaImageBox {
     background-image: url('/img/backgrounds/main-cta-tablet.webp');
   }
 }
 
 @media (max-width: 768px) {
-  .ctaSection {
+  .ctaImageBox {
     background-image: url('/img/backgrounds/main-cta-mobile.webp');
   }
 }
 
 .ctaInner {
-  max-width: 720px;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 6rem 1.5rem;
 }
 
 .ctaContent {
@@ -1171,10 +1282,12 @@
 }
 
 .ctaTitle em {
+  display: block;
   font-style: italic;
   font-family: Georgia, serif;
-  text-decoration: underline;
-  text-align: center;
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h2-alt);
+  line-height: var(--rt-lh-h2);
 }
 
 .ctaDesc {

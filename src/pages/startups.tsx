@@ -193,8 +193,8 @@ export default function Startups() {
         </div>
       </section>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full border-b-[0.5px] border-b-[#DAE0E7] flex items-center justify-center`}>
-        <div className={`${styles.gridLineSpacer} h-[64px] border-x-[0.5px] border-x-[#DAE0E7]`}></div>
+      <div className={`${styles.processSpacer} w-full border-b-[0.5px] border-b-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#DAE0E7]`}></div>
       </div>
 
       {/* ── TRUTH BAR ────────────────────────────────── */}
@@ -207,8 +207,8 @@ export default function Startups() {
         </div>
       </div>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
-        <div className={`${styles.gridLineSpacer} h-[64px] border-x-[0.5px] border-x-[#DAE0E7]`}></div>
+      <div className={`${styles.processSpacer} w-full border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#DAE0E7]`}></div>
       </div>
 
       {/* ── PAIN POINTS ──────────────────────────────── */}
@@ -221,7 +221,7 @@ export default function Startups() {
              
               <h2 className={styles.sectionTitle}>
                 <span style={{whiteSpace: 'nowrap'}}>Great founders lose <br /> raises 
-                in due diligence.</span> <br /> <span className={styles.accentText}>not in the pitch</span>
+                in due diligence.</span> <br /> <span className={styles.accentText}>Not in the pitch</span>
               </h2>
 
                <p className={styles.sectionDesc}>
@@ -235,17 +235,17 @@ export default function Startups() {
             {[
               {
                 num: '01',
-                title: 'The Disorganized Data',
+                title: 'Your Data is Disorganized',
                 desc: 'Documents scattered across emails, Dropbox, Google Drive, etc. Investors spend hours just trying to find what they need - and most don\'t bother.',
               },
               {
                 num: '02',
-                title: 'The Inconsistent Narrative',
+                title: 'Your Narrative is Inconsistent',
                 desc: 'The story you tell in the meeting doesn\'t match the numbers in the data room. Investors notice. They pass. They don\'t tell you why.',
               },
               {
                 num: '03',
-                title: 'The Invisible Gap',
+                title: '"The Invisible Gap"',
                 desc: 'You don\'t know what "investor-ready" actually looks like. Nobody told you. There\'s no benchmark - until now.',
               },
             ].map((pain) => (
@@ -258,12 +258,12 @@ export default function Startups() {
         </div>
       </section>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
-        <div className={`${styles.gridLineSpacer} h-[64px] border-x-[0.5px] border-x-[#DAE0E7]`}></div>
+      <div className={`${styles.processSpacer} w-full border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#DAE0E7]`}></div>
       </div>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full bg-[#0077FF] border-y-[0.5px] border-y-[#258BFF] flex items-center justify-center`}>
-        <div className={`${styles.gridLineSpacer} h-[64px] border-x-[0.5px] border-x-[#258BFF]`}></div>
+      <div className={`${styles.processSpacer} w-full bg-[#0077FF] border-y-[0.5px] border-y-[#258BFF] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#258BFF]`}></div>
       </div>
 
       {/* ── THREE PILLARS ─────────────────────────────── */}
@@ -313,8 +313,12 @@ export default function Startups() {
         </div>
       </section>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full bg-[#0077FF] border-y-[0.5px] border-y-[#258BFF] flex items-center justify-center`}>
-        <div className={`${styles.gridLineSpacer} h-[64px] border-x-[0.5px] border-x-[#258BFF]`}></div>
+      <div className={`${styles.processSpacer} w-full bg-[#0077FF] border-y-[0.5px] border-y-[#258BFF] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#258BFF]`}></div>
+      </div>
+
+      <div className={`${styles.processSpacer} w-full bg-[#F7F7F7] border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#DAE0E7]`}></div>
       </div>
 
       {/* ── FEATURE DEEP-DIVES ───────────────────────── */}
@@ -323,9 +327,8 @@ export default function Startups() {
           <AnimSection>
             <div className={clsx(styles.sectionHeader, styles.featuresSectionHeader)}>
               <div>
-                <div className={styles.sectionEyebrow}>The Platform</div>
                 <h2 className={styles.sectionTitle}>
-                  Everything you need to{' '}
+                  Everything you need to <br />
                   <span className={styles.accentText}>walk in ready</span>
                 </h2>
               </div>
@@ -402,8 +405,8 @@ export default function Startups() {
         ))}
       </section>
 
-      <div className={`${styles.processSpacer} h-[64px] w-full bg-[#f7f7f7] border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
-        <div className={`${styles.gridLineSpacer} h-[64px] border-x-[0.5px] border-x-[#DAE0E7]`}></div>
+      <div className={`${styles.processSpacer} w-full bg-[#f7f7f7] border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#DAE0E7]`}></div>
       </div>
 
       {/* ── CHARACTER STRIP ──────────────────────────── */}
@@ -460,6 +463,10 @@ export default function Startups() {
           </div>
         </div>
       </section>
+
+      <div className={`${styles.processSpacer} w-full bg-[#F7F7F7] border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#DAE0E7]`}></div>
+      </div>
 
       {/* ── PERKS ────────────────────────────────────── */}
       <section id="perks" className={styles.perksSection}>
@@ -524,36 +531,59 @@ export default function Startups() {
         </div>
       </section>
 
-      <DiligenceVideoBlock />
+      <div className={`${styles.processSpacer} w-full bg-[#F7F7F7] border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} ${styles.gridLineSpacerNarrow} border-x-[0.5px] border-x-[#DAE0E7]`}></div>
+      </div>
+
+      <div className={styles.videoAmbientBg}>
+        <div className={styles.narrowRailWrap}>
+          <DiligenceVideoBlock />
+        </div>
+      </div>
+
+      <div className={`${styles.processSpacer} w-full bg-[#F7F7F7] border-y-[0.5px] border-y-[#DAE0E7] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} ${styles.gridLineSpacerNarrow} border-x-[0.5px] border-x-[#DAE0E7]`}></div>
+      </div>
 
       {/* ── FAQ ──────────────────────────────────────── */}
+     
       <FAQSection />
+
+      <div className={`${styles.processSpacer} w-full bg-[#0D1B32] border-y-[0.5px] border-y-[#16315A] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#16315A]`}></div>
+      </div>
 
       {/* ── FINAL CTA ────────────────────────────────── */}
       <section className={styles.ctaSection}>
-        <div className={styles.ctaInner}>
-          <AnimSection>
-            <div className={styles.ctaContent}>
-              <h2 className={styles.ctaTitle}>
-                Walk into that meeting ready.<br />
-                Not just prepared - <em>ready.</em>
-              </h2>
-              <p className={styles.ctaDesc}>
-                Join the founders building investor-grade data rooms with RaiseTalks. <br />
-                Start free. Get your readiness score in minutes.
-              </p>
-              <div className={styles.ctaActions}>
-                <Link className={styles.ctaBtnPrimary} to="https://app.raisetalks.com/sign-up">
-                  Start Free
-                </Link>
-                <Link className={styles.ctaBtnSecondary} to="/pricing">
-                  View Pricing
-                </Link>
+        <div className={styles.ctaImageBox}>
+          <div className={styles.ctaInner}>
+            <AnimSection>
+              <div className={styles.ctaContent}>
+                <h2 className={styles.ctaTitle}>
+                  Walk into that meeting ready.<br />
+                  <em>Not just prepared - ready.</em>
+                </h2>
+                <p className={styles.ctaDesc}>
+                  Join the founders building investor-grade data rooms with RaiseTalks. <br />
+                  Start free. Get your readiness score in minutes.
+                </p>
+                <div className={styles.ctaActions}>
+                  <Link className={styles.ctaBtnPrimary} to="https://app.raisetalks.com/sign-up">
+                    Start Free
+                  </Link>
+                  <Link className={styles.ctaBtnSecondary} to="/pricing">
+                    View Pricing
+                  </Link>
+                </div>
               </div>
-            </div>
-          </AnimSection>
+            </AnimSection>
+          </div>
         </div>
       </section>
+
+      <div className={`${styles.processSpacer} w-full bg-[#0D1B32] border-y-[0.5px] border-y-[#16315A] flex items-center justify-center`}>
+        <div className={`${styles.gridLineSpacer} border-x-[0.5px] border-x-[#16315A]`}></div>
+      </div>
     </Layout>
   );
 }
