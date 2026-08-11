@@ -119,9 +119,16 @@
 .container::after { bottom: 0; }
 /* Mirrors the .regionWide rail ladder exactly, so content edges and rails
    never drift apart. */
+/* !important on every max-width override below — the base rule above is
+   itself an unconditioned `!important` (needed to beat this page's own
+   `* { max-width: 100% !important }` mobile guard further down), and
+   !important always wins over a plain declaration regardless of media
+   query or source order. Without matching !important here, every rule
+   in this block was dead code: the whole page was silently stuck at the
+   base mobile max-width (calc(100% - 16px)) at every viewport width. */
 @media (min-width: 640px)  {
   .container {
-    max-width: calc(100% - 96px);
+    max-width: calc(100% - 96px) !important;
     /* Figma (node 1296-320 etc.): 48px inset, not the ~32px the clamp()
        formula produced at tablet widths. */
     padding-top: 3rem;
@@ -130,22 +137,25 @@
 }
 @media (min-width: 1024px) {
   .container {
-    max-width: min(1480px, calc(100% - 48px));
+    max-width: min(1480px, calc(100% - 48px)) !important;
     /* Figma: 64px inset, not the ~52px the clamp() formula produced at
        desktop widths. */
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
 }
-/* .narrow overrides the ladder above for the hero/audience-band frame —
-   must stay last in source order to win at every breakpoint (equal
-   specificity, later rule wins). Figma's own measured values for this
-   frame specifically: 378px content/6px margin on the ~390px mobile
-   canvas, 736px content/16px margin on the 768px tablet canvas, flat
-   1024px from desktop up — not a single flat 840px at every width. */
-.narrow { max-width: calc(100% - 12px); }
-@media (min-width: 640px)  { .narrow { max-width: calc(100% - 32px); } }
-@media (min-width: 1024px) { .narrow { max-width: min(1024px, calc(100% - 48px)); } }
+/* .narrow overrides the ladder above for the hero/audience-band frame.
+   Combined with .container (`.container.narrow`, specificity 0,0,2,0)
+   rather than relying on source order — the build pipeline groups/reorders
+   media-query rules, so a same-specificity, later-in-source .narrow rule
+   is not reliably guaranteed to win over .container's own rules; higher
+   specificity wins regardless of ordering. Figma's own measured values
+   for this frame specifically: 378px content/6px margin on the ~390px
+   mobile canvas, 736px content/16px margin on the 768px tablet canvas,
+   flat 1024px from desktop up — not a single flat 840px at every width. */
+.container.narrow { max-width: calc(100% - 12px) !important; }
+@media (min-width: 640px)  { .container.narrow { max-width: calc(100% - 32px) !important; } }
+@media (min-width: 1024px) { .container.narrow { max-width: min(1024px, calc(100% - 48px)) !important; } }
 /* Use on whichever side of a section boundary should defer to its
    neighbor's own divider (a .spacerRow, or the other section's own
    intact rule) — drop this rail-bound one to avoid two mismatched
@@ -240,7 +250,7 @@
 }
 .brand {
   color: var(--raisetalks-blue-primary-flat);
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* ---- Shared headings ---- */
@@ -710,7 +720,10 @@
 }
 
 /* ---- DD pills ---- */
+/* Figma (node 1430-816): 12px gap on the mobile canvas, widening to 16px
+   at desktop — not a single flat value. */
 .pillRow { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+@media (min-width: 1024px) { .pillRow { gap: 1rem; } }
 .pill {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
@@ -719,7 +732,12 @@
   background: rgba(1, 116, 225, 0.04);
   border-radius: 0.6rem;
   padding: 0.5rem 1rem;
+  /* Figma: 14.4px on desktop and tablet, 12px on mobile — --rt-fs-body
+     is a flat 14.4px at every width, so mobile needs its own override. */
   font-size: var(--rt-fs-body);
+}
+@media (max-width: 640px) {
+  .pill { font-size: 12px; }
 }
 
 /* ---- DD category rows ---- */
