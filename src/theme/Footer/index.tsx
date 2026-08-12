@@ -33,7 +33,7 @@ export default function Footer(): ReactNode {
   return (
     <footer className="rt-footer">
       <div className="rt-footer__top">
-        <div className="container mx-auto rt-footer__grid">
+        <div className="rt-rail rt-footer__grid">
           <div className="rt-footer__logo-col">
             <img
               src={useBaseUrl('/img/backgrounds/footer-logo.webp')}
@@ -87,7 +87,7 @@ export default function Footer(): ReactNode {
       </div>
 
       <div className="rt-footer__bottom">
-        <div className="container mx-auto rt-footer__bottom-inner">
+        <div className="rt-rail rt-footer__bottom-inner">
           <p className="rt-footer__copyright">{footer.copyright}</p>
           {legalGroup && (
             <div className="rt-footer__legal">

@@ -216,7 +216,7 @@ const config: Config = {
             },
             {
               label: 'IR Pipeline',
-              to: 'https://app.raisetalks.com/ir-pipeline',
+              to: 'https://app.raisetalks.com/pipeline',
             },
           ],
         },

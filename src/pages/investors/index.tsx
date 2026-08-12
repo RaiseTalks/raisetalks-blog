@@ -3,6 +3,7 @@ import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import InvestorMcpAccess from '@site/src/components/InvestorMcpAccess';
+import InvestmentMemoPreview from './InvestmentMemoPreview';
 import styles from './index.module.css';
 
 // ---------------------------------------------------------------------------
@@ -94,12 +95,34 @@ const IconQuote = () => (
     <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
   </svg>
 );
+const IconLayoutTemplate = () => (
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M38.2222 5.91211H9.77778C8.79594 5.91211 8 6.80754 8 7.91211V17.9121C8 19.0167 8.79594 19.9121 9.77778 19.9121H38.2222C39.2041 19.9121 40 19.0167 40 17.9121V7.91211C40 6.80754 39.2041 5.91211 38.2222 5.91211Z" />
+    <path d="M22.2222 27.9121H9.77778C8.79594 27.9121 8 28.8075 8 29.9121V39.9121C8 41.0167 8.79594 41.9121 9.77778 41.9121H22.2222C23.2041 41.9121 24 41.0167 24 39.9121V29.9121C24 28.8075 23.2041 27.9121 22.2222 27.9121Z" />
+    <path d="M38.2222 27.9121H32.8889C31.907 27.9121 31.1111 28.8075 31.1111 29.9121V39.9121C31.1111 41.0167 31.907 41.9121 32.8889 41.9121H38.2222C39.2041 41.9121 40 41.0167 40 39.9121V29.9121C40 28.8075 39.2041 27.9121 38.2222 27.9121Z" />
+  </svg>
+);
+const IconMessageCircle = () => (
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M8.79139 33.603C8.93292 32.8821 8.8789 32.1302 8.63629 31.444C6.94796 27.5164 6.55111 23.0465 7.51576 18.8228C8.48041 14.5991 10.7446 10.8931 13.9088 8.35869C17.073 5.82429 20.9338 4.62434 24.8102 4.97055C28.6866 5.31676 32.3293 7.18688 35.0958 10.251C37.8622 13.315 39.5745 17.3762 39.9306 21.7178C40.2868 26.0595 39.2638 30.4027 37.0422 33.9811C34.8205 37.5595 31.5431 40.1431 27.7881 41.2762C24.033 42.4093 20.0417 42.019 16.5183 40.1741C15.9401 39.928 15.3117 39.869 14.705 40.0039L9.07354 41.8502C8.80188 41.931 8.51632 41.9327 8.24392 41.8551C7.97152 41.7775 7.72132 41.6232 7.51704 41.4067C7.31276 41.1903 7.16118 40.9189 7.07667 40.6184C6.99216 40.3179 6.97752 39.9981 7.03414 39.6894L8.79139 33.603Z" />
+  </svg>
+);
+const IconUserCheck = () => (
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M30.4 21.9121L33.6 25.9121L40 17.9121M30.4 41.9121V37.9121C30.4 35.7904 29.7257 33.7555 28.5255 32.2553C27.3253 30.755 25.6974 29.9121 24 29.9121H14.4C12.7026 29.9121 11.0747 30.755 9.87452 32.2553C8.67428 33.7555 8 35.7904 8 37.9121V41.9121M25.6 13.9121C25.6 18.3304 22.7346 21.9121 19.2 21.9121C15.6654 21.9121 12.8 18.3304 12.8 13.9121C12.8 9.49383 15.6654 5.91211 19.2 5.91211C22.7346 5.91211 25.6 9.49383 25.6 13.9121Z" />
+  </svg>
+);
+const IconSlidersHorizontal = () => (
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20.4444 9.91211H8M24 37.9121H8M27.5556 5.91211V13.9121M31.1111 33.9121V41.9121M40 23.9121H24M40 37.9121H31.1111M40 9.91211H27.5556M16.8889 19.9121V27.9121M16.8889 23.9121H8" />
+  </svg>
+);
 
 // ---------------------------------------------------------------------------
 // Reusable check list
 // ---------------------------------------------------------------------------
-const CheckList = ({ items, bold = false }: { items: string[]; bold?: boolean }) => (
-  <ul className={`${styles.checkList} ${bold ? styles.checkListBold : ''}`}>
+const CheckList = ({ items }: { items: string[] }) => (
+  <ul className={styles.checkList}>
     {items.map((it) => (
       <li key={it} className={styles.checkItem}>
         <svg className={styles.checkMark} viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -122,10 +145,10 @@ const preScoreFeatures = [
 ];
 
 const committeeCards = [
-  { title: 'Thesis Templates', desc: 'Customizable scoring criteria aligned to fund strategy' },
-  { title: 'Multi-Reviewer', desc: 'Parallel scoring with automatic variance detection' },
-  { title: 'Discussion Thread', desc: 'Structured debate and alignment on key questions' },
-  { title: 'Decision Controls', desc: 'Clear pass/fail/hold workflow with audit trail' },
+  { Icon: IconLayoutTemplate, title: 'Thesis Templates', desc: 'Customizable scoring criteria aligned to fund strategy' },
+  { Icon: IconUserCheck, title: 'Multi-Reviewer', desc: 'Parallel scoring with automatic variance detection' },
+  { Icon: IconMessageCircle, title: 'Discussion Thread', desc: 'Structured debate and alignment on key questions' },
+  { Icon: IconSlidersHorizontal, title: 'Decision Controls', desc: 'Clear pass/fail/hold workflow with audit trail' },
 ];
 
 const ddCategories = [
@@ -171,9 +194,10 @@ export default function InvestorsPage() {
   const frustrationDesktop = useBaseUrl('/img/investors/frustration-bg-desktop.webp');
   const frustrationTablet = useBaseUrl('/img/investors/frustration-bg-tablet.webp');
   const frustrationMobile = useBaseUrl('/img/investors/frustration-bg-mobile.webp');
-  const prescoreImg = useBaseUrl('/img/investors/prescore-dashboard.svg');
   const avatar = useBaseUrl('/img/investors/avatar-dariia.webp');
   const swirlBg = useBaseUrl('/img/investors/swirl.png');
+
+  const [openPrescoreItem, setOpenPrescoreItem] = useState(0);
 
   const DEMO_URL = 'https://calendly.com/raisetalks/demo';
   const ACCESS_URL = 'mailto:hq@raisetalks.ai?subject=Early%20Access%20-%20Investor';
@@ -410,7 +434,7 @@ export default function InvestorsPage() {
         className={`${styles.featureSection} ${styles.animSection} ${prescore.visible ? styles.visible : ''}`}
         aria-labelledby="prescore-heading"
       >
-        <div className={`${styles.container} ${styles.containerInsetTopBorder}`}>
+        <div className={`${styles.container} ${styles.containerInsetTopBorder} ${styles.containerWhiteFrame}`}>
           <div className={`${styles.split} ${styles.splitPrescore}`}>
             <div className={styles.splitText}>
               <h2 id="prescore-heading" className={styles.sectionH2}>Pre-Score Engine</h2>
@@ -418,31 +442,44 @@ export default function InvestorsPage() {
                 Quickly screen incoming deal flow with structured, evidence-based scoring
               </p>
 
-              <ul className={styles.featureList}>
-                {preScoreFeatures.map((f) => (
-                  <li key={f.title} className={styles.featureRow}>
-                    <svg className={styles.checkMark} viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                      <path d="M2.5 7.5l3 3 6-7" stroke="#16a34a" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <div>
-                      <p className={styles.featureRowTitle}>{f.title}</p>
-                      <p className={styles.featureRowDesc}>{f.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-
               <div className={styles.miniCard}>
                 <p className={styles.miniCardTitle}>Pre-Scoring Card</p>
                 <p className={styles.miniCardSub}>Shareable link + PDF export for each evaluation</p>
                 <div className={styles.miniCardInner}>
-                  <CheckList items={['Screen faster', 'Higher-quality inbound', 'Cohort-ready']} bold />
+                  <CheckList items={['Screen faster', 'Higher-quality inbound', 'Cohort-ready']} />
+                </div>
+
+                <div className={styles.accordion}>
+                  {preScoreFeatures.map((f, i) => {
+                    const open = openPrescoreItem === i;
+                    return (
+                      <div key={f.title} className={styles.accordionItem}>
+                        <button
+                          type="button"
+                          className={styles.accordionHeader}
+                          aria-expanded={open}
+                          onClick={() => setOpenPrescoreItem(open ? -1 : i)}
+                        >
+                          <span>{f.title}</span>
+                          <svg
+                            className={`${styles.accordionIcon} ${open ? styles.accordionIconOpen : ''}`}
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            aria-hidden="true"
+                          >
+                            <path d="M3.33 8h9.34M8 3.33v9.34" stroke="#1a1a1a" strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                        {open && <p className={styles.accordionDesc}>{f.desc}</p>}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
             <div className={styles.splitMedia}>
-              <img src={prescoreImg} alt="RaiseTalks pre-scoring dashboard showing team, product and market evaluation" className={styles.mediaImg} loading="lazy" />
+              <InvestmentMemoPreview />
             </div>
           </div>
         </div>
@@ -459,7 +496,7 @@ export default function InvestorsPage() {
             <div className={styles.committeeGrid}>
               {committeeCards.map((c, i) => (
                 <article key={c.title} className={`${styles.card} ${i % 2 === 1 ? styles.cardOffset : ''}`}>
-                  <span className={styles.cardIcon}><IconFileStack /></span>
+                  <span className={styles.cardIcon}><c.Icon /></span>
                   <h3 className={styles.cardTitleSm}>{c.title}</h3>
                   <p className={styles.cardBody}>{c.desc}</p>
                 </article>
@@ -467,7 +504,7 @@ export default function InvestorsPage() {
             </div>
 
             <div className={styles.splitText}>
-              <h2 id="committee-heading" className={styles.sectionH2}>Scoring &amp; Committee Workspace</h2>
+              <p id="committee-heading" className={styles.sectionH2}>Scoring &amp; Committee Workspace</p>
               <p className={styles.sectionSub}>
                 Collaborative scoring with variance detection and structured decision-making
               </p>
@@ -475,7 +512,7 @@ export default function InvestorsPage() {
                 <p className={styles.miniCardTitle}>Short Memo</p>
                 <p className={styles.miniCardSub}>IC-lite format for faster committee reviews</p>
                 <div className={styles.miniCardInner}>
-                  <CheckList items={['Better decisions, less bias', 'Faster IC prep', 'Repeatable process']} bold />
+                  <CheckList items={['Better decisions, less bias', 'Faster IC prep', 'Repeatable process']} />
                 </div>
               </div>
             </div>
@@ -491,7 +528,7 @@ export default function InvestorsPage() {
       >
         {/* No bottom rail-bound border here — the audience band section's
             own top border supplies the divider immediately below. */}
-        <div className={`${styles.container} ${styles.containerNoBottomBorder}`}>
+        <div className={`${styles.container} ${styles.containerNoBottomBorder} ${styles.containerWhiteFrame}`}>
           <div className={styles.split}>
             <div className={styles.splitText}>
               <h2 id="dd-heading" className={styles.sectionH2}>Due Diligence &amp; IC Pack</h2>
@@ -507,7 +544,7 @@ export default function InvestorsPage() {
                 <p className={styles.miniCardTitle}>Investment Memo + IC Pack</p>
                 <p className={styles.miniCardSub}>Complete package ready for Investment Committee</p>
                 <div className={styles.miniCardInner}>
-                  <CheckList items={['De-risk decisions', 'Close faster', 'LP-grade professionalism']} bold />
+                  <CheckList items={['De-risk decisions', 'Close faster', 'LP-grade professionalism']} />
                 </div>
               </div>
             </div>
@@ -533,8 +570,13 @@ export default function InvestorsPage() {
           </div>
         </div>
       </section>
+      </div>
 
-         {/* ================= AUDIENCE BAND ================= */}
+      {/* ================= AUDIENCE BAND =================
+          Deliberately outside .regionWide: this row uses its own scoped
+          840px rail (.bandSection::before/::after) instead of the wide
+          region's ~1480px one — leaving it inside .regionWide drew BOTH
+          rails through this row at once. */}
       <section
         ref={band.ref as React.RefObject<HTMLElement>}
         className={`${styles.bandSection} ${styles.animSection} ${band.visible ? styles.visible : ''}`}
@@ -551,8 +593,7 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-     
-
+      <div className={styles.regionWide}>
       {/* ================= CLOSING CTA ================= */}
       <section
         ref={cta.ref as React.RefObject<HTMLElement>}

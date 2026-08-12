@@ -1,0 +1,270 @@
+/* ============================================================
+   Investment Memo preview — scrollable "document in a frame"
+   ============================================================
+   The trick: TWO nested boxes.
+   1. .frame  — the outer blue card. It has a FIXED height (from its
+      parent, .splitMedia) and `overflow: hidden`, so nothing can spill
+      past its rounded corners.
+   2. .paper  — the "document". Its own content (all the memo sections)
+      is taller than .frame. Because .paper has `height: 100%` (it fills
+      .frame exactly) plus `overflow-y: auto`, THE BROWSER clips it and
+      adds a scrollbar automatically — no JS needed.
+   Scrolling only happens inside .paper; the outer page never moves.
+
+   The blue bottom edge is intentionally withheld until the document
+   truly ends: .frame has NO bottom padding, so .paper sits flush against
+   its bottom edge while there's more to scroll — .frame's own
+   `overflow: hidden` + `border-radius` clips that flush square edge into
+   its rounded corner for free. The blue only reappears because .endCap
+   (see below) is the LAST thing inside the scrollable content — it's
+   simply off-screen, below the fold, until you scroll far enough for it
+   to enter view. No scroll-position JS involved. */
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  background: #0077ff;
+  border-radius: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
+  box-shadow: 0 30px 70px rgba(11, 31, 68, 0.35);
+}
+
+.paper {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  /* Stops scrolling the memo at the top/bottom from "chaining" into a
+     page-level scroll — the browser's default is to hand off remaining
+     scroll delta to the parent once an inner box hits its scroll limit. */
+  overscroll-behavior: contain;
+  background: #fff;
+  border-radius: 1rem 1rem 0 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+.paper::-webkit-scrollbar { width: 8px; }
+.paper::-webkit-scrollbar-track { background: transparent; }
+.paper::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+}
+.paper::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.32); }
+
+/* Tablet (641-900px, from the .split stacking to single-column): same
+   chrome and type scale as desktop — Figma's tablet frame reflows the
+   same full-size document into a narrower column rather than shrinking
+   it, so nothing here needs to change until the phone breakpoint below. */
+@media (max-width: 640px) {
+  .frame { border-radius: 1.25rem; padding: 1rem 1rem 0; }
+  /* Touch users swipe, not drag a thumb — a visible scrollbar here has
+     no purpose and, at this scale, its thumb can land right on the
+     .endCap reveal and read as a stray notch. Scrolling itself is
+     untouched; only the visible track/thumb disappear. */
+  .paper { scrollbar-width: none; }
+  .paper::-webkit-scrollbar { display: none; }
+}
+
+/* The reveal: the very last node in the scrollable content. It's plain
+   blue and cancels .doc's own padding so it spans edge-to-edge, flush
+   with .paper's sides and true bottom. Until you've scrolled past every
+   real section, it's simply further down the document than the visible
+   frame reaches. Uses `em`, not `rem`, so it automatically cancels
+   .doc's ACTUAL padding at any scale — see the ".doc" comment below for
+   why.
+   width + align-self, not a symmetric negative margin on both sides —
+   .doc is `flex-direction: column`, so .endCap is a flex item, and a
+   stretched flex item's auto cross-size is solved by the flexbox sizing
+   algorithm, not the plain block-width formula; that algorithm cancels
+   the LEFT negative margin but not the right. Opting out of stretch
+   (explicit width instead of auto) and only pulling the LEFT edge out
+   with a margin sidesteps that: width spans from the shifted left edge
+   all the way to .doc's true right edge in one number, so margin-right
+   has nothing left to get wrong.
+   max-width: none !important is the part that actually mattered on
+   mobile, though — index.module.css's own mobile overflow guard
+   (`@media (max-width: 640px) { * { max-width: 100% !important } }`)
+   is a bare universal selector, so it's NOT scoped to that CSS module
+   and clamps every element on the page below 640px, including this one
+   in a totally different module. It was silently capping .endCap back
+   down to 100% of .doc's content box either way — margin-trick or
+   explicit width — which is the actual reason the white gap only ever
+   showed up on mobile. A class selector's !important outranks a
+   universal selector's !important regardless of source order, so this
+   override wins without needing to touch the guard itself. */
+.endCap {
+  height: 2em;
+  width: calc(100% + 3em);
+  max-width: none !important;
+  align-self: flex-start;
+  margin: 0 0 -2em -1.5em;
+  background: #0077ff;
+}
+
+/* ---- Document content ----
+   Everything below scales as a single unit off ONE value: .doc's own
+   font-size. Every size in this section (font-size, padding, gap,
+   border-radius, icon dimensions) is written in `em`, not `rem` — `em`
+   means "relative to MY OWN font-size", and font-size inherits down
+   through plain elements. So changing .doc's font-size at the phone
+   breakpoint below proportionally shrinks every descendant at once,
+   matching Figma's mobile frame (a scaled-down miniature of the whole
+   document). Tablet (641-900px) deliberately keeps the desktop 1rem —
+   Figma's tablet frame reflows the same full-size type into a narrower
+   column instead of shrinking it, so only true phone widths shrink. */
+.doc {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  padding: 2em 1.5em;
+  font-family: var(--rt-font-sans);
+  font-size: 1rem;
+}
+@media (max-width: 640px) {
+  .doc { font-size: 0.4rem; }
+}
+
+.header { display: flex; flex-direction: column; gap: 1.25em; padding-bottom: 1em; }
+.title { margin: 0; text-align: center; font-size: 1.375em; font-weight: var(--rt-weight-bold); color: #000; }
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75em 1.25em;
+  justify-content: space-between;
+  font-size: 0.5625em;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #000;
+}
+.metaRow span { display: block; color: #6b7280; font-weight: 400; }
+.metaRow strong { display: block; margin-top: 0.15em; font-weight: 400; letter-spacing: 0.11em; }
+
+.section {
+  background: #fafcfe;
+  border: 0.5px solid #e1edf9;
+  border-radius: 0.75em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.sectionHeadRow { display: flex; align-items: flex-start; justify-content: space-between; gap: 1em; }
+.sectionTitle { margin: 0; font-size: 1.125em; font-weight: var(--rt-weight-semibold); color: #000; }
+.sectionBody { margin: 0; font-size: 0.625em; line-height: 1.45; color: #000; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.25em 0.5em;
+  border-radius: 999px;
+  font-size: 0.6875em;
+  font-weight: var(--rt-weight-medium);
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.pillGood { background: #dcfaef; border-color: #a6f2d6; color: #189b71; }
+.pillVeryGood { background: #ebf7de; border-color: #cdebad; color: #67ae24; }
+
+/* Transaction overview */
+.transactionRow { display: flex; flex-wrap: wrap; gap: 1.5em; align-items: center; }
+.factList { display: flex; flex-direction: column; gap: 0.75em; font-size: 0.625em; color: #000; }
+.factList strong { font-weight: var(--rt-weight-semibold); }
+.fundsBlock { display: flex; flex-direction: column; gap: 0.75em; min-width: 12em; }
+.fundsHeading { margin: 0; font-size: 0.75em; font-weight: var(--rt-weight-semibold); color: #000; }
+.fundsRow { display: flex; align-items: center; gap: 0.75em; }
+.pieChart { width: 4em; height: 4em; flex-shrink: 0; }
+.legend { display: flex; flex-direction: column; gap: 0.4em; }
+.legendItem { display: flex; align-items: center; gap: 0.5em; font-size: 0.625em; color: #000; }
+.legendSwatch { width: 0.6875em; height: 0.6875em; border-radius: 2px; flex-shrink: 0; }
+.legendPct { font-weight: var(--rt-weight-semibold); }
+
+/* Nested cards (team / product-info / market-info) */
+.grid { display: flex; gap: 1em; align-items: stretch; }
+.grid.wrap { flex-wrap: wrap; }
+.nestedCard {
+  flex: 1;
+  min-width: 9em;
+  background: #fafafa;
+  border: 0.5px solid #dae0e7;
+  border-radius: 0.5em;
+  padding: 0.75em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+.teamTag { margin: 0; font-size: 0.4375em; font-weight: var(--rt-weight-bold); letter-spacing: 0.1em; text-transform: uppercase; color: #999; }
+.teamTag.highlight { color: #0077ff; }
+.teamName { margin: 0.1em 0 0; font-size: 0.6875em; font-weight: var(--rt-weight-medium); color: #000; }
+.teamRole { margin: 0.1em 0 0; font-size: 0.5em; color: #999; }
+.teamBio { margin: 0; font-size: 0.625em; line-height: 1.45; color: #000; }
+
+.infoCardHead { display: flex; gap: 0.4em; align-items: flex-start; }
+.infoIcon { width: 1em; height: 1em; flex-shrink: 0; margin-top: 0.1em; }
+.infoTitle { margin: 0; font-size: 0.75em; font-weight: var(--rt-weight-semibold); color: #000; }
+.infoDesc { margin: 0.1em 0 0; font-size: 0.625em; color: #000; }
+
+/* Callout boxes: strengths/gaps, differentiation/risks, highlights/risks */
+.callout {
+  border-radius: 0.5em;
+  border: 1px solid transparent;
+  padding: 0.75em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+.calloutGood { background: #dcfaef; border-color: #a6f2d6; }
+.calloutBad { background: #fcf5f2; border-color: #ecbfac; }
+.calloutHeadRow { display: flex; align-items: center; gap: 0.5em; }
+.calloutIcon { width: 0.875em; height: 0.875em; flex-shrink: 0; }
+.calloutTitle { margin: 0; font-size: 0.75em; font-weight: var(--rt-weight-semibold); color: #000; }
+.calloutBody { margin: 0; font-size: 0.625em; line-height: 1.45; color: #000; }
+
+/* Sub-headed bullet lists (Product/Service, Traction, Roadmap) */
+.subheading { margin: 0 0 0.5em; font-size: 0.75em; font-weight: var(--rt-weight-semibold); color: #000; }
+.barList { display: flex; flex-direction: column; gap: 0.5em; }
+.barItem { display: flex; align-items: center; gap: 0.5em; }
+.bar { width: 3px; height: 0.625em; border-radius: 1px; flex-shrink: 0; }
+.barText { font-size: 0.625em; color: #000; }
+
+/* Icon bullet lists (Competitive landscape, sparkles/star/triangle rows) */
+.iconList { display: flex; flex-direction: column; gap: 0.5em; }
+.iconListItem { display: flex; align-items: center; gap: 0.4em; }
+.iconListIcon { width: 0.75em; height: 0.75em; flex-shrink: 0; }
+.iconListText { font-size: 0.625em; color: #000; }
+
+/* TAM/SAM/SOM */
+.tsom { display: flex; gap: 1em; flex-wrap: wrap; }
+.tsomItem { flex: 1; min-width: 8em; display: flex; gap: 0.75em; }
+.tsomBar { width: 4px; border-radius: 1px; background: #0077ff; align-self: stretch; flex-shrink: 0; }
+.tsomLabel { margin: 0; font-size: 1.125em; font-weight: var(--rt-weight-semibold); color: #000; }
+.tsomDesc { margin: 0.25em 0 0; font-size: 0.625em; color: #000; }
+
+/* Deal stat row */
+.statRow { display: flex; flex-wrap: wrap; gap: 1.25em; }
+.statItem { flex: 1; min-width: 5.5em; display: flex; flex-direction: column; gap: 0.25em; }
+.statIcon { width: 1em; height: 1em; }
+.statLabel { margin: 0; font-size: 0.6875em; font-weight: var(--rt-weight-medium); color: #000; }
+.statValue { margin: 0; font-size: 0.625em; color: #000; }
+
+/* Closing content block: dark recommendation card + disclaimer */
+.content { background: #edf0f3; border-radius: 0.5em; padding: 1.25em 1em; display: flex; flex-direction: column; gap: 0.75em; }
+.recommendation {
+  background: #003687;
+  border: 2px solid #0077ff;
+  border-radius: 0.75em;
+  padding: 1.25em;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+.recommendationTitle { margin: 0; font-size: 1.125em; font-weight: var(--rt-weight-semibold); }
+.recommendationBody { margin: 0; font-size: 0.625em; line-height: 1.45; }
+.disclaimer { padding: 0.5em 0; display: flex; flex-direction: column; gap: 0.25em; }
+.disclaimerHead { display: flex; align-items: center; gap: 0.4em; }
+.disclaimerIcon { width: 0.875em; height: 0.875em; }
+.disclaimerLabel { margin: 0; font-size: 0.6875em; font-style: italic; font-weight: var(--rt-weight-medium); color: #999; }
+.disclaimerBody { margin: 0; font-size: 0.625em; font-style: italic; line-height: 1.45; color: #999; }

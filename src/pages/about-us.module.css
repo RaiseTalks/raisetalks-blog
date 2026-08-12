@@ -273,12 +273,20 @@
 .missionSection {
   /* 4rem (64px) top/bottom — matches the rail divider height used
      everywhere else, so the gap to this section's own border lines
-     reads the same as the gap between any other two rail lines. */
+     reads the same as the gap between any other two rail lines. That
+     convention tapers 64px -> 48px -> 32px at the 1024/640 breakpoints
+     (see .railDividerLight above, GridSeam, .processSpacer elsewhere on
+     the site) — this was flat 64px at every width, so on mobile the
+     .railDividerLight strip right above this section shrank to 32px
+     while this section's own padding stayed at 64px, reading as two
+     rail-spacer bands of different heights back to back. */
   padding: 4rem 0;
   position: relative;
   overflow: hidden;
   background: #FAFAFA;
 }
+@media (max-width: 1023px) { .missionSection { padding: 48px 0; } }
+@media (max-width: 639px) { .missionSection { padding: 32px 0; } }
 .missionSection .sectionContainer {
   position: relative;
   /* Matches Figma's uniform 64px padding on this content frame — the

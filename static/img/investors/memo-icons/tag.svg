@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="lucide/tag" clip-path="url(#clip0_0_22)">
+<g id="Vector">
+<path d="M8.39034 1.7227C8.14035 1.47263 7.80127 1.33211 7.44767 1.33203H2.66634C2.31272 1.33203 1.97358 1.47251 1.72353 1.72256C1.47348 1.9726 1.33301 2.31174 1.33301 2.66536V7.4467C1.33308 7.80029 1.47361 8.13937 1.72367 8.38936L7.52634 14.192C7.82935 14.4931 8.23917 14.6621 8.66634 14.6621C9.09351 14.6621 9.50333 14.4931 9.80634 14.192L14.193 9.80536C14.4941 9.50236 14.6631 9.09253 14.6631 8.66536C14.6631 8.2382 14.4941 7.82837 14.193 7.52536L8.39034 1.7227Z" stroke="#0077FF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4.99967 5.33203C5.18377 5.33203 5.33301 5.18279 5.33301 4.9987C5.33301 4.8146 5.18377 4.66536 4.99967 4.66536C4.81558 4.66536 4.66634 4.8146 4.66634 4.9987C4.66634 5.18279 4.81558 5.33203 4.99967 5.33203Z" stroke="#0077FF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_22">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

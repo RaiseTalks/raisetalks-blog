@@ -380,7 +380,10 @@
   top: 0;
   bottom: 0;
   width: 0.5px;
-  background: rgba(255, 255, 255, 0.3);
+  /* #1E437B, not a translucent white — matches .processSpacer's own
+     border-top (inline Tailwind border-t-[#1E437B]) and GridSeam's dark
+     variant, same fix as .ctaSection's rail above. */
+  background: #1E437B;
   pointer-events: none;
   z-index: 2;
 }
@@ -633,7 +636,13 @@
   top: 0;
   bottom: 0;
   width: 0.5px;
-  background: rgba(255, 255, 255, 0.3);
+  /* #1E437B, not a translucent white — matches the .processSpacer border
+     immediately below this section (inline Tailwind border-t-[#1E437B])
+     and GridSeam's own dark variant (.seamDark), the two other
+     established "rail on a dark background" colors on this page/site.
+     The translucent white read as washed-out/faint next to those solid
+     navy lines instead of matching them. */
+  background: #1E437B;
   pointer-events: none;
   z-index: 2;
 }

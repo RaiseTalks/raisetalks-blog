@@ -11,7 +11,21 @@
 }
 
 .rt-footer__grid {
-  width: 100%;
+  /* Width/centering now comes from the shared .rt-rail class (rail.css)
+     on this element itself, not Tailwind's unrelated `container` utility
+     (see index.tsx) — .rt-rail's fluid margin formula is what every
+     other page's content rail uses, while Tailwind's container snaps to
+     fixed 640/768/1024/1280/1536px steps, so the two drifted apart at
+     almost every desktop width and the footer's rail sat at a visibly
+     different (often narrower) position than the rest of the page.
+     Border suppressed on both sides — this row never had a visible
+     rail line, only .rt-rail's width is wanted here. !important: a
+     plain `border-right: none` here previously lost the cascade to
+     .rt-rail's own border-left/right (both single-class selectors, load
+     order between global rail.css and this module isn't guaranteed),
+     which is why the right line kept leaking through. */
+  border-left: none !important;
+  border-right: none !important;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2.5fr);
   align-items: stretch;
@@ -150,7 +164,13 @@
 }
 
 .rt-footer__bottom-inner {
-  width: 100%;
+  /* Width/centering from the shared .rt-rail class (see .rt-footer__grid
+     above for why) — its own border-left/right replace the single
+     border-left below, which was also missing its border-right pair
+     (every other rail on the site draws both sides; this one only ever
+     drew the left line). Color overridden to this section's own blue
+     immediately below, same technique as the homepage's .ctaSeamRail
+     overriding GridSeam's default gray for its own dark section. */
   min-height: 64px;
   display: flex;
   align-items: center;
@@ -158,7 +178,16 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem 2rem;
-  border-left: 0.5px solid #0077ff;
+}
+.rt-footer__bottom-inner {
+  /* Right side suppressed to match .rt-footer__grid above — this footer
+     keeps its original single left line, not a left+right pair.
+     !important: both this rule and .rt-rail's own border-left/right are
+     single-class selectors, and load order between global rail.css and
+     this module isn't guaranteed — same reasoning as .ctaSeamRail in
+     index.module.css overriding GridSeam's default color. */
+  border-left-color: #0077ff !important;
+  border-right: none !important;
 }
 
 .rt-footer__copyright {

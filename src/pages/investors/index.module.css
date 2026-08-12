@@ -19,10 +19,11 @@
 /* ---- Editorial grid ----
    Hero's rail is unified to the same wider position as the wide region
    below, so the vertical guides don't jump narrower then wider again as
-   you scroll past the hero. The audience-band row is the exception: its
-   card fills its own 840px rail edge-to-edge (per Figma), so its rail
-   stays at that narrower position, scoped to just its own row — see
-   .bandSection below. Both regions share the same breakpoint ladder
+   you scroll past the hero. The audience-band row keeps that same wide
+   position too (see .bandSection below) even though its card is Figma's
+   narrower 840px frame — the card floats inside the guide lines rather
+   than the lines narrowing to hug it, so the rail never jumps sideways
+   as you scroll past. Both regions share the same breakpoint ladder
    (Tailwind's container utility: 640/768/1024/1280/1536px), so the rail
    stays perfectly continuous and aligned all the way into the shared
    footer, regardless of background color changes along the way (white
@@ -162,6 +163,19 @@
    lines back to back. */
 .containerNoBottomBorder::after { display: none; }
 .containerNoTopBorder::before { display: none; }
+/* Pre-Score Engine / Due Diligence & IC Pack: Figma keeps these two
+   sections' content area (bounded by the rail lines) white, distinct
+   from .featureSection's full-bleed gray behind it — .container's own
+   background defaults to transparent (see .container's
+   `var(--frame-bg, transparent)`), so these opt in to a solid fill.
+   `.container.containerWhiteFrame` (specificity 0,0,2,0), not just
+   `.containerWhiteFrame` alone — same-specificity, later-in-source
+   rules aren't reliably guaranteed to win once the build pipeline
+   reorders things (see the .container.narrow comment above for the
+   same gotcha already hit in this file). */
+.container.containerWhiteFrame {
+  background: #fff;
+}
 /* What You Get → Pre-Score Engine: a single divider, kept inside the
    vertical rails rather than breaking full-bleed like the rest of the
    wide region. */
@@ -256,7 +270,7 @@
 /* ---- Shared headings ---- */
 .sectionH2 {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-h2);
+  font-size: var(--rt-fs-h3);
   font-weight: var(--rt-weight-medium);
   line-height: var(--rt-lh-h2);
   letter-spacing: -0.02em;
@@ -425,24 +439,80 @@
    ============================================================ */
 .bandSection {
   position: relative;
-  padding: 2rem 0;
+  /* Same 64/48/32 shared rail-spacer ladder as .spacerRow/.ctaSpacer
+     (see .proofSection above, .ctaSection below) — not .container's fluid
+     content-padding ladder. This row is the same kind of empty framing
+     strip around a floating element as those two, so it steps down at
+     the same breakpoints they do: homepage's GridSeam component, and
+     startups'/pitch-competitions' own .processSpacer, all confirm 48px
+     is the correct 640-1023px tablet value (Figma-cited in GridSeam),
+     not 64px. Was hardcoded to a flat 2rem/32px at every screen size
+     before that, which read thinner than both neighbors' strips at
+     every width. */
+  padding: 64px 0;
+  background: #F7F7F7;
+  /* The DD section above this one hides its OWN bottom line
+     (.containerNoBottomBorder) specifically because its comment says this
+     row supplies the divider instead — but nothing here actually drew
+     one: .container::before/::after (below) mark the card's own top/
+     bottom edge, 64px inset from the section's true boundary, not the
+     white→gray seam itself. Section is already full viewport width, so
+     a plain border (not the 100vw pseudo-element trick .container uses)
+     is enough. No border-bottom needed to match: .ctaSection's own
+     border-top already marks this row's bottom seam. */
+  border-top: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1));
 }
+@media (max-width: 1023px) { .bandSection { padding: 48px 0; } }
+@media (max-width: 639px) { .bandSection { padding: 32px 0; } }
 /* Figma: the quote card fills the full 840px rail frame edge-to-edge on
    all four sides — no container gutter, no vertical gap before the card
    touches the horizontal divider lines above/below. The outer spacing
    between this row and its neighbors comes from .bandSection's own
-   padding, matching Figma's separate spacer frames. */
-.bandSection .container { padding: 0; }
-/* This row's own rail, independent of the wider hero/frustration rail —
-   stays at Figma's 840px frame so it touches the card's own edges
-   exactly, top/bottom included (bandSection's padding, matching where
-   the card itself starts and ends). */
+   padding, matching Figma's separate spacer frames.
+   !important: the mobile overflow guard below (max-width: 640px)
+   reintroduces `padding-left/right: 1.25rem !important` on .container —
+   any !important always beats a non-important rule regardless of
+   specificity, so without it here the card was inset by 20px on mobile
+   while the rail (unaware of that padding) kept touching the container's
+   true edge instead of the card's. */
+.bandSection .container { padding: 0 !important; }
+/* Single source of truth for this row's width, driving BOTH the card
+   (via .container.narrow's max-width below) and the rail position —
+   they can never drift apart at any breakpoint since both read the same
+   variable. Mirrors .container.narrow's own ladder exactly (same 12px/
+   32px/48px gutters), just capped at Figma's 840px instead of 1024px
+   from 1024px up — .narrow's own 1024px is shared with the hero above,
+   so it's overridden here rather than changed globally. */
+.bandSection { --band-width: calc(100% - 12px); }
+@media (min-width: 640px)  { .bandSection { --band-width: calc(100% - 32px); } }
+@media (min-width: 1024px) { .bandSection { --band-width: min(840px, calc(100% - 48px)); } }
+/* Needs !important to beat .narrow's own !important rule, and the extra
+   .bandSection class (specificity 0,0,3,0 vs .container.narrow's
+   0,0,2,0) to win regardless of source order (see the .container.narrow
+   comment earlier in this file for the same build-reordering gotcha). */
+.bandSection .container.narrow { max-width: var(--band-width) !important; }
+/* This row's guide lines stay on the SAME x-position as the wide
+   region's rail (.regionWide::before/::after) instead of tracking the
+   card's own narrower --band-width — same fix as pitch-competitions.module.css's
+   .pageRegion/.ctaSection split (see its "Continuous rail" comment):
+   duplicating the wide ladder here, rather than narrowing to the card's
+   edges, is what keeps the line from visibly jumping inward and back out
+   as you scroll past this row. Duplicated rather than inherited since
+   this section sits outside .regionWide (a sibling, not a descendant),
+   so .regionWide's own --rail-half custom property isn't in scope here. */
+.bandSection { --rail-half: calc(50vw - 8px); }
+@media (min-width: 640px)  { .bandSection { --rail-half: calc(50vw - 48px); } }
+@media (min-width: 1024px) { .bandSection { --rail-half: min(740px, calc(50% - 24px)); } }
+/* top/bottom: 0, not inset to the card's edges — spans this row's full
+   height so it touches the .regionWide rail above and below flush, with
+   no dead gap at the seam (the card now floats inside the guide lines
+   rather than touching them). */
 .bandSection::before,
 .bandSection::after {
   content: '';
   position: absolute;
-  top: 2rem;
-  bottom: 2rem;
+  top: 0;
+  bottom: 0;
   /* Border, not a background-filled width: 0.5px box — see .hero::before
      above for why. */
   width: 0;
@@ -450,8 +520,8 @@
   pointer-events: none;
   z-index: 2;
 }
-.bandSection::before { left: calc(50% - 420px); }
-.bandSection::after { right: calc(50% - 420px); }
+.bandSection::before { left: calc(50% - var(--rail-half)); }
+.bandSection::after { right: calc(50% - var(--rail-half)); }
 .band {
   position: relative;
   overflow: hidden;
@@ -477,10 +547,13 @@
   max-width: 42rem;
   color: #fff;
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-h4);
+  /* 12px mobile, 14.4px tablet/desktop — same value from 640px up, so one
+     breakpoint covers both instead of a redundant 1024px rule. */
+  font-size: 12px;
   font-weight: var(--rt-weight-medium);
   line-height: var(--rt-lh-h4);
 }
+@media (min-width: 640px) { .bandText { font-size: 14.4px; } }
 
 /* ============================================================
    FRUSTRATION PATTERNS
@@ -520,8 +593,8 @@
 /* ============================================================
    Shared section shells
    ============================================================ */
-.sectionGray { padding: 2rem 0; background: transparent; }
-.featureSection { padding: 2rem 0; background: transparent; }
+.sectionGray { padding: 2rem 0; background: #F7F7F7; }
+.featureSection { padding:2rem 0 0 0; background: #F7F7F7; }
 
 /* ============================================================
    WHAT YOU GET — masonry cards
@@ -556,15 +629,26 @@
 }
 
 .card {
+  /* .cardOffset (below) overrides this to stagger alternating cards.
+     Hover composes ON TOP of whatever resting offset is in play via
+     calc(), instead of a separate .card:hover rule replacing `transform`
+     outright — a plain replacement would win over .cardOffset's
+     translateY on hover (a class+pseudo-class beats a single class) and
+     snap the card back to 0, undoing its stagger for as long as it's
+     hovered. calc() keeps the same -3px lift relative to EACH card's
+     own resting position, so staggered and non-staggered cards ease
+     identically. */
+  --card-rest-y: 0px;
   background: #fff;
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 0.9rem;
   padding: 1.4rem;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transform: translateY(var(--card-rest-y));
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(calc(var(--card-rest-y) - 3px));
   box-shadow: 0 14px 34px rgba(15, 23, 42, 0.09);
 }
 .cardIcon {
@@ -611,7 +695,6 @@
   font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
 }
-.checkListBold .checkItem { color: var(--ifm-color-content); font-weight: var(--rt-weight-semibold); }
 .checkMark { width: 1rem; height: 1rem; flex-shrink: 0; }
 
 @media (max-width: 900px) {
@@ -629,13 +712,6 @@
 }
 .splitText { min-width: 0; }
 .splitMedia { min-width: 0; height: 100%; position: relative; }
-.mediaImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 1rem;
-  box-shadow: 0 30px 70px rgba(11, 31, 68, 0.35);
-}
 @media (max-width: 900px) {
   .split { grid-template-columns: 1fr; }
   /* keep media below text on narrow screens regardless of DOM order */
@@ -643,38 +719,62 @@
 }
 /* Figma: text col 411px / media col 821px — media takes ~2x the text column,
    with a wider gutter between them (120px in Figma) and its bottom flush
-   with the text column's bottom. The image is absolutely positioned so its
-   own intrinsic aspect ratio can't grow the grid row past the text height —
-   the row height comes from the text column alone, and the image crops
-   (object-fit: cover) to fill it exactly. */
+   with the text column's bottom. InvestmentMemoPreview absolutely fills this
+   column (see its own module CSS) so its own content height can't grow the
+   grid row past the text height — the row height comes from the text column
+   alone, and the memo panel scrolls internally to fit. */
 .splitPrescore { grid-template-columns: 1fr 2fr; align-items: stretch; gap: clamp(2.5rem, 6vw, 7.5rem); }
-.splitPrescore .mediaImg { position: absolute; inset: 0; }
 @media (max-width: 900px) {
   .splitPrescore { grid-template-columns: 1fr; }
-  .splitPrescore .splitMedia { height: 320px; }
-  .splitPrescore .mediaImg { position: static; inset: auto; }
+  /* Tablet: same viewport as desktop, just taller — the memo keeps
+     full-size type here (see InvestmentMemoPreview.module.css), so it
+     needs more room per screen than the shrunk phone version below. */
+  .splitPrescore .splitMedia { height: 640px; }
+}
+@media (max-width: 640px) {
+  .splitPrescore .splitMedia { height: 480px; }
 }
 
-/* ---- Pre-Score feature list ---- */
-.featureList { list-style: none; margin: 0 0 2rem; padding: 0; }
-.featureRow {
+/* ---- Pre-Score accordion (Team / Product-Tech / Market / Deal) ---- */
+.accordion {
   display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.75rem;
 }
-.featureRow .checkMark { width: 1.15rem; height: 1.15rem; margin-top: 0.15rem; }
-.featureRowTitle {
-  font-weight: var(--rt-weight-semibold);
+.accordionItem {
+  background: #fcfcfc;
+  border: 1px solid #f7f7f7;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-semibold);
   color: var(--ifm-color-content);
-  margin: 0 0 0.15rem;
+  text-align: left;
 }
-.featureRowDesc {
+.accordionIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.accordionIconOpen { transform: rotate(45deg); }
+.accordionDesc {
+  margin: 0.75rem 0 0;
   font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
-  margin: 0;
 }
 
 /* ---- Mini card (Pre-Scoring Card / Short Memo / IC Pack) ---- */
@@ -710,10 +810,10 @@
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
 }
-.cardOffset { transform: translateY(2.5rem); }
+.cardOffset { --card-rest-y: 2.5rem; }
 @media (max-width: 900px) {
   .committeeGrid { order: 2; }
-  .cardOffset { transform: none; }
+  .cardOffset { --card-rest-y: 0px; }
 }
 @media (max-width: 520px) {
   .committeeGrid { grid-template-columns: 1fr; }
@@ -722,22 +822,50 @@
 /* ---- DD pills ---- */
 /* Figma (node 1430-816): 12px gap on the mobile canvas, widening to 16px
    at desktop — not a single flat value. */
-.pillRow { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
-@media (min-width: 1024px) { .pillRow { gap: 1rem; } }
+.pillRow { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+@media (max-width: 640px) {
+  /* The 12px this comment already documented above was never actually
+     applied — .pillRow stayed flat 16px at every width, which is part of
+     why the three pills wrapped to two lines instead of fitting one row
+     on mobile like Figma's own mobile frame shows. */
+  .pillRow { gap: 0.75rem; }
+  /* Figma's mobile frame (node 1947-3433) also reorders the pills —
+     "Document Requests" (the widest label) moves last, after "Audit
+     Trail" — presumably so the row's longest piece trails rather than
+     splits the row in the middle. `order` reorders visually without
+     touching the DOM/tab order, since this is a purely visual fit-on-
+     one-line concern, not a semantic one. Desktop/tablet (node 1438-2237)
+     keeps the original Q&A Log / Document Requests / Audit Trail order,
+     so this is scoped to the same mobile-only breakpoint as the rest of
+     this reflow. */
+  .pillRow .pill:nth-child(2) { order: 3; }
+  .pillRow .pill:nth-child(3) { order: 2; }
+}
 .pill {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  color: var(--raisetalks-blue-primary-flat);
-  border: 1px solid rgba(1, 116, 225, 0.35);
-  background: rgba(1, 116, 225, 0.04);
-  border-radius: 0.6rem;
-  padding: 0.5rem 1rem;
+  font-family: var(--rt-font-sans);
+  font-style: normal;
+  font-weight: var(--rt-weight-semibold);
+  color: var(--ifm-color-content);
+  border: 1px solid #e6eaef;
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 1rem;
   /* Figma: 14.4px on desktop and tablet, 12px on mobile — --rt-fs-body
      is a flat 14.4px at every width, so mobile needs its own override. */
   font-size: var(--rt-fs-body);
 }
 @media (max-width: 640px) {
-  .pill { font-size: 12px; }
+  /* padding also drops from 16px to Figma's mobile 12px (node 1947-3433)
+     — at the old 16px padding plus 16px gap, the three pills totaled
+     ~413px, wider than a phone screen at any font-size, so they always
+     wrapped to two lines regardless of the font-size fix above.
+     Horizontal padding is then trimmed further, to 0.5rem — Figma's own
+     342px-wide mobile frame (which fits the 12px spec exactly) is still
+     8px wider than this page's actual mobile content area (max 334px,
+     from .container's own -16px/-40px mobile trim), so matching Figma's
+     padding literally still wrapped at common 375-390px viewports.
+     Vertical padding stays at 0.75rem for touch-target height. */
+  .pill { font-size: 12px; padding: 0.75rem 0.5rem; }
 }
 
 /* ---- DD category rows ---- */
@@ -814,8 +942,17 @@
 .spacerRow { height: 64px; }
 .spacerRow:first-of-type { border-top: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1)); }
 .proofContent { padding: 2.5rem clamp(1.25rem, 3vw, 2.75rem); }
-@media (max-width: 640px) {
-  .spacerRow { height: 40px; }
+/* 64/48/32 is the shared rail-spacer ladder used everywhere else this
+   exact "empty strip flanking a rail" role appears — homepage's GridSeam
+   (src/components/GridSeam.module.css, "Tablet (640-1023px): 48px
+   rail-spacer height per Figma"), and startups.module.css's and
+   pitch-competitions.module.css's own .processSpacer. This was missing
+   the 48px tablet step entirely and used 40px on mobile instead of 32px. */
+@media (max-width: 1023px) {
+  .spacerRow { height: 48px; }
+}
+@media (max-width: 639px) {
+  .spacerRow { height: 32px; }
 }
 .proofBg {
   position: absolute;
@@ -925,7 +1062,7 @@
   z-index: 0;
   text-align: center;
   overflow: hidden;
-  background: linear-gradient(180deg, #0a1830 0%, #0b1f44 100%);
+  background: #0C1B31;
   /* outer edges of the band, full screen width */
   border-top: 0.5px solid #16315A;
   border-bottom: 0.5px solid #16315A;
@@ -974,8 +1111,14 @@
   border-bottom: none;
   border-top: 0.5px solid #16315A;
 }
-@media (max-width: 640px) {
-  .ctaSpacer { height: 40px; }
+/* Same 64/48/32 shared rail-spacer ladder as .spacerRow above (homepage's
+   GridSeam, startups' and pitch-competitions' own .processSpacer) — was
+   missing the 48px tablet step and used 40px on mobile instead of 32px. */
+@media (max-width: 1023px) {
+  .ctaSpacer { height: 48px; }
+}
+@media (max-width: 639px) {
+  .ctaSpacer { height: 32px; }
 }
 /* Light grid lines on the dark CTA (page rails are dark → invisible on navy).
    Vertical rails span the full band; aligned to the footer's rail x-position. */
