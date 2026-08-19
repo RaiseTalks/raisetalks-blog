@@ -294,7 +294,7 @@ const config: Config = {
     announcementBar: {
       id: 'visit_raisetalks',
       content:
-        '<a target="_blank" rel="noopener noreferrer" href="https://app.raisetalks.com/startups">Join Public Beta - Lock in Early Access</a>',
+        'See you in San Francisco at Step Conference — August 27, 2026',
       backgroundColor: 'rgba(0, 119, 255, 1)',
       textColor: '#ffffff',
       isCloseable: true,
