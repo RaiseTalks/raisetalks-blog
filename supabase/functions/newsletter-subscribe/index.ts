@@ -12,8 +12,8 @@ interface NewsletterPayload {
   _formLoadedAt?: number;
 }
 
-const FROM_EMAIL = 'RaiseTalks <hello@raisetalks.com>';
-const HQ_NOTIFY_EMAIL = 'emmanuel@raisetalks.ai';
+const FROM_EMAIL = 'RaiseTalks <noreply@raisetalks.com>';
+const HQ_NOTIFY_EMAIL = 'hq@raisetalks.ai';
 
 function jsonResponse(body: unknown, status: number): Response {
   return new Response(JSON.stringify(body), {
