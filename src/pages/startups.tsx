@@ -282,21 +282,21 @@ export default function Startups() {
               {
                 
                 number: '01',
-                name: 'We Prepare',
+                name: 'Prepare',
                 headline: 'Fix issues in private before they become objections in the room.',
                 body: 'Our AI reads your data room the way a skeptical investor would - surfacing gaps, inconsistencies, and missing signals before they cost you the deal.',
               },
               {
                
                 number: '02',
-                name: 'We Illuminate',
+                name: 'Illuminate',
                 headline: 'The black box of investor behavior becomes a live feed.',
                 body: 'We show you exactly what investors see: which documents they open, how long they linger, which slides lose them, and what questions they\'re forming.',
               },
               {
                 
                 number: '03',
-                name: 'We Accelerate',
+                name: 'Accelerate',
                 headline: 'Collapse weeks of back-and-forth diligence into days.',
                 body: 'Standardized scorecards, IC-ready summaries, and AI-generated Q&A give everyone in the process - founder and investor - their time back.',
               },
