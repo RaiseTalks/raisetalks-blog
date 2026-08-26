@@ -22,16 +22,18 @@
   border-left: 0.5px solid #CED6DE;
   border-right: 0.5px solid #CED6DE;
 }
-/* Below 640px this box is otherwise exactly 100% of the viewport, so its
-   border-left/right sit flush at the true screen edge with nothing
-   "outside" to contrast against — reads as invisible even though it
-   technically renders. Same fix as the homepage's shared .rt-rail utility
-   (src/css/rail.css): shrink 16px narrower and center.
+/* Figma's mobile artboard (node 1967-3529, 370px wide) puts the rail at 346px
+   — 12px margins, i.e. calc(100% - 24px). Every section frame on it agrees,
+   including the features header (1975-48) and all five feature rows
+   (1975-55/83/111/139/167). Note this is 4px per side wider than the sitewide
+   .rt-rail (src/css/rail.css), which uses 8px at this breakpoint; the startups
+   page draws its own rail and never mixes in .rt-rail, so the two cannot
+   collide on one page — but they no longer agree across pages.
    !important: responsive.css has a sitewide `* { max-width: 100% }`
    guard at this same breakpoint that otherwise wins (see rail.css). */
 @media (max-width: 640px) {
   .sectionInner {
-    max-width: calc(100% - 16px) !important;
+    max-width: calc(100% - 24px) !important;
     margin-inline: auto;
   }
 }
@@ -49,10 +51,20 @@
   }
 }
 
+/* Figma's tablet artboard (node 1496-2, 768px wide) puts the rail at 672px
+   with 48px margins and a 48px inset — i.e. calc(100% - 96px), which is also
+   exactly what the sitewide shared rail uses across this whole band
+   (.rt-rail, src/css/rail.css: "Tablet (640-1023px): fixed 48px margin").
+   Every section frame on that artboard agrees: the features header
+   (1500-912), all five feature rows (1500-920/948/976/1004/1032), and the
+   sections at 1496-842, 1500-1065, 1508-3962 and 1508-4026. The previous
+   min(768px, calc(100% - 48px)) / 4rem gave a 720px rail with a 64px inset
+   and capped the width at 768px, so it drifted from .rt-rail as the viewport
+   grew — the exact failure rail.css warns about. */
 @media (min-width: 768px) {
   .sectionInner {
-    max-width: min(768px, calc(100% - 48px));
-    padding: 4rem;
+    max-width: calc(100% - 96px);
+    padding: 3rem;
   }
 }
 
@@ -91,15 +103,11 @@
   .gridLineSpacer { height: 32px; }
 }
 /* This spacer's border-x (applied inline via Tailwind, e.g. border-x-[0.5px])
-   forms the same vertical rail as .sectionInner above. Below 640px it is
-   otherwise exactly 100% of the viewport with the border flush at the true
-   screen edge — invisible with nothing "outside" to contrast against. Same
-   fix as the homepage's shared .rt-rail utility (src/css/rail.css).
-   !important: responsive.css has a sitewide `* { max-width: 100% }` guard
-   at this same breakpoint that otherwise wins (see rail.css). */
+   forms the same vertical rail as .sectionInner above, so it takes the same
+   mobile width — see the note there. */
 @media (max-width: 640px) {
   .gridLineSpacer {
-    max-width: calc(100% - 16px) !important;
+    max-width: calc(100% - 24px) !important;
     margin-inline: auto;
   }
 }
@@ -112,9 +120,12 @@
   }
 }
 
+/* Tracks .sectionInner's tablet rule (Figma tablet artboard node 1496-2:
+   672px rail, 48px margins). These bands draw the same vertical line, so any
+   difference here shows up as the rail stepping in and out between sections. */
 @media (min-width: 768px) {
   .gridLineSpacer {
-    max-width: min(768px, calc(100% - 48px));
+    max-width: calc(100% - 96px);
   }
 }
 
@@ -643,14 +654,26 @@
 
 .featureRow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Figma (nodes 3420-16670 through 3420-17901): inside the 1352px content box the
+     text column is 668px and the image column 620px with a 64px gap — not an
+     even split. fr units keep that ratio as the rail narrows. */
+  grid-template-columns: 668fr 620fr;
   /* Figma (node 1347-5327): 64px column gap, not 80px. */
   gap: 4rem;
   align-items: stretch;
-  padding: 4rem 0;
+  /* No vertical padding of its own. The parent .sectionInner already applies
+     Figma's 64px top/bottom row inset at this breakpoint; a second 4rem here
+     doubled it to 128px per side (256px between adjacent rows vs Figma's
+     128px). The ≤900px rules below reinstate their own values. */
+  padding: 0;
 }
 
-/* Odd rows in Figma swap the image to the left instead of the right. */
+/* Odd rows in Figma swap the image to the left instead of the right — which
+   swaps the column widths too, since the two columns are not equal. */
+.featureRowReverse {
+  grid-template-columns: 620fr 668fr;
+}
+
 .featureRowReverse .featureText {
   order: 2;
 }
@@ -679,13 +702,34 @@
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h3);
   color: var(--ifm-color-content);
-  margin-bottom: 0.75rem;
+  /* Figma: 16px between the title and the italic subtitle. */
+  margin-bottom: 1rem;
+}
+
+/* Figma's title line box is 39px, which at --rt-lh-h3 (1.3) is a 30px font,
+   where --rt-fs-h3 is 32px from 1024px up. The shared token is right for the
+   rest of the page, so this is scoped to the feature rows. Below 1024px the
+   token already matches the artboards (28px tablet, 24px mobile). */
+@media (min-width: 1024px) {
+  .featureTitle {
+    font-size: 1.875rem;
+  }
 }
 
 .featureSubtitle {
   font-family: var(--rt-font-serif);
   font-style: italic;
-  font-size: var(--rt-fs-h4-alt);
+  /* 20px flat, not --rt-fs-h4-alt, which scales 20 -> 22 -> 24px. Figma's
+     subtitle line box is 27px at every breakpoint — desktop, tablet and
+     mobile — which at --rt-lh-h4 (1.35) is 20px throughout.
+     This is what was cropping the screenshots. At 24px a subtitle like
+     "Stop cold-emailing. Get pushed to investors who already match." wraps to
+     two lines in a 660px column, adding ~40px to the text block. Since the
+     image frame stretches to match that height, the extra line pushed the
+     frame from 1.725:1 — all but identical to the 1860x1080 screenshots — to
+     1.549:1, so object-fit: cover had to trim 10% off the width. At 20px the
+     line fits and the frame lands back on the image's own ratio. */
+  font-size: 1.25rem;
   font-weight: var(--rt-weight-regular);
   color: var(--ifm-color-content);
   line-height: var(--rt-lh-h4);
@@ -697,7 +741,9 @@
   font-size: var(--rt-fs-body);
   color: var(--ifm-color-content-secondary);
   line-height: var(--rt-lh-body);
-  margin-bottom: 1.5rem;
+  /* Figma: 16px between the description and the checklist card, same as the
+     two gaps above it — not 24px. */
+  margin-bottom: 1rem;
 }
 
 .benefitList {
@@ -709,38 +755,49 @@
 .benefitItem {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
-  margin-bottom: 0.6rem;
+  /* Figma: each row is a 32px box — 4px padding, a 24px icon, 4px padding —
+     stacked with no gap between them, and 6px between icon and label. Using
+     padding rather than a bottom margin keeps the first and last rows' 4px,
+     which is what makes the card 176px tall rather than 168px. */
+  gap: 6px;
+  padding: 4px 0;
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-body);
   color: var(--ifm-color-content);
   line-height: var(--rt-lh-body);
 }
 
-.benefitItem:last-child {
-  margin-bottom: 0;
-}
-
 .benefitCheck {
   color: var(--ifm-color-primary);
   flex-shrink: 0;
-  margin-top: 0.15rem;
-  width: 1.25rem;
-  height: 1.25rem;
+  /* Figma's lucide/check sits in a 24px box whose top edge lines up with the
+     top of the label, so no optical nudge. */
+  width: 1.5rem;
+  height: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Feature visual — stretched to match the text column's height (see
-   .featureRow's align-items: stretch) instead of sizing to the image's
-   own aspect ratio, so neither column looks taller than the other. */
+/* Feature visual — stretched to the row height so the image frame and the
+   text block end on the same line, as they do in Figma.
+   A fixed aspect-ratio cannot do this on the web. Figma only specifies the
+   1920px case, where a 620x360 frame happens to land within ~20px of the text
+   column. Below the rail's 1480px cap the two diverge fast and in opposite
+   directions: the image column narrows so a ratio-locked frame gets shorter
+   (360px -> 240px by 1100px viewport), while the text column narrows so its
+   copy wraps onto more lines and gets taller. At a 1280px viewport that is a
+   ~290px image against a ~425px text block. Letting the cell height win keeps
+   them aligned at every width. */
 .featureVisual {
   display: flex;
 }
 
 .imageWrap {
   width: 100%;
+  /* No aspect-ratio here — the stacked breakpoints set their own (there is no
+     sibling column to match once the row is one column), but on desktop the
+     height comes from .featureVisual stretching to the row. */
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
@@ -758,10 +815,12 @@
   width: 100%;
   height: 100%;
   display: block;
-  /* contain, not cover — these are UI screenshots with text in them;
-     cover crops wide/short screenshots down to a center sliver and cuts
-     off content. imageWrap's own background letterboxes the gap. */
-  object-fit: contain;
+  /* cover, so the screenshot fills the frame the way Figma shows it. contain
+     was the old pairing with a stretched box and it letterboxed: at a 1280px
+     viewport the frame is ~500x425 while the image is 1.722:1, which put ~67px
+     of .imageWrap's grey background above and below. The cost is that cover
+     trims the sides instead — see the note on .featureVisual. */
+  object-fit: cover;
 }
 
 .iconsGrid {
@@ -796,17 +855,59 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 900px) {
-  .featureRow {
+/* Two columns only where Figma's proportions actually hold.
+   At 1528px and up the rail is capped at 1480, so the columns freeze at
+   668/620 and the row matches the artboard. Below that the two sides move in
+   opposite directions: the image column narrows, so a ratio-locked frame gets
+   shorter, while the text column narrows, so its copy wraps onto more lines
+   and gets taller. Because .featureVisual stretches to keep the two aligned,
+   object-fit: cover has to trim more and more of the screenshot to fill the
+   gap. Measured on the built page at row 1: ~3% per side at 1440, where
+   everything stays legible, against ~13% at 1280, which cuts the RaiseTalks
+   logo and the "22 sections · 143 fields" chip mid-word.
+   So the row stacks below 1400 instead, and the image gets its own 620x360
+   ratio back — full width, nothing cropped, no sibling to match heights with.
+   The ≤900px block below then takes over with Figma's tablet frame. */
+@media (max-width: 1400px) {
+  .featureRow,
+  .featureRowReverse {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 3rem 0 2rem;
   }
 
   /* Text stays first regardless of the alternating order, once stacked. */
   .featureRowReverse .featureText,
   .featureRowReverse .featureVisual {
     order: initial;
+  }
+
+  .imageWrap {
+    aspect-ratio: 620 / 360;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Figma tablet (node 1500-920): the row's whole 48px inset comes from the
+     rail box, and the stacked text/image gap is 32px. Overriding padding-block
+     on the rail — rather than adding padding to .featureRow — is what stops
+     the two from stacking the way they did on desktop.
+     padding-inline is left to .sectionInner, which now supplies Figma's 48px
+     from 768px up; this rule only adds the vertical half, and carries the
+     tablet value down through the 640-767px band where .sectionInner's own
+     padding is still 2rem. */
+  .featureRowInner {
+    padding-block: 3rem;
+  }
+
+  .featureRow {
+    gap: 2rem;
+    padding: 0;
+  }
+
+  /* Figma tablet (node 1500-947): the image frame is 576x370 — taller in
+     proportion than desktop's 620x360, while carrying the same 1860x1080
+     screenshot. */
+  .imageWrap {
+    aspect-ratio: 576 / 370;
   }
 }
 
@@ -1216,16 +1317,19 @@
   border-right: 0.5px solid #16315A;
   background: url('/img/backgrounds/main-cta-desktop.webp') center/cover no-repeat;
 }
+/* Same mobile rail as .sectionInner — see the note on that rule. */
 @media (max-width: 640px) {
   .ctaImageBox {
-    max-width: calc(100% - 16px) !important;
+    max-width: calc(100% - 24px) !important;
     margin-inline: auto;
   }
 }
 /* min() guards the flush-at-exact-breakpoint case, same as .sectionInner/
    .gridLineSpacer above. */
 @media (min-width: 640px) { .ctaImageBox { max-width: min(640px, calc(100% - 48px)); } }
-@media (min-width: 768px) { .ctaImageBox { max-width: min(768px, calc(100% - 48px)); } }
+/* Tracks .sectionInner's ladder above so the CTA box lines up with the rail
+   running down the rest of the page. */
+@media (min-width: 768px) { .ctaImageBox { max-width: calc(100% - 96px); } }
 @media (min-width: 1024px) { .ctaImageBox { max-width: min(1480px, calc(100% - 48px)); } }
 
 /* Dedicated tablet/mobile background exports already exist in
@@ -1415,7 +1519,12 @@
     white-space: nowrap;
   }
 
-  .featureRow { gap: 2rem; padding: 2.5rem 0 1.5rem; }
+  /* Figma mobile (node 1975-55): 32px rail inset top and bottom, and 32px
+     between the text block and the image. */
+  .featureRowInner { padding-block: 2rem; }
+  .featureRow { gap: 2rem; padding: 0; }
+  /* Figma mobile (node 1975-82): 298x180 image frame. */
+  .imageWrap { aspect-ratio: 298 / 180; }
   .pillarCard { padding: 1.75rem 1.5rem; }
   .characterCard { padding: 1.5rem; }
 }
