@@ -907,3 +907,9 @@
     padding: 2rem 1.25rem !important;
   }
 }
+
+/* The benefit icons move from a 22px glyph in a 52px box to Figma's icon
+   rules (node 3488-7675). The box stays as the centring container. */
+.iconWrapImg { width: 42px; height: 42px; }
+@media (max-width: 1024px) { .iconWrapImg { width: 36px; height: 36px; } }
+@media (max-width: 768px) { .iconWrapImg { width: 32px; height: 32px; } }

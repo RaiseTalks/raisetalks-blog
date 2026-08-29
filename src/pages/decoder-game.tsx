@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import styles from './decoder-game.module.css';
 import CheckmarkIcon from '@site/src/components/CheckmarkIcon';
+import LucideIcon from '@site/src/components/LucideIcon';
 import PhotoCarousel from '@site/src/components/PhotoCarousel';
 
 
@@ -404,28 +405,28 @@ export default function decoderGame () {
             </div>
             <div className="flex-1 min-w-0 grid grid-cols-1 sm:grid-cols-2">
                 <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-b border-r border-b-[#E0E5EB] border-r-[#E0E5EB] border-solid bg-[#F7F7F7]">
-                    <img src="/img/decoder-game/icons/lightbulb.svg" alt="" width={48} height={48} className="shrink-0" />
+                    <LucideIcon name="lightbulb" className={`shrink-0 ${styles.lucideIcon}`} />
                     <div className="flex flex-col gap-[4px] font-[Poppins]">
                         <p className="rt-h4">A curated Room</p>
                         <p className="rt-body text-[#333333]">Direct visibility with founders, investors, and operators who showed up to trade real questions for real answers.</p>
                     </div>
                 </div>
                 <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-b border-b-[#E0E5EB] border-solid bg-[#F7F7F7]">
-                    <img src="/img/decoder-game/icons/star-check.svg" alt="" width={48} height={48} className="shrink-0" />
+                    <LucideIcon name="star-check" className={`shrink-0 ${styles.lucideIcon}`} />
                     <div className="flex flex-col gap-[4px] font-[Poppins]">
                         <p className="rt-h4">A proprietary dataset</p>
                         <p className="rt-body text-[#333333]">Every night's votes become a ranked map of the market's live pains - yours to use for content and positioning.</p>
                     </div>
                 </div>
                 <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-r border-r-[#E0E5EB] border-solid">
-                    <img src="/img/decoder-game/icons/camera.svg" alt="" width={48} height={48} className="shrink-0" />
+                    <LucideIcon name="camera" className={`shrink-0 ${styles.lucideIcon}`} />
                     <div className="flex flex-col gap-[4px] font-[Poppins]">
                         <p className="rt-h4">Ready-made content</p>
                         <p className="rt-body text-[#333333]">Photo, video and quote assets from a high-energy, visually distinct format  - built for social.</p>
                     </div>
                 </div>
                 <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] bg-[#F7F7F7]">
-                    <img src="/img/decoder-game/icons/file-check.svg" alt="" width={48} height={48} className="shrink-0" />
+                    <LucideIcon name="file-check-corner" className={`shrink-0 ${styles.lucideIcon}`} />
                     <div className="flex flex-col gap-[4px] font-[Poppins]">
                         <p className="rt-h4">A proven format</p>
                         <p className="rt-body text-[#333333]">Already run in Dubai, with strong reviews from founders and investors in the room.</p>

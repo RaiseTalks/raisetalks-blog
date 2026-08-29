@@ -147,3 +147,10 @@
   background: var(--rail-color, rgba(15, 23, 42, 0.1));
   pointer-events: none;
 }
+
+/* Figma's icon rules (node 3488-7675): 42px desktop / 36px tablet / 32px
+   mobile. These cards previously used the page's own 48px gradient exports;
+   the artboard samples flat #0077FF, matching the delivered set. */
+.lucideIcon { width: 42px; height: 42px; }
+@media (max-width: 1024px) { .lucideIcon { width: 36px; height: 36px; } }
+@media (max-width: 768px) { .lucideIcon { width: 32px; height: 32px; } }

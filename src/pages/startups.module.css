@@ -1528,3 +1528,9 @@
   .pillarCard { padding: 1.75rem 1.5rem; }
   .characterCard { padding: 1.5rem; }
 }
+
+/* Perk icons follow Figma's icon rules (node 3488-7675) rather than
+   .perkIcon's old 33x36 box, which predates the delivered set. */
+.perkIconImg { width: 42px; height: 42px; }
+@media (max-width: 1024px) { .perkIconImg { width: 36px; height: 36px; } }
+@media (max-width: 768px) { .perkIconImg { width: 32px; height: 32px; } }

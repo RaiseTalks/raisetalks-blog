@@ -651,14 +651,16 @@
   transform: translateY(calc(var(--card-rest-y) - 3px));
   box-shadow: 0 14px 34px rgba(15, 23, 42, 0.09);
 }
+/* Figma's icon rules (node 3488-7675): 42px desktop / 36px tablet / 32px
+   mobile. These were a flat 2.25rem. The stroke is baked into each export, so
+   LucideIcon swaps the file per breakpoint; the old `color` and the descendant
+   svg rule are gone because these are <img> now, not inline SVG. */
 .cardIcon {
-  display: inline-flex;
-  width: 2.25rem;
-  height: 2.25rem;
-  color: var(--raisetalks-blue-primary-flat);
+  display: block;
+  width: 42px;
+  height: 42px;
   margin-bottom: 0.9rem;
 }
-.cardIcon svg { width: 100%; height: 100%; }
 .cardTitle {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-h4);
@@ -878,14 +880,13 @@
   border-bottom: 1px solid rgba(15, 23, 42, 0.1);
 }
 .ddRow:last-child { border-bottom: none; }
+/* Same icon rules as .cardIcon above; was a flat 2.5rem. */
 .ddIcon {
-  display: inline-flex;
-  width: 2.5rem;
-  height: 2.5rem;
+  display: block;
+  width: 42px;
+  height: 42px;
   flex-shrink: 0;
-  color: var(--raisetalks-blue-primary-flat);
 }
-.ddIcon svg { width: 100%; height: 100%; }
 .ddRowTitle {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-h4);
@@ -1213,4 +1214,15 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
   color: #fff !important;
+}
+
+/* Icon sizes step down with the breakpoints in Figma's icon rules sheet. */
+@media (max-width: 1024px) {
+  .cardIcon,
+  .ddIcon { width: 36px; height: 36px; }
+}
+
+@media (max-width: 768px) {
+  .cardIcon,
+  .ddIcon { width: 32px; height: 32px; }
 }
