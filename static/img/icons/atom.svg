@@ -1,9 +1,0 @@
-<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="lucide/atom">
-<g id="Vector">
-<path d="M15.994 16.8866C16.7304 16.8866 17.3273 16.2896 17.3273 15.5532C17.3273 14.8169 16.7304 14.2199 15.994 14.2199C15.2576 14.2199 14.6607 14.8169 14.6607 15.5532C14.6607 16.2896 15.2576 16.8866 15.994 16.8866Z" stroke="var(--stroke-0, #0077FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M26.9273 26.4866C29.6473 23.7799 26.954 16.6732 20.9273 10.6199C14.874 4.59323 7.76732 1.8999 5.06066 4.6199C2.34066 7.32657 5.03399 14.4332 11.0607 20.4866C17.114 26.5132 24.2207 29.2066 26.9273 26.4866Z" stroke="var(--stroke-0, #0077FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.9273 20.4866C26.954 14.4332 29.6473 7.32657 26.9273 4.6199C24.2207 1.8999 17.114 4.59323 11.0607 10.6199C5.03399 16.6732 2.34066 23.7799 5.06066 26.4866C7.76732 29.2066 14.874 26.5132 20.9273 20.4866Z" stroke="var(--stroke-0, #0077FF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-</svg>

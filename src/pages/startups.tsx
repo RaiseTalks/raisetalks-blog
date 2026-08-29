@@ -74,11 +74,13 @@ function AnimSection({ children, className = '' }: { children: React.ReactNode; 
   return <div ref={ref} className={clsx(styles.animSection, className)}>{children}</div>;
 }
 
-// Checkmark icon
+// Checkmark icon — the design-supplied asset rather than a redrawn copy, so
+// updates land by replacing the file. The inline version this replaced used a
+// 24x20 viewBox at stroke-width 3.4, which rendered a 23px mark with a 3.4px
+// stroke: far heavier than Figma's lucide/check (a 16px mark at stroke 2) and
+// visibly bolder than the same green tick elsewhere on the site.
 const CheckmarkIcon = () => (
-  <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M24 1.69922L8.1875 17.6992L1 10.4265" stroke="#189B71" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
+  <img src="/img/icons/checkmark-icon.svg" alt="" aria-hidden="true" width={16} height={16} />
 );
 
 // Benefits list

@@ -10,58 +10,16 @@ import PhotoCarousel from "@site/src/components/PhotoCarousel";
 
 import styles from "./about-us.module.css";
 
-// Icon components
-
-const NoDataRoomIcon = ({ className }: { className?: string }) => (
-   <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g filter="url(#filter0_i_1430_739)">
-         <rect width="64" height="64" rx="12" fill="#FAFAFA" />
-         <rect x="0.5" y="0.5" width="63" height="63" rx="11.5" stroke="#DAE0E7" />
-         <path d="M30.1184 21.7688C31.0955 20.0018 32.6386 18.6147 34.4994 17.8308C36.3602 17.0469 38.4307 16.9116 40.3777 17.4468C41.0345 17.6268 41.1875 18.4396 40.7061 18.9225L36.0466 23.5789C35.7718 23.8592 35.6179 24.2361 35.6179 24.6287C35.6179 25.0212 35.7718 25.3981 36.0466 25.6784L38.4461 28.0779C38.7264 28.3527 39.1033 28.5066 39.4959 28.5066C39.8884 28.5066 40.2653 28.3527 40.5456 28.0779L45.2036 23.4214C45.6835 22.9386 46.4979 23.0915 46.6778 23.7484C47.2134 25.6956 47.0783 27.7663 46.2944 29.6274C45.5104 31.4886 44.1231 33.0319 42.3558 34.009M34.247 34.3765L22.4295 46.1938C21.8329 46.7902 21.0238 47.1251 20.1802 47.125C19.3366 47.1249 18.5277 46.7896 17.9313 46.193C17.3348 45.5964 16.9999 44.7873 17 43.9437C17.0001 43.1002 17.3354 42.2912 17.932 41.6948L29.7495 29.8775M17.0007 17.1304L46.9943 47.1235" stroke="#999999" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-      </g>
-      <defs>
-         <filter id="filter0_i_1430_739" x="0" y="0" width="64" height="68" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-            <feOffset dy="4" />
-            <feGaussianBlur stdDeviation="2" />
-            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1430_739" />
-         </filter>
-      </defs>
-   </svg>
-);
-
-const NoPitchCoachIcon = ({ className }: { className?: string }) => (
-   <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g filter="url(#filter0_i_1430_744)">
-         <rect width="64" height="64" rx="12" fill="#FAFAFA" />
-         <rect x="0.5" y="0.5" width="63" height="63" rx="11.5" stroke="#DAE0E7" />
-         <path d="M27.9667 26.1884L16.8579 40.9034C16.5965 41.2496 16.4715 41.675 16.5055 42.1027C16.5395 42.5305 16.7302 42.9323 17.0432 43.2355L18.5574 44.7052C18.8749 45.0128 19.2968 45.1981 19.7447 45.2269C20.1926 45.2556 20.636 45.1258 20.9927 44.8616L35.5468 34.0921M38.16 50.5751C36.3067 49.3641 34.2161 48.4658 31.6734 48.4658C27.8592 48.4658 24.3935 52.6988 20.5534 52.0592C16.7133 51.4196 15.4104 46.0061 17.7734 43.974M46.5 25.1085C46.5 30.07 42.3512 34.0921 37.2334 34.0921C32.1155 34.0921 27.9667 30.07 27.9667 25.1085C27.9667 20.1471 32.1155 16.125 37.2334 16.125C42.3512 16.125 46.5 20.1471 46.5 25.1085Z" stroke="#999999" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-         <line x1="42.7702" y1="42.93" x2="18.7702" y2="19.93" stroke="#FAFAFA" strokeWidth="5" />
-         <line x1="18.0906" y1="22.0912" x2="40.4662" y2="43.5344" stroke="#999999" strokeWidth="2.25" strokeLinecap="round" />
-      </g>
-      <defs>
-         <filter id="filter0_i_1430_744" x="0" y="0" width="64" height="68" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-            <feOffset dy="4" />
-            <feGaussianBlur stdDeviation="2" />
-            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1430_744" />
-         </filter>
-      </defs>
-   </svg>
-);
-
 export default function AboutUs() {
    const goalCardBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
    const visionTimelineImg = useBaseUrl('/img/about-us/vision-timeline.svg');
    const visionTimelineMobileImg = useBaseUrl('/img/about-us/vision-timeline-mobile.svg');
+   // Design-supplied replacements for the inline 64x64 icons that used to live
+   // above: same two marks (crossed-out wrench, crossed-out microphone), redrawn
+   // at 48x48 on a white card with a lighter #E6EAEF hairline. Rendered at 40px
+   // by .visionCompareIcon either way.
+   const noDataRoomIcon = useBaseUrl('/img/icons/not-a-tool.svg');
+   const noPitchCoachIcon = useBaseUrl('/img/icons/not-a-coach.svg');
    return (
       <Layout
          title="About Us | RaiseTalks"
@@ -185,11 +143,11 @@ export default function AboutUs() {
 
                      <div className={styles.visionCompareRow}>
                         <div className={styles.visionCompareItem}>
-                           <NoDataRoomIcon className={styles.visionCompareIcon} />
+                           <img src={noDataRoomIcon} alt="" aria-hidden="true" className={styles.visionCompareIcon} />
                            <p className={styles.visionCompareText}>Not just a data room tool.</p>
                         </div>
                         <div className={styles.visionCompareItem}>
-                           <NoPitchCoachIcon className={styles.visionCompareIcon} />
+                           <img src={noPitchCoachIcon} alt="" aria-hidden="true" className={styles.visionCompareIcon} />
                            <p className={styles.visionCompareText}>Not just a pitch coach.</p>
                         </div>
                      </div>

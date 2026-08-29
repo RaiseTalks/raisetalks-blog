@@ -1001,9 +1001,13 @@
   }
 }
 
+/* 48px, the size the icon spec sheet (node 3488-7675) draws not-a-tool and
+   not-a-coach at, and the SVGs' own canvas — they were rendering at 40px.
+   Unlike the lucide set on that sheet, these two ship as a single fixed size
+   with no desktop/tablet/mobile variants, so this holds at every breakpoint. */
 .visionCompareIcon {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   color: #939393;
 }

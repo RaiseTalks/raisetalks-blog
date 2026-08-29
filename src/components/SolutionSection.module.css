@@ -79,9 +79,32 @@
    gap: 0.75rem;
 }
 
+/* Figma's icon spec sheet (node 3488-7675, "Icon Rules"): 42px desktop /
+   36px tablet / 32px mobile, stroke 3px desktop / 2.5px tablet and mobile.
+   These were a flat 32px — the mobile size, on every screen.
+   Breakpoints match .narrativePanel's own background swaps above.
+   On stroke: Figma ships each lucide icon as three exports with the width
+   baked in. Only stethoscope is on that sheet, so it uses the real 42px
+   export; the other three are retuned to render 3px at 42px. Since one file
+   scales with its box, tablet lands at 2.57px and mobile at 2.29px against a
+   2.5px spec — sub-pixel, and the alternative is three files per icon. */
 .narrativeItemIcon {
-   width: 32px;
-   height: 32px;
+   width: 42px;
+   height: 42px;
+}
+
+@media (max-width: 1024px) {
+   .narrativeItemIcon {
+      width: 36px;
+      height: 36px;
+   }
+}
+
+@media (max-width: 768px) {
+   .narrativeItemIcon {
+      width: 32px;
+      height: 32px;
+   }
 }
 
 .narrativeItemTitle {
@@ -285,11 +308,28 @@
    text-align: left;
 }
 
+/* Figma's icon rules (node 3488-7675): 42px desktop / 36px tablet / 32px
+   mobile. Was 3rem dropping to 2rem at 480px, which hit neither. The stroke
+   comes baked into each variant, so the <picture> in SolutionSection.tsx
+   swaps the file rather than scaling one. */
 .featureIcon {
-   height: 3rem;
-   width: 3rem;
-   color: var(--raisetalks-blue-primary-flat);
+   height: 42px;
+   width: 42px;
    flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+   .featureIcon {
+      height: 36px;
+      width: 36px;
+   }
+}
+
+@media (max-width: 768px) {
+   .featureIcon {
+      height: 32px;
+      width: 32px;
+   }
 }
 
 .featureDesc {
@@ -763,11 +803,6 @@
       flex-direction: row;
       padding: 1rem 0;
       gap: 1rem;
-   }
-
-   .featureIcon {
-      height: 2rem;
-      width: 2rem;
    }
 
    .videoSection {
