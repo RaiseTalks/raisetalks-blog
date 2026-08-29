@@ -19,7 +19,12 @@
 }
 @media (max-width: 640px) {
   .faqRail {
-    max-width: calc(100% - 16px) !important;
+    /* 24px, matching .sectionInner and the other rails on the startups page,
+       which is the only page using this component. The 1024px cap above is
+       what makes this section narrower on desktop; on mobile the cap never
+       engages, so the old 16px simply made the FAQ 4px wider than every other
+       section and put a visible step in the rail where it starts. */
+    max-width: calc(100% - 24px) !important;
     margin-inline: auto;
   }
 }
