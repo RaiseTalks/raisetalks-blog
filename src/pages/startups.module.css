@@ -886,6 +886,16 @@
     order: initial;
   }
 
+  /* 620/360 — the screenshots' own 1860x1080 ratio — at every stacked width.
+     Figma's tablet and mobile frames are 576x370 and 298x180, proportionally
+     taller, which would make object-fit: cover trim about 10% off the width at
+     tablet and 4% at mobile. Those two frames are empty placeholders in an
+     older revision of the artboards, carrying no image and the pre-update
+     copy, so they were not sized against these screenshots. The trim also cost
+     real content: each screenshot is composed with its own blue border and
+     rounded corners, and cropping to the taller frame cut that framing off, so
+     the mockup ran flush to the container edge and read as a cropped capture
+     rather than a designed image. */
   .imageWrap {
     aspect-ratio: 620 / 360;
   }
@@ -907,13 +917,6 @@
   .featureRow {
     gap: 2rem;
     padding: 0;
-  }
-
-  /* Figma tablet (node 1500-947): the image frame is 576x370 — taller in
-     proportion than desktop's 620x360, while carrying the same 1860x1080
-     screenshot. */
-  .imageWrap {
-    aspect-ratio: 576 / 370;
   }
 }
 
@@ -1529,8 +1532,6 @@
      between the text block and the image. */
   .featureRowInner { padding-block: 2rem; }
   .featureRow { gap: 2rem; padding: 0; }
-  /* Figma mobile (node 1975-82): 298x180 image frame. */
-  .imageWrap { aspect-ratio: 298 / 180; }
   .pillarCard { padding: 1.75rem 1.5rem; }
   .characterCard { padding: 1.5rem; }
 }
