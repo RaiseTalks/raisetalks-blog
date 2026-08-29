@@ -166,7 +166,13 @@
 }
 @media (max-width: 640px) {
   .narrowRailWrap {
-    max-width: calc(100% - 16px) !important;
+    /* 24px, matching .sectionInner/.gridLineSpacer/.ctaImageBox. This was
+       left on the old 16px when the others moved to Figma's 12px mobile
+       margin, which put a visible step in the rail where this section
+       starts. Figma cannot arbitrate it directly — the CTA is a flattened
+       image on the mobile artboard with no text layers — but the rail has
+       to be one continuous line. */
+    max-width: calc(100% - 24px) !important;
     margin-inline: auto;
   }
 }
@@ -1534,3 +1540,21 @@
 .perkIconImg { width: 42px; height: 42px; }
 @media (max-width: 1024px) { .perkIconImg { width: 36px; height: 36px; } }
 @media (max-width: 768px) { .perkIconImg { width: 32px; height: 32px; } }
+
+/* Figma runs three sections full-bleed on mobile while the rest of the page
+   stays on the 12px rail: the character strip (node 1979-199), Founder Perks
+   (1984-277) and the FAQ (1984-359) all sit at x=0 across the full 370px
+   artboard, each verified against a railed control on the same board
+   (1975-48, the features header, at x=12 w=346).
+   Full-bleed here means no rail box and no 12px margin — the content keeps
+   its 24px inset, which .sectionInner's own padding already provides, so a
+   railed section's content sits 36px from the screen edge and these sit 24px.
+   The FAQ has its own rail; see FAQSection.module.css. */
+@media (max-width: 640px) {
+  .characterSection .sectionInner,
+  .perksSection .sectionInner {
+    max-width: 100% !important;
+    border-left: none;
+    border-right: none;
+  }
+}

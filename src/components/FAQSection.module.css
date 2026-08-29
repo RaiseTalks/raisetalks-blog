@@ -183,3 +183,18 @@
     margin: 0.75rem 0 1.5rem;
   }
 }
+/* Figma mobile (node 1984-359): the FAQ runs full-bleed, unlike most of the
+   page. Dropping the rail would leave .faqQuestion's 20px padding as the only
+   gutter, so it goes to 24px here to land on the inset Figma actually draws
+   (content at x=24 in a 370px artboard). */
+@media (max-width: 640px) {
+  .faqRail {
+    max-width: 100% !important;
+    border-left: none;
+    border-right: none;
+  }
+
+  .faqQuestion {
+    padding-inline: 1.5rem;
+  }
+}
