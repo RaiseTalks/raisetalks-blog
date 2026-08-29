@@ -1549,7 +1549,14 @@
    Full-bleed here means no rail box and no 12px margin — the content keeps
    its 24px inset, which .sectionInner's own padding already provides, so a
    railed section's content sits 36px from the screen edge and these sit 24px.
-   The FAQ has its own rail; see FAQSection.module.css. */
+
+   Not every section shares one rail width. A few deliberately sit on a
+   narrower one — the FAQ and the "Your Next Investor Meeting" CTA are on a
+   1024px rail on the desktop artboard where the content sections are on
+   1480px (rail x=448 against x=220 on node 1316-2864), which is why
+   .faqRail and .narrowRailWrap carry their own min(1024px, ...) rather than
+   using .sectionInner. Those keep their rail at every breakpoint; only the
+   two sections below go edge to edge. */
 @media (max-width: 640px) {
   .characterSection .sectionInner,
   .perksSection .sectionInner {
