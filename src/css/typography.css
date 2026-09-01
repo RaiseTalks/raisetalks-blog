@@ -37,6 +37,10 @@
   /* Line heights */
   --rt-lh-hero: 1.1;
   --rt-lh-h1: 1.2;
+  /* H1 Alt (Georgia italic) doesn't get the mobile 1.1 tightening that H1
+     gets below — it stays 1.2 at every breakpoint per Figma, so it's a
+     separate token rather than reusing --rt-lh-h1. */
+  --rt-lh-h1-alt: 1.2;
   --rt-lh-h2: 1.25;
   --rt-lh-h3: 1.3;
   --rt-lh-h4: 1.35;
@@ -151,7 +155,7 @@
   font-style: italic;
   font-weight: var(--rt-weight-regular);
   font-size: var(--rt-fs-h1-alt);
-  line-height: var(--rt-lh-h1);
+  line-height: var(--rt-lh-h1-alt);
 }
 
 /* H2 */

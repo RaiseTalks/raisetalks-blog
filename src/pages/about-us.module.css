@@ -67,6 +67,9 @@
   padding: 6rem 1rem 4rem;
 }
 
+/* Unlike the homepage's "AI NATIVE" badge (a bordered pill frame), Figma's
+   "We Are" eyebrow (node 1285:947) is plain text with no border, background,
+   or padding box at all — just the shared Eyebrow type style. */
 .heroEyebrow {
   display: inline-block;
   font-family: var(--rt-font-sans);
@@ -76,17 +79,15 @@
   letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
-  margin-bottom: 1.25rem;
-  padding: 0.3rem 1rem;
+  margin-bottom: 1rem;
 }
 
 .heroTitle {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-hero);
-  line-height: var(--rt-lh-hero);
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
+  font-size: var(--rt-fs-h1);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1);
+  margin-bottom: 2.25rem;
   color: var(--ifm-color-content);
 }
 /* .heroInner caps out at 960px, but the rail (--rail-half) keeps growing
@@ -99,17 +100,20 @@
 @media (min-width: 1536px) { .heroTitle { margin-left: -288px; margin-right: -288px; } }
 
 .heroAccent {
-  background: var(--raisetalks-brand-gradient);
+  background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-style:italic;
   font-family: Georgia, serif;
+  font-size: var(--rt-fs-h1-alt);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1-alt);
 }
 
 .heroActions {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 1.25rem;
@@ -1325,16 +1329,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.75rem;
-  background: var(--raisetalks-brand-gradient);
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
   color: #fff !important;
-  border-radius: 10px;
-  font-weight: 700;
+  border-radius: 8px;
+  font-weight: 400;
   font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid #003687;
-  border-bottom-width: 3px;
+  border: none;
+  border-bottom: 3px solid #003687;
 }
 
 .btnPrimary:hover {
@@ -1356,6 +1361,7 @@
   color: #000 !important;
   font-weight: 400;
   font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

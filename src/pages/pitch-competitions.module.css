@@ -118,6 +118,11 @@
   
 }
 
+/* Only the homepage's "AI NATIVE" badge is a bordered pill frame in Figma;
+   other pages' eyebrows (confirmed for About Us's "We Are", node 1285:947)
+   are plain text with no border/background/padding box. This page's
+   original CSS agreed (no border) before border-pill styling was
+   mistakenly added here to match the homepage — reverted to plain text. */
 .heroEyebrow {
   display: inline-block;
   font-family: var(--rt-font-sans);
@@ -127,22 +132,24 @@
   letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
-  margin-bottom: 1.5rem;
-  padding: 0.3rem 1rem;
+  margin-bottom: 1rem;
 }
 
 .heroH1 {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-hero);
-  line-height: var(--rt-lh-hero);
-  letter-spacing: -0.02em;
-  margin: 0 0 1.5rem 0;
+  font-size: var(--rt-fs-h1);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1);
+  margin: 0 0 2.25rem 0;
   color: var(--ifm-color-content);
 }
 
+/* .heroAccent is reused outside the hero too (e.g. the "Why Join Our
+   Pitch Competitions" H2 below), so its H1-Alt size/weight/line-height
+   are scoped to the hero heading only — elsewhere it should keep
+   inheriting whatever heading level wraps it. */
 .heroAccent {
-  background: var(--raisetalks-brand-gradient);
+  background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -150,18 +157,25 @@
   font-family: var(--rt-font-serif);
 }
 
+.heroH1 .heroAccent {
+  font-size: var(--rt-fs-h1-alt);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1-alt);
+}
+
 .heroDesc {
   font-family: var(--rt-font-sans);
-  font-size: 1.25rem; /* 20px */
-  color: var(--ifm-color-content-secondary);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-body);
+  color: #333333;
   line-height: var(--rt-lh-body);
-  max-width: 640px;
-  margin: 0 auto 2.5rem;
+  max-width: 360px;
+  margin: 0 auto 2.25rem;
 }
 
 .heroActions {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -170,16 +184,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.75rem;
-  background: var(--raisetalks-brand-gradient);
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
   color: #fff !important;
-  border-radius: 10px;
-  font-weight: 700;
+  border-radius: 8px;
+  font-weight: 400;
   font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid #003687;
-  border-bottom-width: 3px;
+  border: none;
+  border-bottom: 3px solid #003687;
 }
 
 .btnPrimary:hover {
@@ -201,6 +216,7 @@
   color: #000 !important;
   font-weight: 400;
   font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
