@@ -1105,7 +1105,13 @@
   flex-direction: column;
   align-items: flex-start;
   flex: 0 0 330px;
-  gap: 2rem;
+  /* 36px, matching the gap between the heading block and button in node
+     1347:5204. */
+  gap: 2.25rem;
+  /* Node 1347:5204 has its own 64px top/bottom padding on top of the
+     section's own 64px inset — the left column sits 64px lower than the
+     grid's first row, not flush with it. */
+  padding: 4rem 0;
   margin-bottom: 3rem;
 }
 
@@ -1121,7 +1127,10 @@
 @media (max-width: 1024px) {
   .perksOuterRow {
     flex-direction: column;
-    gap: 2.5rem;
+    /* 48px, matching the gap between the header row and grid in Figma's
+       tablet frame (node 1508:3962: header bottom at 145, grid top at
+       193). */
+    gap: 3rem;
   }
 
   /* Only at this width does Figma put the title and button on the same
@@ -1137,10 +1146,41 @@
     align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
+    /* The 64px top/bottom padding is specific to desktop's side-by-side
+       layout, where it offsets the header column against the grid's
+       height; the stacked tablet/mobile header row doesn't need it. */
+    padding: 0;
   }
 
   .perksGrid {
     flex: 0 0 auto;
+  }
+
+  /* Figma's tablet cells (node 1508:3969) drop to 24px padding, and only
+     on the outer edge — the side against the divider line has none. */
+  .perkCard {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .perkCard:nth-child(odd) {
+    padding-left: 0;
+    padding-right: 1.5rem;
+  }
+
+  .perkCard:nth-child(even) {
+    padding-left: 1.5rem;
+    padding-right: 0;
+  }
+
+  /* Website/T/Eyebrow and Website/T/H4 (node 1508:3975/3976): 14px and
+     19px, vs. 16px/20px at desktop. */
+  .perkLabel {
+    font-size: 14px;
+  }
+
+  .perkTitle {
+    font-size: 19px;
   }
 }
 
@@ -1149,13 +1189,48 @@
   min-width: 0;
 }
 
+/* Flat per-breakpoint sizes, not --rt-fs-h2 (scales 26 -> 40 -> 48px).
+   Matches the same "intro heading" scale confirmed elsewhere on the site
+   (One Workspace, Spend less time): 26px mobile, 36px tablet, 42px desktop
+   (node 1347:5206). No margin-bottom — spacing to the button below comes
+   from .perksRow1's own gap, so a margin here was doubling it up. */
 .perksTitle {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-h2);
+  font-size: 26px;
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h2);
   color: var(--ifm-color-content);
-  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .perksTitle {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .perksTitle {
+    font-size: 42px;
+  }
+}
+
+/* Same fix for the gradient accent line — .accentText is shared with other
+   headings on this page, so scope the override to this heading only.
+   Figma (node 1347:5207): 28/38/44px. */
+.perksTitle .accentText {
+  font-size: 28px;
+}
+
+@media (min-width: 768px) {
+  .perksTitle .accentText {
+    font-size: 38px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .perksTitle .accentText {
+    font-size: 44px;
+  }
 }
 
 .perksSubtitle {
@@ -1201,6 +1276,7 @@
   padding: 3rem;
   transition: background 0.2s ease;
   display: flex;
+  align-items: flex-start;
   gap: 24px
 }
 
@@ -1213,46 +1289,58 @@
   border-bottom: none;
 }
 
+/* Figma (node 1347:5223) gives the "Resources" card its own #fcfcfc fill,
+   not just the other 3 cards' transparent default. */
+.perkCard:nth-child(3) {
+  background: #fcfcfc;
+}
+
 .perkCard:hover {
   background: #FCFCFC;
 }
 
-.perkLabel {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ifm-color-primary);
-  font-family: 'Courier New', monospace;
-  margin-bottom: 0.75rem;
+.perkTextGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 0 0;
 }
 
+/* Was rendering as monospace Courier New at 10.4px; Figma's eyebrow style
+   (Website/D/Eyebrow, node 1347:5245) is Poppins Bold 16px with a 4px
+   letter-spacing. */
+.perkLabel {
+  font-family: var(--rt-font-sans);
+  font-size: 16px;
+  font-weight: var(--rt-weight-bold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+}
+
+/* Flat 20px, not --rt-fs-h4 (scales 17 -> 20 -> 22px) — same "D/H4" flat
+   value confirmed elsewhere (node 1347:5214). */
 .perkTitle {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-h4);
+  font-size: 20px;
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h4);
   color: var(--ifm-color-content);
-  margin-bottom: 0.6rem;
 }
 
 .perkDesc {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-body);
-  color: var(--ifm-color-content-secondary);
+  color: #333;
   line-height: var(--rt-lh-body);
   margin: 0;
 }
 
 .perkIcon {
-  width: 33px;
-  height: 36px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--ifm-color-primary);
   flex-shrink: 0;
-  margin-bottom: 1rem;
 }
 
 .perkIcon svg {
@@ -1291,6 +1379,12 @@
     order: 3;
   }
 
+  /* Figma's mobile frame (node 1984:276) uses a 24px gap both above and
+     below the grid, tighter than tablet's 48px. */
+  .perksOuterRow {
+    gap: 1.5rem;
+  }
+
   /* Single column now, so the 2x2 grid's right/bottom border pairing
      (nth-child based) no longer lines up with actual card position —
      card 1 and 3 kept a stray border-right, and card 3 lost its
@@ -1299,10 +1393,24 @@
   .perkCard {
     border-right: none;
     border-bottom: 1px solid var(--ifm-color-emphasis-200);
+    /* Figma (node 1984:319): 24px vertical, no horizontal inset — cards
+       run edge to edge, and the icon-to-text gap tightens to 16px. */
+    padding: 1.5rem 0;
+    gap: 16px;
   }
 
   .perkCard:last-child {
     border-bottom: none;
+  }
+
+  /* Website/M/Eyebrow and Website/M/H4 (node 1984:347/325): 13px and
+     17px. */
+  .perkLabel {
+    font-size: 13px;
+  }
+
+  .perkTitle {
+    font-size: 17px;
   }
 }
 

@@ -499,7 +499,7 @@ export default function Startups() {
               </div>
               <div className={styles.perksCta}>
                 <a className={styles.btnPrimary} href="mailto:startups@raisetalks.ai">
-                  Claim Your Perks
+                  Claim your Perks
                 </a>
               </div>
             </div>
@@ -534,10 +534,10 @@ export default function Startups() {
               ].map(({ icon, label, title, desc }) => (
                 <div key={label} className={styles.perkCard}>
                   <div className={styles.perkIcon}>{icon}</div>
-                  <div>
-                  <div className={styles.perkLabel}>{label}</div>
-                  <h3 className={styles.perkTitle}>{title}</h3>
-                  <p className={styles.perkDesc}>{desc}</p>
+                  <div className={styles.perkTextGroup}>
+                    <div className={styles.perkLabel}>{label}</div>
+                    <h3 className={styles.perkTitle}>{title}</h3>
+                    <p className={styles.perkDesc}>{desc}</p>
                   </div>
                 </div>
               ))}
