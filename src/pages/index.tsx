@@ -36,18 +36,17 @@ function HomepageHero() {
       aria-labelledby="hero-heading"
     >
       <div className={`rt-rail ${styles.heroInner}`}>
+        <div className={styles.heroEyebrow}>AI Native</div>
         <h1 id="hero-heading" className={styles.heroTitle}>
-          <span className={styles.heroAccent}>AI-native </span> <br /> 
-          Global Fundraising <br /> & Due Diligence <br />
-          <span className={styles.heroAccent}>
-          for early-stage ventures</span>
+          <span className={styles.heroTitleLine}>Global Fundraising <br /> & Due Diligence</span>
+          <span className={styles.heroAccent}>for early-stage ventures</span>
         </h1>
         <p className={styles.heroDesc}>
           Run deals, streamline due diligence, and close rounds faster — all in one place.
         </p>
         <div className={styles.heroActions}>
           <Link className={styles.btnPrimary} to="https://app.raisetalks.com/sign-up">
-            Try It Free
+            Try it Free
           </Link>
           <Link className={styles.btnSecondary} to="https://calendly.com/iamdariiava/30min">
             Book a Demo
@@ -210,51 +209,84 @@ export default function Home() {
                <span className={styles.workspaceHeadingLine2}>Zero chaos.</span>
             </h2>
 
-            <div className={styles.workspaceRow}>
-               <div className={styles.workspaceCardsCol}>
+            <div className={styles.workspaceContent}>
+               <div className={styles.workspaceCardsRow}>
                   <div className={styles.workspaceCard}>
                      <h3 className={styles.workspaceCardTitle}>From messy docs to investor-grade data</h3>
                      <p className={styles.workspaceCardDesc}>
-                        We transform raw startup inputs into structured, consistent, investor-ready materials - data room, narrative, metrics, and diligence-ready evidence - so your story and numbers match.
+                        Raw inputs in, investor-grade materials out: data room, narrative, metrics, evidence. Your story and your numbers finally match.
                      </p>
                   </div>
 
                   <div className={styles.workspaceCard}>
-                     <h3 className={styles.workspaceCardTitle}>Standardized diligence that moves deals faster</h3>
+                     <h3 className={styles.workspaceCardTitle}>Standardized diligence, faster deals</h3>
                      <p className={styles.workspaceCardDesc}>
-                        RaiseTalks aligns founders, VCs, and accelerators on one shared structure and workflow - reducing back-and-forth, version chaos, and missing information.
+                        Founders, VCs, and accelerators work in one shared structure. No back-and-forth, no version chaos, nothing missing.
                      </p>
                   </div>
 
                   <div className={styles.workspaceCard}>
                      <h3 className={styles.workspaceCardTitle}>Data rails for VC private markets</h3>
                      <p className={styles.workspaceCardDesc}>
-                        As your workspace stays current, RaiseTalks becomes a real-time intelligence layer: interest signals, readiness scoring, and decision support - so trust compounds from round to round.
+                        A workspace that stays current becomes live intelligence: interest signals, readiness scores, decision support. Trust compounds round to round.
                      </p>
                   </div>
                </div>
 
                <div className={styles.workspaceFounderCard}>
-                  <p className={styles.workspaceFounderQuote}>
-                     "RaiseTalks is an AI-native VC investment-intelligence platform for early-stage portfolios: founders get investor-grade data rooms, readiness scores, and structured IR pipelines, while funds get faster diligence, clearer IC prep, and earlier visibility into the right deals. I've spent 17 years on the investment side, closed €3B+ in deals, and reviewed 10,000+ startups, and I'm turning that investment-readiness playbook into an AI-native platform that becomes the natural end-to-end workspace for VC investments."
-                  </p>
-                  <div className={styles.workspaceFounderFooter}>
-                     <div className={styles.workspaceFounderIdentity}>
-                        <div className={styles.workspaceFounderAvatar}>
-                           <img
-                              src="/img/icons/dariia.jpg"
-                              alt="Dr. Dariia Vasylieva - President, CEO"
-                              loading="lazy"
-                           />
-                        </div>
-                        <div>
-                           <p className={styles.workspaceFounderName}>Dr. Dariia Vasylieva</p>
-                           <p className={styles.workspaceFounderRole}>President, CEO at RaiseTalks</p>
+                  <div className={styles.workspaceFounderPhoto}>
+                     <img
+                        src="/img/dariia-founder.webp"
+                        alt="Dr. Dariia Vasylieva - Founder & CEO, RaiseTalks"
+                        loading="lazy"
+                     />
+                  </div>
+                  <div className={styles.workspaceFounderPanel}>
+                     <div className={styles.workspaceFounderQuoteGroup}>
+                        <p className={styles.workspaceFounderQuote}>
+                           "Great companies lose rounds to bad preparation, not bad businesses.{' '}
+                           <strong>I spent a career fixing that by hand -  RaiseTalks does it at scale."</strong>
+                        </p>
+
+                        <div className={styles.workspaceFounderStats}>
+                           <div className={styles.workspaceFounderStat}>
+                              <p className={styles.workspaceFounderStatValue}>
+                                 €3B<span>+</span>
+                              </p>
+                              <p className={styles.workspaceFounderStatLabel}>in closed deals</p>
+                           </div>
+                           <div className={styles.workspaceFounderStat}>
+                              <p className={styles.workspaceFounderStatValue}>
+                                 10k<span>+</span>
+                              </p>
+                              <p className={styles.workspaceFounderStatLabel}>startups reviewed</p>
+                           </div>
+                           <div className={styles.workspaceFounderStat}>
+                              <p className={styles.workspaceFounderStatValue}>
+                                 17 <span>years</span>
+                              </p>
+                              <p className={styles.workspaceFounderStatLabel}>on the investment side</p>
+                           </div>
                         </div>
                      </div>
-                     <a className={styles.workspaceFounderLinkedin} href="https://www.linkedin.com/in/dvasylieva/">
-                        Let's Connect on Linkedin
-                     </a>
+
+                     <div className={styles.workspaceFounderFooter}>
+                        <div>
+                           <p className={styles.workspaceFounderName}>Dr. Dariia Vasylieva</p>
+                           <p className={styles.workspaceFounderRole}>Founder & CEO, RaiseTalks</p>
+                        </div>
+                        <a className={styles.workspaceFounderLinkedin} href="https://www.linkedin.com/in/dvasylieva/">
+                           <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                              <path
+                                 fillRule="evenodd"
+                                 clipRule="evenodd"
+                                 d="M13.6231 13.4889H11.254V9.81541C11.254 8.93943 11.2382 7.81177 10.0219 7.81177C8.78798 7.81177 8.59919 8.76619 8.59919 9.75164V13.4887H6.23012V5.93445H8.50442V6.96681H8.53626C8.76387 6.58149 9.09276 6.2645 9.48792 6.04962C9.88307 5.83473 10.3297 5.72999 10.7802 5.74655C13.1814 5.74655 13.6241 7.31037 13.6241 9.3448L13.6231 13.4889ZM3.55703 4.90184C3.28512 4.90189 3.0193 4.8221 2.79319 4.67256C2.56707 4.52302 2.39084 4.31045 2.28674 4.06174C2.18264 3.81302 2.15536 3.53932 2.20835 3.27525C2.26135 3.01118 2.39225 2.76861 2.58449 2.5782C2.77672 2.38779 3.02166 2.2581 3.28834 2.20553C3.55501 2.15295 3.83144 2.17986 4.08267 2.28285C4.3339 2.38583 4.54864 2.56027 4.69975 2.7841C4.85085 3.00793 4.93154 3.2711 4.93158 3.54034C4.93162 3.7191 4.89608 3.89612 4.82702 4.06128C4.75796 4.22645 4.65673 4.37653 4.52909 4.50296C4.40146 4.62939 4.24991 4.72968 4.08312 4.79812C3.91633 4.86656 3.73757 4.90181 3.55703 4.90184ZM4.74156 13.4889H2.37003V5.93445H4.74156V13.4889Z"
+                                 fill="currentColor"
+                              />
+                           </svg>
+                           Let's connect
+                        </a>
+                     </div>
                   </div>
                </div>
             </div>

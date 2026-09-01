@@ -179,16 +179,12 @@ export default function SolutionSection() {
                <div className={`rt-rail ${styles.investorCard}`}>
                   <div className={styles.investorInner}>
                         <div className={styles.investorImageCol}>
-                           <div className={styles.imageGlowWrap}>
-                              <div className={`${styles.imageGlow} ${styles.imageGlowInvestorOne}`} aria-hidden="true" />
-                              <div className={`${styles.imageGlow} ${styles.imageGlowInvestorTwo}`} aria-hidden="true" />
-                              <img
-                                 src="/img/investor-catalog-mockup.webp"
-                                 alt="Investor Catalog - Curated investors matched to your raise"
-                                 className={styles.startupsLayoutImage}
-                                 loading="lazy"
-                              />
-                           </div>
+                           <img
+                              src="/img/investor-catalog-mockup.webp"
+                              alt="Investor Catalog - Curated investors matched to your raise"
+                              className={styles.startupsLayoutImage}
+                              loading="lazy"
+                           />
                         </div>
                         <div className={`${styles.investorContent} ${styles.investorContentWide}`}>
                            <h3 className={styles.investorTitle}>Spend less time <br /><span className={`rt-h2-alt ${styles.investorTitleAccentAlt}`}>Searching Investors</span></h3>
@@ -212,16 +208,12 @@ export default function SolutionSection() {
                <div className={`rt-rail ${styles.investorCard}`}>
                   <div className={styles.investorInner}>
                         <div className={styles.investorImageCol}>
-                           <div className={styles.imageGlowWrap}>
-                              <div className={`${styles.imageGlow} ${styles.imageGlowStartupOne}`} aria-hidden="true" />
-                              <div className={`${styles.imageGlow} ${styles.imageGlowStartupTwo}`} aria-hidden="true" />
-                              <img
-                                 src="/img/startup-catalog-mockup.webp"
-                                 alt="Startup Catalog - Curated startups matched to your thesis"
-                                 className={styles.startupsLayoutImage}
-                                 loading="lazy"
-                              />
-                           </div>
+                           <img
+                              src="/img/startup-catalog-mockup.webp"
+                              alt="Startup Catalog - Curated startups matched to your thesis"
+                              className={styles.startupsLayoutImage}
+                              loading="lazy"
+                           />
                         </div>
                         <div className={`${styles.investorContent} ${styles.investorContentWide}`}>
                            <h3 className={styles.investorTitle}>Spend less time <br /><span className={`rt-h2-alt ${styles.investorTitleAccent}`}>Searching Startups</span></h3>

@@ -73,14 +73,10 @@
        etc.) — see the matching fix in src/css/rail.css. */
     max-width: min(1024px, calc(100% - 48px)) !important;
   }
-
-  .heroAccent {
-    font-size: 3rem;    /* 48px */
-    font-weight: var(--rt-weight-medium);
-  }
 }
 
 .heroEyebrow {
+  position: relative;
   display: inline-block;
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-eyebrow);
@@ -89,44 +85,88 @@
   letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(1, 116, 225, 0.25);
-  border-radius: 2rem;
-  padding: 0.3rem 1rem;
-  background: rgba(1, 116, 225, 0.05);
+  margin-bottom: 1rem;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 100px;
+  /* Figma gives this pill smaller padding on mobile (8px/16px) than on
+     tablet/desktop (12px/24px, both identical). */
+  padding: 0.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .heroEyebrow {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* The Figma pill border is a gradient ring: solid brand-blue near the
+   top-left corner, fading to fully transparent by the bottom-right. Plain
+   `border` above can't express a gradient, so it's a flat fallback for
+   browsers without mask-composite support; where that's supported, hide it
+   and let the pseudo-element below draw the real fading ring instead. */
+@supports (-webkit-mask-composite: xor) or (mask-composite: exclude) {
+  .heroEyebrow {
+    border-color: transparent;
+  }
+}
+
+.heroEyebrow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(163.72deg, var(--ifm-color-primary) 0%, rgba(222, 222, 222, 0.5) 30.85%, rgba(242, 242, 242, 0) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
 }
 
 .heroTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0 0 1rem 0;
+}
+
+.heroTitleLine {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-hero);
-  font-weight: var(--rt-weight-hero);
-  line-height: var(--rt-lh-hero);
-  letter-spacing: -0.02em;
-  margin: 0 0 1.5rem 0;
+  font-size: var(--rt-fs-h1);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1);
   color: var(--ifm-color-content);
 }
 
 .heroAccent {
-  background: var(--raisetalks-brand-gradient);
+  /* Figma's gradient is dragged corner-to-corner, so its raw angle changes
+     with the text box's aspect ratio at each breakpoint (23.46deg desktop,
+     19.38deg tablet, 47.1deg mobile) rather than being one fixed value —
+     `to bottom right` reproduces that adaptively instead of hardcoding one. */
+  background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-style: italic;
   font-family: Georgia, serif;
+  font-size: var(--rt-fs-h1-alt);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1-alt);
 }
 
 .heroDesc {
   font-family: var(--rt-font-sans);
-  font-size: 1.25rem; /* 20px */
-  color: var(--ifm-color-content-secondary);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-body);
+  color: #333333;
   line-height: var(--rt-lh-body);
-  max-width: 640px;
-  margin: 0 auto 2.5rem;
+  max-width: 360px;
+  margin: 0 auto 2.25rem;
 }
 
 .heroActions {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -135,16 +175,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.75rem;
-  background: var(--raisetalks-brand-gradient);
+  padding: 0.75rem 1rem;
+  /* Same corner-to-corner gradient as .heroAccent above — Figma shows a
+     different raw angle here (60.56deg) than the heading's, because the
+     button's box has a different aspect ratio; `to bottom right` adapts
+     to both instead of hardcoding either. */
+  background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
   color: #fff !important;
-  border-radius: 10px;
-  font-weight: 700;
+  border-radius: 8px;
+  font-weight: 400;
   font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid #003687;
-  border-bottom-width: 3px;
+  border: none;
+  border-bottom: 3px solid #003687;
 }
 
 .btnPrimary:hover {
@@ -166,6 +211,7 @@
   color: #000 !important;
   font-weight: 400;
   font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   text-decoration: none !important;
 }
 
@@ -588,31 +634,43 @@
   -webkit-text-fill-color: transparent;
 }
 
-.workspaceRow {
+.workspaceContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Figma's tablet/mobile frames (nodes 3259:1631, 3259:1790) use a 48px
+   gap here, vs. 24px on desktop (node 3257:1093). */
+@media (max-width: 900px) {
+  .workspaceContent {
+    gap: 3rem;
+  }
+}
+
+.workspaceCardsRow {
   display: flex;
   align-items: stretch;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 @media (max-width: 900px) {
-  .workspaceRow {
+  .workspaceCardsRow {
     flex-direction: column;
-  }
-  .workspaceFounderCard {
-    order: -1;
   }
 }
 
-.workspaceCardsCol {
-  flex: 1 0 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
+/* Mobile stacks all 3 cards with a tighter 12px gap (node 3259:1790),
+   vs. 24px on tablet/desktop. */
+@media (max-width: 640px) {
+  .workspaceCardsRow {
+    gap: 0.75rem;
+  }
 }
 
 .workspaceCard {
+  flex: 1 0 0;
+  min-width: 0;
   background: #f7f7f7;
   border: 1px solid #d7dde5;
   border-radius: 1rem;
@@ -626,13 +684,13 @@
 }
 
 /* Tablet: the 3 info cards form a 2-col + full-width-third grid instead of
-   a single stacked column (matches Figma tablet frame, node 2823:6767). */
+   a single stacked row. */
 @media (min-width: 641px) and (max-width: 900px) {
-  .workspaceCardsCol {
+  .workspaceCardsRow {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-  .workspaceCardsCol .workspaceCard:last-child {
+  .workspaceCardsRow .workspaceCard:last-child {
     grid-column: 1 / -1;
   }
 }
@@ -641,10 +699,12 @@
   font-family: var(--rt-font-serif);
   font-style: italic;
   font-weight: var(--rt-weight-regular);
-  font-size: var(--rt-fs-h4-alt);
+  /* 20px flat, not --rt-fs-h4-alt, which scales 20 -> 22 -> 24px. Figma's
+     card title (node 3257:1102) is 20px at every breakpoint. */
+  font-size: 1.25rem;
   line-height: var(--rt-lh-h4);
   color: #1a1a1a;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.375rem;
 }
 
 .workspaceCardDesc {
@@ -656,55 +716,117 @@
 }
 
 .workspaceFounderCard {
-  flex: 1 0 0;
-  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  background: url('/img/workspace-founder-bg.png') center / cover no-repeat, #0077ff;
+  border-radius: 1.5rem;
+  padding: 2.25rem;
+}
+
+/* The photo is absolutely positioned and the panel is a separate,
+   right-aligned block — per Figma (node 3257:1122/1123) their edges
+   cross by design instead of sitting side by side with a clean gap.
+   Exact proportions from Figma's metadata (card 1352x458, photo
+   499x428 at x:0 y:30): 36.91% wide, 93.45% tall, bottom-aligned —
+   leaving a ~6.5% gap of card background visible above the photo. */
+.workspaceFounderPhoto {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 36.91%;
+  min-width: 160px;
+  height: 93.45%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.workspaceFounderPhoto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.workspaceFounderPanel {
+  position: relative;
+  z-index: 1;
+  /* 450/1352 from Figma's metadata (card 1352 wide, panel at x:450). */
+  margin-left: 33.28%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-  background: url('/img/workspace-founder-bg.png') center / cover no-repeat, #0077ff;
-  border: 1px solid #0054d3;
-  border-bottom-width: 8px;
-  border-radius: 1rem;
-  padding: 3rem;
+  gap: 6rem;
+  background: rgba(250, 250, 250, 0.15);
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  padding: 2.25rem;
+}
+
+.workspaceFounderQuoteGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .workspaceFounderQuote {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-h4);
+  /* 20px flat, not --rt-fs-h4, which scales 17 -> 20 -> 22px. Figma's
+     quote (node 3257:1126) is 20px at every breakpoint. */
+  font-size: 1.25rem;
   line-height: var(--rt-lh-h4);
   color: white;
   margin: 0;
 }
 
+.workspaceFounderQuote strong {
+  font-weight: var(--rt-weight-semibold);
+}
+
+.workspaceFounderStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.workspaceFounderStat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.workspaceFounderStatValue {
+  font-family: var(--rt-font-sans);
+  font-size: 1.875rem;
+  line-height: 1.3;
+  color: white;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.workspaceFounderStatValue span {
+  /* 20px flat, not --rt-fs-h4-alt, which scales 20 -> 22 -> 24px. Figma's
+     stat suffix (node 3257:1129) is 20px at every breakpoint. */
+  font-size: 1.25rem;
+  color: #f0f0f0;
+}
+
+.workspaceFounderStatLabel {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: #f0f0f0;
+  margin: 0;
+  white-space: nowrap;
+}
+
 .workspaceFounderFooter {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-}
-
-.workspaceFounderIdentity {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  min-width: 0;
-  flex: 1 1 auto;
-}
-
-.workspaceFounderAvatar {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.workspaceFounderAvatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .workspaceFounderName {
@@ -721,7 +843,7 @@
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-footnote);
   line-height: var(--rt-lh-footnote);
-  color: #e6e6e6;
+  color: #f2f2f2;
   margin: 0.15rem 0 0;
   white-space: nowrap;
 }
@@ -729,23 +851,125 @@
 .workspaceFounderLinkedin {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1rem;
-  border: 1px solid #fff;
+  gap: 0.375rem;
+  padding: 0.625rem 0.875rem;
+  border: none;
+  border-bottom: 3px solid #003687;
   border-radius: 0.5rem;
+  background: var(--raisetalks-brand-gradient);
   color: #fff !important;
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-body);
-  line-height: var(--rt-lh-body);
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
   text-decoration: none !important;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.workspaceFounderLinkedin svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .workspaceFounderLinkedin:hover {
-  background: #fff;
-  color: #0054d3 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 54, 135, 0.35);
+}
+
+/* Below this, Figma switches to a dedicated tablet layout (node 3259:1631):
+   the photo becomes a fixed-size 320x274px oval centered above the card,
+   peeking 20px above its top edge, with the panel stacked full-width below
+   (instead of the desktop side-bleed-and-overlap treatment). The 240px
+   top padding reserves room for the photo, deliberately undershooting its
+   274px height by ~14px so the panel overlaps its bottom edge slightly,
+   same as the desktop crossing effect. */
+@media (max-width: 900px) {
+  .workspaceFounderCard {
+    overflow: visible;
+    padding: 240px 1.5rem 1.5rem;
+  }
+
+  .workspaceFounderPhoto {
+    left: 50%;
+    bottom: auto;
+    top: -20px;
+    transform: translateX(-50%);
+    width: 320px;
+    height: 274px;
+    min-width: 0;
+  }
+
+  .workspaceFounderPanel {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Figma's tablet quote-to-stats gap is 32px, vs. 48px on desktop. */
+  .workspaceFounderQuoteGroup {
+    gap: 2rem;
+  }
+
+  /* Tablet's quote/stat-suffix text is 19px, vs. 20px on desktop. */
+  .workspaceFounderQuote {
+    font-size: 19px;
+  }
+
+  .workspaceFounderStatValue {
+    font-size: 28px;
+  }
+
+  .workspaceFounderStatValue span {
+    font-size: 19px;
+  }
+}
+
+/* Mobile (node 3259:1790) shrinks text further, halves the panel's outer
+   gap, stacks the footer, and turns each stat into its own colored tile
+   instead of a plain row. */
+@media (max-width: 640px) {
+  .workspaceFounderPanel {
+    gap: 3rem;
+  }
+
+  .workspaceFounderQuote {
+    font-size: 17px;
+  }
+
+  .workspaceFounderQuote strong {
+    font-weight: var(--rt-weight-medium);
+  }
+
+  .workspaceFounderStats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .workspaceFounderStat {
+    background: #1581fe;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .workspaceFounderStat:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .workspaceFounderStatValue {
+    font-size: 24px;
+  }
+
+  .workspaceFounderStatValue span {
+    font-size: 17px;
+  }
+
+  .workspaceFounderFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 }
 
 [data-theme='dark'] .whySection {

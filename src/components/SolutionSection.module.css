@@ -533,7 +533,8 @@
    display: flex;
    align-items: center;
    justify-content: space-between;
-   gap: 3rem;
+   /* Figma (node 3257:1592) uses a 128px gap at desktop. */
+   gap: 8rem;
 }
 
 .investorImageCol {
@@ -553,13 +554,54 @@
    max-width: 600px;
 }
 
+/* Flat per-breakpoint sizes, not --rt-fs-h2 (which scales 26 -> 40 -> 48px).
+   Figma uses a smaller, dedicated scale for this heading specifically:
+   26px mobile (node 1415:765), 36px tablet (1405:730), 42px desktop
+   (3257:1603) — the 40/48px token sizes were overflowing the column and
+   forcing "Searching Investors" to wrap, which .investorContentWide and
+   the nowrap rule below were band-aiding around. */
 .investorTitle {
    font-family: var(--rt-font-sans);
-   font-size: var(--rt-fs-h2);
+   font-size: 26px;
    font-weight: var(--rt-weight-regular);
    line-height: var(--rt-lh-h2);
    color: #000;
    margin: 0 0 1rem;
+}
+
+@media (min-width: 768px) {
+   .investorTitle {
+      font-size: 36px;
+   }
+}
+
+@media (min-width: 1024px) {
+   .investorTitle {
+      font-size: 42px;
+   }
+}
+
+/* Same fix for the gradient accent line, which otherwise inherits
+   --rt-fs-h2-alt (28 -> 42 -> 50px) from the shared rt-h2-alt utility.
+   Figma: 28px mobile (1415:766), 38px tablet (1405:731), 44px desktop
+   (3257:1604). Needs the compound selector to out-specificity rt-h2-alt. */
+.investorContent .investorTitleAccent,
+.investorContent .investorTitleAccentAlt {
+   font-size: 28px;
+}
+
+@media (min-width: 768px) {
+   .investorContent .investorTitleAccent,
+   .investorContent .investorTitleAccentAlt {
+      font-size: 38px;
+   }
+}
+
+@media (min-width: 1024px) {
+   .investorContent .investorTitleAccent,
+   .investorContent .investorTitleAccentAlt {
+      font-size: 44px;
+   }
 }
 
 /* "Searching Investors" heading accent uses the yellow/pink brand gradient,
@@ -600,8 +642,10 @@
    font-family: var(--rt-font-sans);
    font-size: var(--rt-fs-body);
    line-height: var(--rt-lh-body);
-   color: #4b4b4b;
-   margin: 0 0 1.5rem;
+   color: #333;
+   /* Figma's flex-col uses a uniform 16px gap between heading/description/
+      button (node 3257:1601), not 24px. */
+   margin: 0 0 1rem;
 }
 
 .exploreButton {
@@ -609,10 +653,11 @@
    align-items: center;
    padding: 0.75rem 1rem;
    background: var(--raisetalks-brand-gradient);
+   border-bottom: 3px solid #003687;
    color: white !important;
    border-radius: 0.5rem;
    font-weight: 400;
-   font-size: 0.906rem;
+   font-size: var(--rt-fs-body);
    transition: all 0.25s ease;
    text-decoration: none;
 }
@@ -633,57 +678,9 @@
    box-shadow: 0 8px 20px rgba(234, 38, 64, 0.25);
 }
 
-.imageGlowWrap {
-   position: relative;
-}
-
-.imageGlow {
-   position: absolute;
-   inset: 0;
-   z-index: 0;
-   pointer-events: none;
-   -webkit-mask-image: url('/img/startup-catalog-mockup.webp');
-   -webkit-mask-size: contain;
-   -webkit-mask-repeat: no-repeat;
-   -webkit-mask-position: center;
-   mask-image: url('/img/startup-catalog-mockup.webp');
-   mask-size: contain;
-   mask-repeat: no-repeat;
-   mask-position: center;
-}
-
-.imageGlowInvestorOne {
-   -webkit-mask-image: url('/img/investor-catalog-mockup.webp');
-   mask-image: url('/img/investor-catalog-mockup.webp');
-   background: #b4d7ff;
-   opacity: 0.5;
-   transform: translate(-6%, 8%);
-}
-
-.imageGlowInvestorTwo {
-   -webkit-mask-image: url('/img/investor-catalog-mockup.webp');
-   mask-image: url('/img/investor-catalog-mockup.webp');
-   background: #d7e9ff;
-   opacity: 0.5;
-   transform: translate(-12%, 16%);
-}
-
-.imageGlowStartupOne {
-   -webkit-mask-image: url('/img/startup-catalog-mockup.webp');
-   mask-image: url('/img/startup-catalog-mockup.webp');
-   background: #b4d7ff;
-   opacity: 0.5;
-   transform: translate(-6%, 8%);
-}
-
-.imageGlowStartupTwo {
-   -webkit-mask-image: url('/img/startup-catalog-mockup.webp');
-   mask-image: url('/img/startup-catalog-mockup.webp');
-   background: #d7e9ff;
-   opacity: 0.5;
-   transform: translate(-12%, 16%);
-}
-
+/* The "extra pages" stacked-behind effect (Figma node 3257:1594/1597) is
+   already baked into investor-catalog-mockup.webp / startup-catalog-mockup.webp
+   as part of the exported image — no separate glow layer needed on top. */
 .startupsLayoutImage {
    position: relative;
    z-index: 1;
@@ -786,6 +783,14 @@
       order: 2;
       flex: 1;
       width: 100%;
+   }
+}
+
+/* Figma's tablet gap between the stacked text and image is 48px (node
+   1405:719), vs. 32px on mobile (node 1415:762). */
+@media (min-width: 768px) and (max-width: 1023px) {
+   .investorInner {
+      gap: 3rem;
    }
 }
 
