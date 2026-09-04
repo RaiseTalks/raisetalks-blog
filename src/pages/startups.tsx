@@ -400,7 +400,7 @@ export default function Startups() {
                 '10 stages, from Data Room Shared and NDA Signed through Term Sheet to Hard Commitment',
                 'Notes and meetings on every investor card',
                 'Access requests approve or decline right from your dashboard',
-                'Included free - pipeline discipline should not cost anything',
+                'Included in every plan - pipeline discipline should not cost extra',
               ],
               image: <FeatureImage src="/img/startups/ir-pipeline.webp" alt="IR Pipeline" />,
             },
@@ -510,8 +510,8 @@ export default function Startups() {
                 {
                   icon: <LucideIcon name="calendar-check-2" className={styles.perkIconImg} />,
                   label: '30-Day Trial',
-                  title: 'Extended free trial',
-                  desc: 'Full platform access for 30 days - enough time to build and share your data room before your first investor meeting.',
+                  title: 'Try it for 30 days',
+                  desc: 'Build your data room, get your readiness score and share it before your first investor meeting.',
                 },
                 {
                   icon: <LucideIcon name="headset" className={styles.perkIconImg} />,

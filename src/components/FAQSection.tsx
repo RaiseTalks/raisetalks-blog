@@ -43,8 +43,8 @@ const moreFAQs: FAQItem[] = [
     answer: "Yes, and we won't soften it. If slide 14 is the problem, we'll tell you it's slide 14. Radical transparency isn't a brand value for us - it's the product."
   },
   {
-    question: "What's the difference between free and paid plans?",
-    answer: "Free gives you the data room and readiness score. Paid unlocks the AI narrative coach, IC memo generator, and priority onboarding. Start free, upgrade when you're ready to go deep."
+    question: "What do I get during the trial, and what does a subscription add?",
+    answer: "Every new account starts with a 30-day trial: build your data room, get your readiness score and browse the catalogs, with the AI Advisor limited to 3 questions a day. Startup Pro or Investor Pro (monthly or annual) unlocks the unlimited AI Advisor, DD-ready sharing, IR Push and direct investor invites. Cancel anytime."
   },
   {
     question: "I'm raising right now. Is it too late to use RaiseTalks?",
@@ -80,7 +80,7 @@ const moreFAQs: FAQItem[] = [
   },
   {
     question: "Is RaiseTalks free to use?",
-    answer: "RaiseTalks offers a free tier with basic features. For advanced tools and personalized guidance, you can subscribe to an Enhance or Growth plan."
+    answer: "There is no free plan. New accounts get a 30-day trial to explore the workspace; after that you subscribe to Startup Pro ($99/mo or $699/yr) or Investor Pro ($199/mo or $1,428/yr). Venture funds: talk to us about VC Platinum."
   },
   {
     question: "Is RaiseTalks available worldwide?",

@@ -57,7 +57,6 @@ interface Audience {
   id: string;
   label: string;
   dotStyle: React.CSSProperties;
-  freeFeatures: string[];
   plan: FeaturedPlan;
 }
 
@@ -67,7 +66,6 @@ const LIGHT_AUDIENCES: Audience[] = [
     id: 'founders',
     label: 'For Founders',
     dotStyle: { background: 'var(--raisetalks-accent-gradient)' },
-    freeFeatures: ['Get scored', 'Basic data room'],
     plan: {
       name: 'Startup Pro',
       monthlyPrice: '$99',
@@ -80,7 +78,7 @@ const LIGHT_AUDIENCES: Audience[] = [
         'Direct investor invites',
         'Data Room MCP',
       ],
-      ctaLabel: 'Start Free',
+      ctaLabel: 'Start now',
       ctaTo: 'https://app.raisetalks.com/sign-up',
     },
   },
@@ -88,7 +86,6 @@ const LIGHT_AUDIENCES: Audience[] = [
     id: 'investors',
     label: 'For Investors',
     dotStyle: { background: BRAND_LIGHT_BLUE },
-    freeFeatures: ['Public Catalogue access', 'Public Investor Profile'],
     plan: {
       name: 'Investor Pro',
       monthlyPrice: '$199',
@@ -101,7 +98,7 @@ const LIGHT_AUDIENCES: Audience[] = [
         'Investor MCP',
         'Q&A Constructor with public share links',
       ],
-      ctaLabel: 'Start Free',
+      ctaLabel: 'Start now',
       ctaTo: 'https://app.raisetalks.com/sign-up',
     },
   },
@@ -113,9 +110,9 @@ const AUDIENCE_ACCENT: Record<string, string> = {
   investors: BRAND_DARK_BLUE,
 };
 
-const VC_FREE_FEATURES = ['3Q 2026 Pilot Program', 'Public Investor Profile'];
 const VC_PLAN_FEATURES = [
   'All in Investor Pro, plus:',
+  '3Q 2026 Pilot Program',
   'Early access to the new features',
   'Priority Customer Support',
   'Online Pitch Competitions [coming soon]',
@@ -123,28 +120,6 @@ const VC_PLAN_FEATURES = [
   'IC Committee [coming soon]',
 ];
 const CALENDLY_URL = 'https://calendly.com/iamdariiava/30min';
-
-// $0/mo price + the free-tier feature list shown at the top of every audience card
-function FreeTierRow({ features, dark = false }: { features: string[]; dark?: boolean }) {
-  return (
-    <div className="flex flex-col gap-4 px-2 sm:flex-row sm:items-center sm:gap-8 sm:px-4">
-      <p className={dark ? 'text-white' : 'text-gray-800'}>
-        <span className="text-4xl font-medium">$0</span>
-        <span className="text-lg">/mo</span>
-      </p>
-      <ul className="space-y-1">
-        {features.map((feature) => (
-          <li key={feature} className="flex items-center gap-2 py-1">
-            <span className={dark ? 'text-white' : 'text-green-600'}>
-              <CheckIcon />
-            </span>
-            <span className={`text-base ${dark ? 'text-white' : 'text-gray-700'}`}>{feature}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 // Check-bullet list inside a featured plan card
 function PlanFeatureList({ features, dark = false }: { features: string[]; dark?: boolean }) {
@@ -168,19 +143,19 @@ export default function Pricing() {
   return (
     <Layout
       title="Pricing - RaiseTalks AI Fundraising Workspace"
-      description="AI-powered fundraising workspace pricing. Free tier available. Plans for founders, investors, and venture funds to move faster with confidence.">
+      description="AI-powered fundraising workspace pricing. Plans for founders, investors and venture funds. Monthly or annual billing, cancel anytime.">
       <Head>
-        <meta name="description" content="AI-powered fundraising workspace pricing. Free tier available. Plans for founders, investors, and venture funds to move faster with confidence." />
+        <meta name="description" content="AI-powered fundraising workspace pricing. Plans for founders, investors and venture funds. Monthly or annual billing, cancel anytime." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://raisetalks.com/pricing" />
         <meta property="og:title" content="Pricing - RaiseTalks AI Fundraising Workspace" />
-        <meta property="og:description" content="Free tier available. Plans for founders, investors, and venture funds to move faster with confidence." />
+        <meta property="og:description" content="Plans for founders, investors and venture funds. Monthly or annual billing, cancel anytime." />
         <meta property="og:url" content="https://raisetalks.com/pricing" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Pricing - RaiseTalks AI Fundraising Workspace" />
-        <meta name="twitter:description" content="Free tier available. Plans for founders, investors, and venture funds to move faster with confidence." />
+        <meta name="twitter:description" content="Plans for founders, investors and venture funds. Monthly or annual billing, cancel anytime." />
         <meta name="twitter:image" content="https://raisetalks.com/img/og-raisetalks.jpg" />
         <meta name="twitter:site" content="@raisetalks" />
         <script type="application/ld+json">{JSON.stringify({
@@ -188,7 +163,7 @@ export default function Pricing() {
           "@type": "WebPage",
           "name": "Pricing - RaiseTalks",
           "url": "https://raisetalks.com/pricing",
-          "description": "AI-powered fundraising workspace pricing. Free tier available.",
+          "description": "AI-powered fundraising workspace pricing. Monthly or annual billing, cancel anytime.",
           "publisher": { "@type": "Organization", "name": "RaiseTalks", "url": "https://raisetalks.com" }
         })}</script>
       </Head>
@@ -269,8 +244,6 @@ export default function Pricing() {
                   </span>
                 </div>
 
-                {/* Free tier */}
-                <FreeTierRow features={audience.freeFeatures} />
 
                 {/* Featured plan card */}
                 <div
@@ -281,7 +254,7 @@ export default function Pricing() {
                     boxShadow: 'inset 4px 4px 8px #ffffff, inset -4px -4px 8px #ebebeb',
                   }}
                 >
-                  <div className="flex items-start justify-between gap-3 mb-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                     <h3 className="text-2xl font-semibold text-gray-900">{audience.plan.name}</h3>
                     <span className="px-4 py-2 text-lg font-semibold text-gray-700 rounded-lg bg-[#f5f5f5] whitespace-nowrap">
                       {audience.plan.annualChip}
@@ -315,7 +288,6 @@ export default function Pricing() {
                 </span>
               </div>
 
-              <FreeTierRow features={VC_FREE_FEATURES} dark />
 
               {/* VC Platinum: gradient card, contact-sales instead of a listed price */}
               <div
@@ -325,7 +297,7 @@ export default function Pricing() {
                   borderBottom: `4px solid ${BRAND_LIGHT_BLUE}`,
                 }}
               >
-                <div className="flex items-start justify-between gap-3 mb-4">
+                <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                   <h3 className="text-2xl font-semibold text-white">VC Platinum</h3>
                   <Link
                     className="px-4 py-2 text-lg font-semibold text-white transition-all duration-300 rounded-lg hover:scale-105 hover:text-white hover:no-underline whitespace-nowrap"
@@ -360,7 +332,7 @@ export default function Pricing() {
 
           <div className={styles.ctaButtons}>
             <Link className={styles.ctaBtnPrimary} to="https://app.raisetalks.com/sign-up">
-              Start Free Today
+              Start now
             </Link>
             <Link className={styles.ctaBtnSecondary} to={CALENDLY_URL}>
               Schedule Demo
@@ -368,11 +340,11 @@ export default function Pricing() {
           </div>
 
           <div className={styles.ctaTrust}>
-            <span>14-day free trial</span>
-            <span className={styles.ctaTrustDivider}>-</span>
-            <span>No credit card required</span>
+            <span>Monthly or annual billing</span>
             <span className={styles.ctaTrustDivider}>-</span>
             <span>Cancel anytime</span>
+            <span className={styles.ctaTrustDivider}>-</span>
+            <span>Secure payment by Stripe</span>
           </div>
         </div>
       </section>

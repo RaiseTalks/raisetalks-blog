@@ -108,9 +108,9 @@ export default function RefundPolicy() {
               </p>
             </div>
 
-            <h2>1. Free Tier</h2>
+            <h2>1. Trial Period</h2>
             <p>
-              Our Free Plan offers limited features for evaluation at no cost. No payment is required, and no refunds apply.
+              New accounts include a 30-day trial with limited features at no cost. No payment is taken during the trial, and no refunds apply to it.
             </p>
 
             <h2>2. Paid Subscriptions</h2>
@@ -200,9 +200,7 @@ export default function RefundPolicy() {
               <p className="font-semibold text-gray-900 mb-2">RaiseTalks Billing Support</p>
               <p>Email: <a href="mailto:billing@raisetalks.ai" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">billing@raisetalks.ai</a></p>
               <p className="text-sm text-gray-600 mt-4">
-                <strong>Tip:</strong> Before requesting a refund, try our{' '}
-                <Link to="https://app.raisetalks.com/pricing" className="text-[var(--raisetalks-blue-primary-flat)] font-semibold hover:underline">Free Tier</Link>{' '}
-                to explore our features and see if they meet your needs.
+                <strong>Tip:</strong> Make full use of the 30-day trial to explore our features before subscribing.
               </p>
             </div>
 
