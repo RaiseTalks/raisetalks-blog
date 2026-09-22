@@ -294,7 +294,7 @@ const config: Config = {
     announcementBar: {
       id: 'visit_raisetalks',
       content:
-        'See you in San Francisco at Step Conference — August 27, 2026',
+        'See you in UAE at Dubai AI Festival - October 26-27, 2026',
       backgroundColor: 'rgba(0, 119, 255, 1)',
       textColor: '#ffffff',
       isCloseable: true,
