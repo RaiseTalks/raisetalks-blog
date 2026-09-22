@@ -292,7 +292,7 @@ const config: Config = {
       { name: 'twitter:image', content: 'https://raisetalks.com/img/og-raisetalks.jpg' },
     ],
     announcementBar: {
-      id: 'visit_raisetalks',
+      id: 'dubai_ai_festival_2026',
       content:
         'See you in UAE at Dubai AI Festival - October 26-27, 2026',
       backgroundColor: 'rgba(0, 119, 255, 1)',
