@@ -121,6 +121,9 @@ function FeatureImage({ src, alt }: { src: string; alt: string }) {
 
 export default function Startups() {
   const pillarsBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
+  const truthBg = useBaseUrl('/img/backgrounds/highlight-bg-1-desktop.svg');
+  const truthBgTablet = useBaseUrl('/img/backgrounds/highlight-bg-1-tablet.svg');
+  const truthBgMobile = useBaseUrl('/img/backgrounds/highlight-bg-1-mobile.svg');
 
   return (
     <Layout
@@ -181,8 +184,15 @@ export default function Startups() {
       <div className={styles.truthBar}>
         <div className={styles.truthInner}>
           <blockquote className={styles.truthQuote}>
-            "The fundraising problem is not a pitch problem. It's a preparation problem -
-            and nobody has built the infrastructure to solve it at scale, with AI, from the investor's perspective."
+            <picture>
+              <source media="(max-width: 768px)" srcSet={truthBgMobile} />
+              <source media="(max-width: 1024px)" srcSet={truthBgTablet} />
+              <img src={truthBg} alt="" aria-hidden="true" className={styles.truthBg} />
+            </picture>
+            <span className={styles.truthQuoteText}>
+              "The fundraising problem is not a pitch problem. It's a preparation problem -
+              and nobody has built the infrastructure to solve it at scale, with AI, from the investor's perspective."
+            </span>
           </blockquote>
         </div>
       </div>

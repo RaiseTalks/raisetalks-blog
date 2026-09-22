@@ -368,6 +368,8 @@
 }
 
 .truthQuote {
+  position: relative;
+  overflow: hidden;
   background: var(--ifm-color-primary);
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-h3);
@@ -379,6 +381,21 @@
   border: none;
   padding: 32px;
   box-shadow: 0 20px 40px -12px rgba(1, 116, 225, 0.45), 0 8px 16px rgba(1, 116, 225, 0.25);
+}
+
+.truthBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.truthQuoteText {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── PAIN POINTS ──────────────────────────────────────── */

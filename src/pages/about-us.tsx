@@ -11,7 +11,9 @@ import PhotoCarousel from "@site/src/components/PhotoCarousel";
 import styles from "./about-us.module.css";
 
 export default function AboutUs() {
-   const goalCardBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
+   const goalCardBg = useBaseUrl('/img/backgrounds/highlight-bg-1-desktop.svg');
+   const goalCardBgTablet = useBaseUrl('/img/backgrounds/highlight-bg-1-tablet.svg');
+   const goalCardBgMobile = useBaseUrl('/img/backgrounds/highlight-bg-1-mobile.svg');
    const visionTimelineImg = useBaseUrl('/img/about-us/vision-timeline.svg');
    const visionTimelineMobileImg = useBaseUrl('/img/about-us/vision-timeline-mobile.svg');
    // Design-supplied replacements for the inline 64x64 icons that used to live
@@ -79,7 +81,11 @@ export default function AboutUs() {
                <div className={styles.goalEyebrow}>Our 10-Year Goal</div>
                <div className={styles.goalCardWrap}>
                   <blockquote className={styles.goalCard}>
-                     <img src={goalCardBg} alt="" aria-hidden="true" className={styles.goalCardBg} />
+                     <picture>
+                        <source media="(max-width: 768px)" srcSet={goalCardBgMobile} />
+                        <source media="(max-width: 1024px)" srcSet={goalCardBgTablet} />
+                        <img src={goalCardBg} alt="" aria-hidden="true" className={styles.goalCardBg} />
+                     </picture>
                      <p className={styles.goalCardQuote}>
                         Power 1M entrepreneurs to close rounds faster, deploying over{' '}
                         <span className={styles.goalCardHighlight}>$100 Bn</span>{' '}

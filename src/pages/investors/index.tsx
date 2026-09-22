@@ -145,7 +145,9 @@ export default function InvestorsPage() {
   const heroBg = useBaseUrl('/img/backgrounds/hero-alt-desktop.webp');
   const heroBgTablet = useBaseUrl('/img/backgrounds/hero-alt-tablet.webp');
   const heroBgMobile = useBaseUrl('/img/backgrounds/hero-alt-mobile.webp');
-  const bandBg = useBaseUrl('/img/backgrounds/blue-section-desktop.webp');
+  const bandBg = useBaseUrl('/img/backgrounds/highlight-bg-1-desktop.svg');
+  const bandBgTablet = useBaseUrl('/img/backgrounds/highlight-bg-1-tablet.svg');
+  const bandBgMobile = useBaseUrl('/img/backgrounds/highlight-bg-1-mobile.svg');
   const frustrationDesktop = useBaseUrl('/img/investors/frustration-bg-desktop.webp');
   const frustrationTablet = useBaseUrl('/img/investors/frustration-bg-tablet.webp');
   const frustrationMobile = useBaseUrl('/img/investors/frustration-bg-mobile.webp');
@@ -538,7 +540,11 @@ export default function InvestorsPage() {
       >
         <div className={`${styles.container} ${styles.narrow}`}>
           <div className={styles.band}>
-            <img src={bandBg} alt="" aria-hidden="true" className={styles.bandBg} />
+            <picture>
+              <source media="(max-width: 768px)" srcSet={bandBgMobile} />
+              <source media="(max-width: 1024px)" srcSet={bandBgTablet} />
+              <img src={bandBg} alt="" aria-hidden="true" className={styles.bandBg} />
+            </picture>
             <p className={styles.bandText}>
               RaiseTalks is built for angels, micro funds, institutional VCs and
               accelerators who want to spend less time on intake and more time on
