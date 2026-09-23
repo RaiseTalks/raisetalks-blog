@@ -48,6 +48,14 @@
   --rt-lh-body: 1.45;
   --rt-lh-footnote: 1.4;
 
+  /* Sizes below are taken from the APPLIED text styles in Figma's
+     "Typography Design Tokens — Website" frame (node 2309:17), read off the
+     specimens themselves — Type/D/H2 (2320:42), Type/T/H4 (2320:99) and so
+     on. The descriptive captions printed beside those specimens are stale:
+     they still claim H2 48/40, H3 32 and H4 22/20, while the styles actually
+     applied are H2 42/36, H3 30 and H4 20/19. The page designs use the
+     applied values, so those are what these tokens track. */
+
   /* Shared font sizes (identical across breakpoints) */
   --rt-fs-body: 0.9rem;      /* 14.4px */
   --rt-fs-footnote: 0.75rem; /* 12px   */
@@ -84,12 +92,12 @@
     --rt-fs-hero-alt: 3.625rem; /* 58px */
     --rt-fs-h1: 3rem;           /* 48px */
     --rt-fs-h1-alt: 3.125rem;   /* 50px */
-    --rt-fs-h2: 2.5rem;         /* 40px */
-    --rt-fs-h2-alt: 2.625rem;   /* 42px */
+    --rt-fs-h2: 2.25rem;        /* 36px */
+    --rt-fs-h2-alt: 2.375rem;   /* 38px */
     --rt-fs-h3: 1.75rem;        /* 28px */
     --rt-fs-h3-alt: 1.875rem;   /* 30px */
-    --rt-fs-h4: 1.25rem;        /* 20px */
-    --rt-fs-h4-alt: 1.375rem;   /* 22px */
+    --rt-fs-h4: 1.1875rem;      /* 19px */
+    --rt-fs-h4-alt: 1.1875rem;  /* 19px */
     --rt-fs-eyebrow: 0.875rem;  /* 14px */
 
     --rt-lh-h1: 1.2;
@@ -106,12 +114,12 @@
     --rt-fs-hero-alt: 4.625rem; /* 74px */
     --rt-fs-h1: 3.75rem;        /* 60px */
     --rt-fs-h1-alt: 3.875rem;   /* 62px */
-    --rt-fs-h2: 3rem;           /* 48px */
-    --rt-fs-h2-alt: 3.125rem;   /* 50px */
-    --rt-fs-h3: 2rem;           /* 32px */
-    --rt-fs-h3-alt: 2.125rem;   /* 34px */
-    --rt-fs-h4: 1.375rem;       /* 22px */
-    --rt-fs-h4-alt: 1.5rem;     /* 24px */
+    --rt-fs-h2: 2.625rem;       /* 42px */
+    --rt-fs-h2-alt: 2.75rem;    /* 44px */
+    --rt-fs-h3: 1.875rem;       /* 30px */
+    --rt-fs-h3-alt: 2rem;       /* 32px */
+    --rt-fs-h4: 1.25rem;        /* 20px */
+    --rt-fs-h4-alt: 1.25rem;    /* 20px */
     --rt-fs-eyebrow: 1rem;      /* 16px */
 
     --rt-lh-h1: 1.2;
