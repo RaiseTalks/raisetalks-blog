@@ -761,21 +761,59 @@ article .markdown td {
   margin: 1rem 0;
 }
 
-/* Table of Contents - Clean Style */
+/* Table of contents: card styled like "Help & Tips" in the core app (app.raisetalks.com) */
+.blog-post-page [class*='tableOfContents_'] {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+}
+
+.blog-post-page [class*='tableOfContents_']::before {
+  content: 'In this article';
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-semibold);
+  color: #0a3a8c;
+}
+
 .table-of-contents {
-  padding: 1rem 0;
-  position: sticky;
-  top: 2rem;
+  padding: 0;
+  margin: 0;
 }
 
 .table-of-contents__left-border {
-  padding-left: 3rem;
+  border-left: none;
+  padding-left: 1.1rem;
+}
+
+.table-of-contents,
+.table-of-contents ul {
+  list-style: disc;
+}
+
+.table-of-contents ul {
+  padding-left: 1rem;
+}
+
+.table-of-contents li {
+  margin: 0.25rem 0;
+  color: #4b5563;
+}
+
+.table-of-contents li::marker {
+  color: #4b5563;
 }
 
 .table-of-contents .table-of-contents__link {
-  color: #6b7280;
+  padding: 0;
+  color: #4b5563;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
 }
 
 .table-of-contents .table-of-contents__link:hover,
@@ -1056,7 +1094,112 @@ article .avatar [class*='authorSocials'] a + a {
   }
 }
 
-/* Full article list in the sidebar: breathing room under the last item when scrolled to the end */
+/* Full article list in the sidebar: a little room under the last item */
 .plugin-blog nav[aria-label='Blog recent posts navigation'] {
   padding-bottom: 1.5rem;
+}
+
+/* Article pages: the left article list is hidden until "All articles" is clicked
+   (src/theme/BlogLayout). The article then spans the freed columns, next to the right panel. */
+.blog-articles-toggle {
+  display: none;
+}
+
+@media (min-width: 997px) {
+  .blog-wrapper--articles-hidden aside.col--3 {
+    display: none;
+  }
+
+  .blog-wrapper--articles-hidden main.col {
+    --ifm-col-width: calc(8 / 12 * 100%);
+    margin-left: calc(1 / 12 * 100%);
+  }
+
+  /* The right panel takes the remaining three columns */
+  .blog-wrapper--articles-hidden main.col + .col--2 {
+    --ifm-col-width: calc(3 / 12 * 100%);
+  }
+
+  /* Right panel: toggle button above the "In this article" card, sticky together */
+  .blog-side-panel {
+    position: sticky;
+    top: calc(var(--ifm-navbar-height) + 1rem);
+    padding-left: 2rem;
+  }
+
+  /* Same breathing room between the open article list and the article text */
+  .blog-post-page .blog-wrapper:not(.blog-wrapper--articles-hidden) main.col {
+    padding-left: 3rem;
+  }
+
+  .blog-side-panel [class*='tableOfContents_'] {
+    position: static;
+    max-height: calc(100vh - (var(--ifm-navbar-height) + 6rem));
+  }
+
+  .blog-articles-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0.875rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    color: var(--raisetalks-blue-primary-flat);
+    font-family: var(--rt-font-sans);
+    font-size: var(--rt-fs-body);
+    font-weight: var(--rt-weight-medium);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .blog-articles-toggle:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Small laptops (997-1279px): with the article list open there is no room for the
+   "In this article" card as well, so it steps aside; the toggle button stays */
+@media (min-width: 997px) and (max-width: 1279px) {
+  .blog-post-page .blog-wrapper:not(.blog-wrapper--articles-hidden) .blog-side-panel [class*='tableOfContents_'] {
+    display: none;
+  }
+}
+
+/* Blog list pages (main /blog, tag and author lists): Recent Posts sidebar on the right */
+@media (min-width: 997px) {
+  .blog-list-page .row > aside.col--3,
+  .blog-tags-post-list-page .row > aside.col--3,
+  .blog-authors-posts-page .row > aside.col--3 {
+    order: 2;
+  }
+
+  /* Half a column before the posts, half a column plus padding between posts and the list */
+  .blog-list-page .row > main.col,
+  .blog-tags-post-list-page .row > main.col,
+  .blog-authors-posts-page .row > main.col {
+    margin-left: calc(0.5 / 12 * 100%);
+  }
+
+  /* --rt-list-extend (set in src/theme/BlogLayout) stretches the column so the list text ends
+     exactly under the right edge of the header's "Log In" button */
+  .blog-list-page .row > aside.col--3,
+  .blog-tags-post-list-page .row > aside.col--3,
+  .blog-authors-posts-page .row > aside.col--3 {
+    margin-left: calc(0.5 / 12 * 100%);
+    padding-left: 2rem;
+    flex-basis: calc(25% + var(--rt-list-extend, 0px));
+    max-width: calc(25% + var(--rt-list-extend, 0px));
+    margin-right: calc(-1 * var(--rt-list-extend, 0px));
+  }
+}
+
+/* Recent Posts list text on the site body token */
+@media (min-width: 997px) {
+  .plugin-blog nav[aria-label='Blog recent posts navigation'] a {
+    font-family: var(--rt-font-sans);
+    font-size: var(--rt-fs-body);
+    line-height: var(--rt-lh-body);
+  }
 }

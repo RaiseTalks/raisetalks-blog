@@ -1,0 +1,18 @@
+{
+  "theme.blog.post.paginator.newerPost": {
+    "message": "Previous article",
+    "description": "Label for the link to the previous post (posts are listed oldest first)"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Next article",
+    "description": "Label for the link to the next post (posts are listed oldest first)"
+  },
+  "theme.blog.paginator.newerEntries": {
+    "message": "Previous page",
+    "description": "Label for the blog list page before the current one"
+  },
+  "theme.blog.paginator.olderEntries": {
+    "message": "Next page",
+    "description": "Label for the blog list page after the current one"
+  }
+}
