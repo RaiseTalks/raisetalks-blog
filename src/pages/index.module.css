@@ -54,24 +54,51 @@
   .hero { opacity: 1; transition: none; }
 }
 
-/* Width/margin come from the shared `rt-rail` class (src/css/rail.css) so
-   it matches the rest of the page on mobile/tablet. Desktop keeps its own
-   narrower 1024px cap below. The rail's border lines are suppressed here —
-   the hero should sit flush with no visible seam. */
+/* Vertical padding only — the horizontal side is set per breakpoint by the
+   `.hero .heroInner` rules below. The rail's border lines are suppressed
+   here — the hero should sit flush with no visible seam. */
 .heroInner {
   padding: 8rem 4rem 5rem;
 }
 
+/* Figma draws the hero column narrower than the shared rail at every
+   breakpoint: 351/672/948 outer and 303/576/820 inner at 375/768/1920.
+   These are scoped to `.hero .heroInner` (specificity 0,2,0) so they beat
+   `.rt-rail`'s own !important width without touching any other section —
+   every non-hero section in the design does match the shared rail.
+   `padding-inline` rather than the `padding` shorthand so the responsive
+   top/bottom padding further down still applies. */
 .hero .heroInner {
   border-left: none;
   border-right: none;
+  /* Below Figma's 375px artboard there's no design reference, and the title
+     only just fits at 375 (299.8px of text in a 303px column). Keep the
+     tighter pre-Figma gutters here so "Global Fundraising" stays on one line
+     on 360px-wide phones instead of wrapping to three. */
+  max-width: calc(100% - 16px) !important;
+  padding-inline: 16px;
+}
+
+@media (min-width: 375px) {
+  .hero .heroInner {
+    max-width: calc(100% - 24px) !important;
+    padding-inline: 24px;
+  }
+}
+
+@media (min-width: 640px) {
+  .hero .heroInner {
+    max-width: calc(100% - 96px) !important;
+    padding-inline: 48px;
+  }
 }
 
 @media (min-width: 1024px) {
-  .heroInner {
+  .hero .heroInner {
     /* min() guards against 0 margin right at 1024px (iPad Pro portrait
        etc.) — see the matching fix in src/css/rail.css. */
-    max-width: min(1024px, calc(100% - 48px)) !important;
+    max-width: min(948px, calc(100% - 48px)) !important;
+    padding-inline: 64px;
   }
 }
 
@@ -91,11 +118,16 @@
   /* Figma gives this pill smaller padding on mobile (8px/16px) than on
      tablet/desktop (12px/24px, both identical). */
   padding: 0.5rem 1rem;
+  /* CSS adds letter-spacing after the final character, Figma doesn't, so the
+     pill renders one tracking-step wider than the design. Trim that step off
+     the right padding to land on Figma's width. */
+  padding-right: calc(1rem - var(--rt-ls-eyebrow));
 }
 
 @media (min-width: 768px) {
   .heroEyebrow {
     padding: 0.75rem 1.5rem;
+    padding-right: calc(1.5rem - var(--rt-ls-eyebrow));
   }
 }
 
@@ -130,12 +162,31 @@
   margin: 0 0 1rem 0;
 }
 
+/* Below the 768px tablet artboard the mobile type scale (32/34px) is still
+   in force, but from ~440px up the column is wide enough that "for
+   early-stage ventures" straightens onto one line at 368px — wider than
+   "Global Fundraising" at 300px, inverting the balance Figma's 375px frame
+   shows. Figma has no artboard between 375 and 768, so cap the heading here
+   to keep the italic wrapping to two lines across the whole mobile range.
+   At 375 the column is already 303px, so this changes nothing there. */
+@media (max-width: 767px) {
+  .heroTitle {
+    /* !important for the same reason rail.css needs it: responsive.css has a
+       sitewide `* { max-width: 100% }` guard below 640px that otherwise wins
+       here despite lower specificity (a Tailwind v4 cascade-layer effect). */
+    max-width: 340px !important;
+    margin-inline: auto;
+  }
+}
+
 .heroTitleLine {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-h1);
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h1);
-  color: var(--ifm-color-content);
+  /* Figma fills this heading with pure black; Infima's --ifm-color-content
+     is #1c1e21, which reads visibly softer at 60px. */
+  color: #000000;
 }
 
 .heroAccent {
@@ -160,8 +211,23 @@
   font-size: var(--rt-fs-body);
   color: #333333;
   line-height: var(--rt-lh-body);
-  max-width: 360px;
+  /* !important for the same cascade-layer reason as .heroTitle above —
+     without it the sitewide `* { max-width: 100% }` guard below 640px lets
+     this stretch to the full column (528px at a 600px viewport). */
+  max-width: 360px !important;
   margin: 0 auto 2.25rem;
+}
+
+/* Figma's 375px frame gives this column 303px — narrower than the heading,
+   so the description never out-runs "Global Fundraising". The 360px cap
+   above is the 768px artboard's value; applied below that breakpoint it
+   pairs a wide column with the mobile 32px heading and the description ends
+   up the wider of the two (333px against 300px from 430px up). Placed after
+   the rule above so it wins the equal-specificity !important tie. */
+@media (max-width: 767px) {
+  .heroDesc {
+    max-width: 303px !important;
+  }
 }
 
 .heroActions {
@@ -614,6 +680,21 @@
   margin: 0 0 4rem;
 }
 
+/* Figma stacks these two lines on mobile (both full-width, 4px apart, node
+   3683:7597) and sets them side by side on tablet/desktop (12px apart, nodes
+   3259:1633 / 2715:19356). Without this the row only broke when it happened
+   to run out of room — at 375px it wrapped by accident with the wrong 12px
+   row gap, and from 430px up it sat on one line. 640px rather than the 768px
+   artboard so it flips with the rest of this section, whose card grid and
+   padding already switch to the tablet arrangement at 641px. */
+@media (max-width: 640px) {
+  .workspaceHeading {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
 .workspaceHeadingLine1 {
   font-family: var(--rt-font-sans);
   font-weight: var(--rt-weight-regular);
@@ -699,8 +780,8 @@
   font-family: var(--rt-font-serif);
   font-style: italic;
   font-weight: var(--rt-weight-regular);
-  /* 20px flat, not --rt-fs-h4-alt, which scales 20 -> 22 -> 24px. Figma's
-     card title (node 3257:1102) is 20px at every breakpoint. */
+  /* 20px flat, not --rt-fs-h4-alt, which is 20/19/20 across mobile, tablet
+     and desktop. Figma's card title (node 3257:1102) is 20px everywhere. */
   font-size: 1.25rem;
   line-height: var(--rt-lh-h4);
   color: #1a1a1a;
@@ -985,12 +1066,21 @@
 
 @media (max-width: 640px) {
   .whySection .sectionContainer {
-    /* 0.25rem here + rt-rail's own 8px margin ≈ the ~12px edge inset in
-       Figma (node 2823:6818) — that spec has no rail framing on mobile,
-       just the cards floating with their own small margin. */
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
+    /* Figma node 3683:7596: inside the 359px rail the heading and the card
+       column both sit 8px in (343px wide), with 32px above the heading and
+       32px below the last card. Tablet (node 3259:1631) uses 32/48/48
+       instead, which the 900px rules above still cover. */
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     border-left-color: transparent;
     border-right-color: transparent;
+  }
+
+  /* 32px heading-to-cards gap (heading ends at y=104, cards start at y=136),
+     against 64px on tablet and desktop. */
+  .workspaceHeading {
+    margin-bottom: 2rem;
   }
 }
