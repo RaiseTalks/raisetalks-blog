@@ -6,6 +6,9 @@ on:
       - main
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  # Rebuild every working-day morning so that day's scheduled blog post goes live (05:00 UTC, Mon-Fri)
+  schedule:
+    - cron: '0 5 * * 1-5'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:

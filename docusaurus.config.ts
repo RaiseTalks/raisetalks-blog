@@ -1,6 +1,10 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
+import remarkBlogFaq from './src/plugins/remark-blog-faq';
+import llmsTxtPlugin from './src/plugins/llms-txt';
+import remarkUnpublishedLinks from './src/plugins/remark-unpublished-links';
+import { filterScheduledPosts, unpublishedSlugs } from './src/plugins/scheduled-posts';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -42,6 +46,9 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Generates /llms.txt (site and blog index for AI assistants) on every build
+  plugins: [llmsTxtPlugin],
+
   presets: [
     [
       'classic',
@@ -56,13 +63,24 @@ const config: Config = {
             : undefined,
         blog: {
           routeBasePath: '/blog', // Move blog to /blog route
+          // One post per working day: production builds only include posts whose date has arrived
+          // (the deploy workflow rebuilds every working-day morning). `yarn start` shows all posts.
+          processBlogPosts: filterScheduledPosts,
+          // Runs before the default plugins so the table of contents reflects both changes:
+          // links to not-yet-live posts are hidden, and the FAQ section becomes the website accordion.
+          beforeDefaultRemarkPlugins: [
+            [remarkUnpublishedLinks, { unpublished: unpublishedSlugs(__dirname) }],
+            remarkBlogFaq,
+          ],
           showReadingTime: true,
+          // Oldest first: the blog and Recent Posts sidebar open with the first article
+          sortPosts: 'ascending',
           blogTitle: 'RaiseTalks Blog',
           blogDescription:
             'Expert insights on due diligence, fundraising, and business growth',
           postsPerPage: 10,
           blogSidebarTitle: 'Recent Posts',
-          blogSidebarCount: 'ALL',
+          blogSidebarCount: 'ALL', // full article list doubles as navigation
           feedOptions: {
             type: ['rss', 'atom'],
             title: 'RaiseTalks Blog',
@@ -84,6 +102,12 @@ const config: Config = {
   ],
 
   themeConfig: {
+    blog: {
+      sidebar: {
+        // Post dates are hidden, so don't group the Recent Posts sidebar under year headings
+        groupByYear: false,
+      },
+    },
     // Replace with your project's social card
     image: 'img/og-raisetalks.jpg',
     colorMode: {
@@ -230,6 +254,10 @@ const config: Config = {
             {
               label: 'YouTube',
               to: 'https://youtube.com/@raisetalks',
+            },
+            {
+              label: 'Blog',
+              to: '/blog',
             },
             {
               label: 'Instagram',

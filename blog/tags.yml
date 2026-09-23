@@ -42,3 +42,38 @@ startups:
   label: Startups
   permalink: /startups
   description: Startup advice, growth strategies, and entrepreneurship insights
+
+readiness-score:
+  label: Readiness Score
+  permalink: /readiness-score
+  description: How investors rate fundraising readiness, and how founders measure and close the gaps
+
+investor-playbook:
+  label: Investor Playbook
+  permalink: /investor-playbook
+  description: Dealflow, screening and diligence practice for angels, micro-funds and VCs
+
+dealflow:
+  label: Dealflow
+  permalink: /dealflow
+  description: Sourcing, screening and managing early-stage deal pipelines
+
+benchmarks:
+  label: Benchmarks
+  permalink: /benchmarks
+  description: Round sizes, valuations, timelines and graduation rates for early-stage startups
+
+valuation:
+  label: Valuation
+  permalink: /valuation
+  description: How early-stage startups are valued and how rounds are priced
+
+pitch-deck:
+  label: Pitch Deck
+  permalink: /pitch-deck
+  description: Building pitch decks that hold up against the data room and investor scrutiny
+
+market-data:
+  label: Market Data
+  permalink: /market-data
+  description: Data and analysis on the early-stage capital market

@@ -8,7 +8,7 @@ type FooterLinkItem = {label: string; to?: string; href?: string};
 type FooterLinkGroup = {title?: string; items: FooterLinkItem[]};
 
 const SOCIAL_COLUMNS = [
-  ['LinkedIn', 'YouTube', 'Affiliate Program'],
+  ['LinkedIn', 'YouTube', 'Blog', 'Affiliate Program'],
   ['Instagram', 'Facebook'],
 ];
 

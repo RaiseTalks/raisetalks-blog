@@ -321,11 +321,34 @@
     height: auto;
   }
 
-  /* Hide secondary panels */
-  .navbar-sidebar__items--show-secondary,
+  /* Only the active panel is shown. On blog pages Docusaurus opens the secondary panel (the
+     article list, with "Back to main menu"); the inactive panel is inert and hidden. The container
+     must stay visible and unshifted, otherwise the menu opens blank on blog pages. */
   .navbar-sidebar__item[inert],
   .theme-layout-navbar-sidebar-panel[inert] {
     display: none !important;
+  }
+
+  .navbar-sidebar__items--show-secondary {
+    transform: none !important;
+  }
+
+  .navbar-sidebar__item {
+    width: 100% !important;
+  }
+
+  /* "Back to main menu" on blog pages, aligned with the menu items below it */
+  .navbar-sidebar__back {
+    margin: 0 !important;
+    padding: 1rem 1.5rem 0.5rem !important;
+    width: 100%;
+    background: none !important;
+    text-align: left;
+    font-family: var(--rt-font-sans);
+    font-size: var(--rt-fs-body);
+    font-weight: var(--rt-weight-medium);
+    color: var(--raisetalks-blue-primary-flat) !important;
+    cursor: pointer;
   }
 
   /* Menu list - clean styling */

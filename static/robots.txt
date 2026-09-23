@@ -27,5 +27,17 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 # Sitemap location
-Sitemap: https://raisetalks-blog.github.io/raisetalks-blog/sitemap.xml
+Sitemap: https://raisetalks.com/sitemap.xml

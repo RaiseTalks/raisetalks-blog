@@ -105,52 +105,53 @@ menu {
 }
 
 /* Apply clean styling to default Docusaurus blog list articles */
-.plugin-blog .main-wrapper article {
+.plugin-blog:not(.blog-post-page) .main-wrapper article {
   background: white;
   padding: 2rem 0;
   margin-bottom: 1.5rem;
   border-bottom: 1px solid #f1f5f9;
 }
 
-.plugin-blog .main-wrapper article:last-child {
+.plugin-blog:not(.blog-post-page) .main-wrapper article:last-child {
   border-bottom: none;
 }
 
 /* Titles & links in list cards */
-.plugin-blog .main-wrapper article h2 {
-  font-size: 2.5rem;
-  color: #1e293b;
+.plugin-blog:not(.blog-post-page) .main-wrapper article h2 {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h3);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h3);
+  color: #000;
   margin-bottom: 0.5rem;
-  line-height: 1.3;
-  letter-spacing: -0.025em;
 }
 
-.plugin-blog .main-wrapper article h2 a {
+.plugin-blog:not(.blog-post-page) .main-wrapper article h2 a {
   color: inherit;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.plugin-blog .main-wrapper article h2 a:hover {
+.plugin-blog:not(.blog-post-page) .main-wrapper article h2 a:hover {
   color: var(--raisetalks-blue-primary-flat);
 }
 
 /* Meta row */
-.plugin-blog .main-wrapper article time {
+.plugin-blog:not(.blog-post-page) .main-wrapper article time {
   color: #64748b;
-  font-size: 0.875rem;
+  font-size: var(--rt-fs-footnote);
 }
 
 /* Excerpt */
-.plugin-blog .main-wrapper article .markdown p {
-  color: #374151; /* match article page paragraphs */
-  font-size: 1.125rem;
-  line-height: 1.8;
+.plugin-blog:not(.blog-post-page) .main-wrapper article .markdown p {
+  color: #404040; /* match article page paragraphs */
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   margin: 1rem 0;
 }
 
 /* Links inside list excerpts - match single-article link style */
-.plugin-blog .main-wrapper article .markdown a {
+.plugin-blog:not(.blog-post-page) .main-wrapper article .markdown a {
   color: var(--raisetalks-blue-primary-flat);
   text-decoration: none;
   font-weight: 600;
@@ -158,13 +159,13 @@ menu {
   border-bottom: 2px solid transparent;
 }
 
-.plugin-blog .main-wrapper article .markdown a:hover {
+.plugin-blog:not(.blog-post-page) .main-wrapper article .markdown a:hover {
   color: var(--raisetalks-blue-primary-flat);
   border-bottom-color: var(--raisetalks-blue-primary-flat);
 }
 
 /* Read more link */
-.plugin-blog .main-wrapper article footer [aria-label^='Read more'] {
+.plugin-blog:not(.blog-post-page) .main-wrapper article footer [aria-label^='Read more'] {
   color: var(--raisetalks-blue-primary-flat);
   font-weight: 600;
   text-decoration: none;
@@ -178,7 +179,7 @@ menu {
   transition: all 0.3s ease;
 }
 
-.plugin-blog .main-wrapper article footer [aria-label^='Read more']:hover {
+.plugin-blog:not(.blog-post-page) .main-wrapper article footer [aria-label^='Read more']:hover {
   color: var(--raisetalks-blue-primary-flat);
   transform: translateX(4px);
 }
@@ -314,15 +315,15 @@ article header {
   text-align: center;
 }
 
-/* Article Title - Clean Hero Typography */
-article header h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 900;
-  color: var(--ifm-color-content);
+/* Article Title - site H1 token (.blog-wrapper beats the generic .blog-wrapper h1 rule) */
+.blog-wrapper article header h1 {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h1);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1);
+  color: #000;
   margin: 0 auto 1.5rem auto;
   max-width: 64rem;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
 }
 
 /* Article Meta Information */
@@ -366,11 +367,13 @@ article header .avatar__name a:hover {
   color: var(--raisetalks-blue-primary-flat);
 }
 
+article header .margin-vert--md,
 article header time,
 article header .reading-time {
   color: #64748b;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
+  font-weight: var(--rt-weight-regular);
 }
 
 /* Article Tags - Align with content */
@@ -394,9 +397,15 @@ article .container {
 article .markdown {
   max-width: 800px;
   padding: 2rem 1rem;
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: #374151;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: #404040;
+}
+
+article .markdown strong {
+  font-weight: var(--rt-weight-semibold);
+  color: #000;
 }
 
 /* Enhanced Typography Hierarchy */
@@ -406,42 +415,48 @@ article .markdown h3,
 article .markdown h4,
 article .markdown h5,
 article .markdown h6 {
-  color: #1e293b;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.025em;
+  font-family: var(--rt-font-sans);
+  color: #000;
+  font-weight: var(--rt-weight-regular);
+  letter-spacing: normal;
 }
 
 article .markdown h2 {
-  font-size: 1.75rem;
-  margin: 2.5rem 0 1rem 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #e5e7eb;
+  font-size: var(--rt-fs-h2);
+  line-height: var(--rt-lh-h2);
+  margin: 3rem 0 1rem 0;
 }
 
 article .markdown h3 {
-  font-size: 1.5rem;
-  margin: 2.5rem 0 1rem 0;
-  color: #1e293b;
+  font-size: var(--rt-fs-h4);
+  line-height: var(--rt-lh-h4);
+  font-weight: var(--rt-weight-semibold);
+  margin: 2rem 0 0.75rem 0;
 }
 
 article .markdown h4 {
-  font-size: 1.25rem;
-  margin: 2rem 0 0.75rem 0;
-  color: #374151;
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  font-weight: var(--rt-weight-semibold);
+  margin: 1.5rem 0 0.5rem 0;
 }
 
 article .markdown p {
-  margin-bottom: 1.75rem;
-  line-height: 1.8;
-  color: #374151;
+  margin-bottom: 1rem;
+  line-height: var(--rt-lh-body);
+  color: #404040;
 }
 
-article .markdown p:first-of-type {
-  font-size: 1.25rem;
-  color: #1e293b;
-  font-weight: 500;
-  line-height: 1.7;
+/* Lead paragraph: H4 scale, regular weight */
+article .markdown > p:first-of-type {
+  font-size: var(--rt-fs-h4);
+  line-height: var(--rt-lh-h4);
+  color: #000;
+  font-weight: var(--rt-weight-regular);
+}
+
+article .markdown > p:first-of-type strong {
+  font-weight: var(--rt-weight-regular);
 }
 
 /* Blockquote - Clean Style */
@@ -454,11 +469,14 @@ article .markdown blockquote {
   font-style: italic;
 }
 
+/* Quotes use the site's "Alt" style (Georgia italic, H4 Alt size), as on the About Us page */
 article .markdown blockquote p {
   margin: 0;
-  color: #475569;
-  font-size: 1.125rem;
-  line-height: 1.7;
+  color: #000;
+  font-family: var(--rt-font-serif);
+  font-style: italic;
+  font-size: var(--rt-fs-h4-alt);
+  line-height: var(--rt-lh-h4);
 }
 
 /* Code Styling */
@@ -491,14 +509,14 @@ article .markdown pre code {
 /* Lists Enhancement */
 article .markdown ul,
 article .markdown ol {
-  margin: 2rem 0;
-  padding-left: 2rem;
+  margin: 1rem 0 1.5rem;
+  padding-left: 1.5rem;
 }
 
 article .markdown li {
-  margin-bottom: 0.75rem;
-  line-height: 1.8;
-  color: #374151;
+  margin-bottom: 0.5rem;
+  line-height: var(--rt-lh-body);
+  color: #404040;
 }
 
 article .markdown ul li::marker {
@@ -543,15 +561,18 @@ article .markdown th {
   background: #f8fafc;
   padding: 0.75rem 1rem;
   text-align: left;
-  font-weight: 600;
-  color: #1e293b;
+  font-weight: var(--rt-weight-semibold);
+  font-size: var(--rt-fs-body);
+  color: #000;
   border-bottom: 1px solid #e5e7eb;
 }
 
 article .markdown td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #f1f5f9;
-  color: #374151;
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: #404040;
 }
 
 /* Reading Time */
@@ -908,23 +929,19 @@ article .avatar [class*='authorSocials'] a + a {
   }
 
   article header h1 {
-    font-size: clamp(1.5rem, 6vw, 2rem);
   }
 
   article .markdown {
     padding: 1.5rem 1rem;
-    font-size: 1rem;
   }
 
   article .markdown h2 {
-    font-size: 1.375rem;
   }
 
   article .markdown h3 {
-    font-size: 1.25rem;
   }
 
-  .plugin-blog .main-wrapper article h2 {
+  .plugin-blog:not(.blog-post-page) .main-wrapper article h2 {
     font-size: 1.5rem;
   }
 
@@ -959,4 +976,87 @@ article .avatar [class*='authorSocials'] a + a {
   .plugin-blog .container.margin-vert--lg {
     padding: 1rem 0.75rem;
   }
+}
+
+/* Inline tag pills (list cards + article footer).
+   Docusaurus renders these with hashed module classes, so the global .tag rule never matches. */
+.plugin-blog ul[class*='tags_'] {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.plugin-blog ul[class*='tags_'] li {
+  margin: 0;
+}
+
+.plugin-blog a[rel='tag'] {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: var(--raisetalks-blue-primary-flat);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.plugin-blog a[rel='tag']:hover {
+  color: var(--raisetalks-blue-primary-flat);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* No divider lines inside articles: the "---" section breaks render as nothing. */
+.plugin-blog .markdown hr {
+  display: none;
+}
+
+/* Phones: tables and code blocks fit the screen and wrap instead of scrolling sideways */
+@media (max-width: 640px) {
+  article .markdown table {
+    display: table;
+    width: 100%;
+    table-layout: auto;
+  }
+
+  article .markdown th,
+  article .markdown td {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.8125rem; /* 13px: keeps 4-column tables on screen */
+    overflow-wrap: break-word;
+    hyphens: auto; /* dictionary hyphenation for long words, e.g. Com-plete-ness */
+  }
+
+  article .markdown td code,
+  article .markdown th code {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  article .markdown pre,
+  article .markdown pre code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Very narrow phones (under 380px): a table that still cannot fit scrolls inside its own box
+   instead of being clipped by the page */
+@media (max-width: 379px) {
+  article .markdown table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* Full article list in the sidebar: breathing room under the last item when scrolled to the end */
+.plugin-blog nav[aria-label='Blog recent posts navigation'] {
+  padding-bottom: 1.5rem;
 }

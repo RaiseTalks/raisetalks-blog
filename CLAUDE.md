@@ -230,3 +230,10 @@ import { CustomCTA } from '@site/src/components/BlogCTAMDX';
 - Never use raw HTML div elements for CTAs anymore
 - All CTAs automatically use proper white text on blue backgrounds
 - Components ensure consistent branding and accessibility
+
+## Blog Post Format
+
+- Articles follow the house format in the DVOS blog programme (`~/Documents/DVOS/raisetalks/blog/articles/`): opening paragraphs, `<!-- truncate -->`, "Key takeaways", body sections, an FAQ, then one product CTA line at the end. No "Quick Summary" block.
+- FAQ: write it as plain Markdown under `## Frequently Asked Questions`, each item a bold question line followed by its answer. `src/plugins/remark-blog-faq.js` turns it into the website FAQ accordion (`src/components/BlogFAQ.tsx`, same styles as `FAQSection`) and normalises the heading to "Frequently Asked Questions". Do not hand-build FAQ markup or use CTA components for it.
+
+- Scheduling: every post's front matter `date` is its publish day, and the filename starts with the same date. The first 31 posts all went live together on 2026-09-23 (a minute apart, to keep their order); a post dated in the future waits for its day. Production builds only include posts whose date has arrived (`src/plugins/scheduled-posts.js`); the deploy workflow rebuilds Mon-Fri at 05:00 UTC so each day's post goes live on its own. Links to not-yet-live posts are hidden until then (`src/plugins/remark-unpublished-links.js`). Dates are never shown on the page. `yarn start` shows all posts; `BLOG_BUILD_DATE=YYYY-MM-DD yarn build` previews a given day.

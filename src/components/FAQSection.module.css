@@ -188,3 +188,48 @@
     margin: 0.75rem 0 1.5rem;
   }
 }
+/* ---- Blog variant (BlogFAQ.tsx) ----
+   Same item, question, icon and answer styles as the website FAQ; these rules only undo the
+   article's markdown typography and line the answer box up under the question text, where the
+   website version gets that alignment from nesting the answer inside the question button. */
+.blogFaq {
+  margin: 1.5rem 0 2rem;
+  border-top: 0.5px solid #dae0e7;
+}
+
+.blogFaqHeading {
+  margin: 0 !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+/* question padding-left (2rem) + icon (2rem) + gap (1rem) */
+.blogFaqAnswer {
+  padding-left: 5rem;
+}
+
+.blogFaqAnswer .faqAnswerContent {
+  margin-top: 0;
+}
+
+.blogFaqAnswer .faqAnswerContent p {
+  margin: 0 0 0.75rem;
+  color: #000;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.blogFaqAnswer .faqAnswerContent p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  /* question padding-left (1.25rem) + icon (2rem) + gap (0.75rem) */
+  .blogFaqAnswer {
+    padding-left: 4rem;
+  }
+
+  .blogFaqAnswer .faqAnswerContent {
+    margin-top: 0;
+  }
+}
