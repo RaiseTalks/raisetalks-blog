@@ -318,8 +318,8 @@ export default function Startups() {
             <div className={clsx(styles.sectionHeader, styles.featuresSectionHeader)}>
               <div>
                 <h2 className={styles.sectionTitle}>
-                  Everything you need to <br />
-                  <span className={styles.accentText}>walk in ready</span>
+                  Everything you need <br />
+                  <span className={styles.accentText}>to walk in ready</span>
                 </h2>
               </div>
               <p className={styles.sectionDesc}>
@@ -441,7 +441,7 @@ export default function Startups() {
           <AnimSection>
             <div className={clsx(styles.sectionHeader, styles.sectionHeaderLight)}>
               <h2 className={clsx(styles.sectionTitle, styles.sectionTitleLight)}>
-                RaiseTalks AI Advisor is not just a tool. <br />
+                <span>RaiseTalks AI Advisor is not just a tool.</span>
                 <span className={styles.accentTextLight}>It's a standard</span>
               </h2>
             </div>
@@ -475,10 +475,10 @@ export default function Startups() {
               },
             ].map(({ trait, desc }) => (
               <AnimSection key={trait} className={styles.characterCard}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <div style={{ flexShrink: 0, marginTop: '0.25rem' }}>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                  <span className={styles.characterCheck}>
                     <CheckmarkIcon />
-                  </div>
+                  </span>
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <div className={styles.characterTrait}>{trait}</div>
                     <p className={styles.characterDesc}>{desc}</p>
@@ -590,12 +590,13 @@ export default function Startups() {
                   <em>Not just prepared - ready.</em>
                 </h2>
                 <p className={styles.ctaDesc}>
-                  Join the founders building investor-grade data rooms with RaiseTalks. <br />
+                  Join the founders building investor-grade data rooms with RaiseTalks.{' '}
+                  <br className={styles.ctaDescBreak} />
                   Start free. Get your readiness score in minutes.
                 </p>
                 <div className={styles.ctaActions}>
                   <Link className={styles.ctaBtnPrimary} to="https://app.raisetalks.com/sign-up">
-                    Start Free
+                    Start FREE
                   </Link>
                   <Link className={styles.ctaBtnSecondary} to="/pricing">
                     View Pricing

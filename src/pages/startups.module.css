@@ -247,11 +247,35 @@
 @media (max-width: 1024px) { .hero { background-image: url('/img/backgrounds/hero-alt-tablet.webp'); } }
 @media (max-width: 768px) { .hero { background-image: url('/img/backgrounds/hero-alt-mobile.webp'); } }
 
+/* Figma's hero frame per breakpoint — mobile 1967:3545/3546, tablet
+   1496:20/21, desktop 1316:2892/2893:
+     mobile   12px side margin, 24px inner padding, 96px top / 48px bottom
+     tablet   48px side margin, 48px padding all round
+     desktop  fixed 1024px column, no side padding, 128px top / 80px bottom
+   There was no horizontal padding at all before, so on mobile the copy ran
+   the full width of the viewport. */
 .heroInner {
-  max-width: 820px;
-  padding-top: 128px;
-  padding-bottom: 80px;
+  box-sizing: border-box;
+  /* !important clears responsive.css's sitewide `* { max-width: 100% }`
+     guard below 640px; the wider breakpoints below need it too, purely to
+     outrank this one. */
+  max-width: calc(100% - 24px) !important;
   margin: 0 auto;
+  padding: 96px 24px 48px;
+}
+
+@media (min-width: 768px) {
+  .heroInner {
+    max-width: calc(100% - 96px) !important;
+    padding: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroInner {
+    max-width: 1024px !important;
+    padding: 128px 0 80px;
+  }
 }
 
 /* Only the homepage's "AI NATIVE" badge is a bordered pill frame in Figma;
@@ -297,32 +321,53 @@
   font-size: var(--rt-fs-body);
   color: #333333;
   line-height: var(--rt-lh-body);
+  /* Figma sets this column to 420px on desktop (node 1316:2899) and 360px
+     on tablet (1496:26); on mobile it is simply the hero column's own width
+     (1967:3551 is w-full inside a 298px column). */
   max-width: 420px;
   margin: 0 auto 2.25rem;
 }
 
+/* Below the 768px tablet artboard the mobile type scale is still in force,
+   so from ~430px up a wider column would let this line out-run "The Raise
+   Is Won" (288px of headline). Hold it to Figma's own mobile measure. */
+@media (max-width: 767px) {
+  .heroDesc {
+    max-width: 298px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .heroDesc {
+    max-width: 360px;
+  }
+}
+
 .heroActions {
   display: flex;
-  gap: 1.5rem;
+  gap: 21px;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 640px) {
-  .heroActions {
-    gap: 0.5rem;
-  }
+/* Figma gives these one box at every breakpoint (nodes 1967:3553 mobile,
+   1496:28 tablet, 1316:2901 desktop): 12px/16px padding at Type/Body, 8px
+   radius, content width, 45px tall with the 3px bottom border inside it.
+   Only the row gap changes — 21px on mobile and tablet, 24px on desktop.
+   The base .btnPrimary / .btnSecondary rules already match apart from the
+   height, so there is no per-breakpoint override here. Height is scoped to
+   the hero rather than set on .btnPrimary, which the Founder Perks section
+   also uses. */
+.heroActions .btnPrimary,
+.heroActions .btnSecondary {
+  box-sizing: border-box;
+  height: 45px;
+}
 
-  .heroActions .btnPrimary,
-  .heroActions .btnSecondary {
-    padding: 8px 8px !important;
-    height: 36px !important;
-    font-size: var(--rt-fs-footnote) !important;
-    min-width: unset !important;
-    flex: 0 0 auto !important;
-    width: auto !important;
-    max-width: 140px !important;
+@media (min-width: 1024px) {
+  .heroActions {
+    gap: 24px;
   }
 }
 
@@ -383,6 +428,20 @@
   box-shadow: 0 20px 40px -12px rgba(1, 116, 225, 0.45), 0 8px 16px rgba(1, 116, 225, 0.25);
 }
 
+/* Figma drops this card to Type/M/H4 on mobile — 17px/1.35 (node 1967:4381)
+   — where --rt-fs-h3 resolves to 24px/1.3, and pads it 24px rather than 32.
+   Tablet is Type/T/H3 at 28px (node 1496:838) and desktop Type/D/H3 at 30px
+   (node 1430:1012), both of which --rt-fs-h3 already gives. Keyed to 767px
+   so it flips with the type tokens at the 768px tablet artboard — the same
+   step-down as the About Us goal card. */
+@media (max-width: 767px) {
+  .truthQuote {
+    font-size: var(--rt-fs-h4);
+    line-height: var(--rt-lh-h4);
+    padding: 24px;
+  }
+}
+
 .truthBg {
   position: absolute;
   inset: 0;
@@ -422,6 +481,20 @@
 @media (max-width: 639px) {
   .painSectionRow {
     gap: 24px;
+    /* Figma mobile (node 1967:3581): the section pads 32px top and bottom
+       with no side inset — the card column fills the full 346px rail (node
+       1967:4410 is x=0, w=346) and only the header copy is inset 12px to
+       322px (node 1967:3583). .sectionInner's shared 24px padding pulled
+       both in from the rail. */
+    padding: 32px 0;
+  }
+
+  .painSectionRow .sectionHeader {
+    padding-left: 12px;
+    padding-right: 12px;
+    /* Its 24px bottom margin stacked on the 24px flex gap above the grid,
+       doubling Figma's 24px header-to-cards step. */
+    margin-bottom: 0;
   }
 }
 
@@ -521,9 +594,13 @@
   gap: 1.5rem;
 }
 
+/* Figma gives each card a 4px #003687 bottom edge at every breakpoint
+   (nodes 1967:4460 mobile, 1338:4852 desktop) and pads it 24px on mobile
+   against 36px on desktop. */
 .pillarCard {
   background: linear-gradient(270deg, rgba(0, 102, 218, 0) -0.15%, rgba(0, 89, 191, 0.7) 103.5%);
   border-radius: 1rem;
+  border-bottom: 4px solid #003687;
   padding: 2rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
@@ -538,7 +615,9 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 1rem;
+  /* 48px from the card's italic title to its lead line — same in Figma's
+     mobile and desktop frames (nodes 1967:4461, 1342:4885). */
+  margin-bottom: 48px;
 }
 
 .pillarIconWrap {
@@ -570,19 +649,23 @@
 
 .pillarHeadline {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-body);
+  /* H4, not Body: Figma sets this line at 17px on mobile (node 1967:4464)
+     and 20px on desktop (1342:4889) — one step above the 14.4px body copy
+     beneath it, which was collapsing the two to the same size. */
+  font-size: var(--rt-fs-h4);
   font-weight: var(--rt-weight-regular);
-  line-height: var(--rt-lh-body);
-  margin-bottom: 0.75rem;
+  line-height: var(--rt-lh-h4);
+  margin-bottom: 24px;
   max-width: 282.67px;
   color: white;
 }
 
 .pillarBody {
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-footnote);
+  /* Type/Body at 14.4px/1.45 in every frame, not the 12px footnote scale. */
+  font-size: var(--rt-fs-body);
   color: #E5E5E5;
-  line-height: var(--rt-lh-footnote);
+  line-height: var(--rt-lh-body);
   max-width: 282.67px;
   margin: 0;
 }
@@ -941,6 +1024,23 @@
   margin: 0 auto 3.5rem;
 }
 
+/* Figma centres this heading on desktop (node 1347:4912 carries text-center)
+   but left-aligns it on mobile — node 1979:200 is an items-start column with
+   no text-center, its lines running the full 322px rail measure rather than
+   a narrower centred block. */
+@media (max-width: 639px) {
+  .sectionHeaderLight {
+    text-align: left;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    /* 48px from the heading to the trait list — node 1979:200 ends at
+       y=137 and 1979:204 opens at 185, matching the 48px column gap on
+       their shared parent (1979:199). */
+    margin-bottom: 48px;
+  }
+}
+
 .sectionEyebrowLight {
   display: inline-block;
   font-family: var(--rt-font-sans);
@@ -962,8 +1062,23 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
-.accentTextLight {
+/* Figma stacks this heading as two lines 4px apart (node 1979:201 on mobile,
+   and the same pair at 1347:4912/4956 desktop) rather than a <br> inside one
+   block, so the step between them is a real gap and not line-height. The
+   class was referenced in the markup but never defined. */
+.sectionTitleLight {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
+.accentTextLight {
+  /* H2 Alt, not the H2 it was inheriting from .sectionTitle: Figma sets the
+     italic line one step larger than the roman one above it — 28px against
+     26px on mobile (1979:203), 38/36 tablet (1500:1069), 44/42 desktop
+     (1347:4956). */
+  font-size: var(--rt-fs-h2-alt);
+  line-height: var(--rt-lh-h2);
   background: var(--raisetalks-brand-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1005,7 +1120,23 @@
   font-size: var(--rt-fs-h4);
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h4);
-  margin-bottom: 0.6rem;
+  /* The row already supplies Figma's 8px title-to-copy step as a flex gap;
+     this margin stacked on top of it for 18px. */
+  margin-bottom: 0;
+}
+
+/* Figma's row icon is 24x24 (node 2334:976). CheckmarkIcon renders at 16px
+   for the benefit lists elsewhere on this page, so it is sized here rather
+   than on the shared component. */
+.characterCheck {
+  display: block;
+  flex-shrink: 0;
+}
+
+.characterCheck img {
+  display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .characterDesc {
@@ -1095,7 +1226,10 @@
 /* ── PERKS SECTION ────────────────────────────────────── */
 .perksSection {
   padding: 0rem 0;
-  background: var(--ifm-color-emphasis-100);
+  /* Figma fills this section #f7f7f7 (node 1984:276). Set literally rather
+     than through --ifm-color-emphasis-100, which resolves to rgb(245,246,247)
+     and is shared with the rest of the site. */
+  background: #f7f7f7;
 }
 
 /* Header column (title+button) is a fixed 330px, not an equal 50%
@@ -1260,7 +1394,11 @@
 
 
 
+/* 45px tall with the 3px bottom border inside the box, matching Figma's
+   button spec (node 1984:355) and the hero pair. */
 .perksCta .btnPrimary {
+  box-sizing: border-box;
+  height: 45px;
   width: 100%;
   max-width: 300px;
 }
@@ -1306,12 +1444,10 @@
   border-bottom: none;
 }
 
-/* Figma (node 1347:5223) gives the "Resources" card its own #fcfcfc fill,
-   not just the other 3 cards' transparent default. */
-.perkCard:nth-child(3) {
-  background: #fcfcfc;
-}
-
+/* The "Resources" card used to carry its own #fcfcfc resting fill, read off
+   node 1347:5223 — but that is the hover colour below, so the frame it came
+   from was captured with that card hovered. All four cards rest on the
+   section's own background. */
 .perkCard:hover {
   background: #FCFCFC;
 }
@@ -1331,6 +1467,8 @@
   font-family: var(--rt-font-sans);
   font-size: 16px;
   font-weight: var(--rt-weight-bold);
+  /* 1.4 per the Eyebrow type styles in every frame; it inherited 1.5. */
+  line-height: var(--rt-lh-eyebrow);
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--ifm-color-primary);
@@ -1343,7 +1481,9 @@
   font-size: 20px;
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h4);
-  color: var(--ifm-color-content);
+  /* Figma fills this #1a1a1a (node 1984:325); --ifm-color-content is
+     Infima's #1c1e21. */
+  color: #1a1a1a;
 }
 
 .perkDesc {
@@ -1412,12 +1552,23 @@
     border-bottom: 1px solid var(--ifm-color-emphasis-200);
     /* Figma (node 1984:319): 24px vertical, no horizontal inset — cards
        run edge to edge, and the icon-to-text gap tightens to 16px. */
-    padding: 1.5rem 0;
+    padding: 24px 0;
     gap: 16px;
+  }
+
+  /* Figma opens the list with a tighter 16px row (node 1984:321) before
+     settling to 24px for the rest. */
+  .perkCard:first-child {
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
   .perkCard:last-child {
     border-bottom: none;
+  }
+
+  .perkLabel {
+    letter-spacing: var(--rt-ls-eyebrow);
   }
 
   /* Website/M/Eyebrow and Website/M/H4 (node 1984:347/325): 13px and
@@ -1481,10 +1632,14 @@
   }
 }
 
+/* Figma pads the rail box 64px top and bottom at desktop (node 2368:239:
+   387 = 64 + 259 + 64); the mobile block near the bottom of this section
+   drops that to 32px. max-width only has to clear the content block, which
+   hugs its widest child (619px, the one-line headline). */
 .ctaInner {
   max-width: 900px;
   margin: 0 auto;
-  padding: 6rem 1.5rem;
+  padding: 64px 1.5rem;
 }
 
 .ctaContent {
@@ -1507,18 +1662,24 @@
   background: rgba(1, 116, 225, 0.05);
 }
 
+/* The three gaps inside this block are identical at both breakpoints in
+   Figma (nodes 2368:240 desktop / 2375:474 mobile): 4px between the two
+   headline lines, 12px from the headline to the body copy, 48px from the
+   text block to the buttons. Type/D/H2 and Type/M/H2 both carry
+   letterSpacing 0 — the tracking that used to sit here pulled the headline
+   in far enough to change where it wrapped on mobile. */
 .ctaTitle {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-h2);
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h2);
-  margin-bottom: 1.25rem;
-  letter-spacing: -0.015em;
+  margin-bottom: 12px;
   color: #FFFFFF;
 }
 
 .ctaTitle em {
   display: block;
+  margin-top: 4px;
   font-style: italic;
   font-family: Georgia, serif;
   font-weight: var(--rt-weight-regular);
@@ -1526,38 +1687,31 @@
   line-height: var(--rt-lh-h2);
 }
 
+/* Figma sets this copy in a fixed 540px box and lets it wrap on its own
+   (node 2368:245) rather than breaking it by hand — two lines at desktop,
+   three in the 322px mobile column, where the cap never binds. */
 .ctaDesc {
   font-family: var(--rt-font-sans);
   font-size: var(--rt-fs-body);
-  color: var(--ifm-color-content-secondary);
   line-height: var(--rt-lh-body);
-  margin-bottom: 2rem;
+  max-width: 540px;
+  margin: 0 auto 48px;
   color: #D7D7D7;
 }
 
+/* Figma gives this pair one box at every breakpoint (nodes 2375:482 mobile,
+   2368:248 desktop): 12px/16px padding at Type/Body, 8px radius, content
+   width, 45px tall, 18px apart — 101x45 and 119x45 on mobile. They carry no
+   151px minimum and do not shrink to the footnote scale. */
 .ctaActions {
   display: flex;
-  gap: 1rem;
+  gap: 18px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 1.25rem;
-}
-
-@media (max-width: 640px) {
-  .ctaActions {
-    gap: 0.5rem;
-  }
-
-  .ctaActions .ctaBtnPrimary,
-  .ctaActions .ctaBtnSecondary {
-    padding: 8px 8px !important;
-    height: 36px !important;
-    font-size: var(--rt-fs-footnote) !important;
-    min-width: unset !important;
-    flex: 0 0 auto !important;
-    width: auto !important;
-    max-width: 140px !important;
-  }
+  /* The content block ends flush with this row in Figma at both breakpoints
+     (desktop 214 + 45 = 259, mobile 263 + 45 = 308) — the box's own bottom
+     padding is the only space below it. */
+  margin-bottom: 0;
 }
 
 .ctaBtnPrimary {
@@ -1568,8 +1722,7 @@
   justify-content: center;
   padding: 12px 16px;
   gap: 10px;
-  min-width: 151px;
-  height: 42px;
+  height: 45px;
   background: linear-gradient(75.88deg, #003687 -3.42%, #0077ff 99.98%);
   border-bottom: 3px solid #003687;
   border-radius: 8px;
@@ -1596,21 +1749,59 @@
   color: #FFFFFF;
   padding: 12px 16px;
   gap: 10px;
-  min-width: 151px;
-  height: 42px;
+  height: 45px;
   border-radius: 8px;
   font-weight: 400;
   font-size: var(--rt-fs-body);
   text-decoration: none !important;
-  border: 1px solid var(--ifm-color-primary);
-  border-bottom-width: 3px;
+  border: 0;
+  position: relative;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Figma strokes this button with the brand gradient rather than a flat blue
+   (nodes 2375:484 mobile / 2368:250 desktop) — sampling the render, the
+   bottom edge runs #003687 to #0077ff left to right, the same ramp as the
+   primary button's fill. border-image would express it but drops the 8px
+   radius, so the stroke is a masked overlay instead, which also keeps the
+   button's own fill transparent over the section's background photo.
+   1px on three sides, 3px along the bottom, as in the design. */
+.ctaBtnSecondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 1px;
+  padding-bottom: 3px;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .ctaBtnSecondary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(1, 116, 225, 0.25);
   color: var(--ifm-color-primary) !important;
+}
+
+/* Figma mobile (node 2375:473, 370px artboard): the rail box is 346 wide
+   with 32px vertical and 12px horizontal padding, against 64px vertical at
+   desktop. Everything inside it — the 4/12/48 gaps, the body-copy measure,
+   the button row — is shared with desktop and lives in the base rules above.
+   140 + 12 + 63 + 48 + 45 = 308 of content inside a 372 box. */
+@media (max-width: 767px) {
+  .ctaInner {
+    padding: 32px 12px;
+  }
+
+  /* Figma runs the copy as one flowing sentence; .ctaDescBreak is the
+     hand-placed break that shapes it into two lines above this width. */
+  .ctaDescBreak {
+    display: none;
+  }
 }
 
 .ctaNote {
@@ -1653,8 +1844,10 @@
      between the text block and the image. */
   .featureRowInner { padding-block: 2rem; }
   .featureRow { gap: 2rem; padding: 0; }
-  .pillarCard { padding: 1.75rem 1.5rem; }
-  .characterCard { padding: 1.5rem; }
+  .pillarCard { padding: 24px; }
+  /* Figma mobile (node 1979:212): 24px vertical padding, none horizontal —
+     the row runs the full 322px measure with its check icon flush left. */
+  .characterCard { padding: 24px 0; }
 }
 
 /* Perk icons follow Figma's icon rules (node 3488-7675) rather than
@@ -1685,5 +1878,55 @@
     max-width: 100% !important;
     border-left: none;
     border-right: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Character strip — Figma mobile frame (node 1979:198)
+   The section runs edge to edge with a 24px inset and 32px top/bottom
+   padding (node 1979:199). Within the trait list, the first row has no
+   top padding (node 1979:206 is pb-only) and the last closes at 20px
+   with no divider (1979:238). Placed last so the row overrides win over
+   the shared ≤640px .characterCard padding above.
+   ------------------------------------------------------------------ */
+@media (max-width: 639px) {
+  .characterSection .sectionInner {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .characterCard:first-child {
+    padding-top: 0;
+  }
+
+  /* The base rule drops the divider from items 5 and 6, which is right for
+     the 2-column desktop grid where they form the final row. Stacked in one
+     column here, only the sixth is last. */
+  .characterCard:nth-child(n + 5) {
+    border-bottom: 0.5px solid #ced6de;
+  }
+
+  .characterCard:last-child {
+    padding-bottom: 20px;
+    border-bottom: none;
+  }
+}
+
+/* Founder Perks — Figma mobile frame (node 1984:277) pads the section 48px
+   top and bottom against the 24px it used here. */
+@media (max-width: 640px) {
+  .perksSection .sectionInner {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  /* The tablet grid gives odd/even cells a 24px inset on the side facing
+     the column divider. Stacked in one column here there is no divider, and
+     those nth-child rules outrank .perkCard's own mobile padding, leaving a
+     stray 24px on one edge of every row. */
+  .perkCard:nth-child(odd),
+  .perkCard:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
