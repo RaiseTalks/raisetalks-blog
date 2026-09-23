@@ -61,10 +61,35 @@
 .hero::before { left: max(1rem, calc(50% - var(--rail-half))); }
 .hero::after { right: max(1rem, calc(50% - var(--rail-half))); }
 
+/* Figma's hero frame per breakpoint — mobile 1936:18/19, tablet 1429:71/72,
+   desktop 1285:943/944:
+     mobile   12px side margin, 24px inner padding, 96px top / 48px bottom
+     tablet   48px side margin, 48px padding all round
+     desktop  fixed 1024px column, no side padding, 128px top / 80px bottom */
 .heroInner {
-  max-width: 960px;
+  box-sizing: border-box;
+  /* !important for the same reason rail.css needs it: responsive.css has a
+     sitewide `* { max-width: 100% }` guard below 640px that otherwise wins
+     here despite lower specificity (a Tailwind v4 cascade-layer effect). */
+  max-width: calc(100% - 24px) !important;
   margin: 0 auto;
-  padding: 6rem 1rem 4rem;
+  padding: 96px 24px 48px;
+}
+
+/* These carry !important only to outrank the base rule's own !important
+   above — without it that mobile width would apply at every breakpoint. */
+@media (min-width: 768px) {
+  .heroInner {
+    max-width: calc(100% - 96px) !important;
+    padding: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroInner {
+    max-width: 1024px !important;
+    padding: 128px 0 80px;
+  }
 }
 
 /* Unlike the homepage's "AI NATIVE" badge (a bordered pill frame), Figma's
@@ -79,7 +104,16 @@
   letter-spacing: var(--rt-ls-eyebrow);
   text-transform: uppercase;
   color: var(--ifm-color-primary);
-  margin-bottom: 1rem;
+  /* 4px to the headline on mobile and tablet (nodes 1936:21, 1429:74, which
+     stack eyebrow and both headline lines in one 4px-gap column); desktop
+     splits them into a 16px-gap group instead (node 1285:946). */
+  margin-bottom: 4px;
+}
+
+@media (min-width: 1024px) {
+  .heroEyebrow {
+    margin-bottom: 16px;
+  }
 }
 
 .heroTitle {
@@ -87,16 +121,20 @@
   font-size: var(--rt-fs-h1);
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h1);
-  margin-bottom: 2.25rem;
+  /* 36px to the button row, except on tablet where Figma opens it to 48px
+     (node 1429:72's 48px column gap vs 36px on 1936:19 and 1285:944). */
+  margin-bottom: 36px;
   color: var(--ifm-color-content);
 }
-/* .heroInner caps out at 960px, but the rail (--rail-half) keeps growing
-   past that on larger screens. Break the title out of heroInner's cap so
-   it uses the extra space up to the rail — negative margins here expand
-   an auto-width block symmetrically, keeping it centered; the rail lines
-   and font-size are untouched. */
-@media (min-width: 1024px) { .heroTitle { margin-left: -32px; margin-right: -32px; } }
-@media (min-width: 1280px) { .heroTitle { margin-left: -160px; margin-right: -160px; } }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .heroTitle {
+    margin-bottom: 48px;
+  }
+}
+/* The negative-margin breakout that used to live here escaped .heroInner's
+   old 960px cap; the column is now Figma's own 1024px with no side padding,
+   so the headline already has the width the design gives it. */
 @media (min-width: 1536px) { .heroTitle { margin-left: -288px; margin-right: -288px; } }
 
 .heroAccent {
@@ -111,28 +149,23 @@
   line-height: var(--rt-lh-h1-alt);
 }
 
+/* Figma gives these buttons one box at every breakpoint (nodes 1285:952
+   desktop, 1429:79 tablet, 1936:26 mobile): 12px/16px padding at Type/Body,
+   8px radius, content width — 148x45 and 146x45. Only the row gap changes,
+   24px on desktop against 21px on tablet and mobile. The base .btnPrimary /
+   .btnSecondary rules already match, so there is no per-breakpoint button
+   override here. */
 .heroActions {
   display: flex;
-  gap: 1.5rem;
+  gap: 21px;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 1.25rem;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 1024px) {
   .heroActions {
-    gap: 0.5rem;
-  }
-
-  .heroActions .btnPrimary,
-  .heroActions .btnSecondary {
-    padding: 8px 8px !important;
-    height: 36px !important;
-    font-size: var(--rt-fs-footnote) !important;
-    min-width: unset !important;
-    flex: 0 0 auto !important;
-    width: auto !important;
-    max-width: 140px !important;
+    gap: 24px;
   }
 }
 
@@ -568,31 +601,20 @@
   margin: 0 auto;
 }
 
+/* Figma sizes this row identically at every breakpoint (nodes 2368:207
+   desktop, 2375:299 tablet, 2375:462 mobile): two content-width buttons
+   18px apart, each 12px/16px padding at Type/Body, giving 128x45 and
+   101x45. There is no wider tablet/desktop variant. */
 .ctaButtons {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 18px;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-@media (max-width: 640px) {
-  .ctaButtons {
-    gap: 0.5rem;
-  }
 
-  .ctaButtons .ctaBtnPrimary,
-  .ctaButtons .ctaBtnSecondary {
-    padding: 8px 8px !important;
-    height: 36px !important;
-    font-size: var(--rt-fs-footnote) !important;
-    min-width: unset !important;
-    flex: 0 0 auto !important;
-    width: auto !important;
-    max-width: 140px !important;
-  }
-}
 
 .ctaBtnPrimary {
   box-sizing: border-box;
@@ -604,11 +626,13 @@
   color: white;
   padding: 12px 16px;
   gap: 10px;
-  min-width: 151px;
-  height: 42px;
+  height: 45px;
   border-radius: 8px;
   border-bottom: 3px solid #003687;
-  font-weight: 700;
+  /* Figma sets both CTA labels in Poppins Regular at every breakpoint
+     (nodes 2368:209, 2375:301, 2375:464) — the primary is distinguished by
+     its gradient fill, not by weight. */
+  font-weight: var(--rt-weight-regular);
   font-size: var(--rt-fs-body);
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -631,8 +655,7 @@
   color: white;
   padding: 12px 16px;
   gap: 10px;
-  min-width: 151px;
-  height: 42px;
+  height: 45px;
   border-radius: 8px;
   border: 1px solid #003687;
   border-bottom-width: 3px;
@@ -782,10 +805,30 @@
   z-index: 1;
   display: block;
   margin-top: 0.75rem;
-  font-size: var(--rt-fs-footnote);
-  line-height: var(--rt-lh-footnote);
+  /* Type/Body at every breakpoint per Figma — nodes 1936:342 (mobile),
+     1433:1032 (tablet), 1285:972 (desktop) — not the 12px footnote scale.
+     Colour stays at 85% white: Figma fills it pure white, but CLAUDE.md
+     requires rgba(255,255,255,0.85) for small print on blue. */
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   font-style: normal;
   color: rgba(255, 255, 255, 0.85);
+}
+
+/* Figma's About mobile frame (node 1936:48) sets this card to Type/M/H4 —
+   17px/1.35 — where --rt-fs-h3 resolves to 24px/1.3, and gives the card 24px
+   padding rather than the 32px it uses on tablet and desktop. Keyed to 767px
+   so it flips with the type tokens, which switch at the 768px tablet
+   artboard (where Figma's card is 28px, node 1433:1031). */
+@media (max-width: 767px) {
+  .goalCard {
+    padding: 1.5rem;
+  }
+
+  .goalCardQuote {
+    font-size: var(--rt-fs-h4);
+    line-height: var(--rt-lh-h4);
+  }
 }
 
 @media (max-width: 640px) {
@@ -825,6 +868,22 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+/* Figma centres this block on tablet and desktop (nodes 2195:153, 1285:1062)
+   but left-aligns it on mobile (node 1936:346, which sits at x=0 alongside
+   its eyebrow). Centred body copy in the ~300px mobile column fills almost
+   the full measure on every line, so it reads as justified rather than
+   centred. */
+@media (max-width: 767px) {
+  .whyExistInner {
+    text-align: left;
+    align-items: stretch;
+  }
+
+  .whyBuildBody {
+    align-items: stretch;
+  }
 }
 
 /* Per-paragraph measure widths, matching Figma's own text-box widths at
@@ -1326,10 +1385,13 @@
 }
 
 .btnPrimary {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1rem;
+  /* 45px tall per Figma — the 3px bottom border sits inside the box. */
+  height: 45px;
   background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
   color: #fff !important;
   border-radius: 8px;
@@ -1350,10 +1412,13 @@
 }
 
 .btnSecondary {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1rem;
+  /* 45px tall per Figma — the 3px bottom border sits inside the box. */
+  height: 45px;
   border: 1px solid var(--ifm-color-primary-dark);
   border-bottom-width: 3px;
   border-radius: 8px;
@@ -1438,5 +1503,103 @@
        at this same breakpoint that otherwise wins (see rail.css). */
     max-width: calc(100% - 16px) !important;
     margin-inline: auto;
+  }
+}
+/* ------------------------------------------------------------------
+   "Why We Build" — Figma mobile frame (node 1936:67)
+   The rail sits 12px in from each edge (346px wide on the 370px
+   artboard), its content is inset a further 12px (322px), and the
+   section pads 32px top and bottom rather than the 64px used at wider
+   widths. The heading clears the body copy by 24px (node 1936:80 ends
+   at y=35, 1936:83 opens at y=59); paragraph spacing is already 16px.
+   Placed last so it wins over the shared ≤640px container padding.
+   ------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .missionSection .sectionContainer {
+    /* !important to clear responsive.css's sitewide `* { max-width: 100% }`
+       guard, same as rail.css. Scoped inside this query, so it cannot leak
+       into the wider breakpoints the way an unscoped !important would. */
+    max-width: calc(100% - 24px) !important;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .whyExistInner {
+    gap: 24px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   "What we're Building Toward" — Figma mobile frame (node 1936:172)
+   The rail sits 12px in from each edge, its content is inset a further
+   12px, and it pads 24px at the top with none at the bottom — the
+   timeline graphic is a sibling rail 24px below (node 1936:389 opens at
+   y=605 where this one closes at 581). Inside, the heading block clears
+   the icon row by 24px and the icon row clears the closing paragraphs by
+   the same, against 40px today; the two closing paragraphs sit 24px
+   apart rather than 12px. The 4px headline split, 16px heading-to-
+   subtitle and 12px icon-to-label gaps already match.
+   ------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .visionSection .sectionContainer {
+    /* !important clears responsive.css's `* { max-width: 100% }` guard;
+       scoped inside this query so it cannot leak into wider breakpoints. */
+    max-width: calc(100% - 24px) !important;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+
+  .visionInner {
+    gap: 24px;
+  }
+
+  .visionLeftCol {
+    gap: 24px;
+  }
+
+  .visionParagraphBox {
+    gap: 24px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   "We Believe in our Values" — Figma mobile frame (node 1936:496)
+   Heading clears its subtitle by 16px (node 1936:499 ends at y=72,
+   1936:502 opens at 88) and the header block clears the card row by
+   32px (1936:498 ends at 183, 1936:504 opens at 215). The rail closes
+   32px under the cards. Inside a card, the name sits 4px above the
+   description and the quote box 16px under it (nodes 1936:619/620/621)
+   — the quote box is not bottom-pinned here, because Figma's mobile
+   cards are each their own height rather than a stretched row. Card
+   gutter is 48px (cards are 260 wide on 308 centres).
+   ------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .valuesSection .sectionContainer {
+    padding-bottom: 32px;
+  }
+
+  .valuesHeaderRow {
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .valueCard {
+    gap: 4px;
+  }
+
+  .valueQuoteBox {
+    /* Clears the base rule's `margin-top: auto`, which pins the quote to
+       the card's bottom edge so quotes align across a stretched row. */
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .valuesGrid {
+    gap: 48px;
   }
 }

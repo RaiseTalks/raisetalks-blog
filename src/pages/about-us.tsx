@@ -120,7 +120,7 @@ export default function AboutUs() {
 
                      <p className={styles.whyExistBodyLight}>It is a structural reshaping of how capital moves in the world.</p>
 
-                     <p className={clsx(styles.whyExistBodyLight, styles.whyBuildP4, "font-semibold")}>When great ideas stop dying in due diligence, the entire innovation ecosystem becomes more productive.</p>
+                     <p className={clsx(styles.whyExistBodyLight, styles.whyBuildP4)}>When great ideas stop dying in due diligence, the entire innovation ecosystem becomes more productive.</p>
                   </div>
                </div>
             </div>
