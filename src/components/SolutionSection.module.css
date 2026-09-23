@@ -35,9 +35,15 @@
    min-width: 280px;
 }
 
+/* The file is preserveAspectRatio="none" with width/height at 100%, so an
+   <img> given only a height has no intrinsic ratio to work from and falls
+   back to the 300px default width — stretching the wordmark ~32% wide (300
+   against a true 227.4 at 14px tall). aspect-ratio restores it and keeps it
+   right at the smaller mobile height too (Figma node 1405:477: 194.9x12). */
 .narrativeLogo {
    height: 14px;
    width: auto;
+   aspect-ratio: 227.384 / 14;
    display: block;
    margin-bottom: 2rem;
 }
@@ -55,6 +61,9 @@
    font-style: italic;
    font-family: Georgia, serif;
    color: #fff;
+   /* H2 Alt sits a step above H2 (26/28 mobile); this inherited the H2 size
+      and came out 33px tall against the design's 35 (node 1405:485). */
+   font-size: var(--rt-fs-h2-alt);
 }
 
 .narrativeSubtitle {
@@ -110,7 +119,8 @@
 .narrativeItemTitle {
    font-family: var(--rt-font-sans);
    font-size: var(--rt-fs-h4);
-   font-weight: var(--rt-weight-regular);
+   /* Type/M/H4 Bold is Poppins Medium (nodes 1405:493 etc.), not Regular. */
+   font-weight: var(--rt-weight-medium);
    color: #fff;
    margin: 0;
    line-height: var(--rt-lh-h4);
@@ -157,7 +167,36 @@
 
 @media (max-width: 480px) {
    .narrativePanel { padding: 1.5rem; gap: 2rem; }
-   .narrativeGrid { gap: 1rem 1.5rem; }
+}
+
+/* Figma's phone frame (node 1405:472, a 367px card on a 375 board): the card
+   is padded 32px vertical / 24px horizontal, the heading block sits 48px
+   above the grid, the 2x2 grid is 24px between rows and 16px between
+   columns, and each cell runs icon / title / copy on a 6px rhythm. The grid
+   gaps were the right pair of numbers applied to the wrong axes. */
+@media (max-width: 767px) {
+   .narrativePanel { padding: 32px 24px; }
+   .narrativeTop { gap: 48px; }
+
+   /* 194.9x12 at this width (node 1405:477); aspect-ratio above carries the
+      width, so only the height is set here. */
+   .narrativeLogo { height: 12px; }
+   .narrativeGrid { gap: 24px 16px; }
+   .narrativeItem { gap: 6px; }
+
+   /* The italic line is its own block 4px under the headline (node
+      1405:483), not a wrapped second line. */
+   .narrativeTitleAccent { display: block; margin-top: 4px; }
+
+   /* 48px box at Type/Body with uniform 16px padding (node 1405:514); this
+      was 51.2px tall at 16px type on 13.6/28 padding. */
+   .narrativeButton {
+      box-sizing: border-box;
+      height: 48px;
+      padding: 16px;
+      font-size: var(--rt-fs-body);
+      line-height: var(--rt-lh-body);
+   }
 }
 
 /* Width/margin/the rail border come from the shared `rt-rail` class
@@ -206,6 +245,11 @@
    background-clip: text;
    font-style: italic;
    font-family: Georgia, serif;
+   /* H2 Alt runs a step above H2 everywhere else on the site (26/28 mobile,
+      36/38 tablet, 42/44 desktop); this was inheriting the H2 size, so the
+      italic line came out 33px tall against the design's 35 (node
+      2802:6637). */
+   font-size: var(--rt-fs-h2-alt);
 }
 
 /* "For Startups" heading accent uses the yellow/pink brand gradient
@@ -220,7 +264,9 @@
    font-family: var(--rt-font-sans);
    font-size: 14.4px;
    color: #222;
-   line-height: var(--rt-lh-footnote);
+   /* Type/Body is 14.4/1.45; this was pairing the body size with the
+      footnote line-height (1.4), 0.7px short per line. */
+   line-height: var(--rt-lh-body);
    margin: 0;
 }
 
@@ -820,5 +866,22 @@
 
    .investorCard {
       padding: 1.5rem;
+   }
+}
+
+/* Figma's phone frame for the "For Startups" block (nodes 2802:6633 and
+   2802:6638, a 327px column on a 375 board) runs the whole thing left
+   aligned — heading, both body lines and a full-width button — where this
+   was centred at every width. The italic line is its own block 4px under
+   the headline rather than a wrapped third line, so the hand-placed break
+   that separates them is dropped here. */
+@media (max-width: 767px) {
+   .solutionTitleAccentStartup {
+      display: block;
+      margin-top: 4px;
+   }
+
+   .titleBreak {
+      display: none;
    }
 }

@@ -119,15 +119,20 @@ export default function SolutionSection() {
          <div className={`rt-rail ${styles.solutionMain}`}>
                <div className={styles.solutionHeader}>
                   {active === 'startups' ? (
-                     <div className="flex flex-col items-center text-center gap-6">
-                        <h2 className={styles.solutionTitle}>Investors Decide Fast.<br /> <span className={`${styles.solutionTitleAccent} ${styles.solutionTitleAccentStartup}`}>Be Ready Faster.</span></h2>
-                        <div className="flex flex-col items-center gap-6">
-                           <div className="flex flex-col items-center gap-2 max-w-xl">
+                     // Figma (nodes 2802:6633 / 2802:6638) sets this block left
+                     // aligned on a phone with a full-width button, not centred.
+                     <div className="flex flex-col items-start text-left gap-4 md:items-center md:text-center md:gap-6">
+                        <h2 className={styles.solutionTitle}>Investors Decide Fast.<br className={styles.titleBreak} /> <span className={`${styles.solutionTitleAccent} ${styles.solutionTitleAccentStartup}`}>Be Ready Faster.</span></h2>
+                        <div className="flex w-full flex-col items-start gap-6 md:w-auto md:items-center">
+                           <div className="flex w-full flex-col items-start gap-2 max-w-xl md:items-center">
                               <p className={styles.solutionDescription}>
                                  RaiseTalks transforms your startup data into a structured, investor-grade Data Room with AI-powered gap analysis, so you walk into every conversation with confidence.
                               </p>
+                              <p className={styles.solutionDescription}>
+                                 We provide you with tools and deals to accelerate your raise.
+                              </p>
                            </div>
-                           <Link className={`${styles.perksButton} ${styles.perksButtonAccent}`} to="/startups#perks">
+                           <Link className={`${styles.perksButton} ${styles.perksButtonAccent} h-[45px] w-full md:w-auto`} to="/startups#perks">
                               Get access to Perks
                            </Link>
                         </div>
@@ -242,10 +247,14 @@ export function NarrativeBlock() {
    // text layers, which is why a text search of the canvas never found this
    // section — the four icons had to be read off the render.
    const items = [
+      // Order and icon pairing per Figma node 1405:472, which now carries real
+      // text layers: Engine comes second and takes the layers glyph,
+      // Architecture third with square-play. Both were the other way round
+      // here, guessed off the flattened render this section was built from.
       { icon: '/img/icons/lucide/stethoscope', label: 'Diagnostic', desc: 'Audit your story, find the gaps weakening your raise.' },
-      { icon: '/img/icons/lucide/layers', label: 'Architecture', desc: 'Build the core system: category story, positioning, and investor messaging.' },
-      { icon: '/img/icons/lucide/square-play', label: 'Engine', desc: 'A content system that reinforces your story consistently across channels.' },
-      { icon: '/img/icons/lucide/film', label: 'Founder Original', desc: 'A flagship cinematic piece for investor communication, launches, and major announcements.' },
+      { icon: '/img/icons/lucide/layers', label: 'Engine', desc: 'A content system that reinforces your story consistently across channels.' },
+      { icon: '/img/icons/lucide/square-play', label: 'Architecture', desc: 'Build the core system: category story, positioning, and investor messaging.' },
+      { icon: '/img/icons/lucide/film', label: 'Founder Original', desc: 'Flagship cinematic piece for investor communication, launches, and announcements.' },
    ];
 
    return (
@@ -255,7 +264,7 @@ export function NarrativeBlock() {
                   <div className={styles.narrativeLeft}>
                      <img src="/img/raisetalks-tv-logo.svg" alt="RaiseTalks TV" className={styles.narrativeLogo} />
                      <h2 className={styles.narrativeTitle}>
-                        Your Story<br />
+                        Your Story<br className={styles.titleBreak} />
                         <span className={styles.narrativeTitleAccent}>Is the Strategy</span>
                      </h2>
                      <p className={styles.narrativeSubtitle}>

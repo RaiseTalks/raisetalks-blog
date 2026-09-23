@@ -182,7 +182,10 @@ export default function decoderGame () {
         <div className={styles.railDivider} />
 
         <div className={`${styles.railContainer} flex flex-col gap-[64px] md:gap-[128px] px-6 md:px-[64px] py-[64px] justify-center`}>
-            <div className="flex flex-col md:flex-row gap-[64px]">
+            {/* Side by side only from lg. At md the two flex-1 columns left the
+                cards ~128px wide, which is why the grid used min-content tracks
+                and pushed the page 86px past the viewport at 768. */}
+            <div className="flex flex-col lg:flex-row gap-[64px]">
                 <div className="flex-1 min-w-0 gap-[24px]">
                     <div className="rt-h2">One Chip - <span className="italic font-[Georgia] text-brand-gradient">One Bet</span></div>
                     <div className="rt-body text-[#333333]">
@@ -204,13 +207,13 @@ export default function decoderGame () {
                     </div>
                     </div>
                 </div>
-                <div className="flex-1 min-w-0 grid grid-cols-2 md:grid-cols-[minmax(min-content,1fr)_minmax(min-content,1fr)] gap-[32px]">
+                <div className="flex-1 min-w-0 grid grid-cols-2 gap-[32px]">
                     <div className="flex flex-col gap-[24px] min-w-0 min-h-[146px] bg-[#F7F7F7] p-[36px] rounded-[16px] border border-[#DEDEDE]">
                         <p className="rt-h4">Timeline</p>
                         <p className="rt-h4-alt text-brand-gradient">60 Minutes</p>
                     </div>
                     <div className="flex flex-col gap-[24px] min-h-[146px] bg-[#F7F7F7] p-[36px] rounded-[16px] border border-[#DEDEDE]">
-                        <p className="rt-h4 md:whitespace-nowrap">Knowledge Budget</p>
+                        <p className="rt-h4">Knowledge Budget</p>
                         <p className="rt-h4-alt text-brand-gradient">$1,000</p>
                     </div>
                     <div className="flex flex-col gap-[24px] col-span-2 w-full min-h-[146px] bg-[#F7F7F7] p-[36px] rounded-[16px] border border-[#DEDEDE]">
@@ -286,7 +289,9 @@ export default function decoderGame () {
         >
             <div className="rt-h2 text-center">What People are Saying </div>
 
-            <div className={`${styles.railContainer} flex flex-col md:flex-row gap-[32px] px-6 md:px-[64px]`}>
+            {/* Three abreast from md up; below that it is a horizontal
+                snap-scroller (see .testimonialRow) rather than a tall stack. */}
+            <div className={`${styles.railContainer} ${styles.testimonialRow} flex flex-row gap-[32px] px-6 md:px-[64px]`}>
 
             <div className="flex flex-col text-white justify-between min-h-[347px] flex-1 min-w-0 p-[36px] rounded-[16px]"
                   style={{
@@ -392,49 +397,47 @@ export default function decoderGame () {
         {/* Join us as Co-Host — full-width #F7F7F7 so the area outside the
             centered grid is grey too, not white. */}
         <div className="w-full bg-[#F7F7F7]">
-        <div className={`${styles.railContainer} flex flex-col md:flex-row px-6 md:px-[64px] py-[64px] gap-[64px]`}>
-            <div className="flex flex-col items-start py-[64px] gap-[36px] font-normal">
-                <p className="rt-h2">Join us as <br /> <span className="rt-h2-alt text-brand-gradient">Co-Host</span></p>
-                <a 
-                href="mailto:hq@raisetalks.ai?subject=Co-Host%20RaiseTalks%20Decoder%20Game"
-                className="rt-body py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF]"
-                style={{ background: 'linear-gradient(75.88deg, #003687 -3.42%, #0077FF 99.98%)' }}>
-                    Co-Host RaiseTalks Decoder Game
-                </a>
-
+        <div className={`${styles.railContainer} ${styles.cohostRow} px-6 md:px-[64px] py-[64px]`}>
+            <div className={styles.cohostHead}>
+                <p className={`rt-h2 ${styles.cohostTitle}`}>Join us as <br /> <span className="rt-h2-alt text-brand-gradient">Co-Host</span></p>
+                <div className={styles.cohostCta}>
+                    <a
+                    href="mailto:hq@raisetalks.ai?subject=Co-Host%20RaiseTalks%20Decoder%20Game"
+                    className={styles.cohostBtn}>
+                        Co-Host RaiseTalks Decoder Game
+                    </a>
+                </div>
             </div>
-            <div className="flex-1 min-w-0 grid grid-cols-1 sm:grid-cols-2">
-                <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-b border-r border-b-[#E0E5EB] border-r-[#E0E5EB] border-solid bg-[#F7F7F7]">
+            <div className={styles.cohostGrid}>
+                <div className={styles.cohostCard}>
                     <LucideIcon name="lightbulb" className={`shrink-0 ${styles.lucideIcon}`} />
-                    <div className="flex flex-col gap-[4px] font-[Poppins]">
+                    <div className={styles.cohostText}>
                         <p className="rt-h4">A curated Room</p>
                         <p className="rt-body text-[#333333]">Direct visibility with founders, investors, and operators who showed up to trade real questions for real answers.</p>
                     </div>
                 </div>
-                <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-b border-b-[#E0E5EB] border-solid bg-[#F7F7F7]">
+                <div className={styles.cohostCard}>
                     <LucideIcon name="star-check" className={`shrink-0 ${styles.lucideIcon}`} />
-                    <div className="flex flex-col gap-[4px] font-[Poppins]">
+                    <div className={styles.cohostText}>
                         <p className="rt-h4">A proprietary dataset</p>
                         <p className="rt-body text-[#333333]">Every night's votes become a ranked map of the market's live pains - yours to use for content and positioning.</p>
                     </div>
                 </div>
-                <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] border-r border-r-[#E0E5EB] border-solid">
+                <div className={styles.cohostCard}>
                     <LucideIcon name="camera" className={`shrink-0 ${styles.lucideIcon}`} />
-                    <div className="flex flex-col gap-[4px] font-[Poppins]">
+                    <div className={styles.cohostText}>
                         <p className="rt-h4">Ready-made content</p>
                         <p className="rt-body text-[#333333]">Photo, video and quote assets from a high-energy, visually distinct format  - built for social.</p>
                     </div>
                 </div>
-                <div className="p-[48px] min-h-[193px] min-w-0 flex items-start gap-[24px] bg-[#F7F7F7]">
+                <div className={styles.cohostCard}>
                     <LucideIcon name="file-check-corner" className={`shrink-0 ${styles.lucideIcon}`} />
-                    <div className="flex flex-col gap-[4px] font-[Poppins]">
+                    <div className={styles.cohostText}>
                         <p className="rt-h4">A proven format</p>
                         <p className="rt-body text-[#333333]">Already run in Dubai, with strong reviews from founders and investors in the room.</p>
                     </div>
                 </div>
-
             </div>
-
         </div>
         </div>
 
@@ -496,7 +499,9 @@ export default function decoderGame () {
 
         {/* QR code (Figma 2601:8685) straddling the FAQ / CTA boundary — centered
             horizontally, half above (FAQ) and half below (the section beneath). */}
-        <div className="relative z-[4]">
+        {/* Hidden on phones — scanning a QR with the device already showing
+            it is pointless, and it crowds the FAQ/CTA seam at that width. */}
+        <div className="relative z-[4] hidden md:block">
           <img
             src="/img/decoder-game/qr-code.svg"
             alt="Scan to join the RaiseTalks Decoder Game"
@@ -524,8 +529,12 @@ export default function decoderGame () {
 {/* CTA — full-width navy gutters; bg image + 0.5px #16315A vertical grid lines
     confined to the centered rail column. */}
 <div className="w-full flex justify-center" style={{ backgroundColor: '#0C1B31' }}>
+    {/* The tall top padding and the 445px floor exist to clear the QR code
+        that straddles the boundary above. That QR is hidden below md, so on a
+        phone they were only dead space — the band now closes to the 32px the
+        closing CTAs on /startups and /investors use. */}
     <div
-        className={`${styles.railContainer} ${styles.ctaBg} flex flex-col items-center justify-center min-h-[445px] px-6 md:px-[64px] pt-[96px] md:pt-[128px] pb-[64px] text-white`}
+        className={`${styles.railContainer} ${styles.ctaBg} flex flex-col items-center justify-center md:min-h-[445px] px-6 md:px-[64px] pt-[32px] md:pt-[128px] pb-[32px] md:pb-[64px] text-white`}
         style={{
             borderLeft: '0.5px solid #16315A',
             borderRight: '0.5px solid #16315A',
@@ -543,7 +552,7 @@ export default function decoderGame () {
             href="https://calendly.com/iamdariiava/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="rt-body inline-block py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF] hover:text-[#FFFFFF] no-underline hover:no-underline"
+            className="rt-body inline-flex items-center justify-center h-[45px] py-[12px] px-[16px] border-b-[3px] border-[#003687] rounded-[8px] text-[#FFFFFF] hover:text-[#FFFFFF] no-underline hover:no-underline"
             style={{ background: 'linear-gradient(75.88deg, #003687 -3.42%, #0077FF 99.98%)' }}
         >
             Book a Call

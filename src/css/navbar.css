@@ -43,6 +43,30 @@
   max-width: 210px;
 }
 
+/* responsive.css's sitewide `* { max-width: 100% !important }` guard (<=640px)
+   beats the 210px cap above, so below that width the wrapper and the image
+   both size from whatever flex space is going rather than from their own
+   height. The logo ends up 12px tall at 320, 15px at 360, 17px at 390 and
+   24px at 480 — growing with the viewport, and overflowing the 19.2px
+   wrapper at the top of that range. Figma's mobile header (node 1947:660)
+   pins it at 150x12, so drive the size from height and put the cap out of
+   the guard's reach. */
+@media (max-width: 640px) {
+  .navbar__logo {
+    height: auto;
+    max-width: none !important;
+  }
+
+  /* Width-driven with a hard 150px ceiling, so it lands on the design size
+     from ~390px up and steps down on smaller phones instead of crowding the
+     Try it Free button — at 320 a flat 150 leaves it 0.6px of clearance. */
+  .navbar__logo img {
+    width: min(150px, 38vw) !important;
+    height: auto !important;
+    max-width: none !important;
+  }
+}
+
 .navbar__brand {
   margin: 1rem;
 }
@@ -219,6 +243,50 @@
   text-decoration: none;
   transform: scale(1.05);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Figma mobile header (node 1947:658, 390px artboard): a 60px bar with the
+   logo on a 16px inset at the left and the menu button on the FAR right,
+   past Try it Free. Docusaurus renders the toggle as the first child of the
+   left items group, so it lands between the screen edge and the logo — it is
+   pulled out of flow and pinned right here instead, which is the only
+   CSS-only way to reorder across the two groups. */
+@media (max-width: 768px) {
+  :root {
+    --ifm-navbar-height: 60px;
+  }
+
+  .navbar__inner {
+    position: relative;
+  }
+
+  .navbar__toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* node 1947:665 is a 24x24 lucide/menu; the stock icon is 30x30. */
+  .navbar__toggle svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Clears the pinned toggle: its 24px box plus the design's 16px gap, so
+     Try it Free ends 56px from the edge as in Figma. */
+  .navbar__items--right {
+    margin-right: 40px;
+  }
+
+  /* With the toggle gone from the flow the brand starts the row. Its own
+     1rem margin on top of the navbar's 1rem padding put the logo at 62px;
+     Figma has it at 16 (node 1947:660). */
+  .navbar__brand {
+    margin-left: 0;
+  }
 }
 
 /* Native Docusaurus Mobile Navigation - Minimal Brand Theming */
@@ -584,5 +652,23 @@
 @media (max-width: 768px) {
   .navbar {
     --ifm-navbar-padding-horizontal: 1rem;
+  }
+}
+
+/* Figma mobile header, Try it Free (node 1947:663): 93x37 — 12px/8px padding
+   at Type/Body Regular, an 8px radius and a 3px dark-blue bottom edge, not
+   the 10px radius, 600 weight and 2px transparent ring it carried. Figma
+   strokes inside the box, CSS outside it, so the bottom padding gives up the
+   3px the border takes: 8 + 21 + 5 + 3 = 37. Placed at the end of the file to
+   land after the earlier <=768px padding rule, which is also !important. */
+@media (max-width: 768px) {
+  .navbar__items--right .navbar__link--signup {
+    padding: 8px 12px 5px !important;
+    font-size: var(--rt-fs-body);
+    font-weight: var(--rt-weight-regular);
+    line-height: var(--rt-lh-body);
+    border-radius: 8px;
+    border: 0;
+    border-bottom: 3px solid #003687;
   }
 }

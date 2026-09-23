@@ -154,3 +154,204 @@
 .lucideIcon { width: 42px; height: 42px; }
 @media (max-width: 1024px) { .lucideIcon { width: 36px; height: 36px; } }
 @media (max-width: 768px) { .lucideIcon { width: 32px; height: 32px; } }
+
+/* ── Join us as Co-Host ──────────────────────────────────────
+   Mirrors the Founder Perks section on /startups (.perksOuterRow and
+   friends in startups.module.css) — the pattern this section was already
+   reaching for: a narrow header column beside a 2x2 divider grid at
+   desktop, a stacked header row at tablet, and at phone widths the cards
+   going full-bleed in a single column with the CTA pushed below them.
+   The values are the ones documented against Figma over there.
+   This replaces a set of inline utilities that kept desktop's 48px cell
+   padding at every width, which squeezed the card text into a ~140px
+   column on a phone. */
+.cohostRow {
+  display: flex;
+  gap: 4rem;
+}
+
+.cohostHead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Fixed column, not an equal split: the title and button are far
+     narrower than half the row, and the slack read as an oversized gap. */
+  flex: 0 0 330px;
+  gap: 2.25rem;
+  padding: 4rem 0;
+}
+
+.cohostGrid {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cohostCard {
+  /* Cells share the section's own fill; only the divider lines separate
+     them. Three of the four used to carry an explicit #F7F7F7 and the
+     fourth nothing, which is the same thing said inconsistently. */
+  background: transparent;
+  border-right: 1px solid var(--ifm-color-emphasis-200);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  padding: 3rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  transition: background 0.2s ease;
+}
+
+.cohostCard:nth-child(2n) { border-right: none; }
+
+.cohostCard:nth-child(3),
+.cohostCard:nth-child(4) { border-bottom: none; }
+
+.cohostCard:hover { background: #fcfcfc; }
+
+.cohostText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 0 0;
+}
+
+/* Same button as .btnPrimary + .perksCta .btnPrimary on the perks section:
+   a 45px box that fills its column up to 300px, rather than the
+   content-width chip this carried. */
+.cohostBtn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 100%;
+  max-width: 300px;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
+  color: #fff !important;
+  border-radius: 8px;
+  border: none;
+  border-bottom: 3px solid #003687;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-body);
+  text-align: center;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cohostBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Tablet: header stacks above the grid and lays its title and button out
+   on one row; the 330px basis is a horizontal value, so it is reset once
+   the main axis turns vertical. */
+@media (max-width: 1024px) {
+  .cohostRow {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .cohostHead {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* Offsets the header against the grid's height at desktop only. */
+    padding: 0;
+  }
+
+  .cohostGrid { flex: 0 0 auto; }
+
+  /* Cells drop to 24px, and only on the outer edge — the side against a
+     divider line has none. */
+  .cohostCard {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .cohostCard:nth-child(odd) {
+    padding-left: 0;
+    padding-right: 1.5rem;
+  }
+
+  .cohostCard:nth-child(even) {
+    padding-left: 1.5rem;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 580px) {
+  /* The CTA moves below the whole list. .cohostHead only exists to group
+     title and button as one row at wider widths, so dropping it from the
+     box model lets its children become siblings of the grid and `order`
+     place them title -> grid -> button, with no change to the markup. */
+  .cohostHead { display: contents; }
+  .cohostTitle { order: 1; }
+  .cohostGrid { order: 2; grid-template-columns: 1fr; }
+  .cohostCta { order: 3; }
+
+  .cohostRow { gap: 1.5rem; }
+
+  /* One column now, so the 2x2 nth-child border pairing no longer matches
+     where the cards actually sit. Reset to a plain top-to-bottom list.
+     Cards run edge to edge and the icon-to-text gap tightens to 16px.
+     The odd/even selectors are repeated because the tablet block above
+     sets the horizontal padding through them — at (0,2,0) they outrank a
+     plain .cohostCard here whatever the source order, which left every
+     other card indented 24px. */
+  .cohostCard,
+  .cohostCard:nth-child(odd),
+  .cohostCard:nth-child(even) {
+    border-right: none;
+    border-bottom: 1px solid var(--ifm-color-emphasis-200);
+    padding: 24px 0;
+    gap: 16px;
+  }
+
+  .cohostCard:first-child,
+  .cohostCard:nth-child(odd):first-child {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .cohostCard:last-child { border-bottom: none; }
+}
+
+/* ── "What People are Saying" testimonials ───────────────────
+   Three equal columns from md up. Below that the row becomes a horizontal
+   snap-scroller instead of a ~1000px vertical stack: each card takes most of
+   the column so the next one peeks past the edge and the swipe is
+   discoverable, and snapping lands one card at a time. The cards carry
+   Tailwind's `flex-1 min-w-0`, so the override here is written as
+   `> div` (0,1,1) to outrank `.flex-1` (0,1,0) regardless of which
+   stylesheet the bundler emits last. */
+@media (max-width: 767px) {
+  .testimonialRow {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* The peeking next card is the affordance; the bar would sit over the
+       blue panel. */
+    scrollbar-width: none;
+  }
+
+  .testimonialRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonialRow > div {
+    flex: 0 0 auto;
+    width: 85%;
+    scroll-snap-align: start;
+  }
+}

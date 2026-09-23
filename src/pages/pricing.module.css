@@ -1,6 +1,17 @@
-/* ── HERO SECTION ─────────────────────────────────────── */
+/* ── HERO SECTION ─────────────────────────────────────────
+   The same hero shell /startups, /investors and /about-us use, ported here:
+   background image sized by width, 0.5px rail borders, the shared inner
+   column ladder, and the site type tokens. This page was running its own
+   layout — a bordered "Pricing" pill, a 48/60/72px bold heading in gradient
+   text, and a 20/24px subtitle — none of which appears on any other hero. */
 .hero {
-  background: #fafafa url('/img/backgrounds/hero-alt-desktop.webp') center / cover no-repeat;
+  text-align: center;
+  /* Width-based, not cover: cover crops horizontally to the section's
+     height, so the apparent zoom drifts page to page. See the same note on
+     .hero in startups.module.css. */
+  background: var(--ifm-background-color) url('/img/backgrounds/hero-alt-desktop.webp') center / 100% auto no-repeat;
+  border-top: 0.5px solid #DAE0E7;
+  border-bottom: 0.5px solid #DAE0E7;
 }
 
 @media (max-width: 1024px) {
@@ -13,6 +24,50 @@
   .hero {
     background-image: url('/img/backgrounds/hero-alt-mobile.webp');
   }
+}
+
+/* mobile 12px side margin / 24px inner padding / 96px top / 48px bottom,
+   tablet 48px all round, desktop a fixed 1024px column with 128/80. */
+.heroInner {
+  box-sizing: border-box;
+  /* !important clears responsive.css's sitewide `* { max-width: 100% }`
+     guard below 640px; the wider steps need it purely to outrank this one. */
+  max-width: calc(100% - 24px) !important;
+  margin: 0 auto;
+  padding: 96px 24px 48px;
+}
+
+@media (min-width: 768px) {
+  .heroInner {
+    max-width: calc(100% - 96px) !important;
+    padding: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroInner {
+    max-width: 1024px !important;
+    padding: 128px 0 80px;
+  }
+}
+
+.heroTitle {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h1);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1);
+  margin-bottom: 1rem;
+  color: var(--ifm-color-content);
+}
+
+.heroDesc {
+  font-family: var(--rt-font-sans);
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-body);
+  color: #333333;
+  line-height: var(--rt-lh-body);
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 /* ── CTA SECTION ──────────────────────────────────────── */
@@ -39,29 +94,47 @@
   margin: 0 auto;
 }
 
+/* Closing-CTA rhythm shared with /startups and /investors, measured against
+   Figma nodes 2375:473 and 2375:435: 12px from the headline to the body copy,
+   48px from the copy to the buttons, 18px between them, and a 45px button box
+   at Type/Body Regular. These carried a 16px headline gap, a 16px button gap
+   and a button that computed to 49.6px at weight 700/600. */
 .ctaTitle {
   font-size: var(--rt-fs-h2);
   font-weight: var(--rt-weight-regular);
   line-height: var(--rt-lh-h2);
   letter-spacing: -0.015em;
   color: #ffffff;
-  margin: 0 0 1rem 0;
+  margin: 0 0 12px 0;
 }
 
 .ctaDesc {
   font-size: var(--rt-fs-body);
   line-height: var(--rt-lh-body);
   color: #d7d7d7;
-  margin: 0 0 2rem 0;
+  margin: 0 0 48px 0;
 }
 
 .ctaButtons {
   display: flex;
-  gap: 1rem;
+  gap: 18px;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
 }
+
+/* Both buttons: a 45px box at Type/Body Regular, matching the closing CTAs
+   on /startups and /investors. Without an explicit height they resolved to
+   49.6px (12 + 21.6 + 12 + the 1px/3px borders), and the bold weight is not
+   what the design specs. */
+.ctaBtnPrimary,
+.ctaBtnSecondary {
+  box-sizing: border-box;
+  height: 45px;
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-body);
+}
+
 
 .ctaBtnPrimary {
   display: inline-flex;
@@ -70,10 +143,9 @@
   padding: 12px 16px;
   background: linear-gradient(75.88deg, #003687 -3.42%, #0077ff 99.98%);
   color: #ffffff !important;
-  border: 1px solid #003687;
-  border-bottom-width: 3px;
+  border: none;
+  border-bottom: 3px solid #003687;
   border-radius: 8px;
-  font-weight: 700;
   font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -95,7 +167,6 @@
   border: 1px solid #003687;
   border-bottom-width: 3px;
   border-radius: 8px;
-  font-weight: 600;
   font-size: var(--rt-fs-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;

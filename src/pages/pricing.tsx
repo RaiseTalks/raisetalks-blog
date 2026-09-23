@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
+import Heading from '@theme/Heading';
 import styles from './pricing.module.css';
 
 // Custom hook for scroll animations
@@ -112,7 +113,7 @@ const AUDIENCE_ACCENT: Record<string, string> = {
 
 const VC_PLAN_FEATURES = [
   'All in Investor Pro, plus:',
-  '3Q 2026 Pilot Program',
+  '2H 2026 Pilot Program',
   'Early access to the new features',
   'Priority Customer Support',
   'Online Pitch Competitions [coming soon]',
@@ -184,44 +185,17 @@ export default function Pricing() {
         }
       `}</style>
 
-      {/* Enhanced Hero Section */}
-      <section className={`relative py-20 overflow-hidden ${styles.hero}`}>
-        {/* Background Pattern - matching homepage */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 35px,
-              rgba(1, 116, 225, 0.03) 35px,
-              rgba(1, 116, 225, 0.03) 70px
-            )`
-          }}></div>
-        </div>
-
-        {/* Animated gradient orb - matching homepage */}
-        <div className="absolute top-0 -translate-x-1/2 rounded-full left-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-blue-600/20 blur-3xl animate-pulse"></div>
-
-        <div className="container relative z-10 px-4 mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Pre-title badge */}
-            <div className="inline-flex items-center px-4 py-2 mb-6 border border-blue-100 rounded-full bg-blue-50">
-              <span className="text-sm font-semibold text-[var(--raisetalks-blue-primary-flat)]">Pricing</span>
-            </div>
-
-            {/* Main Title with gradient text */}
-            <h1 className="mb-6 text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-              <span className="text-transparent bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text">
-                Simple, Transparent Pricing
-              </span>
-            </h1>
-
-            {/* Subtitle with enhanced typography */}
-            <p className="max-w-4xl mx-auto mb-8 text-xl font-medium leading-relaxed text-gray-600 md:text-2xl">
-              Whether you're <span className="text-[var(--raisetalks-blue-primary-flat)] font-semibold">raising capital</span> or
-              <span className="text-[var(--raisetalks-blue-primary-flat)] font-semibold"> sourcing deals</span>, RaiseTalks offers plans designed to help you move faster—with clarity, confidence, and AI support.
-            </p>
-          </div>
+      {/* Hero — same shell as /startups, /investors and /about-us */}
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <Heading as="h1" className={styles.heroTitle}>
+            Simple, Transparent<br />
+            Pricing
+          </Heading>
+          <p className={styles.heroDesc}>
+            Whether you&apos;re raising capital or sourcing deals, RaiseTalks offers
+            plans designed to help you move faster.
+          </p>
         </div>
       </section>
 

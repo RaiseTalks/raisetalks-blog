@@ -6,6 +6,10 @@
 /* Announcement Bar */
 div[class*='announcementBar'] {
   background: var(--raisetalks-accent-gradient) !important;
+  /* Figma's mobile bar (node 1947:653) is 30px tall around a single line of
+     Type/Body; this was collapsing to 20.4px whenever the message fit. It
+     stays a min so a message too long for one line can still wrap. */
+  min-height: 30px;
 }
 
 /* Hero Section for Homepage */

@@ -1729,6 +1729,9 @@
   color: #fff !important;
   font-weight: 400;
   font-size: var(--rt-fs-body);
+  /* Type/Body is 1.45; this was inheriting 1.5 and resolving to 21.6px, the
+     one value left out of step with the other closing CTAs. */
+  line-height: var(--rt-lh-body);
   text-decoration: none !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -1753,6 +1756,7 @@
   border-radius: 8px;
   font-weight: 400;
   font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
   text-decoration: none !important;
   border: 0;
   position: relative;

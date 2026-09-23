@@ -593,6 +593,63 @@
   .problemHead { grid-template-columns: 1fr; gap: 1rem; }
 }
 
+/* Figma mobile (node 1947:821, 390px artboard). The rail box is padded 32px
+   top and bottom — not the 32 + 32 this was stacking from .problemSection
+   and .container together — and 12px either side, which against this page's
+   8px rail works out to a 16px container inset and a 342px text column.
+   Inside: 4px between the headline and its italic line, 16px from the
+   headline block to the body copy, 24px from the copy to the artwork, and
+   the artwork itself breaks back out to the full rail width (375 in the
+   design, against the rail box's 366). */
+@media (max-width: 767px) {
+  .problemSection { padding-block: 0; }
+
+  /* The <=640px overflow guard further up pins every .container to 20px of
+     side padding with !important and hides its overflow, so matching the
+     design's inset here needs the same weight. body keeps its own
+     `overflow-x: hidden`, which is what actually stops sideways scrolling,
+     so lifting it on this one frame is safe and lets the artwork below
+     break back out. */
+  .problemSection .container {
+    padding-inline: 16px !important;
+    overflow: visible !important;
+  }
+
+  .problemHead {
+    /* grid `gap` alone — the two items' own margins used to add to it. */
+    margin-bottom: 24px;
+  }
+  /* Type/M/H2 (26px regular, letterSpacing 0) — .sectionH2's shared base is
+     the H3 token at weight 500 with -0.02em tracking, which is right for
+     "Pre-score engine" (node 1947:1386, 31px tall = H3) but not for this
+     headline or the one over the cards below, both of which Figma sets at
+     26px (nodes 1947:827 and 1947:1056, 33px per line). Scoped rather than
+     changed at the base for that reason. */
+  .problemHead .sectionH2 {
+    margin-bottom: 0;
+    font-size: var(--rt-fs-h2);
+    font-weight: var(--rt-weight-regular);
+    letter-spacing: normal;
+  }
+  .problemHead .problemBody { margin-top: 0; }
+
+  /* The italic line is its own block in the design, 4px under the headline;
+     .h2Break is the break that separates them while it stays inline. */
+  .problemHead .accent {
+    display: block;
+    margin-top: 4px;
+    /* Type/M/H2 Alt — node 1947:828 is 35px tall, i.e. 28px at 1.25. */
+    font-size: var(--rt-fs-h2-alt);
+  }
+  .h2Break { display: none; }
+
+  .problemSection .mockupRow {
+    margin-inline: -16px;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
 /* ============================================================
    Shared section shells
    ============================================================ */
@@ -704,6 +761,44 @@
 
 @media (max-width: 900px) {
   .getGrid { grid-template-columns: 1fr; }
+}
+
+/* Figma mobile (node 1947:1050, 390px artboard). The rail box is padded 32px
+   top and bottom and 12px either side, which against this page's 8px rail is
+   a 16px container inset and a 342px column; .sectionGray's own block padding
+   was stacking a second 32px on top of .container's. Heading sits 24px above
+   the cards, cards are 16px apart, and each card is padded 24px with 24px
+   between its icon, its title group and any checklist, 4px inside the title
+   group, and 12px from each check to its label. */
+@media (max-width: 767px) {
+  .solutionSection { padding-block: 0; }
+
+  /* Same weighting as .problemSection above — the <=640px overflow guard
+     pins .container's side padding with !important. */
+  .solutionSection .container { padding-inline: 16px !important; }
+
+  /* Type/M/H2, as on .problemHead above. */
+  .solutionSection .sectionH2Center {
+    margin-bottom: 24px;
+    font-size: var(--rt-fs-h2);
+    font-weight: var(--rt-weight-regular);
+    letter-spacing: normal;
+  }
+  /* Figma runs the two headline lines as separate blocks 4px apart
+     (nodes 1947:1056 / 1947:1095) rather than one wrapping line. */
+  .solutionSection .sectionH2Center .brand { display: block; margin-top: 4px; }
+
+  .getGrid .card { padding: 24px; }
+  /* Flex so the margins below never collapse — the cards are a mix of block
+     and flex containers otherwise (see .getCol > .card:last-child), which
+     made the same margins resolve to different gaps card to card. */
+  .getGrid .card { display: flex; flex-direction: column; }
+  .getGrid .cardTitle { margin-bottom: 4px; }
+  .getGrid .cardBody { margin-bottom: 4px; }
+  /* Sits under the preceding paragraph's own 4px, for 24px in total. */
+  .getGrid .checkList { margin-top: 20px; }
+  .getGrid .checkItem { gap: 12px; }
+  .getGrid .cardNote { margin-top: 48px; }
 }
 
 /* ============================================================
@@ -946,6 +1041,16 @@
 .spacerRow { height: 64px; }
 .spacerRow:first-of-type { border-top: 0.5px solid var(--rail-color, rgba(15, 23, 42, 0.1)); }
 .proofContent { padding: 2.5rem clamp(1.25rem, 3vw, 2.75rem); }
+/* Figma mobile (node 1968:6): the frame is padded 64px vertical / 24px
+   horizontal, with a 64px gap between the quote group and the stat cards.
+   Inside the quote group everything sits on a 12px rhythm (photo, quote,
+   attribution), which .avatarWrap and .quoteText carry above. */
+@media (max-width: 767px) {
+  .proofContent { padding: 64px 24px; }
+  /* The swirl runs the full frame width here rather than inset by the
+     gutter as it is at desktop. */
+  .proofBg { width: 100%; }
+}
 /* 64/48/32 is the shared rail-spacer ladder used everywhere else this
    exact "empty strip flanking a rail" role appears — homepage's GridSeam
    (src/components/GridSeam.module.css, "Tablet (640-1023px): 48px
@@ -975,44 +1080,57 @@
   max-width: 46rem;
   text-align: center;
 }
+/* Figma node 2541:8189: the cut-out founder photo at 236.8x240.27, no ring
+   and no drop shadow — the subject sits on transparency and is faded into
+   the page by a white inset shadow along its bottom edge. The 120x120
+   avatar-dariia.webp this used to point at is a different, tightly cropped
+   headshot, and upscaling it to this size was soft; dariia-quote.webp is
+   888x900 and its 0.987 aspect matches the design slot's 0.986. */
 .avatarWrap {
-  width: 116px;
-  height: 116px;
-  margin: 0 auto 1.75rem;
-  border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 60%, #ec4899 100%);
-  box-shadow: 0 14px 34px rgba(11, 31, 68, 0.18);
+  position: relative;
+  width: 236.8px;
+  height: 240.27px;
+  max-width: 100%;
+  margin: 0 auto 12px;
+  border-radius: 800px;
 }
 .avatar {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: inherit;
   object-fit: cover;
-  object-position: top center;
-  background: #eef2f7;
   display: block;
 }
-.quoteBlock svg {
-  width: 2rem;
-  height: 2rem;
-  color: rgba(1, 116, 225, 0.25);
-  margin: 0 auto 0.75rem;
-  display: block;
+.avatarWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 -20.8px 18.4px 0 rgba(255, 255, 255, 0.78);
+  pointer-events: none;
 }
 .quoteText {
   font-family: var(--rt-font-sans);
   font-style: italic;
   font-size: var(--rt-fs-h4);
   line-height: var(--rt-lh-h4);
-  color: var(--ifm-color-content);
-  margin: 0 0 1.25rem;
+  color: #1a1a1a;
+  margin: 0 0 12px;
   border: none;
   padding: 0;
 }
-.quoteAttr { display: flex; flex-direction: column; gap: 0.15rem; }
-.quoteName { font-weight: 700; color: var(--ifm-color-content); }
-.quoteRole { font-size: var(--rt-fs-body); color: var(--ifm-color-content-secondary); }
+.quoteAttr { display: flex; flex-direction: column; gap: 4px; }
+.quoteName {
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  font-weight: var(--rt-weight-semibold);
+  color: #1a1a1a;
+}
+.quoteRole {
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
+  color: #333;
+}
 
 /* ---- Stat strip ---- */
 .statStrip {
@@ -1046,11 +1164,52 @@
   align-self: center;
   background: linear-gradient(to bottom, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.55) 50%, rgba(15, 23, 42, 0) 100%);
 }
-@media (max-width: 520px) {
+/* Figma mobile (node 1968:33): the divider strip becomes three bordered
+   cards — two side by side on a 12px gap, then one across the full column.
+   Card is 12px padding, 8px radius, 1px #dae0e7 on white, with only 1px
+   between the figure and its label. Measured against the design's 390px
+   artboard: cards 153 wide and 119 tall in the row, 318x77 beneath. */
+@media (max-width: 767px) {
+  /* 64px between the quote group and the cards (node 1968:6 gap-[64px]). */
+  .quoteBlock { margin-bottom: 64px; }
+
+  .statStrip {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 12px;
+  }
   .statDivider { display: none; }
-  .statStrip { flex-direction: column; gap: 1.75rem; }
-  .statItem { text-align: center; }
-  .statLabel { margin-left: auto; margin-right: auto; }
+  .statItem {
+    box-sizing: border-box;
+    flex: 1 1 calc(50% - 6px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 12px;
+    border: 1px solid #dae0e7;
+    border-radius: 8px;
+    background: #fff;
+    text-align: left;
+  }
+  /* The third stat runs the full column width under the pair. */
+  .statItem:last-child { flex-basis: 100%; }
+  .statNum {
+    font-size: var(--rt-fs-h3);
+    font-weight: var(--rt-weight-regular);
+    line-height: var(--rt-lh-h3);
+    color: var(--ifm-color-primary);
+  }
+  .statLabel {
+    margin-top: 0;
+    max-width: none;
+    font-size: var(--rt-fs-body);
+    line-height: var(--rt-lh-body);
+    color: #333;
+  }
 }
 
 /* ============================================================
@@ -1210,13 +1369,81 @@
   border-radius: 8px;
   background: transparent;
   color: #fff !important;
-  border: 1px solid #003687;
-  border-bottom-width: 3px;
+  border: 0;
+  position: relative;
+}
+/* Figma node 2375:446 strokes this with the brand gradient rather than a
+   flat dark blue — 1px on three sides, 3px along the bottom, matching the
+   startups CTA. border-image would express it but drops the 8px radius, so
+   the stroke is a masked overlay, which also keeps the fill transparent
+   over the section's background artwork. */
+.ctaBtnSecondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 1px;
+  padding-bottom: 3px;
+  background: var(--raisetalks-brand-gradient);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 .ctaBtnSecondary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
   color: #fff !important;
+}
+
+/* Figma mobile (node 2375:435, 390px artboard). The rail box is 366 wide and
+   padded 32px vertical / 12px horizontal, which against this page's 8px rail
+   is a 16px container inset and a 342px column. Inside: 4px between the two
+   headline lines, 12px from the headline to the body copy, 48px from the copy
+   to the buttons, 18px between the buttons. */
+@media (max-width: 767px) {
+  /* Same weighting as .problemSection / .solutionSection — the <=640px
+     overflow guard pins .container's side padding with !important. */
+  .ctaSection .container { padding-inline: 16px !important; }
+
+  .ctaH2 {
+    /* Type/M/H2 is Poppins Regular; this was carrying the medium weight. */
+    font-weight: var(--rt-weight-regular);
+    margin-bottom: 12px;
+  }
+  .ctaH2 .accent {
+    display: block;
+    margin-top: 4px;
+    /* Type/M/H2 Alt — node 2375:440 is 35px tall, i.e. 28px at 1.25. */
+    font-size: var(--rt-fs-h2-alt);
+  }
+
+  .ctaSub {
+    max-width: none;
+    margin-bottom: 48px;
+    color: #d7d7d7;
+  }
+
+  .ctaSection .heroActions {
+    gap: 18px;
+    /* The guard forces nowrap; wrapping is the safety valve below ~360px,
+       where the pair's 330px no longer fits the column. */
+    flex-wrap: wrap !important;
+  }
+
+  /* The guard drops every .heroActions link to footnote type with 8/12
+     padding and a 100px floor. Figma sizes these two to their own content at
+     Type/Body with 12/16 padding and a 45px box: 128x45 and 184x45. */
+  .ctaSection .heroActions .ctaBtnPrimary,
+  .ctaSection .heroActions .ctaBtnSecondary {
+    height: 45px;
+    padding: 12px 16px !important;
+    min-width: 0 !important;
+    font-size: var(--rt-fs-body) !important;
+    font-weight: var(--rt-weight-regular);
+    line-height: var(--rt-lh-body);
+  }
 }
 
 /* Icon sizes step down with the breakpoints in Figma's icon rules sheet. */

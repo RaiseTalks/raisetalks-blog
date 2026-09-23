@@ -66,13 +66,6 @@ function useCounter(target: number, active: boolean, duration = 1400) {
 // ---------------------------------------------------------------------------
 // SVG Icons — thin line, currentColor
 // ---------------------------------------------------------------------------
-const IconQuote = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
-  </svg>
-);
-
 // ---------------------------------------------------------------------------
 // Reusable check list
 // ---------------------------------------------------------------------------
@@ -151,7 +144,7 @@ export default function InvestorsPage() {
   const frustrationDesktop = useBaseUrl('/img/investors/frustration-bg-desktop.webp');
   const frustrationTablet = useBaseUrl('/img/investors/frustration-bg-tablet.webp');
   const frustrationMobile = useBaseUrl('/img/investors/frustration-bg-mobile.webp');
-  const avatar = useBaseUrl('/img/investors/avatar-dariia.webp');
+  const avatar = useBaseUrl('/img/investors/dariia-quote.webp');
   const swirlBg = useBaseUrl('/img/investors/swirl.png');
 
   const [openPrescoreItem, setOpenPrescoreItem] = useState(0);
@@ -242,9 +235,15 @@ export default function InvestorsPage() {
         <div className={styles.proofContent}>
           <figure className={styles.quoteBlock}>
             <div className={styles.avatarWrap}>
-              <img src={avatar} alt="Dariia Vasylieva, Founder of RaiseTalks" className={styles.avatar} loading="lazy" />
+              <img
+                src={avatar}
+                alt="Dariia Vasylieva, Founder of RaiseTalks"
+                className={styles.avatar}
+                width={888}
+                height={900}
+                loading="lazy"
+              />
             </div>
-            <IconQuote />
             <blockquote className={styles.quoteText}>
               &quot;We reviewed 1M impressions of founder activity across 63
               countries. The signal is there - RaiseTalks surfaces it.&quot;
@@ -256,9 +255,9 @@ export default function InvestorsPage() {
           </figure>
 
           <div className={styles.statStrip}>
-            <StatItem display="400000" label="Founder activity impressions reviewed" active={proof.visible} />
+            <StatItem display="1M" label="Founder activity impressions reviewed" active={proof.visible} />
             <div className={styles.statDivider} aria-hidden="true" />
-            <StatItem display="49" label="Countries" active={proof.visible} />
+            <StatItem display="63" label="Countries" active={proof.visible} />
             <div className={styles.statDivider} aria-hidden="true" />
             <StatItem display="< 1 min" label="Average IC memo draft time" active={proof.visible} />
           </div>
@@ -286,7 +285,7 @@ export default function InvestorsPage() {
           <div className={styles.problemHead}>
             <h2 id="problem-heading" className={styles.sectionH2}>
               Investors Face the same
-              <br />
+              <br className={styles.h2Break} />
               <span className={styles.accent}>Frustration Patterns</span>
             </h2>
             <p className={styles.problemBody}>
@@ -316,7 +315,7 @@ export default function InvestorsPage() {
       {/* ================= WHAT YOU GET ================= */}
       <section
         ref={solution.ref as React.RefObject<HTMLElement>}
-        className={`${styles.sectionGray} ${styles.animSection} ${solution.visible ? styles.visible : ''}`}
+        className={`${styles.sectionGray} ${styles.solutionSection} ${styles.animSection} ${solution.visible ? styles.visible : ''}`}
         aria-labelledby="solution-heading"
       >
         <div className={`${styles.container} ${styles.containerNoBottomBorder}`}>
@@ -569,7 +568,7 @@ export default function InvestorsPage() {
         <div className={styles.container}>
           <h2 id="cta-heading" className={styles.ctaH2}>
             Join 60 days
-            <br />
+            <br className={styles.h2Break} />
             <span className={styles.accent}>Investor Edition Pilot</span>
           </h2>
           <p className={styles.ctaSub}>
