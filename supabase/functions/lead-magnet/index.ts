@@ -1,6 +1,6 @@
 // Supabase Edge Function for gated lead magnets (e.g. /blog/new-vc-funds-2026).
 // No database: every signup is kept in two places so no email is lost -
-//   1. a contact in the magnet's Resend Audience (Resend dashboard > Audiences, CSV export)
+//   1. a contact in the magnet's Resend Segment (Resend dashboard > Contacts > Segments, CSV export)
 //   2. a notification email to hq@raisetalks.ai
 // The subscriber gets an email with the download links, and the page shows
 // the same links. Files live on the site at an unlisted path under /downloads/.
@@ -20,7 +20,7 @@ interface LeadMagnetPayload {
 interface Magnet {
   title: string;
   page: string;
-  audienceId: string;
+  segmentId: string;
   files: Record<string, string>;
 }
 
@@ -30,7 +30,7 @@ const MAGNETS: Record<string, Magnet> = {
   'new-vc-funds-2026': {
     title: 'New VC funds 2026',
     page: '/blog/new-vc-funds-2026',
-    audienceId: '69f098b3-05c4-49b7-9bb2-444658ddfe05',
+    segmentId: 'a08dbcf7-a871-4f48-8e9d-934853688593',
     // Folder name must match build_outputs.py (DVOS) and FundsLeadMagnet.tsx
     files: {
       xlsx: `${SITE}/downloads/nvf26-k7q3x9/raisetalks-new-vc-funds-2026.xlsx`,
@@ -55,6 +55,15 @@ async function resend(apiKey: string, path: string, payload: Record<string, unkn
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   });
+}
+
+// Resend contacts are global and grouped by Segments. Create the contact inside the
+// segment; if it already exists (e.g. a newsletter subscriber), add it to the segment.
+async function addToSegment(apiKey: string, email: string, segmentId: string): Promise<Response> {
+  const created = await resend(apiKey, '/contacts', { email, unsubscribed: false, segments: [{ id: segmentId }] });
+  if (created.ok) return created;
+  console.error('Contact create failed, adding existing contact to segment:', await created.text());
+  return resend(apiKey, `/contacts/${encodeURIComponent(email)}/segments/${segmentId}`, {});
 }
 
 function deliveryEmailHtml(magnet: Magnet): string {
@@ -148,8 +157,8 @@ serve(async (req) => {
 
     // Keep the email in both places. Each is independent, so one failing never loses the lead;
     // only if BOTH fail do we return an error so the visitor can retry.
-    const [audience, notify] = await Promise.allSettled([
-      resend(RESEND_API_KEY, `/audiences/${magnet.audienceId}/contacts`, { email, unsubscribed: false }),
+    const [segment, notify] = await Promise.allSettled([
+      addToSegment(RESEND_API_KEY, email, magnet.segmentId),
       resend(RESEND_API_KEY, '/emails', {
         from: FROM_EMAIL,
         to: [HQ_NOTIFY_EMAIL],
@@ -157,11 +166,11 @@ serve(async (req) => {
         html: notifyEmailHtml(magnet, email),
       }),
     ]);
-    const saved = [audience, notify].map((r) => r.status === 'fulfilled' && r.value.ok);
-    for (const [i, r] of [audience, notify].entries()) {
+    const saved = [segment, notify].map((r) => r.status === 'fulfilled' && r.value.ok);
+    for (const [i, r] of [segment, notify].entries()) {
       if (!saved[i]) {
         const detail = r.status === 'fulfilled' ? await r.value.text() : String(r.reason);
-        console.error(`Lead ${i === 0 ? 'audience' : 'notify'} failed:`, detail);
+        console.error(`Lead ${i === 0 ? 'segment' : 'notify'} failed:`, detail);
       }
     }
     if (!saved.some(Boolean)) throw new Error('Could not record the lead');
