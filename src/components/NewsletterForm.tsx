@@ -2,10 +2,23 @@ import React, { useRef, useState } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './NewsletterForm.module.css';
 
-export default function NewsletterForm() {
+interface NewsletterFormProps {
+  /** Lead magnet id known to the newsletter-subscribe function; the signup then returns its files */
+  magnet?: string;
+  /** Text above the form; null hides it (e.g. inside a BlogCTA that has its own copy) */
+  description?: string | null;
+  buttonText?: string;
+}
+
+export default function NewsletterForm({
+  magnet,
+  description = 'Get insights from RaiseTalks and build trust in every round.',
+  buttonText = 'Subscribe',
+}: NewsletterFormProps) {
   const { siteConfig } = useDocusaurusContext();
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [files, setFiles] = useState<Record<string, string> | null>(null);
 
   // Bot protection: track form load time and honeypot value via refs
   const formLoadedAt = useRef(Date.now());
@@ -27,6 +40,7 @@ export default function NewsletterForm() {
         },
         body: JSON.stringify({
           email,
+          magnet,
           website: honeypotRef.current,
           _formLoadedAt: formLoadedAt.current,
         }),
@@ -35,6 +49,13 @@ export default function NewsletterForm() {
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.error || 'Failed to subscribe');
+      }
+
+      if (magnet) {
+        const body = await response.json();
+        setFiles(body.files ?? null);
+        setStatus('success');
+        return;
       }
 
       setStatus('success');
@@ -47,11 +68,25 @@ export default function NewsletterForm() {
     }
   };
 
+  // Lead magnet delivered: swap the form for the download links
+  if (magnet && status === 'success' && files) {
+    return (
+      <div className={styles.newsletterContent}>
+        <p className={styles.successMessage}>You are on the list. Download your files:</p>
+        <div className={styles.downloads}>
+          {Object.entries(files).map(([type, url]) => (
+            <a key={type} href={url} download className="cta-button">
+              Download {type === 'xlsx' ? 'Excel' : type.toUpperCase()}
+            </a>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.newsletterContent}>
-      <p className={styles.newsletterDescription}>
-        Get insights from RaiseTalks and build trust in every round.
-      </p>
+      {description && <p className={styles.newsletterDescription}>{description}</p>}
 
       <form onSubmit={handleSubmit} className={styles.newsletterForm}>
         {/* Honeypot field — invisible to real users, catches bots */}
@@ -81,7 +116,7 @@ export default function NewsletterForm() {
             className={styles.subscribeButton}
             disabled={status === 'loading'}
           >
-            {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+            {status === 'loading' ? 'Sending...' : buttonText}
           </button>
         </div>
 

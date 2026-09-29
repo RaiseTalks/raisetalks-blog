@@ -1,12 +1,12 @@
 import MDXComponents from '@theme-original/MDXComponents';
 import {BlogFAQ, BlogFAQItem} from '@site/src/components/BlogFAQ';
-import FundsLeadMagnet from '@site/src/components/FundsLeadMagnet';
+import BlogCTA from '@site/src/components/BlogCTA';
 
 // Global MDX components. BlogFAQ/BlogFAQItem are emitted by src/plugins/remark-blog-faq.js.
-// FundsLeadMagnet is the email gate used in blog/2026-09-30-new-vc-funds-2026.md.
+// BlogCTA is the in-post call to action; with `magnet` it becomes an email-gated download.
 export default {
   ...MDXComponents,
   BlogFAQ,
   BlogFAQItem,
-  FundsLeadMagnet,
+  BlogCTA,
 };

@@ -84,6 +84,13 @@
   animation: fadeIn 0.3s ease;
 }
 
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
 .errorMessage {
   margin: 0;
   color: #ffd4d4;

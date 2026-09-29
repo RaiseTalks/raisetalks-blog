@@ -1,4 +1,5 @@
 import React from 'react';
+import NewsletterForm from './NewsletterForm';
 
 interface BlogCTAProps {
   /** Main heading text */
@@ -13,6 +14,8 @@ interface BlogCTAProps {
   disclaimer?: string;
   /** CTA variant - primary (larger) or default */
   variant?: 'default' | 'primary';
+  /** Lead magnet id: shows the email form (button text = submit label) instead of the link */
+  magnet?: string;
 }
 
 const BlogCTA: React.FC<BlogCTAProps> = ({
@@ -21,7 +24,8 @@ const BlogCTA: React.FC<BlogCTAProps> = ({
   buttonText,
   buttonLink = '#',
   disclaimer,
-  variant = 'default'
+  variant = 'default',
+  magnet
 }) => {
   const containerClass = variant === 'primary' ? 'cta-box--primary' : 'cta-box';
   const buttonClass = variant === 'primary' ? 'cta-button--primary' : 'cta-button';
@@ -31,9 +35,13 @@ const BlogCTA: React.FC<BlogCTAProps> = ({
     <div className={containerClass}>
       <h3>{title}</h3>
       <p>{description}</p>
-      <a href={buttonLink} className={buttonClass}>
-        {buttonText}
-      </a>
+      {magnet ? (
+        <NewsletterForm magnet={magnet} description={null} buttonText={buttonText} />
+      ) : (
+        <a href={buttonLink} className={buttonClass}>
+          {buttonText}
+        </a>
+      )}
       {disclaimer && (
         <p className={disclaimerClass}>{disclaimer}</p>
       )}
