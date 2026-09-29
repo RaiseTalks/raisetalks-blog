@@ -21,7 +21,7 @@ interface LeadMagnet {
   files: Record<string, string>;
 }
 
-// Download folder must match build_outputs.py (DVOS) and FundsLeadMagnet.tsx
+// Download folder must match TOKEN in build_outputs.py (DVOS) and static/downloads/
 const LEAD_MAGNETS: Record<string, LeadMagnet> = {
   'new-vc-funds-2026': {
     title: 'New VC funds 2026',
