@@ -3,6 +3,7 @@ import {BlogFAQ, BlogFAQItem} from '@site/src/components/BlogFAQ';
 import BlogCTA from '@site/src/components/BlogCTA';
 import {
   BlogDeck,
+  BlogTable,
   BlogTakeaways,
   BlogReadNextList,
   BlogReadNextItem,
@@ -13,6 +14,7 @@ import {
 // email-gated download. The rest are emitted by the blog's remark plugins:
 // BlogDeck                 - src/plugins/remark-article-deck.js
 // BlogFAQ/BlogFAQItem      - src/plugins/remark-blog-faq.js
+// BlogTable                - src/plugins/remark-table-scroll.js
 // BlogTakeaways            - src/plugins/remark-key-takeaways.js
 // BlogReadNextList/Item    - src/plugins/remark-read-next.js
 export default {
@@ -21,6 +23,7 @@ export default {
   BlogFAQItem,
   BlogCTA,
   BlogDeck,
+  BlogTable,
   BlogTakeaways,
   BlogReadNextList,
   BlogReadNextItem,

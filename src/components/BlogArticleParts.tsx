@@ -1,4 +1,5 @@
 import React, {type ReactNode} from 'react';
+import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
 
@@ -8,6 +9,31 @@ import {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
 
 export function BlogDeck({children}: {children: ReactNode}): ReactNode {
   return <div className="rt-deck">{children}</div>;
+}
+
+export function BlogTable({
+  columns,
+  children,
+}: {
+  columns?: string;
+  children: ReactNode;
+}): ReactNode {
+  const count = Number(columns) || 3;
+  return (
+    <>
+      <div
+        className={clsx('rt-table', count >= 5 && 'rt-table--wide')}
+        // The floor on the table's width, so columns stay legible instead of squeezing
+        style={{'--rt-table-columns': count} as React.CSSProperties}
+        // Scrollable regions need to be reachable from the keyboard
+        tabIndex={0}
+        role="group">
+        {children}
+      </div>
+      {/* Only shown on the screens narrow enough for the table to actually scroll */}
+      {count >= 4 && <p className="rt-table__hint">Scroll the table for more columns</p>}
+    </>
+  );
 }
 
 export function BlogTakeaways({children}: {children: ReactNode}): ReactNode {

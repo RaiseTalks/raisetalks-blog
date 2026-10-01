@@ -8,6 +8,7 @@ import remarkUnpublishedLinks from './src/plugins/remark-unpublished-links';
 import remarkKeyTakeaways from './src/plugins/remark-key-takeaways';
 import remarkReadNext from './src/plugins/remark-read-next';
 import remarkArticleDeck from './src/plugins/remark-article-deck';
+import remarkTableScroll from './src/plugins/remark-table-scroll';
 import { filterScheduledPosts, unpublishedSlugs } from './src/plugins/scheduled-posts';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -81,6 +82,7 @@ const config: Config = {
             remarkKeyTakeaways,
             [remarkReadNext, { siteDir: __dirname }],
             remarkArticleDeck,
+            remarkTableScroll,
           ],
           showReadingTime: true,
           // Oldest first: the blog and Recent Posts sidebar open with the first article

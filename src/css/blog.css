@@ -753,11 +753,54 @@ article .markdown img {
   max-width: 100%;
 }
 
-/* Table - Clean Style */
+/* Table - Clean Style.
+   Every table sits in a scroll frame (src/plugins/remark-table-scroll.js). --rt-table-columns
+   puts a floor under the table's width so columns stay legible: below that the frame scrolls
+   sideways rather than squeezing the text, which is what phones get on the six-column tables. */
+article .markdown .rt-table {
+  margin: 2rem 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+
+article .markdown .rt-table:focus-visible {
+  outline: 2px solid var(--raisetalks-blue-primary-flat);
+  outline-offset: 4px;
+}
+
 article .markdown table {
   width: 100%;
-  margin: 2rem 0;
+  min-width: calc(var(--rt-table-columns, 3) * 7rem);
+  margin: 0;
   border-collapse: collapse;
+}
+
+/* The hint belongs to the frame above it, and only to screens where that frame scrolls */
+article .markdown .rt-table__hint {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  article .markdown .rt-table {
+    margin-bottom: 0.5rem;
+  }
+
+  article .markdown .rt-table__hint {
+    display: block;
+    margin: 0 0 2rem;
+    font-size: var(--rt-fs-footnote);
+    line-height: var(--rt-lh-footnote);
+    color: #94a3b8;
+  }
+}
+
+/* Five columns or more: a little less type and padding, so the widest tables need the
+   least scrolling */
+article .markdown .rt-table--wide th,
+article .markdown .rt-table--wide td {
+  padding: 0.625rem 0.75rem;
+  font-size: 0.9375rem;
 }
 
 article .markdown th {
