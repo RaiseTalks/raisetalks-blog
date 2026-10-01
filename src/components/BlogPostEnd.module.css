@@ -1,0 +1,115 @@
+/* End-of-article author card and share row (src/components/BlogPostEnd.tsx).
+   Lines up with the article measure set in src/css/blog.css (article .markdown). */
+
+.end {
+  max-width: 800px;
+  margin: 2.5rem auto 0;
+  padding: 1.5rem 1rem 0;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.name {
+  margin: 0.125rem 0 0;
+  font-size: var(--rt-fs-body-long);
+  line-height: 1.3;
+  font-weight: var(--rt-weight-medium);
+  color: #000;
+}
+
+.name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.name a:hover {
+  color: var(--raisetalks-blue-primary-flat);
+}
+
+.role {
+  margin: 0.125rem 0 0;
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: #64748b;
+}
+
+.share {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shareLabel {
+  font-size: var(--rt-fs-footnote);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-right: 0.25rem;
+}
+
+.shareButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.shareButton:hover {
+  color: var(--raisetalks-blue-primary-flat);
+  border-color: var(--raisetalks-blue-primary-flat);
+  transform: translateY(-2px);
+}
+
+.copied {
+  font-size: var(--rt-fs-footnote);
+  color: var(--raisetalks-blue-primary-flat);
+  min-width: 5.5rem;
+}
+
+@media (max-width: 640px) {
+  .end {
+    gap: 1rem;
+  }
+
+  .copied {
+    min-width: 0;
+  }
+}

@@ -3,7 +3,11 @@ import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 import remarkBlogFaq from './src/plugins/remark-blog-faq';
 import llmsTxtPlugin from './src/plugins/llms-txt';
+import blogSearchIndexPlugin from './src/plugins/blog-search-index';
 import remarkUnpublishedLinks from './src/plugins/remark-unpublished-links';
+import remarkKeyTakeaways from './src/plugins/remark-key-takeaways';
+import remarkReadNext from './src/plugins/remark-read-next';
+import remarkArticleDeck from './src/plugins/remark-article-deck';
 import { filterScheduledPosts, unpublishedSlugs } from './src/plugins/scheduled-posts';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -46,8 +50,9 @@ const config: Config = {
     locales: ['en'],
   },
 
-  // Generates /llms.txt (site and blog index for AI assistants) on every build
-  plugins: [llmsTxtPlugin],
+  // llms-txt: generates /llms.txt (site and blog index for AI assistants) on every build.
+  // blog-search-index: the article index behind the blog sidebar's filter.
+  plugins: [llmsTxtPlugin, blogSearchIndexPlugin],
 
   presets: [
     [
@@ -66,11 +71,16 @@ const config: Config = {
           // One post per working day: production builds only include posts whose date has arrived
           // (the deploy workflow rebuilds every working-day morning). `yarn start` shows all posts.
           processBlogPosts: filterScheduledPosts,
-          // Runs before the default plugins so the table of contents reflects both changes:
-          // links to not-yet-live posts are hidden, and the FAQ section becomes the website accordion.
+          // Runs before the default plugins so the table of contents reflects every change.
+          // Order matters: links to not-yet-live posts are hidden first, so "Read next" never
+          // turns a hidden link into a card; then the FAQ, takeaways and read-next sections of
+          // the house format become their website components.
           beforeDefaultRemarkPlugins: [
             [remarkUnpublishedLinks, { unpublished: unpublishedSlugs(__dirname) }],
             remarkBlogFaq,
+            remarkKeyTakeaways,
+            [remarkReadNext, { siteDir: __dirname }],
+            remarkArticleDeck,
           ],
           showReadingTime: true,
           // Oldest first: the blog and Recent Posts sidebar open with the first article
@@ -79,7 +89,7 @@ const config: Config = {
           blogDescription:
             'Expert insights on due diligence, fundraising, and business growth',
           postsPerPage: 10,
-          blogSidebarTitle: 'Recent Posts',
+          blogSidebarTitle: 'Browse by topic',
           blogSidebarCount: 'ALL', // full article list doubles as navigation
           feedOptions: {
             type: ['rss', 'atom'],

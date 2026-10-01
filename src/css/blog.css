@@ -22,6 +22,15 @@ menu {
   padding: 0;
 }
 
+/* From the laptop breakpoint up, the blog uses the site's rail width instead of Infima's
+   narrower container (1140px, 1320px on large screens): with three panes on article pages
+   that left the article itself with under 600px of text. */
+@media (min-width: 1024px) {
+  .blog-wrapper .container {
+    max-width: min(1480px, calc(100% - 48px));
+  }
+}
+
 /* Blog Header Section - Clean Style */
 .blog-wrapper .blog-sidebar {
   padding: 4rem 1rem 2rem;
@@ -92,96 +101,364 @@ menu {
   padding: 0;
 }
 
-/* Blog Post Cards - Clean Design */
-.blog-post-preview {
-  background: white;
-  padding: 2rem 0;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #f1f5f9;
+/* ── Article list filter ───────────────────────────────────────────────────────
+   Markup: src/theme/BlogSidebar/Desktop. */
+
+.rt-blog-search {
+  position: relative;
+  margin-bottom: 0.75rem;
 }
 
-.blog-post-preview:last-child {
-  border-bottom: none;
+.rt-blog-search__icon {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  display: flex;
+  color: #94a3b8;
+  pointer-events: none;
 }
 
-/* Apply clean styling to default Docusaurus blog list articles */
-.plugin-blog:not(.blog-post-page) .main-wrapper article {
-  background: white;
-  padding: 2rem 0;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.plugin-blog:not(.blog-post-page) .main-wrapper article:last-child {
-  border-bottom: none;
-}
-
-/* Titles & links in list cards */
-.plugin-blog:not(.blog-post-page) .main-wrapper article h2 {
+.rt-blog-search__input {
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2.125rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  background: #ffffff;
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-h3);
-  font-weight: var(--rt-weight-regular);
-  line-height: var(--rt-lh-h3);
-  color: #000;
-  margin-bottom: 0.5rem;
+  font-size: var(--rt-fs-body);
+  line-height: 1.5;
+  color: #0f172a;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.plugin-blog:not(.blog-post-page) .main-wrapper article h2 a {
+.rt-blog-search__input::placeholder {
+  color: #94a3b8;
+}
+
+.rt-blog-search__input:focus {
+  outline: none;
+  border-color: var(--raisetalks-blue-primary-flat);
+  box-shadow: 0 0 0 3px rgba(1, 116, 225, 0.12);
+}
+
+/* In the mobile menu the filter sits inside the menu padding, above the list */
+.rt-blog-search--mobile {
+  padding: 0.25rem 0.75rem 0.5rem;
+}
+
+.rt-blog-search__count,
+.rt-blog-search__empty {
+  margin: 0 0 0.5rem;
+  padding: 0 0.5rem;
+  font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
+  color: #64748b;
+}
+
+/* ── Blog list hero ────────────────────────────────────────────────────────────
+   Markup: src/theme/BlogListPage. Same construction as the homepage hero (sans line +
+   Georgia italic gradient accent) on the site's type tokens, left-aligned so it shares
+   an edge with the cards below it. */
+
+.rt-blog-hero {
+  padding: 1rem 0 1.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.rt-blog-hero__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  /* .blog-wrapper h1 centres blog headings; this hero is left-aligned with its cards */
+  text-align: left;
+  margin: 0 0 0.875rem;
+}
+
+.rt-blog-hero__line {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
+  color: #000000;
+}
+
+.rt-blog-hero__accent {
+  font-family: var(--rt-font-serif);
+  font-style: italic;
+  font-size: var(--rt-fs-h2-alt);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
+  background: linear-gradient(to bottom right, rgba(0, 54, 135, 1) 3.42%, rgba(0, 119, 255, 1) 99.98%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* The clipped gradient crops Georgia's descenders without a little room below */
+  padding-bottom: 0.1em;
+}
+
+.rt-blog-hero__description {
+  max-width: 34rem;
+  margin: 0;
+  font-size: var(--rt-fs-body-long);
+  line-height: 1.55;
+  color: #475569;
+}
+
+.rt-blog-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.rt-blog-topics__chip {
+  display: inline-block;
+  padding: 0.3125rem 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #334155;
+  font-size: var(--rt-fs-body);
+  line-height: 1.5;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.rt-blog-topics__chip:hover {
+  color: var(--raisetalks-blue-primary-flat);
+  border-color: var(--raisetalks-blue-primary-flat);
+  background: #f8fbff;
+  text-decoration: none;
+}
+
+.rt-blog-topics__chip--all {
+  color: var(--raisetalks-blue-primary-flat);
+  border-color: #cfe3fb;
+  background: #f5f9ff;
+}
+
+/* ── Tag and author list headers ───────────────────────────────────────────────
+   Same treatment as the blog hero above: the site's H2 token, left-aligned with the cards,
+   and the "View All Tags" link as a topic chip. */
+
+/* Infima's own .margin-bottom--xl on this header is an !important in a cascade layer, which
+   an unlayered !important here cannot beat, so the space below the rule is left to it and the
+   first card starts flush. */
+.blog-tags-post-list-page main > header,
+.blog-authors-posts-page main > header {
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid #eef2f6;
+}
+
+/* The page class sits on <html>, so .blog-wrapper goes after it, not before: this has to
+   out-specify `.blog-wrapper h1` and its 768px override. */
+.blog-tags-post-list-page .blog-wrapper main > header h1,
+.blog-authors-posts-page .blog-wrapper main > header h1 {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  margin-bottom: 0.75rem;
+}
+
+.blog-tags-post-list-page main > header p,
+.blog-authors-posts-page main > header p {
+  max-width: 34rem;
+  margin: 0;
+  font-size: var(--rt-fs-body-long);
+  line-height: 1.55;
+  color: #475569;
+}
+
+.blog-tags-post-list-page main > header a,
+.blog-authors-posts-page main > header a {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding: 0.3125rem 0.875rem;
+  border: 1px solid #cfe3fb;
+  border-radius: 999px;
+  background: #f5f9ff;
+  color: var(--raisetalks-blue-primary-flat);
+  font-size: var(--rt-fs-body);
+  line-height: 1.5;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.blog-tags-post-list-page main > header a:hover {
+  border-color: var(--raisetalks-blue-primary-flat);
+  text-decoration: none;
+}
+
+/* ── Blog list cards ───────────────────────────────────────────────────────────
+   Markup: src/theme/BlogPostItem (list view). Horizontal card: the post's OG image,
+   title, reading time, description and up to three tags. */
+
+.rt-post-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.rt-post-card:last-of-type {
+  border-bottom: none;
+}
+
+.rt-post-card__media {
+  display: block;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: #f1f5f9;
+  aspect-ratio: 16 / 9;
+}
+
+.rt-post-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.rt-post-card:hover .rt-post-card__media img {
+  transform: scale(1.04);
+}
+
+.rt-post-card__body {
+  min-width: 0;
+}
+
+.rt-post-card__title {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h4-alt);
+  font-weight: var(--rt-weight-medium);
+  line-height: 1.3;
+  color: #000;
+  margin: 0;
+}
+
+.rt-post-card__title a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
-.plugin-blog:not(.blog-post-page) .main-wrapper article h2 a:hover {
+.rt-post-card__title a:hover {
   color: var(--raisetalks-blue-primary-flat);
 }
 
-/* Meta row */
-.plugin-blog:not(.blog-post-page) .main-wrapper article time {
-  color: #64748b;
+.rt-post-card__meta {
+  margin: 0.375rem 0 0;
   font-size: var(--rt-fs-footnote);
+  line-height: var(--rt-lh-footnote);
+  color: #64748b;
 }
 
-/* Excerpt */
-.plugin-blog:not(.blog-post-page) .main-wrapper article .markdown p {
-  color: #404040; /* match article page paragraphs */
-  font-size: var(--rt-fs-body);
-  line-height: var(--rt-lh-body);
-  margin: 1rem 0;
+.rt-post-card__excerpt {
+  margin: 0.625rem 0 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #475569;
 }
 
-/* Links inside list excerpts - match single-article link style */
-.plugin-blog:not(.blog-post-page) .main-wrapper article .markdown a {
-  color: var(--raisetalks-blue-primary-flat);
+.rt-post-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.rt-post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rt-post-card__tags a {
+  display: inline-block;
+  padding: 0.125rem 0.625rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: var(--rt-fs-footnote);
+  line-height: 1.6;
   text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.plugin-blog:not(.blog-post-page) .main-wrapper article .markdown a:hover {
+.rt-post-card__tags a:hover {
   color: var(--raisetalks-blue-primary-flat);
-  border-bottom-color: var(--raisetalks-blue-primary-flat);
+  border-color: var(--raisetalks-blue-primary-flat);
 }
 
-/* Read more link */
-.plugin-blog:not(.blog-post-page) .main-wrapper article footer [aria-label^='Read more'] {
-  color: var(--raisetalks-blue-primary-flat);
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 0.875rem;
-  margin-left: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.rt-post-card__more {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
+  gap: 0.375rem;
+  color: var(--raisetalks-blue-primary-flat);
+  font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.plugin-blog:not(.blog-post-page) .main-wrapper article footer [aria-label^='Read more']:hover {
-  color: var(--raisetalks-blue-primary-flat);
-  transform: translateX(4px);
+.rt-post-card__more svg {
+  transition: transform 0.2s ease;
+}
+
+.rt-post-card__more:hover svg {
+  transform: translateX(3px);
+}
+
+/* First card on the main list reads as the way in: image on top, larger title */
+.blog-list-page .rt-post-card:first-of-type {
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding-top: 0;
+}
+
+/* The first card sits right under the page header, which already provides the space */
+.blog-tags-post-list-page .rt-post-card:first-of-type,
+.blog-authors-posts-page .rt-post-card:first-of-type {
+  padding-top: 0;
+}
+
+/* Full-width lead image, but flatter than 16:9 so it does not fill the first screen */
+.blog-list-page .rt-post-card:first-of-type .rt-post-card__media {
+  aspect-ratio: 2.2 / 1;
+}
+
+.blog-list-page .rt-post-card:first-of-type .rt-post-card__title {
+  font-size: var(--rt-fs-h3);
+  font-weight: var(--rt-weight-regular);
+}
+
+.blog-list-page .rt-post-card:first-of-type .rt-post-card__excerpt {
+  font-size: var(--rt-fs-body-long);
 }
 
 .docusaurus-mt-lg {
@@ -195,122 +472,45 @@ menu {
   padding: 2rem 1rem;
 }
 
-/* Blog Post Meta - Improved Layout */
-.blog-post-preview .avatar {
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.blog-post-preview .avatar__photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.blog-post-preview .avatar__intro {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.blog-post-preview .avatar__name {
-  color: #1e293b;
-  font-weight: 600;
-  font-size: 0.875rem;
-  margin: 0;
-}
-
-.blog-post-preview .avatar__name a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.blog-post-preview .avatar__name a:hover {
-  color: var(--raisetalks-blue-primary-flat);
-}
-
-.blog-post-preview .avatar time {
-  color: #64748b;
-  font-size: 0.875rem;
-  font-weight: 400;
-}
-
-/* Blog Post Title - Enhanced Typography */
-.blog-post-preview h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-  letter-spacing: -0.025em;
-}
-
-.blog-post-preview h2 a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.blog-post-preview h2 a:hover {
-  color: var(--raisetalks-blue-primary-flat);
-}
-
-/* Blog Post Excerpt - Perfect Typography */
-.blog-post-preview .markdown p {
-  color: #64748b;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Tags in Blog Cards */
-.blog-post-preview .tag {
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Read More Link */
-.blog-post-preview .read-more {
-  color: var(--raisetalks-blue-primary-flat);
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.blog-post-preview .read-more:hover {
-  color: var(--raisetalks-blue-primary-flat);
-  transform: translateX(4px);
-}
-
-.blog-post-preview .read-more::after {
-  content: '→';
-  transition: transform 0.3s ease;
-}
-
-.blog-post-preview .read-more:hover::after {
-  transform: translateX(4px);
-}
-
 /* Individual Blog Post Page - Clean Layout */
 article {
   background: white;
 }
 
+/* ── Article header ────────────────────────────────────────────────────────────
+   Markup: src/theme/BlogPostItem (ArticleHeader) wraps the default Docusaurus header with the
+   post's topic as an eyebrow and a rule underneath. Title, reading time and author keep the
+   treatment they have always had; the author's card and the share row sit at the end of the
+   post as well. */
+
+.rt-article-header {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding-top: 2rem;
+  text-align: center;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.rt-article-header__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.875rem;
+  font-family: var(--rt-font-sans);
+  font-size: 0.75rem;
+  font-weight: var(--rt-weight-semibold);
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--raisetalks-blue-primary-flat);
+  text-decoration: none;
+}
+
+.rt-article-header__eyebrow:hover {
+  color: var(--raisetalks-blue-secondary);
+  text-decoration: none;
+}
+
 article header {
-  padding: 4rem 1rem 2rem;
+  padding: 0 1rem 1.25rem;
   margin: 0;
   text-align: center;
 }
@@ -332,7 +532,7 @@ article header .avatar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   gap: 0.5rem;
 }
 
@@ -376,17 +576,6 @@ article header .reading-time {
   font-weight: var(--rt-weight-regular);
 }
 
-/* Article Tags - Align with content */
-article header .tags {
-  max-width: 800px;
-  margin: 2rem auto 0;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
 /* Article Content Area - Professional Layout */
 article .container {
   /* max-width: 1200px; */
@@ -395,12 +584,15 @@ article .container {
 }
 
 article .markdown {
-  max-width: 800px;
-  padding: 2rem 1rem;
+  max-width: 50rem;
+  /* Centred in its column, so the text sits under the middle of the centred title */
+  margin-inline: auto;
+  padding: 1rem 1rem 2rem;
   font-family: var(--rt-font-sans);
-  font-size: var(--rt-fs-body);
-  line-height: var(--rt-lh-body);
-  color: #404040;
+  /* Long-form body scale, not the 14.4px UI body token (see src/css/typography.css) */
+  font-size: var(--rt-fs-body-long);
+  line-height: var(--rt-lh-body-long);
+  color: #333333;
 }
 
 article .markdown strong {
@@ -422,41 +614,50 @@ article .markdown h6 {
 }
 
 article .markdown h2 {
-  font-size: var(--rt-fs-h2);
-  line-height: var(--rt-lh-h2);
-  margin: 3rem 0 1rem 0;
+  font-size: var(--rt-fs-head-2);
+  line-height: 1.25;
+  margin: 2.75rem 0 0.875rem 0;
 }
 
 article .markdown h3 {
-  font-size: var(--rt-fs-h4);
-  line-height: var(--rt-lh-h4);
-  font-weight: var(--rt-weight-semibold);
-  margin: 2rem 0 0.75rem 0;
+  font-size: var(--rt-fs-head-3);
+  line-height: 1.3;
+  font-weight: var(--rt-weight-medium);
+  margin: 2rem 0 0.625rem 0;
 }
 
 article .markdown h4 {
-  font-size: var(--rt-fs-body);
-  line-height: var(--rt-lh-body);
+  font-size: var(--rt-fs-head-4);
+  line-height: 1.35;
   font-weight: var(--rt-weight-semibold);
   margin: 1.5rem 0 0.5rem 0;
 }
 
 article .markdown p {
+  margin-bottom: 1.25rem;
+  line-height: var(--rt-lh-body-long);
+  color: #333333;
+}
+
+/* Deck: the opening paragraphs, one step above the body (src/plugins/remark-article-deck.js) */
+article .markdown .rt-deck {
+  margin-bottom: 2rem;
+}
+
+article .markdown .rt-deck p {
+  font-size: var(--rt-fs-lead);
+  line-height: var(--rt-lh-lead);
+  color: #000000;
+  font-weight: var(--rt-weight-regular);
   margin-bottom: 1rem;
-  line-height: var(--rt-lh-body);
-  color: #404040;
 }
 
-/* Lead paragraph: H4 scale, regular weight */
-article .markdown > p:first-of-type {
-  font-size: var(--rt-fs-h4);
-  line-height: var(--rt-lh-h4);
-  color: #000;
-  font-weight: var(--rt-weight-regular);
+article .markdown .rt-deck p:last-child {
+  margin-bottom: 0;
 }
 
-article .markdown > p:first-of-type strong {
-  font-weight: var(--rt-weight-regular);
+article .markdown .rt-deck strong {
+  font-weight: var(--rt-weight-medium);
 }
 
 /* Blockquote - Clean Style */
@@ -480,14 +681,16 @@ article .markdown blockquote p {
 }
 
 /* Code Styling */
+/* Inline code is used for file and folder names, not syntax: a neutral chip rather than the
+   crimson of a code sample, which pulled the eye off the sentence it sits in. */
 article .markdown code {
-  background: #f1f5f9;
-  padding: 0.25rem 0.5rem;
+  background: #f5f7fa;
+  padding: 0.125rem 0.375rem;
   border-radius: 6px;
-  font-size: 0.875rem;
-  color: #e11d48;
-  font-weight: 600;
-  border: 1px solid #e2e8f0;
+  font-size: 0.9375em;
+  color: #334155;
+  font-weight: var(--rt-weight-regular);
+  border: 1px solid #e8edf3;
 }
 
 article .markdown pre {
@@ -514,9 +717,9 @@ article .markdown ol {
 }
 
 article .markdown li {
-  margin-bottom: 0.5rem;
-  line-height: var(--rt-lh-body);
-  color: #404040;
+  margin-bottom: 0.625rem;
+  line-height: var(--rt-lh-body-long);
+  color: #333333;
 }
 
 article .markdown ul li::marker {
@@ -562,7 +765,8 @@ article .markdown th {
   padding: 0.75rem 1rem;
   text-align: left;
   font-weight: var(--rt-weight-semibold);
-  font-size: var(--rt-fs-body);
+  /* Tables step down one level from the running text: dense data reads better smaller */
+  font-size: 1rem;
   color: #000;
   border-bottom: 1px solid #e5e7eb;
 }
@@ -570,9 +774,98 @@ article .markdown th {
 article .markdown td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #f1f5f9;
-  font-size: var(--rt-fs-body);
-  line-height: var(--rt-lh-body);
-  color: #404040;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #333333;
+}
+
+/* ── Key takeaways card ────────────────────────────────────────────────────────
+   Markup: src/plugins/remark-key-takeaways.js wraps the list under "## Key takeaways". */
+
+article .markdown .rt-takeaways {
+  margin: 1.25rem 0 2.5rem;
+  padding: 1.5rem 1.75rem;
+  background: #f5f9ff;
+  border: 1px solid #e2eefc;
+  border-radius: 0.875rem;
+}
+
+article .markdown .rt-takeaways ul,
+article .markdown .rt-takeaways ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+article .markdown .rt-takeaways li:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Read next cards ───────────────────────────────────────────────────────────
+   Markup: src/plugins/remark-read-next.js turns the list under "## Read next" into cards. */
+
+article .markdown .rt-read-next {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.875rem;
+  margin: 1.25rem 0 2.5rem;
+}
+
+article .markdown .rt-read-next__card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  padding: 0.625rem 0.625rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: var(--rt-weight-regular);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+article .markdown .rt-read-next__card:hover {
+  border-color: var(--raisetalks-blue-primary-flat);
+  color: var(--raisetalks-blue-primary-flat);
+  transform: translateY(-2px);
+}
+
+.rt-read-next__media {
+  display: block;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: #f1f5f9;
+  aspect-ratio: 16 / 9;
+}
+
+/* Specific enough to beat `article .markdown img`, which centres content images with margins */
+article .markdown .rt-read-next__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border-radius: 0;
+}
+
+.rt-read-next__title {
+  padding: 0 0.375rem;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  font-weight: var(--rt-weight-medium);
+}
+
+@media (max-width: 640px) {
+  article .markdown .rt-read-next {
+    grid-template-columns: 1fr;
+  }
+
+  article .markdown .rt-takeaways {
+    padding: 1.25rem;
+  }
 }
 
 /* Reading Time */
@@ -763,10 +1056,10 @@ article .markdown td {
 
 /* Table of contents: card styled like "Help & Tips" in the core app (app.raisetalks.com) */
 .blog-post-page [class*='tableOfContents_'] {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0.25rem 0 0;
 }
 
 .blog-post-page [class*='tableOfContents_']::before {
@@ -868,105 +1161,106 @@ article .avatar [class*='authorSocials'] a + a {
   margin-left: 0.5rem;
 }
 
-/* Blog Recent Posts Sidebar - clear grouping and hierarchy */
-.plugin-blog nav[aria-label='Blog recent posts navigation'] {
-  /* keep native layout; only refine spacing/typography */
-}
-
-/* Sidebar title ("Recent Posts") */
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  [class*='sidebarItemTitle'] {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #0f172a;
+/* Sidebar heading above the filter */
+.rt-article-nav__title {
   margin-bottom: 0.75rem;
-}
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  [class*='yearGroupHeading'] {
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: uppercase;
+  font-family: var(--rt-font-sans);
+  font-size: 0.75rem;
+  font-weight: var(--rt-weight-semibold);
+  line-height: 1.4;
   letter-spacing: 0.08em;
-  margin: 1rem 0 0.5rem 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid #e5e7eb;
+  text-transform: uppercase;
+  color: #0f172a;
 }
 
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  > div[role='group']:first-of-type
-  [class*='yearGroupHeading'] {
-  border-top: none;
-  padding-top: 0.25rem;
-  margin-top: 0.25rem;
+/* ── Article list (sidebar and mobile menu) ────────────────────────────────────
+   Markup: src/components/BlogArticleNav. Grouped by topic: one hairline and a small
+   topic label per group, so 31 entries read as a handful of subjects rather than a wall. */
+
+.rt-article-list {
+  padding-bottom: 1.5rem;
 }
 
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  [class*='yearGroupHeading']
-  + ul {
-  list-style: none;
-  margin: 0 0 0.5rem 0;
-  padding: 0;
+.rt-article-list__group + .rt-article-list__group {
+  margin-top: 1.125rem;
+  padding-top: 1.125rem;
+  border-top: 1px solid #eef2f6;
+}
+
+.rt-article-list__topic {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  padding: 0 0.5rem;
+  font-family: var(--rt-font-sans);
+  font-size: 0.6875rem;
+  font-weight: var(--rt-weight-semibold);
+  line-height: 1.4;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.rt-article-list__count {
+  font-weight: var(--rt-weight-regular);
+  letter-spacing: 0.04em;
+  color: #cbd5e1;
+}
+
+.rt-article-list__items {
   display: grid;
-  gap: 0.375rem; /* vertical spacing between post links */
+  gap: 0.125rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* Post items - clear, tappable target */
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  [class*='sidebarItemList']
-  li {
+.rt-article-list__items li {
   margin: 0;
 }
 
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  [class*='sidebarItemList']
-  a {
+.rt-article-list__link {
   display: block;
-  padding: 0.375rem 0.5rem;
-  color: #1e293b; /* titles more prominent than year heading */
-  font-weight: 300;
+  padding: 0.4375rem 0.5rem;
+  border-radius: 0.5rem;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: 1.45;
+  font-weight: var(--rt-weight-regular);
+  color: #334155;
   text-decoration: none;
   transition:
     background 0.2s ease,
     color 0.2s ease;
 }
 
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  [class*='sidebarItemList']
-  a:hover {
+.rt-article-list__link:hover {
   background: #f8fafc;
   color: var(--raisetalks-blue-primary-flat);
+  text-decoration: none;
 }
 
-/* Active item */
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  [class*='sidebarItemLinkActive'] {
+.rt-article-list__link--active {
+  background: #f5f9ff;
   color: var(--raisetalks-blue-primary-flat);
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  font-weight: var(--rt-weight-medium);
 }
 
-/* Extra spacing between groups for improved scanability */
-.plugin-blog
-  nav[aria-label='Blog recent posts navigation']
-  > div[role='group'] {
-  margin-bottom: 0.5rem;
+/* The mobile menu has its own padding; the filter and list sit inside it */
+.rt-article-nav--menu {
+  padding: 0.5rem 0.75rem 1rem;
 }
 
 /* Mobile Blog Styles */
 @media (max-width: 640px) {
-  article header {
-    padding: 2.5rem 1rem 1.5rem;
+  .rt-article-header {
+    padding-top: 1.5rem;
   }
 
-  article header h1 {
+  article header {
+    padding: 0 1rem 1.25rem;
   }
 
   article .markdown {
@@ -979,14 +1273,16 @@ article .avatar [class*='authorSocials'] a + a {
   article .markdown h3 {
   }
 
-  .plugin-blog:not(.blog-post-page) .main-wrapper article h2 {
-    font-size: 1.5rem;
+  .rt-post-card,
+  .blog-list-page .rt-post-card:first-of-type {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.25rem 0;
   }
 
-  /* Improve touch targets for sidebar links */
-  .plugin-blog nav[aria-label='Blog recent posts navigation']
-    [class*='sidebarItemList'] a {
-    padding: 0.75rem 0.5rem;
+  /* Improve touch targets for article list links */
+  .rt-article-list__link {
+    padding: 0.625rem 0.5rem;
     min-height: 44px;
   }
 
@@ -1094,11 +1390,6 @@ article .avatar [class*='authorSocials'] a + a {
   }
 }
 
-/* Full article list in the sidebar: a little room under the last item */
-.plugin-blog nav[aria-label='Blog recent posts navigation'] {
-  padding-bottom: 1.5rem;
-}
-
 /* Article pages: the left article list is hidden until "All articles" is clicked
    (src/theme/BlogLayout). The article then spans the freed columns, next to the right panel. */
 .blog-articles-toggle {
@@ -1124,12 +1415,41 @@ article .avatar [class*='authorSocials'] a + a {
   .blog-side-panel {
     position: sticky;
     top: calc(var(--ifm-navbar-height) + 1rem);
-    padding-left: 2rem;
+    padding-left: 1.5rem;
   }
 
-  /* Same breathing room between the open article list and the article text */
+  /* With the article list open the row is three panes: the article keeps the widest share,
+     and the list and table of contents take equal columns either side of it. */
+  .blog-post-page .blog-wrapper:not(.blog-wrapper--articles-hidden) aside.col--3 {
+    --ifm-col-width: calc(2.5 / 12 * 100%);
+  }
+
   .blog-post-page .blog-wrapper:not(.blog-wrapper--articles-hidden) main.col {
-    padding-left: 3rem;
+    --ifm-col-width: calc(7 / 12 * 100%);
+    padding-left: 2rem;
+    padding-right: 1.5rem;
+  }
+
+  .blog-post-page .blog-wrapper:not(.blog-wrapper--articles-hidden) main.col + .col--2 {
+    --ifm-col-width: calc(2.5 / 12 * 100%);
+  }
+
+  /* Hairlines between the panes, so the three columns read as separate things. They sit on
+     the columns rather than their sticky contents, so each one runs the height of the row. */
+  .blog-post-page .blog-wrapper:not(.blog-wrapper--articles-hidden) aside.col--3 {
+    padding-right: 1.5rem;
+    border-right: 1px solid #eef2f6;
+  }
+
+  .blog-post-page main.col + .col--2 {
+    border-left: 1px solid #eef2f6;
+  }
+
+  /* The article title is set for the full-width reading column; in the narrower three-pane
+     column it takes four lines, so it steps down one level in the scale. */
+  .blog-post-page .blog-wrapper:not(.blog-wrapper--articles-hidden) article header h1 {
+    font-size: var(--rt-fs-h2);
+    line-height: var(--rt-lh-h2);
   }
 
   .blog-side-panel [class*='tableOfContents_'] {
@@ -1189,17 +1509,10 @@ article .avatar [class*='authorSocials'] a + a {
   .blog-authors-posts-page .row > aside.col--3 {
     margin-left: calc(0.5 / 12 * 100%);
     padding-left: 2rem;
+    border-left: 1px solid #eef2f6;
     flex-basis: calc(25% + var(--rt-list-extend, 0px));
     max-width: calc(25% + var(--rt-list-extend, 0px));
     margin-right: calc(-1 * var(--rt-list-extend, 0px));
   }
 }
 
-/* Recent Posts list text on the site body token */
-@media (min-width: 997px) {
-  .plugin-blog nav[aria-label='Blog recent posts navigation'] a {
-    font-family: var(--rt-font-sans);
-    font-size: var(--rt-fs-body);
-    line-height: var(--rt-lh-body);
-  }
-}
