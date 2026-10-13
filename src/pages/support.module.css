@@ -226,6 +226,11 @@
   font-family: var(--rt-font-serif);
   font-style: italic;
   font-size: var(--rt-fs-h2-alt);
+}
+
+/* The accent's brand-gradient text colour, also usable on a word inside the first line */
+.titleAccent,
+.titleColor {
   background: var(--raisetalks-brand-gradient);
   -webkit-background-clip: text;
   background-clip: text;
@@ -337,6 +342,7 @@
 .channelIcon {
   width: 42px;
   height: 42px;
+  /* + the card's 8px gap = 24px icon-to-text, as on /investors and /startups at every size */
   margin-bottom: 16px;
 }
 
@@ -351,7 +357,6 @@
   .channelIcon {
     width: 32px;
     height: 32px;
-    margin-bottom: 8px;
   }
 }
 

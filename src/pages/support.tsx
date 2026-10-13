@@ -267,7 +267,7 @@ const PAGE_SCHEMA = JSON.stringify({
 });
 
 // Shared section heading: Poppins first line, serif-italic gradient second line (same as the homepage H2s)
-function SectionTitle({ id, lead, accent }: { id: string; lead: string; accent: string }) {
+function SectionTitle({ id, lead, accent }: { id: string; lead: ReactNode; accent: string }) {
   return (
     <h2 id={id} className={styles.sectionTitle}>
       <span>{lead}</span>
@@ -384,10 +384,15 @@ export default function Support() {
       <section className={styles.section} aria-labelledby="support-channels">
         <div className={`rt-rail ${styles.sectionInner}`}>
           <header className={styles.sectionHeader}>
-            <SectionTitle id="support-channels" lead="Get help" accent="your way" />
-            <p className={styles.sectionDesc}>
-              Pick the route that fits. Most questions are answered fastest by a video or a guide.
-            </p>
+            <SectionTitle
+              id="support-channels"
+              lead={
+                <>
+                  Pick the <span className={styles.titleColor}>route</span>
+                </>
+              }
+              accent="that fits"
+            />
           </header>
           <div className={styles.channelGrid}>
             {CHANNELS.map(({ icon, label, title, desc, action, to }) => (
@@ -420,7 +425,6 @@ export default function Support() {
         <div className={`rt-rail ${styles.sectionInner}`}>
           <header className={styles.sectionHeader}>
             <SectionTitle id="support-guides" lead="Popular guides" accent="from the blog" />
-            <p className={styles.sectionDesc}>The questions we hear most, written up in full.</p>
           </header>
           <div className={styles.guideGrid}>
             {GUIDES.map(({ label, title, to }) => (
