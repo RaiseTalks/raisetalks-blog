@@ -1,0 +1,622 @@
+/* Support page. Layout follows the homepage: shared .rt-rail for every
+   section's width and vertical lines, GridSeam strips between sections,
+   and a dark rail-bounded closing CTA. */
+
+/* ── HERO ─────────────────────────────────────────────────
+   Same shell as .hero in pricing.module.css (and /startups, /about-us).
+   No bottom border: the GridSeam below draws that line. */
+.hero {
+  text-align: center;
+  background: var(--ifm-background-color) url('/img/backgrounds/hero-alt-desktop.webp') center / 100% auto no-repeat;
+  border-top: 0.5px solid #dae0e7;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    background-image: url('/img/backgrounds/hero-alt-tablet.webp');
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-image: url('/img/backgrounds/hero-alt-mobile.webp');
+  }
+}
+
+.heroInner {
+  box-sizing: border-box;
+  /* !important clears responsive.css's sitewide `* { max-width: 100% }` guard */
+  max-width: calc(100% - 24px) !important;
+  margin: 0 auto;
+  padding: 96px 24px 48px;
+}
+
+@media (min-width: 768px) {
+  .heroInner {
+    max-width: calc(100% - 96px) !important;
+    padding: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroInner {
+    max-width: 1024px !important;
+    padding: 128px 0 80px;
+  }
+}
+
+.heroTitle {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h1);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h1);
+  margin-bottom: 1rem;
+  color: var(--ifm-color-content);
+}
+
+/* Same as .heroAccent on /startups */
+.heroAccent {
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: var(--rt-font-serif);
+  font-style: italic;
+  font-weight: var(--rt-weight-regular);
+  font-size: var(--rt-fs-h1-alt);
+  line-height: var(--rt-lh-h1-alt);
+}
+
+.heroDesc {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: #333333;
+  max-width: 420px;
+  margin: 0 auto 32px;
+}
+
+.heroActions {
+  display: flex;
+  gap: 21px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1024px) {
+  .heroActions {
+    gap: 24px;
+  }
+}
+
+/* Light-background buttons: the 45px box of /startups' .btnPrimary/.btnSecondary */
+.btnPrimary,
+.btnSecondary {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-body);
+  white-space: nowrap;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btnPrimary {
+  background: var(--raisetalks-brand-gradient);
+  color: #ffffff !important;
+  border: none;
+  border-bottom: 3px solid #003687;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(1, 116, 225, 0.35);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: #000000 !important;
+  border: 1px solid var(--ifm-color-primary-dark);
+  border-bottom-width: 3px;
+}
+
+.btnSecondary:hover {
+  transform: translateY(-1px);
+}
+
+/* Phones: the two hero buttons share one row at equal width instead of
+   wrapping into a ragged stack */
+@media (max-width: 479px) {
+  .heroActions {
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .heroActions .btnPrimary,
+  .heroActions .btnSecondary {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 12px;
+  }
+}
+
+/* Smallest phones (320px): two labels no longer fit side by side, so stack them full width */
+@media (max-width: 359px) {
+  .heroActions {
+    flex-direction: column;
+  }
+
+  .heroActions .btnPrimary,
+  .heroActions .btnSecondary {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* ── SECTIONS ─────────────────────────────────────────── */
+.section {
+  background: #ffffff;
+}
+
+.sectionMuted {
+  background: #f7f7f7;
+}
+
+/* The hero's "Watch the guide" lands on the section top, clear of the fixed navbar */
+.jumpTarget {
+  scroll-margin-top: var(--ifm-navbar-height);
+}
+
+/* Inset inside the rail: same 24 / 32 / 48 / 64px ladder as .sectionInner on /startups */
+.sectionInner {
+  padding: 48px 24px;
+}
+
+@media (min-width: 640px) {
+  .sectionInner {
+    padding: 48px 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sectionInner {
+    padding: 64px 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionInner {
+    padding: 80px 64px;
+  }
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+
+@media (min-width: 1024px) {
+  .sectionHeader {
+    margin-bottom: 48px;
+  }
+}
+
+/* H2 with the serif-italic second line, as on the homepage ("One Workspace. / Zero chaos.") */
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
+  color: var(--ifm-color-content);
+  margin: 0 0 12px;
+}
+
+.titleAccent {
+  font-family: var(--rt-font-serif);
+  font-style: italic;
+  font-size: var(--rt-fs-h2-alt);
+  background: var(--raisetalks-brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sectionDesc {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: #333333;
+  margin: 0;
+}
+
+.sectionFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.eyebrow {
+  color: var(--ifm-color-primary);
+}
+
+/* ── CARDS ────────────────────────────────────────────────
+   Surface of the homepage .workspaceCard: #f7f7f7 fill, #d7dde5 border,
+   16px radius, 32px padding, soft shadow and lift on hover. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 2rem;
+  background: #f7f7f7;
+  border: 1px solid #d7dde5;
+  border-radius: 1rem;
+  color: inherit;
+  text-decoration: none !important;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  color: inherit;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-0.25rem);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 639px) {
+  .card {
+    padding: 1.5rem;
+  }
+}
+
+/* Flat 20px Poppins, as the card titles on /startups (.perkTitle) */
+.cardTitle {
+  font-family: var(--rt-font-sans);
+  font-size: 1.25rem;
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h4);
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.cardDesc {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: #333333;
+  margin: 0;
+}
+
+/* Pushed to the bottom so the actions line up across a row of cards */
+.cardAction {
+  margin-top: auto;
+  padding-top: 8px;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: var(--ifm-color-primary);
+  /* An email address is one long word; let it wrap inside a narrow card */
+  overflow-wrap: anywhere;
+}
+
+.channelGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .channelGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .channelGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* LucideIcon swaps the SVG per breakpoint; these sizes match its 42/36/32px exports */
+.channelIcon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 1024px) {
+  .channelIcon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .channelIcon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+  }
+}
+
+.guideGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .guideGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .guideGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ── VIDEO GUIDE ──────────────────────────────────────────
+   Phones and tablets: heading, player, chapters, stacked, so a chapter
+   tap plays right above where it was tapped. Desktop: heading and
+   chapters on the left, player on the right. */
+.videoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'head'
+    'video'
+    'chapters';
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .videoGrid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-areas:
+      'head video'
+      'chapters video';
+    grid-template-rows: auto 1fr;
+    column-gap: 64px;
+    row-gap: 24px;
+    align-items: start;
+  }
+}
+
+.videoHead {
+  grid-area: head;
+}
+
+.videoHead .sectionTitle {
+  margin-top: 8px;
+}
+
+.videoFrame {
+  grid-area: video;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #000000;
+}
+
+@media (min-width: 1024px) {
+  .videoFrame {
+    align-self: center;
+  }
+}
+
+.videoFrame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.videoChapters {
+  grid-area: chapters;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.chapterList {
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-top: 0.5px solid #dae0e7;
+}
+
+.chapterList li {
+  margin: 0;
+  border-bottom: 0.5px solid #dae0e7;
+}
+
+/* 44px minimum row: a comfortable tap target on phones */
+.chapter {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 4px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.chapter:hover,
+.chapterActive {
+  color: var(--ifm-color-primary);
+}
+
+.chapter:hover {
+  background: rgba(0, 119, 255, 0.04);
+}
+
+.chapter:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: -2px;
+}
+
+.chapterTime {
+  flex: 0 0 3rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--rt-weight-semibold);
+  color: var(--ifm-color-primary);
+}
+
+/* ── FAQ ──────────────────────────────────────────────────
+   The accordion items come from BlogFAQ (FAQSection.module.css); this only
+   keeps the list at a readable measure inside the full-width rail. */
+.faqList {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ── CLOSING CTA ──────────────────────────────────────────
+   Same structure as the homepage CTA (index.module.css): navy band, the
+   background image inside the rail box, and the rail drawn in #16315a
+   through the CTA and its dark GridSeams. */
+.ctaSection {
+  background: #0c1b31;
+  text-align: center;
+}
+
+.ctaBorderBox {
+  padding: 4rem 1.5rem;
+  background: url('/img/backgrounds/main-cta-desktop.webp') center / cover no-repeat;
+  /* !important: rt-rail-dark sets its own line color with the same specificity */
+  border-left-color: #16315a !important;
+  border-right-color: #16315a !important;
+}
+
+.ctaSeamRail {
+  border-left-color: #16315a !important;
+  border-right-color: #16315a !important;
+}
+
+@media (max-width: 1024px) {
+  .ctaBorderBox {
+    background-image: url('/img/backgrounds/main-cta-tablet.webp');
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaBorderBox {
+    background-image: url('/img/backgrounds/main-cta-mobile.webp');
+  }
+}
+
+.ctaContent {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-h2);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-h2);
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+}
+
+.ctaAccent {
+  font-family: var(--rt-font-serif);
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.ctaDesc {
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  line-height: var(--rt-lh-body);
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  margin: 0 auto 48px;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaBtnPrimary,
+.ctaBtnSecondary {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  padding: 12px 16px;
+  color: #ffffff !important;
+  border-radius: 8px;
+  font-family: var(--rt-font-sans);
+  font-size: var(--rt-fs-body);
+  font-weight: var(--rt-weight-regular);
+  line-height: var(--rt-lh-body);
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaBtnPrimary {
+  background: linear-gradient(75.88deg, #003687 -3.42%, #0077ff 99.98%);
+  border: none;
+  border-bottom: 3px solid #003687;
+}
+
+.ctaBtnSecondary {
+  background: transparent;
+  border: 1px solid #003687;
+  border-bottom-width: 3px;
+}
+
+.ctaBtnPrimary:hover,
+.ctaBtnSecondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card:hover,
+  .btnPrimary:hover,
+  .btnSecondary:hover,
+  .ctaBtnPrimary:hover,
+  .ctaBtnSecondary:hover {
+    transform: none;
+    transition: none;
+  }
+}

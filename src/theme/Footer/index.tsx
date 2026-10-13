@@ -9,7 +9,7 @@ type FooterLinkGroup = {title?: string; items: FooterLinkItem[]};
 
 const SOCIAL_COLUMNS = [
   ['LinkedIn', 'YouTube', 'Blog', 'Affiliate Program'],
-  ['Instagram', 'Facebook'],
+  ['Instagram', 'Facebook', 'Support'],
 ];
 
 export default function Footer(): ReactNode {

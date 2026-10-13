@@ -272,6 +272,10 @@ const config: Config = {
               to: '/blog',
             },
             {
+              label: 'Support',
+              to: '/support',
+            },
+            {
               label: 'Instagram',
               to: 'https://instagram.com/raisetalks',
             },
