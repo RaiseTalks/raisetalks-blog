@@ -12,6 +12,7 @@ const PAGES: [string, string, string][] = [
   ["For startups", "/startups/", "Structured data room, readiness score and investor pipeline for founders."],
   ["For investors", "/investors/", "Dealflow, scoring and diligence tools for angels, micro-funds and VCs."],
   ["Pricing", "/pricing/", "Plans and the 30-day trial."],
+  ["Support", "/support/", "Video guide, how-tos, answers on trials, billing and your data, and email help from the team."],
   ["Blog", "/blog/", "How investors evaluate early-stage startups: data rooms, diligence, benchmarks and dealflow."],
 ];
 

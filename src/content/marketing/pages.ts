@@ -13,6 +13,7 @@ export const pages = {
   featureRequest: { path: "/feature-request", title: "Feature Request", description: "Submit your feature requests and help shape the future of RaiseTalks" },
   affiliate: { path: "/affiliate-program", title: "Affiliate Program", description: "Earn 20% one-time or 10% recurring commissions. Perfect for startup mentors, VC scouts, and accelerators." },
   pricing: { path: "/pricing", title: "Pricing", description: "Plans for founders, investors and venture funds. Monthly or annual billing, cancel anytime." },
+  support: { path: "/support", title: "Support: Tutorials, Guides and FAQ", description: "RaiseTalks support: a step-by-step video guide, fundraising how-tos, answers on trials, billing and your data, and direct email help from the team." },
   privacy: { path: "/privacy-policy", title: "Privacy Policy", description: "How RaiseTalks collects, uses and protects your data." },
   terms: { path: "/terms-of-service", title: "Terms of Service", description: "The terms that govern your use of RaiseTalks." },
   refund: { path: "/refund-policy", title: "Refund Policy", description: "Transparent refund terms for RaiseTalks subscriptions." },

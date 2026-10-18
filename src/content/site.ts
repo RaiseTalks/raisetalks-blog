@@ -81,6 +81,7 @@ export const footer = {
         { label: "Blog", href: "/blog" },
         { label: "Instagram", href: "https://instagram.com/raisetalks", external: true },
         { label: "Facebook", href: "https://facebook.com/raisetalks", external: true },
+        { label: "Support", href: "/support" },
       ],
     },
   ] as { title: string; links: NavLink[] }[],
