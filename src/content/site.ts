@@ -23,9 +23,9 @@ export const site = {
   links: { app: APP, signIn: `${APP}/sign-in`, signUp: `${APP}/sign-up`, demo: DEMO },
 } as const;
 
-export const announcement = {
-  text: "Join Public Beta - Lock in early access",
-  href: "/sign-in?mode=signup",
+/** `href` optional: without it the strip is plain text. */
+export const announcement: { text: string; href?: string; dismissLabel: string } = {
+  text: "See you in UAE at Dubai AI Festival - October 26-27, 2026",
   dismissLabel: "Dismiss announcement",
 };
 

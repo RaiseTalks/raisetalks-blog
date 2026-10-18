@@ -11,9 +11,13 @@ export function AnnouncementBar() {
   if (!open) return null;
   return (
     <div className="relative flex min-h-[30px] items-center justify-center px-10 py-1.5 text-body text-on-brand" style={{ backgroundImage: "var(--gradient-announcement)" }}>
-      <Link href={announcement.href} className="text-center underline-offset-4 hover:underline">
-        {announcement.text}
-      </Link>
+      {announcement.href ? (
+        <Link href={announcement.href} className="text-center underline-offset-4 hover:underline">
+          {announcement.text}
+        </Link>
+      ) : (
+        <p className="text-center">{announcement.text}</p>
+      )}
       <button
         type="button"
         onClick={() => setOpen(false)}
