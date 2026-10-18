@@ -1,0 +1,7 @@
+import { atom } from "@/lib/blog/feeds";
+
+export const dynamic = "force-static";
+
+export function GET() {
+  return new Response(atom(), { headers: { "Content-Type": "application/atom+xml; charset=utf-8" } });
+}

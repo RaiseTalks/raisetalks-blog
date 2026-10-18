@@ -1,0 +1,230 @@
+/* =====================================================================
+   SITE THEME — RaiseTalks (light)
+   Source: Figma file 1W1rixbMP0ysQFMNbuG6Ao, page "RaiseTalks" (1244:2):
+   Colors 4050:1869 · Typography 4050:1700 · Layer 0 4050:1991 ·
+   Figma variable collections "Website", "Primitives", "Scales".
+   Buttons are shared with RaiseTalks TV (Figma atoms 4042:648).
+   This is the ONLY file that changes per website. Components never use
+   raw hex values — only these tokens.
+   Owner: Studio (Account A)
+   ===================================================================== */
+
+@theme {
+  /* ---------- Brand (shared with RaiseTalks TV) ---------- */
+  --color-brand-dark-blue: #003687;
+  --color-brand-light-blue: #0077ff;
+  --color-brand-yellow: #ffab0e;
+  --color-brand-pink: #ea2640;       /* Figma "Red Accent" */
+  --color-accent-hover: #0062d6;     /* Website/accent/hover — text links, icon hover */
+
+  /* ---------- Surfaces (Figma "Website" collection) ---------- */
+  --color-page: #ffffff;             /* bg/canvas */
+  --color-section-alt: #f7f7f7;      /* bg/alt — grey sections */
+  --color-card: #f7f7f7;             /* card on white section */
+  --color-card-on-alt: #ffffff;      /* card on grey section */
+  --color-card-hover: #fcfcfc;       /* hover on white surfaces (white cards, items on white bands) */
+  --color-table-head: #edf0f3;       /* legal tables, first row (Figma bg2, 2459:16) — Drop 21 */
+  --color-table-stripe: #fafafa;     /* legal tables, every 2nd body row (Figma bg1-nested) — Drop 21 */
+  --color-card-alt-hover: #f9f9f9;   /* hover on grey surfaces (grey cards, items on grey bands) — Drop 15, subtler */
+  /* Strokes & dividers (Drop 15, designer): card borders, dividers between cards, every line that is NOT a rail. */
+  --color-border-1: #e0e5eb;         /* on white */
+  --color-border-2: #ebebeb;         /* on grey */
+  /* Card dividers on white (Drop 23, designer): hairlines BETWEEN cells of a divider grid (no card box).
+     50% of border-1 over white, so they sit lighter than the rail (#EBEBEB), like border-2 vs rail-2 on grey. */
+  --color-divider-1: #f0f2f5;
+  /* Rails: the vertical column lines and the horizontal grid-row lines (Band, GridGap, hero column …). */
+  --color-rail-1: #ebebeb;           /* on white */
+  --color-rail-2: #dedede;           /* on grey */
+  --color-rail-on-brand: #258bff;    /* rails on the blue rounded bands (Figma 2601:7855 / 1338:4840) */
+
+  /* ---------- Dark bands (CTA, RaiseTalks TV teaser) ---------- */
+  --color-ink: #0c1b31;              /* Dark-UI-bg-1-nested */
+  --color-ink-raised: #0f223d;       /* Dark-UI-bg-2 — cards on dark */
+  --color-ink-border: #16315a;       /* Dark-border-1-nested — grid lines on dark; Website Badge fill */
+  --color-ink-badge-border: #162b4a; /* Website Badge border (Figma 4152:2642) — Drop 17 */
+  --color-ink-copy: #cccccc;         /* body text on dark (CTA 3257:1395) */
+  --color-ink-muted: #738aaa;        /* Text/Dark UI/muted */
+
+  /* ---------- Text ---------- */
+  --color-headline: #000000;         /* text/primary */
+  --color-subheadline: #1a1a1a;      /* text/heading */
+  --color-copy: #333333;             /* text/body — body COLOR (utility text-copy); size = text-body */
+  --color-muted: #696969;            /* style guide 4050:1869 (style guide wins over variables) */
+  --color-on-brand: #ffffff;         /* text on blue/gradient/dark */
+  --color-on-brand-muted: #e6e6e6;   /* secondary text on blue (footer links, stats) */
+  --color-on-brand-hover: #005fcc;   /* footer link hover chip */
+  --color-glass-on-brand: rgb(250 250 250 / 0.15); /* glass panel on blue (testimonial) */
+  --color-glass-on-brand-border: rgb(255 255 255 / 0.8);
+
+  /* ---------- Button parts (same as RaiseTalks TV) ---------- */
+  --color-primary-edge: #003687;
+  --color-primary-edge-hover: #002c73;
+  --color-alt-edge: #ffab0e;
+  --color-alt-edge-hover: #e6960a;
+  --color-danger: #cb3939;
+  --color-danger-hover: #b42d2d;
+  --color-danger-edge: #a62b2b;
+  --color-danger-edge-hover: #8c2323;
+
+  /* ---------- Status / grading (Figma "Grading System", light) ---------- */
+  --color-good: #189b71;
+  --color-good-bg: #dcfaef;
+  --color-good-border: #a6f2d6;
+  --color-moderate: #e79822;
+  --color-moderate-bg: #faf0db;
+  --color-moderate-border: #f3daa5;
+  --color-bad: #cb3939;
+  --color-bad-bg: #f7dede;
+  --color-bad-border: #ebadad;
+  --color-blue-pill: #c7dfff;        /* Grading/blue-pillbox light */
+
+  /* ---------- Glass (sticky navbar) ---------- */
+  --color-glass: rgb(255 255 255 / 0.66);         /* navbar at the top of the page */
+  --color-glass-strong: rgb(255 255 255 / 0.78); /* floating navbar after scrolling: contours show, text stays readable */
+  --color-glass-border: rgb(0 0 0 / 0.06);
+
+  /* ---------- Fonts ---------- */
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif; /* Georgia Italic = system font, no file */
+
+  /* ---------- Spacing (Figma Layer 0). Tailwind's 4px grid covers 4–128 ---------- */
+  --spacing-section-x: 64px;   /* Padding 3XL — section horizontal */
+  --spacing-section-y: 128px;  /* Padding 4XL — major section vertical */
+  --spacing-3xl-plus: 90px;
+  --spacing-grid-gap: 64px;    /* empty grid row between sections (desktop) */
+  --spacing-grid-gap-tablet: 48px;
+  --spacing-grid-gap-mobile: 32px;
+  /* Mobile inner line (Drop 23, designer): below 768, loose text (headings, paragraphs, buttons, FAQ) and the
+     first card of a slider sit this far inside the band padding, where text inside a card starts
+     (mobile card padding = 20px). Use `max-tablet:px-inner` / `max-tablet:pl-inner`. */
+  --spacing-inner: 20px;
+
+  /* ---------- Radius ---------- */
+  --radius-2xs: 2px;
+  --radius-2xl: 32px;  /* blue rounded band, tablet (Figma 1500:865) — Drop 16 */
+  --radius-3xl: 48px;  /* blue rounded band, desktop (Figma 2191:118) — Drop 16 */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* ---------- Content widths ---------- */
+  --container-content: 1480px; /* primary max width = grid column */
+  --container-medium: 1024px;  /* FAQ, mid containers */
+  --container-narrow: 896px;   /* hero text */
+  --container-nav: 1594px;     /* navbar content (Figma px-163 @1920) */
+  --container-wide: 1880px;    /* About photo mosaic (Figma ~1880 @1920) */
+  --container-hero: 1024px;    /* bordered hero column — 1024 on every page (designer, Drop 24; Figma Home 948) */
+
+  /* ---------- Breakpoints (mobile-first; Figma frames 375 / 768 / 1920) ---------- */
+  --breakpoint-tablet: 768px;
+  --breakpoint-laptop: 1280px;
+  --breakpoint-desktop: 1680px;
+
+  /* ---------- Motion ---------- */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-hover: 300ms;
+  --duration-card-hover: 500ms;      /* card / item background hover — slower, Drop 15 */
+  --duration-gradient: 450ms;
+  --duration-reveal: 700ms;
+  --duration-header: 500ms;    /* navbar full-width -> floating morph on scroll (slower than a hover = smoother) */
+
+  /* ---------- Effects ---------- */
+  --blur-glass: 20px;
+  --shadow-nav: 0 4px 12px 0 rgb(82 82 82 / 0.15);   /* navbar 3257:1030 — the only shadow in the system */
+}
+
+/* Gradients (not expressible as Figma variables) */
+:root {
+  --gradient-brand: linear-gradient(64deg, #003687 3.4%, #0077ff 100%);
+  --gradient-accent: linear-gradient(43deg, #ffab0e 22.6%, #ea2640 71%);
+  --gradient-orbit-static: linear-gradient(125deg, #0077ff, rgb(222 222 222 / 0.5) 31%, rgb(242 242 242 / 0)); /* Home hero badge stroke at rest (Figma 3986:653) */
+  --gradient-brand-text: linear-gradient(33deg, #003687 3.4%, #0077ff 100%);
+  --gradient-accent-text: linear-gradient(33deg, #ffab0e 22.6%, #ea2640 71%);
+  --gradient-footer: linear-gradient(46deg, #003687 3.4%, #0077ff 100%);
+  --gradient-announcement: linear-gradient(2.6deg, #ffab0e 22.6%, #ea2640 71%);
+  --gradient-card-soft: linear-gradient(-39.5deg, #fafafa 10.5%, #ffffff 90%); /* feature cards 3257:1095 */
+  /* Home RaiseTalks TV video (Drop 19): ink vignette. Centre = video shows through (lower % = more video),
+     fading to solid ink at all four edges, so the panel edges never show the video. */
+  --overlay-tv-center: 75%;
+  --overlay-tv: radial-gradient(closest-side, color-mix(in srgb, var(--color-ink) var(--overlay-tv-center), transparent) 45%, var(--color-ink) 100%);
+}
+
+/* Audience theme (Home "For Startups / For Investors" switch).
+   Wrap a subtree in data-audience="founders" to swap the accent to the
+   yellow→red brand gradient. Default (investors) = blue. */
+:root, [data-audience="investors"] {
+  --audience-accent: var(--color-brand-light-blue);
+  --audience-gradient: var(--gradient-brand);
+  --audience-gradient-text: var(--gradient-brand-text);
+  --audience-from: var(--color-brand-dark-blue);
+  --audience-to: var(--color-brand-light-blue);
+}
+[data-audience="founders"] {
+  --audience-accent: var(--color-brand-pink);
+  --audience-gradient: var(--gradient-accent);
+  --audience-gradient-text: var(--gradient-accent-text);
+  --audience-from: var(--color-brand-yellow);
+  --audience-to: var(--color-brand-pink);
+}
+
+/* ---------- Typography scale: mobile → tablet (768) → desktop (1280) ---------- */
+@utility text-eyebrow {
+  font-family: var(--font-sans); font-weight: 700; text-transform: uppercase;
+  font-size: 13px; line-height: 1.4; letter-spacing: 0.25em;
+  @media (width >= 768px) { font-size: 14px; }
+  @media (width >= 1280px) { font-size: 16px; }
+}
+@utility text-h1 {
+  font-family: var(--font-sans); font-weight: 400;
+  font-size: 32px; line-height: 1.1;
+  @media (width >= 768px) { font-size: 48px; line-height: 1.2; }
+  @media (width >= 1280px) { font-size: 60px; }
+}
+@utility text-h1-alt {
+  font-family: var(--font-serif); font-style: italic; font-weight: 400;
+  font-size: 34px; line-height: 1.2;
+  @media (width >= 768px) { font-size: 50px; }
+  @media (width >= 1280px) { font-size: 62px; }
+}
+@utility text-h2 {
+  font-family: var(--font-sans); font-weight: 400; line-height: 1.25;
+  font-size: 26px;
+  @media (width >= 768px) { font-size: 36px; }
+  @media (width >= 1280px) { font-size: 42px; }
+}
+@utility text-h2-alt {
+  font-family: var(--font-serif); font-style: italic; font-weight: 400; line-height: 1.25;
+  font-size: 28px;
+  @media (width >= 768px) { font-size: 38px; }
+  @media (width >= 1280px) { font-size: 44px; }
+}
+@utility text-h3 {
+  font-family: var(--font-sans); font-weight: 400; line-height: 1.3;
+  font-size: 24px;
+  @media (width >= 768px) { font-size: 28px; }
+  @media (width >= 1280px) { font-size: 30px; }
+}
+@utility text-h3-alt {
+  font-family: var(--font-serif); font-style: italic; font-weight: 400; line-height: 1.3;
+  font-size: 26px;
+  @media (width >= 768px) { font-size: 30px; }
+  @media (width >= 1280px) { font-size: 32px; }
+}
+@utility text-h4 {
+  font-family: var(--font-sans); font-weight: 400; line-height: 1.35;
+  font-size: 17px;
+  @media (width >= 768px) { font-size: 19px; }
+  @media (width >= 1280px) { font-size: 20px; }
+}
+@utility text-body { font-family: var(--font-sans); font-size: 14.4px; line-height: 1.45; }
+@utility text-footnote { font-family: var(--font-sans); font-size: 12px; line-height: 1.4; }
+/* H4 Alt — Georgia italic card title. Same rule as h1–h3 alt (Drop 23, designer): 2px larger than text-h4
+   at every breakpoint so Georgia italic matches Poppins visually. */
+@utility text-h4-alt {
+  font-family: var(--font-serif); font-style: italic; font-weight: 400; line-height: 1.35;
+  font-size: 19px;
+  @media (width >= 768px) { font-size: 21px; }
+  @media (width >= 1280px) { font-size: 22px; }
+}

@@ -1,41 +1,24 @@
-# Website
+# RaiseTalks — raisetalks.com
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+The RaiseTalks marketing site and blog: Next.js 16, exported as a static site and deployed to GitHub Pages.
 
-## Installation
-
+## Run it
 ```bash
-yarn
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # static export to out/ — must pass before every push
+npm run lint
 ```
 
-## Local Development
+## Where things live
+- Pages: `src/app/(marketing)/*` · old-URL redirects: `src/app/(redirects)/*` · feeds and llms.txt: `src/app/(feeds)/*`
+- Copy: `src/content/**` (typed objects — edit text here, never in components)
+- Blog posts: `blog/*.md` (one Markdown file per post; see CLAUDE.md for the format and scheduling)
+- Tokens (colours, type, spacing): `src/styles/tokens.css`
+- Components: `src/components/{ui,layout,sections,motion,blog}`
+- Forms: `src/lib/forms` → Supabase Edge Functions in `supabase/functions`
+- Images: `public/images/<page>/<figma-node-id>.webp` (see `docs/assets.md`); blog images in `public/img/blog/`
 
-```bash
-yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
-
-```bash
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Deploys on every push to `main` and every working-day morning at 05:00 UTC, so scheduled posts go live on their day
+(`.github/workflows/deploy.yml`). Login / sign-up are on **app.raisetalks.com** (separate platform).
+Design docs: `docs/handover.md`, `docs/design-system.md`, `docs/architecture.md`, `docs/figma-map.md`.

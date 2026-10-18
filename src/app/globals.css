@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@import "../styles/components.css";
+
+/* Owner: Studio (Account A). Base styles only — no component styles here. */
+
+@layer base {
+  html { background: var(--color-page); color-scheme: light; scroll-padding-top: 7.5rem; } /* anchors clear the sticky navbar */
+  /* Mobile safety net (real-phone "page shifted left", not reproducible in Chromium): the page can never
+     pan sideways. clip, not hidden, so no scroll container is created and sticky keeps working.
+     The hidden fallback is on html only (old Safari); on body it would break sticky. */
+  html { overflow-x: hidden; overflow-x: clip; }
+  body { overflow-x: clip; }
+  body {
+    background: var(--color-page);
+    color: var(--color-copy);
+    font-family: var(--font-sans);
+    font-size: 14.4px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { color: var(--color-headline); font-weight: 400; }
+  :focus-visible { outline: 2px solid var(--color-brand-light-blue); outline-offset: 2px; }
+  ::selection { background: var(--color-brand-light-blue); color: var(--color-on-brand); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

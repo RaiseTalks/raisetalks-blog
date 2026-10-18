@@ -1,188 +1,76 @@
+@AGENTS.md
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
-This is a RaiseTalks blog built with Docusaurus v3, focused on content about AI-powered fundraising and startup growth. The blog is optimized for SEO and LLM discoverability, with automatic GitHub Pages deployment.
+raisetalks.com: the RaiseTalks marketing site and blog, about AI-powered fundraising for founders and investors.
+Next.js 16 (App Router), exported as a static site and deployed to GitHub Pages. The design comes from the
+designer-led rebuild in BGDNDIGITAL/raisetalks (Figma file `1W1rixbMP0ysQFMNbuG6Ao`); the blog, forms, feeds and
+old-URL redirects were merged in from the previous Docusaurus site.
 
-## Development Commands
+## Commands
 
-### Core Commands
+- `npm run dev`: dev server on http://localhost:3000 (shows every blog post, including scheduled ones)
+- `npm run build`: static export to `out/` (must pass before every push)
+- `npm run lint`
+- `npx serve out`: preview the exported site
+- `BLOG_BUILD_DATE=YYYY-MM-DD npm run build`: build the site as it will look on that day
+- `node scripts/screens.mjs` (after `npm start`): screenshots of every route at 375/768/1280/1920
 
-- **Start development server**: `yarn start` (runs on port 3005)
-- **Build site**: `yarn build`
-- **Type checking**: `yarn typecheck`
-- **Serve production build**: `yarn serve`
-- **Deploy to GitHub Pages**: `yarn deploy` (requires GitHub Pages configuration)
+## Architecture
 
-### Content Management
+- `src/app/(marketing)/*`: one folder per page; pages only compose sections. Blog: `blog/`, `blog/[slug]`,
+  `blog/tags`, `blog/tags/[tag]`, `blog/authors/[id]`
+- `src/app/(redirects)/*`: old URLs that now live elsewhere (`/about-us` → `/about/`, `/funds-2026`, old blog
+  pagination and archive). Static host, so these are meta-refresh pages (`src/components/Redirect.tsx`)
+- `src/app/(feeds)/*`: `/blog/rss.xml`, `/blog/atom.xml`, `/llms.txt`; `src/app/sitemap.ts`, `robots.ts`
+- `src/components/{ui,layout,sections,motion}`: design system; `src/components/blog`: blog pages and article renderer
+- `src/content/**`: all page copy as typed objects (edit text here, never in components); `src/content/blog.ts`
+- `src/styles/tokens.css`: colours, type scale, spacing, radius, breakpoints (the only place for raw values)
+- `src/lib/blog`: post loading and scheduling (`posts.ts`), Markdown → page parts (`markdown.ts`), feeds
+- `src/lib/forms`: newsletter, lead magnets and feature requests → Supabase Edge Functions (`supabase.ts`).
+  Functions live in `/supabase/functions` (deployed with the Supabase CLI, CORS allows raisetalks.com only)
+- `public/`: images per page (`public/images/<page>/<figma-node>.webp`, see `docs/assets.md`), old-site files kept
+  at their URLs (`/img/**`, `/downloads/**`, `/favicon/**`, Google verification, `CNAME`)
+- `.github/workflows/deploy.yml`: builds and deploys on push to `main` and every working-day morning (05:00 UTC)
+- Design docs from the rebuild: `docs/handover.md`, `docs/design-system.md`, `docs/architecture.md`, `docs/figma-map.md`
 
-- **Create new blog post**: Add `.md` or `.mdx` file to `/blog/` directory
-- **Clear cache**: `yarn clear`
+Login and sign-up are on app.raisetalks.com: `/sign-in` validates and hands off to it. Google Analytics
+(`src/components/Analytics.tsx`) loads in production builds only.
 
-## Architecture & Key Implementation Notes
+## Design Rules
 
-### 1. Blog-Focused Structure (Documentation Hidden)
-
-- Main content in `/blog/` directory
-- Documentation sections removed from navigation
-- Homepage redesigned as blog landing with RaiseTalks branding
-- No `/docs/` routes exposed in production
-
-### 2. SEO & LLM Optimization
-
-- Structured data (JSON-LD) for blog posts
-- OpenGraph and Twitter Card meta tags
-- Semantic HTML with proper heading hierarchy
-- XML sitemap generation enabled
-- robots.txt configured for optimal crawling
-- Content optimized with:
-  - Clear, descriptive titles
-  - Meta descriptions
-  - Alt text for images
-  - Proper URL structure
-
-### 3. Design System (Based on landing/index.html)
-
-- **Colors**:
-  - Primary: #0174e1
-  - Text: #000000 (primary), #ffffff (on dark backgrounds)
-  - Gradients used for hero sections
-- **Typography**: Poppins and Raleway fonts
-- **Components**:
-  - Fixed header with hover animations
-  - Gradient backgrounds
-  - Motion effects on scroll
-  - Responsive design with mobile menu
-
-### 4. GitHub Pages Deployment
-
-- Automated via GitHub Actions workflow
-- Deploys on push to main branch
-- Build artifacts served from gh-pages branch
-- Custom domain configuration supported
-
-### 5. Blog Post Template
-
-Located at `/blog/_template.md` with:
-
-- Front matter for SEO
-- Author attribution
-- Tags and categories
-- Reading time estimation
-- Social sharing metadata
-
-## Key Files & Directories
-
-### Configuration
-
-- `docusaurus.config.ts`: Main site configuration, blog settings, theme options
-- `package.json`: Dependencies and scripts
-- `.github/workflows/deploy.yml`: GitHub Pages deployment automation
-
-### Content
-
-- `/blog/`: All blog posts and assets
-- `/blog/authors.yml`: Author profiles
-- `/blog/tags.yml`: Tag definitions
-- `/static/img/`: Blog images and assets
-
-### Theme & Styling
-
-- `/src/css/custom.css`: Custom styles matching RaiseTalks design
-- `/src/components/`: Custom React components
-- `/src/pages/index.tsx`: Custom homepage
-
-## Content Manager Guide
-
-### Creating a New Blog Post
-
-1. Copy the template: `cp blog/_template.md blog/YYYY-MM-DD-your-post-title.md`
-2. Fill in the front matter:
-   ```yaml
-   ---
-   slug: your-post-url-slug
-   title: Your Post Title
-   authors: [author_id]
-   tags: [fundraising, ai, startups]
-   description: A brief description for SEO (150-160 chars)
-   image: /img/your-post-image.jpg
-   keywords: [keyword1, keyword2, keyword3]
-   ---
-   ```
-3. Write content using Markdown
-4. Add images to `/static/img/blog/`
-5. Preview with `yarn start`
-6. Commit and push to trigger deployment
-
-### SEO Best Practices
-
-- Use descriptive, keyword-rich titles (50-60 chars)
-- Write compelling meta descriptions
-- Include relevant keywords naturally
-- Use proper heading hierarchy (H1 → H2 → H3)
-- Add alt text to all images
-- Internal linking to related posts
-
-## Technical Considerations
-
-### Performance
-
-- Images optimized and lazy-loaded
-- CSS and JS bundled and minified
-- Static site generation for fast loading
-- CDN-friendly asset structure
-
-### Accessibility
-
-- Semantic HTML structure
-- ARIA labels where needed
-- Keyboard navigation support
-- Color contrast compliance
-
-### Browser Support
-
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- Progressive enhancement approach
-- Fallbacks for older browsers
-
+- **No raw hex/px colours in components.** Only tokens (`bg-card`, `text-copy`, `border-border-1`, `text-h2`,
+  `max-w-content` …). A missing value goes into `tokens.css` first.
+- Light theme. Surfaces: `page` (white) · `section-alt` (#F7F7F7) · cards `card` on white / `card-on-alt` on grey ·
+  hover `card-hover`. Dark bands use `ink*` tokens. Brand: `brand-dark-blue` #003687, `brand-light-blue` #0077FF.
+- One shadow only: `--shadow-nav` (navbar). No other drop shadows.
+- Body text COLOUR is `text-copy` (#333). `text-body` is the body type SIZE only.
+- Type utilities: `text-eyebrow text-h1 text-h1-alt text-h2 text-h2-alt text-h3 text-h3-alt text-h4 text-body
+  text-footnote` (already responsive). Headlines pair a Poppins line with a Georgia-italic accent (`Headline`).
+- Page rhythm: every section is a `Band` (1480 column with rails) separated by `GridGap` rows.
+- Motion: slow and subtle. Use `<Reveal>` / `<RevealGroup>` from `@/components/motion`.
+- Server Components by default. `"use client"` only for interactive leaves.
+- Every image: `next/image`, meaningful `alt`.
+- Responsive, mobile-first. Breakpoints: base <768 · `tablet:` ≥768 · `laptop:` ≥1280 · `desktop:` ≥1680.
+  Navbar collapses to a menu button below `laptop`. Minimum width 375.
+- Navigation: Blog is in the footer (Community column), not the navbar.
+- Static export: no server actions, middleware, or request-time APIs. Route handlers need
+  `export const dynamic = "force-static"`. URLs end in a slash (`trailingSlash: true`).
 
 # Important Content Guidelines
 
 ## Tone & Style Requirements
 
 - NEVER use emojis in blog posts or any content
-- Maintain professional B2B tone for fundraising audience  
+- Maintain professional B2B tone for fundraising audience
 - Use bullet points (•) or dashes (-) instead of emoji checkmarks
 - Focus on value-driven, conversion-oriented marketing copy
 - Keep paragraphs short (2-3 sentences) for better readability
-
-## Brand Color Consistency
-
-- Primary brand color: #0174e1
-- Secondary brand color: #0166ca
-- Use brand gradient: from-[#0174e1] to-[#0166ca] 
-- Avoid purple gradients - stick to blue brand palette
-- Maintain color consistency across all components
-
-## Color Guidelines for Readability
-
-### Text on Blue Backgrounds
-- Use white (#ffffff) for primary text on blue backgrounds
-- Use rgba(255, 255, 255, 0.95) for body text on blue backgrounds
-- Use rgba(255, 255, 255, 0.85) for disclaimer/small text on blue backgrounds
-- Ensure minimum contrast ratio of 4.5:1 for accessibility
-
-### Button Colors
-- Primary buttons: White background with #0174e1 text
-- Secondary buttons: #0174e1 background with white text
-- Hover states: Use transform effects instead of color changes for better UX
-
-### Form Elements
-- Never use emojis in forms or professional components
-- Use letter abbreviations (DR, AI, RT) instead of emojis for icons
-- Maintain professional appearance across all user interfaces
+- Never use emojis in forms or professional components; use letter abbreviations (DR, AI, RT) instead of emoji icons
 
 ## Content Best Practices
 
@@ -191,49 +79,29 @@ Located at `/blog/_template.md` with:
 - Add social proof and specific metrics in marketing copy
 - Use professional subheadings without decorative elements
 - Focus on lead generation with strategic CTA placement
+- Descriptive, keyword-rich titles (50-60 chars), meta descriptions of 150-160 chars, alt text on every image,
+  internal links to related posts
 
-## Reusable Blog Components
+## Blog Posts
 
-### CTA Components
-
-Use the pre-built CTA components for consistent lead generation across all blog posts:
-
-**For Data Room content:**
-```jsx
-import { DataRoomCTA, DataRoomCTAPrimary } from '@site/src/components/BlogCTAMDX';
-
-// Basic CTA (blue background, smaller)
-<DataRoomCTA />
-
-// Primary CTA (blue background, larger)
-<DataRoomCTAPrimary />
-```
-
-**For custom CTAs:**
-```jsx
-import { CustomCTA } from '@site/src/components/BlogCTAMDX';
-
-<CustomCTA 
-  title="Your CTA Title"
-  description="Compelling description text"
-  buttonText="Action Text →"
-  buttonLink="#"
-  disclaimer="Optional disclaimer text"
-  variant="primary" // or "default"
-/>
-```
-
-**Usage Guidelines:**
-- Always add the import statement after the front matter
-- Use DataRoomCTA for mid-article lead capture
-- Use DataRoomCTAPrimary for final conversion at article end
-- Never use raw HTML div elements for CTAs anymore
-- All CTAs automatically use proper white text on blue backgrounds
-- Components ensure consistent branding and accessibility
-
-## Blog Post Format
-
-- Articles follow the house format in the DVOS blog programme (`~/Documents/DVOS/raisetalks/blog/articles/`): opening paragraphs, `<!-- truncate -->`, "Key takeaways", body sections, an FAQ, then one product CTA line at the end. No "Quick Summary" block.
-- FAQ: write it as plain Markdown under `## Frequently Asked Questions`, each item a bold question line followed by its answer. `src/plugins/remark-blog-faq.js` turns it into the website FAQ accordion (`src/components/BlogFAQ.tsx`, same styles as `FAQSection`) and normalises the heading to "Frequently Asked Questions". Do not hand-build FAQ markup or use CTA components for it.
-
-- Scheduling: every post's front matter `date` is its publish day, and the filename starts with the same date. The first 31 posts all went live together on 2026-09-23 (a minute apart, to keep their order); a post dated in the future waits for its day. Production builds only include posts whose date has arrived (`src/plugins/scheduled-posts.js`); the deploy workflow rebuilds Mon-Fri at 05:00 UTC so each day's post goes live on its own. Links to not-yet-live posts are hidden until then (`src/plugins/remark-unpublished-links.js`). Dates are never shown on the page. `yarn start` shows all posts; `BLOG_BUILD_DATE=YYYY-MM-DD yarn build` previews a given day.
+- One Markdown file per post in `/blog/`, named `YYYY-MM-DD-slug.md`; copy `blog/_template.md` to start. Front matter:
+  `title`, optional `title_meta` (shorter browser/search title), `description`, `slug`, `date`, `authors` (ids from
+  `blog/authors.yml`), `tags` (ids from `blog/tags.yml`), `keywords`, `image` (1200×630 OG image under
+  `/public/img/blog/<slug>/`). Post images go in `/public/img/blog/`.
+- Articles follow the house format in the DVOS blog programme (`~/Documents/DVOS/raisetalks/blog/articles/`): opening
+  paragraphs, `<!-- truncate -->`, "Key takeaways", body sections, an FAQ, "Read next", then one product CTA line at
+  the end. No "Quick Summary" block.
+- `src/lib/blog/markdown.ts` turns that plain Markdown into the page: the opening paragraphs become the deck, the
+  "Key takeaways" list a card, tables scroll sideways on phones, the closing paragraph after the last `---` a soft
+  blue note.
+- FAQ: plain Markdown under `## Frequently Asked Questions`, each item a bold question line followed by its answer.
+  It is shown in its own band with the site FAQ accordion, and as FAQPage structured data. Do not hand-build FAQ markup.
+- "Read next": a `## Read next` list of `[title](/blog/slug)` links; the first three become post cards.
+- `<BlogCTA title="…" description="…" buttonText="…" buttonLink="…" disclaimer="…" />` is the only component a post
+  may use: a blue CTA panel. With `magnet="<id>"` it shows an email form for that lead magnet (ids defined in
+  `supabase/functions/newsletter-subscribe`) and the download buttons after signup.
+- Scheduling: every post's front matter `date` is its publish day, and the filename starts with the same date. The
+  first 31 posts all went live together on 2026-09-23 (a minute apart, to keep their order); a post dated in the
+  future waits for its day. Production builds only include posts whose date has arrived (`src/lib/blog/posts.ts`);
+  the deploy workflow rebuilds Mon-Fri at 05:00 UTC so each day's post goes live on its own. Links to
+  not-yet-live posts lose their link until then. Dates are never shown on the page. `npm run dev` shows all posts.

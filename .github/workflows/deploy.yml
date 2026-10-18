@@ -35,26 +35,27 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          
+          node-version: '22'
+          cache: npm
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
           enablement: true
 
-      - name: Enable Corepack
-        run: corepack enable
-        
       - name: Install dependencies
-        run: yarn install --immutable
-        
+        run: npm ci
+
+      # Static export to ./out. Scheduled blog posts are included once their date has arrived.
       - name: Build website
-        run: yarn build
-        
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://raisetalks.com
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build
+          path: ./out
 
   # Deployment job
   deploy:

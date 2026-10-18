@@ -1,10 +1,10 @@
 ---
 slug: your-post-url-slug
 title: Your Blog Post Title Here
-authors: [slorber] # Change to your author ID from authors.yml
+authors: [dariiava] # Author ID from authors.yml
 tags: [fundraising, due-diligence, startups, ai] # Add relevant tags
 description: A brief description of your blog post for SEO (150-160 characters recommended)
-image: /img/blog/your-post-image.jpg # Add a relevant image to static/img/blog/
+image: /img/blog/your-post-image.jpg # Add a relevant image to public/img/blog/
 keywords: [keyword1, keyword2, keyword3] # Add relevant keywords for SEO
 ---
 
@@ -40,7 +40,7 @@ Include relevant examples, case studies, or data to support your points.
 
 When adding images, make sure to:
 
-1. Save them in `/static/img/blog/` directory
+1. Save them in `/public/img/blog/` directory
 2. Use descriptive file names (e.g., `fundraising-process-diagram.png`)
 3. Add alt text for accessibility and SEO
 

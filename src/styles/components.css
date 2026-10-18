@@ -1,0 +1,321 @@
+/* Component styles that need real CSS (gradient transitions, gradient strokes).
+   Owner: Studio (A). Uses tokens only. */
+
+@property --btn-a { syntax: "<percentage>"; inherits: false; initial-value: 3.4%; }
+@property --btn-b { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+@property --badge-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+@layer components {
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius-sm);
+    color: var(--color-on-brand);
+    font-family: var(--font-sans);
+    line-height: 1.45;
+    white-space: nowrap;
+    border-bottom-width: 3px;
+    border-style: solid;
+    border-color: transparent;
+    cursor: pointer;
+    transition:
+      border-color var(--duration-hover) var(--ease-soft),
+      background-color var(--duration-hover) var(--ease-soft),
+      --btn-a var(--duration-gradient) var(--ease-soft),
+      --btn-b var(--duration-gradient) var(--ease-soft);
+  }
+  /* No movement on hover (designer rule, same as RaiseTalks TV): only the gradient / border colour changes. */
+  .btn:disabled, .btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+
+  .btn-sm { font-size: 12px; padding: 8px 12px; }
+  .btn-md { font-size: 14.4px; padding: 10px 14px; gap: 10px; }
+  .btn-lg { font-size: 14.4px; padding: 12px 16px; gap: 10px; } /* hero / CTA size in Figma */
+
+  .btn-primary {
+    --btn-a: 3.4%; --btn-b: 100%;
+    background-image: linear-gradient(64deg, var(--color-brand-dark-blue) var(--btn-a), var(--color-brand-light-blue) var(--btn-b));
+    border-bottom-color: var(--color-primary-edge);
+  }
+  .btn-primary:hover { --btn-a: 44.3%; --btn-b: 83.6%; border-bottom-color: var(--color-primary-edge-hover); }
+
+  .btn-alternative {
+    --btn-a: 23.1%; --btn-b: 71.1%;
+    background-image: linear-gradient(57deg, var(--color-brand-yellow) var(--btn-a), var(--color-brand-pink) var(--btn-b));
+    border-bottom-color: var(--color-alt-edge);
+  }
+  .btn-alternative:hover { --btn-a: 18.7%; --btn-b: 57.5%; border-bottom-color: var(--color-alt-edge-hover); }
+
+  /* Solid dark blue; hover lets light blue glide in from the right (Figma animation spec: "Secondary") */
+  .btn-secondary {
+    --btn-a: 100%; --btn-b: 100%;
+    background-image: linear-gradient(64deg, var(--color-brand-dark-blue) var(--btn-a), var(--color-brand-light-blue) calc(var(--btn-b) + 60%));
+    border-width: 1px 1px 3px;
+    border-color: var(--color-primary-edge);
+  }
+  .btn-secondary:hover { --btn-a: 30%; --btn-b: 40%; border-color: var(--color-primary-edge-hover); }
+
+  /* Light site: ghost text follows the surrounding text colour (dark on white, white on ink bands) */
+  .btn-ghost {
+    color: var(--btn-ghost-text, var(--color-headline));
+    background: transparent;
+    border-width: 1px 1px 3px;
+    border-color: var(--color-primary-edge);
+  }
+  .btn-ghost:hover { border-color: var(--color-brand-light-blue); }
+  /* On dark / blue bands the ghost text turns white */
+  .on-dark { --btn-ghost-text: var(--color-on-brand); }
+
+  .btn-danger {
+    background-color: var(--color-danger);
+    border-width: 1px 1px 3px;
+    border-color: var(--color-danger-edge);
+  }
+  .btn-danger:hover { background-color: var(--color-danger-hover); border-color: var(--color-danger-edge-hover); }
+
+  /* Highlighted badge: gradient stroke drawn as a masked pseudo-element; the gradient
+     slowly travels around the pill (Figma draft "Badge – border animation" 3997:519). */
+  .badge-highlighted { position: relative; border: 1px solid transparent; }
+  .badge-highlighted::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(from var(--badge-angle), var(--color-brand-yellow), var(--color-brand-pink), var(--color-brand-yellow));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation: badge-spin 4s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes badge-spin { to { --badge-angle: 360deg; } }
+
+  /* Navbar (Drop 3). At the top of the page: the .com full-width glass bar with its bottom hairline.
+     After 24px of scroll (HeaderShell sets data-scrolled) it morphs into the RaiseTalks TV floating bar:
+     inset to the grid rails (8 / 48 / 32px, centred 1480 from 1680), a gap from the top, rounded,
+     more opaque glass, TV inner padding (16px; 24px from laptop) → 72 / 88px tall. The sticky box keeps
+     its 58 / 60px height (the floating bar overlaps the content under it), so the page never jumps. */
+  .site-header { position: sticky; top: 0; z-index: 50; height: 58px; }
+  .site-header-frame {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    padding: 0;
+    transition: padding var(--duration-header) var(--ease-soft);
+  }
+  .site-nav-bar {
+    position: relative;
+    margin-inline: auto;
+    max-width: 100%;
+    border: 1px solid transparent;
+    border-bottom-color: var(--color-border-1);
+    background-color: var(--color-glass);
+    box-shadow: var(--shadow-nav);
+    -webkit-backdrop-filter: blur(var(--blur-glass));
+    backdrop-filter: blur(var(--blur-glass));
+    transition:
+      max-width var(--duration-header) var(--ease-soft),
+      border-radius var(--duration-header) var(--ease-soft),
+      border-color var(--duration-header) var(--ease-soft),
+      background-color var(--duration-header) var(--ease-soft);
+  }
+  .site-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-inline: auto;
+    max-width: var(--container-nav);
+    height: 58px;
+    padding-inline: 16px;
+    transition:
+      height var(--duration-header) var(--ease-soft),
+      padding var(--duration-header) var(--ease-soft);
+  }
+  /* Mobile menu panel: a rounded card under the bar, lined up with the rails (TV pattern) */
+  .site-nav-panel {
+    position: absolute;
+    top: 100%;
+    inset-inline: 8px;
+    margin-top: 8px;
+    transition: inset var(--duration-header) var(--ease-soft);
+  }
+
+  .site-header[data-scrolled] .site-header-frame { padding: 12px 8px 0; }
+  .site-header[data-scrolled] .site-nav-bar {
+    max-width: var(--container-content);
+    border-radius: var(--radius-md);
+    border-color: var(--color-border-1);
+    background-color: var(--color-glass-strong);
+  }
+  .site-header[data-scrolled] .site-nav-inner { height: 72px; } /* 40px buttons + 2 × 16 */
+  .site-header[data-scrolled] .site-nav-panel { inset-inline: 0; }
+
+  @variant tablet {
+    .site-nav-inner { padding-inline: 48px; }
+    .site-nav-panel { inset-inline: 48px; }
+    .site-header[data-scrolled] .site-header-frame { padding: 16px 48px 0; }
+    .site-header[data-scrolled] .site-nav-inner { padding-inline: 16px; }
+  }
+  @variant laptop {
+    .site-header { height: 60px; }
+    .site-nav-inner { height: 60px; padding-inline: 32px; }
+    .site-header[data-scrolled] .site-header-frame { padding-inline: 32px; }
+    .site-header[data-scrolled] .site-nav-inner { height: 88px; padding-inline: 24px; } /* 40 + 2 × 24 */
+  }
+
+  /* Home audience switch band (AudienceSwitch): sticky header glass, 48px under the floating navbar.
+     Floating navbar bottom = frame top gap + bar: 12 + 74 = 86 (mobile), 16 + 74 = 90 (tablet),
+     16 + 90 = 106 (laptop) → + 48. Hairline + nav shadow only while stuck. */
+  /* Home audience switch (AudienceSwitch.tsx): transparent sticky band, only the pill shows.
+     top = navbar bottom (86 / 90 / 106px) + 24px gap − band top padding (24 / 32 / 64px). */
+  .audience-sticky { position: sticky; top: 86px; z-index: 40; pointer-events: none; } /* clicks pass through; the pill re-enables them */
+  @variant tablet { .audience-sticky { top: 82px; } }
+  @variant laptop { .audience-sticky { top: 66px; } }
+  .audience-pill { transition: box-shadow var(--duration-hover) var(--ease-soft); }
+  .audience-sticky[data-stuck] .audience-pill { box-shadow: var(--shadow-nav); }
+
+  /* Pinned heading + stacking cards (StackSection.tsx, Drop 14), laptop+ only.
+     --stack-nav = floating navbar bottom at laptop (16 + 90). The heading wrapper reaches up by that
+     amount (margin −, padding +, so nothing moves) and sticks at 0; while stuck its top strip turns grey
+     so cards scrolling past never show above the heading. Cards: top = min(heading bottom, 100vh − own height),
+     both measured in JS; 1px rail line between subsections (Figma 1296:385 …). */
+  .stack { display: flow-root; --stack-nav: 106px; }
+  @variant laptop {
+    .stack-head { position: sticky; top: 0; z-index: 20; margin-top: calc(-1 * var(--stack-nav)); padding-top: var(--stack-nav); pointer-events: none; }
+    .stack-head > * { pointer-events: auto; }
+    .stack-head::before { content: ""; position: absolute; inset: 0 0 auto; height: var(--stack-nav); background: var(--color-section-alt); visibility: hidden; }
+    .stack-head[data-stuck]::before { visibility: visible; }
+    .stack-card { position: sticky; top: min(var(--stack-head-h, 0px), calc(100vh - var(--h, 0px))); }
+    .stack-card + .stack-card { border-top: 1px solid var(--color-rail-2); }
+    .stack[data-no-outer-lines] .stack-card + .stack-card { border-top: 0; }
+    /* pinLast: the section box ends at the TOP of the last card (negative margin = its height, given back
+       below the section), so the heading unsticks the moment the last card reaches it and both leave together. */
+    .stack[data-pin-last] { margin-bottom: var(--last-h, 0px); }
+    .stack[data-pin-last] > .stack-cards { margin-bottom: calc(-1 * var(--last-h, 0px)); }
+  }
+
+  /* Content icons (Icon.tsx): Figma icon frame 3488:7675. stroke-width is in the 24px viewBox:
+     2.5px at 32 → 1.875, 2.5px at 36 → 1.667, 3px at 42 → 1.714. */
+  .icon-std { width: 32px; height: 32px; flex-shrink: 0; stroke-width: 1.875; }
+  @variant tablet { .icon-std { width: 36px; height: 36px; stroke-width: 1.667; } }
+  @variant laptop { .icon-std { width: 42px; height: 42px; stroke-width: 1.714; } }
+
+  /* Investors memo (MemoDoc.tsx) — RaiseTalks PLATFORM tokens, one-off on the website (Figma "PDF/…",
+     light = A4-PreScoring 876:5759, dark = 4154:3946). Values only here; components use var(--m-*). */
+  .memo {
+    --m-bg: #ffffff; --m-section: #fafcfe; --m-section-border: #e1edf9; --m-nested: #fafafa; --m-nested-border: #dae0e7;
+    --m-bg2: #edf0f3; --m-text: #000000; --m-muted: #6d6d6d;
+    --m-cat-1: #09254d; --m-cat-2: #0c3272; --m-cat-3: #1050b8; --m-cat-4: #1e74d4; --m-cat-6: #9ed5ef;
+    --m-good: #189b71; --m-good-bg: #dcfaef; --m-good-border: #a6f2d6;
+    --m-very-good: #67ae24; --m-very-good-bg: #ebf7de; --m-very-good-border: #cdebad;
+    --m-moderate: #e79822; --m-moderate-bg: #faf0db; --m-moderate-border: #f3daa5;
+    --m-bad: #cc5c2a; --m-bad-bg: #fcf5f2; --m-bad-border: #ecbfac; --m-very-bad-border: #ebadad;
+  }
+  .memo[data-theme="dark"] {
+    --m-bg: #050b14; --m-section: #0a1629; --m-section-border: #142c52; --m-nested: #0c1b31; --m-nested-border: #16315a;
+    --m-bg2: #0f223d; --m-text: #ffffff; --m-muted: #738aaa;
+    --m-good-bg: #05241880; --m-good-border: #0b5037;
+    --m-very-good-bg: #15210880; --m-very-good-border: #2f4a12;
+    --m-moderate-bg: #241a0580; --m-moderate-border: #513a0b;
+    --m-bad-bg: #210f0880; --m-bad-border: #4b2211; --m-very-bad-border: #4a1212;
+  }
+
+  /* Investors Pre-Score memo window (InvestorTools.tsx): slim light scrollbar on the blue frame. */
+  .memo-scroll { scrollbar-width: thin; scrollbar-color: var(--color-on-brand-muted) transparent; }
+
+  /* Orbit border (Home hero "AI NATIVE", Figma 3997:519). A faint 1px track; a soft blue patch travels the
+     pill outline by DISTANCE (offset-path), linear, so the speed is even on the straight edges and round ends.
+     Sits over the badge's transparent 1px border. Tuning: --orbit-duration (lap), --orbit-size (patch length,
+     keep it ≤ the badge height). No offset-path shapes / reduced motion → static Figma gradient. */
+  .border-orbit {
+    --orbit-size: 40px;
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: color-mix(in srgb, var(--color-border-2) 50%, transparent);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    pointer-events: none;
+  }
+  @variant tablet { .border-orbit { --orbit-size: 56px; } }
+  .border-orbit::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--orbit-size);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+      closest-side,
+      var(--color-brand-light-blue),
+      color-mix(in srgb, var(--color-brand-light-blue) 55%, transparent) 50%,
+      transparent
+    );
+    offset-path: inset(0.5px round 9999px);
+    offset-rotate: 0deg;
+    animation: border-orbit var(--orbit-duration, 4s) linear infinite;
+  }
+  @supports not (offset-path: inset(0)) {
+    .border-orbit { background: var(--gradient-orbit-static); }
+    .border-orbit::before { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .border-orbit { background: var(--gradient-orbit-static); }
+    .border-orbit::before { display: none; }
+  }
+  @keyframes border-orbit { to { offset-distance: 100%; } }
+
+  /* Home hero intro (Drop 23, Linear-style): pure CSS so it runs at first paint, before hydration.
+     PageHero `intro`: 0 headline · 1 text · 2 buttons · 3 background · 4 eyebrow + logo strip, 120ms apart. */
+  .hero-intro { animation: hero-intro var(--duration-reveal) var(--ease-soft) both; }
+  .hero-intro-bg { animation-name: hero-intro-fade; }
+  .hero-intro-1 { animation-delay: 120ms; }
+  .hero-intro-2 { animation-delay: 240ms; }
+  .hero-intro-3 { animation-delay: 360ms; }
+  .hero-intro-4 { animation-delay: 480ms; }
+  @keyframes hero-intro { from { opacity: 0; filter: blur(8px); transform: translateY(8px); } }
+  @keyframes hero-intro-fade { from { opacity: 0; filter: blur(8px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-intro { animation: none; }
+  }
+
+  /* Gradient text (e.g. CTA "than a pitch deck") */
+  .text-gradient-brand {
+    background-image: var(--gradient-brand-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Follows the Home audience switch (blue for investors, yellow→red for founders) */
+  .text-gradient-audience {
+    background-image: var(--audience-gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@layer components {
+  /* Marquee edge fade (motion/Marquee.tsx moves the strip with JS: never pauses, draggable) */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  /* Card sliders (ui/DragScroll.tsx): no visible scrollbar, the peeking next card shows there is more */
+  .drag-scroll { scrollbar-width: none; }
+  .drag-scroll::-webkit-scrollbar { display: none; }
+}
+
+/* Card subheadlines on mobile = Figma "Type/M/H4 Bold": Poppins Medium 500 (e.g. 2802:6648). Tablet/desktop H4
+   stay Regular 400 (style guide 4050:1700). Unlayered so it beats the text-h4 utility; headings only, so
+   H4-sized quotes, banner text and stats keep 400. Drop 15. */
+@media (width < 768px) {
+  :where(h2, h3, h4, h5).text-h4:not(.font-semibold) { font-weight: 500; }
+}
