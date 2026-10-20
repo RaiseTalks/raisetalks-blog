@@ -17,6 +17,7 @@ export const pages = {
   privacy: { path: "/privacy-policy", title: "Privacy Policy", description: "How RaiseTalks collects, uses and protects your data." },
   terms: { path: "/terms-of-service", title: "Terms of Service", description: "The terms that govern your use of RaiseTalks." },
   refund: { path: "/refund-policy", title: "Refund Policy", description: "Transparent refund terms for RaiseTalks subscriptions." },
+  trust: { path: "/trust", title: "Trust Center", description: "How RaiseTalks protects founder and investor data: EU data storage, data room access controls, AI transparency and our EU AI Act assessment." },
 } satisfies Record<string, PageMeta>;
 
 export type PageKey = keyof typeof pages;

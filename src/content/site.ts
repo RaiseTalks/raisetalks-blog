@@ -98,5 +98,6 @@ export const footer = {
     { label: "Privacy policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Refund Policy", href: "/refund-policy" },
+    { label: "Trust Center", href: "/trust" },
   ] as NavLink[],
 };

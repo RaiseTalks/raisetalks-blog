@@ -13,6 +13,7 @@ const PAGES: [string, string, string][] = [
   ["For investors", "/investors/", "Dealflow, scoring and diligence tools for angels, micro-funds and VCs."],
   ["Pricing", "/pricing/", "Plans and the 30-day trial."],
   ["Support", "/support/", "Video guide, how-tos, answers on trials, billing and your data, and email help from the team."],
+  ["Trust Center", "/trust/", "Security controls, AI transparency and the EU AI Act assessment."],
   ["Blog", "/blog/", "How investors evaluate early-stage startups: data rooms, diligence, benchmarks and dealflow."],
 ];
 
