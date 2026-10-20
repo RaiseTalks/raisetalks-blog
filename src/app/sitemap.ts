@@ -5,6 +5,9 @@ import { getPosts, usedAuthors, usedTags } from "@/lib/blog/posts";
 
 // Every public page from pages.ts (sign-in excluded), the blog, its articles, topics and authors.
 // Trailing slashes match the exported URLs (next.config trailingSlash).
+// lastmod only where the date is real (articles: publish date). Static pages carry none: the site is
+// rebuilt every weekday, so `new Date()` stamped all of them "modified today" every day, which teaches
+// Google to ignore this sitemap's lastmod altogether.
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -16,7 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...Object.values(pages).map((p) => ({
       url: url(p.path),
-      lastModified: new Date(),
       changeFrequency: legal(p.path) ? ("yearly" as const) : ("monthly" as const),
       priority: priority[p.path] ?? (legal(p.path) ? 0.3 : 0.7),
     })),
