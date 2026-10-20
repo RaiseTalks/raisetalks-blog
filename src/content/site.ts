@@ -68,7 +68,7 @@ export const footer = {
         { label: "Data Room", href: `${APP}/data-room`, external: true },
         { label: "Inbox", href: `${APP}/inbox`, external: true },
         { label: "Scoring", href: `${APP}/scoring`, external: true },
-        { label: "Dealflow", href: `${APP}/dealflow`, external: true },
+        { label: "Dealflow", href: `${APP}/investor-pipeline`, external: true },
         { label: "AI Advisor", href: `${APP}/advisor`, external: true },
         { label: "IR Pipeline", href: `${APP}/pipeline`, external: true },
       ],
