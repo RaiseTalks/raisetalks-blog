@@ -13,7 +13,7 @@ const SECURITY_EMAIL = "privacy@raisetalks.ai";
 export const trust: LegalDoc = {
   updated: "October 20, 2026",
   title: "Trust Center",
-  subtitle: "How we protect founder and investor data, how our AI features work, and where we stand on GDPR and the EU AI Act.",
+  subtitle: "How we protect founder and investor data.",
   intro: [
     "This Trust Center explains how **RAISETALKS AI, Inc.**, a Delaware Corporation, protects data on raisetalks.com and on the RaiseTalks platform at app.raisetalks.com: the security controls in place today, how our AI features work and stay under your control, and how we assess RaiseTalks under the **GDPR** and the **EU AI Act**.",
   ],
