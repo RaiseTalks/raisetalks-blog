@@ -16,7 +16,7 @@ export const metadata: Metadata = { title: pages.decoderGame.title, description:
 export default function DecoderGamePage() {
   return (
     <div data-audience="investors">
-      <PageHero heading={d.hero.heading} text={d.hero.text} primary={d.hero.primary} secondary={d.hero.secondary} image={d.hero.image} textWidth="max-w-[520px]" headingWidth="max-w-none" headingFlow />
+      <PageHero heading={d.hero.heading} text={d.hero.text} primary={d.hero.primary} secondary={d.hero.secondary} image={d.hero.image} imageFit="contain" textWidth="max-w-[520px]" headingWidth="max-w-none" headingFlow />
       <GridGap />
       <ChipSection c={d.chip} />
       <PhotoStrip photos={d.photos} />

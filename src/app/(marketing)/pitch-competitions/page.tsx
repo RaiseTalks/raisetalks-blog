@@ -14,7 +14,7 @@ export const metadata: Metadata = { title: pages.pitchCompetitions.title, descri
 export default function PitchCompetitionsPage() {
   return (
     <div data-audience="investors">
-      <PageHero eyebrow={p.hero.eyebrow} eyebrowStyle="plain" heading={p.hero.heading} primary={p.hero.primary} secondary={p.hero.secondary} image={p.hero.image}>
+      <PageHero eyebrow={p.hero.eyebrow} eyebrowStyle="plain" heading={p.hero.heading} primary={p.hero.primary} secondary={p.hero.secondary} image={p.hero.image} imageFit="contain">
         {/* tablet+: one 480px card, 3 columns 24px apart (TV 3121:5432); mobile: white tiles 2 + 1 (1422:14) */}
         <div className="w-full tablet:w-auto">
           <dl className="grid w-full grid-cols-2 gap-3 text-left tablet:flex tablet:w-[480px] tablet:gap-6 tablet:rounded-md tablet:border tablet:border-border-1 tablet:bg-page tablet:p-6">

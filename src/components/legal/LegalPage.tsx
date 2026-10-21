@@ -1,7 +1,7 @@
 import type { LegalDoc } from "@/content/legal/types";
 import { Band, GridGap } from "@/components/layout/Band";
 import { StatementBanner } from "@/components/sections/StatementBanner";
-import { LegalBody } from "./LegalBody";
+import { LegalBody, type HeadingScale } from "./LegalBody";
 
 /**
  * Legal page (Figma 2450:469 / 2302:2 / 2302:718), Drop 21:
@@ -11,7 +11,7 @@ import { LegalBody } from "./LegalBody";
  * - hero intro (Drop 24): the Home hero sequence (`.hero-intro-*`): title, subtitle, then the "Last updated" tab.
  * - body on the 1024 column with the standard band padding (64 / 48·32 / 40·8); further intro paragraphs open the body.
  */
-export function LegalPage({ doc, updatedLabel = "Last updated" }: { doc: LegalDoc; updatedLabel?: string }) {
+export function LegalPage({ doc, updatedLabel = "Last updated", headingScale }: { doc: LegalDoc; updatedLabel?: string; headingScale?: HeadingScale }) {
   const [banner, ...rest] = doc.intro;
   const body = [...rest.map((p) => `p|${p}`), doc.body.trim()].join("\n");
   return (
@@ -33,7 +33,7 @@ export function LegalPage({ doc, updatedLabel = "Last updated" }: { doc: LegalDo
       <GridGap />
       <StatementBanner text={banner.replace(/\*\*/g, "")} size="body" />
       <Band width="medium">
-        <LegalBody body={body} />
+        <LegalBody body={body} headingScale={headingScale} />
       </Band>
     </>
   );

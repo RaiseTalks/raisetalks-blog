@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
  * Mobile: CTAs stacked full width on inner pages (`stackButtons`, Drop 14); Home keeps its row.
  * `headingFlow`: mobile heading runs on as one text and wraps naturally (Decoder).
  * `headingSize`: "h2" renders the H1 at H2 size (Pricing, Drop 21).
+ * `imageFit`: "contain" shows the whole background centred instead of cropping it to fill (taller heroes: Decoder, Pitch Competitions).
  * `intro` (Drop 23 Home; every hero since Drop 24, default on): Linear-style load sequence in pure CSS (components.css `.hero-intro-*`), no JS, so it
  * starts at first paint: headline → text → buttons → background → eyebrow + `after`. Each fades in, un-blurs and rises 8px.
  */
@@ -24,11 +25,11 @@ function Step({ intro, step, delay = 0, className, children }: { intro: boolean;
 }
 
 export function PageHero({
-  eyebrow, eyebrowStyle = "pill", heading, text, primary, secondary, image, after, children, className, columnClassName, textWidth = "max-w-[360px]", headingWidth = "max-w-[678px]", stackButtons = true, headingFlow = false, headingSize = "h1", intro = true,
+  eyebrow, eyebrowStyle = "pill", heading, text, primary, secondary, image, after, children, className, columnClassName, textWidth = "max-w-[360px]", headingWidth = "max-w-[678px]", stackButtons = true, headingFlow = false, headingSize = "h1", intro = true, imageFit = "cover",
 }: {
   eyebrow?: string; eyebrowStyle?: "pill" | "orbit" | "plain"; heading: Heading; text?: string; primary?: Cta; secondary?: Cta; image?: Art;
   after?: ReactNode; children?: ReactNode; className?: string; columnClassName?: string; textWidth?: string; headingWidth?: string;
-  stackButtons?: boolean; headingFlow?: boolean; headingSize?: "h1" | "h2"; intro?: boolean;
+  stackButtons?: boolean; headingFlow?: boolean; headingSize?: "h1" | "h2"; intro?: boolean; imageFit?: "cover" | "contain";
 }) {
   const badge = eyebrow && (eyebrowStyle !== "plain"
     ? <Badge variant={eyebrowStyle === "orbit" ? "eyebrow-orbit" : "eyebrow"}>{eyebrow}</Badge>
@@ -38,7 +39,7 @@ export function PageHero({
   return (
     <section className={cn("relative isolate overflow-hidden bg-page", className)}>
       {image && (
-        <ArtFill art={image} sizes="100vw" priority className={cn("-z-10 object-cover", intro && "hero-intro hero-intro-bg hero-intro-3")} />
+        <ArtFill art={image} sizes="100vw" priority className={cn("-z-10", imageFit === "contain" ? "object-contain object-center" : "object-cover", intro && "hero-intro hero-intro-bg hero-intro-3")} />
       )}
       <div className="mx-2 tablet:mx-auto tablet:max-w-hero">
         <div className={cn("flex flex-col items-center gap-8 border-x border-rail-1 px-4 pb-14 pt-16 text-center tablet:gap-9 tablet:px-16 tablet:pb-16 tablet:pt-24 laptop:pb-20 laptop:pt-32", columnClassName)}>

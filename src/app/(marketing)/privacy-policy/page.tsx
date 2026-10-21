@@ -6,5 +6,5 @@ import { pages } from "@/content/marketing/pages";
 export const metadata: Metadata = { title: pages.privacy.title, description: pages.privacy.description, alternates: { canonical: pages.privacy.path } };
 
 export default function Page() {
-  return <LegalPage doc={privacy} />;
+  return <LegalPage doc={privacy} headingScale="policy" />;
 }

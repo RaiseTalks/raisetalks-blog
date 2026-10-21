@@ -23,8 +23,15 @@ export const metadata: Metadata = {
   description: site.description,
   openGraph: { siteName: site.name, type: "website", locale: "en_US" },
   twitter: { card: "summary_large_image", site: "@raisetalks" },
-  // Logo mark exported by Builder (B-02). Replaces the TV favicon from the template.
-  icons: { icon: "/icons/mark-512.png", apple: "/icons/mark-512.png" },
+  // Favicon follows the browser theme: blue mark on light UI, white mark on dark UI (designer files, Oct 2026).
+  // app/favicon.ico (light mark) covers browsers without SVG favicons; apple-touch-icon.png is the home-screen icon.
+  icons: {
+    icon: [
+      { url: "/icons/favicon-light.svg", type: "image/svg+xml", media: "(prefers-color-scheme: light)" },
+      { url: "/icons/favicon-dark.svg", type: "image/svg+xml", media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: { url: "/icons/apple-touch-icon.png", sizes: "180x180" },
+  },
   robots: { index: true, follow: true },
 };
 

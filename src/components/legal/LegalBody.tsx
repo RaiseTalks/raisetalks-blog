@@ -81,13 +81,18 @@ function slug(s: string) {
 
 const cell = "border-border-1 p-4 align-top";
 
-function render(blocks: Block[], inBox = false): ReactNode {
+/** "policy": section headlines at H3 size and sub-sections (2.1, a. …) at H4 (Privacy, Terms, Refund). The heading
+ *  elements stay h2 / h3 so the document outline under the page H1 is unchanged. */
+export type HeadingScale = "default" | "policy";
+
+function render(blocks: Block[], inBox = false, scale: HeadingScale = "default"): ReactNode {
+  const policy = scale === "policy";
   return blocks.map((b, i) => {
     switch (b.kind) {
-      case "h2": return <h2 key={i} id={slug(b.text)} className="mt-10 scroll-mt-28 text-h2 text-headline first:mt-0 tablet:mt-12 laptop:mt-16">{b.text}</h2>;
+      case "h2": return <h2 key={i} id={slug(b.text)} className={cn("mt-10 scroll-mt-28 text-headline first:mt-0 tablet:mt-12 laptop:mt-16", policy ? "text-h3" : "text-h2")}>{b.text}</h2>;
       case "h3": return inBox
         ? <h4 key={i} className="text-h4 text-subheadline">{b.text}</h4>
-        : <h3 key={i} className="mt-4 text-h3 text-subheadline">{b.text}</h3>;
+        : <h3 key={i} className={cn("mt-4 text-subheadline", policy ? "text-h4" : "text-h3")}>{b.text}</h3>;
       case "p": return <p key={i} className="text-body text-copy">{inline(b.text)}</p>;
       case "b": return <p key={i} className="text-body font-semibold text-subheadline">{inline(b.text)}</p>;
       case "lines": return (
@@ -141,16 +146,16 @@ function render(blocks: Block[], inBox = false): ReactNode {
           </div>
         );
       }
-      case "box": return <aside key={i} className="flex flex-col gap-2 rounded-md border border-border-1 bg-card p-5 tablet:p-6">{render(b.children, true)}</aside>;
+      case "box": return <aside key={i} className="flex flex-col gap-2 rounded-md border border-border-1 bg-card p-5 tablet:p-6">{render(b.children, true, scale)}</aside>;
       default: return <Fragment key={i} />;
     }
   });
 }
 
-export function LegalBody({ body }: { body: string }) {
+export function LegalBody({ body, headingScale = "default" }: { body: string; headingScale?: HeadingScale }) {
   const lines: Line[] = body.trim().split("\n").filter((raw) => raw.trim()).map((raw) => {
     const at = raw.indexOf("|");
     return { tag: raw.slice(0, at).trim(), text: raw.slice(at + 1).trim() };
   });
-  return <div className="flex flex-col gap-4 tablet:gap-6">{render(group(lines))}</div>;
+  return <div className="flex flex-col gap-4 tablet:gap-6">{render(group(lines), false, headingScale)}</div>;
 }
