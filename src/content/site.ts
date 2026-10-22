@@ -39,9 +39,9 @@ export const nav = {
     { label: "RaiseTalks TV", href: "https://tv.raisetalks.com", external: true }, // live domain, as on the old site
   ] as NavLink[],
   actions: {
-    // Local sign-in page (RaiseTalks TV style) → hands off to app.raisetalks.com on submit.
-    signIn: { label: "Login", href: "/sign-in" } as NavLink,
-    signUp: { label: "Try it Free", href: "/sign-in?mode=signup" } as NavLink,
+    // Straight to the platform, as on the old site: sign-up there starts the trial and Stripe checkout.
+    signIn: { label: "Login", href: `${APP}/sign-in` } as NavLink,
+    signUp: { label: "Try it Free", href: `${APP}/sign-up` } as NavLink,
   },
 };
 

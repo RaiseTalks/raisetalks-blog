@@ -43,9 +43,10 @@ export const dariiaPortrait: Img = { src: "/images/shared/dariia-portrait.webp",
 export type CtaBandContent = { heading: Heading; text: string; primary: Cta; secondary?: Cta };
 
 export const links = {
-  // All sign-up / sign-in CTAs go to the local page, which hands off to app.raisetalks.com.
-  signUp: { href: "/sign-in?mode=signup", external: false },
-  signIn: { href: "/sign-in", external: false },
+  // Sign-up / sign-in CTAs go straight to app.raisetalks.com (same tab), where sign-up starts the trial and
+  // Stripe checkout. /sign-in on this site only forwards there (old links).
+  signUp: { href: site.links.signUp, external: false },
+  signIn: { href: site.links.signIn, external: false },
   demo: { href: site.links.demo, external: true },
   tv: { href: "https://tv.raisetalks.com", external: true }, // live domain, as on the old site
 };
