@@ -91,12 +91,15 @@ Login and sign-up are on app.raisetalks.com: `/sign-in` validates and hands off 
 - Articles follow the house format in the DVOS blog programme (`~/Documents/DVOS/raisetalks/blog/articles/`): opening
   paragraphs, `<!-- truncate -->`, "Key takeaways", body sections, an FAQ, "Read next", then one product CTA line at
   the end. No "Quick Summary" block.
-- `src/lib/blog/markdown.ts` turns that plain Markdown into the page: the opening paragraphs become the deck, the
-  "Key takeaways" list a card, tables scroll sideways on phones, the closing paragraph after the last `---` a soft
-  blue note.
+- Article pages keep the pre-redesign blog look (QA's preference, Oct 2026): plain white page, 768px reading
+  column, "All articles" / "In this article" sidebar (`src/components/blog/Article*.tsx`, colours `--color-article-*`
+  in tokens.css). The blog home, topic and author pages use the new design.
+- `src/lib/blog/markdown.ts` turns that plain Markdown into the page, keeping every section where the author put it:
+  the opening paragraphs become the deck, the list under "Key takeaways" a soft blue card, tables scroll sideways on
+  phones.
 - FAQ: plain Markdown under `## Frequently Asked Questions`, each item a bold question line followed by its answer.
-  It is shown in its own band with the site FAQ accordion, and as FAQPage structured data. Do not hand-build FAQ markup.
-- "Read next": a `## Read next` list of `[title](/blog/slug)` links; the first three become post cards.
+  It becomes an accordion in place, and FAQPage structured data. Do not hand-build FAQ markup.
+- "Read next": a `## Read next` list of `[title](/blog/slug)` links; each becomes a card with that post's title and image.
 - `<BlogCTA title="…" description="…" buttonText="…" buttonLink="…" disclaimer="…" />` is the only component a post
   may use: a blue CTA panel. With `magnet="<id>"` it shows an email form for that lead magnet (ids defined in
   `supabase/functions/newsletter-subscribe`) and the download buttons after signup.
