@@ -27,9 +27,5 @@ export const blog = {
   },
   article: {
     readingTime: (min: number) => `${min} min read`,
-    onThisPage: "On this page",
-    backToBlog: "All articles",
-    faqHeading: { lead: "Frequently Asked Questions" },
-    readNextHeading: { lead: "Read next" },
   },
 };

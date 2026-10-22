@@ -8,19 +8,19 @@ import type { Root as MdRoot, RootContent, ListItem, Link } from "mdast";
 import type { Root as HastRoot, Element } from "hast";
 
 /**
- * House format → page parts. Authors keep writing plain Markdown; this splits a post into:
- * - body: the article, with its deck (opening paragraphs), key-takeaways card, scrollable tables and
- *   closing product note marked as custom elements (`blog-*`) for the renderer
- * - faq: the "Frequently Asked Questions" section (bold question line + answer), shown in its own band
- * - readNext: slugs from the "Read next" list, shown as post cards
- * - toc: the body's H2s
+ * House format → article. Authors keep writing plain Markdown; everything stays where the author put it
+ * (the article page follows the pre-redesign blog). Custom elements (`blog-*`) mark the parts the renderer
+ * styles: the deck (opening paragraphs), the key-takeaways card under its heading, scrollable tables, the FAQ
+ * accordion (bold question line + answer), the "Read next" cards and `<BlogCTA>` panels.
+ * Also returned: `toc` (H2s and their H3s, for "In this article") and `faq` (for FAQPage structured data).
  * Links to posts that are not live yet lose their link (list items that are only such a link are dropped).
  */
-export type FaqItem = { question: string; answer: HastRoot; text: string };
-export type Parsed = { body: HastRoot; toc: { id: string; text: string }[]; faq: FaqItem[]; readNext: string[] };
+export type TocItem = { id: string; text: string; depth: 2 | 3 };
+export type Parsed = { body: HastRoot; toc: TocItem[]; faq: { question: string; text: string }[] };
 
 const BLOG_LINK = /^\/blog\/([a-z0-9-]+)\/?(?:#.*)?$/;
 const FAQ_HEADING = /frequently asked questions/i;
+const FAQ_TITLE = "Frequently Asked Questions";
 const READ_NEXT_HEADING = /^read next$/i;
 const TAKEAWAYS_HEADING = /^key takeaways$/i;
 
@@ -57,21 +57,22 @@ function hideUnpublishedLinks(tree: MdRoot, unpublished: Set<string>) {
   unwrap(tree);
 }
 
-function extractReadNext(kids: RootContent[]): string[] {
+/** "Read next" list of `[title](/blog/slug)` links → cards (the renderer looks up each post's title and image). */
+function readNext(kids: RootContent[]) {
   const start = kids.findIndex((n) => isH2(n, READ_NEXT_HEADING));
   const list = kids[start + 1];
-  if (start === -1 || list?.type !== "list") return [];
-  const slugs = list.children.flatMap((item) => {
+  if (start === -1 || list?.type !== "list") return;
+  const items = list.children.flatMap((item) => {
     const p = item.children[0];
     const link = p?.type === "paragraph" ? p.children.find((c) => c.type === "link") : undefined;
-    const slug = link?.type === "link" ? (link.url.match(BLOG_LINK) ?? [])[1] : undefined;
-    return slug ? [slug] : [];
+    if (link?.type !== "link") return [];
+    return [block("blog-read-next-item", [], { href: link.url, title: toString(link).trim(), slug: (link.url.match(BLOG_LINK) ?? [])[1] ?? "" })];
   });
-  kids.splice(start, 2);
-  return slugs;
+  if (items.length) kids[start + 1] = block("blog-read-next", items);
 }
 
-function extractFaq(kids: RootContent[]): { question: string; body: RootContent[] }[] {
+/** FAQ section → accordion items in place; returns the questions and plain answers for structured data. */
+function faq(kids: RootContent[]): { question: string; text: string }[] {
   const start = kids.findIndex((n) => isH2(n, FAQ_HEADING));
   if (start === -1) return [];
   let end = start + 1;
@@ -89,11 +90,14 @@ function extractFaq(kids: RootContent[]): { question: string; body: RootContent[
     } else if (items.length) items[items.length - 1].body.push(n);
     else return []; // not in the FAQ format: leave the post untouched
   }
-  kids.splice(start, end - start);
-  return items;
+  if (!items.length) return [];
+  const heading = kids[start];
+  if (heading.type === "heading") heading.children = [{ type: "text", value: FAQ_TITLE }];
+  kids.splice(start + 1, end - start - 1, block("blog-faq", items.map((it) => block("blog-faq-item", it.body, { question: it.question }))));
+  return items.map((it) => ({ question: it.question, text: it.body.map((n) => toString(n)).join(" ").replace(/\s+/g, " ").trim() }));
 }
 
-function shape(tree: MdRoot) {
+function shape(tree: MdRoot): { question: string; text: string }[] {
   // `<BlogCTA … />` (the only component posts use): its string attributes become a CTA panel.
   // Every other raw HTML node, `<!-- truncate -->` included, is dropped.
   // A tag split over several lines is not an HTML block in CommonMark: it arrives as a paragraph of inline HTML.
@@ -111,12 +115,7 @@ function shape(tree: MdRoot) {
     return [block("blog-cta", [], attrs)];
   });
 
-  // Closing product note: the paragraphs after the last `---`, when nothing else follows.
-  const lastBreak = tree.children.findLastIndex((n) => n.type === "thematicBreak");
-  const tail = tree.children.slice(lastBreak + 1);
-  if (lastBreak !== -1 && tail.length && tail.every((n) => n.type === "paragraph")) {
-    tree.children.splice(lastBreak + 1, tail.length, block("blog-note", tail));
-  }
+  // Section breaks: spacing above each H2 does the job
   tree.children = tree.children.filter((n) => n.type !== "thematicBreak");
 
   // Deck: the opening run of paragraphs (only when sections follow)
@@ -124,25 +123,23 @@ function shape(tree: MdRoot) {
   while (tree.children[end]?.type === "paragraph") end++;
   if (end > 0 && end < tree.children.length) tree.children.splice(0, end, block("blog-deck", tree.children.slice(0, end)));
 
-  // Key takeaways: H2 + list → one card (the card carries its own label, so it stays out of the TOC)
+  // Key takeaways: the heading stays (it is in "In this article"); the list under it becomes the card
   const t = tree.children.findIndex((n) => isH2(n, TAKEAWAYS_HEADING));
-  if (t !== -1 && tree.children[t + 1]?.type === "list") {
-    tree.children.splice(t, 2, block("blog-takeaways", [tree.children[t + 1]], { title: toString(tree.children[t]).trim() }));
-  }
+  if (t !== -1 && tree.children[t + 1]?.type === "list") tree.children[t + 1] = block("blog-takeaways", [tree.children[t + 1]]);
+
+  readNext(tree.children);
+  const questions = faq(tree.children);
 
   // Tables scroll sideways in a frame instead of being clipped on a phone
   tree.children = tree.children.map((n) => {
     if (n.type !== "table") return n;
     return block("blog-table", [n], { columns: String(n.children[0]?.children.length ?? 0) });
   });
+  return questions;
 }
 
 const toHast = unified().use(remarkRehype).use(rehypeSlug);
 const toMdast = unified().use(remarkParse).use(remarkGfm);
-
-async function hastOf(children: RootContent[]): Promise<HastRoot> {
-  return (await toHast.run({ type: "root", children } as MdRoot)) as HastRoot;
-}
 
 const text = (n: Element | HastRoot): string =>
   n.children.map((c) => (c.type === "text" ? c.value : c.type === "element" ? text(c) : "")).join("");
@@ -151,20 +148,13 @@ export async function parsePost(markdown: string, unpublished: Set<string>): Pro
   const tree = toMdast.parse(markdown) as MdRoot;
   await toMdast.run(tree);
   hideUnpublishedLinks(tree, unpublished);
-  const readNext = extractReadNext(tree.children);
-  const faqRaw = extractFaq(tree.children);
-  shape(tree);
-
-  const body = await hastOf(tree.children);
-  const toc = body.children.flatMap((n) =>
-    n.type === "element" && n.tagName === "h2" ? [{ id: String(n.properties.id), text: text(n) }] : [],
+  const faqItems = shape(tree);
+  const body = (await toHast.run(tree)) as HastRoot;
+  // H2s and H3s at the top level only (FAQ questions are buttons, not headings)
+  const toc = body.children.flatMap((n): TocItem[] =>
+    n.type === "element" && (n.tagName === "h2" || n.tagName === "h3")
+      ? [{ id: String(n.properties.id), text: text(n), depth: n.tagName === "h2" ? 2 : 3 }]
+      : [],
   );
-  const faq = await Promise.all(
-    faqRaw.map(async (f) => ({
-      question: f.question,
-      answer: await hastOf(f.body),
-      text: f.body.map((n) => toString(n)).join(" ").replace(/\s+/g, " ").trim(),
-    })),
-  );
-  return { body, toc, faq, readNext };
+  return { body, toc, faq: faqItems };
 }

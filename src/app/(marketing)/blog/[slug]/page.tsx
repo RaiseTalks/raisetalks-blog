@@ -33,7 +33,5 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   const post = getPost((await params).slug);
   if (!post) notFound();
   const parsed = await parsePost(post.body, unpublishedSlugs());
-  const live = getPosts();
-  const related = parsed.readNext.flatMap((s) => live.find((p) => p.slug === s) ?? []);
-  return <Article post={post} parsed={parsed} related={related} />;
+  return <Article post={post} parsed={parsed} posts={getPosts()} />;
 }

@@ -1,31 +1,51 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Band, GridGap } from "@/components/layout";
-import { CtaBand, Headline } from "@/components/sections";
-import { Reveal } from "@/components/motion";
-import { ArtFill } from "@/components/ui/ArtImage";
 import type { Post } from "@/lib/blog/posts";
 import type { Parsed } from "@/lib/blog/markdown";
 import { blog } from "@/content/blog";
-import { art, defaultCta } from "@/content/marketing/shared";
 import { site } from "@/content/site";
-import { ArticleToc } from "./ArticleToc";
-import { BlogFaq } from "./BlogFaq";
-import { Markdown } from "./Markdown";
-import { PostCard } from "./PostCard";
+import { ArticleEnd, LinkedInSquare, XIcon } from "./ArticleEnd";
+import { ArticleShell, type ArticleIndexEntry } from "./ArticleShell";
+import { Markdown, type MarkdownProps } from "./Markdown";
 
 /**
- * Blog article page:
- * - hero on the bordered 1024 column (legal-page construction): breadcrumb tab, H1 at H2 size (titles are long), author
- * - body on the 1480 column: sticky "On this page" (laptop+) beside a ~680px reading column
- * - FAQ in its own grey band (Startups FAQ), "Read next" as post cards, closing CTA band
+ * Blog article page in the pre-redesign blog look (kept on request; the blog home and topic pages use the new
+ * design). Plain white page: topic eyebrow, large title, reading time and author, then the article on a 768px
+ * column with the FAQ and "Read next" cards in place, tags, "Written by" + share, and previous / next article.
+ * The frame (article list, "In this article") is ArticleShell.
  */
-export function Article({ post, parsed, related }: { post: Post; parsed: Parsed; related: Post[] }) {
+export function Article({ post, parsed, posts }: { post: Post; parsed: Parsed; posts: Post[] }) {
   const t = blog.article;
   const tag = post.tags[0];
   const author = post.authors[0];
-  const toc = parsed.faq.length ? [...parsed.toc, { id: "faq", text: t.faqHeading.lead }] : parsed.toc;
-  const url = `${site.url}/blog/${post.slug}`;
+  const url = `${site.url.replace(/\/$/, "")}/blog/${post.slug}/`;
+  const at = posts.findIndex((p) => p.slug === post.slug);
+  const prev = at > 0 ? posts[at - 1] : undefined;
+  const next = at >= 0 && at < posts.length - 1 ? posts[at + 1] : undefined;
+  const bySlug = new Map(posts.map((p) => [p.slug, p]));
+
+  const index: ArticleIndexEntry[] = posts.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    topic: p.tags[0]?.label ?? "More",
+    text: [p.title, p.metaTitle, p.description, ...p.keywords, ...p.tags.map((x) => x.label)].join(" ").toLowerCase(),
+  }));
+
+  /** "Read next" card: the linked post's own title and OG image. */
+  function ReadNextItem({ href, title, slug }: MarkdownProps) {
+    const target = bySlug.get(String(slug ?? ""));
+    return (
+      <Link href={String(href)} className="flex flex-col gap-3 rounded-[12px] border border-article-border bg-page px-2.5 pb-4 pt-2.5 transition-colors duration-200 hover:border-brand-light-blue">
+        {target?.image && (
+          <span className="relative block aspect-[1200/630] overflow-hidden rounded-[8px]">
+            <Image src={target.image} alt="" fill sizes="(min-width: 768px) 377px, 100vw" className="object-cover" />
+          </span>
+        )}
+        <span className="px-1.5 text-[15px] font-medium leading-[1.35] text-article-ink">{target?.title ?? String(title ?? "")}</span>
+      </Link>
+    );
+  }
+
   const schema = [
     {
       "@context": "https://schema.org",
@@ -47,73 +67,72 @@ export function Article({ post, parsed, related }: { post: Post; parsed: Parsed;
   ].filter(Boolean);
 
   return (
-    <div data-audience="investors">
+    <div data-audience="investors" className="bg-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <section className="relative isolate overflow-hidden bg-page">
-        <ArtFill art={art.heroAlt} sizes="100vw" priority className="hero-intro hero-intro-bg hero-intro-3 -z-10 object-cover" />
-        <div className="mx-2 border-x border-rail-1 tablet:mx-12 laptop:mx-auto laptop:max-w-medium">
-          <div className="flex justify-center border-b border-rail-1">
-            <div className="hero-intro hero-intro-4 flex items-center gap-2 border-x border-rail-1 px-6 py-3 text-footnote tablet:px-10 tablet:py-4">
-              <Link href="/blog" className="text-muted transition-colors hover:text-brand-light-blue">{blog.title}</Link>
-              {tag && (
-                <>
-                  <span className="text-rail-2" aria-hidden>/</span>
-                  <Link href={`/blog/tags/${tag.id}`} className="font-medium text-brand-light-blue hover:text-accent-hover">{tag.label}</Link>
-                </>
-              )}
-            </div>
-          </div>
-          <div className="flex flex-col items-center gap-6 px-4 py-14 text-center tablet:px-16 tablet:py-20 laptop:py-24">
-            <h1 className="hero-intro hero-intro-0 max-w-[800px] text-h2 text-headline">{post.title}</h1>
-            <div className="hero-intro hero-intro-1 flex items-center gap-3 text-left">
-              {author?.image && <Image src={author.image} alt="" width={44} height={44} className="size-11 rounded-full border border-border-1 object-cover" />}
-              <div className="flex flex-col">
-                {author && <Link href={`/blog/authors/${author.id}`} className="text-body font-medium text-subheadline hover:text-brand-light-blue">{author.name}</Link>}
-                <span className="text-footnote text-muted">
-                  {author?.title && <>{author.title} · </>}
-                  {t.readingTime(post.readingMinutes)}
+      <ArticleShell articles={index} current={post.slug} toc={parsed.toc}>
+        <article>
+          <header className="border-b border-article-rule px-3 pb-8 pt-6 text-center tablet:px-4 tablet:pt-8">
+            {tag && (
+              <Link href={`/blog/tags/${tag.id}`} className="mb-3.5 inline-block text-[12px] font-semibold uppercase tracking-[0.12em] text-brand-light-blue hover:text-accent-hover">
+                {tag.label}
+              </Link>
+            )}
+            <h1 className="mx-auto mb-6 max-w-[1024px] text-[32px] leading-[1.1] tracking-[-0.8px] text-headline tablet:text-[48px] laptop:text-[60px] laptop:leading-[1.2] laptop:tracking-[-1.5px] laptop:[[data-articles-open=true]_&]:text-[50px]">
+              {post.title}
+            </h1>
+            <p className="my-4 text-footnote text-article-muted">{t.readingTime(post.readingMinutes)}</p>
+            {author && (
+              <div className="flex flex-col items-center gap-1">
+                {author.image && <Image src={author.image} alt="" width={48} height={48} className="mb-1 size-12 rounded-full object-cover" />}
+                <span className="text-[16px] font-light text-article-author">{author.name}</span>
+                {author.title && <span className="text-[13px] text-headline">{author.title}</span>}
+                <span className="mt-1 flex items-center gap-3">
+                  {author.socials.x && (
+                    <a href={`https://x.com/${author.socials.x}`} target="_blank" rel="noopener noreferrer" aria-label={`${author.name} on X`} className="text-headline hover:opacity-70"><XIcon size={20} /></a>
+                  )}
+                  {author.socials.linkedin && (
+                    <a href={`https://www.linkedin.com/in/${author.socials.linkedin}`} target="_blank" rel="noopener noreferrer" aria-label={`${author.name} on LinkedIn`} className="text-brand-light-blue hover:opacity-70"><LinkedInSquare size={18} /></a>
+                  )}
                 </span>
               </div>
-            </div>
+            )}
+          </header>
+
+          <div className="px-3 pt-6 tablet:px-12">
+            <Markdown tree={parsed.body} overrides={{ "blog-read-next-item": ReadNextItem }} />
           </div>
-        </div>
-      </section>
 
-      <GridGap />
-      <Band innerClassName="laptop:grid laptop:grid-cols-[200px_minmax(0,680px)] laptop:justify-center laptop:gap-16 desktop:grid-cols-[220px_680px_220px] desktop:gap-20">
-        <aside className="hidden laptop:block">{toc.length > 1 && <ArticleToc items={toc} label={t.onThisPage} />}</aside>
-        <article className="mx-auto max-w-[680px] px-2 tablet:px-0">
-          <Markdown tree={parsed.body} />
-        </article>
-      </Band>
-
-      {parsed.faq.length > 0 && (
-        <>
-          <GridGap width="medium" />
-          <Band id="faq" tone="alt" width="medium" innerClassName="flex flex-col gap-10 max-tablet:px-7" className="scroll-mt-20">
-            <Reveal><Headline align="center" lead={t.faqHeading.lead} /></Reveal>
-            <BlogFaq items={parsed.faq.map((f) => ({ q: f.question, a: <Markdown tree={f.answer} /> }))} />
-          </Band>
-        </>
-      )}
-
-      {related.length > 0 && (
-        <>
-          <GridGap />
-          <Band innerClassName="flex flex-col gap-8 laptop:gap-12">
-            <Reveal className="flex items-end justify-between gap-6 max-tablet:px-inner">
-              <Headline lead={t.readNextHeading.lead} />
-              <Link href="/blog" className="hidden shrink-0 text-body font-medium text-brand-light-blue hover:text-accent-hover tablet:block">{t.backToBlog} →</Link>
-            </Reveal>
-            <div className="grid gap-6 tablet:grid-cols-2 laptop:grid-cols-3 laptop:gap-8">
-              {related.slice(0, 3).map((p, i) => (
-                <Reveal key={p.slug} delay={i * 0.08} className="h-full"><PostCard post={p} headingLevel="h3" /></Reveal>
+          {post.tags.length > 0 && (
+            <div className="mt-8 flex flex-wrap items-center gap-2 px-3 tablet:px-4">
+              <span className="mr-1 text-[16px] font-semibold text-headline">Tags:</span>
+              {post.tags.map((x) => (
+                <Link key={x.id} href={`/blog/tags/${x.id}`} className="rounded-full border border-article-chip-border bg-article-cell px-3 py-1 text-[13px] font-medium text-brand-light-blue transition-colors duration-200 hover:border-brand-light-blue">
+                  {x.label}
+                </Link>
               ))}
             </div>
-          </Band>
-        </>
-      )}
-      <CtaBand c={defaultCta} />
+          )}
+
+          <ArticleEnd author={author} url={url} title={post.title} />
+
+          {(prev || next) && (
+            <nav aria-label="Blog post page navigation" className="mt-8 grid gap-4 border-t border-article-cell py-4 tablet:grid-cols-2 tablet:px-4">
+              {prev ? (
+                <Link href={`/blog/${prev.slug}`} className="group flex flex-col gap-0.5 rounded-sm p-3 hover:bg-article-table-head">
+                  <span className="text-[14px] font-medium text-article-pager">Previous article</span>
+                  <span className="text-[16px] font-bold leading-[1.25] text-article-pager-title group-hover:text-brand-light-blue">« {prev.title}</span>
+                </Link>
+              ) : <span />}
+              {next && (
+                <Link href={`/blog/${next.slug}`} className="group flex flex-col gap-0.5 rounded-sm p-3 text-right hover:bg-article-table-head">
+                  <span className="text-[14px] font-medium text-article-pager">Next article</span>
+                  <span className="text-[16px] font-bold leading-[1.25] text-article-pager-title group-hover:text-brand-light-blue">{next.title} »</span>
+                </Link>
+              )}
+            </nav>
+          )}
+        </article>
+      </ArticleShell>
     </div>
   );
 }

@@ -78,6 +78,30 @@
   --color-bad-border: #ebadad;
   --color-blue-pill: #c7dfff;        /* Grading/blue-pillbox light */
 
+  /* ---------- Blog article page (the pre-redesign blog look, kept on request, Oct 2026) ---------- */
+  --color-article-rule: #eef2f6;          /* header rule, sidebar line, article-list group dividers */
+  --color-article-border: #e5e7eb;        /* cards, table header line, end-of-article rule, pill buttons */
+  --color-article-cell: #f1f5f9;          /* table body lines, pager rule, tag fill */
+  --color-article-muted: #64748b;         /* reading time, author role */
+  --color-article-faint: #94a3b8;         /* topic labels, search icon, table hint */
+  --color-article-ink: #0f172a;           /* read-next titles, search text */
+  --color-article-author: #1e293b;
+  --color-article-toc: #4b5563;           /* "In this article" links */
+  --color-article-toc-title: #0a3a8c;
+  --color-article-list: #334155;          /* article-list links */
+  --color-article-takeaways: #f5f9ff;     /* key takeaways card, active article-list item */
+  --color-article-takeaways-border: #e2eefc;
+  --color-article-table-head: #f8fafc;    /* also hover fills */
+  --color-article-faq-line: #dae0e7;
+  --color-article-faq-answer: #fafafa;
+  --color-article-code: #334155;
+  --color-article-code-bg: #f5f7fa;
+  --color-article-code-border: #e8edf3;
+  --color-article-chip-border: #cbd5e1;
+  --color-article-search-border: #e2e8f0;
+  --color-article-pager: #525860;
+  --color-article-pager-title: #374151;
+
   /* ---------- Glass (sticky navbar) ---------- */
   --color-glass: rgb(255 255 255 / 0.66);         /* navbar at the top of the page */
   --color-glass-strong: rgb(255 255 255 / 0.78); /* floating navbar after scrolling: contours show, text stays readable */

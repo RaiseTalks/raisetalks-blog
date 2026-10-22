@@ -13,7 +13,7 @@ const SHOW_ALL = process.env.NODE_ENV === "development" || process.env.SHOW_SCHE
 const BUILD_DATE = process.env.BLOG_BUILD_DATE ? new Date(process.env.BLOG_BUILD_DATE) : new Date();
 const WORDS_PER_MINUTE = 200;
 
-export type Author = { id: string; name: string; title?: string; url?: string; image?: string };
+export type Author = { id: string; name: string; title?: string; url?: string; image?: string; socials: { x?: string; linkedin?: string } };
 export type Tag = { id: string; label: string; description?: string };
 
 export type Post = {
@@ -46,8 +46,8 @@ export function allTags(): Map<string, Tag> {
 }
 
 function authors(): Map<string, Author> {
-  const raw = readYaml<Record<string, { name: string; title?: string; url?: string; image_url?: string }>>("authors.yml");
-  return new Map(Object.entries(raw).map(([id, a]) => [id, { id, name: a.name, title: a.title, url: a.url, image: a.image_url }]));
+  const raw = readYaml<Record<string, { name: string; title?: string; url?: string; image_url?: string; socials?: { x?: string; linkedin?: string } }>>("authors.yml");
+  return new Map(Object.entries(raw).map(([id, a]) => [id, { id, name: a.name, title: a.title, url: a.url, image: a.image_url, socials: a.socials ?? {} }]));
 }
 
 function load(): Post[] {
