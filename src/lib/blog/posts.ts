@@ -77,8 +77,10 @@ function load(): Post[] {
     .sort((a, b) => a.date.getTime() - b.date.getTime());
 }
 
+/** Cached for the build; `npm run dev` re-reads /blog on every request so post edits show without a restart. */
 let cache: Post[] | null = null;
 function every(): Post[] {
+  if (process.env.NODE_ENV === "development") return load();
   return (cache ??= load());
 }
 

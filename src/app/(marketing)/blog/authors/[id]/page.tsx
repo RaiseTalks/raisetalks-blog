@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogIndex } from "@/components/blog/BlogIndex";
 import { getPosts, usedAuthors } from "@/lib/blog/posts";
+import { blog } from "@/content/blog";
 
 export const dynamicParams = false;
 
@@ -21,5 +22,5 @@ export default async function AuthorPage({ params }: PageProps<"/blog/authors/[i
   const a = find((await params).id);
   if (!a) notFound();
   const posts = getPosts().filter((p) => p.authors.some((x) => x.id === a.id));
-  return <BlogIndex posts={posts} heading={{ lead: a.name }} text={a.title ?? ""} />;
+  return <BlogIndex posts={posts} heading={{ lead: a.name }} text={blog.authorPage.text(a.title)} chips={[{ label: blog.allLabel, href: "/blog", strong: true }, { label: blog.allTopicsLabel, href: "/blog/tags" }]} />;
 }

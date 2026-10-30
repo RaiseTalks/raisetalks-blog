@@ -5,7 +5,8 @@ import type { Parsed } from "@/lib/blog/markdown";
 import { blog } from "@/content/blog";
 import { site } from "@/content/site";
 import { ArticleEnd, LinkedInSquare, XIcon } from "./ArticleEnd";
-import { ArticleShell, type ArticleIndexEntry } from "./ArticleShell";
+import { ArticleShell } from "./ArticleShell";
+import { articleIndex } from "./articleIndex";
 import { Markdown, type MarkdownProps } from "./Markdown";
 
 /**
@@ -24,12 +25,7 @@ export function Article({ post, parsed, posts }: { post: Post; parsed: Parsed; p
   const next = at >= 0 && at < posts.length - 1 ? posts[at + 1] : undefined;
   const bySlug = new Map(posts.map((p) => [p.slug, p]));
 
-  const index: ArticleIndexEntry[] = posts.map((p) => ({
-    slug: p.slug,
-    title: p.title,
-    topic: p.tags[0]?.label ?? "More",
-    text: [p.title, p.metaTitle, p.description, ...p.keywords, ...p.tags.map((x) => x.label)].join(" ").toLowerCase(),
-  }));
+  const index = articleIndex(posts);
 
   /** "Read next" card: the linked post's own title and OG image. */
   function ReadNextItem({ href, title, slug }: MarkdownProps) {

@@ -101,6 +101,9 @@
   --color-article-search-border: #e2e8f0;
   --color-article-pager: #525860;
   --color-article-pager-title: #374151;
+  --color-article-excerpt: #475569;        /* list pages: card excerpt, hero description, tag chips */
+  --color-article-chip-active: #cfe3fb;    /* list pages: "All topics" chip border */
+  --color-article-chip-hover: #f8fbff;
 
   /* ---------- Glass (sticky navbar) ---------- */
   --color-glass: rgb(255 255 255 / 0.66);         /* navbar at the top of the page */

@@ -12,7 +12,7 @@ keywords:
   - due diligence checklist startup
   - pre-seed data room
   - seed data room documents
-image: /img/DataRoomInterface.png
+image: /img/blog/data-room-checklist-pre-seed-seed-startups/og-1200x630.png
 ---
 
 A data room checklist tells you which documents and answers an investor expects to find before they commit time to your round. At pre-seed and seed, that list is shorter than most founders fear and more specific than most founders build.

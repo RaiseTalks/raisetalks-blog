@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogIndex } from "@/components/blog/BlogIndex";
+import { BlogIndex, topicChips } from "@/components/blog/BlogIndex";
 import { getPosts, usedTags } from "@/lib/blog/posts";
 
 export const dynamicParams = false;
@@ -21,5 +21,5 @@ export default async function TagPage({ params }: PageProps<"/blog/tags/[tag]">)
   const tag = find((await params).tag);
   if (!tag) notFound();
   const posts = getPosts().filter((p) => p.tags.some((t) => t.id === tag.id));
-  return <BlogIndex posts={posts} heading={{ lead: tag.label }} text={tag.description ?? ""} activeTopic={tag.id} />;
+  return <BlogIndex posts={posts} heading={{ lead: tag.label }} text={tag.description} chips={topicChips(tag.id)} />;
 }

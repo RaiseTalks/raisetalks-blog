@@ -6,5 +6,5 @@ import { blog } from "@/content/blog";
 export const metadata: Metadata = { title: blog.title, description: blog.metaDescription, alternates: { canonical: blog.path } };
 
 export default function BlogPage() {
-  return <BlogIndex posts={getPosts()} heading={blog.heading} text={blog.text} />;
+  return <BlogIndex posts={getPosts()} heading={blog.heading} text={blog.text} lead />;
 }

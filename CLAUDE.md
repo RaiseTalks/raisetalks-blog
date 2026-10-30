@@ -92,9 +92,12 @@ Login and sign-up are on app.raisetalks.com: `/sign-in` validates and hands off 
   paragraphs, `<!-- truncate -->`, "Key takeaways", body sections, an FAQ, "Read next", then one product CTA line at
   the end. After the CTA line comes one blank line and one MCP connect line for the post's audience (founders,
   investors, or both); copy it from an existing post with the same audience. No "Quick Summary" block.
-- Article pages keep the pre-redesign blog look (QA's preference, Oct 2026): plain white page, 768px reading
-  column, "All articles" / "In this article" sidebar (`src/components/blog/Article*.tsx`, colours `--color-article-*`
-  in tokens.css). The blog home, topic and author pages use the new design.
+- The whole blog keeps the pre-redesign look (QA's preference, Oct 2026), colours `--color-article-*` in tokens.css.
+  Article pages: plain white page, 768px reading column, "All articles" / "In this article" sidebar
+  (`src/components/blog/Article*.tsx`). Blog home, topic and author pages (`BlogIndex.tsx`): the original centred
+  "RaiseTalks Blog" hero (topic and author pages add chips), horizontal post cards with uncropped 1200x630 covers
+  (the blog home's first post as a wide lead card), and the "Browse by topic" list (`ArticleList.tsx`) in a right
+  column.
 - `src/lib/blog/markdown.ts` turns that plain Markdown into the page, keeping every section where the author put it:
   the opening paragraphs become the deck, the list under "Key takeaways" a soft blue card, tables scroll sideways on
   phones.
