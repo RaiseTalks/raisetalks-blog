@@ -6,7 +6,9 @@
 //
 // <baseline-out> is a copy of `out/` built from `main` before the change, on the same day (posts go live by date).
 // With it, the script also proves that nothing else moved: BlogPosting/FAQPage, the rest of llms.txt, the 2025
-// stub, robots.txt, sitemap.xml, the feeds and the Support/Trust JSON-LD.
+// stub, robots.txt, sitemap.xml, the feeds and the Support/Trust JSON-LD. Without it, those comparisons do not run:
+// each is printed as a `skip` line and the result reads `PASS (partial: N baseline comparisons skipped)`. A clean
+// partial run still exits 0, so read the result line before treating a run as the full check.
 //
 // The build only checks structure (src/app/(marketing)/page.tsx, src/app/(feeds)/llms.txt/route.ts), so a copy
 // edit never breaks it. Today's exact values live here: when the published copy changes on purpose (a new field
@@ -145,6 +147,12 @@ function postPages(dir) {
 
 const lines = (text) => text.split("\n");
 
+/** Baseline comparisons that did not run because no <baseline-out> was passed; printed as `skip` before the result. */
+const skipped = [];
+const skipWithoutBaseline = (what) => {
+  if (!baseline) skipped.push(what);
+};
+
 // --- inputs: never skip, fail with the fix ----------------------------------------------------------------------
 
 let posts = [];
@@ -213,6 +221,7 @@ group(`SC8: ${LOGO} is a PNG of at least ${LOGO_MIN} x ${LOGO_MIN}`, (check) => 
 // --- AC 2: BreadcrumbList on every post page; BlogPosting and FAQPage unchanged -----------------------------------
 
 const basePosts = baseline ? postPages(baseline) : [];
+skipWithoutBaseline("AC 2: the same post pages as the baseline, and BlogPosting + FAQPage on each equal to the baseline's");
 group(`AC 2: BreadcrumbList on ${posts.length} post pages${baseline ? ", BlogPosting + FAQPage equal to the baseline" : ""}`, (check) => {
   if (baseline) {
     check(util.isDeepStrictEqual(posts, basePosts), `post pages differ from the baseline: ${posts.length} here, ${basePosts.length} there (build both on the same day, or pin BLOG_BUILD_DATE)`);
@@ -250,6 +259,7 @@ group(`AC 2: BreadcrumbList on ${posts.length} post pages${baseline ? ", BlogPos
 
 // --- AC 3: llms.txt key facts -----------------------------------------------------------------------------------
 
+skipWithoutBaseline("AC 3: llms.txt H1 + summary, and everything from `## Pages` to the end, equal to the baseline's");
 group(`AC 3: llms.txt key facts${baseline ? ", the rest equal to the baseline" : ""}`, (check) => {
   const text = read(out, "llms.txt");
   const l = lines(text);
@@ -275,6 +285,7 @@ group(`AC 3: llms.txt key facts${baseline ? ", the rest equal to the baseline" :
 
 // --- AC 4: the 2025 stub ----------------------------------------------------------------------------------------
 
+skipWithoutBaseline("AC 4: 2025 stub equal to the baseline's apart from the removed noindex line");
 group("AC 4: 2025 stub without noindex", (check) => {
   const html = read(out, STUB);
   check(!html.includes("noindex"), `${STUB}: still has a noindex`);
@@ -288,6 +299,7 @@ group("AC 4: 2025 stub without noindex", (check) => {
 
 // --- AC 8: everything else unchanged ----------------------------------------------------------------------------
 
+skipWithoutBaseline("AC 8: robots.txt, sitemap.xml, feeds, Support and Trust JSON-LD equal to the baseline's; 2025 stub not in sitemap.xml");
 if (baseline) {
   group("AC 8: robots.txt, sitemap.xml, feeds, Support and Trust JSON-LD equal to the baseline", (check) => {
     for (const rel of UNCHANGED_FILES) {
@@ -303,6 +315,11 @@ if (baseline) {
   });
   console.log(`PASS: ${checks} checks, ${posts.length} post pages, compared with the baseline ${baseline}`);
 } else {
-  // Not a skip that reports green: the line says which comparisons need a baseline and did not run.
-  console.log(`PASS: ${checks} checks, ${posts.length} post pages. NOT compared (no baseline passed): AC 2 BlogPosting/FAQPage, AC 3 rest of llms.txt, AC 4 stub diff, AC 8`);
+  // A partial run must not read like the full one: list what did not run and label the result partial. Every check
+  // that did run passed (a failure exits 1 above), so the exit code stays 0.
+  for (const what of skipped) console.log(`skip ${what}`);
+  console.log(
+    `PASS (partial: ${skipped.length} baseline comparisons skipped): ${checks} checks, ${posts.length} post pages. ` +
+      "For the full run, pass <baseline-out> (a build of `main`, see the header)",
+  );
 }
