@@ -64,11 +64,21 @@ export function Article({ post, parsed, posts }: { post: Post; parsed: Parsed; p
       "@type": "FAQPage",
       mainEntity: parsed.faq.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.text } })),
     },
+    // Breadcrumb trail for search results: Blog -> this post. Last entry, so BlogPosting and FAQPage stay as they were.
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: blog.title, item: `${site.url.replace(/\/$/, "")}${blog.path}/` },
+        { "@type": "ListItem", position: 2, name: post.title, item: url },
+      ],
+    },
   ].filter(Boolean);
 
   return (
     <div data-audience="investors" className="bg-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      {/* `<` escaped as the Next.js JSON-LD guide advises, so no post text can close the script tag */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
       <ArticleShell articles={index} current={post.slug} toc={parsed.toc}>
         <article>
           <header className="border-b border-article-rule px-3 pb-8 pt-6 text-center tablet:px-4 tablet:pt-8">
