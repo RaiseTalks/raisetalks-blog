@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { consent as copy, cookieTypes } from "@/content/consent";
 import { site } from "@/content/site";
-import { hasGpc, onOpenCookiePreferences, saveConsent, useConsent } from "@/lib/consent";
+import { bannerDismissed, dismissBanner, hasGpc, onOpenCookiePreferences, saveConsent, useConsent } from "@/lib/consent";
 import { Badge, Button, Switch } from "@/components/ui";
 import { InlineLinks } from "@/components/ui/InlineLinks";
 
@@ -21,17 +21,25 @@ const EASE = [0.22, 1, 0.36, 1] as const;
  * High level only, here and in the policy: types of cookies, not individual cookies.
  * Stricter than both: nothing optional loads before a choice, and Global Privacy Control hides the banner
  * (analytics stays off) and is named in the dialog.
+ * The banner's X only hides it for this browser session: no choice is saved, analytics stays off, and the banner
+ * comes back on the next visit (closing is not consent under EU/UAE law, so it can't count as accept).
  * Dialog: native modal <dialog> (focus stays inside, Esc closes), nothing switched on by default.
  * The footer "Cookie settings" button reopens it at any time, so consent is as easy to withdraw as to give.
  */
 export function CookieConsent() {
   const consent = useConsent();
   const [prefs, setPrefs] = useState(false);
+  const [closed, setClosed] = useState(false);
   useEffect(() => onOpenCookiePreferences(() => setPrefs(true)), []);
 
-  // consent is undefined on the server and during hydration, so hasGpc() only runs in the browser
-  const ask = consent === null && !hasGpc();
+  // consent is undefined on the server and during hydration, so hasGpc() / bannerDismissed() only run in the browser
+  const ask = consent === null && !closed && !hasGpc() && !bannerDismissed();
   const b = copy.banner;
+
+  function close() {
+    dismissBanner();
+    setClosed(true);
+  }
 
   return (
     <>
@@ -44,7 +52,15 @@ export function CookieConsent() {
             exit={{ opacity: 0, y: 16, transition: { duration: 0.2, ease: EASE } }}
             className="fixed inset-x-2 bottom-2 z-60 mb-[env(safe-area-inset-bottom)] flex flex-col gap-4 rounded-md border border-border-1 bg-page p-5 shadow-[var(--shadow-nav)] tablet:inset-x-auto tablet:bottom-6 tablet:left-12 tablet:w-[480px] tablet:p-6 laptop:left-8"
           >
-            <p className="text-h4 text-headline">
+            <button
+              type="button"
+              onClick={close}
+              aria-label={b.close}
+              className="absolute right-2 top-2 flex size-10 items-center justify-center rounded-sm text-muted transition-colors duration-[250ms] hover:text-headline tablet:right-3 tablet:top-3"
+            >
+              <X className="size-4" />
+            </button>
+            <p className="pr-8 text-h4 text-headline">
               {b.title.lead} <span className="text-h4-alt text-gradient-brand">{b.title.accent}</span>
             </p>
             <p className="text-body text-copy"><InlineLinks text={b.text} /></p>

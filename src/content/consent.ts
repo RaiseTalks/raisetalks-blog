@@ -35,6 +35,7 @@ export const consent = {
     text: `We use essential cookies to run this site. With your permission, we also use Google Analytics to see which pages help founders and investors most. We don't use advertising cookies, and you can change your choice at any time from ${SETTINGS} at the bottom of every page. [Cookie policy](${POLICY})`,
     reject: "Reject all",
     accept: "Accept all",
+    close: "Close for now without choosing",
   },
   preferences: {
     title: SETTINGS,

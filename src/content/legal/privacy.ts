@@ -97,7 +97,7 @@ p|${cookieTypes.analytics.text} These cookies are set only after you accept them
 h3|c. Marketing and Advertising Cookies (Not Used)
 p|${cookieTypes.marketing.text}
 h3|d. Your Choices
-p|You make your choice on your first visit and can change or withdraw it at any time from **Cookie settings** at the bottom of every page. Withdrawing consent stops analytics and deletes its cookies from your browser. We ask again after six months, or sooner if the types of cookies we use change.
+p|You make your choice on your first visit and can change or withdraw it at any time from **Cookie settings** at the bottom of every page. Withdrawing consent stops analytics and deletes its cookies from your browser. If you close the banner without choosing, only strictly necessary cookies are used and we ask again on your next visit. We ask again after six months, or sooner if the types of cookies we use change.
 p|We honor the **Global Privacy Control** signal: if your browser sends it, analytics stays off unless you switch it on yourself. You can also block or delete cookies at any time in your browser settings.
 h3|e. Embedded Videos
 p|YouTube videos load from YouTube's privacy-enhanced domain (youtube-nocookie.com) only when you press play. From then on, YouTube's own privacy policy applies.

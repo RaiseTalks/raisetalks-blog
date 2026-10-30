@@ -13,6 +13,7 @@ const STORAGE_KEY = "rt-consent";
 const CONSENT_VERSION = 1;
 const MAX_AGE_MS = 182 * 24 * 60 * 60 * 1000; // six months
 const OPEN_EVENT = "rt:cookie-preferences";
+const DISMISS_KEY = "rt-consent-dismissed";
 
 let memory: string | null = null;
 let cache: { raw: string | null; value: Consent | null } | undefined;
@@ -73,6 +74,26 @@ export function useConsent(): Consent | null | undefined {
 /** Global Privacy Control (CCPA/CPRA and other US state laws): the browser already said no. Client only. */
 export function hasGpc(): boolean {
   return (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
+}
+
+/**
+ * The banner's X: hides it for this browser session without recording a choice. Closing is not consent
+ * (EU/UAE), so analytics stays off and the banner asks again on the next visit. Client only.
+ */
+export function dismissBanner() {
+  try {
+    window.sessionStorage.setItem(DISMISS_KEY, "1");
+  } catch {
+    // not persisted; CookieConsent's state keeps the banner closed for this page view
+  }
+}
+
+export function bannerDismissed(): boolean {
+  try {
+    return window.sessionStorage.getItem(DISMISS_KEY) === "1";
+  } catch {
+    return false;
+  }
 }
 
 /** Opens the Cookie preferences dialog from anywhere (footer "Cookie settings"). */
