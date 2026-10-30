@@ -156,3 +156,5 @@ Stage, source, thesis fit, the four-dimension score, next action and owner, and 
 ---
 
 RaiseTalks gives investors an eight-stage dealflow Kanban you can map these gates onto, a filterable catalogue of startups with structured records, and an AI pre-score engine that produces a comparable investment memo in one click once you have data room access. [Explore the investor side](https://app.raisetalks.com/sign-up).
+
+Investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to browse startups, read the data rooms they have access to and update their dealflow pipeline from the chat.

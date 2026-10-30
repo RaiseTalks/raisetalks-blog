@@ -142,3 +142,5 @@ Typically months to begin ranking, longer to rank well. Build it before you need
 ---
 
 Every RaiseTalks company gets a public profile at its own URL, server-rendered with Open Graph and structured data, and listed in a catalogue investors filter by sector, stage and geography. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

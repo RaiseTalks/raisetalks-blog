@@ -147,3 +147,5 @@ Partially. The throughput constraint is structural and does not resolve with sen
 ---
 
 RaiseTalks removes the reassembly cost from both sides: one structured record for the founder, one comparable field set for the investor. [See how](https://raisetalks.com).
+
+Founders and investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/`: founders work on their data room, investors browse startups and manage their dealflow pipeline.

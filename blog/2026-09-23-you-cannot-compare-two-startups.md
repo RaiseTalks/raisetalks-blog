@@ -137,3 +137,5 @@ Because it makes them findable and faster to evaluate, which shortens their roun
 ---
 
 RaiseTalks structures every company into the same 143 fields, founder-authored and tier-controlled, so any two can be read on the same axes. [See the standard](https://raisetalks.com).
+
+Investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to browse startups, read the data rooms they have access to and update their dealflow pipeline from the chat.

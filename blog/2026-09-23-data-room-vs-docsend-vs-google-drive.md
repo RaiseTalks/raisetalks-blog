@@ -149,3 +149,5 @@ Only once the process needs it. Tiered sharing and expiry start to matter when y
 ---
 
 RaiseTalks gives you a public profile and, on a paid plan, a structured 143-field record with tiered access enforced at the database layer. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

@@ -139,3 +139,5 @@ Less than you would expect. Agent leverage is largest for solo investors and mic
 ---
 
 RaiseTalks runs an authenticated MCP server over founder-consented data rooms, where the founder's own token is the permission boundary. Structured, consented, queryable. [See how it works](https://raisetalks.com).
+
+Founders and investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/`: founders work on their data room, investors browse startups and manage their dealflow pipeline.

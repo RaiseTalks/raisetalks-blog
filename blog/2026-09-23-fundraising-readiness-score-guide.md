@@ -144,3 +144,5 @@ For most companies, under a week of focused writing. The gap is almost always do
 ---
 
 RaiseTalks scores your readiness across all four dimensions straight from your data room, names the gaps, and links each one to the section that fixes it. [Get your score with a 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

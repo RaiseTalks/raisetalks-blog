@@ -90,7 +90,8 @@ Login and sign-up are on app.raisetalks.com: `/sign-in` validates and hands off 
   `/public/img/blog/<slug>/`). Post images go in `/public/img/blog/`.
 - Articles follow the house format in the DVOS blog programme (`~/Documents/DVOS/raisetalks/blog/articles/`): opening
   paragraphs, `<!-- truncate -->`, "Key takeaways", body sections, an FAQ, "Read next", then one product CTA line at
-  the end. No "Quick Summary" block.
+  the end. After the CTA line comes one blank line and one MCP connect line for the post's audience (founders,
+  investors, or both); copy it from an existing post with the same audience. No "Quick Summary" block.
 - Article pages keep the pre-redesign blog look (QA's preference, Oct 2026): plain white page, 768px reading
   column, "All articles" / "In this article" sidebar (`src/components/blog/Article*.tsx`, colours `--color-article-*`
   in tokens.css). The blog home, topic and author pages use the new design.

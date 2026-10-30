@@ -130,3 +130,5 @@ Extensions and bridges, acquisitions, reaching profitability without further ven
 ---
 
 RaiseTalks keeps the milestones your round is buying next to the evidence that proves them, so the Series A conversation starts from a record rather than a reconstruction. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

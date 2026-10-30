@@ -1,6 +1,7 @@
 // Home page copy — Figma 3257:1024 (Investors view) + 2601:8349 (Startups view). Owner: Studio (A)
 import type { Cta, CtaBandContent, Heading, IconName } from "./shared";
 import { dariiaPortrait, defaultCta, links } from "./shared";
+import { site } from "@/content/site";
 
 export type Audience = "investors" | "founders";
 
@@ -112,7 +113,7 @@ export const home = {
           { title: "See who's engaged", text: "See which investors opened your room and what they spent their time on." },
         ],
         steps: [
-          { title: "Copy the RaiseTalks URL", text: "Click to copy the connector URL - you'll paste it into Claude in the next step", action: { kind: "copy", value: "https://mcp.raisetalks.com/", copiedLabel: "Copied" } },
+          { title: "Copy the RaiseTalks URL", text: "Click to copy the connector URL - you'll paste it into Claude in the next step", action: { kind: "copy", value: site.mcp.url, copiedLabel: "Copied" } },
           { title: "Add it in Claude", text: "In Claude desktop or claude.ai, go to Settings → Connectors, add a custom connector, name it RaiseTalks, and paste the URL.", action: { kind: "ghost", cta: { label: "Open in Claude", href: "https://claude.ai/new#settings/customize-connectors", external: true } } },
           { title: "Connect and sign in", text: "Click Add → Connect and sign in with your RaiseTalks account. Then just ask Claude to build or update your data room." },
         ],

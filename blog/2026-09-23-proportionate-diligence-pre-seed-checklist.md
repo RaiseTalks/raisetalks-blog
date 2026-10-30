@@ -148,3 +148,5 @@ Five working days. Longer usually indicates the company's records are incomplete
 ---
 
 When a founder grants you due-diligence access on RaiseTalks, you get their full 143-field record in one step, so week one is verification instead of collection. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to browse startups, read the data rooms they have access to and update their dealflow pipeline from the chat.

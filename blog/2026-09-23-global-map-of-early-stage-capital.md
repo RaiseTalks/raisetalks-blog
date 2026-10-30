@@ -133,3 +133,5 @@ Far less than five years ago. Remote diligence is standard and local capital exi
 ---
 
 RaiseTalks gives founders and investors in any market one structured standard, so a distant investor can evaluate you without a single email. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders and investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/`: founders work on their data room, investors browse startups and manage their dealflow pipeline.

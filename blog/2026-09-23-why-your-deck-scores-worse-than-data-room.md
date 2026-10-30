@@ -127,3 +127,5 @@ Because they live in multiple documents updated at different times. The fix is o
 ---
 
 RaiseTalks keeps one source of truth and generates the rest from it, including a YC-style deck from your data room. One set of numbers, everywhere. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

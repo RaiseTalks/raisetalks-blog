@@ -134,3 +134,5 @@ It can write the descriptive blocks well from structured data. It cannot write t
 ---
 
 RaiseTalks turns an approved data room into a structured investment memo in one click, scored across four dimensions and exportable as a PDF. You bring the thesis. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to browse startups, read the data rooms they have access to and update their dealflow pipeline from the chat.
