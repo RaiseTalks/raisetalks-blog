@@ -144,3 +144,31 @@ export function Checkbox({ label, className, id, ...rest }: ToggleProps) {
     </label>
   );
 }
+
+type SwitchProps = Omit<ComponentProps<"button">, "onChange" | "role" | "type"> & { checked: boolean; onChange: (checked: boolean) => void };
+
+/**
+ * On/off switch (Studio, no Figma component yet; Cookie settings). Label it with aria-labelledby or aria-label.
+ * Track: muted grey off, brand blue on, both at least 3:1 against white; white thumb slides right when on.
+ */
+export function Switch({ checked, onChange, className, ...rest }: SwitchProps) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      onClick={() => onChange(!checked)}
+      className={cn(
+        "relative inline-flex h-6 w-10 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-[var(--duration-hover)] ease-[var(--ease-soft)] disabled:cursor-not-allowed disabled:opacity-50",
+        checked ? "bg-brand-light-blue" : "bg-muted",
+        className,
+      )}
+      {...rest}
+    >
+      <span
+        aria-hidden
+        className={cn("size-5 rounded-full bg-page transition-transform duration-[var(--duration-hover)] ease-[var(--ease-soft)]", checked ? "translate-x-[18px]" : "translate-x-0.5")}
+      />
+    </button>
+  );
+}

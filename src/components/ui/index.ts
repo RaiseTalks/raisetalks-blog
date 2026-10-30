@@ -1,7 +1,7 @@
 export { Button, type ButtonProps } from "./Button";
 export { Badge, StatusBadge } from "./Badge";
 export { Card } from "./Card";
-export { Input, Textarea, Checkbox } from "./Form";
+export { Input, Textarea, Checkbox, Switch } from "./Form";
 export { RichText } from "./RichText";
 export { Lightbox, type LightboxPhoto } from "./Lightbox";
 export { Icon } from "./Icon";

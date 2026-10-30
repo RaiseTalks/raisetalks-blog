@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { site } from "@/content/site";
 import { MotionProvider } from "@/components/motion";
 import { Analytics } from "@/components/Analytics";
+import { CookieConsent } from "@/components/consent/CookieConsent";
 import "./globals.css";
 
 // Poppins is self-hosted (src/fonts) — no Google request, faster, GDPR-friendly.
@@ -39,7 +40,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={poppins.variable} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <MotionProvider>{children}</MotionProvider>
+        {/* banner first, so keyboard and screen-reader users reach it before the page */}
+        <MotionProvider>
+          <CookieConsent />
+          {children}
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

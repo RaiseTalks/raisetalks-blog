@@ -2,15 +2,17 @@
 
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { VideoPoster } from "./VideoEmbed";
 
 /**
- * YouTube video with a chapter list (Support founders guide). Picking a chapter reloads the
- * privacy-friendly player at that second and starts it; the active chapter is marked in brand blue.
+ * YouTube video with a chapter list (Support founders guide). Until the visitor presses play or picks a
+ * chapter it is VideoEmbed's poster facade, so YouTube stores nothing in the browser before that (cookie
+ * consent). Then the privacy-friendly player loads at that second and starts; the active chapter is in brand blue.
  */
 export function ChapterVideo({ youtubeId, title, chapters }: { youtubeId: string; title: string; chapters: { time: string; start: number; title: string }[] }) {
   const [start, setStart] = useState<number | null>(null);
   const frame = useRef<HTMLDivElement>(null);
-  const params = `rel=0&modestbranding=1&playsinline=1${start !== null ? `&start=${start}&autoplay=1` : ""}`;
+  const params = `rel=0&modestbranding=1&playsinline=1&start=${start}&autoplay=1`;
 
   function play(seconds: number) {
     setStart(seconds);
@@ -20,15 +22,18 @@ export function ChapterVideo({ youtubeId, title, chapters }: { youtubeId: string
   return (
     <div className="flex flex-col gap-6">
       <div ref={frame} className="overflow-hidden rounded-lg border border-border-2 bg-ink">
-        <iframe
-          key={start ?? "intro"}
-          className="aspect-video w-full"
-          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?${params}`}
-          title={title}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        {start === null ? (
+          <VideoPoster title={title} poster={`https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`} onPlay={() => setStart(0)} />
+        ) : (
+          <iframe
+            key={start}
+            className="aspect-video w-full"
+            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?${params}`}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
       </div>
       <ol className="grid gap-2 tablet:grid-cols-2">
         {chapters.map((c) => {

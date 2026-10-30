@@ -20,10 +20,17 @@ export function VideoEmbed({ youtubeId, title, poster, fallbackHref }: { youtube
       />
     );
   }
-  const Cmp = youtubeId ? "button" : "a";
+  return youtubeId
+    ? <VideoPoster title={title} poster={poster} onPlay={() => setPlay(true)} />
+    : <VideoPoster title={title} poster={poster} href={fallbackHref} />;
+}
+
+/** The facade itself (also ChapterVideo): a play button, or a link to `href` in a new tab. */
+export function VideoPoster({ title, poster, onPlay, href }: { title: string; poster: string; onPlay?: () => void; href?: string }) {
+  const Cmp = onPlay ? "button" : "a";
   return (
     <Cmp
-      {...(youtubeId ? { type: "button" as const, onClick: () => setPlay(true) } : { href: fallbackHref, target: "_blank", rel: "noopener noreferrer" })}
+      {...(onPlay ? { type: "button" as const, onClick: onPlay } : { href, target: "_blank", rel: "noopener noreferrer" })}
       className="group relative block aspect-video w-full overflow-hidden rounded-lg bg-ink"
       aria-label={`Play video: ${title}`}
     >

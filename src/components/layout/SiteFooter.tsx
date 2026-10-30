@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footer, site, type NavLink } from "@/content/site";
+import { consent } from "@/content/consent";
+import { CookieSettingsButton } from "@/components/consent/CookieSettingsButton";
 import { NewsletterForm } from "./NewsletterForm";
 
 function FooterLink({ link }: { link: NavLink }) {
@@ -89,6 +91,9 @@ export function SiteFooter() {
                 <Link href={l.href} className="transition-colors duration-[250ms] hover:text-on-brand">{l.label}</Link>
               </li>
             ))}
+            <li>
+              <CookieSettingsButton label={consent.settings} className="cursor-pointer transition-colors duration-[250ms] hover:text-on-brand" />
+            </li>
           </ul>
         </div>
       </div>

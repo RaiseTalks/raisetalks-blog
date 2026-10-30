@@ -4,9 +4,12 @@
 // Consecutive li → list, br → stacked lines (addresses), btn → button row, th + tr → table (th = header row).
 // Inline: **bold**, [label](href), emails become mailto links.
 import type { LegalDoc } from "./types";
+// Section 9 (Cookie Policy) describes the types of cookies with the same text as Cookie settings
+// (src/content/consent.ts), so the dialog and the policy never disagree. High level only: no cookie-by-cookie list.
+import { cookieTypes } from "../consent";
 
 export const privacy: LegalDoc = {
-  updated: "July 8, 2026",
+  updated: "October 30, 2026",
   title: "Privacy Policy",
   subtitle: "Your privacy is important to us. Learn how we protect your data.",
   intro: [
@@ -85,8 +88,19 @@ h2|8. International Data Transfers
 p|If your data is transferred outside the United States or the European Economic Area (EEA), we ensure appropriate safeguards, such as:
 li|Standard Contractual Clauses (SCCs)
 li|Transfer to jurisdictions recognized by the European Commission as providing adequate protection
-h2|9. Cookies and Analytics
-p|We use cookies and tracking technologies to enhance your experience and analyze usage. You can control cookie preferences through your browser settings or by adjusting cookie consent settings when visiting our site.
+h2|9. Cookie Policy
+p|Cookies are small text files that a website stores in your browser. Similar browser storage works the same way, and we treat it as cookies here. This section explains which types of cookies raisetalks.com uses, why, and how you control them.
+h3|a. Strictly Necessary Cookies (Always Active)
+p|${cookieTypes.necessary.text}
+h3|b. Analytics Cookies (Only With Your Consent)
+p|${cookieTypes.analytics.text} These cookies are set only after you accept them and last up to two years, unless you withdraw your consent or clear them sooner.
+h3|c. Marketing and Advertising Cookies (Not Used)
+p|${cookieTypes.marketing.text}
+h3|d. Your Choices
+p|You make your choice on your first visit and can change or withdraw it at any time from **Cookie settings** at the bottom of every page. Withdrawing consent stops analytics and deletes its cookies from your browser. We ask again after six months, or sooner if the types of cookies we use change.
+p|We honor the **Global Privacy Control** signal: if your browser sends it, analytics stays off unless you switch it on yourself. You can also block or delete cookies at any time in your browser settings.
+h3|e. Embedded Videos
+p|YouTube videos load from YouTube's privacy-enhanced domain (youtube-nocookie.com) only when you press play. From then on, YouTube's own privacy policy applies.
 h2|10. Public-Source Investor Information
 p|RaiseTalks maintains a catalog of investors and investment firms to help startups find relevant funding sources. Some entries are built from **publicly available professional information** (for example: firm name, investment focus, public website, and publicly listed professional contact details). We process this information under our **legitimate interest** (GDPR Art. 6(1)(f)) in operating an investor-discovery service, and it exists independently of whether the investor holds a RaiseTalks account.
 p|If you are an individual and wish to object to, correct, or remove your details from the catalog, email privacy@raisetalks.ai and we will address your request.
