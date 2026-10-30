@@ -77,7 +77,7 @@ export const home = {
           { title: "Draft the IC memo", text: "Turn a scored startup straight into an investment-committee memo, structured and ready to circulate." },
         ],
         steps: [
-          { title: "Copy the RaiseTalks URL", text: "Click to copy the connector URL — you'll paste it into Claude in the next step.", action: { kind: "button", cta: { label: "Request MCP Link", ...links.signUp } } },
+          { title: "Copy the RaiseTalks URL", text: "Click to copy the connector URL — you'll paste it into Claude in the next step.", action: { kind: "copy", value: site.mcp.url, copiedLabel: "Copied" } },
           { title: "Add it in Claude", text: "In Claude desktop or claude.ai, go to Settings → Connectors, add a custom connector, name it RaiseTalks, and paste the URL.", action: { kind: "ghost", cta: { label: "Open in Claude", href: "https://claude.ai/new#settings/customize-connectors", external: true } } },
           { title: "Connect and sign in", text: "Click Add → Connect and sign in with your RaiseTalks account. Then just ask Claude to score a startup or prep an IC memo." },
         ],
