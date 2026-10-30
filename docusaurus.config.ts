@@ -336,9 +336,9 @@ const config: Config = {
       { name: 'twitter:image', content: 'https://raisetalks.com/img/og-raisetalks.jpg' },
     ],
     announcementBar: {
-      id: 'dubai_ai_festival_2026',
+      id: 'web_summit_lisbon_2026',
       content:
-        'See you in UAE at Dubai AI Festival - October 26-27, 2026',
+        'See you in Lisbon at Web Summit - November 9-14, 2026',
       backgroundColor: 'rgba(0, 119, 255, 1)',
       textColor: '#ffffff',
       isCloseable: true,
