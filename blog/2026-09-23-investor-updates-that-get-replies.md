@@ -142,3 +142,5 @@ Always. Investors who learn about problems late stop trusting the good news too,
 ---
 
 RaiseTalks drafts your update from your data room in both tiers at once, schedules the send, and shows you link clicks and in-app reads. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

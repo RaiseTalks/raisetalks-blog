@@ -174,3 +174,5 @@ PDF for documents, so formatting holds; a spreadsheet format for financial model
 ---
 
 RaiseTalks turns this checklist into a structured record: 143 fields across four domains, four access tiers from public to due diligence, and a completeness score that shows what is still missing before an investor finds it. Upload your deck and it fills the empty fields for you. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

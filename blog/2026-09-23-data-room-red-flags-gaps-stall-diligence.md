@@ -161,3 +161,5 @@ Give the link to someone outside the company and ask them to write a one-paragra
 ---
 
 RaiseTalks scores every section of your data room for completeness and names the gaps before an investor does. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

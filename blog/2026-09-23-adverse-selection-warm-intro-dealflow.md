@@ -126,3 +126,5 @@ Structured intake, a published thesis filter, and a consistent first-pass score.
 ---
 
 RaiseTalks matches startups to investors on sector, stage, ticket size and geography, and founders can push their data room only once it clears a readiness threshold. Structured intake, no introduction required. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to browse startups, read the data rooms they have access to and update their dealflow pipeline from the chat.

@@ -143,3 +143,5 @@ Have someone outside the company score your written record blind, then compare w
 ---
 
 RaiseTalks scores all four dimensions from your data room, shows the reasoning behind each, and links each dimension straight into the form that improves it. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

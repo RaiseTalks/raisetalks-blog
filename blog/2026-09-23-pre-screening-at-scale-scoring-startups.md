@@ -147,3 +147,5 @@ Highly variable. As a rough rule of thumb, expect a small minority of screened c
 ---
 
 RaiseTalks gives investors a filterable catalogue of startups built on the same structured field set, up to 143 fields once access is granted, plus a one-click AI pre-score across team, product, market and deal for approved data rooms. Comparable by construction. [See the investor side](https://app.raisetalks.com/sign-up).
+
+Investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to browse startups, read the data rooms they have access to and update their dealflow pipeline from the chat.

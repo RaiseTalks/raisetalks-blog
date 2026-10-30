@@ -134,3 +134,5 @@ A specific reason you are writing to them, your key numbers in the body, and one
 ---
 
 RaiseTalks gives every startup a public, structured, crawlable profile, and once your data room clears the readiness gate you can push it to investors matched on sector, stage, ticket and geography. No introduction required. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

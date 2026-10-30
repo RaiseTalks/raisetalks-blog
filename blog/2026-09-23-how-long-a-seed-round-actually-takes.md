@@ -134,3 +134,5 @@ Ten to twelve weeks for a well-prepared founder with a strong company and an ear
 ---
 
 The weeks you lose to "let me find that and send it over" are the ones you can actually get back. RaiseTalks keeps every answer in one record investors can read without asking. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

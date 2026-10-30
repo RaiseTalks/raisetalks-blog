@@ -141,3 +141,5 @@ A shared, founder-authored data layer. Almost every tool currently builds its ow
 ---
 
 RaiseTalks sits at the intersection: a founder-authored structured record, a readiness score, investor matching and an MCP server that exposes consented data to AI clients. [See how it fits](https://raisetalks.com).
+
+Founders and investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/`: founders work on their data room, investors browse startups and manage their dealflow pipeline.

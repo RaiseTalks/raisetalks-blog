@@ -150,3 +150,5 @@ No. If the data reaches the browser it is exposed. Enforcement must happen serve
 ---
 
 RaiseTalks enforces four access tiers at the database layer, with per-invite expiry and an audit trail of every grant. Basic and due-diligence sharing are on Pro. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

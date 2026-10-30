@@ -173,3 +173,5 @@ Team, then product, then market, then deal terms. Documents are opened last and 
 ---
 
 RaiseTalks structures all of this for you: 143 fields across four domains, four enforced access tiers, and a completeness score that tells you what is still missing before an investor finds out for you. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

@@ -155,3 +155,5 @@ A focused day for these five documents, if your paperwork exists. If it takes lo
 ---
 
 RaiseTalks gives you one 143-field record: fill the pre-seed essentials now and complete the rest as your round progresses, so you never rebuild. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

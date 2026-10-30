@@ -146,3 +146,5 @@ Record the reason, thank them, and add them to your monthly update list. Passes 
 ---
 
 RaiseTalks runs this as a ten-stage drag-and-drop pipeline alongside your tiered data room, with notes and meetings on every investor card and access levels you set per investor. [Start your pipeline](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

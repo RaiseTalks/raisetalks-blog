@@ -80,6 +80,25 @@ const STUB_KEEP = [
 const LOGO = "favicon/android-chrome-512x512.png";
 const LOGO_MIN = 112;
 
+/**
+ * Story 065.04 AC 8: the MCP section of llms.txt, after the `## Pages` list and before `## Blog`. The AC 3
+ * baseline comparison drops this block (up to the next `## ` heading) from the build's side before comparing.
+ */
+const MCP_HEADING = "## Connect an AI assistant (MCP)";
+const MCP_SECTION_EXPECTED = [
+  MCP_HEADING,
+  "",
+  "- [RaiseTalks MCP server](https://mcp.raisetalks.com/): For founders and investors. Founders with a subscription or trial build and update their data room; investors browse startups and manage their dealflow pipeline. Users sign in with their RaiseTalks account.",
+  "- [RaiseTalks Pitch Deck Importer](https://mcp.raisetalks.com/investors): For investors. Creates unclaimed startup profiles from pitch decks the investor holds. Needs an investor subscription or trial.",
+  "- [Connection steps](https://app.raisetalks.com/llms.txt): Setup for Claude, ChatGPT and Claude Code, and what each server's tools do.",
+  "",
+];
+
+/** Story 065.04 AC 13: one post per audience (founders, investors, both) carries its connect line as code. */
+const MCP_SAMPLE_POSTS = ["data-room-checklist-pre-seed-seed-startups", "modern-dealflow-stack", "what-ai-agents-change-about-diligence"];
+const MCP_CODE = /<code[^>]*>https:\/\/mcp\.raisetalks\.com\/<\/code>/;
+const MCP_HREF = 'href="https://mcp.raisetalks.com';
+
 /** AC 8: files this story must not change. */
 const UNCHANGED_FILES = ["robots.txt", "sitemap.xml", "blog/rss.xml", "blog/atom.xml"];
 const UNCHANGED_JSONLD = ["support/index.html", "trust/index.html"];
@@ -279,7 +298,35 @@ group(`AC 3: llms.txt key facts${baseline ? ", the rest equal to the baseline" :
     const bPagesAt = b.indexOf("## Pages");
     check(util.isDeepStrictEqual(l.slice(0, 4), b.slice(0, 4)), "llms.txt: the H1 and summary differ from the baseline's");
     check(bPagesAt === 4, "baseline llms.txt: expected `## Pages` right after the summary (is the baseline built from `main`?)");
-    check(l.slice(pagesAt).join("\n") === b.slice(bPagesAt).join("\n"), "llms.txt: from `## Pages` to the end differs from the baseline");
+    // 065.04 adds its MCP section inside this range on purpose; it is checked on its own below.
+    const mcpAt = l.indexOf(MCP_HEADING);
+    const mcpEnd = mcpAt < 0 ? -1 : l.findIndex((x, i) => i > mcpAt && x.startsWith("## "));
+    const rest = mcpAt < 0 ? l : [...l.slice(0, mcpAt), ...l.slice(mcpEnd)];
+    check(rest.slice(pagesAt).join("\n") === b.slice(bPagesAt).join("\n"), "llms.txt: from `## Pages` to the end, apart from the MCP section, differs from the baseline");
+  }
+});
+
+// --- 065.04 AC 8 + 13: the MCP section, the home copy field and the posts' connect lines -------------------------
+
+group("065.04 AC 8 + 13: llms.txt MCP section, no MCP link on the home page or the sampled posts", (check) => {
+  const l = lines(read(out, "llms.txt"));
+  const at = l.indexOf(MCP_HEADING);
+  const pagesAt = l.indexOf("## Pages");
+  const blogAt = l.indexOf("## Blog");
+  if (check(at > pagesAt && blogAt > at, `llms.txt: \`${MCP_HEADING}\` must sit after \`## Pages\` and before \`## Blog\``)) {
+    const section = l.slice(at, blogAt);
+    check(util.isDeepStrictEqual(section, MCP_SECTION_EXPECTED), () => `llms.txt MCP section differs.\n    expected: ${show(MCP_SECTION_EXPECTED)}\n    actual:   ${show(section)}`);
+  }
+  check(l.filter((x) => x.includes("mcp.raisetalks.com")).length === 2, "llms.txt: expected exactly 2 lines naming mcp.raisetalks.com");
+  const home = read(out, "index.html");
+  check(!home.includes("Request MCP Link"), "index.html: still has \"Request MCP Link\"");
+  check(!home.includes(MCP_HREF), `index.html: has an ${MCP_HREF} link (the URL must stay copy text)`);
+  for (const slug of MCP_SAMPLE_POSTS) {
+    const rel = `blog/${slug}/index.html`;
+    if (!check(exists(out, rel), `${rel} missing in ${out}: ${BUILD_HINT}`)) continue;
+    const html = read(out, rel);
+    check(MCP_CODE.test(html), `${rel}: no <code>https://mcp.raisetalks.com/</code> (the connect line)`);
+    check(!html.includes(MCP_HREF), `${rel}: has an ${MCP_HREF} link (the URL must stay a code span)`);
   }
 });
 

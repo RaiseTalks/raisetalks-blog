@@ -146,3 +146,5 @@ Assuming diligence was done by someone else. Require the memo to state what was 
 ---
 
 RaiseTalks gives solo investors a filterable startup catalogue, an eight-stage dealflow board and a one-click AI pre-score on companies that have granted access, so a four-hour week covers a thousand companies a year. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to browse startups, read the data rooms they have access to and update their dealflow pipeline from the chat.

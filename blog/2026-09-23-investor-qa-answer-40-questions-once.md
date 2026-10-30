@@ -150,3 +150,5 @@ Yes. Every question answered in advance removes a round trip, and round trips ar
 ---
 
 RaiseTalks holds most of the forty answers as structured fields, so every number an investor sees comes from one source. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

@@ -156,3 +156,5 @@ Because the record is concentrated. Over 70% of Q2 2026 capital went to AI compa
 ---
 
 If the constraint is evaluation throughput, the fix is structure. RaiseTalks gives founders a 143-field record investors can read in one pass, and gives investors a dealflow pipeline with one-click AI pre-scores instead of an inbox. [See how it works](https://raisetalks.com).
+
+Founders and investors can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/`: founders work on their data room, investors browse startups and manage their dealflow pipeline.

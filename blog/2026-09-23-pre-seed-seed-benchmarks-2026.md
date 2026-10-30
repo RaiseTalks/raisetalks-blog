@@ -141,3 +141,5 @@ Solve for dilution and runway first. You need 24 months and enough capital to cl
 ---
 
 RaiseTalks keeps your cap table, round terms and use of funds in one structured record, and drafts your investor updates from it, so your numbers have one source of truth. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

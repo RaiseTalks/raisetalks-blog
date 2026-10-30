@@ -21,6 +21,11 @@ export const site = {
   /** No backend on this site. Login / sign-up live on app.raisetalks.com (separate platform). */
   features: { members: false },
   links: { app: APP, signIn: `${APP}/sign-in`, signUp: `${APP}/sign-up`, demo: DEMO },
+  /**
+   * The two MCP servers (story 065.04). Fixed on every deployment: there is no dev MCP host. The root serves
+   * founders and investors; /investors is the pitch-deck importer. Read by the home copy field and /llms.txt.
+   */
+  mcp: { url: "https://mcp.raisetalks.com/", importerUrl: "https://mcp.raisetalks.com/investors" },
 } as const;
 
 /** `href` optional: without it the strip is plain text. */

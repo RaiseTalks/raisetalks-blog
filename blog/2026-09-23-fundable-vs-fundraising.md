@@ -130,3 +130,5 @@ If the business is real, about a week of writing. The gap is almost always docum
 ---
 
 RaiseTalks scores your record the way an investor reads it, names the gaps, and links each dimension to the section that fixes it. [Start your 30-day trial](https://app.raisetalks.com/sign-up).
+
+Founders can connect RaiseTalks to Claude or ChatGPT at `https://mcp.raisetalks.com/` to build and update their data room from the chat.

@@ -67,6 +67,20 @@ function keyFacts(): string[] {
   ];
 }
 
+/**
+ * The two MCP servers, one line each, and a pointer to the app's llms.txt for the connection steps (story 065.04).
+ * Absolute URLs, so not built with line(), which prefixes this site's origin.
+ */
+function mcpSection(): string[] {
+  return [
+    "## Connect an AI assistant (MCP)",
+    "",
+    `- [RaiseTalks MCP server](${site.mcp.url}): For founders and investors. Founders with a subscription or trial build and update their data room; investors browse startups and manage their dealflow pipeline. Users sign in with their RaiseTalks account.`,
+    `- [RaiseTalks Pitch Deck Importer](${site.mcp.importerUrl}): For investors. Creates unclaimed startup profiles from pitch decks the investor holds. Needs an investor subscription or trial.`,
+    `- [Connection steps](${site.links.app}/llms.txt): Setup for Claude, ChatGPT and Claude Code, and what each server's tools do.`,
+  ];
+}
+
 export function GET() {
   const base = site.url.replace(/\/$/, "");
   const line = (name: string, href: string, description?: string) => `- [${name}](${base}${href})${description ? `: ${description}` : ""}`;
@@ -81,6 +95,8 @@ export function GET() {
     "## Pages",
     "",
     ...PAGES.map(([n, h, d]) => line(n, h, d)),
+    "",
+    ...mcpSection(),
     "",
     "## Blog",
     "",
