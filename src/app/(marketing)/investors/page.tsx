@@ -5,6 +5,7 @@ import {
 } from "@/components/sections";
 import { investors as v } from "@/content/marketing/investors";
 import { pages } from "@/content/marketing/pages";
+import { jsonLd, productPageSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = { title: pages.investors.title, description: pages.investors.description, alternates: { canonical: pages.investors.path } };
 
@@ -17,6 +18,8 @@ export const metadata: Metadata = { title: pages.investors.title, description: p
 export default function InvestorsPage() {
   return (
     <div data-audience="investors">
+      {/* the product with the investors' plan, as structured data (src/lib/structured-data.ts) */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(productPageSchema(["investor-pro"])) }} />
       <PageHero heading={v.hero.heading} text={v.hero.text} primary={v.hero.primary} secondary={v.hero.secondary} image={v.hero.image} textWidth="max-w-[440px]" />
       <GridGap width="medium" />
       <StatementBanner text={v.statement} width="medium" mobileLeft />
