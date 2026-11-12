@@ -10,8 +10,8 @@ export const refund: LegalDoc = {
     "At **RaiseTalks**, we strive to deliver exceptional value and service to help founders and investors accelerate fundraising. All payments are processed securely through **Stripe**. Please review our refund terms carefully before purchasing a subscription or service.",
   ],
   body: String.raw`
-h2|1. Free Tier
-p|Our Free Plan offers limited features for evaluation at no cost. No payment is required, and no refunds apply.
+h2|1. 30-Day Trial
+p|Our 30-day trial lets you evaluate RaiseTalks at no cost. No payment is required, and no refunds apply.
 h2|2. Paid Subscriptions
 h3|Monthly and Annual Plans
 li|Paid subscriptions are billed either monthly or annually based on your selected plan.
@@ -53,7 +53,7 @@ h2|7. Contact Us
 p|For any billing questions or refund requests, please contact:
 br|**RaiseTalks Billing Support**
 br|Email: billing@raisetalks.ai
-p|**Tip:** Before requesting a refund, try our [Free Tier](https://app.raisetalks.com/pricing) to explore our features and see if they meet your needs.
+p|**Tip:** Before requesting a refund, try our [30-day trial](https://app.raisetalks.com/pricing) to explore our features and see if they meet your needs.
 btn|View Pricing Plans ¦ https://app.raisetalks.com/pricing
 btn|Terms of Service ¦ /terms-of-service
 `,
