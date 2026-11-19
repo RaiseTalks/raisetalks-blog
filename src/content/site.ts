@@ -28,9 +28,13 @@ export const site = {
   mcp: { url: "https://mcp.raisetalks.com/", importerUrl: "https://mcp.raisetalks.com/investors" },
 } as const;
 
-/** `href` optional: without it the strip is plain text. */
-export const announcement: { text: string; href?: string; dismissLabel: string } = {
-  text: "Book a Demo to  Get your Startup Pro Annual Perk from RaiseTalks",
+/**
+ * `link` optional: a linked phrase shown before `text` (only that phrase is a link). `href` optional: links the
+ * whole strip. Without either the strip is plain text.
+ */
+export const announcement: { text: string; link?: NavLink; href?: string; dismissLabel: string } = {
+  link: { label: "Book a Demo", href: DEMO, external: true },
+  text: "to get your Startup Pro Annual Perk from RaiseTalks",
   dismissLabel: "Dismiss announcement",
 };
 

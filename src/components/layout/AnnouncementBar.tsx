@@ -11,7 +11,18 @@ export function AnnouncementBar() {
   if (!open) return null;
   return (
     <div className="relative flex min-h-[30px] items-center justify-center px-10 py-1.5 text-body text-on-brand" style={{ backgroundImage: "var(--gradient-announcement)" }}>
-      {announcement.href ? (
+      {announcement.link ? (
+        <p className="text-center">
+          <a
+            href={announcement.link.href}
+            {...(announcement.link.external && { target: "_blank", rel: "noopener noreferrer" })}
+            className="font-semibold underline underline-offset-4 transition-opacity duration-[250ms] hover:opacity-80"
+          >
+            {announcement.link.label}
+          </a>{" "}
+          {announcement.text}
+        </p>
+      ) : announcement.href ? (
         <Link href={announcement.href} className="text-center underline-offset-4 hover:underline">
           {announcement.text}
         </Link>
