@@ -22,6 +22,57 @@ import util from "node:util";
 const ORIGIN = "https://raisetalks.com";
 const BUILD_HINT = "run `NEXT_PUBLIC_SITE_URL=https://raisetalks.com npm run build` first";
 
+/**
+ * Today's priced plans as schema.org Offers (src/content/marketing/pricing.ts via src/lib/structured-data.ts).
+ * VC Platinum has no Offer: its price is "Contact us". "Coming soon" features are not in a description.
+ */
+const offer = (name, category, description, price, unitCode) => ({
+  "@type": "Offer",
+  name,
+  category,
+  description,
+  price,
+  priceCurrency: "USD",
+  priceSpecification: { "@type": "UnitPriceSpecification", price, priceCurrency: "USD", unitCode },
+  url: `${ORIGIN}/pricing/`,
+});
+const STARTUP_FEATURES = "Unlimited AI Advisor, DD-ready data room, IR Pipeline, IR Push, Direct investor invites, Data Room MCP";
+const INVESTOR_FEATURES =
+  "DD-tier access (143 fields), Scoring OS, Connections & IR Updates, 1-click Investment Memo PDFs, Investor MCP, Q&A Constructor with public share links";
+const STARTUP_OFFERS = [
+  offer("Startup Pro (Monthly)", "For Founders", STARTUP_FEATURES, 99, "MON"),
+  offer("Startup Pro (Annual)", "For Founders", STARTUP_FEATURES, 699, "ANN"),
+];
+const INVESTOR_OFFERS = [
+  offer("Investor Pro (Monthly)", "For Investors", INVESTOR_FEATURES, 199, "MON"),
+  offer("Investor Pro (Annual)", "For Investors", INVESTOR_FEATURES, 1428, "ANN"),
+];
+/** The product node: on the home page inside its graph, on the other pages next to a short Organization node. */
+const software = (offers) => ({
+  "@type": "SoftwareApplication",
+  "@id": `${ORIGIN}/#software`,
+  name: "RaiseTalks",
+  url: "https://app.raisetalks.com",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description: "One workspace for founders and investors: data rooms, readiness scoring, diligence-ready deal flow.",
+  publisher: { "@id": `${ORIGIN}/#organization` },
+  offers,
+});
+const productPage = (offers) => ({
+  "@context": "https://schema.org",
+  "@graph": [{ "@type": "Organization", "@id": `${ORIGIN}/#organization`, name: "RaiseTalks", url: `${ORIGIN}/` }, software(offers)],
+});
+/** The one JSON-LD block of each page that presents the plans, exactly. */
+const PRODUCT_PAGES_EXPECTED = {
+  "pricing/index.html": productPage([...STARTUP_OFFERS, ...INVESTOR_OFFERS]),
+  "startups/index.html": productPage(STARTUP_OFFERS),
+  "investors/index.html": productPage(INVESTOR_OFFERS),
+};
+/** There is no free plan: a visitor either subscribes or uses the 30-day trial. These plan names must not come back. */
+const NO_FREE_PLAN_PAGES = ["index.html", "pricing/index.html", "startups/index.html", "investors/index.html", "support/index.html", "refund-policy/index.html"];
+const FREE_PLAN_NAMES = ["Free Plan", "Free Tier", "Freemium Startup"];
+
 /** AC 1: the home page's one JSON-LD block, exactly. */
 const HOME_EXPECTED = {
   "@context": "https://schema.org",
@@ -48,6 +99,7 @@ const HOME_EXPECTED = {
       url: `${ORIGIN}/`,
       publisher: { "@id": `${ORIGIN}/#organization` },
     },
+    software([...STARTUP_OFFERS, ...INVESTOR_OFFERS]),
   ],
 };
 
@@ -190,9 +242,13 @@ group("inputs", (check) => {
 
 // --- AC 5 + 6: every block parses, carries no raw "<", holds no empty value --------------------------------------
 
-const pages = { home: "index.html", ...Object.fromEntries(posts.map((s) => [s, `blog/${s}/index.html`])) };
+const pages = {
+  home: "index.html",
+  ...Object.fromEntries(Object.keys(PRODUCT_PAGES_EXPECTED).map((rel) => [rel, rel])),
+  ...Object.fromEntries(posts.map((s) => [s, `blog/${s}/index.html`])),
+};
 const parsed = {};
-group(`AC 5 + 6: JSON-LD parses, "<" escaped, no empty value (home + ${posts.length} post pages)`, (check) => {
+group(`AC 5 + 6: JSON-LD parses, "<" escaped, no empty value (home, ${Object.keys(PRODUCT_PAGES_EXPECTED).length} plan pages, ${posts.length} post pages)`, (check) => {
   for (const [name, rel] of Object.entries(pages)) {
     parsed[name] = jsonLdBodies(read(out, rel)).map((body, i) => {
       check(!body.includes("<"), `${rel} block ${i}: raw "<" in the JSON-LD (write it with .replace(/</g, "\\\\u003c"))`);
@@ -212,7 +268,7 @@ group(`AC 5 + 6: JSON-LD parses, "<" escaped, no empty value (home + ${posts.len
 
 // --- AC 1: home @graph ------------------------------------------------------------------------------------------
 
-group("AC 1: home Organization + WebSite", (check) => {
+group("AC 1: home Organization + WebSite + SoftwareApplication", (check) => {
   const blocks = parsed.home;
   check(blocks.length === 1, `index.html has ${blocks.length} ld+json blocks, expected exactly 1`);
   const actual = blocks[0];
@@ -220,6 +276,24 @@ group("AC 1: home Organization + WebSite", (check) => {
   const text = JSON.stringify(actual ?? {});
   for (const absent of ["potentialAction", "SearchAction", "address", "legalName", "contactPoint", "twitter.com", "x.com/"]) {
     check(!text.includes(absent), `index.html JSON-LD must not contain ${absent}`);
+  }
+});
+
+// --- Plans and prices on /pricing, /startups, /investors -----------------------------------------------------------
+
+group("Plan pages: SoftwareApplication with today's offers", (check) => {
+  for (const [rel, expected] of Object.entries(PRODUCT_PAGES_EXPECTED)) {
+    const blocks = parsed[rel];
+    if (!check(blocks.length === 1, `${rel} has ${blocks.length} ld+json blocks, expected exactly 1`)) continue;
+    check(util.isDeepStrictEqual(blocks[0], expected), () => `${rel} JSON-LD differs.\n    expected: ${show(expected)}\n    actual:   ${show(blocks[0])}`);
+  }
+});
+
+group("No free plan: the old plan names are gone", (check) => {
+  for (const rel of NO_FREE_PLAN_PAGES) {
+    if (!check(exists(out, rel), `${rel} missing in ${out}: ${BUILD_HINT}`)) continue;
+    const html = read(out, rel);
+    for (const name of FREE_PLAN_NAMES) check(!html.includes(name), `${rel}: still says "${name}" (there is no free plan, only the 30-day trial)`);
   }
 });
 

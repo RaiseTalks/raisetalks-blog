@@ -9,6 +9,7 @@ import { home, type Audience } from "@/content/marketing/home";
 import { pages } from "@/content/marketing/pages";
 import { partnerLogos } from "@/content/marketing/shared";
 import { footer, site } from "@/content/site";
+import { softwareApplication } from "@/lib/structured-data";
 
 export const metadata: Metadata = { description: pages.home.description, alternates: { canonical: "/" } };
 
@@ -32,8 +33,9 @@ function audienceView(a: Audience) {
 export default function HomePage() {
   const h = home.hero;
 
-  // Organization + WebSite structured data, one block with one WebSite node (Google reads both from the home
-  // page). Every value comes from src/content, the same text the site publishes; nothing is retyped here.
+  // Organization + WebSite + SoftwareApplication structured data, one block with one WebSite node (Google reads
+  // the first two from the home page). Every value comes from src/content, the same text the site publishes;
+  // nothing is retyped here.
   // - No SearchAction: the catalog search lives on app.raisetalks.com, not on this site.
   // - sameAs: the external profile links of the footer's Community column, in order (only profiles that
   //   raisetalks.com itself publishes). No X/Twitter, because none is listed there. A missing column or one
@@ -61,6 +63,8 @@ export default function HomePage() {
         sameAs,
       },
       { "@type": "WebSite", "@id": `${base}/#website`, name: site.name, url: `${base}/`, publisher: { "@id": `${base}/#organization` } },
+      // the product with its plans and prices (src/lib/structured-data.ts), so a reader of the home page learns what it costs
+      softwareApplication(),
     ],
   };
 

@@ -6,6 +6,7 @@ import {
 import { Reveal } from "@/components/motion";
 import { pages } from "@/content/marketing/pages";
 import { startups as s } from "@/content/marketing/startups";
+import { jsonLd, productPageSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = { title: pages.startups.title, description: pages.startups.description, alternates: { canonical: pages.startups.path } };
 
@@ -13,6 +14,8 @@ export const metadata: Metadata = { title: pages.startups.title, description: pa
 export default function StartupsPage() {
   return (
     <div data-audience="investors">
+      {/* the product with the founders' plan, as structured data (src/lib/structured-data.ts) */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(productPageSchema(["startup-pro"])) }} />
       <PageHero heading={s.hero.heading} text={s.hero.text} primary={s.hero.primary} secondary={s.hero.secondary} image={s.hero.image} textWidth="max-w-[420px]" />
       <GridGap width="medium" />
       <StatementBanner text={s.statement} width="medium" />

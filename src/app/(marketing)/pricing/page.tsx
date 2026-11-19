@@ -4,6 +4,7 @@ import { CtaBand, PageHero, PricingPlans } from "@/components/sections";
 import { Reveal } from "@/components/motion";
 import { pages } from "@/content/marketing/pages";
 import { pricing as p } from "@/content/marketing/pricing";
+import { jsonLd, productPageSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = { title: pages.pricing.title, description: pages.pricing.description, alternates: { canonical: pages.pricing.path } };
 
@@ -15,6 +16,8 @@ export const metadata: Metadata = { title: pages.pricing.title, description: pag
 export default function PricingPage() {
   return (
     <div data-audience="investors">
+      {/* the product with every priced plan, as structured data (src/lib/structured-data.ts) */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(productPageSchema()) }} />
       <PageHero heading={p.hero.heading} headingSize="h2" text={p.hero.text} image={p.hero.image} textWidth="max-w-[480px]" columnClassName="py-12 tablet:py-12 laptop:py-12" />
       {/* no grid row between hero and cards (Drop 23, designer) */}
       <Band innerClassName="flex flex-col items-center gap-8">
