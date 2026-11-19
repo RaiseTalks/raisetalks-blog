@@ -30,7 +30,7 @@ export const site = {
 
 /** `href` optional: without it the strip is plain text. */
 export const announcement: { text: string; href?: string; dismissLabel: string } = {
-  text: "See you in Lisbon at Web Summit - November 9-14, 2026",
+  text: "Book a Demo to  Get your Startup Pro Annual Perk from RaiseTalks",
   dismissLabel: "Dismiss announcement",
 };
 
